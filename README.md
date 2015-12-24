@@ -6,6 +6,7 @@ A simple, opensource weather app for Android. It gtahers data from [OpenWeatherM
 * Detailed 5 day forecast
 * Multiple units
 * Works with any city in the world
+* Offline functionality
 
 ## Screenshots
 [<img src="http://i.imgur.com/g97hk8n.png" width=250>](http://i.imgur.com/g97hk8n.png)
