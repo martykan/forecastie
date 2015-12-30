@@ -230,7 +230,8 @@ public class MainActivity extends AppCompatActivity {
                 temperature = (((9 * (Float.parseFloat(temperature) - 273.15)) / 5) + 32) + "";
             }
 
-            todayWeather.setDescription(reader.optJSONArray("weather").getJSONObject(0).getString("description").toString());
+
+            todayWeather.setDescription(getString(getResources().getIdentifier("description" + reader.optJSONArray("weather").getJSONObject(0).getString("id").toString(), "string", getPackageName())));
             todayWeather.setWind(reader.optJSONObject("wind").getString("speed").toString());
             todayWeather.setPressure(reader.optJSONObject("main").getString("pressure").toString());
             todayWeather.setHumidity(reader.optJSONObject("main").getString("humidity").toString());
@@ -263,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 Weather weather = new Weather();
                 weather.setDate(list.getJSONObject(i).getString("dt_txt"));
                 weather.setTemperature(list.getJSONObject(i).optJSONObject("main").getString("temp"));
-                weather.setDescription(list.getJSONObject(i).optJSONArray("weather").getJSONObject(0).getString("description").toString());
+                weather.setDescription(getString(getResources().getIdentifier("description" + list.getJSONObject(i).optJSONArray("weather").getJSONObject(0).getString("id").toString(), "string", getPackageName())));
                 weather.setWind(list.getJSONObject(i).optJSONObject("wind").getString("speed").toString());
                 weather.setPressure(list.getJSONObject(i).optJSONObject("main").getString("pressure").toString());
                 weather.setHumidity(list.getJSONObject(i).optJSONObject("main").getString("humidity").toString());
