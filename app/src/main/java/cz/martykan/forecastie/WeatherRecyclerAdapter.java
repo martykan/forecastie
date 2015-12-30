@@ -69,9 +69,9 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");
         customViewHolder.itemIcon.setTypeface(weatherFont);
         customViewHolder.itemIcon.setText(weatherItem.getIcon());
-        customViewHolder.itemyWind.setText(R.string.wind + ": " + weatherItem.getWind() + " m/s");
-        customViewHolder.itemPressure.setText(R.string.pressure + ": " + weatherItem.getPressure() + " hpa");
-        customViewHolder.itemHumidity.setText(R.string.humidity + ": " + weatherItem.getHumidity() + " %");
+        customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " + weatherItem.getWind() + " m/s");
+        customViewHolder.itemPressure.setText(context.getString(R.string.pressure) + ": " + weatherItem.getPressure() + " hpa");
+        customViewHolder.itemHumidity.setText(context.getString(R.string.humidity) + ": " + weatherItem.getHumidity() + " %");
     }
 
     @Override
