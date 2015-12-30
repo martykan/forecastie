@@ -11,5 +11,5 @@
     <string name="humidity">Humidité</string>
 
     <string name="search_title">Recherche par ville</string>
-    <string name="units_title">Sélectionner l'unité</string>
+    <string name="units_title">Sélectionner l\'unité</string>
 </resources>
