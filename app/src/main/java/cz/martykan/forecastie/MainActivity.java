@@ -37,6 +37,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     Typeface weatherFont;
@@ -230,8 +231,7 @@ public class MainActivity extends AppCompatActivity {
                 temperature = (((9 * (Float.parseFloat(temperature) - 273.15)) / 5) + 32) + "";
             }
 
-
-            todayWeather.setDescription(getString(getResources().getIdentifier("description" + reader.optJSONArray("weather").getJSONObject(0).getString("id").toString(), "string", getPackageName())));
+            todayWeather.setDescription(reader.optJSONArray("weather").getJSONObject(0).getString("description").toString());
             todayWeather.setWind(reader.optJSONObject("wind").getString("speed").toString());
             todayWeather.setPressure(reader.optJSONObject("main").getString("pressure").toString());
             todayWeather.setHumidity(reader.optJSONObject("main").getString("humidity").toString());
@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 Weather weather = new Weather();
                 weather.setDate(list.getJSONObject(i).getString("dt_txt"));
                 weather.setTemperature(list.getJSONObject(i).optJSONObject("main").getString("temp"));
-                weather.setDescription(getString(getResources().getIdentifier("description" + list.getJSONObject(i).optJSONArray("weather").getJSONObject(0).getString("id").toString(), "string", getPackageName())));
+                weather.setDescription(list.getJSONObject(i).optJSONArray("weather").getJSONObject(0).getString("description").toString());
                 weather.setWind(list.getJSONObject(i).optJSONObject("wind").getString("speed").toString());
                 weather.setPressure(list.getJSONObject(i).optJSONObject("main").getString("pressure").toString());
                 weather.setHumidity(list.getJSONObject(i).optJSONObject("main").getString("humidity").toString());
@@ -330,7 +330,9 @@ public class MainActivity extends AppCompatActivity {
         protected Void doInBackground(String... params) {
             try {
                 SharedPreferences sp = getSharedPreferences("ForecastiePrefs", 0);
-                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&appid=2de143494c0b295cca9337e1e96b00e0");
+                String language = Locale.getDefault().getLanguage();
+                if(language.equals("cs")) { language = "cz"; }
+                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang="+ language +"&appid=2de143494c0b295cca9337e1e96b00e0");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
@@ -367,7 +369,9 @@ public class MainActivity extends AppCompatActivity {
         protected Void doInBackground(String... params) {
             try {
                 SharedPreferences sp = getSharedPreferences("ForecastiePrefs", 0);
-                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&mode=json&appid=2de143494c0b295cca9337e1e96b00e0");
+                String language = Locale.getDefault().getLanguage();
+                if(language.equals("cs")) { language = "cz"; }
+                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang="+ language +"&mode=json&appid=2de143494c0b295cca9337e1e96b00e0");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
