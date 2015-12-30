@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Forecastie</string>
+
+    <string name="action_search">Hľadať</string>
+    <string name="action_refresh">Obnoviť</string>
+    <string name="action_units">Nastaviť jednotku</string>
+    <string name="action_about">O aplikácii</string>
+
+    <string name="wind">Vietor</string>
+    <string name="pressure">Tlak</string>
+    <string name="humidity">Vlhkosť</string>
+
+    <string name="search_title">Hľadajte město</string>
+    <string name="units_title">Vyberte jednotku</string>
+</resources>
