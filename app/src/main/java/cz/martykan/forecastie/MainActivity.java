@@ -238,9 +238,9 @@ public class MainActivity extends AppCompatActivity {
 
             todayTemperature.setText(temperature.substring(0, temperature.indexOf(".") + 2) + " °" + sp.getString("unit", "C"));
             todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() + todayWeather.getDescription().substring(1));
-            todayWind.setText("Wind: " + todayWeather.getWind() + " m/s");
-            todayPressure.setText("Pressure: " + todayWeather.getPressure() + " hpa");
-            todayHumidity.setText("Humidity: " + todayWeather.getHumidity() + " %");
+            todayWind.setText(R.string.wind + ": " + todayWeather.getWind() + " m/s");
+            todayPressure.setText(R.string.pressure + ": " + todayWeather.getPressure() + " hpa");
+            todayHumidity.setText(R.string.humidity + ": " + todayWeather.getHumidity() + " %");
             todayIcon.setText(todayWeather.getIcon());
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
