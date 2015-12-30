@@ -6,15 +6,10 @@
     <string name="action_units">Unitatea ezarri</string>
     <string name="action_about">Honi buruz</string>
 
+    <string name="wind">Haizea</string>
+    <string name="pressure">Presio</string>
+    <string name="humidity">Hezetasun</string>
+
     <string name="search_title">Hiri bat bilatu</string>
     <string name="units_title">Nahi duzun unitatea hautatu</string>
-
-    <string name="weather_sunny">&#xf00d;</string>
-    <string name="weather_clear_night">&#xf02e;</string>
-    <string name="weather_foggy">&#xf014;</string>
-    <string name="weather_cloudy">&#xf013;</string>
-    <string name="weather_rainy">&#xf019;</string>
-    <string name="weather_snowy">&#xf01b;</string>
-    <string name="weather_thunder">&#xf01e;</string>
-    <string name="weather_drizzle">&#xf01c;</string>
 </resources>

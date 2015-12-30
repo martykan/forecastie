@@ -6,15 +6,10 @@
     <string name="action_units">Establecer unidad</string>
     <string name="action_about">Acerca de</string>
 
+    <string name="wind">Viento</string>
+    <string name="pressure">Presión</string>
+    <string name="humidity">Humedad</string>
+
     <string name="search_title">Buscar una ciudad</string>
     <string name="units_title">Seleccionar tu unidad preferida</string>
-
-    <string name="weather_sunny">&#xf00d;</string>
-    <string name="weather_clear_night">&#xf02e;</string>
-    <string name="weather_foggy">&#xf014;</string>
-    <string name="weather_cloudy">&#xf013;</string>
-    <string name="weather_rainy">&#xf019;</string>
-    <string name="weather_snowy">&#xf01b;</string>
-    <string name="weather_thunder">&#xf01e;</string>
-    <string name="weather_drizzle">&#xf01c;</string>
 </resources>
