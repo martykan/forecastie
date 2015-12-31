@@ -3,7 +3,6 @@
 
     <string name="action_search">Zoeken</string>
     <string name="action_refresh">Verversen</string>
-    <string name="action_units">Set-eenheid</string>
     <string name="action_about">Over app</string>
 
     <string name="wind">Wind</string>
@@ -11,5 +10,6 @@
     <string name="humidity">Luchtvochtigheid</string>
 
     <string name="search_title">Zoek stad</string>
-    <string name="units_title">Select eenheid</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="setting_speedUnits"></string>
 </resources>

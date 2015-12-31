@@ -3,6 +3,7 @@ package cz.martykan.forecastie;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
@@ -41,7 +42,7 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
     public void onBindViewHolder(WeatherViewHolder customViewHolder, int i) {
         Weather weatherItem = itemList.get(i);
 
-        SharedPreferences sp = context.getSharedPreferences("ForecastiePrefs", 0);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
         String temperature = weatherItem.getTemperature();
 
@@ -53,7 +54,25 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
             temperature = (((9 * (Float.parseFloat(temperature) - 273.15)) / 5)  + 32) + "";
         }
 
-        SimpleDateFormat resultFormat = new SimpleDateFormat("dd.MM.yyyy - HH:mm");
+        double wind = Double.parseDouble(weatherItem.getWind());
+        if(sp.getString("speedUnit", "m/s").equals("kph")){
+            wind = wind * 3.59999999712;
+        }
+
+        if (sp.getString("speedUnit", "m/s").equals("mph")) {
+            wind = wind * 2.23693629205;
+        }
+
+        String day = "";
+        if(sp.getBoolean("day", true)) {
+            day = "E ";
+        }
+
+        String dateFormat = "dd.MM.yyyy";
+        if(sp.getBoolean("imperialDate", false)) {
+            dateFormat = "MM/dd/yyyy";
+        }
+        SimpleDateFormat resultFormat = new SimpleDateFormat(day + dateFormat + " - HH:mm");
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
         Date date = new Date();
         try {
@@ -69,7 +88,7 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");
         customViewHolder.itemIcon.setTypeface(weatherFont);
         customViewHolder.itemIcon.setText(weatherItem.getIcon());
-        customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " + weatherItem.getWind() + " m/s");
+        customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " + (wind+"").substring(0, (wind+"").indexOf(".") + 2) + " " + sp.getString("speedUnit", "m/s"));
         customViewHolder.itemPressure.setText(context.getString(R.string.pressure) + ": " + weatherItem.getPressure() + " hpa");
         customViewHolder.itemHumidity.setText(context.getString(R.string.humidity) + ": " + weatherItem.getHumidity() + " %");
     }

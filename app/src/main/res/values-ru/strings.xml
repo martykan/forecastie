@@ -1,15 +1,14 @@
 <resources>
     <string name="app_name">Forecastie</string>
 
-    <string name="action_search">поиск</string>
-    <string name="action_refresh">обновление</string>
-    <string name="action_units">набор единица</string>
-    <string name="action_about">о применении</string>
+    <string name="action_search">Поиск</string>
+    <string name="action_refresh">Обновление</string>
+    <string name="action_about">О применении</string>
 
     <string name="wind">Ветер</string>
     <string name="pressure">Давление</string>
     <string name="humidity">Влажность</string>
 
-    <string name="search_title">введите населённый пункт</string>
-    <string name="units_title">выберите единицы температуры</string>
+    <string name="search_title">Введите населённый пункт</string>
+    <string name="action_settings">Настройки</string>
 </resources>

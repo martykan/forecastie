@@ -3,7 +3,6 @@
 
     <string name="action_search">Buscar</string>
     <string name="action_refresh">Actualizar</string>
-    <string name="action_units">Establecer unidad</string>
     <string name="action_about">Acerca de</string>
 
     <string name="wind">Viento</string>
@@ -11,5 +10,5 @@
     <string name="humidity">Humedad</string>
 
     <string name="search_title">Buscar una ciudad</string>
-    <string name="units_title">Seleccionar tu unidad preferida</string>
+    <string name="action_settings">Ajustes</string>
 </resources>

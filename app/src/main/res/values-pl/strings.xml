@@ -3,7 +3,6 @@
 
     <string name="action_search">Poszukiwanie</string>
     <string name="action_refresh">Przywracać</string>
-    <string name="action_units">Zestaw jednostki</string>
     <string name="action_about">O aplikacji</string>
 
     <string name="wind">Wiatr</string>
@@ -11,5 +10,5 @@
     <string name="humidity">Wilgotność</string>
 
     <string name="search_title">Wyszukaj miejscowość</string>
-    <string name="units_title">Wybierz jednostkę</string>
+    <string name="action_settings">Ustawienia</string>
 </resources>

@@ -3,7 +3,6 @@
 
     <string name="action_search">Bilatu</string>
     <string name="action_refresh">Freskatu</string>
-    <string name="action_units">Unitatea ezarri</string>
     <string name="action_about">Honi buruz</string>
 
     <string name="wind">Haizea</string>
@@ -11,5 +10,5 @@
     <string name="humidity">Hezetasun</string>
 
     <string name="search_title">Hiri bat bilatu</string>
-    <string name="units_title">Nahi duzun unitatea hautatu</string>
+    <string name="action_settings">Ezarpenak</string>
 </resources>

@@ -3,7 +3,6 @@
 
     <string name="action_search">Chercher</string>
     <string name="action_refresh">Rafraîchir</string>
-    <string name="action_units">Unité ensemble</string>
     <string name="action_about">O aplikaci</string>
 
     <string name="wind">Vent</string>
@@ -11,5 +10,5 @@
     <string name="humidity">Humidité</string>
 
     <string name="search_title">Recherche par ville</string>
-    <string name="units_title">Sélectionner l\'unité</string>
+    <string name="action_settings">Paramètres</string>
 </resources>

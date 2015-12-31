@@ -3,7 +3,7 @@
 
     <string name="action_search">Suche</string>
     <string name="action_refresh">Aktualisieren</string>
-    <string name="action_units">Einheit festlegen</string>
+    <string name="action_settings">Einstellungen</string>
     <string name="action_about">Über die App</string>
 
     <string name="wind">Wind</string>
@@ -11,5 +11,6 @@
     <string name="humidity">Feuchtigkeit</string>
 
     <string name="search_title">Stadt suchen</string>
-    <string name="units_title">Temperatureinheit wählen</string>
+
+
 </resources>

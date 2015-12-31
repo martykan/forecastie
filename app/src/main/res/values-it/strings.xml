@@ -3,7 +3,6 @@
 
     <string name="action_search">Ricerca</string>
     <string name="action_refresh">Ripristinare</string>
-    <string name="action_units">Unità set</string>
     <string name="action_about">A proposito di app</string>
 
     <string name="wind">Vento</string>
@@ -11,5 +10,5 @@
     <string name="humidity">Umidità</string>
 
     <string name="search_title">Cerca città</string>
-    <string name="units_title">Selezionare l\'unità</string>
+    <string name="action_settings">Impostazioni</string>
 </resources>

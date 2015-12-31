@@ -3,7 +3,6 @@
 
     <string name="action_search">Hledat</string>
     <string name="action_refresh">Obnovit</string>
-    <string name="action_units">Nastavit jednotku</string>
     <string name="action_about">O aplikaci</string>
 
     <string name="wind">Vítr</string>
@@ -11,5 +10,9 @@
     <string name="humidity">Vlhkost</string>
 
     <string name="search_title">Hledejte město</string>
-    <string name="units_title">Vyberte jednotku</string>
+    <string name="action_settings">Nastavení</string>
+    <string name="setting_imperialDate">Používat imperiální formát data</string>
+    <string name="setting_showDay">Zobrazovat den týdne</string>
+    <string name="setting_speedUnits">Jednotky rychlosti</string>
+    <string name="setting_tempUnits">Jednotky teploty</string>
 </resources>

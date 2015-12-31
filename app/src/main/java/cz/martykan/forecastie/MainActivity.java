@@ -3,12 +3,14 @@ package cz.martykan.forecastie;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -36,8 +38,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     Typeface weatherFont;
@@ -91,8 +96,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        if (isNetworkAvailable()) {
+            getTodayWeather();
+            getLongTermWeather();
+        }
+    }
+
     private void preloadWeather() {
-        SharedPreferences sp = getSharedPreferences("ForecastiePrefs", 0);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
         if(sp.getString("lastToday", "{}") != "{}") {
             parseTodayJson(sp.getString("lastToday", "{}"));
@@ -118,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String result = input.getText().toString();
-                SharedPreferences.Editor editor = getSharedPreferences("ForecastiePrefs", 0).edit();
+                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
                 editor.putString("city", result);
                 editor.commit();
                 getTodayWeather();
@@ -131,32 +145,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         alert.show();
-    }
-
-    private void changeUnit() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        String[] units = {"Celsius", "Fahrenheit", "Kelvin"};
-        builder.setTitle(this.getString(R.string.units_title))
-                .setItems(units, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        SharedPreferences.Editor editor = getSharedPreferences("ForecastiePrefs", 0).edit();
-                        switch (which) {
-                            case 0:
-                                editor.putString("unit", "C");
-                                break;
-                            case 1:
-                                editor.putString("unit", "F");
-                                break;
-                            case 2:
-                                editor.putString("unit", "K");
-                                break;
-                        }
-                        editor.commit();
-                        getTodayWeather();
-                        getLongTermWeather();
-                    }
-                });
-        builder.show();
     }
 
     private void aboutDialog() {
@@ -177,11 +165,15 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
 
-    private String setWeatherIcon(int actualId) {
+    private String setWeatherIcon(int actualId, int hourOfDay) {
         int id = actualId / 100;
         String icon = "";
         if (actualId == 800) {
-            icon = this.getString(R.string.weather_sunny);
+            if(hourOfDay >= 7 && hourOfDay < 20) {
+                icon = this.getString(R.string.weather_sunny);
+            } else {
+                icon = this.getString(R.string.weather_clear_night);
+            }
         } else {
             switch (id) {
                 case 2:
@@ -209,8 +201,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void parseTodayJson(String result) {
         try {
-            SharedPreferences sp = getSharedPreferences("ForecastiePrefs", 0);
-            SharedPreferences.Editor editor = getSharedPreferences("ForecastiePrefs", 0).edit();
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
             editor.putString("lastToday", result);
             editor.commit();
 
@@ -235,11 +227,21 @@ public class MainActivity extends AppCompatActivity {
             todayWeather.setWind(reader.optJSONObject("wind").getString("speed").toString());
             todayWeather.setPressure(reader.optJSONObject("main").getString("pressure").toString());
             todayWeather.setHumidity(reader.optJSONObject("main").getString("humidity").toString());
-            todayWeather.setIcon(setWeatherIcon(Integer.parseInt(reader.optJSONArray("weather").getJSONObject(0).getString("id").toString())));
+            todayWeather.setIcon(setWeatherIcon(Integer.parseInt(reader.optJSONArray("weather").getJSONObject(0).getString("id").toString()), Calendar.getInstance().get(Calendar.HOUR_OF_DAY)));
+
+
+            double wind = Double.parseDouble(todayWeather.getWind());
+            if(sp.getString("speedUnit", "m/s").equals("kph")){
+                wind = wind * 3.59999999712;
+            }
+
+            if (sp.getString("speedUnit", "m/s").equals("mph")) {
+                wind = wind * 2.23693629205;
+            }
 
             todayTemperature.setText(temperature.substring(0, temperature.indexOf(".") + 2) + " °" + sp.getString("unit", "C"));
             todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() + todayWeather.getDescription().substring(1));
-            todayWind.setText(getString(R.string.wind) + ": " + todayWeather.getWind() + " m/s");
+            todayWind.setText(getString(R.string.wind) + ": " + (wind+"").substring(0, (wind+"").indexOf(".") + 2) + " " + sp.getString("speedUnit", "m/s"));
             todayPressure.setText(getString(R.string.pressure) + ": " + todayWeather.getPressure() + " hpa");
             todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
             todayIcon.setText(todayWeather.getIcon());
@@ -252,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void parseLongTermJson(String result) {
         int i;
-        SharedPreferences.Editor editor = getSharedPreferences("ForecastiePrefs", 0).edit();
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
         editor.putString("lastLongterm", result);
         editor.commit();
         try {
@@ -268,7 +270,9 @@ public class MainActivity extends AppCompatActivity {
                 weather.setWind(list.getJSONObject(i).optJSONObject("wind").getString("speed").toString());
                 weather.setPressure(list.getJSONObject(i).optJSONObject("main").getString("pressure").toString());
                 weather.setHumidity(list.getJSONObject(i).optJSONObject("main").getString("humidity").toString());
-                weather.setIcon(setWeatherIcon(Integer.parseInt(list.getJSONObject(i).optJSONArray("weather").getJSONObject(0).getString("id").toString())));
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(Long.parseLong(list.getJSONObject(i).getString("dt")));
+                weather.setIcon(setWeatherIcon(Integer.parseInt(list.getJSONObject(i).optJSONArray("weather").getJSONObject(0).getString("id").toString()), cal.get(Calendar.HOUR_OF_DAY)));
                 longTermWeather.add(weather);
             }
         } catch (JSONException e) {
@@ -305,9 +309,9 @@ public class MainActivity extends AppCompatActivity {
             searchCities();
             return true;
         }
-        if (id == R.id.action_units) {
-            changeUnit();
-            return true;
+        if (id == R.id.action_settings) {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_about) {
             aboutDialog();
@@ -329,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... params) {
             try {
-                SharedPreferences sp = getSharedPreferences("ForecastiePrefs", 0);
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                 String language = Locale.getDefault().getLanguage();
                 if(language.equals("cs")) { language = "cz"; }
                 URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang="+ language +"&appid=2de143494c0b295cca9337e1e96b00e0");
@@ -368,7 +372,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... params) {
             try {
-                SharedPreferences sp = getSharedPreferences("ForecastiePrefs", 0);
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                 String language = Locale.getDefault().getLanguage();
                 if(language.equals("cs")) { language = "cz"; }
                 URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang="+ language +"&mode=json&appid=2de143494c0b295cca9337e1e96b00e0");

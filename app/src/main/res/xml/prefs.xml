@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory>
+        <ListPreference
+            android:defaultValue="C"
+            android:entries="@array/temperatureUnits"
+            android:entryValues="@array/temperatureUnitsValues"
+            android:key="unit"
+            android:title="@string/setting_tempUnits" />
+
+        <ListPreference
+            android:defaultValue="m/s"
+            android:entries="@array/speedUnits"
+            android:entryValues="@array/speedUnitsValues"
+            android:key="speedUnit"
+            android:title="@string/setting_speedUnits" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="imperialDate"
+            android:summary="@string/setting_imperialDate_description"
+            android:title="@string/setting_imperialDate" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="day"
+            android:title="@string/setting_showDay" />
+    </PreferenceCategory>
+</PreferenceScreen>
