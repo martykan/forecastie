@@ -15,4 +15,5 @@
     <string name="setting_showDay">Zobrazovat den týdne</string>
     <string name="setting_speedUnits">Jednotky rychlosti</string>
     <string name="setting_tempUnits">Jednotky teploty</string>
+    <string name="setting_pressureUnits">Jednotky tlaku</string>
 </resources>

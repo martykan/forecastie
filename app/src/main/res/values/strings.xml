@@ -26,4 +26,5 @@
     <string name="weather_snowy" translatable="false">&#xf01b;</string>
     <string name="weather_thunder" translatable="false">&#xf01e;</string>
     <string name="weather_drizzle" translatable="false">&#xf01c;</string>
+    <string name="setting_pressureUnits">Pressure units</string>
 </resources>

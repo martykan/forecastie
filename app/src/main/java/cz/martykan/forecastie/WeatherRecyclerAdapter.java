@@ -63,6 +63,14 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
             wind = wind * 2.23693629205;
         }
 
+        double pressure = Double.parseDouble(weatherItem.getPressure());
+        if(sp.getString("pressureUnit", "hPa").equals("kPa")){
+            pressure = pressure/10;
+        }
+        if(sp.getString("pressureUnit", "hPa").equals("mm Hg")){
+            pressure = pressure*0.750061561303;
+        }
+
         String day = "";
         if(sp.getBoolean("day", true)) {
             day = "E ";
@@ -89,7 +97,7 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         customViewHolder.itemIcon.setTypeface(weatherFont);
         customViewHolder.itemIcon.setText(weatherItem.getIcon());
         customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " + (wind+"").substring(0, (wind+"").indexOf(".") + 2) + " " + sp.getString("speedUnit", "m/s"));
-        customViewHolder.itemPressure.setText(context.getString(R.string.pressure) + ": " + weatherItem.getPressure() + " hpa");
+        customViewHolder.itemPressure.setText(context.getString(R.string.pressure) + ": " + (pressure+"").substring(0, (pressure + "").indexOf(".") + 2) + " " + sp.getString("pressureUnit", "hPa"));
         customViewHolder.itemHumidity.setText(context.getString(R.string.humidity) + ": " + weatherItem.getHumidity() + " %");
     }
 

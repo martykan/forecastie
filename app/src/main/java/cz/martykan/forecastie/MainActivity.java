@@ -239,10 +239,18 @@ public class MainActivity extends AppCompatActivity {
                 wind = wind * 2.23693629205;
             }
 
+            double pressure = Double.parseDouble(todayWeather.getPressure());
+            if(sp.getString("pressureUnit", "hPa").equals("kPa")){
+                pressure = pressure/10;
+            }
+            if(sp.getString("pressureUnit", "hPa").equals("mm Hg")){
+                pressure = pressure*0.750061561303;
+            }
+
             todayTemperature.setText(temperature.substring(0, temperature.indexOf(".") + 2) + " °" + sp.getString("unit", "C"));
             todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() + todayWeather.getDescription().substring(1));
             todayWind.setText(getString(R.string.wind) + ": " + (wind+"").substring(0, (wind+"").indexOf(".") + 2) + " " + sp.getString("speedUnit", "m/s"));
-            todayPressure.setText(getString(R.string.pressure) + ": " + todayWeather.getPressure() + " hpa");
+            todayPressure.setText(getString(R.string.pressure) + ": " + (pressure+"").substring(0, (pressure + "").indexOf(".") + 2) + " " + sp.getString("pressureUnit", "hPa"));
             todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
             todayIcon.setText(todayWeather.getIcon());
         } catch (JSONException e) {

@@ -21,4 +21,15 @@
         <item name="kph">kph</item>
         <item name="mph">mph</item>
     </string-array>
+
+    <string-array name="pressureUnits">
+        <item name="hpa">hPa</item>
+        <item name="kpa">kPa</item>
+        <item name="mmhg">mm Hg</item>
+    </string-array>
+    <string-array name="pressureUnitsValues">
+        <item name="hpa">hPa</item>
+        <item name="kpa">kPa</item>
+        <item name="mmhg">mm Hg</item>
+    </string-array>
 </resources>
