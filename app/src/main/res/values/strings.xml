@@ -17,6 +17,7 @@
     <string name="setting_showDay">Show day of the week</string>
     <string name="setting_speedUnits">Speed units</string>
     <string name="setting_tempUnits">Temperature units</string>
+    <string name="setting_pressureUnits">Pressure units</string>
 
     <string name="weather_sunny" translatable="false">&#xf00d;</string>
     <string name="weather_clear_night" translatable="false">&#xf02e;</string>
@@ -26,5 +27,4 @@
     <string name="weather_snowy" translatable="false">&#xf01b;</string>
     <string name="weather_thunder" translatable="false">&#xf01e;</string>
     <string name="weather_drizzle" translatable="false">&#xf01c;</string>
-    <string name="setting_pressureUnits">Pressure units</string>
 </resources>

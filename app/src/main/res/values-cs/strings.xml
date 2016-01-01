@@ -16,4 +16,5 @@
     <string name="setting_speedUnits">Jednotky rychlosti</string>
     <string name="setting_tempUnits">Jednotky teploty</string>
     <string name="setting_pressureUnits">Jednotky tlaku</string>
+    <string name="setting_imperialDate_description">12/31/2001 místo 31.12.2001</string>
 </resources>
