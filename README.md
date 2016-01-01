@@ -1,4 +1,7 @@
 # forecastie
+
+[![Join the chat at https://gitter.im/martykan/forecastie](https://badges.gitter.im/martykan/forecastie.svg)](https://gitter.im/martykan/forecastie?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A simple, opensource weather app for Android. It gathers data from [OpenWeatherMap](http://openweathermap.org/), via their public API.
 
 ## Features
