@@ -5,6 +5,8 @@
 
 A simple, opensource weather app for Android. It gathers data from [OpenWeatherMap](http://openweathermap.org/), via their public API.
 
+[![Release](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Get_it_on_F-Droid.svg/200px-Get_it_on_F-Droid.svg.png)](https://f-droid.org/repository/browse/?fdid=cz.martykan.forecastie)
+
 ## Features
 * Simple design
 * Detailed 5 day forecast
