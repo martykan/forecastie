@@ -6,9 +6,16 @@
     <string name="action_about">Honi buruz</string>
 
     <string name="wind">Haizea</string>
-    <string name="pressure">Presio</string>
-    <string name="humidity">Hezetasun</string>
+    <string name="pressure">Presioa</string>
+    <string name="humidity">Hezetasuna</string>
 
     <string name="search_title">Hiri bat bilatu</string>
     <string name="action_settings">Ezarpenak</string>
+    
+    <string name="setting_imperialDate">Data formatu inperiala erabili</string>
+    <string name="setting_imperialDate_description">31.12.2001 izan beharrean 12/31/2001</string>
+    <string name="setting_showDay">Astearen eguna erakutsi</string>
+    <string name="setting_speedUnits">Abiaduraren unitateak</string>
+    <string name="setting_tempUnits">Tenperaturaren unitateak</string>
+    <string name="setting_pressureUnits">Presioaren unitateak</string>
 </resources>
