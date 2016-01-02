@@ -3,6 +3,7 @@
 
     <string name="action_search">Poszukiwanie</string>
     <string name="action_refresh">Przywracać</string>
+    <string name="action_settings">Ustawienia</string>
     <string name="action_about">O aplikacji</string>
 
     <string name="wind">Wiatr</string>
@@ -10,5 +11,11 @@
     <string name="humidity">Wilgotność</string>
 
     <string name="search_title">Wyszukaj miejscowość</string>
-    <string name="action_settings">Ustawienia</string>
+
+    <string name="setting_imperialDate">Użyj imperialistyczny format danych</string>
+    <string name="setting_imperialDate_description">31.12.2001 zamiast 31.12.2001</string>
+    <string name="setting_showDay">Pokaż dzień tygodnia</string>
+    <string name="setting_speedUnits">Jednostki prędkości</string>
+    <string name="setting_tempUnits">Jednostki temperatury</string>
+    <string name="setting_pressureUnits">Jednostki ciśnienia</string>
 </resources>
