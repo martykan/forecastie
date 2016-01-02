@@ -20,8 +20,8 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".MainActivity">
+            android:theme="@style/AppTheme">
+#            android:parentActivityName=".MainActivity">
         </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
