@@ -12,5 +12,10 @@
 
     <string name="search_title">Stadt suchen</string>
 
-
+    <string name="setting_imperialDate">Imperiales Datumsformat verwenden</string>
+    <string name="setting_imperialDate_description">12/31/2001 statt 31.12.2001</string>
+    <string name="setting_showDay">Wochentag anzeigen</string>
+    <string name="setting_speedUnits">Maßeinheit Geschwindigkeit</string>
+    <string name="setting_tempUnits">Maßeinheit Temperatur</string>
+    <string name="setting_pressureUnits">Maßeinheit Druck</string>
 </resources>
