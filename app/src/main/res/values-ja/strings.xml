@@ -3,7 +3,7 @@
 
     <string name="action_search">検索</string>
     <string name="action_refresh">更新</string>
-    <string name="action_units">単位を設定</string>
+    <string name="action_settings">設定</string>
     <string name="action_about">アプリについて</string>
 
     <string name="wind">風力</string>
@@ -11,5 +11,4 @@
     <string name="humidity">湿度</string>
 
     <string name="search_title">都市の検索</string>
-    <string name="units_title">お好みの単位を選択</string>
 </resources>
