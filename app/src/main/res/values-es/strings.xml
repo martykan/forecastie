@@ -11,4 +11,11 @@
 
     <string name="search_title">Buscar una ciudad</string>
     <string name="action_settings">Ajustes</string>
+    
+    <string name="setting_imperialDate">Usar formato de fecha imperial</string>
+    <string name="setting_imperialDate_description">12/31/2001 en vez de 31.12.2001</string>
+    <string name="setting_showDay">Mostrar el día de la semana</string>
+    <string name="setting_speedUnits">Unidades de velocidad</string>
+    <string name="setting_tempUnits">Unidades de temperatura</string>
+    <string name="setting_pressureUnits">Unidades de presión</string>
 </resources>
