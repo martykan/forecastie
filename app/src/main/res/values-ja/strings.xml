@@ -11,4 +11,11 @@
     <string name="humidity">湿度</string>
 
     <string name="search_title">都市の検索</string>
+
+    <string name="setting_imperialDate">英国日付形式を使用します</string>
+    <string name="setting_imperialDate_description">31.12.2001 ではなく 12/31/2001</string>
+    <string name="setting_showDay">曜日を表示</string>
+    <string name="setting_speedUnits">風速の単位</string>
+    <string name="setting_tempUnits">気温の単位</string>
+    <string name="setting_pressureUnits">気圧の単位</string>
 </resources>
