@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
 
             for (i = 0; i < list.length(); i++) {
                 Weather weather = new Weather();
-                weather.setDate(list.getJSONObject(i).getString("dt_txt"));
+                weather.setDate(list.getJSONObject(i).getString("dt"));
                 weather.setTemperature(list.getJSONObject(i).optJSONObject("main").getString("temp"));
                 weather.setDescription(list.getJSONObject(i).optJSONArray("weather").getJSONObject(0).getString("description").toString());
                 weather.setWind(list.getJSONObject(i).optJSONObject("wind").getString("speed").toString());

@@ -17,9 +17,11 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHolder> {
     private List<Weather> itemList;
@@ -80,16 +82,27 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         if(sp.getBoolean("imperialDate", false)) {
             dateFormat = "MM/dd/yyyy";
         }
+
+        Calendar cal = Calendar.getInstance();
+        TimeZone tz = cal.getTimeZone();
+
         SimpleDateFormat resultFormat = new SimpleDateFormat(day + dateFormat + " - HH:mm");
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
-        Date date = new Date();
+        resultFormat.setTimeZone(tz);
+        Date date;
         try {
-             date = inputFormat.parse(weatherItem.getDate());
+            date = new Date(Long.parseLong(weatherItem.getDate()) * 1000);
         }
-        catch (ParseException e) {
-            Log.e("ParseException", "I didn't believe this could ever happen.");
-            e.printStackTrace();
+        catch (Exception e) {
+            date = new Date();
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+            try {
+                date = inputFormat.parse(weatherItem.getDate());
+            }
+            catch (ParseException e2) {
+                e2.printStackTrace();
+            }
         }
+
         customViewHolder.itemDate.setText(resultFormat.format(date));
         customViewHolder.itemTemperature.setText(temperature.substring(0, temperature.indexOf(".") + 2) + " °"+ sp.getString("unit", "C"));
         customViewHolder.itemDescription.setText(weatherItem.getDescription().substring(0, 1).toUpperCase() + weatherItem.getDescription().substring(1));
