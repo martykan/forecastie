@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Forecastie</string>
+
+    <string name="action_search">Pesquisar</string>
+    <string name="action_refresh">Atualizar</string>
+    <string name="action_settings">Definições</string>
+    <string name="action_about">Sobre</string>
+
+    <string name="wind">Vento</string>
+    <string name="pressure">Pressão</string>
+    <string name="humidity">Humidade</string>
+
+    <string name="search_title">Pesquisar uma cidade</string>
+
+    <string name="setting_imperialDate">Usar formato de data imperial</string>
+    <string name="setting_imperialDate_description">12/31/2001 em vez de 31.12.2001</string>
+    <string name="setting_showDay">Mostrar dia da semana</string>
+    <string name="setting_speedUnits">Unidades de velocidade</string>
+    <string name="setting_tempUnits">Unidades de temperatura</string>
+    <string name="setting_pressureUnits">Unidades de pressão</string>
+</resources>
