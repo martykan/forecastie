@@ -23,6 +23,13 @@
             android:theme="@style/AppTheme">
 #            android:parentActivityName=".MainActivity">
         </activity>
+        <receiver android:name="WidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/weather_widget_info" />
+        </receiver>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
