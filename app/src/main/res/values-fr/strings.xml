@@ -2,8 +2,8 @@
     <string name="app_name">Forecastie</string>
 
     <string name="action_search">Chercher</string>
-    <string name="action_refresh">Rafraîchir</string>
-    <string name="action_about">O aplikaci</string>
+    <string name="action_refresh">Actualiser</string>
+    <string name="action_about">À propos</string>
 
     <string name="wind">Vent</string>
     <string name="pressure">Pression</string>
