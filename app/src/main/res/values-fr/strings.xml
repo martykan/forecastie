@@ -3,6 +3,7 @@
 
     <string name="action_search">Chercher</string>
     <string name="action_refresh">Actualiser</string>
+    <string name="action_settings">Paramètres</string>
     <string name="action_about">À propos</string>
 
     <string name="wind">Vent</string>
@@ -10,5 +11,11 @@
     <string name="humidity">Humidité</string>
 
     <string name="search_title">Recherche par ville</string>
-    <string name="action_settings">Paramètres</string>
+
+    <string name="setting_imperialDate">Utiliser le format mm/jj/aaaa pour les dates</string>
+    <string name="setting_imperialDate_description">12/31/2001 au lieu de 31.12.2001</string>
+    <string name="setting_showDay">Afficher le jour de la semaine</string>
+    <string name="setting_speedUnits">Unités pour la vitesse</string>
+    <string name="setting_tempUnits">Unité pour la température</string>
+    <string name="setting_pressureUnits">Unité pour la pression</string>
 </resources>
