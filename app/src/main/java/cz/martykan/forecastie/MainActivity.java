@@ -1,5 +1,7 @@
 package cz.martykan.forecastie;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -91,10 +93,13 @@ public class MainActivity extends AppCompatActivity {
             getTodayWeather();
             getLongTermWeather();
         }
+
+        // Set autoupdater
+        setRecurringAlarm(this);
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         if (isNetworkAvailable()) {
             getTodayWeather();
@@ -102,13 +107,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void setRecurringAlarm(Context context) {
+        Intent refresh = new Intent(context, AlarmReceiver.class);
+        PendingIntent recurringRefresh = PendingIntent.getBroadcast(context,
+                0, refresh, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager alarms = (AlarmManager) getSystemService(
+                Context.ALARM_SERVICE);
+        alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, AlarmManager.INTERVAL_HOUR, AlarmManager.INTERVAL_HOUR, recurringRefresh);
+    }
+
     private void preloadWeather() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
-        if(sp.getString("lastToday", "{}") != "{}") {
+        if (sp.getString("lastToday", "{}") != "{}") {
             parseTodayJson(sp.getString("lastToday", "{}"));
         }
-        if(sp.getString("lastLongterm", "{}") != "{}") {
+        if (sp.getString("lastLongterm", "{}") != "{}") {
             parseLongTermJson(sp.getString("lastLongterm", "{}"));
         }
     }
@@ -173,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         int id = actualId / 100;
         String icon = "";
         if (actualId == 800) {
-            if(hourOfDay >= 7 && hourOfDay < 20) {
+            if (hourOfDay >= 7 && hourOfDay < 20) {
                 icon = this.getString(R.string.weather_sunny);
             } else {
                 icon = this.getString(R.string.weather_clear_night);
@@ -233,20 +247,16 @@ public class MainActivity extends AppCompatActivity {
             todayWeather.setHumidity(reader.optJSONObject("main").getString("humidity").toString());
             try {
                 todayWeather.setRain(reader.optJSONObject("rain").getString("1h").toString());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 try {
                     todayWeather.setRain(reader.optJSONObject("rain").getString("3h").toString());
-                }
-                catch (Exception e2) {
+                } catch (Exception e2) {
                     try {
                         todayWeather.setRain(reader.optJSONObject("snow").getString("1h").toString());
-                    }
-                    catch (Exception e3) {
+                    } catch (Exception e3) {
                         try {
                             todayWeather.setRain(reader.optJSONObject("snow").getString("3h").toString());
-                        }
-                        catch (Exception e4) {
+                        } catch (Exception e4) {
                             todayWeather.setRain("0");
                         }
                     }
@@ -257,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             double wind = Double.parseDouble(todayWeather.getWind());
-            if(sp.getString("speedUnit", "m/s").equals("kph")){
+            if (sp.getString("speedUnit", "m/s").equals("kph")) {
                 wind = wind * 3.59999999712;
             }
 
@@ -266,22 +276,21 @@ public class MainActivity extends AppCompatActivity {
             }
 
             double pressure = Double.parseDouble(todayWeather.getPressure());
-            if(sp.getString("pressureUnit", "hPa").equals("kPa")){
-                pressure = pressure/10;
+            if (sp.getString("pressureUnit", "hPa").equals("kPa")) {
+                pressure = pressure / 10;
             }
-            if(sp.getString("pressureUnit", "hPa").equals("mm Hg")){
-                pressure = pressure*0.750061561303;
+            if (sp.getString("pressureUnit", "hPa").equals("mm Hg")) {
+                pressure = pressure * 0.750061561303;
             }
 
             todayTemperature.setText(temperature.substring(0, temperature.indexOf(".") + 2) + " °" + sp.getString("unit", "C"));
-            if(Float.parseFloat(todayWeather.getRain()) > 0.1) {
+            if (Float.parseFloat(todayWeather.getRain()) > 0.1) {
                 todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() + todayWeather.getDescription().substring(1) + " (" + todayWeather.getRain().substring(0, todayWeather.getRain().indexOf(".") + 2) + " mm)");
-            }
-            else {
+            } else {
                 todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() + todayWeather.getDescription().substring(1));
             }
-            todayWind.setText(getString(R.string.wind) + ": " + (wind+"").substring(0, (wind+"").indexOf(".") + 2) + " " + sp.getString("speedUnit", "m/s"));
-            todayPressure.setText(getString(R.string.pressure) + ": " + (pressure+"").substring(0, (pressure + "").indexOf(".") + 2) + " " + sp.getString("pressureUnit", "hPa"));
+            todayWind.setText(getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " + sp.getString("speedUnit", "m/s"));
+            todayPressure.setText(getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " + sp.getString("pressureUnit", "hPa"));
             todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
             todayIcon.setText(todayWeather.getIcon());
         } catch (JSONException e) {
@@ -311,20 +320,16 @@ public class MainActivity extends AppCompatActivity {
                 weather.setHumidity(list.getJSONObject(i).optJSONObject("main").getString("humidity").toString());
                 try {
                     weather.setRain(list.getJSONObject(i).optJSONObject("rain").getString("1h").toString());
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     try {
                         weather.setRain(list.getJSONObject(i).optJSONObject("rain").getString("3h").toString());
-                    }
-                    catch (Exception e2) {
+                    } catch (Exception e2) {
                         try {
                             weather.setRain(list.getJSONObject(i).optJSONObject("snow").getString("1h").toString());
-                        }
-                        catch (Exception e3) {
+                        } catch (Exception e3) {
                             try {
                                 weather.setRain(list.getJSONObject(i).optJSONObject("snow").getString("3h").toString());
-                            }
-                            catch (Exception e4) {
+                            } catch (Exception e4) {
                                 weather.setRain("0");
                             }
                         }
@@ -396,18 +401,19 @@ public class MainActivity extends AppCompatActivity {
             try {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                 String language = Locale.getDefault().getLanguage();
-                if(language.equals("cs")) { language = "cz"; }
-                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang="+ language +"&appid=2de143494c0b295cca9337e1e96b00e0");
+                if (language.equals("cs")) {
+                    language = "cz";
+                }
+                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang=" + language + "&appid=2de143494c0b295cca9337e1e96b00e0");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
-                if(urlConnection.getResponseCode() == 200) {
+                if (urlConnection.getResponseCode() == 200) {
                     String line = null;
                     while ((line = r.readLine()) != null) {
                         result += line + "\n";
                     }
-                }
-                else {
+                } else {
                     Snackbar.make(appView, "There is a problem with your interent connection.", Snackbar.LENGTH_LONG).show();
                 }
             } catch (IOException e) {
@@ -440,18 +446,19 @@ public class MainActivity extends AppCompatActivity {
             try {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                 String language = Locale.getDefault().getLanguage();
-                if(language.equals("cs")) { language = "cz"; }
-                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang="+ language +"&mode=json&appid=2de143494c0b295cca9337e1e96b00e0");
+                if (language.equals("cs")) {
+                    language = "cz";
+                }
+                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang=" + language + "&mode=json&appid=2de143494c0b295cca9337e1e96b00e0");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
-                if(urlConnection.getResponseCode() == 200) {
+                if (urlConnection.getResponseCode() == 200) {
                     String line = null;
                     while ((line = r.readLine()) != null) {
                         result += line + "\n";
                     }
-                }
-                else {
+                } else {
                     Snackbar.make(appView, "There is a problem with your interent connection.", Snackbar.LENGTH_LONG).show();
                 }
             } catch (IOException e) {
