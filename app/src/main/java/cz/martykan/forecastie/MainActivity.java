@@ -344,9 +344,14 @@ public class MainActivity extends AppCompatActivity {
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
-                String line = null;
-                while ((line = r.readLine()) != null) {
-                    result += line + "\n";
+                if(urlConnection.getResponseCode() == 200) {
+                    String line = null;
+                    while ((line = r.readLine()) != null) {
+                        result += line + "\n";
+                    }
+                }
+                else {
+                    Snackbar.make(appView, "There is a problem with your interent connection.", Snackbar.LENGTH_LONG).show();
                 }
             } catch (IOException e) {
                 Log.e("IOException Data", result);
@@ -383,9 +388,14 @@ public class MainActivity extends AppCompatActivity {
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
-                String line = null;
-                while ((line = r.readLine()) != null) {
-                    result += line + "\n";
+                if(urlConnection.getResponseCode() == 200) {
+                    String line = null;
+                    while ((line = r.readLine()) != null) {
+                        result += line + "\n";
+                    }
+                }
+                else {
+                    Snackbar.make(appView, "There is a problem with your interent connection.", Snackbar.LENGTH_LONG).show();
                 }
             } catch (IOException e) {
                 Log.e("IOException Data", result);
