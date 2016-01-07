@@ -9,6 +9,8 @@ public class Weather {
     private String wind;
     private String pressure;
     private String humidity;
+    private String rain;
+    private String id;
     private String icon;
 
     public String getCity() {
@@ -84,5 +86,21 @@ public class Weather {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getRain() {
+        return rain;
+    }
+
+    public void setRain(String rain) {
+        this.rain = rain;
     }
 }

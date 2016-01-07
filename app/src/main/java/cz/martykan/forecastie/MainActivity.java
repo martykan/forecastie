@@ -132,10 +132,9 @@ public class MainActivity extends AppCompatActivity {
         alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String result = input.getText().toString();
-                if(result.matches("")) {
+                if (result.matches("")) {
 
-                }
-                else {
+                } else {
                     SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
                     editor.putString("city", result);
                     editor.commit();
@@ -232,6 +231,28 @@ public class MainActivity extends AppCompatActivity {
             todayWeather.setWind(reader.optJSONObject("wind").getString("speed").toString());
             todayWeather.setPressure(reader.optJSONObject("main").getString("pressure").toString());
             todayWeather.setHumidity(reader.optJSONObject("main").getString("humidity").toString());
+            try {
+                todayWeather.setRain(reader.optJSONObject("rain").getString("1h").toString());
+            }
+            catch (Exception e) {
+                try {
+                    todayWeather.setRain(reader.optJSONObject("rain").getString("3h").toString());
+                }
+                catch (Exception e2) {
+                    try {
+                        todayWeather.setRain(reader.optJSONObject("snow").getString("1h").toString());
+                    }
+                    catch (Exception e3) {
+                        try {
+                            todayWeather.setRain(reader.optJSONObject("snow").getString("3h").toString());
+                        }
+                        catch (Exception e4) {
+                            todayWeather.setRain("0");
+                        }
+                    }
+                }
+            }
+            todayWeather.setId(reader.optJSONArray("weather").getJSONObject(0).getString("id").toString());
             todayWeather.setIcon(setWeatherIcon(Integer.parseInt(reader.optJSONArray("weather").getJSONObject(0).getString("id").toString()), Calendar.getInstance().get(Calendar.HOUR_OF_DAY)));
 
 
@@ -253,7 +274,12 @@ public class MainActivity extends AppCompatActivity {
             }
 
             todayTemperature.setText(temperature.substring(0, temperature.indexOf(".") + 2) + " °" + sp.getString("unit", "C"));
-            todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() + todayWeather.getDescription().substring(1));
+            if(Float.parseFloat(todayWeather.getRain()) > 0.1) {
+                todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() + todayWeather.getDescription().substring(1) + " (" + todayWeather.getRain().substring(0, todayWeather.getRain().indexOf(".") + 2) + " mm)");
+            }
+            else {
+                todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() + todayWeather.getDescription().substring(1));
+            }
             todayWind.setText(getString(R.string.wind) + ": " + (wind+"").substring(0, (wind+"").indexOf(".") + 2) + " " + sp.getString("speedUnit", "m/s"));
             todayPressure.setText(getString(R.string.pressure) + ": " + (pressure+"").substring(0, (pressure + "").indexOf(".") + 2) + " " + sp.getString("pressureUnit", "hPa"));
             todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
@@ -283,6 +309,28 @@ public class MainActivity extends AppCompatActivity {
                 weather.setWind(list.getJSONObject(i).optJSONObject("wind").getString("speed").toString());
                 weather.setPressure(list.getJSONObject(i).optJSONObject("main").getString("pressure").toString());
                 weather.setHumidity(list.getJSONObject(i).optJSONObject("main").getString("humidity").toString());
+                try {
+                    weather.setRain(list.getJSONObject(i).optJSONObject("rain").getString("1h").toString());
+                }
+                catch (Exception e) {
+                    try {
+                        weather.setRain(list.getJSONObject(i).optJSONObject("rain").getString("3h").toString());
+                    }
+                    catch (Exception e2) {
+                        try {
+                            weather.setRain(list.getJSONObject(i).optJSONObject("snow").getString("1h").toString());
+                        }
+                        catch (Exception e3) {
+                            try {
+                                weather.setRain(list.getJSONObject(i).optJSONObject("snow").getString("3h").toString());
+                            }
+                            catch (Exception e4) {
+                                weather.setRain("0");
+                            }
+                        }
+                    }
+                }
+                weather.setId(list.getJSONObject(i).optJSONArray("weather").getJSONObject(0).getString("id").toString());
                 Calendar cal = Calendar.getInstance();
                 cal.setTimeInMillis(Long.parseLong(list.getJSONObject(i).getString("dt")));
                 weather.setIcon(setWeatherIcon(Integer.parseInt(list.getJSONObject(i).optJSONArray("weather").getJSONObject(0).getString("id").toString()), cal.get(Calendar.HOUR_OF_DAY)));
