@@ -6,6 +6,10 @@
     <string name="action_settings">Nastavenie</string>
     <string name="action_about">O aplikácii</string>
 
+    <string name="today">Dnes</string>
+    <string name="tomorrow">Zajtra</string>
+    <string name="later">Neskôr</string>
+
     <string name="wind">Vietor</string>
     <string name="pressure">Tlak</string>
     <string name="humidity">Vlhkosť</string>

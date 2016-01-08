@@ -14,6 +14,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -53,11 +55,14 @@ public class MainActivity extends AppCompatActivity {
     TextView todayPressure;
     TextView todayHumidity;
     TextView todayIcon;
-    RecyclerView recyclerView;
+    ViewPager viewPager;
+    TabLayout tabLayout;
 
     View appView;
 
     private List<Weather> longTermWeather;
+    private List<Weather> longTermTodayWeather;
+    private List<Weather> longTermTomorrowWeather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +85,9 @@ public class MainActivity extends AppCompatActivity {
         weatherFont = Typeface.createFromAsset(this.getAssets(), "fonts/weather.ttf");
         todayIcon.setTypeface(weatherFont);
 
-        // Initialize recyclerview
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        // Initialize viewPager
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
 
         // Preload data from cache
         preloadWeather();
@@ -96,6 +100,20 @@ public class MainActivity extends AppCompatActivity {
 
         // Set autoupdater
         setRecurringAlarm(this);
+    }
+
+    public WeatherRecyclerAdapter getAdapter(int id){
+        WeatherRecyclerAdapter weatherRecyclerAdapter;
+        if(id == 0) {
+            weatherRecyclerAdapter = new WeatherRecyclerAdapter(this, longTermTodayWeather);
+        }
+        else if (id == 1) {
+            weatherRecyclerAdapter = new WeatherRecyclerAdapter(this, longTermTomorrowWeather);
+        }
+        else {
+            weatherRecyclerAdapter = new WeatherRecyclerAdapter(this, longTermWeather);
+        }
+        return  weatherRecyclerAdapter;
     }
 
     @Override
@@ -309,6 +327,8 @@ public class MainActivity extends AppCompatActivity {
             JSONObject reader = new JSONObject(result);
             JSONArray list = reader.getJSONArray("list");
             longTermWeather = new ArrayList<>();
+            longTermTodayWeather = new ArrayList<>();
+            longTermTomorrowWeather = new ArrayList<>();
 
             for (i = 0; i < list.length(); i++) {
                 Weather weather = new Weather();
@@ -337,17 +357,47 @@ public class MainActivity extends AppCompatActivity {
                 }
                 weather.setId(list.getJSONObject(i).optJSONArray("weather").getJSONObject(0).getString("id").toString());
                 Calendar cal = Calendar.getInstance();
-                cal.setTimeInMillis(Long.parseLong(list.getJSONObject(i).getString("dt")));
+                cal.setTimeInMillis(Long.parseLong(list.getJSONObject(i).getString("dt")) * 1000);
                 weather.setIcon(setWeatherIcon(Integer.parseInt(list.getJSONObject(i).optJSONArray("weather").getJSONObject(0).getString("id").toString()), cal.get(Calendar.HOUR_OF_DAY)));
-                longTermWeather.add(weather);
+                if(cal.get(Calendar.DAY_OF_YEAR) == Calendar.getInstance().get(Calendar.DAY_OF_YEAR)){
+                    longTermTodayWeather.add(weather);
+                }
+                else if(cal.get(Calendar.DAY_OF_YEAR) == Calendar.getInstance().get(Calendar.DAY_OF_YEAR)+1
+                        ){
+                    longTermTomorrowWeather.add(weather);
+                }
+                else {
+                    longTermWeather.add(weather);
+                }
             }
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
             Snackbar.make(appView, "Error parsing JSON.", Snackbar.LENGTH_LONG).show();
         }
-        WeatherRecyclerAdapter adapter = new WeatherRecyclerAdapter(MainActivity.this, longTermWeather);
-        recyclerView.setAdapter(adapter);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+        Bundle bundleToday = new Bundle();
+        bundleToday.putInt("day", 0);
+        RecyclerViewFragment recyclerViewFragmentToday = new RecyclerViewFragment();
+        recyclerViewFragmentToday.setArguments(bundleToday);
+        viewPagerAdapter.addFragment(recyclerViewFragmentToday, getString(R.string.today));
+
+        Bundle bundleTomorrow = new Bundle();
+        bundleTomorrow.putInt("day", 1);
+        RecyclerViewFragment recyclerViewFragmentTomorrow = new RecyclerViewFragment();
+        recyclerViewFragmentTomorrow.setArguments(bundleTomorrow);
+        viewPagerAdapter.addFragment(recyclerViewFragmentTomorrow, getString(R.string.tomorrow));
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("day", 2);
+        RecyclerViewFragment recyclerViewFragment = new RecyclerViewFragment();
+        recyclerViewFragment.setArguments(bundle);
+        viewPagerAdapter.addFragment(recyclerViewFragment, getString(R.string.later));
+
+        viewPagerAdapter.notifyDataSetChanged();
+        viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     private boolean isNetworkAvailable() {
@@ -426,8 +476,8 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(Void v) {
             //parse JSON data
-            parseTodayJson(result);
             this.progressDialog.dismiss();
+            parseTodayJson(result);
         }
     }
 
@@ -471,8 +521,8 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(Void v) {
             //parse JSON data
-            parseLongTermJson(result);
             this.progressDialog.dismiss();
+            parseLongTermJson(result);
         }
     }
 }
