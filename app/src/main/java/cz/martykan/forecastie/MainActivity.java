@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
     View appView;
 
+    ProgressDialog progressDialog;
+    int loading = 0;
+
     private List<Weather> longTermWeather;
     private List<Weather> longTermTodayWeather;
     private List<Weather> longTermTomorrowWeather;
@@ -70,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
         appView = findViewById(R.id.viewApp);
+
+        progressDialog = new ProgressDialog(MainActivity.this);
 
         // Load toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -438,12 +443,14 @@ public class MainActivity extends AppCompatActivity {
 
     public class GetWeatherTask extends AsyncTask<String, String, Void> {
         String result = "";
-        private ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
 
         protected void onPreExecute() {
-            progressDialog.setMessage("Downloading your data...");
-            progressDialog.setCanceledOnTouchOutside(false);
-            progressDialog.show();
+            loading = 1;
+            if(!progressDialog.isShowing()) {
+                progressDialog.setMessage("Downloading your data...");
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.show();
+            }
         }
 
         @Override
@@ -476,19 +483,24 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(Void v) {
             //parse JSON data
-            this.progressDialog.dismiss();
+            if(loading == 1) {
+                progressDialog.dismiss();
+            }
+            loading -= 1;
             parseTodayJson(result);
         }
     }
 
     class GetLongTermWeatherTask extends AsyncTask<String, String, Void> {
         String result = "";
-        private ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
 
         protected void onPreExecute() {
-            progressDialog.setMessage("Downloading your data...");
-            progressDialog.setCanceledOnTouchOutside(false);
-            progressDialog.show();
+            loading += 1;
+            if(!progressDialog.isShowing()) {
+                progressDialog.setMessage("Downloading your data...");
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.show();
+            }
         }
 
         @Override
@@ -521,7 +533,10 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(Void v) {
             //parse JSON data
-            this.progressDialog.dismiss();
+            if(loading == 1) {
+                progressDialog.dismiss();
+            }
+            loading -= 1;
             parseLongTermJson(result);
         }
     }
