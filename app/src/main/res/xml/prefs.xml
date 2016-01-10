@@ -33,5 +33,10 @@
             android:defaultValue="true"
             android:key="day"
             android:title="@string/setting_showDay" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="darkTheme"
+            android:title="@string/setting_darkTheme" />
     </PreferenceCategory>
 </PreferenceScreen>

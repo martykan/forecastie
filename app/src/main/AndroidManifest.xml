@@ -6,8 +6,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="true">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -20,8 +19,7 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:theme="@style/AppTheme">
-            # android:parentActivityName=".MainActivity"></activity>
+            android:theme="@style/AppTheme"></activity>
 
         <receiver android:name="WidgetProvider">
             <intent-filter>

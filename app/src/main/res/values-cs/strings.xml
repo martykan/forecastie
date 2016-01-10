@@ -22,4 +22,5 @@
     <string name="setting_speedUnits">Jednotky rychlosti</string>
     <string name="setting_tempUnits">Jednotky teploty</string>
     <string name="setting_pressureUnits">Jednotky tlaku</string>
+    <string name="setting_darkTheme">Tmavé téma</string>
 </resources>

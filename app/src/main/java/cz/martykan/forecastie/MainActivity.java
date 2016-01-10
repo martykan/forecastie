@@ -69,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("darkTheme", false)) {
+            setTheme(R.style.AppTheme_NoActionBar_Dark);
+        }
+
         // Initiate activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
