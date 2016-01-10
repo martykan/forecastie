@@ -32,4 +32,21 @@
         <item name="kpa">kPa</item>
         <item name="mmhg">mm Hg</item>
     </string-array>
+
+    <string-array name="refreshIntervals">
+        <item name="none">None</item>
+        <item name="15">15 min</item>
+        <item name="30">30 min</item>
+        <item name="1">1 h</item>
+        <item name="12">12 h</item>
+        <item name="24">24 h</item>
+    </string-array>
+    <string-array name="refreshIntervalsValues">
+        <item name="none">0</item>
+        <item name="15">15</item>
+        <item name="30">30</item>
+        <item name="1">1</item>
+        <item name="12">12</item>
+        <item name="24">24</item>
+    </string-array>
 </resources>

@@ -34,6 +34,13 @@
             android:key="day"
             android:title="@string/setting_showDay" />
 
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/refreshIntervals"
+            android:entryValues="@array/refreshIntervalsValues"
+            android:key="refreshInterval"
+            android:title="@string/setting_refreshInterval" />
+
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="darkTheme"

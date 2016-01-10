@@ -23,6 +23,7 @@
     <string name="setting_tempUnits">Temperature units</string>
     <string name="setting_pressureUnits">Pressure units</string>
     <string name="setting_darkTheme">Dark theme</string>
+    <string name="setting_refreshInterval">Background refresh interval</string>
 
     <string name="weather_sunny" translatable="false">&#xf00d;</string>
     <string name="weather_clear_night" translatable="false">&#xf02e;</string>

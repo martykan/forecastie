@@ -18,4 +18,6 @@
     <string name="setting_speedUnits">Maßeinheit Geschwindigkeit</string>
     <string name="setting_tempUnits">Maßeinheit Temperatur</string>
     <string name="setting_pressureUnits">Maßeinheit Druck</string>
+    <string name="later"></string>
+    <string name="setting_darkTheme"></string>
 </resources>

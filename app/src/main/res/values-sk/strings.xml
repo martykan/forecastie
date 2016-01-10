@@ -23,4 +23,5 @@
     <string name="setting_tempUnits">ednotky teploty</string>
     <string name="setting_pressureUnits">Jednotky tlaku</string>
     <string name="setting_darkTheme">Tmavé téma</string>
+    <string name="setting_refreshInterval">Interval obnovenia na pozadí</string>
 </resources>
