@@ -18,6 +18,9 @@
     <string name="setting_speedUnits">Maßeinheit Geschwindigkeit</string>
     <string name="setting_tempUnits">Maßeinheit Temperatur</string>
     <string name="setting_pressureUnits">Maßeinheit Druck</string>
-    <string name="later"></string>
-    <string name="setting_darkTheme"></string>
+    <string name="later">Später</string>
+    <string name="setting_darkTheme">Dunkles Thema</string>
+    <string name="setting_refreshInterval">Aktualisierungs-Interval im Hintergrund</string>
+    <string name="today">Heute</string>
+    <string name="tomorrow">Morgen</string>
 </resources>
