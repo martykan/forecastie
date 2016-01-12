@@ -16,9 +16,11 @@
 
     <string name="search_title">Search for city</string>
 
-    <string name="setting_imperialDate">Use imperial date format</string>
-    <string name="setting_imperialDate_description">12/31/2001 instead of 31.12.2001</string>
-    <string name="setting_showDay">Show day of the week</string>
+    <string name="error_dateFormat">DATE FORMAT ERROR</string>
+
+    <string name="setting_dateFormat">Date Format</string>
+    <string name="setting_dateFormatCustom">Custom Date Format</string>
+    <string name="setting_dateFormatCustom_summary">If Custom selected above, provide the custom SimpleDateFormat string to be used</string>
     <string name="setting_speedUnits">Speed units</string>
     <string name="setting_tempUnits">Temperature units</string>
     <string name="setting_pressureUnits">Pressure units</string>

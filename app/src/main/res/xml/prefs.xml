@@ -23,16 +23,17 @@
             android:key="pressureUnit"
             android:title="@string/setting_pressureUnits" />
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="imperialDate"
-            android:summary="@string/setting_imperialDate_description"
-            android:title="@string/setting_imperialDate" />
+        <ListPreference
+            android:defaultValue="E dd.MM.yyyy - HH:mm"
+            android:entries="@array/dateFormats"
+            android:entryValues="@array/dateFormatsValues"
+            android:key="dateFormat"
+            android:title="@string/setting_dateFormat" />
 
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="day"
-            android:title="@string/setting_showDay" />
+        <EditTextPreference
+            android:key="dateFormatCustom"
+            android:title="@string/setting_dateFormatCustom"
+            android:summary="@string/setting_dateFormatCustom_summary" />
 
         <ListPreference
             android:defaultValue="1"
