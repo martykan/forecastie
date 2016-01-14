@@ -6,16 +6,24 @@
     <string name="action_settings">Definições</string>
     <string name="action_about">Sobre</string>
 
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="later">Later</string>
+
     <string name="wind">Vento</string>
     <string name="pressure">Pressão</string>
     <string name="humidity">Humidade</string>
 
     <string name="search_title">Pesquisar uma cidade</string>
 
-    <string name="setting_imperialDate">Usar formato de data imperial</string>
-    <string name="setting_imperialDate_description">12/31/2001 em vez de 31.12.2001</string>
-    <string name="setting_showDay">Mostrar dia da semana</string>
+    <string name="error_dateFormat">ERRO NO FORMATO DE DATA</string>
+
+    <string name="setting_dateFormat">Formato de data</string>
+    <string name="setting_dateFormatCustom">Formato de data personalizado</string>
+    <string name="setting_dateFormatCustom_summary">If Custom selected above, provide the custom SimpleDateFormat string to be used</string>
     <string name="setting_speedUnits">Unidades de velocidade</string>
     <string name="setting_tempUnits">Unidades de temperatura</string>
     <string name="setting_pressureUnits">Unidades de pressão</string>
+    <string name="setting_darkTheme">Tema escuro</string>
+    <string name="setting_refreshInterval">Intervalo de atualização em segundo plano</string>
 </resources>
