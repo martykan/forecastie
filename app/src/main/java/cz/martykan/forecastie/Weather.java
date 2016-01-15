@@ -1,9 +1,15 @@
 package cz.martykan.forecastie;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class Weather {
     private String city;
     private String country;
-    private String date;
+    private Date date;
     private String temperature;
     private String description;
     private String wind;
@@ -80,12 +86,46 @@ public class Weather {
         this.icon = icon;
     }
 
-    public String getDate() {
-        return date;
+    public Date getDate(){
+        return this.date;
     }
 
-    public void setDate(String date) {
+    public void setDate(String dateString) {
+        try {
+            setDate(new Date(Long.parseLong(dateString) * 1000));
+        }
+        catch (Exception e) {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+            try {
+                setDate(inputFormat.parse(dateString));
+            }
+            catch (ParseException e2) {
+                setDate(new Date()); // make the error somewhat obvious
+                e2.printStackTrace();
+            }
+        }
+    }
+
+    public void setDate(Date date) {
         this.date = date;
+    }
+
+    public long getNumDaysFrom(Date initialDate) {
+        Calendar initial = Calendar.getInstance();
+        initial.setTime(initialDate);
+        initial.set(Calendar.MILLISECOND, 0);
+        initial.set(Calendar.SECOND, 0);
+        initial.set(Calendar.MINUTE, 0);
+        initial.set(Calendar.HOUR, 0);
+
+        Calendar me = Calendar.getInstance();
+        me.setTime(this.date);
+        me.set(Calendar.MILLISECOND, 0);
+        me.set(Calendar.SECOND, 0);
+        me.set(Calendar.MINUTE, 0);
+        me.set(Calendar.HOUR, 0);
+
+        return Math.round((me.getTimeInMillis() - initial.getTimeInMillis()) / 86400000.0);
     }
 
     public String getId() {

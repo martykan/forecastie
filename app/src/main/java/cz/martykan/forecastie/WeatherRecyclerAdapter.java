@@ -5,22 +5,12 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
 
 public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHolder> {
@@ -73,25 +63,9 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
             pressure = pressure*0.750061561303;
         }
 
-        Date date;
-        try {
-            date = new Date(Long.parseLong(weatherItem.getDate()) * 1000);
-        }
-        catch (Exception e) {
-            date = new Date();
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
-            try {
-                date = inputFormat.parse(weatherItem.getDate());
-            }
-            catch (ParseException e2) {
-                e2.printStackTrace();
-            }
-        }
-
-        TimeZone tz = Calendar.getInstance().getTimeZone();
+        TimeZone tz = TimeZone.getDefault();
         String defaultDateFormat = context.getResources().getStringArray(R.array.dateFormatsValues)[0];
         String dateFormat = sp.getString("dateFormat", defaultDateFormat);
-        System.out.println("dateFormat = " + dateFormat);
         if ("custom".equals(dateFormat)) {
             dateFormat = sp.getString("dateFormatCustom", defaultDateFormat);
         }
@@ -99,9 +73,33 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         try {
             SimpleDateFormat resultFormat = new SimpleDateFormat(dateFormat);
             resultFormat.setTimeZone(tz);
-            dateString = resultFormat.format(date);
+            dateString = resultFormat.format(weatherItem.getDate());
         } catch (IllegalArgumentException e) {
             dateString = context.getResources().getString(R.string.error_dateFormat);
+        }
+
+        if(sp.getBoolean("differentiateDaysByTint", false)) {
+            Date now = new Date();
+            /* Unfortunately, the getColor() that takes a theme (the next commented line) is Android 6.0 only, so we have to do it manually
+             * customViewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.attr.colorTintedBackground, context.getTheme())); */
+            int colorResourceId;
+            if (weatherItem.getNumDaysFrom(now) % 2 == 1) {
+                if(sp.getBoolean("darkTheme", false)) {
+                    colorResourceId = R.color.darkTheme_colorTintedBackground;
+                } else {
+                    colorResourceId = R.color.colorTintedBackground;
+                }
+            } else {
+                /* We must explicitly set things back, because RecyclerView seems to reuse views and
+                 * without restoring back the "normal" color, just about everything gets tinted if we
+                 * scroll a couple of times! */
+                if(sp.getBoolean("darkTheme", false)) {
+                    colorResourceId = R.color.darkTheme_colorBackground;
+                } else {
+                    colorResourceId = R.color.colorBackground;
+                }
+            }
+            customViewHolder.itemView.setBackgroundColor(context.getResources().getColor(colorResourceId));
         }
 
         customViewHolder.itemDate.setText(dateString);
