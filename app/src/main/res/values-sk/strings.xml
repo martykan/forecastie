@@ -24,4 +24,9 @@
     <string name="setting_pressureUnits">Jednotky tlaku</string>
     <string name="setting_darkTheme">Tmavé téma</string>
     <string name="setting_refreshInterval">Interval obnovenia na pozadí</string>
+    <string name="error_dateFormat">CHYBA FORMÁTU DATA</string>
+    <string name="setting_dateFormat">Formát dátumu</string>
+    <string name="setting_dateFormatCustom">Vlastný formát dátumu</string>
+    <string name="setting_dateFormatCustom_summary">Ak je hore zvolené Vlastný, tak zadajte SimpleDateFormat, ktorý má byť použitý</string>
+    <string name="setting_differentiateDaysByTint"> Oddeliť dni farbou</string>
 </resources>
