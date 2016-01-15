@@ -89,6 +89,30 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
             dateString = context.getResources().getString(R.string.error_dateFormat);
         }
 
+        if(sp.getBoolean("differentiateDaysByTint", false)) {
+            Date now = new Date();
+            /* Unfortunately, the getColor() that takes a theme (the next commented line) is Android 6.0 only, so we have to do it manually
+             * customViewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.attr.colorTintedBackground, context.getTheme())); */
+            int colorResourceId;
+            if (weatherItem.getNumDaysFrom(now) % 2 == 1) {
+                if(sp.getBoolean("darkTheme", false)) {
+                    colorResourceId = R.color.darkTheme_colorTintedBackground;
+                } else {
+                    colorResourceId = R.color.colorTintedBackground;
+                }
+            } else {
+                /* We must explicitly set things back, because RecyclerView seems to reuse views and
+                 * without restoring back the "normal" color, just about everything gets tinted if we
+                 * scroll a couple of times! */
+                if(sp.getBoolean("darkTheme", false)) {
+                    colorResourceId = R.color.darkTheme_colorBackground;
+                } else {
+                    colorResourceId = R.color.colorBackground;
+                }
+            }
+            customViewHolder.itemView.setBackgroundColor(context.getResources().getColor(colorResourceId));
+        }
+
         customViewHolder.itemDate.setText(dateString);
         customViewHolder.itemTemperature.setText(temperature.substring(0, temperature.indexOf(".") + 2) + " °"+ sp.getString("unit", "C"));
         if(Float.parseFloat(weatherItem.getRain()) > 0.1){
