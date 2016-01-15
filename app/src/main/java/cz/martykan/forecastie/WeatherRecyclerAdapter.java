@@ -73,22 +73,7 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
             pressure = pressure*0.750061561303;
         }
 
-        Date date;
-        try {
-            date = new Date(Long.parseLong(weatherItem.getDate()) * 1000);
-        }
-        catch (Exception e) {
-            date = new Date();
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
-            try {
-                date = inputFormat.parse(weatherItem.getDate());
-            }
-            catch (ParseException e2) {
-                e2.printStackTrace();
-            }
-        }
-
-        TimeZone tz = Calendar.getInstance().getTimeZone();
+        TimeZone tz = TimeZone.getDefault();
         String defaultDateFormat = context.getResources().getStringArray(R.array.dateFormatsValues)[0];
         String dateFormat = sp.getString("dateFormat", defaultDateFormat);
         System.out.println("dateFormat = " + dateFormat);
@@ -99,7 +84,7 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         try {
             SimpleDateFormat resultFormat = new SimpleDateFormat(dateFormat);
             resultFormat.setTimeZone(tz);
-            dateString = resultFormat.format(date);
+            dateString = resultFormat.format(weatherItem.getDate());
         } catch (IllegalArgumentException e) {
             dateString = context.getResources().getString(R.string.error_dateFormat);
         }
