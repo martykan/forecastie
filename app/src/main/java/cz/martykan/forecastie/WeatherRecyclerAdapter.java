@@ -5,22 +5,12 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
 
 public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHolder> {
@@ -76,7 +66,6 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         TimeZone tz = TimeZone.getDefault();
         String defaultDateFormat = context.getResources().getStringArray(R.array.dateFormatsValues)[0];
         String dateFormat = sp.getString("dateFormat", defaultDateFormat);
-        System.out.println("dateFormat = " + dateFormat);
         if ("custom".equals(dateFormat)) {
             dateFormat = sp.getString("dateFormatCustom", defaultDateFormat);
         }
