@@ -3,19 +3,28 @@
 
     <string name="action_search">Buscar</string>
     <string name="action_refresh">Actualizar</string>
+    <string name="action_settings">Ajustes</string>
     <string name="action_about">Acerca de</string>
+    
+    <string name="today">Hoy</string>
+    <string name="tomorrow">Mañana</string>
+    <string name="later">Más adelante</string>
 
     <string name="wind">Viento</string>
     <string name="pressure">Presión</string>
     <string name="humidity">Humedad</string>
 
     <string name="search_title">Buscar una ciudad</string>
-    <string name="action_settings">Ajustes</string>
     
-    <string name="setting_imperialDate">Usar formato de fecha imperial</string>
-    <string name="setting_imperialDate_description">12/31/2001 en vez de 31.12.2001</string>
-    <string name="setting_showDay">Mostrar el día de la semana</string>
+    <string name="error_dateFormat">ERROR DE FORMATO DE FECHA</string>
+
+    <string name="setting_dateFormat">Formato de fecha</string>
+    <string name="setting_dateFormatCustom">Formato de fecha personalizado</string>
+    <string name="setting_dateFormatCustom_summary">Si se ha seleccionado arriba Personalizado, inserta la cadena SimpleDateFormat personalizada a utilizar</string>
     <string name="setting_speedUnits">Unidades de velocidad</string>
     <string name="setting_tempUnits">Unidades de temperatura</string>
     <string name="setting_pressureUnits">Unidades de presión</string>
+    <string name="setting_darkTheme">Tema oscuro</string>
+    <string name="setting_differentiateDaysByTint">Diferenciar los dias con colores</string>
+    <string name="setting_refreshInterval">Intervalo de actualización en segundo plano</string>
 </resources>
