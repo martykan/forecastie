@@ -5,12 +5,14 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorTintedBackground">@color/colorTintedBackground</item>
     </style>
 
     <style name="AppTheme.Dark" parent="Theme.AppCompat">
-        <item name="colorPrimary">#37474f</item>
-        <item name="colorPrimaryDark">#263238</item>
-        <item name="colorAccent">@android:color/white</item>
+        <item name="colorPrimary">@color/darkTheme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkTheme_colorPrimaryDark</item>
+        <item name="colorAccent">@color/darkTheme_colorAccent</item>
+        <item name="colorTintedBackground">@color/darkTheme_colorTintedBackground</item>
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 

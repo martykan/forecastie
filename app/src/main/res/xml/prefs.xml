@@ -46,5 +46,10 @@
             android:defaultValue="false"
             android:key="darkTheme"
             android:title="@string/setting_darkTheme" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="differentiateDaysByTint"
+            android:title="@string/setting_differentiateDaysByTint" />
     </PreferenceCategory>
 </PreferenceScreen>
