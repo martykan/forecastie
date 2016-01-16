@@ -20,7 +20,7 @@
     
     <string name="setting_dateFormat">Dataren formatua</string>
     <string name="setting_dateFormatCustom">Datarentzako formatu pertsonalizatua</string>
-    <string name="setting_dateFormatCustom_summary">Goian pertsonalizatua hautatu bada, eman erabiltzeko SimpleDateFormat kate pertsonalizatua/string>
+    <string name="setting_dateFormatCustom_summary">Goian pertsonalizatua hautatu bada, eman erabiltzeko SimpleDateFormat kate pertsonalizatua</string>
     <string name="setting_speedUnits">Abiaduraren unitateak</string>
     <string name="setting_tempUnits">Tenperaturaren unitateak</string>
     <string name="setting_pressureUnits">Presioaren unitateak</string>
