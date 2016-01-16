@@ -50,13 +50,6 @@
         <item name="24">24</item>
     </string-array>
 
-    <string-array name="dateFormats">
-        <item>Wed 30.12.2015 - 16:00</item>
-        <item>30.12.2015 - 16:00</item>
-        <item>Wed 12/30/2015 - 4:00 PM</item>
-        <item>12/30/2015 - 4:00 PM</item>
-        <item>Custom</item>
-    </string-array>
     <string-array name="dateFormatsValues">
         <item>E dd.MM.yyyy - HH:mm</item>
         <item>dd.MM.yyyy - HH:mm</item>

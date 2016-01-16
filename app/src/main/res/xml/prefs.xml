@@ -23,9 +23,9 @@
             android:key="pressureUnit"
             android:title="@string/setting_pressureUnits" />
 
+        <!-- dateFormat's (ListPreference) android:defaultValue and android:entries
+             are derived from entryValues dynamically in code in SettingsActivity -->
         <ListPreference
-            android:defaultValue="E dd.MM.yyyy - HH:mm"
-            android:entries="@array/dateFormats"
             android:entryValues="@array/dateFormatsValues"
             android:key="dateFormat"
             android:title="@string/setting_dateFormat" />
