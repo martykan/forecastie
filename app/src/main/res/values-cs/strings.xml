@@ -16,15 +16,14 @@
 
     <string name="search_title">Hledejte město</string>
 
-    <string name="setting_imperialDate">Používat imperiální formát data</string>
-    <string name="setting_imperialDate_description">12/31/2001 místo 31.12.2001</string>
-    <string name="setting_showDay">Zobrazovat den týdne</string>
+    <string name="error_dateFormat">CHYBA FORMÁTU DATA</string>
+
     <string name="setting_speedUnits">Jednotky rychlosti</string>
     <string name="setting_tempUnits">Jednotky teploty</string>
     <string name="setting_pressureUnits">Jednotky tlaku</string>
     <string name="setting_darkTheme">Tmavé téma</string>
     <string name="setting_refreshInterval">Interval obnovení na pozadí</string>
-    <string name="error_dateFormat">CHYBA FORMÁTU DATA</string>
+
     <string name="setting_dateFormat">Formát data</string>
     <string name="setting_dateFormatCustom">Vlastní formát data</string>
     <string name="setting_dateFormatCustom_summary">Pokud je výše vybráno Vlastní, tak zadejte SimpleDateFormat, který má být použit</string>

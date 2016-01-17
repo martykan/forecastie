@@ -18,9 +18,6 @@
 
     <string name="error_dateFormat">ERRO NO FORMATO DE DATA</string>
 
-    <string name="setting_dateFormat">Formato de data</string>
-    <string name="setting_dateFormatCustom">Formato de data personalizado</string>
-    <string name="setting_dateFormatCustom_summary">If Custom selected above, provide the custom SimpleDateFormat string to be used</string>
     <string name="setting_speedUnits">Unidades de velocidade</string>
     <string name="setting_tempUnits">Unidades de temperatura</string>
     <string name="setting_pressureUnits">Unidades de pressão</string>

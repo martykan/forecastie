@@ -16,9 +16,6 @@
 
     <string name="search_title">Hľadajte město</string>
 
-    <string name="setting_imperialDate">Používať imperiálne formát dátumu</string>
-    <string name="setting_imperialDate_description">12/31/2001 miesto 31.12.2001</string>
-    <string name="setting_showDay">Zobraziť deň týždňa</string>
     <string name="setting_speedUnits">Jednotky rýchlosti</string>
     <string name="setting_tempUnits">ednotky teploty</string>
     <string name="setting_pressureUnits">Jednotky tlaku</string>
