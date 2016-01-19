@@ -1,18 +1,30 @@
 <resources>
     <string name="app_name">Forecastie</string>
 
-    <string name="action_search">Chercher</string>
+    <string name="action_search">Rechercher</string>
     <string name="action_refresh">Actualiser</string>
     <string name="action_settings">Paramètres</string>
     <string name="action_about">À propos</string>
+
+    <string name="today">Aujourd\'hui</string>
+    <string name="tomorrow">Demain</string>
+    <string name="later">À venir</string>
 
     <string name="wind">Vent</string>
     <string name="pressure">Pression</string>
     <string name="humidity">Humidité</string>
 
-    <string name="search_title">Recherche par ville</string>
+    <string name="search_title">Rechercher une ville</string>
 
-    <string name="setting_speedUnits">Unités pour la vitesse</string>
-    <string name="setting_tempUnits">Unité pour la température</string>
-    <string name="setting_pressureUnits">Unité pour la pression</string>
+    <string name="error_dateFormat">ERREUR FORMAT DATE</string>
+
+    <string name="setting_dateFormat">Format de date</string>
+    <string name="setting_dateFormatCustom">Format de date personnalisé</string>
+    <string name="setting_dateFormatCustom_summary">Si format personnalisé sélectionné ci-dessus, fournir le code SimpleDateFormat personnalisé pour être utilisé</string>
+    <string name="setting_speedUnits">Unité de vitesse</string>
+    <string name="setting_tempUnits">Unité de température</string>
+    <string name="setting_pressureUnits">Unité de pression</string>
+    <string name="setting_darkTheme">Thème sombre</string>
+    <string name="setting_differentiateDaysByTint">Différencier les jours avec de la couleur</string>
+    <string name="setting_refreshInterval">Intervalle d\'actualisation</string>
 </resources>
