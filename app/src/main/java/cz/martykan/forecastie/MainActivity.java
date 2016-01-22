@@ -482,7 +482,7 @@ public class MainActivity extends AppCompatActivity {
                 if (language.equals("cs")) {
                     language = "cz";
                 }
-                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang=" + language + "&appid=2de143494c0b295cca9337e1e96b00e0");
+                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang=" + language + "&appid=78dfe9e10dd180fadd805075dd1a10d6");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
@@ -532,7 +532,7 @@ public class MainActivity extends AppCompatActivity {
                 if (language.equals("cs")) {
                     language = "cz";
                 }
-                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang=" + language + "&mode=json&appid=2de143494c0b295cca9337e1e96b00e0");
+                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang=" + language + "&mode=json&appid=78dfe9e10dd180fadd805075dd1a10d6");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
