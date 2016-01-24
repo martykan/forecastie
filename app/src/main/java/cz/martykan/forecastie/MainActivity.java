@@ -69,8 +69,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        boolean darkTheme = false;
         if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("darkTheme", false)) {
             setTheme(R.style.AppTheme_NoActionBar_Dark);
+            darkTheme = true;
         }
 
         // Initiate activity
@@ -83,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
         // Load toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if (darkTheme) {
+            toolbar.setPopupTheme(R.style.AppTheme_PopupOverlay_Dark);
+        }
 
         // Initialize textboxes
         todayTemperature = (TextView) findViewById(R.id.todayTemperature);
