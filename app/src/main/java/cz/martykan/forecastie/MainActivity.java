@@ -63,13 +63,15 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     int loading = 0;
 
+    boolean darkTheme;
+
     private List<Weather> longTermWeather;
     private List<Weather> longTermTodayWeather;
     private List<Weather> longTermTomorrowWeather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        boolean darkTheme = false;
+        darkTheme = false;
         if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("darkTheme", false)) {
             setTheme(R.style.AppTheme_NoActionBar_Dark);
             darkTheme = true;
@@ -133,7 +135,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        if (isNetworkAvailable()) {
+        boolean darkTheme =
+                PreferenceManager.getDefaultSharedPreferences(this).getBoolean("darkTheme", false);
+        if (darkTheme != this.darkTheme) {
+            // Restart activity to apply theme
+            overridePendingTransition(0, 0);
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(getIntent());
+        } else if (isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
         }

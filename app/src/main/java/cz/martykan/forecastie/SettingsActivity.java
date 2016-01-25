@@ -1,8 +1,5 @@
 package cz.martykan.forecastie;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -36,12 +33,7 @@ public class SettingsActivity extends PreferenceActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startActivity = new Intent(getApplicationContext(), MainActivity.class);
-                int pendingIntentId = 123456;
-                PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), pendingIntentId, startActivity, PendingIntent.FLAG_CANCEL_CURRENT);
-                AlarmManager mgr = (AlarmManager) getSystemService(ALARM_SERVICE);
-                mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 200, pendingIntent);
-                System.exit(0);
+                finish();
             }
         });
 
@@ -79,16 +71,5 @@ public class SettingsActivity extends PreferenceActivity {
 
         dateFormatPref.setDefaultValue(dateFormatsValues[0]);
         dateFormatPref.setEntries(dateFormatsEntries);
-    }
-
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        Intent startActivity = new Intent(getApplicationContext(), MainActivity.class);
-        int pendingIntentId = 123456;
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), pendingIntentId, startActivity, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager mgr = (AlarmManager) getSystemService(ALARM_SERVICE);
-        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 200, pendingIntent);
-        System.exit(0);
     }
 }
