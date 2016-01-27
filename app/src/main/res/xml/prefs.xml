@@ -51,5 +51,10 @@
             android:defaultValue="false"
             android:key="differentiateDaysByTint"
             android:title="@string/setting_differentiateDaysByTint" />
+
+        <EditTextPreference
+            android:key="apiKey"
+            android:title="Custom API Key"
+            android:summary="A custom API key to use for Open Weather Map"/>
     </PreferenceCategory>
 </PreferenceScreen>

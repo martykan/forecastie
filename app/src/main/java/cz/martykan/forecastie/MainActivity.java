@@ -68,15 +68,17 @@ public class MainActivity extends AppCompatActivity {
     private List<Weather> longTermWeather;
     private List<Weather> longTermTodayWeather;
     private List<Weather> longTermTomorrowWeather;
+    private String mApiKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         darkTheme = false;
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("darkTheme", false)) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (prefs.getBoolean("darkTheme", false)) {
             setTheme(R.style.AppTheme_NoActionBar_Dark);
             darkTheme = true;
         }
-
+        mApiKey = prefs.getString("apiKey", getResources().getString(R.string.apiKey));
         // Initiate activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
@@ -497,7 +499,7 @@ public class MainActivity extends AppCompatActivity {
                 if (language.equals("cs")) {
                     language = "cz";
                 }
-                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang=" + language + "&appid=78dfe9e10dd180fadd805075dd1a10d6");
+                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang=" + language + "&appid=" + mApiKey);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
@@ -547,7 +549,7 @@ public class MainActivity extends AppCompatActivity {
                 if (language.equals("cs")) {
                     language = "cz";
                 }
-                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang=" + language + "&mode=json&appid=78dfe9e10dd180fadd805075dd1a10d6");
+                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang=" + language + "&mode=json&appid=" + mApiKey);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
