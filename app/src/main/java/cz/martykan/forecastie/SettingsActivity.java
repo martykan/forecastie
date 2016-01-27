@@ -85,6 +85,7 @@ public class SettingsActivity extends PreferenceActivity
         setListPreferenceSummary("pressureUnit");
         setListPreferenceSummary("dateFormat");
         setListPreferenceSummary("refreshInterval");
+        setCustomDateEnabled();
     }
 
     @Override
@@ -100,8 +101,11 @@ public class SettingsActivity extends PreferenceActivity
             case "unit":
             case "speedUnit":
             case "pressureUnit":
-            case "dateFormat":
             case "refreshInterval":
+                setListPreferenceSummary(key);
+                break;
+            case "dateFormat":
+                setCustomDateEnabled();
                 setListPreferenceSummary(key);
                 break;
         }
@@ -110,5 +114,11 @@ public class SettingsActivity extends PreferenceActivity
     private void setListPreferenceSummary(String preferenceKey) {
         ListPreference preference = (ListPreference) findPreference(preferenceKey);
         preference.setSummary(preference.getEntry());
+    }
+
+    private void setCustomDateEnabled() {
+        SharedPreferences sp = getPreferenceScreen().getSharedPreferences();
+        Preference customDatePref = findPreference("dateFormatCustom");
+        customDatePref.setEnabled("custom".equals(sp.getString("dateFormat", "")));
     }
 }
