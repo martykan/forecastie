@@ -25,6 +25,10 @@ public class SettingsActivity extends PreferenceActivity
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("darkTheme", false)) {
+            setTheme(R.style.AppTheme_Dark);
+        }
+
         super.onCreate(savedInstanceState);
 
         LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
@@ -78,6 +82,13 @@ public class SettingsActivity extends PreferenceActivity
                 break;
             case "dateFormatCustom":
                 updateDateFormatList();
+                break;
+            case "darkTheme":
+                // Restart activity to apply theme
+                overridePendingTransition(0, 0);
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
                 break;
         }
     }
