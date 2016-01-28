@@ -414,9 +414,6 @@ public class MainActivity extends AppCompatActivity implements
     private void parseTodayJson(String result) {
         try {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
-            editor.putString("lastToday", result);
-            editor.commit();
 
             JSONObject reader = new JSONObject(result);
 
@@ -487,6 +484,10 @@ public class MainActivity extends AppCompatActivity implements
             todayPressure.setText(getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " + sp.getString("pressureUnit", "hPa"));
             todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
             todayIcon.setText(todayWeather.getIcon());
+
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+            editor.putString("lastToday", result);
+            editor.commit();
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
@@ -496,9 +497,6 @@ public class MainActivity extends AppCompatActivity implements
 
     public void parseLongTermJson(String result) {
         int i;
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
-        editor.putString("lastLongterm", result);
-        editor.commit();
         try {
             JSONObject reader = new JSONObject(result);
             JSONArray list = reader.getJSONArray("list");
@@ -546,6 +544,9 @@ public class MainActivity extends AppCompatActivity implements
                     longTermWeather.add(weather);
                 }
             }
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+            editor.putString("lastLongterm", result);
+            editor.commit();
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
