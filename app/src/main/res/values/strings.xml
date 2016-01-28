@@ -15,6 +15,7 @@
     <string name="humidity">Humidity</string>
 
     <string name="search_title">Search for city</string>
+    <string name="downloading_data">Downloading your data ...</string>
 
     <string name="error_dateFormat">DATE FORMAT ERROR</string>
 
@@ -25,6 +26,7 @@
     <string name="setting_tempUnits">Temperature units</string>
     <string name="setting_pressureUnits">Pressure units</string>
     <string name="setting_darkTheme">Dark theme</string>
+    <string name="setting_auto_detect_location">Detect Location</string>
     <string name="setting_differentiateDaysByTint">Differentiate Days with Color</string>
     <string name="setting_refreshInterval">Background refresh interval</string>
 

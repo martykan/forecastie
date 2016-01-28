@@ -51,5 +51,10 @@
             android:defaultValue="false"
             android:key="differentiateDaysByTint"
             android:title="@string/setting_differentiateDaysByTint" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="autoDetectLocation"
+            android:title="@string/setting_auto_detect_location" />
     </PreferenceCategory>
 </PreferenceScreen>
