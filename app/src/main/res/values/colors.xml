@@ -8,7 +8,7 @@
 
     <color name="darkTheme_colorPrimary">#37474f</color>
     <color name="darkTheme_colorPrimaryDark">#263238</color>
-    <color name="darkTheme_colorAccent">@android:color/white</color>
+    <color name="darkTheme_colorAccent">#90a4ae</color>
     <color name="darkTheme_colorBackground">#303030</color>
     <color name="darkTheme_colorTintedBackground">#263238</color>
 </resources>

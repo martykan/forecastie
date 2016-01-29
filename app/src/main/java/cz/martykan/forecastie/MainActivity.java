@@ -1,5 +1,6 @@
 package cz.martykan.forecastie;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
@@ -7,7 +8,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -15,6 +20,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +35,10 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,7 +55,9 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+    private static final int MY_PERMISSIONS_ACCESS_COARSE_LOCATION = 1;
     Typeface weatherFont;
     Weather todayWeather = new Weather();
 
@@ -69,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
     private List<Weather> longTermTodayWeather;
     private List<Weather> longTermTomorrowWeather;
     private String mApiKey;
+
+    GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +132,103 @@ public class MainActivity extends AppCompatActivity {
 
         // Set autoupdater
         setRecurringAlarm(this);
+
+        // Create an instance of GoogleAPIClient.
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                                       .addConnectionCallbacks(this)
+                                       .addOnConnectionFailedListener(this)
+                                       .addApi(LocationServices.API)
+                                       .build();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_ACCESS_COARSE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay!
+                    onConnectedTask();
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
+    @Override
+    public void onConnected(Bundle connectionHint) {
+        onConnectedTask();
+    }
+
+    private void onConnectedTask() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                                                                           Manifest.permission.ACCESS_COARSE_LOCATION)) {
+
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                new AlertDialog.Builder(this)
+                        .setTitle("Provide Location Permission")
+                        .setMessage("Require Location permission to access your location")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(this,
+                                                         new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                                                         MY_PERMISSIONS_ACCESS_COARSE_LOCATION);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+
+            // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+            // app-defined int constant. The callback method gets the
+            // result of the request.
+            return;
+        }
+        Log.d("MainActivity", "Got Location");
+        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (mLastLocation != null) {
+            String lat = String.valueOf(mLastLocation.getLatitude());
+            String lon = String.valueOf(mLastLocation.getLongitude());
+            saveLocation(lat, lon);
+        }
+    }
+
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        Log.d("MainActivity", "Connection Failed");
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        Log.d("MainActivity", "suspended "+i);
     }
 
     public WeatherRecyclerAdapter getAdapter(int id){
@@ -210,11 +321,7 @@ public class MainActivity extends AppCompatActivity {
                 if (result.matches("")) {
 
                 } else {
-                    SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
-                    editor.putString("city", result);
-                    editor.commit();
-                    getTodayWeather();
-                    getLongTermWeather();
+                    saveLocation(result);
                 }
             }
         });
@@ -226,15 +333,43 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
 
+    private void saveLocation(String result) {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+        editor.putString("city", result);
+        editor.commit();
+        getTodayWeather();
+        getLongTermWeather();
+    }
+
+    private void saveLocation(String lat, String lon) {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+        editor.putString("lat", lat);
+        editor.putString("lon", lon);
+        editor.commit();
+        getTodayWeather();
+        getLongTermWeather();
+    }
+
     private void aboutDialog() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Forecastie");
         final WebView webView = new WebView(this);
-        webView.loadData(
-                "<p>A lightweight, opensource weather app.</p>" +
-                        "<p>Developed by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a></p>" +
-                        "<p>Data provided by <a href='http://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons license</a>" +
-                        "<p>Icons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.", "text/html", "UTF-8");
+        String about = "<p>A lightweight, opensource weather app.</p>" +
+                "<p>Developed by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a></p>" +
+                "<p>Data provided by <a href='http://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons license</a>" +
+                "<p>Icons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.";
+        if (darkTheme) {
+            // Style text color for dark theme
+            about = "<style media=\"screen\" type=\"text/css\">" +
+                    "body {\n" +
+                    "    color:white;\n" +
+                    "}\n" +
+                    "a:link {color:cyan}\n" +
+                    "</style>" +
+                    about;
+        }
+        webView.setBackgroundColor(Color.TRANSPARENT);
+        webView.loadData(about, "text/html", "UTF-8");
         alert.setView(webView, 32, 0, 32, 0);
         alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
@@ -456,6 +591,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
@@ -485,7 +632,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPreExecute() {
             loading = 1;
             if(!progressDialog.isShowing()) {
-                progressDialog.setMessage("Downloading your data...");
+                progressDialog.setMessage(getString(R.string.downloading_data));
                 progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
             }
@@ -499,7 +646,14 @@ public class MainActivity extends AppCompatActivity {
                 if (language.equals("cs")) {
                     language = "cz";
                 }
-                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang=" + language + "&appid=" + mApiKey);
+                boolean autoDetectLocation = sp.getBoolean("autoDetectLocation", true);
+                URL url;
+                if (sp.getString("lat", "abc").equals("abc") || !autoDetectLocation) {
+                    url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&appid=78dfe9e10dd180fadd805075dd1a10d6");
+                } else {
+                    url = new URL("http://api.openweathermap.org/data/2.5/weather?" +
+                                          "lat=" + sp.getString("lat", Constants.DEFAULT_LAT) +"&lon="+sp.getString("lon", Constants.DEFAULT_LON)+ "&lang=" + language + "&appid=78dfe9e10dd180fadd805075dd1a10d6");
+                }
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
@@ -535,7 +689,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPreExecute() {
             loading += 1;
             if(!progressDialog.isShowing()) {
-                progressDialog.setMessage("Downloading your data...");
+                progressDialog.setMessage(getString(R.string.downloading_data));
                 progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
             }
@@ -549,7 +703,15 @@ public class MainActivity extends AppCompatActivity {
                 if (language.equals("cs")) {
                     language = "cz";
                 }
-                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang=" + language + "&mode=json&appid=" + mApiKey);
+
+                boolean autoDetectLocation = sp.getBoolean("autoDetectLocation", true);
+                URL url;
+                if (sp.getString("lat", "abc").equals("abc") || !autoDetectLocation) {
+                    url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&mode=json&appid=" + mApiKey");
+                }else{
+                    url = new URL("http://api.openweathermap.org/data/2.5/forecast?" +
+                                          "lat=" + sp.getString("lat", Constants.DEFAULT_LAT) +"&lon="+sp.getString("lon", Constants.DEFAULT_LON)+ "&lang=" + language + "&mode=json&appid=" + mApiKey);
+                }
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
