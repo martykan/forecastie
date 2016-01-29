@@ -257,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements
             overridePendingTransition(0, 0);
             startActivity(getIntent());
         } else if (isNetworkAvailable()) {
+            mApiKey = PreferenceManager.getDefaultSharedPreferences(this).getString("apiKey", getResources().getString(R.string.apiKey));
             getTodayWeather();
             getLongTermWeather();
         }
@@ -649,10 +650,10 @@ public class MainActivity extends AppCompatActivity implements
                 boolean autoDetectLocation = sp.getBoolean("autoDetectLocation", true);
                 URL url;
                 if (sp.getString("lat", "abc").equals("abc") || !autoDetectLocation) {
-                    url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&appid=78dfe9e10dd180fadd805075dd1a10d6");
+                    url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&appid=" + mApiKey);
                 } else {
                     url = new URL("http://api.openweathermap.org/data/2.5/weather?" +
-                                          "lat=" + sp.getString("lat", Constants.DEFAULT_LAT) +"&lon="+sp.getString("lon", Constants.DEFAULT_LON)+ "&lang=" + language + "&appid=78dfe9e10dd180fadd805075dd1a10d6");
+                                          "lat=" + sp.getString("lat", Constants.DEFAULT_LAT) +"&lon="+sp.getString("lon", Constants.DEFAULT_LON)+ "&lang=" + language + "&appid=" + mApiKey);
                 }
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -707,7 +708,7 @@ public class MainActivity extends AppCompatActivity implements
                 boolean autoDetectLocation = sp.getBoolean("autoDetectLocation", true);
                 URL url;
                 if (sp.getString("lat", "abc").equals("abc") || !autoDetectLocation) {
-                    url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&mode=json&appid=" + mApiKey");
+                    url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&mode=json&appid=" + mApiKey);
                 }else{
                     url = new URL("http://api.openweathermap.org/data/2.5/forecast?" +
                                           "lat=" + sp.getString("lat", Constants.DEFAULT_LAT) +"&lon="+sp.getString("lon", Constants.DEFAULT_LON)+ "&lang=" + language + "&mode=json&appid=" + mApiKey);
