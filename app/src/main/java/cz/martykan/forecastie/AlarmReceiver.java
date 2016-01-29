@@ -62,6 +62,9 @@ public class AlarmReceiver extends BroadcastReceiver {
                     while ((line = r.readLine()) != null) {
                         result += line + "\n";
                     }
+                    SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+                    editor.putString("lastToday", result);
+                    editor.apply();
                 }
                 else {
                     // Connection problem
@@ -99,6 +102,9 @@ public class AlarmReceiver extends BroadcastReceiver {
                     while ((line = r.readLine()) != null) {
                         result += line + "\n";
                     }
+                    SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+                    editor.putString("lastLongterm", result);
+                    editor.apply();
                 }
                 else {
                     // Connection problem
