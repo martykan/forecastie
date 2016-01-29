@@ -1,8 +1,6 @@
 package cz.martykan.forecastie;
 
 import android.Manifest;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,7 +15,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -130,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         // Set autoupdater
-        setRecurringAlarm(this);
+        AlarmReceiver.setRecurringAlarm(this);
 
         // Create an instance of GoogleAPIClient.
         if (mGoogleApiClient == null) {
@@ -258,32 +255,6 @@ public class MainActivity extends AppCompatActivity implements
         } else if (isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
-        }
-    }
-
-    private void setRecurringAlarm(Context context) {
-        String interval = PreferenceManager.getDefaultSharedPreferences(this).getString("refreshInterval", "1");
-        if(!interval.equals("0")) {
-            Intent refresh = new Intent(context, AlarmReceiver.class);
-            PendingIntent recurringRefresh = PendingIntent.getBroadcast(context,
-                    0, refresh, PendingIntent.FLAG_CANCEL_CURRENT);
-            AlarmManager alarms = (AlarmManager) getSystemService(
-                    Context.ALARM_SERVICE);
-            if(interval.equals("15")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_FIFTEEN_MINUTES, AlarmManager.INTERVAL_FIFTEEN_MINUTES, recurringRefresh);
-            }
-            else if(interval.equals("30")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_HOUR, AlarmManager.INTERVAL_HALF_HOUR, recurringRefresh);
-            }
-            else if(interval.equals("1")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HOUR, AlarmManager.INTERVAL_HOUR, recurringRefresh);
-            }
-            else if(interval.equals("12")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_DAY, AlarmManager.INTERVAL_HALF_DAY, recurringRefresh);
-            }
-            else if(interval.equals("24")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_DAY, AlarmManager.INTERVAL_DAY, recurringRefresh);
-            }
         }
     }
 

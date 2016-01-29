@@ -1,5 +1,7 @@
 package cz.martykan.forecastie;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,6 +10,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -26,12 +29,40 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d("Alarm", "Recurring alarm; requesting download service.");
         this.context = context;
+        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+            String interval = sp.getString("refreshInterval", "1");
+            if (!interval.equals("0")) {
+                setRecurringAlarm(context);
+                getWeather();
+            }
+        } else if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
+            // Get weather if last attempt failed
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+            String interval = sp.getString("refreshInterval", "1");
+            if (!interval.equals("0") && sp.getBoolean("backgroundRefreshFailed", false)) {
+                getWeather();
+            }
+        } else {
+            getWeather();
+        }
+    }
+
+    private void getWeather() {
+        Log.d("Alarm", "Recurring alarm; requesting download service.");
+        boolean failed;
         if (isNetworkAvailable()) {
+            failed = false;
             new GetWeatherTask().execute();
             new GetLongTermWeatherTask().execute();
+        } else {
+            failed = true;
         }
+        SharedPreferences.Editor editor =
+                PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor.putBoolean("backgroundRefreshFailed", failed);
+        editor.apply();
     }
 
     private boolean isNetworkAvailable() {
@@ -117,6 +148,54 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         protected void onPostExecute(Void v) {
 
+        }
+    }
+
+    public static void setRecurringAlarm(Context context) {
+        String interval = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString("refreshInterval", "1");
+        Intent refresh = new Intent(context, AlarmReceiver.class);
+        PendingIntent recurringRefresh = PendingIntent.getBroadcast(context,
+                0, refresh, PendingIntent.FLAG_CANCEL_CURRENT);
+        if(!interval.equals("0")) {
+            AlarmManager alarms = (AlarmManager) context.getSystemService(
+                    Context.ALARM_SERVICE);
+            if(interval.equals("15")) {
+                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_FIFTEEN_MINUTES,
+                        AlarmManager.INTERVAL_FIFTEEN_MINUTES,
+                        recurringRefresh);
+            }
+            else if(interval.equals("30")) {
+                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_HOUR,
+                        AlarmManager.INTERVAL_HALF_HOUR,
+                        recurringRefresh);
+            }
+            else if(interval.equals("1")) {
+                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HOUR,
+                        AlarmManager.INTERVAL_HOUR,
+                        recurringRefresh);
+            }
+            else if(interval.equals("12")) {
+                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_DAY,
+                        AlarmManager.INTERVAL_HALF_DAY,
+                        recurringRefresh);
+            }
+            else if(interval.equals("24")) {
+                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_DAY,
+                        AlarmManager.INTERVAL_DAY,
+                        recurringRefresh);
+            }
+        }
+        else {
+            // Cancel previous alarm
+            AlarmManager alarms = (AlarmManager) context.getSystemService(
+                    Context.ALARM_SERVICE);
+            alarms.cancel(recurringRefresh);
         }
     }
 }
