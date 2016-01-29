@@ -313,7 +313,7 @@ public class MainActivity extends AppCompatActivity implements
         input.setMaxLines(1);
         input.setSingleLine(true);
         alert.setView(input, 32, 0, 32, 0);
-        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String result = input.getText().toString();
                 if (result.matches("")) {
@@ -323,7 +323,7 @@ public class MainActivity extends AppCompatActivity implements
                 }
             }
         });
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // Cancelled
             }
@@ -369,7 +369,7 @@ public class MainActivity extends AppCompatActivity implements
         webView.setBackgroundColor(Color.TRANSPARENT);
         webView.loadData(about, "text/html", "UTF-8");
         alert.setView(webView, 32, 0, 32, 0);
-        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
 
             }
