@@ -53,7 +53,8 @@ public class AlarmReceiver extends BroadcastReceiver {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
                 String language = Locale.getDefault().getLanguage();
                 if(language.equals("cs")) { language = "cz"; }
-                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang="+ language +"&appid=78dfe9e10dd180fadd805075dd1a10d6");
+                String apiKey = sp.getString("apiKey", context.getResources().getString(R.string.apiKey));
+                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang="+ language +"&appid=" + apiKey);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
@@ -90,7 +91,8 @@ public class AlarmReceiver extends BroadcastReceiver {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
                 String language = Locale.getDefault().getLanguage();
                 if(language.equals("cs")) { language = "cz"; }
-                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang="+ language +"&mode=json&appid=78dfe9e10dd180fadd805075dd1a10d6");
+                String apiKey = sp.getString("apiKey", context.getResources().getString(R.string.apiKey));
+                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", "London"), "UTF-8") + "&lang="+ language +"&mode=json&appid=" + apiKey);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
