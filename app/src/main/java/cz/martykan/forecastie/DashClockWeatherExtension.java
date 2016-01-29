@@ -60,6 +60,7 @@ public class DashClockWeatherExtension extends DashClockExtension {
             publishUpdate(new ExtensionData()
                     .visible(true)
                     .icon(R.drawable.ic_cloud_white_18dp)
+                    .status(temperature.substring(0, temperature.indexOf(".") + 2) + "°" + sp.getString("unit", "C"))
                     .expandedTitle(temperature.substring(0, temperature.indexOf(".") + 2) + "°" + sp.getString("unit", "C") + " - " + reader.optJSONArray("weather").getJSONObject(0).getString("description").toString())
                     .expandedBody(reader.getString("name").toString() + ", " + reader.optJSONObject("sys").getString("country").toString() + "\n"
                             + this.getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " + sp.getString("speedUnit", "m/s") + "\n"
