@@ -12,9 +12,9 @@
     </string-array>
 
     <string-array name="speedUnits">
-        <item name="mps">Meters per second (m/s)</item>
-        <item name="kph">Kilometers per hour (kph)</item>
-        <item name="mph">Miles per hour (mph)</item>
+        <item name="mps">@string/setting_unit_mps</item>
+        <item name="kph">@string/setting_unit_kph</item>
+        <item name="mph">@string/setting_unit_mph</item>
     </string-array>
     <string-array name="speedUnitsValues">
         <item name="mps">m/s</item>
@@ -34,7 +34,7 @@
     </string-array>
 
     <string-array name="refreshIntervals">
-        <item name="none">None</item>
+        <item name="none">@string/settings_none</item>
         <item name="15">15 min</item>
         <item name="30">30 min</item>
         <item name="1">1 h</item>
