@@ -73,8 +73,11 @@ public class SettingsActivity extends PreferenceActivity
             case "unit":
             case "speedUnit":
             case "pressureUnit":
+                setListPreferenceSummary(key);
+                break;
             case "refreshInterval":
                 setListPreferenceSummary(key);
+                AlarmReceiver.setRecurringAlarm(this);
                 break;
             case "dateFormat":
                 setCustomDateEnabled();
