@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements
             darkTheme = true;
         }
         mApiKey = prefs.getString("apiKey", getResources().getString(R.string.apiKey));
+
         // Initiate activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
