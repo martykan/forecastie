@@ -1,8 +1,6 @@
 package cz.martykan.forecastie;
 
 import android.Manifest;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -132,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         // Set autoupdater
-        setRecurringAlarm(this);
+        AlarmReceiver.setRecurringAlarm(this);
 
         // Create an instance of GoogleAPIClient.
         if (mGoogleApiClient == null) {
@@ -264,32 +262,6 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void setRecurringAlarm(Context context) {
-        String interval = PreferenceManager.getDefaultSharedPreferences(this).getString("refreshInterval", "1");
-        if(!interval.equals("0")) {
-            Intent refresh = new Intent(context, AlarmReceiver.class);
-            PendingIntent recurringRefresh = PendingIntent.getBroadcast(context,
-                    0, refresh, PendingIntent.FLAG_CANCEL_CURRENT);
-            AlarmManager alarms = (AlarmManager) getSystemService(
-                    Context.ALARM_SERVICE);
-            if(interval.equals("15")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, AlarmManager.INTERVAL_FIFTEEN_MINUTES, AlarmManager.INTERVAL_FIFTEEN_MINUTES, recurringRefresh);
-            }
-            else if(interval.equals("30")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, AlarmManager.INTERVAL_HALF_HOUR, AlarmManager.INTERVAL_HALF_HOUR, recurringRefresh);
-            }
-            else if(interval.equals("1")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, AlarmManager.INTERVAL_HOUR, AlarmManager.INTERVAL_HOUR, recurringRefresh);
-            }
-            else if(interval.equals("12")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, AlarmManager.INTERVAL_HALF_DAY, AlarmManager.INTERVAL_HALF_DAY, recurringRefresh);
-            }
-            else if(interval.equals("24")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, AlarmManager.INTERVAL_DAY, AlarmManager.INTERVAL_DAY, recurringRefresh);
-            }
-        }
-    }
-
     private void preloadWeather() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
@@ -317,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements
         input.setMaxLines(1);
         input.setSingleLine(true);
         alert.setView(input, 32, 0, 32, 0);
-        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String result = input.getText().toString();
                 if (result.matches("")) {
@@ -327,7 +299,7 @@ public class MainActivity extends AppCompatActivity implements
                 }
             }
         });
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // Cancelled
             }
@@ -373,7 +345,7 @@ public class MainActivity extends AppCompatActivity implements
         webView.setBackgroundColor(Color.TRANSPARENT);
         webView.loadData(about, "text/html", "UTF-8");
         alert.setView(webView, 32, 0, 32, 0);
-        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
 
             }
@@ -418,9 +390,6 @@ public class MainActivity extends AppCompatActivity implements
     private void parseTodayJson(String result) {
         try {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
-            editor.putString("lastToday", result);
-            editor.commit();
 
             JSONObject reader = new JSONObject(result);
 
@@ -491,6 +460,10 @@ public class MainActivity extends AppCompatActivity implements
             todayPressure.setText(getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " + sp.getString("pressureUnit", "hPa"));
             todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
             todayIcon.setText(todayWeather.getIcon());
+
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+            editor.putString("lastToday", result);
+            editor.commit();
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
@@ -500,9 +473,6 @@ public class MainActivity extends AppCompatActivity implements
 
     public void parseLongTermJson(String result) {
         int i;
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
-        editor.putString("lastLongterm", result);
-        editor.commit();
         try {
             JSONObject reader = new JSONObject(result);
             JSONArray list = reader.getJSONArray("list");
@@ -550,6 +520,9 @@ public class MainActivity extends AppCompatActivity implements
                     longTermWeather.add(weather);
                 }
             }
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+            editor.putString("lastLongterm", result);
+            editor.commit();
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();

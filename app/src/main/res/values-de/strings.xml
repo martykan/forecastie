@@ -20,4 +20,17 @@
     <string name="setting_refreshInterval">Aktualisierungs-Interval im Hintergrund</string>
     <string name="today">Heute</string>
     <string name="tomorrow">Morgen</string>
+    <string name="dialog_cancel">Abbrechen</string>
+    <string name="dialog_ok">OK</string>
+    <string name="downloading_data">Lade Daten herunter...</string>
+    <string name="error_dateFormat">FEHLERHAFTES DATUMSFORMAT</string>
+    <string name="setting_auto_detect_location">Erkenne Ort</string>
+    <string name="setting_dateFormat">Datumsformat</string>
+    <string name="setting_dateFormatCustom">Eigenes Datumsformat</string>
+    <string name="setting_dateFormatCustom_summary">Eigene Zeichenkette für SimpleDateFormat bereitstellen</string>
+    <string name="setting_differentiateDaysByTint">Farbliche Unterscheidung der Tage</string>
+    <string name="setting_unit_kph">Kilometer pro Stunde (kph)</string>
+    <string name="setting_unit_mph">Meilen pro Stunde (mph)</string>
+    <string name="setting_unit_mps">Meter pro Sekunde (m/s)</string>
+    <string name="settings_none">Keins</string>
 </resources>

@@ -29,8 +29,15 @@
     <string name="setting_auto_detect_location">Detect Location</string>
     <string name="setting_differentiateDaysByTint">Differentiate Days with Color</string>
     <string name="setting_refreshInterval">Background refresh interval</string>
+    <string name="setting_unit_mps">Meters per second (m/s)</string>
+    <string name="setting_unit_kph">Kilometers per hour (kph)</string>
+    <string name="setting_unit_mph">Miles per hour (mph)</string>
+    <string name="settings_none">None</string>
     <string name="setting_apiKey">API key</string>
     <string name="setting_apiKey_summary">Custom API key for OpenWeatherMap queries</string>
+
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
     
     <string name="weather_sunny" translatable="false">&#xf00d;</string>
     <string name="weather_clear_night" translatable="false">&#xf02e;</string>
