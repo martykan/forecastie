@@ -23,6 +23,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -79,8 +80,13 @@ public class MainActivity extends AppCompatActivity implements
 
     GoogleApiClient mGoogleApiClient;
 
+    private String recentCity = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Initialize the associated SharedPreferences file with default values
+        PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
+
         darkTheme = false;
         if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("darkTheme", false)) {
             setTheme(R.style.AppTheme_NoActionBar_Dark);
@@ -302,7 +308,10 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void saveLocation(String result) {
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        recentCity = preferences.getString("city", "");
+
+        SharedPreferences.Editor editor = preferences.edit();
         editor.putString("city", result);
         editor.commit();
         getTodayWeather();
@@ -310,6 +319,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void saveLocation(String lat, String lon) {
+        recentCity = "";
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
         editor.putString("lat", lat);
         editor.putString("lon", lon);
@@ -392,11 +402,17 @@ public class MainActivity extends AppCompatActivity implements
         return rain;
     }
 
-    private void parseTodayJson(String result) {
+    private ParseResult parseTodayJson(String result) {
         try {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
             JSONObject reader = new JSONObject(result);
+
+            final String code = reader.optString("cod");
+            if ("404".equals(code)) {
+                Snackbar.make(appView, getString(R.string.msg_city_not_found), Snackbar.LENGTH_LONG).show();
+                return ParseResult.CITY_NOT_FOUND;
+            }
 
             String city = reader.getString("name");
             String country = "";
@@ -475,18 +491,27 @@ public class MainActivity extends AppCompatActivity implements
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
             editor.putString("lastToday", result);
             editor.commit();
+
+            return ParseResult.OK;
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
             Snackbar.make(appView, getString(R.string.msg_err_parsing_json), Snackbar.LENGTH_LONG).show();
-            return;
+            return ParseResult.JSON_EXCEPTION;
         }
     }
 
-    public void parseLongTermJson(String result) {
+    public ParseResult parseLongTermJson(String result) {
         int i;
         try {
             JSONObject reader = new JSONObject(result);
+
+            final String code = reader.optString("cod");
+            if ("404".equals(code)) {
+                Snackbar.make(appView, getString(R.string.msg_city_not_found), Snackbar.LENGTH_LONG).show();
+                return ParseResult.CITY_NOT_FOUND;
+            }
+
             JSONArray list = reader.getJSONArray("list");
             longTermWeather = new ArrayList<>();
             longTermTodayWeather = new ArrayList<>();
@@ -545,7 +570,7 @@ public class MainActivity extends AppCompatActivity implements
             Log.e("JSONException Data", result);
             e.printStackTrace();
             Snackbar.make(appView, getString(R.string.msg_err_parsing_json), Snackbar.LENGTH_LONG).show();
-            return;
+            return ParseResult.JSON_EXCEPTION;
         }
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
@@ -570,6 +595,8 @@ public class MainActivity extends AppCompatActivity implements
         viewPagerAdapter.notifyDataSetChanged();
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        return ParseResult.OK;
     }
 
     private boolean isNetworkAvailable() {
@@ -630,6 +657,15 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    private void restorePreviousCity() {
+        if (!TextUtils.isEmpty(recentCity)) {
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+            editor.putString("city", recentCity);
+            editor.commit();
+            recentCity = "";
+        }
+    }
+
     public class GetWeatherTask extends AsyncTask<String, String, Void> {
         String result = "";
 
@@ -685,7 +721,11 @@ public class MainActivity extends AppCompatActivity implements
                 progressDialog.dismiss();
             }
             loading -= 1;
-            parseTodayJson(result);
+            final ParseResult parseResult = parseTodayJson(result);
+            if (ParseResult.CITY_NOT_FOUND.equals(parseResult)) {
+                // Retain previously specified city if current one was not recognized
+                restorePreviousCity();
+            }
         }
     }
 
@@ -745,7 +785,13 @@ public class MainActivity extends AppCompatActivity implements
                 progressDialog.dismiss();
             }
             loading -= 1;
-            parseLongTermJson(result);
+            final ParseResult parseResult = parseLongTermJson(result);
+            if (ParseResult.CITY_NOT_FOUND.equals(parseResult)) {
+                // Retain previously specified city if current one was not recognized
+                restorePreviousCity();
+            }
         }
     }
+
+    private enum ParseResult { OK, JSON_EXCEPTION, CITY_NOT_FOUND }
 }
