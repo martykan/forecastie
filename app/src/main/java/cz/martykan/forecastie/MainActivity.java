@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
@@ -479,7 +478,8 @@ public class MainActivity extends AppCompatActivity implements
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
-            Snackbar.make(appView, "Error parsing JSON.", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(appView, getString(R.string.msg_err_parsing_json), Snackbar.LENGTH_LONG).show();
+            return;
         }
     }
 
@@ -544,7 +544,8 @@ public class MainActivity extends AppCompatActivity implements
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
-            Snackbar.make(appView, "Error parsing JSON.", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(appView, getString(R.string.msg_err_parsing_json), Snackbar.LENGTH_LONG).show();
+            return;
         }
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
@@ -668,12 +669,12 @@ public class MainActivity extends AppCompatActivity implements
                     close(r);
                     urlConnection.disconnect();
                 } else {
-                    Snackbar.make(appView, "There is a problem with your interent connection.", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(appView, getString(R.string.msg_connection_problem), Snackbar.LENGTH_LONG).show();
                 }
             } catch (IOException e) {
                 Log.e("IOException Data", result);
                 e.printStackTrace();
-                Snackbar.make(appView, "Connection not available.", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
             }
             return null;
         }
