@@ -59,8 +59,8 @@
             
         <EditTextPreference
             android:key="apiKey"
-            android:title="Custom API Key"
-            android:summary="A custom API key to use for Open Weather Map"/>
+            android:title="@string/setting_apiKey"
+            android:summary="@string/setting_apiKey_summary"/>
 
     </PreferenceCategory>
 </PreferenceScreen>
