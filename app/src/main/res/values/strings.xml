@@ -34,6 +34,10 @@
     <string name="setting_unit_mph">Miles per hour (mph)</string>
     <string name="settings_none">None</string>
 
+    <string name="setting_unit_hpa">hPa</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>
 
