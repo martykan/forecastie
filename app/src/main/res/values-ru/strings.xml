@@ -35,7 +35,7 @@
     <string name="setting_unit_kpa">Килопаскаль (кПа)</string>
     <string name="setting_unit_mmhg">мм ртутного столба (мм.рт.ст.)</string>
     <string name="dialog_ok">ОК</string>
-    <string name="msg_city_not_found">Указанный населенный пункт не найден</string>
+    <string name="msg_city_not_found">Указанный населенный пункт не найден.</string>
     <string name="msg_connection_not_available">Интернет-соединение недоступно.</string>
     <string name="msg_connection_problem">Проблемы с интернет-соединением.</string>
     <string name="msg_err_parsing_json">Ошибка разбора JSON.</string>
