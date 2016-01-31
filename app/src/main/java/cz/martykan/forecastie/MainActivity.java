@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
@@ -22,10 +21,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -43,6 +41,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -81,8 +80,13 @@ public class MainActivity extends AppCompatActivity implements
 
     GoogleApiClient mGoogleApiClient;
 
+    private String recentCity = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Initialize the associated SharedPreferences file with default values
+        PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
+
         darkTheme = false;
         if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("darkTheme", false)) {
             setTheme(R.style.AppTheme_NoActionBar_Dark);
@@ -261,11 +265,13 @@ public class MainActivity extends AppCompatActivity implements
     private void preloadWeather() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
-        if (sp.getString("lastToday", "{}") != "{}") {
-            parseTodayJson(sp.getString("lastToday", "{}"));
+        String lastToday = sp.getString("lastToday", "");
+        if (!lastToday.isEmpty()) {
+            parseTodayJson(lastToday);
         }
-        if (sp.getString("lastLongterm", "{}") != "{}") {
-            parseLongTermJson(sp.getString("lastLongterm", "{}"));
+        String lastLongterm = sp.getString("lastLongterm", "");
+        if (!lastLongterm.isEmpty()) {
+            parseLongTermJson(lastLongterm);
         }
     }
 
@@ -288,9 +294,7 @@ public class MainActivity extends AppCompatActivity implements
         alert.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String result = input.getText().toString();
-                if (result.matches("")) {
-
-                } else {
+                if (!result.isEmpty()) {
                     saveLocation(result);
                 }
             }
@@ -304,7 +308,10 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void saveLocation(String result) {
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        recentCity = preferences.getString("city", "");
+
+        SharedPreferences.Editor editor = preferences.edit();
         editor.putString("city", result);
         editor.commit();
         getTodayWeather();
@@ -312,6 +319,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void saveLocation(String lat, String lon) {
+        recentCity = "";
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
         editor.putString("lat", lat);
         editor.putString("lon", lon);
@@ -383,17 +391,42 @@ public class MainActivity extends AppCompatActivity implements
         return icon;
     }
 
-    private void parseTodayJson(String result) {
+    private String getRainString(JSONObject rainObj) {
+        String rain = "0";
+        if (rainObj != null) {
+            rain = rainObj.optString("3h", "fail");
+            if ("fail".equals(rain)) {
+                rain = rainObj.optString("1h", "0");
+            }
+        }
+        return rain;
+    }
+
+    private ParseResult parseTodayJson(String result) {
         try {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
             JSONObject reader = new JSONObject(result);
 
-            todayWeather.setCity(reader.getString("name").toString());
-            todayWeather.setCountry(reader.optJSONObject("sys").getString("country").toString());
-            getSupportActionBar().setTitle(todayWeather.getCity() + ", " + todayWeather.getCountry());
+            final String code = reader.optString("cod");
+            if ("404".equals(code)) {
+                Snackbar.make(appView, getString(R.string.msg_city_not_found), Snackbar.LENGTH_LONG).show();
+                return ParseResult.CITY_NOT_FOUND;
+            }
 
-            String temperature = reader.optJSONObject("main").getString("temp").toString();
+            String city = reader.getString("name");
+            String country = "";
+            JSONObject countryObj = reader.optJSONObject("sys");
+            if (countryObj != null) {
+                country = countryObj.getString("country");
+            }
+            todayWeather.setCity(city);
+            todayWeather.setCountry(country);
+            getSupportActionBar().setTitle(city + (country.isEmpty() ? "" : ", " + country));
+
+            JSONObject main = reader.getJSONObject("main");
+
+            String temperature = main.getString("temp");
             todayWeather.setTemperature(temperature);
 
             if (sp.getString("unit", "C").equals("C")) {
@@ -404,30 +437,28 @@ public class MainActivity extends AppCompatActivity implements
                 temperature = (((9 * (Float.parseFloat(temperature) - 273.15)) / 5) + 32) + "";
             }
 
-            todayWeather.setDescription(reader.optJSONArray("weather").getJSONObject(0).getString("description").toString());
-            todayWeather.setWind(reader.optJSONObject("wind").getString("speed").toString());
-            todayWeather.setPressure(reader.optJSONObject("main").getString("pressure").toString());
-            todayWeather.setHumidity(reader.optJSONObject("main").getString("humidity").toString());
-            try {
-                todayWeather.setRain(reader.optJSONObject("rain").getString("1h").toString());
-            } catch (Exception e) {
-                try {
-                    todayWeather.setRain(reader.optJSONObject("rain").getString("3h").toString());
-                } catch (Exception e2) {
-                    try {
-                        todayWeather.setRain(reader.optJSONObject("snow").getString("1h").toString());
-                    } catch (Exception e3) {
-                        try {
-                            todayWeather.setRain(reader.optJSONObject("snow").getString("3h").toString());
-                        } catch (Exception e4) {
-                            todayWeather.setRain("0");
-                        }
-                    }
+            todayWeather.setDescription(reader.getJSONArray("weather").getJSONObject(0).getString("description"));
+            todayWeather.setWind(reader.getJSONObject("wind").getString("speed"));
+            todayWeather.setPressure(main.getString("pressure"));
+            todayWeather.setHumidity(main.getString("humidity"));
+
+            JSONObject rainObj = reader.optJSONObject("rain");
+            String rain;
+            if (rainObj != null) {
+                rain = getRainString(rainObj);
+            } else {
+                JSONObject snowObj = reader.optJSONObject("snow");
+                if (snowObj != null) {
+                    rain = getRainString(snowObj);
+                } else {
+                    rain = "0";
                 }
             }
-            todayWeather.setId(reader.optJSONArray("weather").getJSONObject(0).getString("id").toString());
-            todayWeather.setIcon(setWeatherIcon(Integer.parseInt(reader.optJSONArray("weather").getJSONObject(0).getString("id").toString()), Calendar.getInstance().get(Calendar.HOUR_OF_DAY)));
+            todayWeather.setRain(rain);
 
+            final String idString = reader.getJSONArray("weather").getJSONObject(0).getString("id");
+            todayWeather.setId(idString);
+            todayWeather.setIcon(setWeatherIcon(Integer.parseInt(idString), Calendar.getInstance().get(Calendar.HOUR_OF_DAY)));
 
             double wind = Double.parseDouble(todayWeather.getWind());
             if (sp.getString("speedUnit", "m/s").equals("kph")) {
@@ -460,17 +491,27 @@ public class MainActivity extends AppCompatActivity implements
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
             editor.putString("lastToday", result);
             editor.commit();
+
+            return ParseResult.OK;
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
-            Snackbar.make(appView, "Error parsing JSON.", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(appView, getString(R.string.msg_err_parsing_json), Snackbar.LENGTH_LONG).show();
+            return ParseResult.JSON_EXCEPTION;
         }
     }
 
-    public void parseLongTermJson(String result) {
+    public ParseResult parseLongTermJson(String result) {
         int i;
         try {
             JSONObject reader = new JSONObject(result);
+
+            final String code = reader.optString("cod");
+            if ("404".equals(code)) {
+                Snackbar.make(appView, getString(R.string.msg_city_not_found), Snackbar.LENGTH_LONG).show();
+                return ParseResult.CITY_NOT_FOUND;
+            }
+
             JSONArray list = reader.getJSONArray("list");
             longTermWeather = new ArrayList<>();
             longTermTodayWeather = new ArrayList<>();
@@ -478,33 +519,39 @@ public class MainActivity extends AppCompatActivity implements
 
             for (i = 0; i < list.length(); i++) {
                 Weather weather = new Weather();
-                weather.setDate(list.getJSONObject(i).getString("dt"));
-                weather.setTemperature(list.getJSONObject(i).optJSONObject("main").getString("temp"));
-                weather.setDescription(list.getJSONObject(i).optJSONArray("weather").getJSONObject(0).getString("description").toString());
-                weather.setWind(list.getJSONObject(i).optJSONObject("wind").getString("speed").toString());
-                weather.setPressure(list.getJSONObject(i).optJSONObject("main").getString("pressure").toString());
-                weather.setHumidity(list.getJSONObject(i).optJSONObject("main").getString("humidity").toString());
-                try {
-                    weather.setRain(list.getJSONObject(i).optJSONObject("rain").getString("1h").toString());
-                } catch (Exception e) {
-                    try {
-                        weather.setRain(list.getJSONObject(i).optJSONObject("rain").getString("3h").toString());
-                    } catch (Exception e2) {
-                        try {
-                            weather.setRain(list.getJSONObject(i).optJSONObject("snow").getString("1h").toString());
-                        } catch (Exception e3) {
-                            try {
-                                weather.setRain(list.getJSONObject(i).optJSONObject("snow").getString("3h").toString());
-                            } catch (Exception e4) {
-                                weather.setRain("0");
-                            }
-                        }
+
+                JSONObject listItem = list.getJSONObject(i);
+                JSONObject main = listItem.getJSONObject("main");
+
+                weather.setDate(listItem.getString("dt"));
+                weather.setTemperature(main.getString("temp"));
+                weather.setDescription(listItem.optJSONArray("weather").getJSONObject(0).getString("description"));
+                weather.setWind(listItem.optJSONObject("wind").getString("speed"));
+                weather.setPressure(main.getString("pressure"));
+                weather.setHumidity(main.getString("humidity"));
+
+                JSONObject rainObj = listItem.optJSONObject("rain");
+                String rain = "";
+                if (rainObj != null) {
+                    rain = getRainString(rainObj);
+                } else {
+                    JSONObject snowObj = listItem.optJSONObject("snow");
+                    if (snowObj != null) {
+                        rain = getRainString(snowObj);
+                    } else {
+                        rain = "0";
                     }
                 }
-                weather.setId(list.getJSONObject(i).optJSONArray("weather").getJSONObject(0).getString("id").toString());
+                weather.setRain(rain);
+
+                final String idString = listItem.optJSONArray("weather").getJSONObject(0).getString("id");
+                weather.setId(idString);
+
+                final String dateMsString = listItem.getString("dt") + "000";
                 Calendar cal = Calendar.getInstance();
-                cal.setTimeInMillis(Long.parseLong(list.getJSONObject(i).getString("dt")) * 1000);
-                weather.setIcon(setWeatherIcon(Integer.parseInt(list.getJSONObject(i).optJSONArray("weather").getJSONObject(0).getString("id").toString()), cal.get(Calendar.HOUR_OF_DAY)));
+                cal.setTimeInMillis(Long.parseLong(dateMsString));
+                weather.setIcon(setWeatherIcon(Integer.parseInt(idString), cal.get(Calendar.HOUR_OF_DAY)));
+
                 if(cal.get(Calendar.DAY_OF_YEAR) == Calendar.getInstance().get(Calendar.DAY_OF_YEAR)){
                     longTermTodayWeather.add(weather);
                 }
@@ -522,7 +569,8 @@ public class MainActivity extends AppCompatActivity implements
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
-            Snackbar.make(appView, "Error parsing JSON.", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(appView, getString(R.string.msg_err_parsing_json), Snackbar.LENGTH_LONG).show();
+            return ParseResult.JSON_EXCEPTION;
         }
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
@@ -547,6 +595,8 @@ public class MainActivity extends AppCompatActivity implements
         viewPagerAdapter.notifyDataSetChanged();
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        return ParseResult.OK;
     }
 
     private boolean isNetworkAvailable() {
@@ -597,6 +647,25 @@ public class MainActivity extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
+    private static void close(Closeable x) {
+        try {
+            if (x != null) {
+                x.close();
+            }
+        } catch (IOException e) {
+            Log.e("IOException Data", "Error occurred while closing stream");
+        }
+    }
+
+    private void restorePreviousCity() {
+        if (!TextUtils.isEmpty(recentCity)) {
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+            editor.putString("city", recentCity);
+            editor.commit();
+            recentCity = "";
+        }
+    }
+
     public class GetWeatherTask extends AsyncTask<String, String, Void> {
         String result = "";
 
@@ -633,13 +702,15 @@ public class MainActivity extends AppCompatActivity implements
                     while ((line = r.readLine()) != null) {
                         result += line + "\n";
                     }
+                    close(r);
+                    urlConnection.disconnect();
                 } else {
-                    Snackbar.make(appView, "There is a problem with your interent connection.", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(appView, getString(R.string.msg_connection_problem), Snackbar.LENGTH_LONG).show();
                 }
             } catch (IOException e) {
                 Log.e("IOException Data", result);
                 e.printStackTrace();
-                Snackbar.make(appView, "Connection not available.", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
             }
             return null;
         }
@@ -650,7 +721,11 @@ public class MainActivity extends AppCompatActivity implements
                 progressDialog.dismiss();
             }
             loading -= 1;
-            parseTodayJson(result);
+            final ParseResult parseResult = parseTodayJson(result);
+            if (ParseResult.CITY_NOT_FOUND.equals(parseResult)) {
+                // Retain previously specified city if current one was not recognized
+                restorePreviousCity();
+            }
         }
     }
 
@@ -691,8 +766,10 @@ public class MainActivity extends AppCompatActivity implements
                     while ((line = r.readLine()) != null) {
                         result += line + "\n";
                     }
+                    close(r);
+                    urlConnection.disconnect();
                 } else {
-                    Snackbar.make(appView, "There is a problem with your interent connection.", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(appView, "There is a problem with your internet connection.", Snackbar.LENGTH_LONG).show();
                 }
             } catch (IOException e) {
                 Log.e("IOException Data", result);
@@ -708,7 +785,13 @@ public class MainActivity extends AppCompatActivity implements
                 progressDialog.dismiss();
             }
             loading -= 1;
-            parseLongTermJson(result);
+            final ParseResult parseResult = parseLongTermJson(result);
+            if (ParseResult.CITY_NOT_FOUND.equals(parseResult)) {
+                // Retain previously specified city if current one was not recognized
+                restorePreviousCity();
+            }
         }
     }
+
+    private enum ParseResult { OK, JSON_EXCEPTION, CITY_NOT_FOUND }
 }
