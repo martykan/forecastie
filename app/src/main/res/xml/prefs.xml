@@ -56,5 +56,11 @@
             android:defaultValue="true"
             android:key="autoDetectLocation"
             android:title="@string/setting_auto_detect_location" />
+            
+        <EditTextPreference
+            android:key="apiKey"
+            android:title="@string/setting_apiKey"
+            android:summary="@string/setting_apiKey_summary"/>
+
     </PreferenceCategory>
 </PreferenceScreen>

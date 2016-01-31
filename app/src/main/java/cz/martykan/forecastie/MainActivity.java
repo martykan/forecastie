@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements
     private List<Weather> longTermWeather;
     private List<Weather> longTermTodayWeather;
     private List<Weather> longTermTomorrowWeather;
+    private String mApiKey;
 
     GoogleApiClient mGoogleApiClient;
 
@@ -88,10 +89,12 @@ public class MainActivity extends AppCompatActivity implements
         PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 
         darkTheme = false;
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("darkTheme", false)) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (prefs.getBoolean("darkTheme", false)) {
             setTheme(R.style.AppTheme_NoActionBar_Dark);
             darkTheme = true;
         }
+        mApiKey = prefs.getString("apiKey", getResources().getString(R.string.apiKey));
 
         // Initiate activity
         super.onCreate(savedInstanceState);
@@ -257,6 +260,7 @@ public class MainActivity extends AppCompatActivity implements
             overridePendingTransition(0, 0);
             startActivity(getIntent());
         } else if (isNetworkAvailable()) {
+            mApiKey = PreferenceManager.getDefaultSharedPreferences(this).getString("apiKey", getResources().getString(R.string.apiKey));
             getTodayWeather();
             getLongTermWeather();
         }
@@ -689,10 +693,10 @@ public class MainActivity extends AppCompatActivity implements
                 boolean autoDetectLocation = sp.getBoolean("autoDetectLocation", true);
                 URL url;
                 if (sp.getString("lat", "abc").equals("abc") || !autoDetectLocation) {
-                    url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&appid=78dfe9e10dd180fadd805075dd1a10d6");
+                    url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&appid=" + mApiKey);
                 } else {
                     url = new URL("http://api.openweathermap.org/data/2.5/weather?" +
-                                          "lat=" + sp.getString("lat", Constants.DEFAULT_LAT) +"&lon="+sp.getString("lon", Constants.DEFAULT_LON)+ "&lang=" + language + "&appid=78dfe9e10dd180fadd805075dd1a10d6");
+                                          "lat=" + sp.getString("lat", Constants.DEFAULT_LAT) +"&lon="+sp.getString("lon", Constants.DEFAULT_LON)+ "&lang=" + language + "&appid=" + mApiKey);
                 }
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -753,10 +757,10 @@ public class MainActivity extends AppCompatActivity implements
                 boolean autoDetectLocation = sp.getBoolean("autoDetectLocation", true);
                 URL url;
                 if (sp.getString("lat", "abc").equals("abc") || !autoDetectLocation) {
-                    url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&mode=json&appid=78dfe9e10dd180fadd805075dd1a10d6");
+                    url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&mode=json&appid=" + mApiKey);
                 }else{
                     url = new URL("http://api.openweathermap.org/data/2.5/forecast?" +
-                                          "lat=" + sp.getString("lat", Constants.DEFAULT_LAT) +"&lon="+sp.getString("lon", Constants.DEFAULT_LON)+ "&lang=" + language + "&mode=json&appid=78dfe9e10dd180fadd805075dd1a10d6");
+                                          "lat=" + sp.getString("lat", Constants.DEFAULT_LAT) +"&lon="+sp.getString("lon", Constants.DEFAULT_LON)+ "&lang=" + language + "&mode=json&appid=" + mApiKey);
                 }
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));

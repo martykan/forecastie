@@ -33,6 +33,8 @@
     <string name="setting_unit_kph">Kilometers per hour (kph)</string>
     <string name="setting_unit_mph">Miles per hour (mph)</string>
     <string name="settings_none">None</string>
+    <string name="setting_apiKey">API key</string>
+    <string name="setting_apiKey_summary">Custom API key for OpenWeatherMap queries</string>
 
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>

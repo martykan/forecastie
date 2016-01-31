@@ -93,6 +93,8 @@ public class SettingsActivity extends PreferenceActivity
                 overridePendingTransition(0, 0);
                 startActivity(getIntent());
                 break;
+            case "apiKey":
+                checkKey(key);
         }
     }
 
@@ -142,5 +144,12 @@ public class SettingsActivity extends PreferenceActivity
         dateFormatPref.setEntries(dateFormatsEntries);
 
         setListPreferenceSummary("dateFormat");
+    }
+
+    private void checkKey(String key){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sp.getString(key, "").equals("")){
+            sp.edit().remove(key).apply();
+        }
     }
 }
