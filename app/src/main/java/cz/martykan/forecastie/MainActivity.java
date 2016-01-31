@@ -50,11 +50,17 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
     private static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
+
+    private static Map<String, String> speedUnits = new HashMap<>(3);
+    private static Map<String, String> pressUnits = new HashMap<>(3);
+
     Typeface weatherFont;
     Weather todayWeather = new Weather();
 
@@ -132,6 +138,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         // Initialize viewPager
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        initMappings();
 
         // Preload data from cache
         preloadWeather();
@@ -405,8 +413,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() +
                     todayWeather.getDescription().substring(1));
         }
-        todayWind.setText(getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " + sp.getString("speedUnit", "m/s"));
-        todayPressure.setText(getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " + sp.getString("pressureUnit", "hPa"));
+        todayWind.setText(getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " +
+                localize("speedUnit", sp.getString("speedUnit", "m/s")));
+        todayPressure.setText(getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " +
+                localize("pressureUnit", sp.getString("pressureUnit", "hPa")));
         todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
         todayIcon.setText(todayWeather.getIcon());
     }
@@ -555,6 +565,30 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             editor.commit();
             recentCity = "";
         }
+    }
+
+    private void initMappings() {
+        speedUnits.put("m/s", getString(R.string.speed_unit_mps));
+        speedUnits.put("kph", getString(R.string.speed_unit_kph));
+        speedUnits.put("mph", getString(R.string.speed_unit_mph));
+
+        pressUnits.put("hPa", getString(R.string.pressure_unit_hpa));
+        pressUnits.put("kPa", getString(R.string.pressure_unit_kpa));
+        pressUnits.put("mm Hg", getString(R.string.pressure_unit_mmhg));
+    }
+
+    public static String localize(String preferenceKey, String preferenceValue) {
+        String result = preferenceValue;
+        if ("speedUnit".equals(preferenceKey)) {
+            if (speedUnits.containsKey(preferenceValue)) {
+                result = speedUnits.get(preferenceValue);
+            }
+        } else if ("pressureUnit".equals(preferenceKey)) {
+            if (pressUnits.containsKey(preferenceValue)) {
+                result = pressUnits.get(preferenceValue);
+            }
+        }
+        return result;
     }
 
     void getCityByLocation() {

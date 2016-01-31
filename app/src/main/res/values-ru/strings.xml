@@ -39,4 +39,13 @@
     <string name="msg_connection_not_available">Интернет-соединение недоступно.</string>
     <string name="msg_connection_problem">Проблемы с интернет-соединением.</string>
     <string name="msg_err_parsing_json">Ошибка разбора JSON.</string>
+    <string name="pressure_unit_hpa">гПа</string>
+    <string name="pressure_unit_kpa">кПа</string>
+    <string name="pressure_unit_mmhg">мм рт.ст.</string>
+    <string name="speed_unit_kph">км/ч</string>
+    <string name="speed_unit_mph">миль/ч</string>
+    <string name="speed_unit_mps">м/с</string>
+    <string name="setting_unit_Celsuis">Цельсий</string>
+    <string name="setting_unit_Fahrenheit">Фаренгейт</string>
+    <string name="setting_unit_Kelvin">Кельвин</string>
 </resources>

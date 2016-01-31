@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="temperatureUnits">
-        <item name="C">Celsius</item>
-        <item name="F">Fahrenheit</item>
-        <item name="K">Kelvin</item>
+        <item name="C">@string/setting_unit_Celsuis</item>
+        <item name="F">@string/setting_unit_Fahrenheit</item>
+        <item name="K">@string/setting_unit_Kelvin</item>
     </string-array>
     <string-array name="temperatureUnitsValues">
         <item name="C">C</item>
