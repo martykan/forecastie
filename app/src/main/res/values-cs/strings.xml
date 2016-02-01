@@ -28,4 +28,23 @@
     <string name="setting_dateFormatCustom">Vlastní formát data</string>
     <string name="setting_dateFormatCustom_summary">Pokud je výše vybráno Vlastní, tak zadejte SimpleDateFormat, který má být použit</string>
     <string name="setting_differentiateDaysByTint">Oddělit dny barvou</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Storno</string>
+    <string name="downloading_data">Stahování dat...</string>
+    <string name="getting_location">Získávání Vaší polohy...</string>
+    <string name="setting_apiKey">API klíč</string>
+    <string name="setting_apiKey_summary">Vlastní API klíč pro OpenWeatherMap</string>
+    <string name="setting_auto_detect_location">Detekovat polohu</string>
+    <string name="setting_unit_hpa">hPa</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_kph">Kilometry za hodinu (km/h)</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_mph">Míle za hodinu (mph)</string>
+    <string name="settings_none">Nikdy</string>
+    <string name="setting_unit_mps">Metry za sekundu (m/s)</string>
+    <string name="apiKey"></string>
+    <string name="msg_err_parsing_json">Chyba čtení JSON.</string>
+    <string name="msg_connection_not_available">Připojení není k dispozici.</string>
+    <string name="msg_city_not_found">Město nebylo nalezeno.</string>
+    <string name="msg_connection_problem">Je tu problém s Vaším připojením.</string>
 </resources>
