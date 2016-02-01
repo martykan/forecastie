@@ -10,6 +10,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -18,6 +20,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -25,16 +28,12 @@ import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,9 +51,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-    private static final int MY_PERMISSIONS_ACCESS_COARSE_LOCATION = 1;
+public class MainActivity extends AppCompatActivity implements LocationListener {
+    private static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
     Typeface weatherFont;
     Weather todayWeather = new Weather();
 
@@ -73,15 +71,24 @@ public class MainActivity extends AppCompatActivity implements
     int loading = 0;
 
     boolean darkTheme;
-
+    LocationManager locationManager;
+    double latitude;
+    double longtitude;
     private List<Weather> longTermWeather;
     private List<Weather> longTermTodayWeather;
     private List<Weather> longTermTomorrowWeather;
     private String mApiKey;
-
-    GoogleApiClient mGoogleApiClient;
-
     private String recentCity = "";
+
+    private static void close(Closeable x) {
+        try {
+            if (x != null) {
+                x.close();
+            }
+        } catch (IOException e) {
+            Log.e("IOException Data", "Error occurred while closing stream");
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,117 +142,18 @@ public class MainActivity extends AppCompatActivity implements
 
         // Set autoupdater
         AlarmReceiver.setRecurringAlarm(this);
-
-        // Create an instance of GoogleAPIClient.
-        if (mGoogleApiClient == null) {
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
-                                       .addConnectionCallbacks(this)
-                                       .addOnConnectionFailedListener(this)
-                                       .addApi(LocationServices.API)
-                                       .build();
-        }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_ACCESS_COARSE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay!
-                    onConnectedTask();
-
-                } else {
-
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                }
-                return;
-            }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
-        }
-    }
-
-    @Override
-    public void onConnected(Bundle connectionHint) {
-        onConnectedTask();
-    }
-
-    private void onConnectedTask() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                                                                           Manifest.permission.ACCESS_COARSE_LOCATION)) {
-
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                new AlertDialog.Builder(this)
-                        .setTitle("Provide Location Permission")
-                        .setMessage("Require Location permission to access your location")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
-
-            } else {
-
-                // No explanation needed, we can request the permission.
-
-                ActivityCompat.requestPermissions(this,
-                                                         new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                                                         MY_PERMISSIONS_ACCESS_COARSE_LOCATION);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-            }
-
-            // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-            // app-defined int constant. The callback method gets the
-            // result of the request.
-            return;
-        }
-        Log.d("MainActivity", "Got Location");
-        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        if (mLastLocation != null) {
-            String lat = String.valueOf(mLastLocation.getLatitude());
-            String lon = String.valueOf(mLastLocation.getLongitude());
-            saveLocation(lat, lon);
-        }
-    }
-
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.d("MainActivity", "Connection Failed");
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        Log.d("MainActivity", "suspended "+i);
-    }
-
-    public WeatherRecyclerAdapter getAdapter(int id){
+    public WeatherRecyclerAdapter getAdapter(int id) {
         WeatherRecyclerAdapter weatherRecyclerAdapter;
-        if(id == 0) {
+        if (id == 0) {
             weatherRecyclerAdapter = new WeatherRecyclerAdapter(this, longTermTodayWeather);
-        }
-        else if (id == 1) {
+        } else if (id == 1) {
             weatherRecyclerAdapter = new WeatherRecyclerAdapter(this, longTermTomorrowWeather);
-        }
-        else {
+        } else {
             weatherRecyclerAdapter = new WeatherRecyclerAdapter(this, longTermWeather);
         }
-        return  weatherRecyclerAdapter;
+        return weatherRecyclerAdapter;
     }
 
     @Override
@@ -317,16 +225,6 @@ public class MainActivity extends AppCompatActivity implements
 
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("city", result);
-        editor.commit();
-        getTodayWeather();
-        getLongTermWeather();
-    }
-
-    private void saveLocation(String lat, String lon) {
-        recentCity = "";
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
-        editor.putString("lat", lat);
-        editor.putString("lon", lon);
         editor.commit();
         getTodayWeather();
         getLongTermWeather();
@@ -556,14 +454,12 @@ public class MainActivity extends AppCompatActivity implements
                 cal.setTimeInMillis(Long.parseLong(dateMsString));
                 weather.setIcon(setWeatherIcon(Integer.parseInt(idString), cal.get(Calendar.HOUR_OF_DAY)));
 
-                if(cal.get(Calendar.DAY_OF_YEAR) == Calendar.getInstance().get(Calendar.DAY_OF_YEAR)){
+                if (cal.get(Calendar.DAY_OF_YEAR) == Calendar.getInstance().get(Calendar.DAY_OF_YEAR)) {
                     longTermTodayWeather.add(weather);
-                }
-                else if(cal.get(Calendar.DAY_OF_YEAR) == Calendar.getInstance().get(Calendar.DAY_OF_YEAR)+1
-                        ){
+                } else if (cal.get(Calendar.DAY_OF_YEAR) == Calendar.getInstance().get(Calendar.DAY_OF_YEAR) + 1
+                        ) {
                     longTermTomorrowWeather.add(weather);
-                }
-                else {
+                } else {
                     longTermWeather.add(weather);
                 }
             }
@@ -616,18 +512,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    protected void onStart() {
-        mGoogleApiClient.connect();
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        mGoogleApiClient.disconnect();
-        super.onStop();
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
@@ -638,6 +522,10 @@ public class MainActivity extends AppCompatActivity implements
         }
         if (id == R.id.action_search) {
             searchCities();
+            return true;
+        }
+        if (id == R.id.action_location) {
+            getCityByLocation();
             return true;
         }
         if (id == R.id.action_settings) {
@@ -651,16 +539,6 @@ public class MainActivity extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
-    private static void close(Closeable x) {
-        try {
-            if (x != null) {
-                x.close();
-            }
-        } catch (IOException e) {
-            Log.e("IOException Data", "Error occurred while closing stream");
-        }
-    }
-
     private void restorePreviousCity() {
         if (!TextUtils.isEmpty(recentCity)) {
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
@@ -670,12 +548,134 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    void getCityByLocation() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_CONTACTS)) {
+                // Explanation not needed, since user requests this himself
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_ACCESS_FINE_LOCATION);
+            }
+
+        } else {
+            progressDialog.setMessage(getString(R.string.getting_location));
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.show();
+            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_ACCESS_FINE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getCityByLocation();
+                }
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        progressDialog.hide();
+        Log.i("GPS LOCATION", location.getLatitude() + ", " + location.getLongitude());
+        latitude = location.getLatitude();
+        longtitude = location.getLongitude();
+        new GetCityName().execute();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
+    private enum ParseResult {OK, JSON_EXCEPTION, CITY_NOT_FOUND}
+
+    public class GetCityName extends AsyncTask<String, String, Void> {
+        String result = "";
+
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+            try {
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                String language = Locale.getDefault().getLanguage();
+                if (language.equals("cs")) {
+                    language = "cz";
+                }
+                String apiKey = sp.getString("apiKey", getResources().getString(R.string.apiKey));
+                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longtitude + "&lang=" + language + "&mode=json&appid=" + apiKey);
+                Log.i("URL", url.toString());
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+
+                if (urlConnection.getResponseCode() == 200) {
+                    String line = null;
+                    while ((line = r.readLine()) != null) {
+                        result += line + "\n";
+                    }
+                    close(r);
+                    urlConnection.disconnect();
+                }
+            } catch (IOException e) {
+                Log.e("IOException Data", result);
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        protected void onPostExecute(Void v) {
+            Log.i("RESULT", result.toString());
+            try {
+                JSONObject reader = new JSONObject(result);
+
+                final String code = reader.optString("cod");
+                if ("404".equals(code)) {
+                    Log.e("Geolocation", "No city found");
+                }
+
+                String city = reader.getString("name");
+                String country = "";
+                JSONObject countryObj = reader.optJSONObject("sys");
+                if (countryObj != null) {
+                    country = ", " + countryObj.getString("country");
+                }
+
+                saveLocation(city + country);
+
+            } catch (JSONException e) {
+                Log.e("JSONException Data", result);
+                e.printStackTrace();
+            }
+        }
+    }
+
     public class GetWeatherTask extends AsyncTask<String, String, Void> {
         String result = "";
 
         protected void onPreExecute() {
             loading = 1;
-            if(!progressDialog.isShowing()) {
+            if (!progressDialog.isShowing()) {
                 progressDialog.setMessage(getString(R.string.downloading_data));
                 progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
@@ -690,14 +690,8 @@ public class MainActivity extends AppCompatActivity implements
                 if (language.equals("cs")) {
                     language = "cz";
                 }
-                boolean autoDetectLocation = sp.getBoolean("autoDetectLocation", true);
-                URL url;
-                if (sp.getString("lat", "abc").equals("abc") || !autoDetectLocation) {
-                    url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&appid=" + mApiKey);
-                } else {
-                    url = new URL("http://api.openweathermap.org/data/2.5/weather?" +
-                                          "lat=" + sp.getString("lat", Constants.DEFAULT_LAT) +"&lon="+sp.getString("lon", Constants.DEFAULT_LON)+ "&lang=" + language + "&appid=" + mApiKey);
-                }
+                String apiKey = sp.getString("apiKey", getResources().getString(R.string.apiKey));
+                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&mode=json&appid=" + apiKey);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
@@ -721,7 +715,7 @@ public class MainActivity extends AppCompatActivity implements
 
         protected void onPostExecute(Void v) {
             //parse JSON data
-            if(loading == 1) {
+            if (loading == 1) {
                 progressDialog.dismiss();
             }
             loading -= 1;
@@ -738,7 +732,7 @@ public class MainActivity extends AppCompatActivity implements
 
         protected void onPreExecute() {
             loading += 1;
-            if(!progressDialog.isShowing()) {
+            if (!progressDialog.isShowing()) {
                 progressDialog.setMessage(getString(R.string.downloading_data));
                 progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
@@ -754,14 +748,8 @@ public class MainActivity extends AppCompatActivity implements
                     language = "cz";
                 }
 
-                boolean autoDetectLocation = sp.getBoolean("autoDetectLocation", true);
-                URL url;
-                if (sp.getString("lat", "abc").equals("abc") || !autoDetectLocation) {
-                    url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&mode=json&appid=" + mApiKey);
-                }else{
-                    url = new URL("http://api.openweathermap.org/data/2.5/forecast?" +
-                                          "lat=" + sp.getString("lat", Constants.DEFAULT_LAT) +"&lon="+sp.getString("lon", Constants.DEFAULT_LON)+ "&lang=" + language + "&mode=json&appid=" + mApiKey);
-                }
+                String apiKey = sp.getString("apiKey", getResources().getString(R.string.apiKey));
+                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&mode=json&appid=" + apiKey);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
@@ -785,7 +773,7 @@ public class MainActivity extends AppCompatActivity implements
 
         protected void onPostExecute(Void v) {
             //parse JSON data
-            if(loading == 1) {
+            if (loading == 1) {
                 progressDialog.dismiss();
             }
             loading -= 1;
@@ -796,6 +784,4 @@ public class MainActivity extends AppCompatActivity implements
             }
         }
     }
-
-    private enum ParseResult { OK, JSON_EXCEPTION, CITY_NOT_FOUND }
 }

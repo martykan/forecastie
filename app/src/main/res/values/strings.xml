@@ -15,7 +15,9 @@
     <string name="humidity">Humidity</string>
 
     <string name="search_title">Search for city</string>
+
     <string name="downloading_data">Downloading your data ...</string>
+    <string name="getting_location">Getting your location ...</string>
 
     <string name="error_dateFormat">DATE FORMAT ERROR</string>
 
