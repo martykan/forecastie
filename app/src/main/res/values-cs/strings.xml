@@ -42,7 +42,6 @@
     <string name="setting_unit_mph">Míle za hodinu (mph)</string>
     <string name="settings_none">Nikdy</string>
     <string name="setting_unit_mps">Metry za sekundu (m/s)</string>
-    <string name="apiKey"></string>
     <string name="msg_err_parsing_json">Chyba čtení JSON.</string>
     <string name="msg_connection_not_available">Připojení není k dispozici.</string>
     <string name="msg_city_not_found">Město nebylo nalezeno.</string>
