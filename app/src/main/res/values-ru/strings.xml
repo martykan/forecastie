@@ -25,7 +25,7 @@
     <string name="tomorrow">Завтра</string>
     <string name="setting_tempUnits">Единицы температуры</string>
     <string name="downloading_data">Выполняется загрузка данных …</string>
-    <string name="setting_auto_detect_location">Определять местоположение</string>
+    <string name="setting_auto_detect_location">Определить местоположение</string>
     <string name="dialog_cancel">Отмена</string>
     <string name="setting_unit_kph">Километры в час (км/ч)</string>
     <string name="setting_unit_mph">Мили в час (миль/ч)</string>

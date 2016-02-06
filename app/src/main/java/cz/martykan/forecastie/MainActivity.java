@@ -58,8 +58,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements LocationListener {
     private static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
 
-    private static Map<String, String> speedUnits = new HashMap<>(3);
-    private static Map<String, String> pressUnits = new HashMap<>(3);
+    private static Map<String, Integer> speedUnits = new HashMap<>(3);
+    private static Map<String, Integer> pressUnits = new HashMap<>(3);
 
     Typeface weatherFont;
     Weather todayWeather = new Weather();
@@ -79,9 +79,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     int loading = 0;
 
     boolean darkTheme;
-
-    double latitude;
-    double longitude;
 
     private List<Weather> longTermWeather;
     private List<Weather> longTermTodayWeather;
@@ -413,9 +410,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     todayWeather.getDescription().substring(1));
         }
         todayWind.setText(getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " +
-                localize("speedUnit", sp.getString("speedUnit", "m/s")));
+                localize(sp, "speedUnit", "m/s"));
         todayPressure.setText(getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " +
-                localize("pressureUnit", sp.getString("pressureUnit", "hPa")));
+                localize(sp, "pressureUnit", "hPa"));
         todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
         todayIcon.setText(todayWeather.getIcon());
     }
@@ -567,24 +564,29 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     private void initMappings() {
-        speedUnits.put("m/s", getString(R.string.speed_unit_mps));
-        speedUnits.put("kph", getString(R.string.speed_unit_kph));
-        speedUnits.put("mph", getString(R.string.speed_unit_mph));
+        speedUnits.put("m/s", R.string.speed_unit_mps);
+        speedUnits.put("kph", R.string.speed_unit_kph);
+        speedUnits.put("mph", R.string.speed_unit_mph);
 
-        pressUnits.put("hPa", getString(R.string.pressure_unit_hpa));
-        pressUnits.put("kPa", getString(R.string.pressure_unit_kpa));
-        pressUnits.put("mm Hg", getString(R.string.pressure_unit_mmhg));
+        pressUnits.put("hPa", R.string.pressure_unit_hpa);
+        pressUnits.put("kPa", R.string.pressure_unit_kpa);
+        pressUnits.put("mm Hg", R.string.pressure_unit_mmhg);
     }
 
-    public static String localize(String preferenceKey, String preferenceValue) {
+    private String localize(SharedPreferences sp, String preferenceKey, String defaultValueKey) {
+        return localize(sp, this, preferenceKey, defaultValueKey);
+    }
+
+    public static String localize(SharedPreferences sp, Context context, String preferenceKey, String defaultValueKey) {
+        String preferenceValue = sp.getString(preferenceKey, defaultValueKey);
         String result = preferenceValue;
         if ("speedUnit".equals(preferenceKey)) {
             if (speedUnits.containsKey(preferenceValue)) {
-                result = speedUnits.get(preferenceValue);
+                result = context.getString(speedUnits.get(preferenceValue));
             }
         } else if ("pressureUnit".equals(preferenceKey)) {
             if (pressUnits.containsKey(preferenceValue)) {
-                result = pressUnits.get(preferenceValue);
+                result = context.getString(pressUnits.get(preferenceValue));
             }
         }
         return result;
