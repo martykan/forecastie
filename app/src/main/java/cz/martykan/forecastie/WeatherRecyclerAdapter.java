@@ -107,17 +107,22 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         customViewHolder.itemDate.setText(dateString);
         customViewHolder.itemTemperature.setText(temperature.substring(0, temperature.indexOf(".") + 2) + " °"+ sp.getString("unit", "C"));
         if(Float.parseFloat(weatherItem.getRain()) > 0.1){
-            customViewHolder.itemDescription.setText(weatherItem.getDescription().substring(0, 1).toUpperCase() + weatherItem.getDescription().substring(1) + " (" + weatherItem.getRain().substring(0, weatherItem.getRain().indexOf(".") + 2) + " mm)");
+            customViewHolder.itemDescription.setText(weatherItem.getDescription().substring(0, 1).toUpperCase() +
+                    weatherItem.getDescription().substring(1) +
+                    " (" + weatherItem.getRain().substring(0, weatherItem.getRain().indexOf(".") + 2) + " mm)");
         }
         else {
-            customViewHolder.itemDescription.setText(weatherItem.getDescription().substring(0, 1).toUpperCase() + weatherItem.getDescription().substring(1));
+            customViewHolder.itemDescription.setText(weatherItem.getDescription().substring(0, 1).toUpperCase() +
+                    weatherItem.getDescription().substring(1));
 
         }
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");
         customViewHolder.itemIcon.setTypeface(weatherFont);
         customViewHolder.itemIcon.setText(weatherItem.getIcon());
-        customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " + (wind+"").substring(0, (wind+"").indexOf(".") + 2) + " " + sp.getString("speedUnit", "m/s"));
-        customViewHolder.itemPressure.setText(context.getString(R.string.pressure) + ": " + (pressure+"").substring(0, (pressure + "").indexOf(".") + 2) + " " + sp.getString("pressureUnit", "hPa"));
+        customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " + (wind+"").substring(0, (wind+"").indexOf(".") + 2) + " " +
+                MainActivity.localize(sp, context, "speedUnit", "m/s"));
+        customViewHolder.itemPressure.setText(context.getString(R.string.pressure) + ": " + (pressure+"").substring(0, (pressure + "").indexOf(".") + 2) + " " +
+                MainActivity.localize(sp, context, "pressureUnit", "hPa"));
         customViewHolder.itemHumidity.setText(context.getString(R.string.humidity) + ": " + weatherItem.getHumidity() + " %");
     }
 
