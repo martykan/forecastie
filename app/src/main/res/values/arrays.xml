@@ -32,6 +32,24 @@
         <item name="kpa">kPa</item>
         <item name="mmhg">mm Hg</item>
     </string-array>
+    <string-array name="windDirections">
+        <item name="n">@string/wind_direction_north</item>
+        <item name="nne">@string/wind_direction_north_north_east</item>
+        <item name="ne">@string/wind_direction_north_east</item>
+        <item name="ene">@string/wind_direction_east_north_east</item>
+        <item name="e">@string/wind_direction_east</item>
+        <item name="ese">@string/wind_direction_east_south_east</item>
+        <item name="se">@string/wind_direction_south_east</item>
+        <item name="sse">@string/wind_direction_south_south_east</item>
+        <item name="s">@string/wind_direction_south</item>
+        <item name="ssw">@string/wind_direction_south_south_west</item>
+        <item name="sw">@string/wind_direction_south_west</item>
+        <item name="wsw">@string/wind_direction_west_south_west</item>
+        <item name="w">@string/wind_direction_west</item>
+        <item name="wnw">@string/wind_direction_west_north_west</item>
+        <item name="nw">@string/wind_direction_north_west</item>
+        <item name="nnw">@string/wind_direction_north_north_west</item>
+    </string-array>
 
     <string-array name="refreshIntervals">
         <item name="none">@string/settings_none</item>

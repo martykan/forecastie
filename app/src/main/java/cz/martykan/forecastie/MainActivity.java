@@ -334,7 +334,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             todayWeather.setTemperature(main.getString("temp"));
             todayWeather.setDescription(reader.getJSONArray("weather").getJSONObject(0).getString("description"));
-            todayWeather.setWind(reader.getJSONObject("wind").getString("speed"));
+            JSONObject windObj = reader.getJSONObject("wind");
+            todayWeather.setWind(windObj.getString("speed"));
+            todayWeather.setWindDirectionDegree(windObj.getDouble("deg"));
             todayWeather.setPressure(main.getString("pressure"));
             todayWeather.setHumidity(main.getString("humidity"));
 
@@ -419,7 +421,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     todayWeather.getDescription().substring(1));
         }
         todayWind.setText(getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " +
-                localize(sp, "speedUnit", "m/s"));
+                localize(sp, "speedUnit", "m/s") + " " + todayWeather.getWindDirection().getLocalizedString(this));
         todayPressure.setText(getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " +
                 localize(sp, "pressureUnit", "hPa"));
         todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
@@ -450,7 +452,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 weather.setDate(listItem.getString("dt"));
                 weather.setTemperature(main.getString("temp"));
                 weather.setDescription(listItem.optJSONArray("weather").getJSONObject(0).getString("description"));
-                weather.setWind(listItem.optJSONObject("wind").getString("speed"));
+                JSONObject windObj = listItem.optJSONObject("wind");
+                weather.setWind(windObj.getString("speed"));
+                weather.setWindDirectionDegree(windObj.getDouble("deg"));
                 weather.setPressure(main.getString("pressure"));
                 weather.setHumidity(main.getString("humidity"));
 
