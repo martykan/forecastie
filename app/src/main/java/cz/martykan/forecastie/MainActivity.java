@@ -79,13 +79,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     int loading = 0;
 
     boolean darkTheme;
-    LocationManager locationManager;
+
     double latitude;
-    double longtitude;
+    double longitude;
+
     private List<Weather> longTermWeather;
     private List<Weather> longTermTodayWeather;
     private List<Weather> longTermTomorrowWeather;
-    private String mApiKey;
     private String recentCity = "";
 
     private static void close(Closeable x) {
@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             setTheme(R.style.AppTheme_NoActionBar_Dark);
             darkTheme = true;
         }
-        mApiKey = prefs.getString("apiKey", getResources().getString(R.string.apiKey));
 
         // Initiate activity
         super.onCreate(savedInstanceState);
@@ -178,7 +177,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             overridePendingTransition(0, 0);
             startActivity(getIntent());
         } else if (isNetworkAvailable()) {
-            mApiKey = PreferenceManager.getDefaultSharedPreferences(this).getString("apiKey", getResources().getString(R.string.apiKey));
             getTodayWeather();
             getLongTermWeather();
         }
@@ -189,11 +187,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         String lastToday = sp.getString("lastToday", "");
         if (!lastToday.isEmpty()) {
-            new TodayWeatherTask().execute(lastToday);
+            new TodayWeatherTask().execute("cachedResponse", lastToday);
         }
         String lastLongterm = sp.getString("lastLongterm", "");
         if (!lastLongterm.isEmpty()) {
-            new LongTermWeatherTask().execute(lastLongterm);
+            new LongTermWeatherTask().execute("cachedResponse", lastLongterm);
         }
     }
 
@@ -231,11 +229,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private void saveLocation(String result) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        recentCity = preferences.getString("city", "");
+        recentCity = preferences.getString("city", Constants.DEFAULT_CITY);
 
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("city", result);
         editor.commit();
+
         getTodayWeather();
         getLongTermWeather();
     }
@@ -629,9 +628,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public void onLocationChanged(Location location) {
         progressDialog.hide();
         Log.i("GPS LOCATION", location.getLatitude() + ", " + location.getLongitude());
-        latitude = location.getLatitude();
-        longtitude = location.getLongitude();
-        new GetCityName().execute();
+        double latitude = location.getLatitude();
+        double longitude = location.getLongitude();
+        new ProvideCityNameTask().execute("coords", Double.toString(latitude), Double.toString(longitude));
     }
 
     @Override
@@ -649,184 +648,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     }
 
-    public class GetCityName extends AsyncTask<String, String, Void> {
-        String result = "";
-
-        protected void onPreExecute() {
-
-        }
-
-        @Override
-        protected Void doInBackground(String... params) {
-            try {
-                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                String language = Locale.getDefault().getLanguage();
-                if (language.equals("cs")) {
-                    language = "cz";
-                }
-                String apiKey = sp.getString("apiKey", getResources().getString(R.string.apiKey));
-                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longtitude + "&lang=" + language + "&mode=json&appid=" + apiKey);
-                Log.i("URL", url.toString());
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-
-                if (urlConnection.getResponseCode() == 200) {
-                    String line = null;
-                    while ((line = r.readLine()) != null) {
-                        result += line + "\n";
-                    }
-                    close(r);
-                    urlConnection.disconnect();
-                }
-            } catch (IOException e) {
-                Log.e("IOException Data", result);
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        protected void onPostExecute(Void v) {
-            Log.i("RESULT", result.toString());
-            try {
-                JSONObject reader = new JSONObject(result);
-
-                final String code = reader.optString("cod");
-                if ("404".equals(code)) {
-                    Log.e("Geolocation", "No city found");
-                }
-
-                String city = reader.getString("name");
-                String country = "";
-                JSONObject countryObj = reader.optJSONObject("sys");
-                if (countryObj != null) {
-                    country = ", " + countryObj.getString("country");
-                }
-
-                saveLocation(city + country);
-
-            } catch (JSONException e) {
-                Log.e("JSONException Data", result);
-                e.printStackTrace();
-            }
-        }
-    }
-    
-    public class GetWeatherTask extends AsyncTask<String, String, Void> {
-        String result = "";
-
-        protected void onPreExecute() {
-            loading = 1;
-            if (!progressDialog.isShowing()) {
-                progressDialog.setMessage(getString(R.string.downloading_data));
-                progressDialog.setCanceledOnTouchOutside(false);
-                progressDialog.show();
-            }
-        }
-
-        @Override
-        protected Void doInBackground(String... params) {
-            try {
-                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                String language = Locale.getDefault().getLanguage();
-                if (language.equals("cs")) {
-                    language = "cz";
-                }
-                String apiKey = sp.getString("apiKey", getResources().getString(R.string.apiKey));
-                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&mode=json&appid=" + apiKey);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-
-                if (urlConnection.getResponseCode() == 200) {
-                    String line = null;
-                    while ((line = r.readLine()) != null) {
-                        result += line + "\n";
-                    }
-                    close(r);
-                    urlConnection.disconnect();
-                } else {
-                    Snackbar.make(appView, getString(R.string.msg_connection_problem), Snackbar.LENGTH_LONG).show();
-                }
-            } catch (IOException e) {
-                Log.e("IOException Data", result);
-                e.printStackTrace();
-                Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
-            }
-            return null;
-        }
-
-        protected void onPostExecute(Void v) {
-            //parse JSON data
-            if (loading == 1) {
-                progressDialog.dismiss();
-            }
-            loading -= 1;
-            final ParseResult parseResult = parseTodayJson(result);
-            if (ParseResult.CITY_NOT_FOUND.equals(parseResult)) {
-                // Retain previously specified city if current one was not recognized
-                restorePreviousCity();
-            }
-        }
-    }
-
-    class GetLongTermWeatherTask extends AsyncTask<String, String, Void> {
-        String result = "";
-
-        protected void onPreExecute() {
-            loading += 1;
-            if (!progressDialog.isShowing()) {
-                progressDialog.setMessage(getString(R.string.downloading_data));
-                progressDialog.setCanceledOnTouchOutside(false);
-                progressDialog.show();
-            }
-        }
-
-        @Override
-        protected Void doInBackground(String... params) {
-            try {
-                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                String language = Locale.getDefault().getLanguage();
-                if (language.equals("cs")) {
-                    language = "cz";
-                }
-
-                String apiKey = sp.getString("apiKey", getResources().getString(R.string.apiKey));
-                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&mode=json&appid=" + apiKey);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-
-                if (urlConnection.getResponseCode() == 200) {
-                    String line = null;
-                    while ((line = r.readLine()) != null) {
-                        result += line + "\n";
-                    }
-                    close(r);
-                    urlConnection.disconnect();
-                } else {
-                    Snackbar.make(appView, "There is a problem with your internet connection.", Snackbar.LENGTH_LONG).show();
-                }
-            } catch (IOException e) {
-                Log.e("IOException Data", result);
-                e.printStackTrace();
-                Snackbar.make(appView, "Connection not available.", Snackbar.LENGTH_LONG).show();
-            }
-            return null;
-        }
-
-        protected void onPostExecute(Void v) {
-            //parse JSON data
-            if (loading == 1) {
-                progressDialog.dismiss();
-            }
-            loading -= 1;
-            final ParseResult parseResult = parseLongTermJson(result);
-            if (ParseResult.CITY_NOT_FOUND.equals(parseResult)) {
-                // Retain previously specified city if current one was not recognized
-                restorePreviousCity();
-            }
-        }
-    }
-
-    abstract class GenericWeatherTask extends AsyncTask<String, String, TaskOutput> {
+    abstract class GenericRequestTask extends AsyncTask<String, String, TaskOutput> {
         private void incLoadingCounter() {
             loading++;
         }
@@ -848,13 +670,26 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         @Override
         protected TaskOutput doInBackground(String... params) {
             TaskOutput output = new TaskOutput();
+
             String response = "";
+            String[] coords = new String[]{};
+
             if (params != null && params.length > 0) {
-                response = params[0];
-                output.taskResult = TaskResult.SUCCESS;
-            } else {
+                final String zeroParam = params[0];
+                if ("cachedResponse".equals(zeroParam)) {
+                    response = params[1];
+                    // Actually we did nothing in this case :)
+                    output.taskResult = TaskResult.SUCCESS;
+                } else if ("coords".equals(zeroParam)) {
+                    String lat = params[1];
+                    String lon = params[2];
+                    coords = new String[]{lat, lon};
+                }
+            }
+
+            if (response.isEmpty()) {
                 try {
-                    URL url = provideURL();
+                    URL url = provideURL(coords);
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
@@ -866,19 +701,22 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         }
                         close(r);
                         urlConnection.disconnect();
-
+                        // Background work finished successfully
                         output.taskResult = TaskResult.SUCCESS;
                     } else {
+                        // Bad response from server
                         output.taskResult = TaskResult.BAD_RESPONSE;
                     }
                 } catch (IOException e) {
                     Log.e("IOException Data", response);
                     e.printStackTrace();
+                    // Exception while reading data from url connection
                     output.taskResult = TaskResult.IO_EXCEPTION;
                 }
             }
+
             if (TaskResult.SUCCESS.equals(output.taskResult)) {
-                //parse JSON data
+                // Parse JSON data
                 ParseResult parseResult = parseResponse(response);
                 if (ParseResult.CITY_NOT_FOUND.equals(parseResult)) {
                     // Retain previously specified city if current one was not recognized
@@ -899,6 +737,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             updateMainUI();
 
+            handleTaskOutput(output);
+        }
+
+        protected final void handleTaskOutput(TaskOutput output) {
             switch (output.taskResult) {
                 case SUCCESS: {
                     ParseResult parseResult = output.parseResult;
@@ -928,32 +770,38 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             return language;
         }
 
-        private URL provideURL() throws UnsupportedEncodingException, MalformedURLException {
+        private URL provideURL(String[] coords) throws UnsupportedEncodingException, MalformedURLException {
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+            final String apiKey = sp.getString("apiKey", getResources().getString(R.string.apiKey));
+
             StringBuilder urlBuilder = new StringBuilder("http://api.openweathermap.org/data/2.5/");
             urlBuilder.append(getAPIName()).append("?");
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-            boolean autoDetectLocation = sp.getBoolean("autoDetectLocation", true);
-            if (!autoDetectLocation || "abc".equals(sp.getString("lat", "abc"))) {
+            if (coords.length == 2) {
+                urlBuilder.append("lat=").append(coords[0]).append("&lon=").append(coords[1]);
+            } else {
                 final String city = sp.getString("city", Constants.DEFAULT_CITY);
                 urlBuilder.append("q=").append(URLEncoder.encode(city, "UTF-8"));
-            } else {
-                urlBuilder.append("lat=").append(sp.getString("lat", Constants.DEFAULT_LAT))
-                        .append("&lon=").append(sp.getString("lon", Constants.DEFAULT_LON));
             }
             urlBuilder.append("&lang=").append(getLanguage());
             urlBuilder.append("&mode=json");
-            String apiKey = sp.getString("apiKey", getResources().getString(R.string.apiKey));
             urlBuilder.append("&appid=").append(apiKey);
 
             return new URL(urlBuilder.toString());
         }
 
+        protected void updateMainUI() { }
+
         protected abstract ParseResult parseResponse(String response);
         protected abstract String getAPIName();
-        protected abstract void updateMainUI();
     }
 
-    class TodayWeatherTask extends GenericWeatherTask {
+    class TodayWeatherTask extends GenericRequestTask {
+        @Override
+        protected void onPreExecute() {
+            loading = 0;
+            super.onPreExecute();
+        }
+
         @Override
         protected ParseResult parseResponse(String response) {
             return parseTodayJson(response);
@@ -970,7 +818,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
-    class LongTermWeatherTask extends GenericWeatherTask {
+    class LongTermWeatherTask extends GenericRequestTask {
         @Override
         protected ParseResult parseResponse(String response) {
             return parseLongTermJson(response);
@@ -987,8 +835,61 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
+    class ProvideCityNameTask extends GenericRequestTask {
+
+        @Override
+        protected void onPreExecute() { /*Nothing*/ }
+
+        @Override
+        protected String getAPIName() {
+            return "weather";
+        }
+
+        @Override
+        protected ParseResult parseResponse(String response) {
+            Log.i("RESULT", response.toString());
+            try {
+                JSONObject reader = new JSONObject(response);
+
+                final String code = reader.optString("cod");
+                if ("404".equals(code)) {
+                    Log.e("Geolocation", "No city found");
+                    return ParseResult.CITY_NOT_FOUND;
+                }
+
+                String city = reader.getString("name");
+                String country = "";
+                JSONObject countryObj = reader.optJSONObject("sys");
+                if (countryObj != null) {
+                    country = ", " + countryObj.getString("country");
+                }
+
+                saveLocation(city + country);
+
+            } catch (JSONException e) {
+                Log.e("JSONException Data", response);
+                e.printStackTrace();
+                return ParseResult.JSON_EXCEPTION;
+            }
+
+            return ParseResult.OK;
+        }
+
+        @Override
+        protected void onPostExecute(TaskOutput output) {
+            /* Handle possible errors only */
+            handleTaskOutput(output);
+        }
+    }
+
     private class TaskOutput {
+        /**
+         * Indicates result of parsing server response
+         */
         ParseResult parseResult;
+        /**
+         * Indicates result of background task
+         */
         TaskResult taskResult;
     }
 
