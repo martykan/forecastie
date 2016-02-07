@@ -29,7 +29,7 @@
     <string name="setting_dateFormatCustom">Eigenes Datumsformat</string>
     <string name="setting_dateFormatCustom_summary">Eigene Zeichenkette für SimpleDateFormat bereitstellen</string>
     <string name="setting_differentiateDaysByTint">Farbliche Unterscheidung der Tage</string>
-    <string name="setting_unit_kph">Kilometer pro Stunde (kph)</string>
+    <string name="setting_unit_kph">Kilometer pro Stunde (km/h)</string>
     <string name="setting_unit_mph">Meilen pro Stunde (mph)</string>
     <string name="setting_unit_mps">Meter pro Sekunde (m/s)</string>
     <string name="settings_none">Keins</string>
@@ -50,6 +50,6 @@
     <string name="setting_unit_kpa">kPa</string>
     <string name="setting_unit_mmhg">mmHg</string>
     <string name="speed_unit_kph">km/h</string>
-    <string name="speed_unit_mph">m/h</string>
+    <string name="speed_unit_mph">mph</string>
     <string name="speed_unit_mps">m/s</string>
 </resources>
