@@ -33,4 +33,23 @@
     <string name="setting_unit_mph">Meilen pro Stunde (mph)</string>
     <string name="setting_unit_mps">Meter pro Sekunde (m/s)</string>
     <string name="settings_none">Keins</string>
+    <string name="getting_location">Erkenne Ort...</string>
+    <string name="msg_city_not_found">Stadt konnte nicht gefunden werden.</string>
+    <string name="msg_connection_not_available">Keine Verbindung</string>
+    <string name="msg_connection_problem">Es gibt ein Problem mit der Internetverbindung.</string>
+    <string name="msg_err_parsing_json">Fehler beim Parsen der JSON</string>
+    <string name="pressure_unit_hpa">hPa</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mmHg</string>
+    <string name="setting_apiKey">API-Schlüssel</string>
+    <string name="setting_apiKey_summary">Eigener API-Schlüssel für Anfragen an OpenWeatherMap</string>
+    <string name="setting_unit_Celsuis">Celsius</string>
+    <string name="setting_unit_Fahrenheit">Fahrenheit</string>
+    <string name="setting_unit_Kelvin">Kelvin</string>
+    <string name="setting_unit_hpa">hPa</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mmHg</string>
+    <string name="speed_unit_kph">km/h</string>
+    <string name="speed_unit_mph">m/h</string>
+    <string name="speed_unit_mps">m/s</string>
 </resources>
