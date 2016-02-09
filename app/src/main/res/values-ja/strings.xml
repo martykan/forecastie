@@ -6,13 +6,60 @@
     <string name="action_settings">設定</string>
     <string name="action_about">アプリについて</string>
 
+    <string name="today">今日</string>
+    <string name="tomorrow">明日</string>
+    <string name="later">以降</string>
+
     <string name="wind">風力</string>
     <string name="pressure">気圧</string>
     <string name="humidity">湿度</string>
 
     <string name="search_title">都市の検索</string>
 
+    <string name="downloading_data">データのダウンロード中 ...</string>
+    <string name="getting_location">位置の取得中 ...</string>
+
+    <string name="error_dateFormat">日付形式エラー</string>
+
+    <string name="setting_dateFormat">日付形式</string>
+    <string name="setting_dateFormatCustom">カスタム日付形式</string>
+    <string name="setting_dateFormatCustom_summary">使用するカスタム SimpleDateFormat 文字列を入力してください</string>
     <string name="setting_speedUnits">風速の単位</string>
     <string name="setting_tempUnits">気温の単位</string>
     <string name="setting_pressureUnits">気圧の単位</string>
+    <string name="setting_darkTheme">ダークテーマ</string>
+    <string name="setting_auto_detect_location">位置を検出</string>
+    <string name="setting_differentiateDaysByTint">色で日数を区別</string>
+    <string name="setting_refreshInterval">バックグラウンド更新間隔</string>
+    <string name="setting_unit_mps">メートル毎秒 (m/s)</string>
+    <string name="setting_unit_kph">キロメートル毎時 (kph)</string>
+    <string name="setting_unit_mph">マイル毎時 (mph)</string>
+    <string name="settings_none">なし</string>
+    <string name="setting_apiKey">API キー</string>
+    <string name="setting_apiKey_summary">OpenWeatherMap クエリー用のカスタム API キー</string>
+
+    <string name="setting_unit_Celsuis">セ氏</string>
+    <string name="setting_unit_Fahrenheit">カ氏</string>
+    <string name="setting_unit_Kelvin">ケルビン</string>
+
+    <string name="setting_unit_hpa">hPa</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+
+    <string name="speed_unit_mps">m/s</string>
+    <string name="speed_unit_kph">kph</string>
+    <string name="speed_unit_mph">mph</string>
+
+    <string name="pressure_unit_hpa">hPa</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">キャンセル</string>
+
+    <string name="msg_err_parsing_json">JSON 解析エラー。</string>
+    <string name="msg_connection_problem">インターネット接続に問題があります。</string>
+    <string name="msg_connection_not_available">接続が利用できません。</string>
+    <string name="msg_city_not_found">指定した都市が見つかりません。</string>
+
 </resources>
