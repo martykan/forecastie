@@ -509,9 +509,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         recyclerViewFragment.setArguments(bundle);
         viewPagerAdapter.addFragment(recyclerViewFragment, getString(R.string.later));
 
+        int currentPage = viewPager.getCurrentItem();
+
         viewPagerAdapter.notifyDataSetChanged();
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        if (currentPage == 0 && longTermTodayWeather.isEmpty()) {
+            currentPage = 1;
+        }
+        viewPager.setCurrentItem(currentPage, false);
     }
 
     private boolean isNetworkAvailable() {
