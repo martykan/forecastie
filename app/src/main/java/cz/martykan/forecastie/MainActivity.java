@@ -44,6 +44,8 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -400,7 +402,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             pressure = pressure * 0.750061561303;
         }
 
-        todayTemperature.setText(temperature.substring(0, temperature.indexOf(".") + 2) + " °" + sp.getString("unit", "C"));
+
+        if (new BigDecimal(temperature).setScale(0, RoundingMode.DOWN).intValue() == 0) {
+            temperature = "0";
+        } else {
+            temperature = temperature.substring(0, temperature.indexOf(".") + 2);
+        }
+
+        todayTemperature.setText(temperature + " °" + sp.getString("unit", "C"));
         if (Float.parseFloat(todayWeather.getRain()) > 0.1) {
             todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() +
                     todayWeather.getDescription().substring(1) +
