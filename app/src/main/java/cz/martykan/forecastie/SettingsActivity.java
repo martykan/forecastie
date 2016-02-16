@@ -124,9 +124,9 @@ public class SettingsActivity extends PreferenceActivity
         for (int i=0; i<dateFormatsValues.length; i++) {
             String value = dateFormatsValues[i];
             if ("custom".equals(value)) {
-                sdformat.applyPattern(sp.getString("dateFormatCustom", dateFormatsValues[0]));
                 String renderedCustom;
                 try {
+                    sdformat.applyPattern(sp.getString("dateFormatCustom", dateFormatsValues[0]));
                     renderedCustom = sdformat.format(SAMPLE_DATE);
                 } catch (IllegalArgumentException e) {
                     renderedCustom = res.getString(R.string.error_dateFormat);
