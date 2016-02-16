@@ -709,10 +709,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 try {
                     URL url = provideURL(coords);
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                    BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    if (urlConnection.getResponseCode() == 200) {
 
-                    int responseCode = urlConnection.getResponseCode();
-                    if (responseCode == 200) {
+                        InputStreamReader inputStreamReader = new InputStreamReader(urlConnection.getInputStream());
+                        BufferedReader r = new BufferedReader(inputStreamReader);
+
+                        int responseCode = urlConnection.getResponseCode();
                         String line = null;
                         while ((line = r.readLine()) != null) {
                             response += line + "\n";
@@ -735,6 +737,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             if (TaskResult.SUCCESS.equals(output.taskResult)) {
                 // Parse JSON data
+                Log.i("data", response);
                 ParseResult parseResult = parseResponse(response);
                 if (ParseResult.CITY_NOT_FOUND.equals(parseResult)) {
                     // Retain previously specified city if current one was not recognized
