@@ -66,6 +66,10 @@ public class WidgetProvider extends AppWidgetProvider {
                 new GetWeatherTask(context).execute();
             }
 
+            Intent intent2 = new Intent(context, MainActivity.class);
+            PendingIntent pendingIntent2 = PendingIntent.getActivity(context, 0, intent2, 0);
+            remoteViews.setOnClickPendingIntent(R.id.widgetRoot, pendingIntent2);
+
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
     }
