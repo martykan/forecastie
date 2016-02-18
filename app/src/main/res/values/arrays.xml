@@ -50,6 +50,26 @@
         <item name="nw">@string/wind_direction_north_west</item>
         <item name="nnw">@string/wind_direction_north_north_west</item>
     </string-array>
+    <string-array name="windDirectionArrows">
+        <item name="n">&#x2193;</item>
+        <item name="ne">&#x2199;</item>
+        <item name="e">&#x2190;</item>
+        <item name="se">&#x2196;</item>
+        <item name="s">&#x2191;</item>
+        <item name="sw">&#x2197;</item>
+        <item name="w">&#x2192;</item>
+        <item name="nw">&#x2198;</item>
+    </string-array>
+    <string-array name="windDirectionFormats">
+        <item name="none">@string/wind_direction_format_none</item>
+        <item name="arrow">@string/wind_direction_format_arrows</item>
+        <item name="abbr">@string/wind_direction_format_abbreviations</item>
+    </string-array>
+    <string-array name="windDirectionFormatValues">
+        <item name="none">none</item>
+        <item name="arrow">arrow</item>
+        <item name="abbr">abbr</item>
+    </string-array>
 
     <string-array name="refreshIntervals">
         <item name="none">@string/settings_none</item>

@@ -35,6 +35,11 @@ public class Weather {
             // usage of enum.ordinal() is not recommended, but whatever
             return context.getResources().getStringArray(R.array.windDirections)[ordinal()];
         }
+
+        public String getArrow(Context context) {
+            // usage of enum.ordinal() is not recommended, but whatever
+            return context.getResources().getStringArray(R.array.windDirectionArrows)[ordinal() / 2];
+        }
     }
 
     // you may use values like 4, 8, etc. for numberOfDirections
@@ -115,6 +120,10 @@ public class Weather {
 
     public WindDirection getWindDirection() {
         return WindDirection.byDegree(windDirectionDegree);
+    }
+
+    public WindDirection getWindDirection(int numberOfDirections) {
+        return WindDirection.byDegree(windDirectionDegree, numberOfDirections);
     }
 
     public String getPressure() {
