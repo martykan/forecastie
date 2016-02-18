@@ -52,4 +52,24 @@
     <string name="speed_unit_kph">km/h</string>
     <string name="speed_unit_mph">mph</string>
     <string name="speed_unit_mps">m/s</string>
+    <string name="setting_wind_direction_format">Windrichtungsformat</string>
+    <string name="wind_direction_east">O</string>
+    <string name="wind_direction_east_north_east">ONO</string>
+    <string name="wind_direction_east_south_east">OSO</string>
+    <string name="wind_direction_format_abbreviations">Abkürzungen</string>
+    <string name="wind_direction_format_arrows">Pfeile</string>
+    <string name="wind_direction_format_none">Keine Angabe</string>
+    <string name="wind_direction_north">N</string>
+    <string name="wind_direction_north_east">NO</string>
+    <string name="wind_direction_north_north_east">NNO</string>
+    <string name="wind_direction_north_north_west">NNW</string>
+    <string name="wind_direction_north_west">NW</string>
+    <string name="wind_direction_south">S</string>
+    <string name="wind_direction_south_east">SO</string>
+    <string name="wind_direction_south_south_east">SSO</string>
+    <string name="wind_direction_south_south_west">SSW</string>
+    <string name="wind_direction_south_west">SW</string>
+    <string name="wind_direction_west">W</string>
+    <string name="wind_direction_west_north_west">WNW</string>
+    <string name="wind_direction_west_south_west">WSW</string>
 </resources>
