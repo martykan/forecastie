@@ -58,6 +58,7 @@ public class SettingsActivity extends PreferenceActivity
         setListPreferenceSummary("speedUnit");
         setListPreferenceSummary("pressureUnit");
         setListPreferenceSummary("refreshInterval");
+        setListPreferenceSummary("windDirectionFormat");
     }
 
     @Override
@@ -73,6 +74,7 @@ public class SettingsActivity extends PreferenceActivity
             case "unit":
             case "speedUnit":
             case "pressureUnit":
+            case "windDirectionFormat":
                 setListPreferenceSummary(key);
                 break;
             case "refreshInterval":
