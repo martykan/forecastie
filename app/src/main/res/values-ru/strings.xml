@@ -48,4 +48,26 @@
     <string name="setting_unit_Celsuis">Цельсий</string>
     <string name="setting_unit_Fahrenheit">Фаренгейт</string>
     <string name="setting_unit_Kelvin">Кельвин</string>
+    <string name="setting_wind_direction_format">Формат направления ветра</string>
+
+    <string name="wind_direction_format_none">Не отображать</string>
+    <string name="wind_direction_format_arrows">Стрелки</string>
+    <string name="wind_direction_format_abbreviations">Аббревиатуры</string>
+
+    <string name="wind_direction_north">С</string>
+    <string name="wind_direction_north_north_east">ССВ</string>
+    <string name="wind_direction_north_east">СВ</string>
+    <string name="wind_direction_east_north_east">ВСВ</string>
+    <string name="wind_direction_east">В</string>
+    <string name="wind_direction_east_south_east">ВЮВ</string>
+    <string name="wind_direction_south_east">ЮВ</string>
+    <string name="wind_direction_south_south_east">ЮЮВ</string>
+    <string name="wind_direction_south">Ю</string>
+    <string name="wind_direction_south_south_west">ЮЮЗ</string>
+    <string name="wind_direction_south_west">ЮЗ</string>
+    <string name="wind_direction_west_south_west">ЗЮЗ</string>
+    <string name="wind_direction_west">З</string>
+    <string name="wind_direction_west_north_west">ЗСЗ</string>
+    <string name="wind_direction_north_west">СЗ</string>
+    <string name="wind_direction_north_north_west">ССЗ</string>
 </resources>

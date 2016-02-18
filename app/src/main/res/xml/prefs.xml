@@ -36,6 +36,13 @@
             android:summary="@string/setting_dateFormatCustom_summary" />
 
         <ListPreference
+            android:key="windDirectionFormat"
+            android:defaultValue="arrow"
+            android:entries="@array/windDirectionFormats"
+            android:entryValues="@array/windDirectionFormatValues"
+            android:title="@string/setting_wind_direction_format" />
+
+        <ListPreference
             android:defaultValue="1"
             android:entries="@array/refreshIntervals"
             android:entryValues="@array/refreshIntervalsValues"

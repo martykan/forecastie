@@ -1,5 +1,7 @@
 package cz.martykan.forecastie;
 
+import android.content.Context;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -7,12 +9,59 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Weather {
+
+    public enum WindDirection {
+        // don't change order
+        NORTH, NORTH_NORTH_EAST, NORTH_EAST, EAST_NORTH_EAST,
+        EAST, EAST_SOUTH_EAST, SOUTH_EAST, SOUTH_SOUTH_EAST,
+        SOUTH, SOUTH_SOUTH_WEST, SOUTH_WEST, WEST_SOUTH_WEST,
+        WEST, WEST_NORTH_WEST, NORTH_WEST, NORTH_NORTH_WEST;
+
+        public static WindDirection byDegree(double degree) {
+            return byDegree(degree, WindDirection.values().length);
+        }
+
+        public static WindDirection byDegree(double degree, int numberOfDirections) {
+            WindDirection[] directions = WindDirection.values();
+            int availableNumberOfDirections = directions.length;
+
+            int direction = windDirectionDegreeToIndex(degree, numberOfDirections)
+                    * availableNumberOfDirections / numberOfDirections;
+
+            return directions[direction];
+        }
+
+        public String getLocalizedString(Context context) {
+            // usage of enum.ordinal() is not recommended, but whatever
+            return context.getResources().getStringArray(R.array.windDirections)[ordinal()];
+        }
+
+        public String getArrow(Context context) {
+            // usage of enum.ordinal() is not recommended, but whatever
+            return context.getResources().getStringArray(R.array.windDirectionArrows)[ordinal() / 2];
+        }
+    }
+
+    // you may use values like 4, 8, etc. for numberOfDirections
+    public static int windDirectionDegreeToIndex(double degree, int numberOfDirections) {
+        // to be on the safe side
+        degree %= 360;
+        if(degree < 0) degree += 360;
+
+        degree += 180 / numberOfDirections; // add offset to make North start from 0
+
+        int direction = (int)Math.floor(degree * numberOfDirections / 360);
+
+        return direction % numberOfDirections;
+    }
+
     private String city;
     private String country;
     private Date date;
     private String temperature;
     private String description;
     private String wind;
+    private Double windDirectionDegree;
     private String pressure;
     private String humidity;
     private String rain;
@@ -61,6 +110,21 @@ public class Weather {
         this.wind = wind;
     }
 
+    public Double getWindDirectionDegree() {
+        return windDirectionDegree;
+    }
+
+    public void setWindDirectionDegree(Double windDirectionDegree) {
+        this.windDirectionDegree = windDirectionDegree;
+    }
+
+    public WindDirection getWindDirection() {
+        return WindDirection.byDegree(windDirectionDegree);
+    }
+
+    public WindDirection getWindDirection(int numberOfDirections) {
+        return WindDirection.byDegree(windDirectionDegree, numberOfDirections);
+    }
 
     public String getPressure() {
         return pressure;
