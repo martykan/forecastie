@@ -8,8 +8,8 @@ android {
         applicationId "cz.martykan.forecastie"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 10
-        versionName "0.9.1"
+        versionCode 11
+        versionName "0.9.2"
     }
     buildTypes {
         release {
