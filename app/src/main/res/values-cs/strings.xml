@@ -75,4 +75,5 @@
     <string name="wind_direction_format_abbreviations">Zkratky</string>
     <string name="wind_direction_east_north_east">VSV</string>
     <string name="wind_direction_east_south_east">VJV</string>
+    <string name="msg_too_many_requests">Příliš mnoho požadavků. Zkuste to prosím znovu.</string>
 </resources>

@@ -142,12 +142,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         // Preload data from cache
         preloadWeather();
 
-        // Update weather online
-        if (isNetworkAvailable()) {
-            getTodayWeather();
-            getLongTermWeather();
-        }
-
         // Set autoupdater
         AlarmReceiver.setRecurringAlarm(this);
     }
@@ -725,7 +719,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     URL url = provideURL(coords);
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     if (urlConnection.getResponseCode() == 200) {
-
                         InputStreamReader inputStreamReader = new InputStreamReader(urlConnection.getInputStream());
                         BufferedReader r = new BufferedReader(inputStreamReader);
 
@@ -737,9 +730,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         close(r);
                         urlConnection.disconnect();
                         // Background work finished successfully
+                        Log.i("Task", "done successfully");
                         output.taskResult = TaskResult.SUCCESS;
-                    } else {
+                    }
+                    else if (urlConnection.getResponseCode() == 429) {
+                        // Too many requests
+                        Log.i("Task", "too many requests");
+                        output.taskResult = TaskResult.TOO_MANY_REQUESTS;
+                    }
+                    else {
                         // Bad response from server
+                        Log.i("Task", "bad response");
                         output.taskResult = TaskResult.BAD_RESPONSE;
                     }
                 } catch (IOException e) {
@@ -752,7 +753,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             if (TaskResult.SUCCESS.equals(output.taskResult)) {
                 // Parse JSON data
-                Log.i("data", response);
                 ParseResult parseResult = parseResponse(response);
                 if (ParseResult.CITY_NOT_FOUND.equals(parseResult)) {
                     // Retain previously specified city if current one was not recognized
@@ -785,6 +785,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     } else if (ParseResult.JSON_EXCEPTION.equals(parseResult)) {
                         Snackbar.make(appView, getString(R.string.msg_err_parsing_json), Snackbar.LENGTH_LONG).show();
                     }
+                    break;
+                }
+                case TOO_MANY_REQUESTS: {
+                    Snackbar.make(appView, getString(R.string.msg_too_many_requests), Snackbar.LENGTH_LONG).show();
                     break;
                 }
                 case BAD_RESPONSE: {
@@ -931,5 +935,5 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private enum ParseResult {OK, JSON_EXCEPTION, CITY_NOT_FOUND}
 
-    private enum TaskResult { SUCCESS, BAD_RESPONSE, IO_EXCEPTION; }
+    private enum TaskResult { SUCCESS, BAD_RESPONSE, IO_EXCEPTION, TOO_MANY_REQUESTS; }
 }
