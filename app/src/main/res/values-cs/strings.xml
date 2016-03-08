@@ -76,4 +76,11 @@
     <string name="wind_direction_east_north_east">VSV</string>
     <string name="wind_direction_east_south_east">VJV</string>
     <string name="msg_too_many_requests">Příliš mnoho požadavků. Zkuste to prosím znovu.</string>
+
+    <!-- 1: temperature; 2: unit -->
+    <string name="dash_clock_status">%1$s°%2$s</string>
+    <!-- 1: temperature; 2: unit; 3: weather description -->
+    <string name="dash_clock_expanded_title">%1$s°%2$s - %3$s</string>
+    <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
+    <string name="dash_clock_expanded_body">%1$s, %2$s\nVítr: %3$s %4$s\nTlak: %5$s %6$s\nVlhkost: %7$s %%\n</string>
 </resources>

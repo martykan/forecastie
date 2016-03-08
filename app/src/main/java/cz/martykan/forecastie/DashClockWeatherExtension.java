@@ -60,17 +60,21 @@ public class DashClockWeatherExtension extends DashClockExtension {
             publishUpdate(new ExtensionData()
                     .visible(true)
                     .icon(R.drawable.ic_cloud_white_18dp)
-                    .status(temperature.substring(0, temperature.indexOf(".") + 2) + "°" + sp.getString("unit", "C"))
-                    .expandedTitle(temperature.substring(0, temperature.indexOf(".") + 2) + "°" + sp.getString("unit", "C") + " - " + reader.optJSONArray("weather").getJSONObject(0).getString("description").toString())
-                    .expandedBody(reader.getString("name").toString() + ", " + reader.optJSONObject("sys").getString("country").toString() + "\n"
-                            + this.getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " + sp.getString("speedUnit", "m/s") + "\n"
-                            + this.getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " + sp.getString("pressureUnit", "hPa") + "\n"
-                            + this.getString(R.string.humidity) + ": " + reader.optJSONObject("main").getString("humidity").toString() + " %" + "\n")
+                    .status(getString(R.string.dash_clock_status, temperature.substring(0, temperature.indexOf(".") + 2), localize(sp, "unit", "C")))
+                    .expandedTitle(getString(R.string.dash_clock_expanded_title, temperature.substring(0, temperature.indexOf(".") + 2), localize(sp, "unit", "C"), reader.optJSONArray("weather").getJSONObject(0).getString("description")))
+                    .expandedBody(getString(R.string.dash_clock_expanded_body, reader.getString("name"), reader.optJSONObject("sys").getString("country"),
+                            (wind + "").substring(0, (wind + "").indexOf(".") + 2), localize(sp, "speedUnit", "m/s"),
+                            (pressure + "").substring(0, (pressure + "").indexOf(".") + 2), localize(sp, "pressureUnit", "hPa"),
+                            reader.optJSONObject("main").getString("humidity")))
                     .clickIntent(new Intent(this, MainActivity.class)));
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private String localize(SharedPreferences sp, String preferenceKey, String defaultValueKey) {
+        return MainActivity.localize(sp, this, preferenceKey, defaultValueKey);
     }
 
 }
