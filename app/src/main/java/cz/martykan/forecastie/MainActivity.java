@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     int loading = 0;
 
     boolean darkTheme;
+    boolean destroyed = false;
 
     private List<Weather> longTermWeather;
     private List<Weather> longTermTodayWeather;
@@ -137,6 +138,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
 
+        destroyed = false;
+
         initMappings();
 
         // Preload data from cache
@@ -173,6 +176,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             getTodayWeather();
             getLongTermWeather();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        destroyed = true;
     }
 
     private void preloadWeather() {
@@ -496,6 +505,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     private void updateLongTermWeatherUI() {
+        if (destroyed) {
+            return;
+        }
+
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         Bundle bundleToday = new Bundle();
