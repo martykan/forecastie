@@ -545,8 +545,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         int id = item.getItemId();
 
         if (id == R.id.action_refresh) {
-            getTodayWeather();
-            getLongTermWeather();
+            if(isNetworkAvailable()) {
+                getTodayWeather();
+                getLongTermWeather();
+            }
+            else {
+                Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
+            }
             return true;
         }
         if (id == R.id.action_search) {
