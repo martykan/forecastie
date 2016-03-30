@@ -339,7 +339,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             todayWeather.setDescription(reader.getJSONArray("weather").getJSONObject(0).getString("description"));
             JSONObject windObj = reader.getJSONObject("wind");
             todayWeather.setWind(windObj.getString("speed"));
-            todayWeather.setWindDirectionDegree(windObj.getDouble("deg"));
+            if (windObj.has("deg")) {
+                todayWeather.setWindDirectionDegree(windObj.getDouble("deg"));
+            } else {
+                Log.e("parseTodayJson", "No wind direction available");
+                todayWeather.setWindDirectionDegree(null);
+            }
             todayWeather.setPressure(main.getString("pressure"));
             todayWeather.setHumidity(main.getString("humidity"));
 
@@ -424,7 +429,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     todayWeather.getDescription().substring(1));
         }
         todayWind.setText(getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " +
-                localize(sp, "speedUnit", "m/s") + " " + getWindDirectionString(sp, this, todayWeather));
+                localize(sp, "speedUnit", "m/s") +
+                (todayWeather.isWindDirectionAvailable() ? " " + getWindDirectionString(sp, this, todayWeather) : ""));
         todayPressure.setText(getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " +
                 localize(sp, "pressureUnit", "hPa"));
         todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");

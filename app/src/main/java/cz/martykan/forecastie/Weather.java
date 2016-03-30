@@ -126,6 +126,10 @@ public class Weather {
         return WindDirection.byDegree(windDirectionDegree, numberOfDirections);
     }
 
+    public boolean isWindDirectionAvailable() {
+        return windDirectionDegree != null;
+    }
+
     public String getPressure() {
         return pressure;
     }
