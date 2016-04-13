@@ -50,6 +50,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     TextView todayWind;
     TextView todayPressure;
     TextView todayHumidity;
+    TextView todaySunrise;
+    TextView todaySunset;
     TextView todayIcon;
     ViewPager viewPager;
     TabLayout tabLayout;
@@ -130,6 +133,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         todayWind = (TextView) findViewById(R.id.todayWind);
         todayPressure = (TextView) findViewById(R.id.todayPressure);
         todayHumidity = (TextView) findViewById(R.id.todayHumidity);
+        todaySunrise = (TextView) findViewById(R.id.todaySunrise);
+        todaySunset = (TextView) findViewById(R.id.todaySunset);
         todayIcon = (TextView) findViewById(R.id.todayIcon);
         weatherFont = Typeface.createFromAsset(this.getAssets(), "fonts/weather.ttf");
         todayIcon.setTypeface(weatherFont);
@@ -329,6 +334,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             JSONObject countryObj = reader.optJSONObject("sys");
             if (countryObj != null) {
                 country = countryObj.getString("country");
+                todayWeather.setSunrise(countryObj.getString("sunrise"));
+                todayWeather.setSunset(countryObj.getString("sunset"));
             }
             todayWeather.setCity(city);
             todayWeather.setCountry(country);
@@ -382,6 +389,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private void updateTodayWeatherUI() {
         String city = todayWeather.getCity();
         String country = todayWeather.getCountry();
+        DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(getApplicationContext());
         getSupportActionBar().setTitle(city + (country.isEmpty() ? "" : ", " + country));
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
@@ -434,6 +442,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         todayPressure.setText(getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " +
                 localize(sp, "pressureUnit", "hPa"));
         todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
+        todaySunrise.setText(getString(R.string.sunrise) + ": " + timeFormat.format(todayWeather.getSunrise()));
+        todaySunset.setText(getString(R.string.sunset) + ": " + timeFormat.format(todayWeather.getSunset()));
         todayIcon.setText(todayWeather.getIcon());
     }
 
