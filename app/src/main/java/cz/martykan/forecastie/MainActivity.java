@@ -442,7 +442,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         todayPressure.setText(getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " +
                 localize(sp, "pressureUnit", "hPa"));
         todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
-        todaySunrise.setText(getString(R.string.sunrise) + ": " + timeFormat.format(todayWeather.getSunrise())); //XXX
+        todaySunrise.setText(getString(R.string.sunrise) + ": " + timeFormat.format(todayWeather.getSunrise()));
         todaySunset.setText(getString(R.string.sunset) + ": " + timeFormat.format(todayWeather.getSunset()));
         todayIcon.setText(todayWeather.getIcon());
     }
