@@ -29,6 +29,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
@@ -159,6 +160,8 @@ public class WidgetProvider extends AppWidgetProvider {
             widgetWeather.setWind(reader.optJSONObject("wind").getString("speed").toString());
             widgetWeather.setPressure(reader.optJSONObject("main").getString("pressure").toString());
             widgetWeather.setHumidity(reader.optJSONObject("main").getString("humidity").toString());
+            widgetWeather.setSunrise(reader.optJSONObject("sys").getString("sunrise").toString());
+            widgetWeather.setSunset(reader.optJSONObject("sys").getString("sunset").toString());
             widgetWeather.setIcon(setWeatherIcon(Integer.parseInt(reader.optJSONArray("weather").getJSONObject(0).getString("id").toString()), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), context));
 
 
@@ -179,12 +182,16 @@ public class WidgetProvider extends AppWidgetProvider {
                 pressure = pressure * 0.750061561303;
             }
 
+            DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(context);
+
             remoteViews.setTextViewText(R.id.widgetTemperature, temperature.substring(0, temperature.indexOf(".") + 2) + " °" + sp.getString("unit", "C"));
             remoteViews.setTextViewText(R.id.widgetDescription, widgetWeather.getDescription().substring(0, 1).toUpperCase() + widgetWeather.getDescription().substring(1));
             remoteViews.setTextViewText(R.id.widgetWind, context.getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " + sp.getString("speedUnit", "m/s")
                     + (widgetWeather.isWindDirectionAvailable() ? " " + MainActivity.getWindDirectionString(sp, context, widgetWeather) : ""));
             remoteViews.setTextViewText(R.id.widgetPressure, context.getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " + sp.getString("pressureUnit", "hPa"));
             remoteViews.setTextViewText(R.id.widgetHumidity, context.getString(R.string.humidity) + ": " + widgetWeather.getHumidity() + " %");
+            remoteViews.setTextViewText(R.id.widgetSunrise, context.getString(R.string.sunrise) + ": " + timeFormat.format(widgetWeather.getSunrise()));
+            remoteViews.setTextViewText(R.id.widgetSunset, context.getString(R.string.sunset) + ": " + timeFormat.format(widgetWeather.getSunset()));
             remoteViews.setImageViewBitmap(R.id.widgetIcon, buildUpdate(widgetWeather.getIcon(), context));
         } catch (JSONException e) {
             Log.e("JSONException Data", result);

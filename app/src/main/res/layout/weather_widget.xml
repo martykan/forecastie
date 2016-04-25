@@ -78,6 +78,22 @@
             android:text="Humidity: 0 %"
             android:textColor="@android:color/white"
             android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/widgetSunrise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sunrise: 00:00"
+            android:textColor="@android:color/white"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/widgetSunset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sunset: 00:00"
+            android:textColor="@android:color/white"
+            android:textSize="16dp" />
     </LinearLayout>
 
     <ImageView
