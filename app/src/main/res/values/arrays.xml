@@ -10,7 +10,14 @@
         <item name="F">F</item>
         <item name="K">K</item>
     </string-array>
-
+    <string-array name="lengthUnits">
+        <item name="mm">@string/setting_unit_mm</item>
+        <item name="inch">@string/setting_unit_in</item>
+    </string-array>
+    <string-array name="lengthUnitsValues">
+        <item name="mm">mm</item>
+        <item name="inch">in</item>
+    </string-array>
     <string-array name="speedUnits">
         <item name="mps">@string/setting_unit_mps</item>
         <item name="kph">@string/setting_unit_kph</item>

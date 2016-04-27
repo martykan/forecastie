@@ -26,6 +26,7 @@
     <string name="setting_dateFormat">Date Format</string>
     <string name="setting_dateFormatCustom">Custom Date Format</string>
     <string name="setting_dateFormatCustom_summary">Provide the custom SimpleDateFormat string to be used</string>
+    <string name="setting_lengthUnits">Length units</string>
     <string name="setting_speedUnits">Speed units</string>
     <string name="setting_tempUnits">Temperature units</string>
     <string name="setting_pressureUnits">Pressure units</string>
@@ -44,6 +45,9 @@
     <string name="setting_unit_Celsuis">Celsius</string>
     <string name="setting_unit_Fahrenheit">Fahrenheit</string>
     <string name="setting_unit_Kelvin">Kelvin</string>
+
+    <string name="setting_unit_mm">Millimeters (mm)</string>
+    <string name="setting_unit_in">Inches (in)</string>
 
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
