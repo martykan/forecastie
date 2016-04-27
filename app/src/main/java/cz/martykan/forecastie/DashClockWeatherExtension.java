@@ -57,6 +57,7 @@ public class DashClockWeatherExtension extends DashClockExtension {
                 pressure = pressure * 0.750061561303;
             }
 
+            MainActivity.initMappings();
             publishUpdate(new ExtensionData()
                     .visible(true)
                     .icon(R.drawable.ic_cloud_white_18dp)
