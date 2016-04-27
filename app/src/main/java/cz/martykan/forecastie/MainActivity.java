@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private static Map<String, Integer> speedUnits = new HashMap<>(3);
     private static Map<String, Integer> pressUnits = new HashMap<>(3);
+    private static boolean mappingsInitialised = false;
 
     Typeface weatherFont;
     Weather todayWeather = new Weather();
@@ -629,7 +630,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
-    private void initMappings() {
+    public static void initMappings() {
+        if (mappingsInitialised)
+            return;
+        mappingsInitialised = true;
         speedUnits.put("m/s", R.string.speed_unit_mps);
         speedUnits.put("kph", R.string.speed_unit_kph);
         speedUnits.put("mph", R.string.speed_unit_mph);
