@@ -15,6 +15,7 @@ import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
 
 public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHolder> {
@@ -48,6 +49,29 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
 
         if (sp.getString("unit", "C").equals("F")) {
             temperature = (((9 * (Float.parseFloat(temperature) - 273.15)) / 5) + 32) + "";
+        }
+
+        double rain = Double.parseDouble(weatherItem.getRain());
+        String rainString = "";
+        if(rain > 0)
+        {
+            if (sp.getString("lengthUnit", "mm").equals("mm")) {
+                if(rain < 0.1) {
+                    rainString = " (<0.1 mm)";
+                }
+                else {
+                    rainString = String.format(Locale.ENGLISH," (%.1f %s)", rain, sp.getString("lengthUnit", "mm"));
+                }
+            }
+            else {
+                rain = rain/25.4;
+                if(rain < 0.01) {
+                    rainString = " (<0.01 in)";
+                }
+                else {
+                    rainString = String.format(Locale.ENGLISH," (%.2f %s)", rain, sp.getString("lengthUnit", "mm"));
+                }
+            }
         }
 
         double wind = Double.parseDouble(weatherItem.getWind());
@@ -116,15 +140,8 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
 
         customViewHolder.itemDate.setText(dateString);
         customViewHolder.itemTemperature.setText(temperature + " °" + sp.getString("unit", "C"));
-        if (Float.parseFloat(weatherItem.getRain()) > 0.1) {
-            customViewHolder.itemDescription.setText(weatherItem.getDescription().substring(0, 1).toUpperCase() +
-                    weatherItem.getDescription().substring(1) +
-                    " (" + weatherItem.getRain().substring(0, weatherItem.getRain().indexOf(".") + 2) + " mm)");
-        } else {
-            customViewHolder.itemDescription.setText(weatherItem.getDescription().substring(0, 1).toUpperCase() +
-                    weatherItem.getDescription().substring(1));
-
-        }
+        customViewHolder.itemDescription.setText(weatherItem.getDescription().substring(0, 1).toUpperCase() +
+                weatherItem.getDescription().substring(1) + rainString);
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");
         customViewHolder.itemIcon.setTypeface(weatherFont);
         customViewHolder.itemIcon.setText(weatherItem.getIcon());

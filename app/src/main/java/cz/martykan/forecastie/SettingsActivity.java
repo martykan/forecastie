@@ -55,6 +55,7 @@ public class SettingsActivity extends PreferenceActivity
 
         // Set summaries to current value
         setListPreferenceSummary("unit");
+        setListPreferenceSummary("lengthUnit");
         setListPreferenceSummary("speedUnit");
         setListPreferenceSummary("pressureUnit");
         setListPreferenceSummary("refreshInterval");
@@ -72,6 +73,7 @@ public class SettingsActivity extends PreferenceActivity
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         switch (key) {
             case "unit":
+            case "lengthUnit":
             case "speedUnit":
             case "pressureUnit":
             case "windDirectionFormat":

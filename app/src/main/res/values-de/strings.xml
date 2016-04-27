@@ -81,4 +81,7 @@
     <string name="dash_clock_expanded_body">%1$s, %2$s\nWind: %3$s %4$s\nLuftdruck: %5$s %6$s\nFeuchtigkeit: %7$s %%\n</string>
     <string name="sunrise">Sonnenaufgang</string>
     <string name="sunset">Sonnenuntergang</string>
+    <string name="setting_unit_mm">Millimeter (mm)</string>
+    <string name="setting_unit_in">Zoll (in)</string>
+    <string name="setting_lengthUnits">Maßeinheit Länge</string>
 </resources>
