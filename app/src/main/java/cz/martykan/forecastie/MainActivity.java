@@ -906,6 +906,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
 
         @Override
+        protected void onPostExecute(TaskOutput output) {
+            super.onPostExecute(output);
+            // Update widgets
+            WidgetProvider.updateWidgets(MainActivity.this);
+        }
+
+        @Override
         protected ParseResult parseResponse(String response) {
             return parseTodayJson(response);
         }

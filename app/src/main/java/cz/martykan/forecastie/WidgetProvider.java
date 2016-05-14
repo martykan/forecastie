@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -50,9 +51,7 @@ public class WidgetProvider extends AppWidgetProvider {
             remoteViews = new RemoteViews(context.getPackageName(),
                     R.layout.weather_widget);
 
-            Intent intent = new Intent(context, WidgetProvider.class);
-            intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+            Intent intent = new Intent(context, AlarmReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
                     0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             remoteViews.setOnClickPendingIntent(R.id.widgetButtonRefresh, pendingIntent);
@@ -60,12 +59,8 @@ public class WidgetProvider extends AppWidgetProvider {
 
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
-            if (sp.getString("lastToday", "{}") != "{}") {
+            if (!sp.getString("lastToday", "").isEmpty()) {
                 parseWidgetJson(sp.getString("lastToday", "{}"), context);
-            }
-
-            if (isNetworkAvailable(context)) {
-                new GetWeatherTask(context).execute();
             }
 
             Intent intent2 = new Intent(context, MainActivity.class);
@@ -74,12 +69,6 @@ public class WidgetProvider extends AppWidgetProvider {
 
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
-    }
-
-    private boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     public Bitmap buildUpdate(String text, Context context) {
@@ -210,45 +199,10 @@ public class WidgetProvider extends AppWidgetProvider {
         }
     }
 
-    public class GetWeatherTask extends AsyncTask<String, String, Void> {
-        String result = "";
-        Context context;
-
-        public GetWeatherTask(Context context) {
-            this.context = context;
-        }
-
-        protected void onPreExecute() {
-
-        }
-
-        @Override
-        protected Void doInBackground(String... params) {
-            try {
-                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-                String language = Locale.getDefault().getLanguage();
-                if (language.equals("cs")) {
-                    language = "cz";
-                }
-                String apiKey = sp.getString("apiKey", context.getResources().getString(R.string.apiKey));
-                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang=" + language + "&appid=" + apiKey);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-
-                String line = null;
-                while ((line = r.readLine()) != null) {
-                    result += line + "\n";
-                }
-            } catch (IOException e) {
-                Log.e("IOException Data", result);
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        protected void onPostExecute(Void v) {
-            //parse JSON data
-            parseWidgetJson(result, context);
-        }
+    public static void updateWidgets(Context context) {
+        Intent intent = new Intent(context.getApplicationContext(), WidgetProvider.class).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        int[] ids = AppWidgetManager.getInstance(context.getApplicationContext()).getAppWidgetIds(new ComponentName(context.getApplicationContext(), WidgetProvider.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        context.getApplicationContext().sendBroadcast(intent);
     }
 }

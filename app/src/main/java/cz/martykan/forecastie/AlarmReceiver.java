@@ -109,7 +109,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
 
         protected void onPostExecute(Void v) {
-
+            // Update widgets
+            WidgetProvider.updateWidgets(context);
         }
     }
 
