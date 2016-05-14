@@ -53,6 +53,8 @@ import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     TextView todayHumidity;
     TextView todaySunrise;
     TextView todaySunset;
+    TextView lastUpdate;
     TextView todayIcon;
     ViewPager viewPager;
     TabLayout tabLayout;
@@ -136,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         todayHumidity = (TextView) findViewById(R.id.todayHumidity);
         todaySunrise = (TextView) findViewById(R.id.todaySunrise);
         todaySunset = (TextView) findViewById(R.id.todaySunset);
+        lastUpdate = (TextView) findViewById(R.id.lastUpdate);
         todayIcon = (TextView) findViewById(R.id.todayIcon);
         weatherFont = Typeface.createFromAsset(this.getAssets(), "fonts/weather.ttf");
         todayIcon.setTypeface(weatherFont);
@@ -150,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         // Preload data from cache
         preloadWeather();
+        updateLastUpdateTime();
 
         // Set autoupdater
         AlarmReceiver.setRecurringAlarm(this);
@@ -788,6 +793,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         // Background work finished successfully
                         Log.i("Task", "done successfully");
                         output.taskResult = TaskResult.SUCCESS;
+                        // Save date/time for latest successful result
+                        saveLastUpdateTime(PreferenceManager.getDefaultSharedPreferences(MainActivity.this));
                     }
                     else if (urlConnection.getResponseCode() == 429) {
                         // Too many requests
@@ -899,6 +906,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
 
         @Override
+        protected void onPostExecute(TaskOutput output) {
+            super.onPostExecute(output);
+            // Update widgets
+            WidgetProvider.updateWidgets(MainActivity.this);
+        }
+
+        @Override
         protected ParseResult parseResponse(String response) {
             return parseTodayJson(response);
         }
@@ -911,6 +925,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         @Override
         protected void updateMainUI() {
             updateTodayWeatherUI();
+            updateLastUpdateTime();
         }
     }
 
@@ -992,4 +1007,40 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private enum ParseResult {OK, JSON_EXCEPTION, CITY_NOT_FOUND}
 
     private enum TaskResult { SUCCESS, BAD_RESPONSE, IO_EXCEPTION, TOO_MANY_REQUESTS; }
+
+    public static long saveLastUpdateTime(SharedPreferences sp) {
+        Calendar now = Calendar.getInstance();
+        sp.edit().putLong("lastUpdate", now.getTimeInMillis()).apply();
+        return now.getTimeInMillis();
+    }
+
+    private void updateLastUpdateTime() {
+        updateLastUpdateTime(
+                PreferenceManager.getDefaultSharedPreferences(this).getLong("lastUpdate", -1)
+        );
+    }
+
+    private void updateLastUpdateTime(long timeInMillis) {
+        if (timeInMillis < 0) {
+            // No time
+            lastUpdate.setText("");
+        } else {
+            lastUpdate.setText(getString(R.string.last_update, formatTimeWithDayIfNotToday(this, timeInMillis)));
+        }
+    }
+
+    public static String formatTimeWithDayIfNotToday(Context context, long timeInMillis) {
+        Calendar now = Calendar.getInstance();
+        Calendar lastCheckedCal = new GregorianCalendar();
+        lastCheckedCal.setTimeInMillis(timeInMillis);
+        Date lastCheckedDate = new Date(timeInMillis);
+        String timeFormat = android.text.format.DateFormat.getTimeFormat(context).format(lastCheckedDate);
+        if (now.get(Calendar.YEAR) == lastCheckedCal.get(Calendar.YEAR) &&
+                now.get(Calendar.DAY_OF_YEAR) == lastCheckedCal.get(Calendar.DAY_OF_YEAR)) {
+            // Same day, only show time
+            return timeFormat;
+        } else {
+            return android.text.format.DateFormat.getDateFormat(context).format(lastCheckedDate) + " " + timeFormat;
+        }
+    }
 }
