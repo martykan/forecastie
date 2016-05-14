@@ -84,4 +84,6 @@
     <string name="setting_unit_mm">Millimeter (mm)</string>
     <string name="setting_unit_in">Zoll (in)</string>
     <string name="setting_lengthUnits">Maßeinheit Länge</string>
+    <string name="last_update">Zuletzt aktualisiert:\n%s</string>
+    <string name="last_update_widget">\nZuletzt aktualisiert: %s</string>
 </resources>

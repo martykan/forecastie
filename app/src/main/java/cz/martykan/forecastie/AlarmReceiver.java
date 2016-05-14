@@ -94,9 +94,10 @@ public class AlarmReceiver extends BroadcastReceiver {
                     while ((line = r.readLine()) != null) {
                         result += line + "\n";
                     }
-                    SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+                    SharedPreferences.Editor editor = sp.edit();
                     editor.putString("lastToday", result);
                     editor.apply();
+                    MainActivity.saveLastUpdateTime(sp);
                 }
                 else {
                     // Connection problem

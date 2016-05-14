@@ -31,6 +31,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
@@ -184,6 +185,15 @@ public class WidgetProvider extends AppWidgetProvider {
 
             DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(context);
 
+            long lastUpdateTimeInMillis = sp.getLong("lastUpdate", -1);
+            String lastUpdate;
+            if (lastUpdateTimeInMillis < 0) {
+                // No time
+                lastUpdate = "";
+            } else {
+                lastUpdate = context.getString(R.string.last_update_widget, MainActivity.formatTimeWithDayIfNotToday(context, lastUpdateTimeInMillis));
+            }
+
             remoteViews.setTextViewText(R.id.widgetTemperature, temperature.substring(0, temperature.indexOf(".") + 2) + " °" + sp.getString("unit", "C"));
             remoteViews.setTextViewText(R.id.widgetDescription, widgetWeather.getDescription().substring(0, 1).toUpperCase() + widgetWeather.getDescription().substring(1));
             remoteViews.setTextViewText(R.id.widgetWind, context.getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " + sp.getString("speedUnit", "m/s")
@@ -192,6 +202,7 @@ public class WidgetProvider extends AppWidgetProvider {
             remoteViews.setTextViewText(R.id.widgetHumidity, context.getString(R.string.humidity) + ": " + widgetWeather.getHumidity() + " %");
             remoteViews.setTextViewText(R.id.widgetSunrise, context.getString(R.string.sunrise) + ": " + timeFormat.format(widgetWeather.getSunrise()));
             remoteViews.setTextViewText(R.id.widgetSunset, context.getString(R.string.sunset) + ": " + timeFormat.format(widgetWeather.getSunset()));
+            remoteViews.setTextViewText(R.id.widgetLastUpdate, lastUpdate);
             remoteViews.setImageViewBitmap(R.id.widgetIcon, buildUpdate(widgetWeather.getIcon(), context));
         } catch (JSONException e) {
             Log.e("JSONException Data", result);

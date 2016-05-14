@@ -97,16 +97,35 @@
                         android:textSize="16dp" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/todayIcon"
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="end"
                     android:layout_weight="1"
-                    android:paddingRight="42dp"
-                    android:text=""
-                    android:textAlignment="viewEnd"
-                    android:textSize="72dp" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/todayIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:paddingRight="42dp"
+                        android:text=""
+                        android:textAlignment="viewEnd"
+                        android:textSize="72dp" />
+
+                    <TextView
+                        android:id="@+id/lastUpdate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom|end"
+                        android:gravity="bottom|end"
+                        android:paddingRight="16dp"
+                        android:textAlignment="viewEnd"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
         </android.support.design.widget.CollapsingToolbarLayout>
