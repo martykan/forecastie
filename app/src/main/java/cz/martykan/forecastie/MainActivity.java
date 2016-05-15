@@ -910,6 +910,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             super.onPostExecute(output);
             // Update widgets
             WidgetProvider.updateWidgets(MainActivity.this);
+            DashClockWeatherExtension.updateDashClock(MainActivity.this);
         }
 
         @Override
