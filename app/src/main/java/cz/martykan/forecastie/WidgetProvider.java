@@ -125,6 +125,8 @@ public class WidgetProvider extends AppWidgetProvider {
         try {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
+            MainActivity.initMappings();
+
             JSONObject reader = new JSONObject(result);
 
             widgetWeather.setCity(reader.getString("name").toString());
@@ -179,11 +181,11 @@ public class WidgetProvider extends AppWidgetProvider {
                 lastUpdate = context.getString(R.string.last_update_widget, MainActivity.formatTimeWithDayIfNotToday(context, lastUpdateTimeInMillis));
             }
 
-            remoteViews.setTextViewText(R.id.widgetTemperature, temperature.substring(0, temperature.indexOf(".") + 2) + " °" + sp.getString("unit", "C"));
+            remoteViews.setTextViewText(R.id.widgetTemperature, temperature.substring(0, temperature.indexOf(".") + 2) + " °" + localize(sp, context, "unit", "C"));
             remoteViews.setTextViewText(R.id.widgetDescription, widgetWeather.getDescription().substring(0, 1).toUpperCase() + widgetWeather.getDescription().substring(1));
-            remoteViews.setTextViewText(R.id.widgetWind, context.getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " + sp.getString("speedUnit", "m/s")
+            remoteViews.setTextViewText(R.id.widgetWind, context.getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " + localize(sp, context, "speedUnit", "m/s")
                     + (widgetWeather.isWindDirectionAvailable() ? " " + MainActivity.getWindDirectionString(sp, context, widgetWeather) : ""));
-            remoteViews.setTextViewText(R.id.widgetPressure, context.getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " + sp.getString("pressureUnit", "hPa"));
+            remoteViews.setTextViewText(R.id.widgetPressure, context.getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " + localize(sp, context, "pressureUnit", "hPa"));
             remoteViews.setTextViewText(R.id.widgetHumidity, context.getString(R.string.humidity) + ": " + widgetWeather.getHumidity() + " %");
             remoteViews.setTextViewText(R.id.widgetSunrise, context.getString(R.string.sunrise) + ": " + timeFormat.format(widgetWeather.getSunrise()));
             remoteViews.setTextViewText(R.id.widgetSunset, context.getString(R.string.sunset) + ": " + timeFormat.format(widgetWeather.getSunset()));
@@ -193,6 +195,10 @@ public class WidgetProvider extends AppWidgetProvider {
             Log.e("JSONException Data", result);
             e.printStackTrace();
         }
+    }
+
+    private String localize(SharedPreferences sp, Context context, String preferenceKey, String defaultValueKey) {
+        return MainActivity.localize(sp, context, preferenceKey, defaultValueKey);
     }
 
     public static void updateWidgets(Context context) {
