@@ -60,7 +60,7 @@ public class WidgetProvider extends AppWidgetProvider {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
             if (!sp.getString("lastToday", "").isEmpty()) {
-                parseWidgetJson(sp.getString("lastToday", "{}"), context);
+                parseWidgetJson(sp.getString("lastToday", ""), context);
             }
 
             Intent intent2 = new Intent(context, MainActivity.class);
@@ -124,10 +124,6 @@ public class WidgetProvider extends AppWidgetProvider {
     private void parseWidgetJson(String result, Context context) {
         try {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
-            editor.putString("lastToday", result);
-            editor.commit();
 
             JSONObject reader = new JSONObject(result);
 
