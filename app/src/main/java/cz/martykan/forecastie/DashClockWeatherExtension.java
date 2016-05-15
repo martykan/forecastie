@@ -1,5 +1,6 @@
 package cz.martykan.forecastie;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +25,18 @@ import java.net.URI;
 import java.util.Calendar;
 
 public class DashClockWeatherExtension extends DashClockExtension {
+    private static final Uri URI_BASE = Uri.parse("content://cz.martykan.forecastie.authority");
+    private static final String UPDATE_URI_PATH_SEGMENT = "dashclock/update";
+
+    @Override
+    protected void onInitialize(boolean isReconnect) {
+        super.onInitialize(isReconnect);
+
+        // Watch for weather updates
+        removeAllWatchContentUris();
+        addWatchContentUris(new String[]{getUpdateUri().toString()});
+    }
+
     @Override
     protected void onUpdateData(int reason) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -76,6 +89,15 @@ public class DashClockWeatherExtension extends DashClockExtension {
 
     private String localize(SharedPreferences sp, String preferenceKey, String defaultValueKey) {
         return MainActivity.localize(sp, this, preferenceKey, defaultValueKey);
+    }
+
+    public static void updateDashClock(Context context) {
+        ContentResolver contentResolver = context.getContentResolver();
+        contentResolver.notifyChange(getUpdateUri(), null);
+    }
+
+    private static Uri getUpdateUri() {
+        return Uri.withAppendedPath(URI_BASE, UPDATE_URI_PATH_SEGMENT);
     }
 
 }
