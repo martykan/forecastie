@@ -183,6 +183,18 @@ public class AlarmReceiver extends BroadcastReceiver {
                         AlarmManager.INTERVAL_HOUR,
                         recurringRefresh);
             }
+            else if(interval.equals("2")) {
+                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + 7200000,
+                        7200000,
+                        recurringRefresh);
+            }
+            else if(interval.equals("6")) {
+                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + 21600000,
+                        21600000,
+                        recurringRefresh);
+            }
             else if(interval.equals("12")) {
                 alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                         SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_DAY,

@@ -83,6 +83,8 @@
         <item name="15">15 min</item>
         <item name="30">30 min</item>
         <item name="1">1 h</item>
+        <item name="2">2 h</item>
+        <item name="6">6 h</item>
         <item name="12">12 h</item>
         <item name="24">24 h</item>
     </string-array>
