@@ -156,63 +156,43 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
     }
 
+    private static long intervalMillisForRecurringAlarm(String intervalPref) {
+        int interval = Integer.parseInt(intervalPref);
+        switch (interval) {
+            case 0:
+                return 0; // special case for cancel
+            case 15:
+                return AlarmManager.INTERVAL_FIFTEEN_MINUTES;
+            case 30:
+                return AlarmManager.INTERVAL_HALF_HOUR;
+            case 1:
+                return AlarmManager.INTERVAL_HOUR;
+            case 12:
+                return AlarmManager.INTERVAL_HALF_DAY;
+            case 24:
+                return AlarmManager.INTERVAL_DAY;
+            default: // cases 2 and 6 (or any number of hours)
+                return interval * 3600000;
+        }
+    }
+
     public static void setRecurringAlarm(Context context) {
-        String interval = PreferenceManager.getDefaultSharedPreferences(context)
+        String intervalPref = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString("refreshInterval", "1");
         Intent refresh = new Intent(context, AlarmReceiver.class);
         PendingIntent recurringRefresh = PendingIntent.getBroadcast(context,
                 0, refresh, PendingIntent.FLAG_CANCEL_CURRENT);
-        if(!interval.equals("0")) {
-            AlarmManager alarms = (AlarmManager) context.getSystemService(
-                    Context.ALARM_SERVICE);
-            if(interval.equals("15")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_FIFTEEN_MINUTES,
-                        AlarmManager.INTERVAL_FIFTEEN_MINUTES,
-                        recurringRefresh);
-            }
-            else if(interval.equals("30")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_HOUR,
-                        AlarmManager.INTERVAL_HALF_HOUR,
-                        recurringRefresh);
-            }
-            else if(interval.equals("1")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HOUR,
-                        AlarmManager.INTERVAL_HOUR,
-                        recurringRefresh);
-            }
-            else if(interval.equals("2")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime() + 7200000,
-                        7200000,
-                        recurringRefresh);
-            }
-            else if(interval.equals("6")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime() + 21600000,
-                        21600000,
-                        recurringRefresh);
-            }
-            else if(interval.equals("12")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_DAY,
-                        AlarmManager.INTERVAL_HALF_DAY,
-                        recurringRefresh);
-            }
-            else if(interval.equals("24")) {
-                alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_DAY,
-                        AlarmManager.INTERVAL_DAY,
-                        recurringRefresh);
-            }
-        }
-        else {
+        AlarmManager alarms = (AlarmManager) context.getSystemService(
+                Context.ALARM_SERVICE);
+        long intervalMillis = intervalMillisForRecurringAlarm(intervalPref);
+        if (intervalMillis == 0) {
             // Cancel previous alarm
-            AlarmManager alarms = (AlarmManager) context.getSystemService(
-                    Context.ALARM_SERVICE);
             alarms.cancel(recurringRefresh);
+        } else {
+            alarms.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + intervalMillis,
+                    intervalMillis,
+                    recurringRefresh);
         }
     }
 }
