@@ -2,7 +2,6 @@ package cz.martykan.forecastie;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +11,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -22,6 +20,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Locale;
+
+import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
@@ -110,7 +110,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         protected void onPostExecute(Void v) {
             // Update widgets
-            WidgetProvider.updateWidgets(context);
+            AbstractWidgetProvider.updateWidgets(context);
             DashClockWeatherExtension.updateDashClock(context);
         }
     }

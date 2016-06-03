@@ -60,6 +60,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
+
 public class MainActivity extends AppCompatActivity implements LocationListener {
     private static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
 
@@ -909,7 +911,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         protected void onPostExecute(TaskOutput output) {
             super.onPostExecute(output);
             // Update widgets
-            WidgetProvider.updateWidgets(MainActivity.this);
+            AbstractWidgetProvider.updateWidgets(MainActivity.this);
             DashClockWeatherExtension.updateDashClock(MainActivity.this);
         }
 
