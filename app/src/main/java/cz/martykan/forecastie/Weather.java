@@ -67,6 +67,7 @@ public class Weather {
     private String rain;
     private String id;
     private String icon;
+    private String lastUpdated;
     private Date sunrise;
     private Date sunset;
 
@@ -260,5 +261,13 @@ public class Weather {
 
     public void setRain(String rain) {
         this.rain = rain;
+    }
+
+    public void setLastUpdated(String lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
+    public String getLastUpdated() {
+        return lastUpdated;
     }
 }

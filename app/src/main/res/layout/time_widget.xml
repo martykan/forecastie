@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/widgetRoot"
+    android:background="@drawable/widget_card"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="100sp"
+        android:layout_centerHorizontal="true"
+        tools:text="11:50"/>
+
+    <LinearLayout
+        android:id="@+id/textHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/time">
+
+        <TextView
+            android:id="@+id/widgetDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Clear Sky"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/widgetCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            tools:text="City name, AB"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/widgetIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/time"
+        android:layout_toEndOf="@id/textHolder"
+        android:layout_toRightOf="@id/textHolder"
+        android:layout_toLeftOf="@+id/widgetTemperature"
+        android:layout_toStartOf="@+id/widgetTemperature"
+        tools:src="@drawable/ic_cloud_white_48dp"/>
+
+    <TextView
+        android:id="@+id/widgetTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="0 °C"
+        android:textColor="@android:color/white"
+        android:textSize="48sp"
+        android:layout_below="@id/time"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/widgetLastUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:visibility="gone"
+        tools:text="Last Update: 00:00" />
+
+    <ImageButton
+        android:id="@+id/widgetButtonRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:visibility="gone"
+        android:src="@drawable/ic_refresh_white_36dp" />
+
+</RelativeLayout>
