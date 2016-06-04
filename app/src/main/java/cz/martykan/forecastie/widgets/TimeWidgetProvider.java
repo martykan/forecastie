@@ -74,14 +74,6 @@ public class TimeWidgetProvider extends AbstractWidgetProvider {
     }
 
     @Override
-    public void onEnabled(Context context) {
-        super.onEnabled(context);
-
-        Log.d(TAG, "Enable time widget updates");
-        scheduleNextUpdate(context);
-    }
-
-    @Override
     public void onDisabled(Context context) {
         super.onDisabled(context);
 
