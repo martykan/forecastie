@@ -10,8 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -41,14 +40,14 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
-        String temperature = weatherItem.getTemperature();
+        float temperature = Float.parseFloat(weatherItem.getTemperature());
 
         if (sp.getString("unit", "C").equals("C")) {
-            temperature = Float.parseFloat(temperature) - 273.15 + "";
+            temperature = temperature - 273.15f;
         }
 
         if (sp.getString("unit", "C").equals("F")) {
-            temperature = (((9 * (Float.parseFloat(temperature) - 273.15)) / 5) + 32) + "";
+            temperature = (((9 * (temperature - 273.15f)) / 5) + 32);
         }
 
         double rain = Double.parseDouble(weatherItem.getRain());
@@ -132,23 +131,17 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
             }
         }
 
-        if (new BigDecimal(temperature).setScale(0, RoundingMode.DOWN).intValue() == 0) {
-            temperature = "0";
-        } else {
-            temperature = temperature.substring(0, temperature.indexOf(".") + 2);
-        }
-
         customViewHolder.itemDate.setText(dateString);
-        customViewHolder.itemTemperature.setText(temperature + " °" + sp.getString("unit", "C"));
+        customViewHolder.itemTemperature.setText(new DecimalFormat("#.#").format(temperature) + " °" + sp.getString("unit", "C"));
         customViewHolder.itemDescription.setText(weatherItem.getDescription().substring(0, 1).toUpperCase() +
                 weatherItem.getDescription().substring(1) + rainString);
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");
         customViewHolder.itemIcon.setTypeface(weatherFont);
         customViewHolder.itemIcon.setText(weatherItem.getIcon());
-        customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " +
+        customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " + new DecimalFormat("#.0").format(wind) + " " +
                 MainActivity.localize(sp, context, "speedUnit", "m/s")
                 + " " + MainActivity.getWindDirectionString(sp, context, weatherItem));
-        customViewHolder.itemPressure.setText(context.getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " +
+        customViewHolder.itemPressure.setText(context.getString(R.string.pressure) + ": " + new DecimalFormat("#.0").format(pressure) + " " +
                 MainActivity.localize(sp, context, "pressureUnit", "hPa"));
         customViewHolder.itemHumidity.setText(context.getString(R.string.humidity) + ": " + weatherItem.getHumidity() + " %");
     }

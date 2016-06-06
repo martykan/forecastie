@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 public class DashClockWeatherExtension extends DashClockExtension {
@@ -44,13 +45,13 @@ public class DashClockWeatherExtension extends DashClockExtension {
         try {
             JSONObject reader = new JSONObject(result);
 
-            String temperature = reader.optJSONObject("main").getString("temp").toString();
+            float temperature = Float.parseFloat(reader.optJSONObject("main").getString("temp").toString());
             if (sp.getString("unit", "C").equals("C")) {
-                temperature = Float.parseFloat(temperature) - 273.15 + "";
+                temperature = temperature - 273.15f;
             }
 
             if (sp.getString("unit", "C").equals("F")) {
-                temperature = (((9 * (Float.parseFloat(temperature) - 273.15)) / 5) + 32) + "";
+                temperature = (((9 * (temperature - 273.15f)) / 5) + 32);
             }
 
             double wind = Double.parseDouble(reader.optJSONObject("wind").getString("speed").toString());
@@ -74,11 +75,11 @@ public class DashClockWeatherExtension extends DashClockExtension {
             publishUpdate(new ExtensionData()
                     .visible(true)
                     .icon(R.drawable.ic_cloud_white_18dp)
-                    .status(getString(R.string.dash_clock_status, temperature.substring(0, temperature.indexOf(".") + 2), localize(sp, "unit", "C")))
-                    .expandedTitle(getString(R.string.dash_clock_expanded_title, temperature.substring(0, temperature.indexOf(".") + 2), localize(sp, "unit", "C"), reader.optJSONArray("weather").getJSONObject(0).getString("description")))
+                    .status(getString(R.string.dash_clock_status, new DecimalFormat("#.#").format(temperature), localize(sp, "unit", "C")))
+                    .expandedTitle(getString(R.string.dash_clock_expanded_title, new DecimalFormat("#.#").format(temperature), localize(sp, "unit", "C"), reader.optJSONArray("weather").getJSONObject(0).getString("description")))
                     .expandedBody(getString(R.string.dash_clock_expanded_body, reader.getString("name"), reader.optJSONObject("sys").getString("country"),
-                            (wind + "").substring(0, (wind + "").indexOf(".") + 2), localize(sp, "speedUnit", "m/s"),
-                            (pressure + "").substring(0, (pressure + "").indexOf(".") + 2), localize(sp, "pressureUnit", "hPa"),
+                            new DecimalFormat("#.0").format(wind), localize(sp, "speedUnit", "m/s"),
+                            new DecimalFormat("#.0").format(pressure), localize(sp, "pressureUnit", "hPa"),
                             reader.optJSONObject("main").getString("humidity")))
                     .clickIntent(new Intent(this, MainActivity.class)));
         }

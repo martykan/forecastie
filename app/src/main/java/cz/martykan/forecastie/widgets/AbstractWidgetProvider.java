@@ -17,6 +17,7 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 import cz.martykan.forecastie.MainActivity;
@@ -82,11 +83,11 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             JSONObject reader = new JSONObject(result);
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
-            String temperature = reader.optJSONObject("main").getString("temp");
+            float temperature = Float.parseFloat(reader.optJSONObject("main").getString("temp"));
             if (sp.getString("unit", "C").equals("C")) {
-                temperature = Float.parseFloat(temperature) - 273.15 + "";
+                temperature = temperature - 273.15f;
             } else if (sp.getString("unit", "C").equals("F")) {
-                temperature = (((9 * (Float.parseFloat(temperature) - 273.15)) / 5) + 32) + "";
+                temperature = (((9 * (temperature - 273.15f)) / 5) + 32);
             }
 
             double wind = Double.parseDouble(reader.optJSONObject("wind").getString("speed"));
@@ -118,11 +119,11 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             Weather widgetWeather = new Weather();
             widgetWeather.setCity(reader.getString("name"));
             widgetWeather.setCountry(reader.optJSONObject("sys").getString("country"));
-            widgetWeather.setTemperature(temperature.substring(0, temperature.indexOf(".")) + "°" + localize(sp, context, "unit", "C"));
+            widgetWeather.setTemperature(Math.round(temperature) + "°" + localize(sp, context, "unit", "C"));
             widgetWeather.setDescription(description);
-            widgetWeather.setWind(context.getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " + localize(sp, context, "speedUnit", "m/s")
+            widgetWeather.setWind(context.getString(R.string.wind) + ": " + new DecimalFormat("#.0").format(wind) + " " + localize(sp, context, "speedUnit", "m/s")
                     + (widgetWeather.isWindDirectionAvailable() ? " " + MainActivity.getWindDirectionString(sp, context, widgetWeather) : ""));
-            widgetWeather.setPressure(context.getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " + localize(sp, context, "pressureUnit", "hPa"));
+            widgetWeather.setPressure(context.getString(R.string.pressure) + ": " + new DecimalFormat("#.0").format(pressure) + " " + localize(sp, context, "pressureUnit", "hPa"));
             widgetWeather.setHumidity(reader.optJSONObject("main").getString("humidity"));
             widgetWeather.setSunrise(reader.optJSONObject("sys").getString("sunrise"));
             widgetWeather.setSunset(reader.optJSONObject("sys").getString("sunset"));
