@@ -44,13 +44,12 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -402,13 +401,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
-        String temperature = todayWeather.getTemperature();
+        float temperature = Float.parseFloat(todayWeather.getTemperature());
         if (sp.getString("unit", "C").equals("C")) {
-            temperature = Float.parseFloat(temperature) - 273.15 + "";
+            temperature = temperature - 273.15f;
         }
 
         if (sp.getString("unit", "C").equals("F")) {
-            temperature = (((9 * (Float.parseFloat(temperature) - 273.15)) / 5) + 32) + "";
+            temperature = (((9 * (temperature - 273.15f)) / 5) + 32);
         }
 
         double rain = Double.parseDouble(todayWeather.getRain());
@@ -453,19 +452,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
 
 
-        if (new BigDecimal(temperature).setScale(0, RoundingMode.DOWN).intValue() == 0) {
-            temperature = "0";
-        } else {
-            temperature = temperature.substring(0, temperature.indexOf(".") + 2);
-        }
 
-        todayTemperature.setText(temperature + " °" + sp.getString("unit", "C"));
+        todayTemperature.setText(new DecimalFormat("#.#").format(temperature) + " °" + sp.getString("unit", "C"));
         todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() +
                     todayWeather.getDescription().substring(1) + rainString);
-        todayWind.setText(getString(R.string.wind) + ": " + (wind + "").substring(0, (wind + "").indexOf(".") + 2) + " " +
+        todayWind.setText(getString(R.string.wind) + ": " + new DecimalFormat("#.0").format(wind) + " " +
                 localize(sp, "speedUnit", "m/s") +
                 (todayWeather.isWindDirectionAvailable() ? " " + getWindDirectionString(sp, this, todayWeather) : ""));
-        todayPressure.setText(getString(R.string.pressure) + ": " + (pressure + "").substring(0, (pressure + "").indexOf(".") + 2) + " " +
+        todayPressure.setText(getString(R.string.pressure) + ": " + new DecimalFormat("#.0").format(pressure) + " " +
                 localize(sp, "pressureUnit", "hPa"));
         todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
         todaySunrise.setText(getString(R.string.sunrise) + ": " + timeFormat.format(todayWeather.getSunrise()));
