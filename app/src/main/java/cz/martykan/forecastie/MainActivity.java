@@ -64,6 +64,9 @@ import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
 public class MainActivity extends AppCompatActivity implements LocationListener {
     private static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
 
+    // Time in milliseconds; only reload weather if last update is longer ago than this value
+    private static final int NO_UPDATE_REQUIRED_THRESHOLD = 300000;
+
     private static Map<String, Integer> speedUnits = new HashMap<>(3);
     private static Map<String, Integer> pressUnits = new HashMap<>(3);
     private static boolean mappingsInitialised = false;
@@ -184,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             finish();
             overridePendingTransition(0, 0);
             startActivity(getIntent());
-        } else if (isNetworkAvailable()) {
+        } else if (shouldUpdate() && isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
         }
@@ -249,8 +252,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         editor.putString("city", result);
         editor.commit();
 
-        getTodayWeather();
-        getLongTermWeather();
+        if (!recentCity.equals(result)) {
+            // New location, update weather
+            getTodayWeather();
+            getLongTermWeather();
+        }
     }
 
     private void aboutDialog() {
@@ -581,6 +587,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private boolean shouldUpdate() {
+        long lastUpdate = PreferenceManager.getDefaultSharedPreferences(this).getLong("lastUpdate", -1);
+        // Update if never checked or last update is longer ago than specified threshold
+        return lastUpdate < 0 || (Calendar.getInstance().getTimeInMillis() - lastUpdate) > NO_UPDATE_REQUIRED_THRESHOLD;
     }
 
     @Override
