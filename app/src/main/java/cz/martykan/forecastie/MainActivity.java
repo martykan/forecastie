@@ -498,8 +498,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 weather.setTemperature(main.getString("temp"));
                 weather.setDescription(listItem.optJSONArray("weather").getJSONObject(0).getString("description"));
                 JSONObject windObj = listItem.optJSONObject("wind");
-                weather.setWind(windObj.getString("speed"));
-                weather.setWindDirectionDegree(windObj.getDouble("deg"));
+                if(windObj!=null) {
+                    weather.setWind(windObj.getString("speed"));
+                    weather.setWindDirectionDegree(windObj.getDouble("deg"));
+                }
                 weather.setPressure(main.getString("pressure"));
                 weather.setHumidity(main.getString("humidity"));
 
