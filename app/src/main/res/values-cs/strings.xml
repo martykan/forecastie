@@ -83,4 +83,11 @@
     <string name="dash_clock_expanded_title">%1$s°%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\nVítr: %3$s %4$s\nTlak: %5$s %6$s\nVlhkost: %7$s %%\n</string>
+    <string name="last_update">Poslední aktualizace:\n%s</string>
+    <string name="last_update_widget">\nPoslední aktualizace: %s</string>
+    <string name="setting_lengthUnits">Jednotky délky</string>
+    <string name="setting_unit_in">Palce (in)</string>
+    <string name="setting_unit_mm">Milimetry (mm)</string>
+    <string name="sunrise">Východ slunce</string>
+    <string name="sunset">Západ slunce</string>
 </resources>
