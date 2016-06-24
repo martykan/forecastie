@@ -416,6 +416,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             temperature = (((9 * (temperature - 273.15f)) / 5) + 32);
         }
 
+        if (sp.getBoolean("temperatureInteger", false)) {
+            temperature = Math.round(temperature);
+        }
+
         double rain = Double.parseDouble(todayWeather.getRain());
         String rainString = "";
         if(rain > 0)
@@ -440,7 +444,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         }
 
-        double wind = Double.parseDouble(todayWeather.getWind());
+        double wind;
+        try {
+            wind = Double.parseDouble(todayWeather.getWind());
+        } catch (Exception e) {
+            e.printStackTrace();
+            wind = 0;
+        }
+
         if (sp.getString("speedUnit", "m/s").equals("kph")) {
             wind = wind * 3.59999999712;
         }

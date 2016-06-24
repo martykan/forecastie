@@ -49,6 +49,10 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
             temperature = (((9 * (temperature - 273.15f)) / 5) + 32);
         }
 
+        if (sp.getBoolean("temperatureInteger", false)) {
+            temperature = Math.round(temperature);
+        }
+
         double rain = Double.parseDouble(weatherItem.getRain());
         String rainString = "";
         if (rain > 0) {

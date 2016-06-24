@@ -90,4 +90,5 @@
     <string name="setting_unit_mm">Milimetry (mm)</string>
     <string name="sunrise">Východ slunce</string>
     <string name="sunset">Západ slunce</string>
+    <string name="setting_showTempAsInteger">Ukazovat teplotu jen jako celé číslo</string>
 </resources>

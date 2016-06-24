@@ -9,6 +9,11 @@
             android:key="unit"
             android:title="@string/setting_tempUnits" />
 
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="temperatureInteger"
+            android:title="@string/setting_showTempAsInteger" />
+
         <ListPreference
             android:defaultValue="mm"
             android:entries="@array/lengthUnits"
