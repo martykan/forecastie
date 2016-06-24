@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,28 +51,31 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
 
         double rain = Double.parseDouble(weatherItem.getRain());
         String rainString = "";
-        if(rain > 0)
-        {
+        if (rain > 0) {
             if (sp.getString("lengthUnit", "mm").equals("mm")) {
-                if(rain < 0.1) {
+                if (rain < 0.1) {
                     rainString = " (<0.1 mm)";
+                } else {
+                    rainString = String.format(Locale.ENGLISH, " (%.1f %s)", rain, sp.getString("lengthUnit", "mm"));
                 }
-                else {
-                    rainString = String.format(Locale.ENGLISH," (%.1f %s)", rain, sp.getString("lengthUnit", "mm"));
-                }
-            }
-            else {
-                rain = rain/25.4;
-                if(rain < 0.01) {
+            } else {
+                rain = rain / 25.4;
+                if (rain < 0.01) {
                     rainString = " (<0.01 in)";
-                }
-                else {
-                    rainString = String.format(Locale.ENGLISH," (%.2f %s)", rain, sp.getString("lengthUnit", "mm"));
+                } else {
+                    rainString = String.format(Locale.ENGLISH, " (%.2f %s)", rain, sp.getString("lengthUnit", "mm"));
                 }
             }
         }
 
-        double wind = Double.parseDouble(weatherItem.getWind());
+        double wind;
+        try {
+            wind = Double.parseDouble(weatherItem.getWind());
+        } catch (Exception e) {
+            e.printStackTrace();
+            wind = 0;
+        }
+
         if (sp.getString("speedUnit", "m/s").equals("kph")) {
             wind = wind * 3.59999999712;
         }
