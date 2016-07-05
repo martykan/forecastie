@@ -61,6 +61,11 @@ dependencies:
     - gradle build --stacktrace --info
     - find . -name '*.apk' ; exit 0
 
+#   --- save lint output ---
+    - cp app/build/outputs/lint-results.html $CIRCLE_ARTIFACTS/ ;  exit 0
+    - cp app/build/outputs/lint-results.xml $CIRCLE_ARTIFACTS/ ;  exit 0
+#   --- save lint output ---
+
     - mkdir -p app/build/outputs/apk/
     - cp -v `find ./build/outputs/apk/ -name '*.apk' 2> /dev/null | tail -1 2> /dev/null` app/build/outputs/apk/app-debug-unaligned.apk ; exit 0
 
