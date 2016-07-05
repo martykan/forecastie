@@ -13,8 +13,10 @@ android {
     }
 
     lintOptions {
-        // checkReleaseBuilds false
+        checkReleaseBuilds true
         abortOnError false
+        xmlReport true
+        htmlReport true
     }
 
     buildTypes {
