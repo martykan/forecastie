@@ -480,6 +480,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             final String code = reader.optString("cod");
             if ("404".equals(code)) {
+                if (longTermWeather == null) {
+                    longTermWeather = new ArrayList<>();
+                    longTermTodayWeather = new ArrayList<>();
+                    longTermTomorrowWeather = new ArrayList<>();
+                }
                 return ParseResult.CITY_NOT_FOUND;
             }
 
