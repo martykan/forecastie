@@ -11,6 +11,14 @@ android {
         versionCode 13
         versionName "1.1"
     }
+
+    lintOptions {
+        checkReleaseBuilds true
+        abortOnError false
+        xmlReport true
+        htmlReport true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
