@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public void onResume() {
         super.onResume();
         boolean darkTheme =
-                PreferenceManager.getDefaultSharedPreferences(this).getBoolean("darkTheme", false);
+                PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh").equals("dark");
         if (darkTheme != this.darkTheme) {
             // Restart activity to apply theme
             overridePendingTransition(0, 0);
