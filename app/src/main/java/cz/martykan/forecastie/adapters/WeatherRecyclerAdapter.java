@@ -139,7 +139,12 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         }
 
         customViewHolder.itemDate.setText(dateString);
-        customViewHolder.itemTemperature.setText(new DecimalFormat("#.#").format(temperature) + " °" + sp.getString("unit", "C"));
+        if(sp.getBoolean("displayDecimalZeroes", false)) {
+            customViewHolder.itemTemperature.setText(new DecimalFormat("#.0").format(temperature) + " °" + sp.getString("unit", "C"));
+        }
+        else {
+            customViewHolder.itemTemperature.setText(new DecimalFormat("#.#").format(temperature) + " °" + sp.getString("unit", "C"));
+        }
         customViewHolder.itemDescription.setText(weatherItem.getDescription().substring(0, 1).toUpperCase() +
                 weatherItem.getDescription().substring(1) + rainString);
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");

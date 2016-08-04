@@ -61,6 +61,11 @@
 
         <CheckBoxPreference
             android:defaultValue="false"
+            android:key="displayDecimalZeroes"
+            android:title="@string/setting_displayDecimalZeroes" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
             android:key="differentiateDaysByTint"
             android:title="@string/setting_differentiateDaysByTint" />
 
