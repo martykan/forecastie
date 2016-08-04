@@ -1,4 +1,4 @@
-package cz.martykan.forecastie;
+package cz.martykan.forecastie.adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,6 +15,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import cz.martykan.forecastie.activities.MainActivity;
+import cz.martykan.forecastie.R;
+import cz.martykan.forecastie.models.Weather;
+import cz.martykan.forecastie.models.WeatherViewHolder;
 
 public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHolder> {
     private List<Weather> itemList;

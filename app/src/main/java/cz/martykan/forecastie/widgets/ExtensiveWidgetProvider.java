@@ -11,9 +11,9 @@ import android.widget.RemoteViews;
 import java.text.DateFormat;
 
 import cz.martykan.forecastie.AlarmReceiver;
-import cz.martykan.forecastie.MainActivity;
+import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.R;
-import cz.martykan.forecastie.Weather;
+import cz.martykan.forecastie.models.Weather;
 
 public class ExtensiveWidgetProvider extends AbstractWidgetProvider {
 

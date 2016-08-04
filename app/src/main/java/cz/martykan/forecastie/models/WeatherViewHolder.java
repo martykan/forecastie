@@ -1,18 +1,20 @@
-package cz.martykan.forecastie;
+package cz.martykan.forecastie.models;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import cz.martykan.forecastie.R;
+
 public class WeatherViewHolder extends RecyclerView.ViewHolder {
-    protected TextView itemDate;
-    protected TextView itemTemperature;
-    protected TextView itemDescription;
-    protected TextView itemyWind;
-    protected TextView itemPressure;
-    protected TextView itemHumidity;
-    protected TextView itemIcon;
-    protected View lineView;
+    public TextView itemDate;
+    public TextView itemTemperature;
+    public TextView itemDescription;
+    public TextView itemyWind;
+    public TextView itemPressure;
+    public TextView itemHumidity;
+    public TextView itemIcon;
+    public View lineView;
 
     public WeatherViewHolder(View view) {
         super(view);

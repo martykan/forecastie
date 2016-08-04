@@ -1,4 +1,4 @@
-package cz.martykan.forecastie;
+package cz.martykan.forecastie.activities;
 
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -17,6 +17,9 @@ import android.widget.LinearLayout;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
+
+import cz.martykan.forecastie.AlarmReceiver;
+import cz.martykan.forecastie.R;
 
 public class SettingsActivity extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {

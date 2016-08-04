@@ -20,9 +20,9 @@ import org.json.JSONObject;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 
-import cz.martykan.forecastie.MainActivity;
+import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.R;
-import cz.martykan.forecastie.Weather;
+import cz.martykan.forecastie.models.Weather;
 
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
