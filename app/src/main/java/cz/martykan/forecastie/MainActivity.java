@@ -58,6 +58,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
 
@@ -116,9 +117,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         darkTheme = false;
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (prefs.getBoolean("darkTheme", false)) {
+        if (prefs.getString("theme", "fresh").equals( "dark")) {
             setTheme(R.style.AppTheme_NoActionBar_Dark);
             darkTheme = true;
+        }
+        else if (prefs.getString("theme", "fresh").equals("classic")) {
+            setTheme(R.style.AppTheme_NoActionBar_Classic);
         }
 
         // Initiate activity

@@ -33,7 +33,6 @@
     <string name="setting_speedUnits">Unidades de velocidade</string>
     <string name="setting_tempUnits">Unidades de temperatura</string>
     <string name="setting_pressureUnits">Unidades de pressão</string>
-    <string name="setting_darkTheme">Tema escuro</string>
     <string name="setting_auto_detect_location">Detetar localização</string>
     <string name="setting_differentiateDaysByTint">Diferenciar dias por cor</string>
     <string name="setting_refreshInterval">Intervalo da atualização em segundo plano</string>

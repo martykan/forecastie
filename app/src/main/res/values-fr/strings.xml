@@ -27,8 +27,7 @@
     <string name="setting_speedUnits">Unité de vitesse</string>
     <string name="setting_tempUnits">Unité de température</string>
     <string name="setting_pressureUnits">Unité de pression</string>
-    <string name="setting_darkTheme">Thème sombre</string>
-    <string name="setting_auto_detect_location">Détecter la localisation</string>    
+    <string name="setting_auto_detect_location">Détecter la localisation</string>
     <string name="setting_differentiateDaysByTint">Différencier les jours avec de la couleur</string>
     <string name="setting_refreshInterval">Intervalle d\'actualisation</string>
     <string name="setting_unit_mps">Mètres par seconde (m/s)</string>     

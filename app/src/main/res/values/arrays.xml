@@ -104,4 +104,15 @@
         <item>MM/dd/yyyy - hh:mm a</item>
         <item>custom</item>
     </string-array>
+
+    <string-array name="themes">
+        <item name="fresh">@string/setting_theme_fresh</item>
+        <item name="classic">@string/setting_theme_classic</item>
+        <item name="dark">@string/setting_theme_dark</item>
+    </string-array>
+    <string-array name="themesValues">
+        <item name="fresh">fresh</item>
+        <item name="classic">classic</item>
+        <item name="dark">dark</item>
+    </string-array>
 </resources>

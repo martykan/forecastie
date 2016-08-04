@@ -16,7 +16,6 @@
     <string name="setting_tempUnits">Jednostki temperatury</string>
     <string name="setting_pressureUnits">Jednostki ciśnienia</string>
     <string name="later">Pojutrze</string>
-    <string name="setting_darkTheme">Ciemny motyw</string>
     <string name="setting_refreshInterval">Interwał aktualizacji w tle</string>
     <string name="today">Dziś</string>
     <string name="tomorrow">Jutro</string>

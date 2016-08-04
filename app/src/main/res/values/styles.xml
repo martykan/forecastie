@@ -8,6 +8,14 @@
         <item name="colorTintedBackground">@color/colorTintedBackground</item>
     </style>
 
+    <style name="AppTheme.Classic" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/classic_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/classic_colorPrimaryDark</item>
+        <item name="colorAccent">@color/classic_colorAccent</item>
+        <item name="colorTintedBackground">@color/classic_colorTintedBackground</item>
+    </style>
+
+
     <style name="AppTheme.Dark" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/darkTheme_colorPrimary</item>
         <item name="colorPrimaryDark">@color/darkTheme_colorPrimaryDark</item>
@@ -17,6 +25,11 @@
     </style>
 
     <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.Classic" parent="AppTheme.Classic">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

@@ -21,7 +21,6 @@
     <string name="today">आज</string>
     <string name="tomorrow">भोलि</string>
     <string name="wind">हावा</string>
-    <string name="setting_darkTheme">गाढा रंग</string>
     <string name="downloading_data">डाउनलोड गरिरहेको छ</string>
 
     <!-- 1: temperature; 2: unit -->
