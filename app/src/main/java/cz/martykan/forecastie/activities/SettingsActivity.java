@@ -1,4 +1,4 @@
-package cz.martykan.forecastie;
+package cz.martykan.forecastie.activities;
 
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -16,6 +16,10 @@ import android.widget.LinearLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
+
+import cz.martykan.forecastie.AlarmReceiver;
+import cz.martykan.forecastie.R;
 
 public class SettingsActivity extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -25,8 +29,11 @@ public class SettingsActivity extends PreferenceActivity
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("darkTheme", false)) {
+        if (PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh").equals("dark")) {
             setTheme(R.style.AppTheme_Dark);
+        }
+        else if (PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh").equals("classic")) {
+            setTheme(R.style.AppTheme_Classic);
         }
 
         super.onCreate(savedInstanceState);
@@ -60,6 +67,7 @@ public class SettingsActivity extends PreferenceActivity
         setListPreferenceSummary("pressureUnit");
         setListPreferenceSummary("refreshInterval");
         setListPreferenceSummary("windDirectionFormat");
+        setListPreferenceSummary("theme");
     }
 
     @Override
@@ -90,7 +98,7 @@ public class SettingsActivity extends PreferenceActivity
             case "dateFormatCustom":
                 updateDateFormatList();
                 break;
-            case "darkTheme":
+            case "theme":
                 // Restart activity to apply theme
                 overridePendingTransition(0, 0);
                 finish();

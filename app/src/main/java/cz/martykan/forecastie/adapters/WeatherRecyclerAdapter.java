@@ -1,4 +1,4 @@
-package cz.martykan.forecastie;
+package cz.martykan.forecastie.adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,6 +15,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import cz.martykan.forecastie.activities.MainActivity;
+import cz.martykan.forecastie.R;
+import cz.martykan.forecastie.models.Weather;
+import cz.martykan.forecastie.models.WeatherViewHolder;
 
 public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHolder> {
     private List<Weather> itemList;
@@ -114,7 +119,7 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
             int colorResourceId;
             if (weatherItem.getNumDaysFrom(now) > 1) {
                 if (weatherItem.getNumDaysFrom(now) % 2 == 1) {
-                    if (sp.getBoolean("darkTheme", false)) {
+                    if (sp.getString("theme", "fresh").equals("dark")) {
                         colorResourceId = R.color.darkTheme_colorTintedBackground;
                     } else {
                         colorResourceId = R.color.colorTintedBackground;
@@ -123,7 +128,7 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
                     /* We must explicitly set things back, because RecyclerView seems to reuse views and
                      * without restoring back the "normal" color, just about everything gets tinted if we
                      * scroll a couple of times! */
-                    if (sp.getBoolean("darkTheme", false)) {
+                    if (sp.getString("theme", "fresh").equals("dark")) {
                         colorResourceId = R.color.darkTheme_colorBackground;
                     } else {
                         colorResourceId = R.color.colorBackground;
@@ -134,7 +139,12 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         }
 
         customViewHolder.itemDate.setText(dateString);
-        customViewHolder.itemTemperature.setText(new DecimalFormat("#.#").format(temperature) + " °" + sp.getString("unit", "C"));
+        if(sp.getBoolean("displayDecimalZeroes", false)) {
+            customViewHolder.itemTemperature.setText(new DecimalFormat("#.0").format(temperature) + " °" + sp.getString("unit", "C"));
+        }
+        else {
+            customViewHolder.itemTemperature.setText(new DecimalFormat("#.#").format(temperature) + " °" + sp.getString("unit", "C"));
+        }
         customViewHolder.itemDescription.setText(weatherItem.getDescription().substring(0, 1).toUpperCase() +
                 weatherItem.getDescription().substring(1) + rainString);
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");

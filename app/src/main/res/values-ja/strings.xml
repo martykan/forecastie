@@ -27,7 +27,6 @@
     <string name="setting_speedUnits">風速の単位</string>
     <string name="setting_tempUnits">気温の単位</string>
     <string name="setting_pressureUnits">気圧の単位</string>
-    <string name="setting_darkTheme">ダークテーマ</string>
     <string name="setting_auto_detect_location">位置を検出</string>
     <string name="setting_differentiateDaysByTint">色で日数を区別</string>
     <string name="setting_refreshInterval">バックグラウンド更新間隔</string>

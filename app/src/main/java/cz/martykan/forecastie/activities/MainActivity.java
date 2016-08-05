@@ -1,4 +1,4 @@
-package cz.martykan.forecastie;
+package cz.martykan.forecastie.activities;
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -59,6 +59,17 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import cz.martykan.forecastie.AlarmReceiver;
+import cz.martykan.forecastie.Constants;
+import cz.martykan.forecastie.tasks.GenericRequestTask;
+import cz.martykan.forecastie.tasks.ParseResult;
+import cz.martykan.forecastie.tasks.TaskOutput;
+import cz.martykan.forecastie.widgets.DashClockWeatherExtension;
+import cz.martykan.forecastie.R;
+import cz.martykan.forecastie.models.Weather;
+import cz.martykan.forecastie.adapters.ViewPagerAdapter;
+import cz.martykan.forecastie.adapters.WeatherRecyclerAdapter;
+import cz.martykan.forecastie.fragments.RecyclerViewFragment;
 import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
@@ -88,8 +99,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     View appView;
 
+    LocationManager locationManager;
     ProgressDialog progressDialog;
-    int loading = 0;
 
     boolean darkTheme;
     boolean destroyed = false;
@@ -97,17 +108,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private List<Weather> longTermWeather;
     private List<Weather> longTermTodayWeather;
     private List<Weather> longTermTomorrowWeather;
-    private String recentCity = "";
 
-    private static void close(Closeable x) {
-        try {
-            if (x != null) {
-                x.close();
-            }
-        } catch (IOException e) {
-            Log.e("IOException Data", "Error occurred while closing stream");
-        }
-    }
+    public String recentCity = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,9 +118,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         darkTheme = false;
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (prefs.getBoolean("darkTheme", false)) {
+        if (prefs.getString("theme", "fresh").equals("dark")) {
             setTheme(R.style.AppTheme_NoActionBar_Dark);
             darkTheme = true;
+        } else if (prefs.getString("theme", "fresh").equals("classic")) {
+            setTheme(R.style.AppTheme_NoActionBar_Classic);
         }
 
         // Initiate activity
@@ -180,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public void onResume() {
         super.onResume();
         boolean darkTheme =
-                PreferenceManager.getDefaultSharedPreferences(this).getBoolean("darkTheme", false);
+                PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh").equals("dark");
         if (darkTheme != this.darkTheme) {
             // Restart activity to apply theme
             overridePendingTransition(0, 0);
@@ -197,6 +201,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     protected void onDestroy() {
         super.onDestroy();
         destroyed = true;
+
+        try {
+            locationManager.removeUpdates(MainActivity.this);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void preloadWeather() {
@@ -204,20 +215,20 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         String lastToday = sp.getString("lastToday", "");
         if (!lastToday.isEmpty()) {
-            new TodayWeatherTask().execute("cachedResponse", lastToday);
+            new TodayWeatherTask(this, this, progressDialog).execute("cachedResponse", lastToday);
         }
         String lastLongterm = sp.getString("lastLongterm", "");
         if (!lastLongterm.isEmpty()) {
-            new LongTermWeatherTask().execute("cachedResponse", lastLongterm);
+            new LongTermWeatherTask(this, this, progressDialog).execute("cachedResponse", lastLongterm);
         }
     }
 
     private void getTodayWeather() {
-        new TodayWeatherTask().execute();
+        new TodayWeatherTask(this, this, progressDialog).execute();
     }
 
     private void getLongTermWeather() {
-        new LongTermWeatherTask().execute();
+        new LongTermWeatherTask(this, this, progressDialog).execute();
     }
 
     private void searchCities() {
@@ -418,23 +429,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         double rain = Double.parseDouble(todayWeather.getRain());
         String rainString = "";
-        if(rain > 0)
-        {
+        if (rain > 0) {
             if (sp.getString("lengthUnit", "mm").equals("mm")) {
-                if(rain < 0.1) {
+                if (rain < 0.1) {
                     rainString = " (<0.1 mm)";
+                } else {
+                    rainString = String.format(Locale.ENGLISH, " (%.1f %s)", rain, sp.getString("lengthUnit", "mm"));
                 }
-                else {
-                    rainString = String.format(Locale.ENGLISH," (%.1f %s)", rain, sp.getString("lengthUnit", "mm"));
-                }
-            }
-            else {
-                rain = rain/25.4;
-                if(rain < 0.01) {
+            } else {
+                rain = rain / 25.4;
+                if (rain < 0.01) {
                     rainString = " (<0.01 in)";
-                }
-                else {
-                    rainString = String.format(Locale.ENGLISH," (%.2f %s)", rain, sp.getString("lengthUnit", "mm"));
+                } else {
+                    rainString = String.format(Locale.ENGLISH, " (%.2f %s)", rain, sp.getString("lengthUnit", "mm"));
                 }
             }
 
@@ -458,10 +465,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
 
 
-
         todayTemperature.setText(new DecimalFormat("#.#").format(temperature) + " °" + sp.getString("unit", "C"));
         todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() +
-                    todayWeather.getDescription().substring(1) + rainString);
+                todayWeather.getDescription().substring(1) + rainString);
         todayWind.setText(getString(R.string.wind) + ": " + new DecimalFormat("#.0").format(wind) + " " +
                 localize(sp, "speedUnit", "m/s") +
                 (todayWeather.isWindDirectionAvailable() ? " " + getWindDirectionString(sp, this, todayWeather) : ""));
@@ -503,7 +509,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 weather.setTemperature(main.getString("temp"));
                 weather.setDescription(listItem.optJSONArray("weather").getJSONObject(0).getString("description"));
                 JSONObject windObj = listItem.optJSONObject("wind");
-                if(windObj!=null) {
+                if (windObj != null) {
                     weather.setWind(windObj.getString("speed"));
                     weather.setWindDirectionDegree(windObj.getDouble("deg"));
                 }
@@ -613,11 +619,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         int id = item.getItemId();
 
         if (id == R.id.action_refresh) {
-            if(isNetworkAvailable()) {
+            if (isNetworkAvailable()) {
                 getTodayWeather();
                 getLongTermWeather();
-            }
-            else {
+            } else {
                 Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
             }
             return true;
@@ -639,15 +644,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void restorePreviousCity() {
-        if (!TextUtils.isEmpty(recentCity)) {
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
-            editor.putString("city", recentCity);
-            editor.commit();
-            recentCity = "";
-        }
     }
 
     public static void initMappings() {
@@ -692,8 +688,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     return weather.getWindDirection().getLocalizedString(context);
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -713,10 +708,22 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             }
 
         } else {
+            locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+            progressDialog = new ProgressDialog(this);
             progressDialog.setMessage(getString(R.string.getting_location));
-            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.setCancelable(false);
+            progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.dialog_cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    try {
+                        locationManager.removeUpdates(MainActivity.this);
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
             progressDialog.show();
-            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
         }
     }
@@ -740,7 +747,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         Log.i("GPS LOCATION", location.getLatitude() + ", " + location.getLongitude());
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
-        new ProvideCityNameTask().execute("coords", Double.toString(latitude), Double.toString(longitude));
+        new ProvideCityNameTask(this, this, progressDialog).execute("coords", Double.toString(latitude), Double.toString(longitude));
     }
 
     @Override
@@ -758,169 +765,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     }
 
-    abstract class GenericRequestTask extends AsyncTask<String, String, TaskOutput> {
-        private void incLoadingCounter() {
-            loading++;
-        }
 
-        private void decLoadingCounter() {
-            loading--;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            incLoadingCounter();
-            if(!progressDialog.isShowing()) {
-                progressDialog.setMessage(getString(R.string.downloading_data));
-                progressDialog.setCanceledOnTouchOutside(false);
-                progressDialog.show();
-            }
-        }
-
-        @Override
-        protected TaskOutput doInBackground(String... params) {
-            TaskOutput output = new TaskOutput();
-
-            String response = "";
-            String[] coords = new String[]{};
-
-            if (params != null && params.length > 0) {
-                final String zeroParam = params[0];
-                if ("cachedResponse".equals(zeroParam)) {
-                    response = params[1];
-                    // Actually we did nothing in this case :)
-                    output.taskResult = TaskResult.SUCCESS;
-                } else if ("coords".equals(zeroParam)) {
-                    String lat = params[1];
-                    String lon = params[2];
-                    coords = new String[]{lat, lon};
-                }
-            }
-
-            if (response.isEmpty()) {
-                try {
-                    URL url = provideURL(coords);
-                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                    if (urlConnection.getResponseCode() == 200) {
-                        InputStreamReader inputStreamReader = new InputStreamReader(urlConnection.getInputStream());
-                        BufferedReader r = new BufferedReader(inputStreamReader);
-
-                        int responseCode = urlConnection.getResponseCode();
-                        String line = null;
-                        while ((line = r.readLine()) != null) {
-                            response += line + "\n";
-                        }
-                        close(r);
-                        urlConnection.disconnect();
-                        // Background work finished successfully
-                        Log.i("Task", "done successfully");
-                        output.taskResult = TaskResult.SUCCESS;
-                        // Save date/time for latest successful result
-                        saveLastUpdateTime(PreferenceManager.getDefaultSharedPreferences(MainActivity.this));
-                    }
-                    else if (urlConnection.getResponseCode() == 429) {
-                        // Too many requests
-                        Log.i("Task", "too many requests");
-                        output.taskResult = TaskResult.TOO_MANY_REQUESTS;
-                    }
-                    else {
-                        // Bad response from server
-                        Log.i("Task", "bad response");
-                        output.taskResult = TaskResult.BAD_RESPONSE;
-                    }
-                } catch (IOException e) {
-                    Log.e("IOException Data", response);
-                    e.printStackTrace();
-                    // Exception while reading data from url connection
-                    output.taskResult = TaskResult.IO_EXCEPTION;
-                }
-            }
-
-            if (TaskResult.SUCCESS.equals(output.taskResult)) {
-                // Parse JSON data
-                ParseResult parseResult = parseResponse(response);
-                if (ParseResult.CITY_NOT_FOUND.equals(parseResult)) {
-                    // Retain previously specified city if current one was not recognized
-                    restorePreviousCity();
-                }
-                output.parseResult = parseResult;
-            }
-
-            return output;
-        }
-
-        @Override
-        protected void onPostExecute(TaskOutput output) {
-            if(loading == 1) {
-                progressDialog.dismiss();
-            }
-            decLoadingCounter();
-
-            updateMainUI();
-
-            handleTaskOutput(output);
-        }
-
-        protected final void handleTaskOutput(TaskOutput output) {
-            switch (output.taskResult) {
-                case SUCCESS: {
-                    ParseResult parseResult = output.parseResult;
-                    if (ParseResult.CITY_NOT_FOUND.equals(parseResult)) {
-                        Snackbar.make(appView, getString(R.string.msg_city_not_found), Snackbar.LENGTH_LONG).show();
-                    } else if (ParseResult.JSON_EXCEPTION.equals(parseResult)) {
-                        Snackbar.make(appView, getString(R.string.msg_err_parsing_json), Snackbar.LENGTH_LONG).show();
-                    }
-                    break;
-                }
-                case TOO_MANY_REQUESTS: {
-                    Snackbar.make(appView, getString(R.string.msg_too_many_requests), Snackbar.LENGTH_LONG).show();
-                    break;
-                }
-                case BAD_RESPONSE: {
-                    Snackbar.make(appView, getString(R.string.msg_connection_problem), Snackbar.LENGTH_LONG).show();
-                    break;
-                }
-                case IO_EXCEPTION: {
-                    Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
-                    break;
-                }
-            }
-        }
-
-        private String getLanguage() {
-            String language = Locale.getDefault().getLanguage();
-            if (language.equals("cs")) {
-                language = "cz";
-            }
-            return language;
-        }
-
-        private URL provideURL(String[] coords) throws UnsupportedEncodingException, MalformedURLException {
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-            final String apiKey = sp.getString("apiKey", getResources().getString(R.string.apiKey));
-
-            StringBuilder urlBuilder = new StringBuilder("http://api.openweathermap.org/data/2.5/");
-            urlBuilder.append(getAPIName()).append("?");
-            if (coords.length == 2) {
-                urlBuilder.append("lat=").append(coords[0]).append("&lon=").append(coords[1]);
-            } else {
-                final String city = sp.getString("city", Constants.DEFAULT_CITY);
-                urlBuilder.append("q=").append(URLEncoder.encode(city, "UTF-8"));
-            }
-            urlBuilder.append("&lang=").append(getLanguage());
-            urlBuilder.append("&mode=json");
-            urlBuilder.append("&appid=").append(apiKey);
-
-            return new URL(urlBuilder.toString());
-        }
-
-        protected void updateMainUI() { }
-
-        protected abstract ParseResult parseResponse(String response);
-        protected abstract String getAPIName();
-    }
 
     class TodayWeatherTask extends GenericRequestTask {
+        public TodayWeatherTask(Context context, MainActivity activity, ProgressDialog progressDialog) {
+            super(context, activity, progressDialog);
+        }
+
         @Override
         protected void onPreExecute() {
             loading = 0;
@@ -953,6 +804,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     class LongTermWeatherTask extends GenericRequestTask {
+        public LongTermWeatherTask(Context context, MainActivity activity, ProgressDialog progressDialog) {
+            super(context, activity, progressDialog);
+        }
+
         @Override
         protected ParseResult parseResponse(String response) {
             return parseLongTermJson(response);
@@ -970,6 +825,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     class ProvideCityNameTask extends GenericRequestTask {
+
+        public ProvideCityNameTask(Context context, MainActivity activity, ProgressDialog progressDialog) {
+            super(context, activity, progressDialog);
+        }
 
         @Override
         protected void onPreExecute() { /*Nothing*/ }
@@ -1015,21 +874,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             handleTaskOutput(output);
         }
     }
-
-    private class TaskOutput {
-        /**
-         * Indicates result of parsing server response
-         */
-        ParseResult parseResult;
-        /**
-         * Indicates result of background task
-         */
-        TaskResult taskResult;
-    }
-
-    private enum ParseResult {OK, JSON_EXCEPTION, CITY_NOT_FOUND}
-
-    private enum TaskResult { SUCCESS, BAD_RESPONSE, IO_EXCEPTION, TOO_MANY_REQUESTS; }
 
     public static long saveLastUpdateTime(SharedPreferences sp) {
         Calendar now = Calendar.getInstance();

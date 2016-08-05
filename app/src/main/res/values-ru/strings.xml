@@ -13,7 +13,6 @@
     <string name="action_settings">Настройки</string>
     <string name="error_dateFormat">НЕКОРРЕКТНЫЙ ФОРМАТ ДАТЫ</string>
     <string name="later">Позже</string>
-    <string name="setting_darkTheme">Тёмная тема</string>
     <string name="setting_dateFormat">Формат даты</string>
     <string name="setting_dateFormatCustom">Произвольный формат даты</string>
     <string name="setting_dateFormatCustom_summary">Задайте произвольный шаблон (паттерн) SimpleDateFormat</string>

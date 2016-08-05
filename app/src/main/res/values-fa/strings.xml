@@ -30,7 +30,6 @@
     <string name="setting_speedUnits">واحد سرعت</string>
     <string name="setting_tempUnits">واحد دما</string>
     <string name="setting_pressureUnits">واحد فشار</string>
-    <string name="setting_darkTheme">قالب تاریک</string>
     <string name="setting_auto_detect_location">شناسایی موقعیت مکانی</string>
     <string name="setting_differentiateDaysByTint">تمایر روزها بوسیله رنگ</string>
     <string name="setting_refreshInterval">فاصله زمانی بروزرسانی پشت صحنه</string>

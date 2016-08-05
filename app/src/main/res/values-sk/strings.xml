@@ -19,7 +19,6 @@
     <string name="setting_speedUnits">Jednotky rýchlosti</string>
     <string name="setting_tempUnits">ednotky teploty</string>
     <string name="setting_pressureUnits">Jednotky tlaku</string>
-    <string name="setting_darkTheme">Tmavé téma</string>
     <string name="setting_refreshInterval">Interval obnovenia na pozadí</string>
     <string name="error_dateFormat">CHYBA FORMÁTU DATA</string>
     <string name="setting_dateFormat">Formát dátumu</string>
