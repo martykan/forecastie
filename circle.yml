@@ -15,7 +15,7 @@ machine:
     GRADLE_HOME: ~/g/gradle-2.10
     PATH: ~/g/gradle-2.10/bin:$PATH
     CLASS_P: cz.martykan.forecastie
-    START_INTENT_P: .MainActivity
+    START_INTENT_P: .activities.MainActivity
 dependencies:
   cache_directories:
     - ~/.android
