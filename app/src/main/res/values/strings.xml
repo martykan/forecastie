@@ -70,7 +70,8 @@
 
     <string name="setting_theme_fresh">Fresh</string>
     <string name="setting_theme_classic">Classic</string>
-    <string name="setting_theme_dark">Dark</string>
+    <string name="setting_theme_dark">Fresh Dark</string>
+    <string name="setting_theme_classic_dark">Classic Dark</string>
 
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>

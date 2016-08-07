@@ -89,8 +89,9 @@
     <string name="setting_displayDecimalZeroes">Zeige Null nach Komma</string>
     <string name="setting_theme">Design</string>
     <string name="setting_theme_classic">Klassisch</string>
-    <string name="setting_theme_dark">Dunkel</string>
+    <string name="setting_theme_dark">Frisch Dunkel</string>
     <string name="setting_theme_fresh">Frisch</string>
+    <string name="setting_theme_classic_dark">Klassisch Dunkel</string>
     <string name="settings_title_data">Daten</string>
     <string name="settings_title_display">Anzeige</string>
     <string name="settings_title_units">Einheiten</string>

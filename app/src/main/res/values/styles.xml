@@ -8,6 +8,14 @@
         <item name="colorTintedBackground">@color/colorTintedBackground</item>
     </style>
 
+
+    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/darkTheme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkTheme_colorPrimaryDark</item>
+        <item name="colorAccent">@color/darkTheme_colorAccent</item>
+        <item name="colorTintedBackground">@color/darkTheme_colorTintedBackground</item>
+    </style>
+
     <style name="AppTheme.Classic" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/classic_colorPrimary</item>
         <item name="colorPrimaryDark">@color/classic_colorPrimaryDark</item>
@@ -16,11 +24,11 @@
     </style>
 
 
-    <style name="AppTheme.Dark" parent="Theme.AppCompat">
-        <item name="colorPrimary">@color/darkTheme_colorPrimary</item>
-        <item name="colorPrimaryDark">@color/darkTheme_colorPrimaryDark</item>
-        <item name="colorAccent">@color/darkTheme_colorAccent</item>
-        <item name="colorTintedBackground">@color/darkTheme_colorTintedBackground</item>
+    <style name="AppTheme.Classic.Dark" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/classic_darkTheme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/classic_darkTheme_colorPrimaryDark</item>
+        <item name="colorAccent">@color/classic_darkTheme_colorAccent</item>
+        <item name="colorTintedBackground">@color/classic_darkTheme_colorTintedBackground</item>
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 
@@ -35,6 +43,11 @@
     </style>
 
     <style name="AppTheme.NoActionBar.Dark" parent="AppTheme.Dark">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.Classic.Dark" parent="AppTheme.Classic.Dark">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
