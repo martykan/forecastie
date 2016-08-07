@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorBackground">@color/colorBackground</item>
         <item name="colorTintedBackground">@color/colorTintedBackground</item>
     </style>
 
@@ -13,6 +14,7 @@
         <item name="colorPrimary">@color/darkTheme_colorPrimary</item>
         <item name="colorPrimaryDark">@color/darkTheme_colorPrimaryDark</item>
         <item name="colorAccent">@color/darkTheme_colorAccent</item>
+        <item name="colorBackground">@color/darkTheme_colorBackground</item>
         <item name="colorTintedBackground">@color/darkTheme_colorTintedBackground</item>
     </style>
 
@@ -20,6 +22,7 @@
         <item name="colorPrimary">@color/classic_colorPrimary</item>
         <item name="colorPrimaryDark">@color/classic_colorPrimaryDark</item>
         <item name="colorAccent">@color/classic_colorAccent</item>
+        <item name="colorBackground">@color/classic_colorBackground</item>
         <item name="colorTintedBackground">@color/classic_colorTintedBackground</item>
     </style>
 
@@ -28,6 +31,7 @@
         <item name="colorPrimary">@color/classic_darkTheme_colorPrimary</item>
         <item name="colorPrimaryDark">@color/classic_darkTheme_colorPrimaryDark</item>
         <item name="colorAccent">@color/classic_darkTheme_colorAccent</item>
+        <item name="colorBackground">@color/classic_darkTheme_colorBackground</item>
         <item name="colorTintedBackground">@color/classic_darkTheme_colorTintedBackground</item>
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
