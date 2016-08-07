@@ -276,6 +276,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.textColorPrimary, R.attr.colorAccent});
         String textColor = String.format("#%06X", (0xFFFFFF & ta.getColor(0, Color.BLACK)));
         String accentColor = String.format("#%06X", (0xFFFFFF & ta.getColor(1, Color.BLUE)));
+        ta.recycle();
         about = "<style media=\"screen\" type=\"text/css\">" +
                 "body {\n" +
                 "    color:" + textColor + ";\n" +

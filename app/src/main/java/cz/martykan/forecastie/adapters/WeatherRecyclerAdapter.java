@@ -128,6 +128,7 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
                      * scroll a couple of times! */
                     color = ta.getColor(1, context.getResources().getColor(R.color.colorBackground));
                 }
+                ta.recycle();
                 customViewHolder.itemView.setBackgroundColor(color);
             }
         }
