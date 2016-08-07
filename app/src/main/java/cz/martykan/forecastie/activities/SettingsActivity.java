@@ -29,12 +29,7 @@ public class SettingsActivity extends PreferenceActivity
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        if (PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh").equals("dark")) {
-            setTheme(R.style.AppTheme_Dark);
-        }
-        else if (PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh").equals("classic")) {
-            setTheme(R.style.AppTheme_Classic);
-        }
+        setTheme(getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")));
 
         super.onCreate(savedInstanceState);
 
@@ -162,6 +157,19 @@ public class SettingsActivity extends PreferenceActivity
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         if (sp.getString(key, "").equals("")){
             sp.edit().remove(key).apply();
+        }
+    }
+
+    private int getTheme(String themePref) {
+        switch (themePref) {
+            case "dark":
+                return R.style.AppTheme_Dark;
+            case "classic":
+                return R.style.AppTheme_Classic;
+            case "classicdark":
+                return R.style.AppTheme_Classic_Dark;
+            default:
+                return R.style.AppTheme;
         }
     }
 }

@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     LocationManager locationManager;
     ProgressDialog progressDialog;
 
-    boolean darkTheme;
+    int theme;
     boolean destroyed = false;
 
     private List<Weather> longTermWeather;
@@ -116,14 +117,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         // Initialize the associated SharedPreferences file with default values
         PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 
-        darkTheme = false;
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (prefs.getString("theme", "fresh").equals("dark")) {
-            setTheme(R.style.AppTheme_NoActionBar_Dark);
-            darkTheme = true;
-        } else if (prefs.getString("theme", "fresh").equals("classic")) {
-            setTheme(R.style.AppTheme_NoActionBar_Classic);
-        }
+        setTheme(theme = getTheme(prefs.getString("theme", "fresh")));
+        boolean darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
+                theme == R.style.AppTheme_NoActionBar_Classic_Dark;
 
         // Initiate activity
         super.onCreate(savedInstanceState);
@@ -183,9 +180,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     @Override
     public void onResume() {
         super.onResume();
-        boolean darkTheme =
-                PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh").equals("dark");
-        if (darkTheme != this.darkTheme) {
+        if (getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")) != theme) {
             // Restart activity to apply theme
             overridePendingTransition(0, 0);
             finish();
@@ -278,16 +273,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 "<p>Developed by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a></p>" +
                 "<p>Data provided by <a href='http://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons license</a>" +
                 "<p>Icons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.";
-        if (darkTheme) {
-            // Style text color for dark theme
-            about = "<style media=\"screen\" type=\"text/css\">" +
-                    "body {\n" +
-                    "    color:white;\n" +
-                    "}\n" +
-                    "a:link {color:cyan}\n" +
-                    "</style>" +
-                    about;
-        }
+        TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.textColorPrimary, R.attr.colorAccent});
+        String textColor = String.format("#%06X", (0xFFFFFF & ta.getColor(0, Color.BLACK)));
+        String accentColor = String.format("#%06X", (0xFFFFFF & ta.getColor(1, Color.BLUE)));
+        ta.recycle();
+        about = "<style media=\"screen\" type=\"text/css\">" +
+                "body {\n" +
+                "    color:" + textColor + ";\n" +
+                "}\n" +
+                "a:link {color:" + accentColor + "}\n" +
+                "</style>" +
+                about;
         webView.setBackgroundColor(Color.TRANSPARENT);
         webView.loadData(about, "text/html", "UTF-8");
         alert.setView(webView, 32, 0, 32, 0);
@@ -908,6 +904,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             return timeFormat;
         } else {
             return android.text.format.DateFormat.getDateFormat(context).format(lastCheckedDate) + " " + timeFormat;
+        }
+    }
+
+    private int getTheme(String themePref) {
+        switch (themePref) {
+            case "dark":
+                return R.style.AppTheme_NoActionBar_Dark;
+            case "classic":
+                return R.style.AppTheme_NoActionBar_Classic;
+            case "classicdark":
+                return R.style.AppTheme_NoActionBar_Classic_Dark;
+            default:
+                return R.style.AppTheme_NoActionBar;
         }
     }
 }

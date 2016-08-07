@@ -5,14 +5,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorBackground">@color/colorBackground</item>
         <item name="colorTintedBackground">@color/colorTintedBackground</item>
-    </style>
-
-    <style name="AppTheme.Classic" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/classic_colorPrimary</item>
-        <item name="colorPrimaryDark">@color/classic_colorPrimaryDark</item>
-        <item name="colorAccent">@color/classic_colorAccent</item>
-        <item name="colorTintedBackground">@color/classic_colorTintedBackground</item>
     </style>
 
 
@@ -20,7 +14,25 @@
         <item name="colorPrimary">@color/darkTheme_colorPrimary</item>
         <item name="colorPrimaryDark">@color/darkTheme_colorPrimaryDark</item>
         <item name="colorAccent">@color/darkTheme_colorAccent</item>
+        <item name="colorBackground">@color/darkTheme_colorBackground</item>
         <item name="colorTintedBackground">@color/darkTheme_colorTintedBackground</item>
+    </style>
+
+    <style name="AppTheme.Classic" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/classic_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/classic_colorPrimaryDark</item>
+        <item name="colorAccent">@color/classic_colorAccent</item>
+        <item name="colorBackground">@color/classic_colorBackground</item>
+        <item name="colorTintedBackground">@color/classic_colorTintedBackground</item>
+    </style>
+
+
+    <style name="AppTheme.Classic.Dark" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/classic_darkTheme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/classic_darkTheme_colorPrimaryDark</item>
+        <item name="colorAccent">@color/classic_darkTheme_colorAccent</item>
+        <item name="colorBackground">@color/classic_darkTheme_colorBackground</item>
+        <item name="colorTintedBackground">@color/classic_darkTheme_colorTintedBackground</item>
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 
@@ -39,12 +51,15 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.NoActionBar.Classic.Dark" parent="AppTheme.Classic.Dark">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="AppTheme.PopupOverlay.Dark" parent="ThemeOverlay.AppCompat">
-        <item name="android:colorBackground">@color/darkTheme_colorPrimaryDark</item>
-    </style>
+    <style name="AppTheme.PopupOverlay.Dark" parent="ThemeOverlay.AppCompat" />
 
 </resources>

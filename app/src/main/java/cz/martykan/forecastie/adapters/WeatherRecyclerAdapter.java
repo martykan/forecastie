@@ -2,6 +2,7 @@ package cz.martykan.forecastie.adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
@@ -116,25 +117,19 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
             Date now = new Date();
             /* Unfortunately, the getColor() that takes a theme (the next commented line) is Android 6.0 only, so we have to do it manually
              * customViewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.attr.colorTintedBackground, context.getTheme())); */
-            int colorResourceId;
+            int color;
             if (weatherItem.getNumDaysFrom(now) > 1) {
+                TypedArray ta = context.obtainStyledAttributes(new int[]{R.attr.colorTintedBackground, R.attr.colorBackground});
                 if (weatherItem.getNumDaysFrom(now) % 2 == 1) {
-                    if (sp.getString("theme", "fresh").equals("dark")) {
-                        colorResourceId = R.color.darkTheme_colorTintedBackground;
-                    } else {
-                        colorResourceId = R.color.colorTintedBackground;
-                    }
+                    color = ta.getColor(0, context.getResources().getColor(R.color.colorTintedBackground));
                 } else {
                     /* We must explicitly set things back, because RecyclerView seems to reuse views and
                      * without restoring back the "normal" color, just about everything gets tinted if we
                      * scroll a couple of times! */
-                    if (sp.getString("theme", "fresh").equals("dark")) {
-                        colorResourceId = R.color.darkTheme_colorBackground;
-                    } else {
-                        colorResourceId = R.color.colorBackground;
-                    }
+                    color = ta.getColor(1, context.getResources().getColor(R.color.colorBackground));
                 }
-                customViewHolder.itemView.setBackgroundColor(context.getResources().getColor(colorResourceId));
+                ta.recycle();
+                customViewHolder.itemView.setBackgroundColor(color);
             }
         }
 
