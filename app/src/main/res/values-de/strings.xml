@@ -85,4 +85,13 @@
     <string name="setting_lengthUnits">Maßeinheit Länge</string>
     <string name="last_update">Zuletzt aktualisiert:\n%s</string>
     <string name="last_update_widget">\nZuletzt aktualisiert: %s</string>
+    <string name="msg_too_many_requests">Zu viele Anfragen. Bitte erneut versuchen.</string>
+    <string name="setting_displayDecimalZeroes">Zeige Null nach Komma</string>
+    <string name="setting_theme">Design</string>
+    <string name="setting_theme_classic">Klassisch</string>
+    <string name="setting_theme_dark">Dunkel</string>
+    <string name="setting_theme_fresh">Frisch</string>
+    <string name="settings_title_data">Daten</string>
+    <string name="settings_title_display">Anzeige</string>
+    <string name="settings_title_units">Einheiten</string>
 </resources>
