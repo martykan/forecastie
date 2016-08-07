@@ -60,8 +60,6 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="AppTheme.PopupOverlay.Dark" parent="ThemeOverlay.AppCompat">
-        <item name="android:colorBackground">@color/darkTheme_colorPrimaryDark</item>
-    </style>
+    <style name="AppTheme.PopupOverlay.Dark" parent="ThemeOverlay.AppCompat" />
 
 </resources>
