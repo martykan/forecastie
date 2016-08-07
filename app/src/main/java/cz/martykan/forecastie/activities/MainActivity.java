@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     LocationManager locationManager;
     ProgressDialog progressDialog;
 
+    int theme;
     boolean darkTheme;
     boolean destroyed = false;
 
@@ -116,14 +117,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         // Initialize the associated SharedPreferences file with default values
         PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 
-        darkTheme = false;
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (prefs.getString("theme", "fresh").equals("dark")) {
-            setTheme(R.style.AppTheme_NoActionBar_Dark);
-            darkTheme = true;
-        } else if (prefs.getString("theme", "fresh").equals("classic")) {
-            setTheme(R.style.AppTheme_NoActionBar_Classic);
-        }
+        setTheme(theme = getTheme(prefs.getString("theme", "fresh")));
+        darkTheme = theme == R.style.AppTheme_Dark;
 
         // Initiate activity
         super.onCreate(savedInstanceState);
@@ -183,9 +179,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     @Override
     public void onResume() {
         super.onResume();
-        boolean darkTheme =
-                PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh").equals("dark");
-        if (darkTheme != this.darkTheme) {
+        if (getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")) != theme) {
             // Restart activity to apply theme
             overridePendingTransition(0, 0);
             finish();
@@ -908,6 +902,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             return timeFormat;
         } else {
             return android.text.format.DateFormat.getDateFormat(context).format(lastCheckedDate) + " " + timeFormat;
+        }
+    }
+
+    private int getTheme(String themePref) {
+        switch (themePref) {
+            case "dark":
+                return R.style.AppTheme_NoActionBar_Dark;
+            case "classic":
+                return R.style.AppTheme_NoActionBar_Classic;
+            default:
+                return R.style.AppTheme_NoActionBar;
         }
     }
 }
