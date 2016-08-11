@@ -722,7 +722,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             progressDialog.show();
             if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
                 locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
-            } else if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            }
+            if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
             }
         }
