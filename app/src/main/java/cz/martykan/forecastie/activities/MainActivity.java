@@ -18,6 +18,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
@@ -692,6 +693,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     void getCityByLocation() {
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.READ_CONTACTS)) {
@@ -703,8 +706,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         MY_PERMISSIONS_ACCESS_FINE_LOCATION);
             }
 
-        } else {
-            locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        } else if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) ||
+                locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             progressDialog = new ProgressDialog(this);
             progressDialog.setMessage(getString(R.string.getting_location));
             progressDialog.setCancelable(false);
@@ -726,7 +729,27 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
             }
+        } else {
+            showLocationSettingsDialog();
         }
+    }
+
+    private void showLocationSettingsDialog(){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(R.string.location_settings);
+        alertDialog.setMessage(R.string.location_settings_message);
+        alertDialog.setPositiveButton(R.string.location_settings_button, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int which) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        });
+        alertDialog.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        alertDialog.show();
     }
 
     @Override
