@@ -8,6 +8,12 @@
     <string name="wind">Ветер</string>
     <string name="pressure">Давление</string>
     <string name="humidity">Влажность</string>
+    <string name="sunrise">Восход</string>
+    <string name="sunset">Закат</string>
+
+
+    <string name="last_update">Последнее обновление:\n%s</string>
+
 
     <string name="search_title">Искать населённый пункт</string>
     <string name="action_settings">Настройки</string>
@@ -23,7 +29,8 @@
     <string name="today">Сегодня</string>
     <string name="tomorrow">Завтра</string>
     <string name="setting_tempUnits">Единицы температуры</string>
-    <string name="downloading_data">Выполняется загрузка данных …</string>
+    <string name="downloading_data">Выполняется загрузка данных…</string>
+    <string name="getting_location">Определение местоположения…</string>
     <string name="setting_auto_detect_location">Определить местоположение</string>
     <string name="dialog_cancel">Отмена</string>
     <string name="setting_unit_kph">Километры в час (км/ч)</string>
@@ -48,6 +55,14 @@
     <string name="setting_unit_Fahrenheit">Фаренгейт</string>
     <string name="setting_unit_Kelvin">Кельвин</string>
     <string name="setting_wind_direction_format">Формат направления ветра</string>
+    <string name="setting_apiKey">API ключ</string>
+    <string name="setting_apiKey_summary">Ключ для OpenWeatherMap API</string>
+    <string name="setting_theme">Тема</string>
+    <string name="setting_theme_fresh">Новая</string>
+    <string name="setting_theme_classic">Классическая</string>
+    <string name="setting_theme_dark">Новая темная</string>
+    <string name="setting_theme_classic_dark">Классическая темная</string>
+
 
     <string name="wind_direction_format_none">Не отображать</string>
     <string name="wind_direction_format_arrows">Стрелки</string>
@@ -76,4 +91,8 @@
     <string name="dash_clock_expanded_title">%1$s°%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\nВетер: %3$s %4$s\nДавление: %5$s %6$s\nВлажность: %7$s %%\n</string>
+    <string name="settings_title_units">Единицы</string>
+    <string name="settings_title_display">Отображение</string>
+    <string name="settings_title_data">Данные</string>
+    <string name="setting_displayDecimalZeroes">Отображать десятичные нули</string>
 </resources>
