@@ -1,4 +1,4 @@
-package cz.martykan.forecastie;
+package cz.martykan.forecastie.models;
 
 import android.content.Context;
 
@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import cz.martykan.forecastie.R;
 
 public class Weather {
 
@@ -235,14 +237,14 @@ public class Weather {
         initial.set(Calendar.MILLISECOND, 0);
         initial.set(Calendar.SECOND, 0);
         initial.set(Calendar.MINUTE, 0);
-        initial.set(Calendar.HOUR, 0);
+        initial.set(Calendar.HOUR_OF_DAY, 0);
 
         Calendar me = Calendar.getInstance();
         me.setTime(this.date);
         me.set(Calendar.MILLISECOND, 0);
         me.set(Calendar.SECOND, 0);
         me.set(Calendar.MINUTE, 0);
-        me.set(Calendar.HOUR, 0);
+        me.set(Calendar.HOUR_OF_DAY, 0);
 
         return Math.round((me.getTimeInMillis() - initial.getTimeInMillis()) / 86400000.0);
     }

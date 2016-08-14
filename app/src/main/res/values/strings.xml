@@ -34,7 +34,7 @@
     <string name="setting_tempUnits">Temperature units</string>
     <string name="setting_showTempAsInteger">Show temperature only as an integer</string>
     <string name="setting_pressureUnits">Pressure units</string>
-    <string name="setting_darkTheme">Dark theme</string>
+    <string name="setting_theme">Theme</string>
     <string name="setting_auto_detect_location">Detect Location</string>
     <string name="setting_differentiateDaysByTint">Differentiate Days with Color</string>
     <string name="setting_refreshInterval">Background refresh interval</string>
@@ -68,6 +68,11 @@
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mm Hg</string>
+
+    <string name="setting_theme_fresh">Fresh</string>
+    <string name="setting_theme_classic">Classic</string>
+    <string name="setting_theme_dark">Fresh Dark</string>
+    <string name="setting_theme_classic_dark">Classic Dark</string>
 
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>
@@ -110,4 +115,12 @@
     <string name="dash_clock_expanded_title">%1$s°%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\nWind: %3$s %4$s\nPressure: %5$s %6$s\nHumidity: %7$s %%\n</string>
+    <string name="settings_title_units">Units</string>
+    <string name="settings_title_display">Display</string>
+    <string name="settings_title_data">Data</string>
+    <string name="setting_displayDecimalZeroes">Display decimal zeroes</string>
+
+    <string name="location_settings">Location Settings</string>
+    <string name="location_settings_message">Location is not enabled. Do you wish to go to the settings menu?</string>
+    <string name="location_settings_button">Settings</string>
 </resources>

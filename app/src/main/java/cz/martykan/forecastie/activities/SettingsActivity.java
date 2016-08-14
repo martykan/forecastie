@@ -1,4 +1,4 @@
-package cz.martykan.forecastie;
+package cz.martykan.forecastie.activities;
 
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -16,6 +16,10 @@ import android.widget.LinearLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
+
+import cz.martykan.forecastie.AlarmReceiver;
+import cz.martykan.forecastie.R;
 
 public class SettingsActivity extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -25,9 +29,7 @@ public class SettingsActivity extends PreferenceActivity
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("darkTheme", false)) {
-            setTheme(R.style.AppTheme_Dark);
-        }
+        setTheme(getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")));
 
         super.onCreate(savedInstanceState);
 
@@ -60,6 +62,7 @@ public class SettingsActivity extends PreferenceActivity
         setListPreferenceSummary("pressureUnit");
         setListPreferenceSummary("refreshInterval");
         setListPreferenceSummary("windDirectionFormat");
+        setListPreferenceSummary("theme");
     }
 
     @Override
@@ -90,7 +93,7 @@ public class SettingsActivity extends PreferenceActivity
             case "dateFormatCustom":
                 updateDateFormatList();
                 break;
-            case "darkTheme":
+            case "theme":
                 // Restart activity to apply theme
                 overridePendingTransition(0, 0);
                 finish();
@@ -154,6 +157,19 @@ public class SettingsActivity extends PreferenceActivity
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         if (sp.getString(key, "").equals("")){
             sp.edit().remove(key).apply();
+        }
+    }
+
+    private int getTheme(String themePref) {
+        switch (themePref) {
+            case "dark":
+                return R.style.AppTheme_Dark;
+            case "classic":
+                return R.style.AppTheme_Classic;
+            case "classicdark":
+                return R.style.AppTheme_Classic_Dark;
+            default:
+                return R.style.AppTheme;
         }
     }
 }

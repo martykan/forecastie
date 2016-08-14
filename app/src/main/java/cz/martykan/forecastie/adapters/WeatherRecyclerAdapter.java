@@ -1,7 +1,8 @@
-package cz.martykan.forecastie;
+package cz.martykan.forecastie.adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import cz.martykan.forecastie.activities.MainActivity;
+import cz.martykan.forecastie.R;
+import cz.martykan.forecastie.models.Weather;
+import cz.martykan.forecastie.models.WeatherViewHolder;
 
 public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHolder> {
     private List<Weather> itemList;
@@ -115,30 +121,29 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
             Date now = new Date();
             /* Unfortunately, the getColor() that takes a theme (the next commented line) is Android 6.0 only, so we have to do it manually
              * customViewHolder.itemView.setBackgroundColor(context.getResources().getColor(R.attr.colorTintedBackground, context.getTheme())); */
-            int colorResourceId;
+            int color;
             if (weatherItem.getNumDaysFrom(now) > 1) {
+                TypedArray ta = context.obtainStyledAttributes(new int[]{R.attr.colorTintedBackground, R.attr.colorBackground});
                 if (weatherItem.getNumDaysFrom(now) % 2 == 1) {
-                    if (sp.getBoolean("darkTheme", false)) {
-                        colorResourceId = R.color.darkTheme_colorTintedBackground;
-                    } else {
-                        colorResourceId = R.color.colorTintedBackground;
-                    }
+                    color = ta.getColor(0, context.getResources().getColor(R.color.colorTintedBackground));
                 } else {
                     /* We must explicitly set things back, because RecyclerView seems to reuse views and
                      * without restoring back the "normal" color, just about everything gets tinted if we
                      * scroll a couple of times! */
-                    if (sp.getBoolean("darkTheme", false)) {
-                        colorResourceId = R.color.darkTheme_colorBackground;
-                    } else {
-                        colorResourceId = R.color.colorBackground;
-                    }
+                    color = ta.getColor(1, context.getResources().getColor(R.color.colorBackground));
                 }
-                customViewHolder.itemView.setBackgroundColor(context.getResources().getColor(colorResourceId));
+                ta.recycle();
+                customViewHolder.itemView.setBackgroundColor(color);
             }
         }
 
         customViewHolder.itemDate.setText(dateString);
-        customViewHolder.itemTemperature.setText(new DecimalFormat("#.#").format(temperature) + " °" + sp.getString("unit", "C"));
+        if(sp.getBoolean("displayDecimalZeroes", false)) {
+            customViewHolder.itemTemperature.setText(new DecimalFormat("#.0").format(temperature) + " °" + sp.getString("unit", "C"));
+        }
+        else {
+            customViewHolder.itemTemperature.setText(new DecimalFormat("#.#").format(temperature) + " °" + sp.getString("unit", "C"));
+        }
         customViewHolder.itemDescription.setText(weatherItem.getDescription().substring(0, 1).toUpperCase() +
                 weatherItem.getDescription().substring(1) + rainString);
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");

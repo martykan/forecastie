@@ -1,4 +1,4 @@
-package cz.martykan.forecastie;
+package cz.martykan.forecastie.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

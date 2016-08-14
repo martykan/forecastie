@@ -24,7 +24,6 @@
     <string name="setting_speedUnits">Abiaduraren unitateak</string>
     <string name="setting_tempUnits">Tenperaturaren unitateak</string>
     <string name="setting_pressureUnits">Presioaren unitateak</string>
-    <string name="setting_darkTheme">Gai iluna</string>
     <string name="setting_differentiateDaysByTint">Egunak kolorez bereizi</string>
     <string name="setting_refreshInterval">Atzeko planoko freskatze tartea</string>
 

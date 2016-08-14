@@ -13,6 +13,11 @@
     <string name="wind">Vento</string>
     <string name="pressure">Pressão</string>
     <string name="humidity">Humidade</string>
+    <string name="sunrise">Amanhecer</string>
+    <string name="sunset">Anoitecer</string>
+
+    <string name="last_update">Última atualização:\n%s</string>
+    <string name="last_update_widget">\nÚltima atualização: %s</string>
 
     <string name="search_title">Pesquisar uma cidade</string>
 
@@ -24,10 +29,10 @@
     <string name="setting_dateFormat">Formato de data</string>
     <string name="setting_dateFormatCustom">Formato de data personalizado</string>
     <string name="setting_dateFormatCustom_summary">Introduza a string SimpleDateFormat personalizada a ser usada</string>
+    <string name="setting_lengthUnits">Unidades de comprimento</string>
     <string name="setting_speedUnits">Unidades de velocidade</string>
     <string name="setting_tempUnits">Unidades de temperatura</string>
     <string name="setting_pressureUnits">Unidades de pressão</string>
-    <string name="setting_darkTheme">Tema escuro</string>
     <string name="setting_auto_detect_location">Detetar localização</string>
     <string name="setting_differentiateDaysByTint">Diferenciar dias por cor</string>
     <string name="setting_refreshInterval">Intervalo da atualização em segundo plano</string>
@@ -42,6 +47,9 @@
     <string name="setting_unit_Celsuis">Celsius</string>
     <string name="setting_unit_Fahrenheit">Fahrenheit</string>
     <string name="setting_unit_Kelvin">Kelvin</string>
+
+    <string name="setting_unit_mm">Milímetros (mm)</string>
+    <string name="setting_unit_in">Polegadas (in)</string>
 
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
