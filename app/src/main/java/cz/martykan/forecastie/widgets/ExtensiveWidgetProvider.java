@@ -33,7 +33,18 @@ public class ExtensiveWidgetProvider extends AbstractWidgetProvider {
             remoteViews.setOnClickPendingIntent(R.id.widgetRoot, pendingIntent2);
 
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-            Weather widgetWeather = parseWidgetJson(sp.getString("lastToday", ""), context);
+            Weather widgetWeather = new Weather();
+            if(!sp.getString("lastToday", "").equals("")) {
+                widgetWeather = parseWidgetJson(sp.getString("lastToday", ""), context);
+            }
+            else {
+                try {
+                    pendingIntent2.send();
+                } catch (PendingIntent.CanceledException e) {
+                    e.printStackTrace();
+                }
+                return;
+            }
 
             DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(context);
 
@@ -43,7 +54,7 @@ public class ExtensiveWidgetProvider extends AbstractWidgetProvider {
             remoteViews.setTextViewText(R.id.widgetWind, widgetWeather.getWind());
             remoteViews.setTextViewText(R.id.widgetPressure, widgetWeather.getPressure());
             remoteViews.setTextViewText(R.id.widgetHumidity, context.getString(R.string.humidity) + ": " + widgetWeather.getHumidity() + " %");
-            remoteViews.setTextViewText(R.id.widgetSunrise, context.getString(R.string.sunrise) + ": " + timeFormat.format(widgetWeather.getSunrise()));
+            remoteViews.setTextViewText(R.id.widgetSunrise, context.getString(R.string.sunrise) + ": " + timeFormat.format(widgetWeather.getSunrise())); //
             remoteViews.setTextViewText(R.id.widgetSunset, context.getString(R.string.sunset) + ": " + timeFormat.format(widgetWeather.getSunset()));
             remoteViews.setTextViewText(R.id.widgetLastUpdate, widgetWeather.getLastUpdated());
             remoteViews.setImageViewBitmap(R.id.widgetIcon, getWeatherIcon(widgetWeather.getIcon(), context));
