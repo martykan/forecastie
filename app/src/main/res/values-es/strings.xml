@@ -24,7 +24,7 @@
     <string name="downloading_data">Descargando sus datos...</string>
     <string name="getting_location">Obteniendo su ubicación...</string>
     
-    <string name="error_dateFormat">ERROR DE FORMATO DE FECHA</string>
+    <string name="error_dateFormat">ERROR EN FORMATO DE FECHA</string>
 
     <string name="setting_dateFormat">Formato de fecha</string>
     <string name="setting_dateFormatCustom">Formato de fecha personalizado</string>
@@ -32,7 +32,9 @@
     <string name="setting_lengthUnits">Unidades de longitud</string>
     <string name="setting_speedUnits">Unidades de velocidad</string>
     <string name="setting_tempUnits">Unidades de temperatura</string>
+    <string name="setting_showTempAsInteger">Mostrar temperatura sólo como entero</string>
     <string name="setting_pressureUnits">Unidades de presión</string>
+    <string name="setting_theme">Tema</string>
     <string name="setting_auto_detect_location">Detectar ubicación</string>
     <string name="setting_differentiateDaysByTint">Diferenciar los días con colores</string>
     <string name="setting_refreshInterval">Intervalo de actualización en segundo plano</string>
@@ -67,6 +69,11 @@
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mm Hg</string>
 
+    <string name="setting_theme_fresh">Moderno</string>
+    <string name="setting_theme_classic">Clásico</string>
+    <string name="setting_theme_dark">Moderno oscuro</string>
+    <string name="setting_theme_classic_dark">Clásico oscuro</string>
+
     <string name="dialog_ok">Aceptar</string>
     <string name="dialog_cancel">Cancelar</string>
 
@@ -74,6 +81,15 @@
     <string name="msg_connection_problem">Hay un problema con su conexión a Internet.</string>
     <string name="msg_connection_not_available">Conexión no disponible.</string>
     <string name="msg_city_not_found">No se encuentra la ciudad especificada.</string>
+
+    <string name="weather_sunny" translatable="false">&#xf00d;</string>
+    <string name="weather_clear_night" translatable="false">&#xf02e;</string>
+    <string name="weather_foggy" translatable="false">&#xf014;</string>
+    <string name="weather_cloudy" translatable="false">&#xf013;</string>
+    <string name="weather_rainy" translatable="false">&#xf019;</string>
+    <string name="weather_snowy" translatable="false">&#xf01b;</string>
+    <string name="weather_thunder" translatable="false">&#xf01e;</string>
+    <string name="weather_drizzle" translatable="false">&#xf01c;</string>
 
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_north_east">NNE</string>
@@ -99,5 +115,12 @@
     <string name="dash_clock_expanded_title">%1$s°%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\nViento: %3$s %4$s\nPresión: %5$s %6$s\nHumedad: %7$s %%\n</string>
-    <string name="weather_cloudy" translatable="false"></string>
+    <string name="settings_title_units">Unidades</string>
+    <string name="settings_title_display">Mostrar</string>
+    <string name="settings_title_data">Datos</string>
+    <string name="setting_displayDecimalZeroes">Mostrar ceros decimales</string>
+
+    <string name="location_settings">Ajustes de ubicación</string>
+    <string name="location_settings_message">La ubicación no está activada. ¿Quiere ir al menú de ajustes?</string>
+    <string name="location_settings_button">Ajustes</string>
 </resources>
