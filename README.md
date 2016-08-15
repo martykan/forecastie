@@ -1,7 +1,6 @@
 # forecastie
 
 [![Release](https://img.shields.io/github/release/martykan/forecastie.svg)](https://github.com/martykan/forecastie/releases)
-[![Join the chat at https://gitter.im/martykan/forecastie](https://badges.gitter.im/martykan/forecastie.svg)](https://gitter.im/martykan/forecastie?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Circle CI](https://circleci.com/gh/martykan/forecastie/tree/master.svg?style=svg)](https://circleci.com/gh/martykan/forecastie/tree/master)
 
 A simple, opensource weather app for Android. It gathers data from [OpenWeatherMap](http://openweathermap.org/), via their public API.
@@ -20,6 +19,9 @@ A simple, opensource weather app for Android. It gathers data from [OpenWeatherM
 
 ## Contribution
 If you have any ideas or issues, don't hesitate to reach out to me. Every contribution is welcome.
+
+## Translators
+If you want to translate, I would recommend joining the translator mailing list. You will get notified a few days before a new version comes, so the translations can be done when it's released.
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
