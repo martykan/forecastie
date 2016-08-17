@@ -408,6 +408,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     private void updateTodayWeatherUI() {
+        try {
+            if (todayWeather.getCountry().isEmpty()) {
+                preloadWeather();
+                return;
+            }
+        }
+        catch (Exception e) {
+            preloadWeather();
+            return;
+        }
         String city = todayWeather.getCity();
         String country = todayWeather.getCountry();
         DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(getApplicationContext());
