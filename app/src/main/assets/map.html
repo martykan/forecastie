@@ -44,11 +44,11 @@
         maxZoom: 15,
         attribution: '© OpenStreetMap'
     }));
-    map.addLayer(new L.TileLayer("http://{s}.tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png", {
+    map.addLayer(new L.TileLayer("http://{s}.tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png&appid=" + getUrlParameter('appid'), {
         minZoom: 3,
         maxZoom: 15,
         attribution: '© OpenWeatherMap'
-    }));
+    }).setOpacity(0.7));
 </script>
 
 </body>
