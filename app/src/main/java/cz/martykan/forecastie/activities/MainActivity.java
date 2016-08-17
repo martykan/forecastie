@@ -361,6 +361,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             todayWeather.setCity(city);
             todayWeather.setCountry(country);
 
+            JSONObject coordinates = reader.getJSONObject("coord");
+            if (coordinates != null) {
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+                sp.edit().putFloat("latitude", (float) coordinates.getDouble("lon")).putFloat("longitude", (float) coordinates.getDouble("lat")).commit();
+            }
+
             JSONObject main = reader.getJSONObject("main");
 
             todayWeather.setTemperature(main.getString("temp"));
@@ -644,6 +650,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
             }
             return true;
+        }
+        if (id == R.id.action_map) {
+            Intent intent = new Intent(MainActivity.this, MapActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_search) {
             searchCities();

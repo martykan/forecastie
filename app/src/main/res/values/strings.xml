@@ -123,4 +123,5 @@
     <string name="location_settings">Location Settings</string>
     <string name="location_settings_message">Location is not enabled. Do you wish to go to the settings menu?</string>
     <string name="location_settings_button">Settings</string>
+    <string name="action_weather_map">Weather Map</string>
 </resources>
