@@ -30,7 +30,6 @@
     <string name="setting_speedUnits">风速单位</string>
     <string name="setting_tempUnits">气温单位</string>
     <string name="setting_pressureUnits">气压单位</string>
-    <string name="setting_darkTheme">夜间模式</string>
     <string name="setting_auto_detect_location">检测位置</string>
     <string name="setting_differentiateDaysByTint">用颜色区分不同天数</string>
     <string name="setting_refreshInterval">背景更新间隔</string>

@@ -95,4 +95,5 @@
     <string name="settings_title_data">Daten</string>
     <string name="settings_title_display">Anzeige</string>
     <string name="settings_title_units">Einheiten</string>
+    <string name="action_weather_map">Wetterkarte</string>
 </resources>
