@@ -43,24 +43,30 @@
     }).setView([getUrlParameter('lon'), getUrlParameter('lat')], 13);
 
     map.addLayer(new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        minZoom: 3,
+        minZoom: 1,
         maxZoom: 15
     }));
     // Wind
-   /* map.addLayer(new L.TileLayer("http://{s}.maps.owm.io:8099/57b585fa946d8a0100852aee/{z}/{x}/{y}?hash=d454ac88526eca77574f7d9c24a50efa", {
-        minZoom: 3,
+    var windLayer = new L.TileLayer("http://{s}.maps.owm.io:8099/57b585fa946d8a0100852aee/{z}/{x}/{y}?hash=d454ac88526eca77574f7d9c24a50efa", {
+        minZoom: 1,
         maxZoom: 15
-    }).setOpacity(0.7));
+    });
+    windLayer.setOpacity(0.7);
+
     // Rain
-    map.addLayer(new L.TileLayer("http://{s}.maps.owm.io:8099/57b58d2a946d8a0100852aef/{z}/{x}/{y}?hash=d454ac88526eca77574f7d9c24a50efa", {
-        minZoom: 3,
+    var rainLayer = new L.TileLayer("http://{s}.maps.owm.io:8099/57b58d2a946d8a0100852aef/{z}/{x}/{y}?hash=d454ac88526eca77574f7d9c24a50efa", {
+        minZoom: 1,
         maxZoom: 15
-    }).setOpacity(0.7));*/
+    });
+    rainLayer.setOpacity(0.7);
+    map.addLayer(rainLayer);
+
     // Temperature
-    map.addLayer(new L.TileLayer("http://{s}.maps.owm.io:8099/57b590ff946d8a0100852af0/{z}/{x}/{y}?hash=d454ac88526eca77574f7d9c24a50efa", {
-        minZoom: 3,
+    var tempLayer = new L.TileLayer("http://{s}.maps.owm.io:8099/57b590ff946d8a0100852af0/{z}/{x}/{y}?hash=d454ac88526eca77574f7d9c24a50efa", {
+        minZoom: 1,
         maxZoom: 15
-    }).setOpacity(0.7));
+    });
+    tempLayer.setOpacity(0.7);
 </script>
 
 </body>
