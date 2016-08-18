@@ -73,7 +73,9 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activities.MapActivity"
+        <activity
+            android:name=".activities.MapActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme.NoStatusBar"></activity>
     </application>
 
