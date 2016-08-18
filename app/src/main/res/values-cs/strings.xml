@@ -94,11 +94,9 @@
     <string name="setting_theme_classic">Klasické</string>
     <string name="setting_theme_classic_dark">Klasické tmavé</string>
     <string name="action_weather_map">Mapa počasí</string>
-    <string name="apiKey" translatable="false"></string>
     <string name="location_settings">Nastavení polohy</string>
     <string name="location_settings_button">Nastavení</string>
     <string name="location_settings_message">Určovaní polohy není zapnuto. Chcete přejít do nastavení?</string>
-    <string name="setting_darkTheme"></string>
     <string name="setting_displayDecimalZeroes">Zobrazit desetinné nuly</string>
     <string name="setting_theme_dark">Čerstvé tmavé</string>
     <string name="setting_theme_fresh">Čerstvé</string>

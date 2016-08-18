@@ -38,4 +38,5 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:support-v4:23.1.1'
     compile 'com.google.android.apps.dashclock:dashclock-api:+'
+    compile 'com.roughike:bottom-bar:1.4.0.1'
 }

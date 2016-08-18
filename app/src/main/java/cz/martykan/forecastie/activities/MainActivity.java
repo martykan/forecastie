@@ -15,7 +15,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -28,7 +27,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,15 +39,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.Closeable;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -63,16 +52,16 @@ import java.util.Map;
 
 import cz.martykan.forecastie.AlarmReceiver;
 import cz.martykan.forecastie.Constants;
-import cz.martykan.forecastie.tasks.GenericRequestTask;
-import cz.martykan.forecastie.tasks.ParseResult;
-import cz.martykan.forecastie.tasks.TaskOutput;
-import cz.martykan.forecastie.widgets.DashClockWeatherExtension;
 import cz.martykan.forecastie.R;
-import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.adapters.ViewPagerAdapter;
 import cz.martykan.forecastie.adapters.WeatherRecyclerAdapter;
 import cz.martykan.forecastie.fragments.RecyclerViewFragment;
+import cz.martykan.forecastie.models.Weather;
+import cz.martykan.forecastie.tasks.GenericRequestTask;
+import cz.martykan.forecastie.tasks.ParseResult;
+import cz.martykan.forecastie.tasks.TaskOutput;
 import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
+import cz.martykan.forecastie.widgets.DashClockWeatherExtension;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
     private static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
@@ -107,9 +96,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     int theme;
     boolean destroyed = false;
 
-    private List<Weather> longTermWeather;
-    private List<Weather> longTermTodayWeather;
-    private List<Weather> longTermTomorrowWeather;
+    private List<Weather> longTermWeather = new ArrayList<>();
+    private List<Weather> longTermTodayWeather = new ArrayList<>();
+    private List<Weather> longTermTomorrowWeather = new ArrayList<>();
 
     public String recentCity = "";
 
@@ -200,8 +189,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         try {
             locationManager.removeUpdates(MainActivity.this);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -419,8 +407,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 preloadWeather();
                 return;
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             preloadWeather();
             return;
         }
@@ -747,8 +734,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 public void onClick(DialogInterface dialogInterface, int i) {
                     try {
                         locationManager.removeUpdates(MainActivity.this);
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -765,12 +751,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
-    private void showLocationSettingsDialog(){
+    private void showLocationSettingsDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle(R.string.location_settings);
         alertDialog.setMessage(R.string.location_settings_message);
         alertDialog.setPositiveButton(R.string.location_settings_button, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog,int which) {
+            public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivity(intent);
             }
@@ -824,7 +810,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public void onProviderDisabled(String provider) {
 
     }
-
 
 
     class TodayWeatherTask extends GenericRequestTask {

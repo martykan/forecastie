@@ -36,6 +36,8 @@
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 
+    <style name="AppTheme.NoStatusBar" parent="AppTheme.NoActionBar"></style>
+
     <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
