@@ -6,9 +6,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -155,6 +159,95 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         protected void onPostExecute(Void v) {
 
+        }
+    }
+
+    public class GetLocationTask extends AsyncTask <String, String, Void> {
+        private static final String TAG = "GetLocationTask";
+
+        private final double MAX_RUNNING_TIME = 30 * 1000;
+
+        private LocationManager locationManager;
+        private BackgroundLocationListener locationListener;
+
+        @Override
+        protected void onPreExecute() {
+            Log.d(TAG, "Trying to determine location...");
+            locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+            locationListener = new BackgroundLocationListener();
+            try {
+                if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                    // Only uses 'network' location, as asking the GPS every time would drain too much battery
+                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+                } else {
+                    Log.d(TAG, "'Network' location is not enabled. Cancelling determining location.");
+                    onPostExecute(null);
+                }
+            } catch (SecurityException e) {
+                Log.e(TAG, "Couldn't request location updates. Probably this is an Android (>M) runtime permissions issue ", e);
+            }
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+            long startTime = System.currentTimeMillis();
+            long runningTime = 0;
+            while (locationListener.getLocation() == null && runningTime < MAX_RUNNING_TIME) { // Give up after 30 seconds
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Log.e(TAG, "Error occurred while waiting for location update", e);
+                }
+                runningTime = System.currentTimeMillis() - startTime;
+            }
+            if (locationListener.getLocation() == null) {
+                Log.d(TAG, String.format("Couldn't determine location in less than %s seconds", MAX_RUNNING_TIME / 1000));
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            Location location = locationListener.getLocation();
+            if (location != null) {
+                Log.d(TAG, String.format("Determined location: latitude %f - longitude %f", location.getLatitude(), location.getLongitude()));
+            } else {
+                Log.e(TAG, "Couldn't determine location");
+            }
+            try {
+                locationManager.removeUpdates(locationListener);
+            } catch (SecurityException e) {
+                Log.e(TAG, "Couldn't remove location updates. Probably this is an Android (>M) runtime permissions", e);
+            }
+        }
+
+        public class BackgroundLocationListener implements LocationListener {
+            private static final String TAG = "LocationListener";
+            private Location location;
+
+            @Override
+            public void onLocationChanged(Location location) {
+                this.location = location;
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+
+            public Location getLocation() {
+                return location;
+            }
         }
     }
 
