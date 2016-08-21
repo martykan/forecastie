@@ -13,6 +13,11 @@
     <string name="wind">風力</string>
     <string name="pressure">気圧</string>
     <string name="humidity">湿度</string>
+    <string name="sunrise">日の出</string>
+    <string name="sunset">日の入</string>
+
+    <string name="last_update">最終更新:\n%s</string>
+    <string name="last_update_widget">\n最終更新: %s</string>
 
     <string name="search_title">都市の検索</string>
 
@@ -24,15 +29,19 @@
     <string name="setting_dateFormat">日付形式</string>
     <string name="setting_dateFormatCustom">カスタム日付形式</string>
     <string name="setting_dateFormatCustom_summary">使用するカスタム SimpleDateFormat 文字列を入力してください</string>
+    <string name="setting_lengthUnits">長さの単位</string>
     <string name="setting_speedUnits">風速の単位</string>
     <string name="setting_tempUnits">気温の単位</string>
+    <string name="setting_showTempAsInteger">気温を整数でのみ表示</string>
     <string name="setting_pressureUnits">気圧の単位</string>
+    <string name="setting_theme">テーマ</string>
     <string name="setting_auto_detect_location">位置を検出</string>
     <string name="setting_differentiateDaysByTint">色で日数を区別</string>
     <string name="setting_refreshInterval">バックグラウンド更新間隔</string>
     <string name="setting_unit_mps">メートル毎秒 (m/s)</string>
     <string name="setting_unit_kph">キロメートル毎時 (kph)</string>
     <string name="setting_unit_mph">マイル毎時 (mph)</string>
+    <string name="setting_wind_direction_format">風向の書式</string>
     <string name="settings_none">なし</string>
     <string name="setting_apiKey">API キー</string>
     <string name="setting_apiKey_summary">OpenWeatherMap クエリー用のカスタム API キー</string>
@@ -40,6 +49,9 @@
     <string name="setting_unit_Celsuis">セ氏</string>
     <string name="setting_unit_Fahrenheit">カ氏</string>
     <string name="setting_unit_Kelvin">ケルビン</string>
+
+    <string name="setting_unit_mm">ミリメートル (mm)</string>
+    <string name="setting_unit_in">インチ (in)</string>
 
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
@@ -49,9 +61,18 @@
     <string name="speed_unit_kph">kph</string>
     <string name="speed_unit_mph">mph</string>
 
+    <string name="wind_direction_format_none">表示なし</string>
+    <string name="wind_direction_format_arrows">矢印</string>
+    <string name="wind_direction_format_abbreviations">略号</string>
+
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mm Hg</string>
+
+    <string name="setting_theme_fresh">フレッシュ</string>
+    <string name="setting_theme_classic">クラシック</string>
+    <string name="setting_theme_dark">フレッシュ ダーク</string>
+    <string name="setting_theme_classic_dark">クラシック ダーク</string>
 
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">キャンセル</string>
@@ -61,11 +82,38 @@
     <string name="msg_connection_not_available">接続が利用できません。</string>
     <string name="msg_city_not_found">指定した都市が見つかりません。</string>
 
+    <string name="wind_direction_north">北</string>
+    <string name="wind_direction_north_north_east">北北東</string>
+    <string name="wind_direction_north_east">北東</string>
+    <string name="wind_direction_east_north_east">東北東</string>
+    <string name="wind_direction_east">東</string>
+    <string name="wind_direction_east_south_east">東南東</string>
+    <string name="wind_direction_south_east">南東</string>
+    <string name="wind_direction_south_south_east">南南東</string>
+    <string name="wind_direction_south">南</string>
+    <string name="wind_direction_south_south_west">南南西</string>
+    <string name="wind_direction_south_west">南西</string>
+    <string name="wind_direction_west_south_west">西南西</string>
+    <string name="wind_direction_west">西</string>
+    <string name="wind_direction_west_north_west">西北西</string>
+    <string name="wind_direction_north_west">北西</string>
+    <string name="wind_direction_north_north_west">北北西</string>
+    <string name="msg_too_many_requests">リクエストが多すぎます。もう一度やり直してください。</string>
+
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s°%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s°%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\n風力: %3$s %4$s\n気圧: %5$s %6$s\n湿度: %7$s %%\n</string>
+    <string name="settings_title_units">単位</string>
+    <string name="settings_title_display">表示</string>
+    <string name="settings_title_data">データ</string>
+    <string name="setting_displayDecimalZeroes">少数のゼロを表示</string>
+
+    <string name="location_settings">場所の設定</string>
+    <string name="location_settings_message">場所が有効ではありません。設定メニューに移動しますか?</string>
+    <string name="location_settings_button">設定</string>
+    <string name="action_weather_map">天気地図</string>
 
 </resources>
