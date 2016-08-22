@@ -1,13 +1,18 @@
 package cz.martykan.forecastie.activities;
 
+import android.Manifest;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -100,8 +105,37 @@ public class SettingsActivity extends PreferenceActivity
                 overridePendingTransition(0, 0);
                 startActivity(getIntent());
                 break;
+            case "updateLocationAutomatically":
+                if (sharedPreferences.getBoolean(key, false) == true) {
+                    requestReadLocationPermission();
+                }
+                break;
             case "apiKey":
                 checkKey(key);
+        }
+    }
+
+    private void requestReadLocationPermission() {
+        System.out.println("Calling request location permission");
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_CONTACTS)) {
+                // Explanation not needed, since user requests this himself
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MainActivity.MY_PERMISSIONS_ACCESS_FINE_LOCATION);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == MainActivity.MY_PERMISSIONS_ACCESS_FINE_LOCATION) {
+            boolean permissionGranted = grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
+            CheckBoxPreference checkBox = (CheckBoxPreference) findPreference("updateLocationAutomatically");
+            checkBox.setChecked(permissionGranted);
         }
     }
 
