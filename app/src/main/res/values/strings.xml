@@ -126,4 +126,5 @@
     <string name="action_weather_map">Weather Map</string>
     <string name="rain">Rain</string>
     <string name="temperature">Temperature</string>
+    <string name="action_graphs">Graphs</string>
 </resources>

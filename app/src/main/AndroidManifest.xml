@@ -76,7 +76,13 @@
         <activity
             android:name=".activities.MapActivity"
             android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoStatusBar"></activity>
+            android:theme="@style/AppTheme.NoStatusBar" />
+
+        <activity
+            android:name=".activities.GraphActivity"
+            android:label="@string/action_graphs"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

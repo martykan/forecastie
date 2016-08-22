@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         return icon;
     }
 
-    private String getRainString(JSONObject rainObj) {
+    public static String getRainString(JSONObject rainObj) {
         String rain = "0";
         if (rainObj != null) {
             rain = rainObj.optString("3h", "fail");
@@ -640,6 +640,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
         if (id == R.id.action_map) {
             Intent intent = new Intent(MainActivity.this, MapActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.action_graphs) {
+            Intent intent = new Intent(MainActivity.this, GraphActivity.class);
             startActivity(intent);
         }
         if (id == R.id.action_search) {
