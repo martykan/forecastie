@@ -103,4 +103,7 @@
     <string name="settings_title_data">Data</string>
     <string name="settings_title_display">Zobrazení</string>
     <string name="settings_title_units">Jednotky</string>
+    <string name="rain">Déšť</string>
+    <string name="temperature">Teplota</string>
+    <string name="action_graphs">Grafy</string>
 </resources>
