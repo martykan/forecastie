@@ -304,8 +304,11 @@ public class AlarmReceiver extends BroadcastReceiver {
                             country = ", " + countryObj.getString("country");
                         }
                         Log.d(TAG, "City: " + city + country);
+                        String lastCity = PreferenceManager.getDefaultSharedPreferences(context).getString("city", "");
+                        String currentCity = city + country;
                         SharedPreferences.Editor editor = sp.edit();
-                        editor.putString("city", city + country);
+                        editor.putString("city", currentCity);
+                        editor.putBoolean("cityChanged", !currentCity.equals(lastCity));
                         editor.commit();
 
                     } catch (JSONException e){
