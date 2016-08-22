@@ -5,7 +5,9 @@
 
 A simple, opensource weather app for Android. It gathers data from [OpenWeatherMap](http://openweathermap.org/), via their public API.
 
-[![Release](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Get_it_on_F-Droid.svg/200px-Get_it_on_F-Droid.svg.png)](https://f-droid.org/repository/browse/?fdid=cz.martykan.forecastie)
+[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Get_it_on_F-Droid.svg/200px-Get_it_on_F-Droid.svg.png" style="float: left; padding-right: 10px;">](https://f-droid.org/repository/browse/?fdid=cz.martykan.forecastie)
+
+**BEWARE**: This [Google Play listing](https://play.google.com/store/apps/details?id=cz.martykan.forecastie) is not official, even though it's using my package ID.
 
 ## Features
 * Simple design
@@ -15,8 +17,9 @@ A simple, opensource weather app for Android. It gathers data from [OpenWeatherM
 * Offline functionality
 
 ## Screenshots
-[<img src="http://i.imgur.com/sqEAnJW.png" width=250>](http://i.imgur.com/sqEAnJW.png)
-[<img src="http://i.imgur.com/aTVW8ab.png" width=250>](http://i.imgur.com/aTVW8ab.png)
+[<img src="http://i.imgur.com/bvcc7Lt.png" width=250>](http://i.imgur.com/bvcc7Lt.png)
+[<img src="http://i.imgur.com/SaH5X2O.png" width=250>](http://i.imgur.com/SaH5X2O.png)
+[<img src="http://i.imgur.com/ztMbvyY.png" width=250>](http://i.imgur.com/ztMbvyY.png)
 
 ## Contribution
 If you have any ideas or issues, don't hesitate to reach out to me. Every contribution is welcome.
