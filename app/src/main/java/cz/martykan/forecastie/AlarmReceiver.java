@@ -63,6 +63,12 @@ public class AlarmReceiver extends BroadcastReceiver {
         boolean failed;
         if (isNetworkAvailable()) {
             failed = false;
+            if (isUpdateLocation()) {
+                new GetLocationAndWeatherTask().execute(); // This method calls the two methods below once it has determined a location
+            } else {
+                new GetWeatherTask().execute();
+                new GetLongTermWeatherTask().execute();
+            }
         } else {
             failed = true;
         }
@@ -76,6 +82,11 @@ public class AlarmReceiver extends BroadcastReceiver {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private boolean isUpdateLocation() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getBoolean("updateLocationAutomatically", false);
     }
 
     public class GetWeatherTask extends AsyncTask<String, String, Void> {
