@@ -17,6 +17,9 @@ import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -60,8 +63,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         boolean failed;
         if (isNetworkAvailable()) {
             failed = false;
-            new GetWeatherTask().execute();
-            new GetLongTermWeatherTask().execute();
         } else {
             failed = true;
         }
@@ -162,8 +163,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
     }
 
-    public class GetLocationTask extends AsyncTask <String, String, Void> {
-        private static final String TAG = "GetLocationTask";
+    public class GetLocationAndWeatherTask extends AsyncTask <String, String, Void> {
+        private static final String TAG = "LocationAndWTask";
 
         private final double MAX_RUNNING_TIME = 30 * 1000;
 
@@ -211,6 +212,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             Location location = locationListener.getLocation();
             if (location != null) {
                 Log.d(TAG, String.format("Determined location: latitude %f - longitude %f", location.getLatitude(), location.getLongitude()));
+                new GetCityNameTask().execute(String.valueOf(location.getLatitude()), String.valueOf(location.getLongitude()));
             } else {
                 Log.e(TAG, "Couldn't determine location");
             }
@@ -248,6 +250,67 @@ public class AlarmReceiver extends BroadcastReceiver {
             public Location getLocation() {
                 return location;
             }
+        }
+    }
+
+    public class GetCityNameTask extends AsyncTask <String, String, Void> {
+        private static final String TAG = "GetCityNameTask";
+
+        @Override
+        protected Void doInBackground(String... params) {
+            String lat = params[0];
+            String lon = params[1];
+
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+            String language = Locale.getDefault().getLanguage();
+            if(language.equals("cs")) {
+                language = "cz";
+            }
+            String apiKey = sp.getString("apiKey", context.getResources().getString(R.string.apiKey));
+
+            try {
+                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=&lat=" + lat + "&lon=" + lon + "&lang="+ language +"&appid=" + apiKey);
+                Log.d(TAG, "Request: " + url.toString());
+
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+                if (urlConnection.getResponseCode() == 200) {
+                    BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    String result = "";
+                    String line;
+                    while ((line = r.readLine()) != null) {
+                        result += line + "\n";
+                    }
+                    Log.d(TAG, "JSON Result: " + result);
+                    try {
+                        JSONObject reader = new JSONObject(result);
+                        String city = reader.getString("name");
+                        String country = "";
+                        JSONObject countryObj = reader.optJSONObject("sys");
+                        if (countryObj != null) {
+                            country = ", " + countryObj.getString("country");
+                        }
+                        Log.d(TAG, "City: " + city + country);
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putString("city", city + country);
+                        editor.commit();
+
+                    } catch (JSONException e){
+                        Log.e(TAG, "An error occurred while reading the JSON object", e);
+                    }
+                } else {
+                    Log.e(TAG, "Error: Response code " + urlConnection.getResponseCode());
+                }
+            } catch (IOException e) {
+                Log.e(TAG, "Connection error", e);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            new GetWeatherTask().execute();
+            new GetLongTermWeatherTask().execute();
         }
     }
 
