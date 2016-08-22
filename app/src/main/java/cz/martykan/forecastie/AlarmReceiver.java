@@ -225,7 +225,9 @@ public class AlarmReceiver extends BroadcastReceiver {
                 Log.d(TAG, String.format("Determined location: latitude %f - longitude %f", location.getLatitude(), location.getLongitude()));
                 new GetCityNameTask().execute(String.valueOf(location.getLatitude()), String.valueOf(location.getLongitude()));
             } else {
-                Log.e(TAG, "Couldn't determine location");
+                Log.e(TAG, "Couldn't determine location. Using last known location.");
+                new GetWeatherTask().execute();
+                new GetLongTermWeatherTask().execute();
             }
             try {
                 locationManager.removeUpdates(locationListener);
