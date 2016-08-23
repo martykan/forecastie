@@ -187,10 +187,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         super.onDestroy();
         destroyed = true;
 
-        try {
-            locationManager.removeUpdates(MainActivity.this);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (locationManager != null) {
+            try {
+                locationManager.removeUpdates(MainActivity.this);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
