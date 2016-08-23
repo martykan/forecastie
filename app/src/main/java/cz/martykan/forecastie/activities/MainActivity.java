@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         if (locationManager != null) {
             try {
                 locationManager.removeUpdates(MainActivity.this);
-            } catch (Exception e) {
+            } catch (SecurityException e) {
                 e.printStackTrace();
             }
         }
@@ -741,7 +741,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 public void onClick(DialogInterface dialogInterface, int i) {
                     try {
                         locationManager.removeUpdates(MainActivity.this);
-                    } catch (Exception e) {
+                    } catch (SecurityException e) {
                         e.printStackTrace();
                     }
                 }
