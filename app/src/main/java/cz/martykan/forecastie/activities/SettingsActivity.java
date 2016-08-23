@@ -1,13 +1,22 @@
 package cz.martykan.forecastie.activities;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -100,8 +109,54 @@ public class SettingsActivity extends PreferenceActivity
                 overridePendingTransition(0, 0);
                 startActivity(getIntent());
                 break;
+            case "updateLocationAutomatically":
+                if (sharedPreferences.getBoolean(key, false) == true) {
+                    requestReadLocationPermission();
+                }
+                break;
             case "apiKey":
                 checkKey(key);
+        }
+    }
+
+    private void requestReadLocationPermission() {
+        System.out.println("Calling request location permission");
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_CONTACTS)) {
+                // Explanation not needed, since user requests this himself
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MainActivity.MY_PERMISSIONS_ACCESS_FINE_LOCATION);
+            }
+        } else {
+            privacyGuardWorkaround();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == MainActivity.MY_PERMISSIONS_ACCESS_FINE_LOCATION) {
+            boolean permissionGranted = grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
+            CheckBoxPreference checkBox = (CheckBoxPreference) findPreference("updateLocationAutomatically");
+            checkBox.setChecked(permissionGranted);
+            if (permissionGranted) {
+                privacyGuardWorkaround();
+            }
+        }
+    }
+
+    private void privacyGuardWorkaround() {
+        // Workaround for CM privacy guard. Register for location updates in order for it to ask us for permission
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        try {
+            DummyLocationListener dummyLocationListener = new DummyLocationListener();
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, dummyLocationListener);
+            locationManager.removeUpdates(dummyLocationListener);
+        } catch (SecurityException e) {
+            // This will most probably not happen, as we just got granted the permission
         }
     }
 
@@ -170,6 +225,29 @@ public class SettingsActivity extends PreferenceActivity
                 return R.style.AppTheme_Classic_Dark;
             default:
                 return R.style.AppTheme;
+        }
+    }
+
+    public class DummyLocationListener implements LocationListener {
+
+        @Override
+        public void onLocationChanged(Location location) {
+
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
         }
     }
 }

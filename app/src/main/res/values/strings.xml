@@ -119,6 +119,8 @@
     <string name="settings_title_display">Display</string>
     <string name="settings_title_data">Data</string>
     <string name="setting_displayDecimalZeroes">Display decimal zeroes</string>
+    <string name="settings_title_location">Location</string>
+    <string name="setting_update_location_automatically">Update location in background</string>
 
     <string name="location_settings">Location Settings</string>
     <string name="location_settings_message">Location is not enabled. Do you wish to go to the settings menu?</string>

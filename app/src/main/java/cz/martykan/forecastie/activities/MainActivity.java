@@ -64,7 +64,7 @@ import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
 import cz.martykan.forecastie.widgets.DashClockWeatherExtension;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
-    private static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
+    protected static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
 
     // Time in milliseconds; only reload weather if last update is longer ago than this value
     private static final int NO_UPDATE_REQUIRED_THRESHOLD = 300000;
@@ -615,8 +615,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private boolean shouldUpdate() {
         long lastUpdate = PreferenceManager.getDefaultSharedPreferences(this).getLong("lastUpdate", -1);
+        boolean cityChanged = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("cityChanged", false);
         // Update if never checked or last update is longer ago than specified threshold
-        return lastUpdate < 0 || (Calendar.getInstance().getTimeInMillis() - lastUpdate) > NO_UPDATE_REQUIRED_THRESHOLD;
+        return cityChanged || lastUpdate < 0 || (Calendar.getInstance().getTimeInMillis() - lastUpdate) > NO_UPDATE_REQUIRED_THRESHOLD;
     }
 
     @Override
