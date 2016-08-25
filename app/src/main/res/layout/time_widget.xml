@@ -12,16 +12,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/white"
-        android:textSize="100sp"
+        android:textSize="80sp"
         android:layout_centerHorizontal="true"
         tools:text="11:50"/>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Clear Sky"
+        android:layout_marginTop="0sp"
+        android:layout_marginBottom="5sp"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:layout_below="@+id/time"
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
         android:id="@+id/textHolder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/time">
+        android:layout_below="@id/date">
 
         <TextView
             android:id="@+id/widgetDescription"
@@ -47,7 +59,7 @@
         android:id="@+id/widgetIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/time"
+        android:layout_below="@id/date"
         android:layout_toEndOf="@id/textHolder"
         android:layout_toRightOf="@id/textHolder"
         android:layout_toLeftOf="@+id/widgetTemperature"
@@ -61,7 +73,7 @@
         tools:text="0 °C"
         android:textColor="@android:color/white"
         android:textSize="48sp"
-        android:layout_below="@id/time"
+        android:layout_below="@id/date"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"/>
 
