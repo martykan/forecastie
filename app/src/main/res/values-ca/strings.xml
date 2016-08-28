@@ -28,7 +28,7 @@
 
     <string name="setting_dateFormat">Format de data</string>
     <string name="setting_dateFormatCustom">Format de data personaltizat</string>
-    <string name="setting_dateFormatCustom_summary">Afegeix el format personalitzat que s'utilitzarà pel format de data</string>
+    <string name="setting_dateFormatCustom_summary">Afegeix el format personalitzat que s\'utilitzarà pel format de data</string>
     <string name="setting_lengthUnits">Unitats de longitud</string>
     <string name="setting_speedUnits">Unitats de velocitat</string>
     <string name="setting_tempUnits">Unitats de temperatura</string>
@@ -43,7 +43,7 @@
     <string name="setting_unit_mph">Milles per hora (mph)</string>
     <string name="setting_wind_direction_format">Format de direcció del vent</string>
     <string name="settings_none">Cap</string>
-    <string name="setting_apiKey">Clau de l'API</string>
+    <string name="setting_apiKey">Clau de l\'API</string>
     <string name="setting_apiKey_summary">Clau personalitzada per fer consultes a OpenWeatherMap</string>
 
     <string name="setting_unit_Celsuis">Celsius</string>
@@ -74,22 +74,13 @@
     <string name="setting_theme_dark">Modern Fosc</string>
     <string name="setting_theme_classic_dark">Clásico oscuro</string>
 
-    <string name="dialog_ok">D'acord</string>
+    <string name="dialog_ok">D\'acord</string>
     <string name="dialog_cancel">Cancel·lar</string>
 
     <string name="msg_err_parsing_json">Error en analitzar JSON.</string>
     <string name="msg_connection_problem">Hi ha un problema amb la connexió a Internet.</string>
     <string name="msg_connection_not_available">Connexió no disponible.</string>
-    <string name="msg_city_not_found">No s'ha trobat la ciutat especificada.</string>
-
-    <string name="weather_sunny" translatable="false">&#xf00d;</string>
-    <string name="weather_clear_night" translatable="false">&#xf02e;</string>
-    <string name="weather_foggy" translatable="false">&#xf014;</string>
-    <string name="weather_cloudy" translatable="false">&#xf013;</string>
-    <string name="weather_rainy" translatable="false">&#xf019;</string>
-    <string name="weather_snowy" translatable="false">&#xf01b;</string>
-    <string name="weather_thunder" translatable="false">&#xf01e;</string>
-    <string name="weather_drizzle" translatable="false">&#xf01c;</string>
+    <string name="msg_city_not_found">No s\'ha trobat la ciutat especificada.</string>
 
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_north_east">NNE</string>
@@ -120,7 +111,7 @@
     <string name="settings_title_data">Dades</string>
     <string name="setting_displayDecimalZeroes">Mostrar zeros decimals</string>
 
-    <string name="location_settings">Paràmetres d'ubicació</string>
-    <string name="location_settings_message">L'ubicació no esta activada. ¿Vol anar al menú de paràmetres del sistema?</string>
+    <string name="location_settings">Paràmetres d\'ubicació</string>
+    <string name="location_settings_message">L\'ubicació no esta activada. ¿Vol anar al menú de paràmetres del sistema?</string>
     <string name="location_settings_button">Paràmetres</string>
 </resources>
