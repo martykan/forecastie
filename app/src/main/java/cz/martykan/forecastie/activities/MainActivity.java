@@ -60,6 +60,7 @@ import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.tasks.GenericRequestTask;
 import cz.martykan.forecastie.tasks.ParseResult;
 import cz.martykan.forecastie.tasks.TaskOutput;
+import cz.martykan.forecastie.utils.UnitConvertor;
 import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
 import cz.martykan.forecastie.widgets.DashClockWeatherExtension;
 
@@ -420,39 +421,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
-        float temperature = Float.parseFloat(todayWeather.getTemperature());
-        if (sp.getString("unit", "C").equals("C")) {
-            temperature = temperature - 273.15f;
-        }
-
-        if (sp.getString("unit", "C").equals("F")) {
-            temperature = (((9 * (temperature - 273.15f)) / 5) + 32);
-        }
-
+        // Temperature
+        float temperature = UnitConvertor.convertTemperature(Float.parseFloat(todayWeather.getTemperature()), sp);
         if (sp.getBoolean("temperatureInteger", false)) {
             temperature = Math.round(temperature);
         }
 
+        // Rain
         double rain = Double.parseDouble(todayWeather.getRain());
-        String rainString = "";
-        if (rain > 0) {
-            if (sp.getString("lengthUnit", "mm").equals("mm")) {
-                if (rain < 0.1) {
-                    rainString = " (<0.1 mm)";
-                } else {
-                    rainString = String.format(Locale.ENGLISH, " (%.1f %s)", rain, sp.getString("lengthUnit", "mm"));
-                }
-            } else {
-                rain = rain / 25.4;
-                if (rain < 0.01) {
-                    rainString = " (<0.01 in)";
-                } else {
-                    rainString = String.format(Locale.ENGLISH, " (%.2f %s)", rain, sp.getString("lengthUnit", "mm"));
-                }
-            }
+        String rainString = UnitConvertor.getRainString(rain, sp);
 
-        }
-
+        // Wind
         double wind;
         try {
             wind = Double.parseDouble(todayWeather.getWind());
@@ -460,23 +439,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             e.printStackTrace();
             wind = 0;
         }
+        wind = UnitConvertor.convertWind(wind, sp);
 
-        if (sp.getString("speedUnit", "m/s").equals("kph")) {
-            wind = wind * 3.59999999712;
-        }
-
-        if (sp.getString("speedUnit", "m/s").equals("mph")) {
-            wind = wind * 2.23693629205;
-        }
-
-        double pressure = Double.parseDouble(todayWeather.getPressure());
-        if (sp.getString("pressureUnit", "hPa").equals("kPa")) {
-            pressure = pressure / 10;
-        }
-        if (sp.getString("pressureUnit", "hPa").equals("mm Hg")) {
-            pressure = pressure * 0.750061561303;
-        }
-
+        // Pressure
+        double pressure = UnitConvertor.convertPressure((float) Double.parseDouble(todayWeather.getPressure()), sp);
 
         todayTemperature.setText(new DecimalFormat("#.#").format(temperature) + " °" + sp.getString("unit", "C"));
         todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() +

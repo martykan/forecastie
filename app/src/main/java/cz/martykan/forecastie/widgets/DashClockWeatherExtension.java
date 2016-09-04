@@ -16,6 +16,7 @@ import java.text.DecimalFormat;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.activities.MainActivity;
+import cz.martykan.forecastie.utils.UnitConvertor;
 
 public class DashClockWeatherExtension extends DashClockExtension {
     private static final Uri URI_BASE = Uri.parse("content://cz.martykan.forecastie.authority");
@@ -37,31 +38,24 @@ public class DashClockWeatherExtension extends DashClockExtension {
         try {
             JSONObject reader = new JSONObject(result);
 
-            float temperature = Float.parseFloat(reader.optJSONObject("main").getString("temp").toString());
-            if (sp.getString("unit", "C").equals("C")) {
-                temperature = temperature - 273.15f;
+            // Temperature
+            float temperature = UnitConvertor.convertTemperature(Float.parseFloat(reader.optJSONObject("main").getString("temp").toString()), sp);
+            if (sp.getBoolean("temperatureInteger", false)) {
+                temperature = Math.round(temperature);
             }
 
-            if (sp.getString("unit", "C").equals("F")) {
-                temperature = (((9 * (temperature - 273.15f)) / 5) + 32);
+            // Wind
+            double wind;
+            try {
+                wind = Double.parseDouble(reader.optJSONObject("wind").getString("speed").toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+                wind = 0;
             }
+            wind = UnitConvertor.convertWind(wind, sp);
 
-            double wind = Double.parseDouble(reader.optJSONObject("wind").getString("speed").toString());
-            if (sp.getString("speedUnit", "m/s").equals("kph")) {
-                wind = wind * 3.59999999712;
-            }
-
-            if (sp.getString("speedUnit", "m/s").equals("mph")) {
-                wind = wind * 2.23693629205;
-            }
-
-            double pressure = Double.parseDouble(reader.optJSONObject("main").getString("pressure").toString());
-            if (sp.getString("pressureUnit", "hPa").equals("kPa")) {
-                pressure = pressure / 10;
-            }
-            if (sp.getString("pressureUnit", "hPa").equals("mm Hg")) {
-                pressure = pressure * 0.750061561303;
-            }
+            // Pressure
+            double pressure = UnitConvertor.convertPressure((float) Double.parseDouble(reader.optJSONObject("main").getString("pressure").toString()), sp);
 
             MainActivity.initMappings();
             publishUpdate(new ExtensionData()

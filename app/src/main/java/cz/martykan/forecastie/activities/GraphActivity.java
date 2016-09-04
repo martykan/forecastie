@@ -27,6 +27,7 @@ import java.util.TimeZone;
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.tasks.ParseResult;
+import cz.martykan.forecastie.utils.UnitConvertor;
 
 public class GraphActivity extends AppCompatActivity {
 
@@ -80,14 +81,7 @@ public class GraphActivity extends AppCompatActivity {
         // Data
         LineSet dataset = new LineSet();
         for (int i = 0; i < weatherList.size(); i++) {
-            float temperature = Float.parseFloat(weatherList.get(i).getTemperature());
-            if (sp.getString("unit", "C").equals("C")) {
-                temperature = temperature - 273.15f;
-            }
-
-            if (sp.getString("unit", "C").equals("F")) {
-                temperature = (((9 * (temperature - 273.15f)) / 5) + 32);
-            }
+            float temperature = UnitConvertor.convertTemperature(Float.parseFloat(weatherList.get(i).getTemperature()), sp);
 
             if (temperature < minTemp) {
                 minTemp = temperature;
@@ -169,13 +163,7 @@ public class GraphActivity extends AppCompatActivity {
         // Data
         LineSet dataset = new LineSet();
         for (int i = 0; i < weatherList.size(); i++) {
-            float pressure = Float.parseFloat(weatherList.get(i).getPressure());
-            if (sp.getString("pressureUnit", "hPa").equals("kPa")) {
-                pressure = pressure / 10;
-            }
-            if (sp.getString("pressureUnit", "hPa").equals("mm Hg")) {
-                pressure = (float) (pressure * 0.750061561303);
-            }
+            float pressure = UnitConvertor.convertPressure(Float.parseFloat(weatherList.get(i).getPressure()), sp);
 
             if (pressure < minPressure) {
                 minPressure = pressure;
