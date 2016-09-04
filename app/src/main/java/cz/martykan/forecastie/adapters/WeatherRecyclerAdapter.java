@@ -14,11 +14,10 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
 
-import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.R;
+import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.models.WeatherViewHolder;
 import cz.martykan.forecastie.utils.UnitConvertor;
@@ -105,10 +104,9 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         }
 
         customViewHolder.itemDate.setText(dateString);
-        if(sp.getBoolean("displayDecimalZeroes", false)) {
+        if (sp.getBoolean("displayDecimalZeroes", false)) {
             customViewHolder.itemTemperature.setText(new DecimalFormat("#.0").format(temperature) + " °" + sp.getString("unit", "C"));
-        }
-        else {
+        } else {
             customViewHolder.itemTemperature.setText(new DecimalFormat("#.#").format(temperature) + " °" + sp.getString("unit", "C"));
         }
         customViewHolder.itemDescription.setText(weatherItem.getDescription().substring(0, 1).toUpperCase() +
@@ -116,9 +114,14 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");
         customViewHolder.itemIcon.setTypeface(weatherFont);
         customViewHolder.itemIcon.setText(weatherItem.getIcon());
-        customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " + new DecimalFormat("#.0").format(wind) + " " +
-                MainActivity.localize(sp, context, "speedUnit", "m/s")
-                + " " + MainActivity.getWindDirectionString(sp, context, weatherItem));
+        if (sp.getString("speedUnit", "m/s").equals("bft")) {
+            customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " +
+                    UnitConvertor.getBeaufortName((int) wind) + " " + MainActivity.getWindDirectionString(sp, context, weatherItem));
+        } else {
+            customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " + new DecimalFormat("#.0").format(wind) + " " +
+                    MainActivity.localize(sp, context, "speedUnit", "m/s")
+                    + " " + MainActivity.getWindDirectionString(sp, context, weatherItem));
+        }
         customViewHolder.itemPressure.setText(context.getString(R.string.pressure) + ": " + new DecimalFormat("#.0").format(pressure) + " " +
                 MainActivity.localize(sp, context, "pressureUnit", "hPa"));
         customViewHolder.itemHumidity.setText(context.getString(R.string.humidity) + ": " + weatherItem.getHumidity() + " %");

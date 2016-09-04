@@ -22,11 +22,13 @@
         <item name="mps">@string/setting_unit_mps</item>
         <item name="kph">@string/setting_unit_kph</item>
         <item name="mph">@string/setting_unit_mph</item>
+        <item name="bft">@string/setting_unit_bft</item>
     </string-array>
     <string-array name="speedUnitsValues">
         <item name="mps">m/s</item>
         <item name="kph">kph</item>
         <item name="mph">mph</item>
+        <item name="bft">bft</item>
     </string-array>
 
     <string-array name="pressureUnits">
