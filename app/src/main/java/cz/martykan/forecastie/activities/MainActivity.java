@@ -693,7 +693,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_CONTACTS)) {
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
                 // Explanation not needed, since user requests this himself
 
             } else {
