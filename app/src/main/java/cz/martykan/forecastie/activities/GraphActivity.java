@@ -199,7 +199,7 @@ public class GraphActivity extends AppCompatActivity {
         lineChartView.show();
     }
 
-    private void windeGraph() {
+    private void windGraph() {
         LineChartView lineChartView = (LineChartView) findViewById(R.id.graph_wind);
 
         // Data
