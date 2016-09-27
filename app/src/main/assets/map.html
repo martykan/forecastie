@@ -40,7 +40,7 @@
     var map = L.map('map', {
         zoomControl: false,
         attributionControl: false
-    }).setView([getUrlParameter('lon'), getUrlParameter('lat')], 13);
+    }).setView([getUrlParameter('lon'), getUrlParameter('lat')], 7);
 
     map.addLayer(new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         minZoom: 1,
