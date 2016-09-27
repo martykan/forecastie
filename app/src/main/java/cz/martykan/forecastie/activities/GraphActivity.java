@@ -70,6 +70,7 @@ public class GraphActivity extends AppCompatActivity {
             temperatureGraph();
             rainGraph();
             pressureGraph();
+            windGraph();
         } else {
             Snackbar.make(findViewById(android.R.id.content), R.string.msg_err_parsing_json, Snackbar.LENGTH_LONG).show();
         }
@@ -198,6 +199,48 @@ public class GraphActivity extends AppCompatActivity {
         lineChartView.show();
     }
 
+    private void windeGraph() {
+        LineChartView lineChartView = (LineChartView) findViewById(R.id.graph_wind);
+
+        // Data
+        LineSet dataset = new LineSet();
+        for (int i = 0; i < weatherList.size(); i++) {
+            float temperature = UnitConvertor.convertWind(Float.parseFloat(weatherList.get(i).getWind()), sp);
+
+            if (wind < minWind) {
+                minWind = wind;
+            }
+
+            if (wind > maxWind) {
+                maxWind = wind;
+            }
+
+            dataset.addPoint(getDateLabel(weatherList.get(i), i), (float) ((Math.ceil(wind / 2)) * 2));
+        }
+        dataset.setSmooth(true);
+        dataset.setColor(Color.parseColor("#FF5722"));
+        dataset.setThickness(4);
+
+        lineChartView.addData(dataset);
+
+        // Grid
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setAntiAlias(true);
+        paint.setColor(Color.parseColor("#333333"));
+        paint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
+        paint.setStrokeWidth(1);
+        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
+        lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
+        lineChartView.setAxisBorderValues((int) minWind - 2, (int) maxWind + 2);
+        lineChartView.setStep(2);
+        lineChartView.setXAxis(false);
+        lineChartView.setYAxis(false);
+
+        lineChartView.show();
+    }
+
+    
     public ParseResult parseLongTermJson(String result) {
         int i;
         try {
