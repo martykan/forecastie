@@ -95,6 +95,8 @@
         <item name="15">15</item>
         <item name="30">30</item>
         <item name="1">1</item>
+        <item name="2">2</item>
+        <item name="6">6</item>
         <item name="12">12</item>
         <item name="24">24</item>
     </string-array>
