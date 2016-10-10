@@ -57,6 +57,7 @@
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
     <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_inhg">in Hg</string>
 
     <string name="speed_unit_mps">m/s</string>
     <string name="speed_unit_kph">kph</string>

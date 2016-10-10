@@ -35,11 +35,13 @@
         <item name="hpa">@string/setting_unit_hpa</item>
         <item name="kpa">@string/setting_unit_kpa</item>
         <item name="mmhg">@string/setting_unit_mmhg</item>
+	<item name="inhg">@string/setting_unit_inhg</item>
     </string-array>
     <string-array name="pressureUnitsValues">
         <item name="hpa">hPa</item>
         <item name="kpa">kPa</item>
         <item name="mmhg">mm Hg</item>
+	<item name="inhg">in Hg</item>
     </string-array>
     <string-array name="windDirections">
         <item name="n">@string/wind_direction_north</item>
