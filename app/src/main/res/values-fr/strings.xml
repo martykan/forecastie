@@ -121,4 +121,6 @@
     <string name="rain">Pluie</string>
     <string name="temperature">Température</string>
     <string name="action_graphs">Graphiques</string>
+    <string name="setting_unit_kn">Nœuds (nd)</string>
+    <string name="speed_unit_kn">nd</string>
 </resources>

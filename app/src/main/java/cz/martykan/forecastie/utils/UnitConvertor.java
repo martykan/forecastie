@@ -63,6 +63,9 @@ public class UnitConvertor {
         else if (sp.getString("speedUnit", "m/s").equals("mph")) {
             return wind * 2.23693629205;
         }
+        else if (sp.getString("speedUnit", "m/s").equals("kn")) {
+            return wind * 1.943844;
+        }
         else if (sp.getString("speedUnit", "m/s").equals("bft")) {
             if(wind < 0.3) {
                 return 0; // Calm
