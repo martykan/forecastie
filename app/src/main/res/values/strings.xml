@@ -42,6 +42,7 @@
     <string name="setting_unit_kph">Kilometers per hour (kph)</string>
     <string name="setting_unit_mph">Miles per hour (mph)</string>
     <string name="setting_unit_bft">Beaufort wind scale (bft)</string>
+    <string name="setting_unit_kn">Knots (kn)</string>
     <string name="setting_wind_direction_format">Wind direction format</string>
     <string name="settings_none">None</string>
     <string name="setting_apiKey">API key</string>
@@ -62,6 +63,7 @@
     <string name="speed_unit_mps">m/s</string>
     <string name="speed_unit_kph">kph</string>
     <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_kn">kn</string>
 
     <string name="wind_direction_format_none">No indication</string>
     <string name="wind_direction_format_arrows">Arrows</string>
