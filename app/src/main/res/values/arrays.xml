@@ -6,8 +6,8 @@
         <item name="K">@string/setting_unit_Kelvin</item>
     </string-array>
     <string-array name="temperatureUnitsValues">
-        <item name="C">C</item>
-        <item name="F">F</item>
+        <item name="C">°C</item>
+        <item name="F">°F</item>
         <item name="K">K</item>
     </string-array>
     <string-array name="lengthUnits">
