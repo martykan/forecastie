@@ -12,8 +12,8 @@ machine:
     ANDROID_SDK: /usr/local/android-sdk-linux/
     _SDK_: /usr/local/android-sdk-linux/
     GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1000m -XX:+HeapDumpOnOutOfMemoryError"'
-    GRADLE_HOME: ~/g/gradle-2.10
-    PATH: ~/g/gradle-2.10/bin:$PATH
+    GRADLE_HOME: ~/g/gradle-2.14.1
+    PATH: ~/g/gradle-2.14.1/bin:$PATH
     CLASS_P: cz.martykan.forecastie
     START_INTENT_P: .activities.MainActivity
 dependencies:
@@ -33,8 +33,8 @@ dependencies:
     - sudo apt-get install qrencode > /dev/null 2> /dev/null
 
     - gradle -v
-    - cd ~ ; wget https://services.gradle.org/distributions/gradle-2.10-bin.zip
-    - mkdir ~/g ; cd ~/g ; unzip ~/gradle-2.10-bin.zip
+    - cd ~ ; wget https://services.gradle.org/distributions/gradle-2.14.1-bin.zip
+    - mkdir ~/g ; cd ~/g ; unzip ~/gradle-2.14.1-bin.zip
     - gradle -v
 
     - echo y | android update sdk --no-ui --all --filter "tools"
