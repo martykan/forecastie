@@ -28,7 +28,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import cz.martykan.forecastie.AlarmReceiver;
-import cz.martykan.forecastie.R;
+import cz.martykan.forecastie.R;R
 
 public class SettingsActivity extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -123,7 +123,7 @@ public class SettingsActivity extends PreferenceActivity
         System.out.println("Calling request location permission");
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_CONTACTS)) {
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
                 // Explanation not needed, since user requests this himself
 
             } else {
