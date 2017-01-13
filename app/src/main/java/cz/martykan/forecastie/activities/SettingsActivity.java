@@ -28,7 +28,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import cz.martykan.forecastie.AlarmReceiver;
-import cz.martykan.forecastie.R;R
+import cz.martykan.forecastie.R;
 
 public class SettingsActivity extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
