@@ -96,6 +96,7 @@
     <string name="settings_title_display">Anzeige</string>
     <string name="settings_title_units">Einheiten</string>
     <string name="action_weather_map">Wetterkarte</string>
+    <string name="action_graphs">Diagramme</string>
     <string name="setting_unit_kn">Knoten (kn)</string>
     <string name="speed_unit_kn">kn</string>
 </resources>
