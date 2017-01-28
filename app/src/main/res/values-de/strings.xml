@@ -14,6 +14,7 @@
 
     <string name="setting_speedUnits">Maßeinheit Geschwindigkeit</string>
     <string name="setting_tempUnits">Maßeinheit Temperatur</string>
+    <string name="setting_showTempAsInteger">Temperatur nur als ganze Zahl anzeigen</string>
     <string name="setting_pressureUnits">Maßeinheit Druck</string>
     <string name="later">Später</string>
     <string name="setting_refreshInterval">Aktualisierungs-Interval im Hintergrund</string>
