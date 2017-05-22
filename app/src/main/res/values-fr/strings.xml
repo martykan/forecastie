@@ -17,8 +17,7 @@
     <string name="sunset">Coucher du soleil</string>
 
     <string name="last_update">Dernière mise à jour:\\n%s</string>
-    <string name="last_update_widget">
-\\nDernière mise à jour: %s</string>
+    <string name="last_update_widget">\\nDernière mise à jour: %s</string>
 
     <string name="search_title">Rechercher une ville</string>
 
@@ -42,6 +41,8 @@
     <string name="setting_unit_mps">Mètres par seconde (m/s)</string>
     <string name="setting_unit_kph">Kilomètres par heure (km/h)</string>
     <string name="setting_unit_mph">Milles par heure (mph)</string>
+    <string name="setting_unit_bft">échelle Beaufort (bft)</string>
+    <string name="setting_unit_kn">Nœuds (nd)</string>
     <string name="setting_wind_direction_format">Format de direction du vent</string>
     <string name="settings_none">Aucun</string>
     <string name="setting_apiKey">Clé API</string>
@@ -57,10 +58,12 @@
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
     <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_inhg">en Hg</string>
 
     <string name="speed_unit_mps">m/s</string>
     <string name="speed_unit_kph">kph</string>
     <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_kn">nd</string>
 
     <string name="wind_direction_format_none">Aucune indication</string>
     <string name="wind_direction_format_arrows">Flèches</string>
@@ -82,6 +85,7 @@
     <string name="msg_connection_problem">Il y a un problème avec votre connexion à internet.</string>
     <string name="msg_connection_not_available">Aucune connexion.</string>
     <string name="msg_city_not_found">Ville introuvable.</string>
+
 
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_north_east">NNE</string>
@@ -106,7 +110,10 @@
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\nVent : %3$s %4$s\nPression : %5$s %6$s\nHumidité : %7$s %%\n</string>
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n
+   Vent : %3$s %4$s\n
+   Pression : %5$s %6$s\n
+   Humidité : %7$s %%</string>
     <string name="settings_title_units">Unités</string>
     <string name="settings_title_display">Afficher</string>
     <string name="settings_title_data">Données</string>
@@ -121,6 +128,4 @@
     <string name="rain">Pluie</string>
     <string name="temperature">Température</string>
     <string name="action_graphs">Graphiques</string>
-    <string name="setting_unit_kn">Nœuds (nd)</string>
-    <string name="speed_unit_kn">nd</string>
 </resources>
