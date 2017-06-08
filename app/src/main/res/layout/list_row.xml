@@ -9,7 +9,7 @@
         android:id="@+id/lineView"
         android:layout_width="match_parent"
         android:layout_height="2px"
-        android:background="#E0E0E0" />
+        android:background="?android:attr/listDivider" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="16:00"
-                android:textColor="@android:color/primary_text_light"
+                android:textColor="?android:textColorPrimary"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 

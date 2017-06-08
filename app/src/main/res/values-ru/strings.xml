@@ -2,13 +2,97 @@
     <string name="app_name">Forecastie</string>
 
     <string name="action_search">Поиск</string>
-    <string name="action_refresh">Обновление</string>
-    <string name="action_about">О применении</string>
+    <string name="action_refresh">Обновить</string>
+    <string name="action_about">О приложении</string>
 
     <string name="wind">Ветер</string>
     <string name="pressure">Давление</string>
     <string name="humidity">Влажность</string>
+    <string name="sunrise">Восход</string>
+    <string name="sunset">Закат</string>
 
-    <string name="search_title">Введите населённый пункт</string>
+
+    <string name="last_update">Последнее обновление:\n%s</string>
+
+
+    <string name="search_title">Искать населённый пункт</string>
     <string name="action_settings">Настройки</string>
+    <string name="error_dateFormat">НЕКОРРЕКТНЫЙ ФОРМАТ ДАТЫ</string>
+    <string name="later">Позже</string>
+    <string name="setting_dateFormat">Формат даты</string>
+    <string name="setting_dateFormatCustom">Произвольный формат даты</string>
+    <string name="setting_dateFormatCustom_summary">Задайте произвольный шаблон (паттерн) SimpleDateFormat</string>
+    <string name="setting_differentiateDaysByTint">Чередовать цвет дней в списке</string>
+    <string name="setting_pressureUnits">Единицы давления</string>
+    <string name="setting_refreshInterval">Интервал обновления</string>
+    <string name="setting_speedUnits">Единицы скорости </string>
+    <string name="today">Сегодня</string>
+    <string name="tomorrow">Завтра</string>
+    <string name="setting_tempUnits">Единицы температуры</string>
+    <string name="downloading_data">Выполняется загрузка данных…</string>
+    <string name="getting_location">Определение местоположения…</string>
+    <string name="setting_auto_detect_location">Определить местоположение</string>
+    <string name="dialog_cancel">Отмена</string>
+    <string name="setting_unit_kph">Километры в час (км/ч)</string>
+    <string name="setting_unit_mph">Мили в час (миль/ч)</string>
+    <string name="setting_unit_mps">Метры в секунду (м/с)</string>
+    <string name="settings_none">Отключено</string>
+    <string name="setting_unit_hpa">Гектопаскаль (гПа)</string>
+    <string name="setting_unit_kpa">Килопаскаль (кПа)</string>
+    <string name="setting_unit_mmhg">мм ртутного столба (мм.рт.ст.)</string>
+    <string name="dialog_ok">ОК</string>
+    <string name="msg_city_not_found">Указанный населенный пункт не найден.</string>
+    <string name="msg_connection_not_available">Интернет-соединение недоступно.</string>
+    <string name="msg_connection_problem">Проблемы с интернет-соединением.</string>
+    <string name="msg_err_parsing_json">Ошибка разбора JSON.</string>
+    <string name="pressure_unit_hpa">гПа</string>
+    <string name="pressure_unit_kpa">кПа</string>
+    <string name="pressure_unit_mmhg">мм рт.ст.</string>
+    <string name="speed_unit_kph">км/ч</string>
+    <string name="speed_unit_mph">миль/ч</string>
+    <string name="speed_unit_mps">м/с</string>
+    <string name="setting_unit_Celsuis">Цельсий</string>
+    <string name="setting_unit_Fahrenheit">Фаренгейт</string>
+    <string name="setting_unit_Kelvin">Кельвин</string>
+    <string name="setting_wind_direction_format">Формат направления ветра</string>
+    <string name="setting_apiKey">API ключ</string>
+    <string name="setting_apiKey_summary">Ключ для OpenWeatherMap API</string>
+    <string name="setting_theme">Тема</string>
+    <string name="setting_theme_fresh">Новая</string>
+    <string name="setting_theme_classic">Классическая</string>
+    <string name="setting_theme_dark">Новая темная</string>
+    <string name="setting_theme_classic_dark">Классическая темная</string>
+
+
+    <string name="wind_direction_format_none">Не отображать</string>
+    <string name="wind_direction_format_arrows">Стрелки</string>
+    <string name="wind_direction_format_abbreviations">Аббревиатуры</string>
+
+    <string name="wind_direction_north">С</string>
+    <string name="wind_direction_north_north_east">ССВ</string>
+    <string name="wind_direction_north_east">СВ</string>
+    <string name="wind_direction_east_north_east">ВСВ</string>
+    <string name="wind_direction_east">В</string>
+    <string name="wind_direction_east_south_east">ВЮВ</string>
+    <string name="wind_direction_south_east">ЮВ</string>
+    <string name="wind_direction_south_south_east">ЮЮВ</string>
+    <string name="wind_direction_south">Ю</string>
+    <string name="wind_direction_south_south_west">ЮЮЗ</string>
+    <string name="wind_direction_south_west">ЮЗ</string>
+    <string name="wind_direction_west_south_west">ЗЮЗ</string>
+    <string name="wind_direction_west">З</string>
+    <string name="wind_direction_west_north_west">ЗСЗ</string>
+    <string name="wind_direction_north_west">СЗ</string>
+    <string name="wind_direction_north_north_west">ССЗ</string>
+
+    <!-- 1: temperature; 2: unit -->
+    <string name="dash_clock_status">%1$s%2$s</string>
+    <!-- 1: temperature; 2: unit; 3: weather description -->
+    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
+    <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
+    <string name="dash_clock_expanded_body">%1$s, %2$s\nВетер: %3$s %4$s\nДавление: %5$s %6$s\nВлажность: %7$s %%\n</string>
+    <string name="settings_title_units">Единицы</string>
+    <string name="settings_title_display">Отображение</string>
+    <string name="settings_title_data">Данные</string>
+    <string name="setting_displayDecimalZeroes">Отображать десятичные нули</string>
 </resources>

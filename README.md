@@ -1,11 +1,12 @@
-# forecastie
+# Forecastie
 
 [![Release](https://img.shields.io/github/release/martykan/forecastie.svg)](https://github.com/martykan/forecastie/releases)
-[![Join the chat at https://gitter.im/martykan/forecastie](https://badges.gitter.im/martykan/forecastie.svg)](https://gitter.im/martykan/forecastie?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Circle CI](https://circleci.com/gh/martykan/forecastie/tree/master.svg?style=svg)](https://circleci.com/gh/martykan/forecastie/tree/master)
 
 A simple, opensource weather app for Android. It gathers data from [OpenWeatherMap](http://openweathermap.org/), via their public API.
 
-[![Release](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Get_it_on_F-Droid.svg/200px-Get_it_on_F-Droid.svg.png)](https://f-droid.org/repository/browse/?fdid=cz.martykan.forecastie)
+[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Get_it_on_F-Droid.svg/200px-Get_it_on_F-Droid.svg.png" style="float: left; padding-right: 10px;">](https://f-droid.org/repository/browse/?fdid=cz.martykan.forecastie)
+[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Get_it_on_Google_play.svg/500px-Get_it_on_Google_play.svg.png" style="float: left; padding-right: 10px;" height="70">](https://play.google.com/store/apps/details?id=com.casticalabs.forecastie)
 
 ## Features
 * Simple design
@@ -15,10 +16,15 @@ A simple, opensource weather app for Android. It gathers data from [OpenWeatherM
 * Offline functionality
 
 ## Screenshots
-[<img src="http://i.imgur.com/g97hk8n.png" width=250>](http://i.imgur.com/g97hk8n.png)
+[<img src="http://i.imgur.com/bvcc7Lt.png" width=250>](http://i.imgur.com/bvcc7Lt.png)
+[<img src="http://i.imgur.com/SaH5X2O.png" width=250>](http://i.imgur.com/SaH5X2O.png)
+[<img src="http://i.imgur.com/ztMbvyY.png" width=250>](http://i.imgur.com/ztMbvyY.png)
 
 ## Contribution
 If you have any ideas or issues, don't hesitate to reach out to me. Every contribution is welcome.
+
+## Translators
+If you want to translate you can easily do so on [Transifex](https://www.transifex.com/forecastie/forecastie). I would also recommend joining the [translator mailing list](http://eepurl.com/cbD2BP). You will get notified a few days before a new version comes, so the translations can be done when it's released.
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  

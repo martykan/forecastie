@@ -6,16 +6,78 @@
     <string name="action_settings">Nastavenie</string>
     <string name="action_about">O aplikácii</string>
 
+    <string name="today">Dnes</string>
+    <string name="tomorrow">Zajtra</string>
+    <string name="later">Neskôr</string>
+
     <string name="wind">Vietor</string>
     <string name="pressure">Tlak</string>
     <string name="humidity">Vlhkosť</string>
 
     <string name="search_title">Hľadajte město</string>
 
-    <string name="setting_imperialDate">Používať imperiálne formát dátumu</string>
-    <string name="setting_imperialDate_description">12/31/2001 miesto 31.12.2001</string>
-    <string name="setting_showDay">Zobraziť deň týždňa</string>
     <string name="setting_speedUnits">Jednotky rýchlosti</string>
     <string name="setting_tempUnits">ednotky teploty</string>
     <string name="setting_pressureUnits">Jednotky tlaku</string>
+    <string name="setting_refreshInterval">Interval obnovenia na pozadí</string>
+    <string name="error_dateFormat">CHYBA FORMÁTU DATA</string>
+    <string name="setting_dateFormat">Formát dátumu</string>
+    <string name="setting_dateFormatCustom">Vlastný formát dátumu</string>
+    <string name="setting_dateFormatCustom_summary">Ak je hore zvolené Vlastný, tak zadajte SimpleDateFormat, ktorý má byť použitý</string>
+    <string name="setting_differentiateDaysByTint"> Oddeliť dni farbou</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Storno</string>
+    <string name="downloading_data">Sťahovanie dát...</string>
+    <string name="getting_location">Získavanie Vašej polohy...</string>
+    <string name="setting_apiKey">API kľúč</string>
+    <string name="setting_apiKey_summary">Vlastné API kľúč pre OpenWeatherMap</string>
+    <string name="msg_city_not_found">Mesto nebolo nájdené.</string>
+    <string name="msg_connection_not_available">Pripojenie nie je k dispozícii.</string>
+    <string name="msg_err_parsing_json">Chyba čítania JSON.</string>
+    <string name="msg_connection_problem">Je tu problém s Vaším pripojením.</string>
+    <string name="settings_none">Nikdy</string>
+    <string name="setting_unit_hpa">hPa</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_kph">Kilometre za hodinu (km/h)</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_mph">Míle za hodinu (mph)</string>
+    <string name="setting_unit_mps">Metre za sekundu (m/s)</string>
+    <string name="setting_auto_detect_location">Detekovať polohu</string>
+    <string name="pressure_unit_hpa">hPa</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_Celsuis">Celsius</string>
+    <string name="setting_unit_Fahrenheit">Fahrenheit</string>
+    <string name="setting_unit_Kelvin">Kelvin</string>
+    <string name="setting_wind_direction_format">Formát zobrazenie rýchlosti vetra</string>
+    <string name="speed_unit_kph">km/h</string>
+    <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_mps">m/s</string>
+    <string name="wind_direction_east">V</string>
+    <string name="wind_direction_west">Z</string>
+    <string name="wind_direction_south">J</string>
+    <string name="wind_direction_north">S</string>
+    <string name="wind_direction_north_west">SZ</string>
+    <string name="wind_direction_south_west">JZ</string>
+    <string name="wind_direction_north_east">SV</string>
+    <string name="wind_direction_south_south_east">JJV</string>
+    <string name="wind_direction_south_east">JV</string>
+    <string name="wind_direction_south_south_west">JJZ</string>
+    <string name="wind_direction_west_north_west">ZSZ</string>
+    <string name="wind_direction_west_south_west">ZJZ</string>
+    <string name="wind_direction_north_north_west">SSZ</string>
+    <string name="wind_direction_north_north_east">SSV</string>
+    <string name="wind_direction_format_none">Žiadny ukazovateľ</string>
+    <string name="wind_direction_format_arrows">Šípka</string>
+    <string name="wind_direction_format_abbreviations">Skratky</string>
+    <string name="wind_direction_east_north_east">VSV</string>
+    <string name="wind_direction_east_south_east">VJV</string>
+    <string name="msg_too_many_requests">Príliš veľa požiadaviek. Skúste to znova.</string>
+
+    <!-- 1: temperature; 2: unit -->
+    <string name="dash_clock_status">%1$s%2$s</string>
+    <!-- 1: temperature; 2: unit; 3: weather description -->
+    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
+    <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
+    <string name="dash_clock_expanded_body">%1$s, %2$s\nVietor: %3$s %4$s\nTlak: %5$s %6$s\nVlhkosť: %7$s %%\n</string>
 </resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/map_rain"
+        android:icon="@drawable/ic_water_grey600_24dp"
+        android:title="@string/rain" />
+    <item
+        android:id="@+id/map_wind"
+        android:icon="@drawable/ic_weather_windy_grey600_24dp"
+        android:title="@string/wind" />
+    <item
+        android:id="@+id/map_temperature"
+        android:icon="@drawable/ic_thermometer_grey600_24dp"
+        android:title="@string/temperature" />
+</menu>

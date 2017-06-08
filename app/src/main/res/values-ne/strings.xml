@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">मौसम</string>
+    <string name="action_about">बारे</string>
+    <string name="action_refresh">ताजा</string>
+    <string name="action_search">खोज</string>
+    <string name="action_settings">सेटिङ</string>
+    <string name="error_dateFormat">मिति ढाँचा त्रुटि</string>
+    <string name="humidity">आर्द्रता</string>
+    <string name="later">पछि</string>
+    <string name="pressure">दबाव</string>
+    <string name="search_title">शहर खोज</string>
+    <string name="setting_auto_detect_location">स्वत स्थान पत्ता</string>
+    <string name="setting_dateFormat">मिति स्वरूप</string>
+    <string name="setting_dateFormatCustom">अनुकूलन मिति स्वरूप</string>
+    <string name="setting_differentiateDaysByTint">रंग संग दिन अंतर</string>
+    <string name="setting_pressureUnits">दबाव एकाइ</string>
+    <string name="setting_refreshInterval">पृष्ठभूमि ताजा अन्तराल</string>
+    <string name="setting_speedUnits">गति एकाइ</string>
+    <string name="setting_tempUnits">तापमान एकाइ</string>
+    <string name="today">आज</string>
+    <string name="tomorrow">भोलि</string>
+    <string name="wind">हावा</string>
+    <string name="downloading_data">डाउनलोड गरिरहेको छ</string>
+
+    <!-- 1: temperature; 2: unit -->
+    <string name="dash_clock_status">%1$s%2$s</string>
+    <!-- 1: temperature; 2: unit; 3: weather description -->
+    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
+    <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
+    <string name="dash_clock_expanded_body">%1$s, %2$s\nहावा: %3$s %4$s\nदबाव: %5$s %6$s\nआर्द्रता: %7$s %%\n</string>
+</resources>

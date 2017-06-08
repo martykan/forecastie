@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory
-        android:title="@string/action_settings">
+    <PreferenceCategory android:title="@string/settings_title_units">
         <ListPreference
             android:defaultValue="C"
             android:entries="@array/temperatureUnits"
             android:entryValues="@array/temperatureUnitsValues"
             android:key="unit"
             android:title="@string/setting_tempUnits" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="temperatureInteger"
+            android:title="@string/setting_showTempAsInteger" />
+
+        <ListPreference
+            android:defaultValue="mm"
+            android:entries="@array/lengthUnits"
+            android:entryValues="@array/lengthUnitsValues"
+            android:key="lengthUnit"
+            android:title="@string/setting_lengthUnits" />
 
         <ListPreference
             android:defaultValue="m/s"
@@ -23,15 +34,69 @@
             android:key="pressureUnit"
             android:title="@string/setting_pressureUnits" />
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="imperialDate"
-            android:summary="@string/setting_imperialDate_description"
-            android:title="@string/setting_imperialDate" />
+        <!-- dateFormat's (ListPreference) android:defaultValue and android:entries
+             are derived from entryValues dynamically in code in SettingsActivity -->
+        <ListPreference
+            android:entryValues="@array/dateFormatsValues"
+            android:key="dateFormat"
+            android:title="@string/setting_dateFormat" />
+
+        <EditTextPreference
+            android:key="dateFormatCustom"
+            android:summary="@string/setting_dateFormatCustom_summary"
+            android:title="@string/setting_dateFormatCustom" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings_title_display">
+
+        <ListPreference
+            android:defaultValue="fresh"
+            android:entries="@array/themes"
+            android:entryValues="@array/themesValues"
+            android:key="theme"
+            android:title="@string/setting_theme" />
+
+        <ListPreference
+            android:defaultValue="arrow"
+            android:entries="@array/windDirectionFormats"
+            android:entryValues="@array/windDirectionFormatValues"
+            android:key="windDirectionFormat"
+            android:title="@string/setting_wind_direction_format" />
 
         <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="day"
-            android:title="@string/setting_showDay" />
+            android:defaultValue="false"
+            android:key="displayDecimalZeroes"
+            android:title="@string/setting_displayDecimalZeroes" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="differentiateDaysByTint"
+            android:title="@string/setting_differentiateDaysByTint" />
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/settings_title_data">
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/refreshIntervals"
+            android:entryValues="@array/refreshIntervalsValues"
+            android:key="refreshInterval"
+            android:title="@string/setting_refreshInterval" />
+
+        <EditTextPreference
+            android:key="apiKey"
+            android:summary="@string/setting_apiKey_summary"
+            android:title="@string/setting_apiKey" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings_title_location">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="updateLocationAutomatically"
+            android:title="@string/setting_update_location_automatically" />
+
     </PreferenceCategory>
 </PreferenceScreen>

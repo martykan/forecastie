@@ -1,0 +1,99 @@
+<resources>
+    <string name="app_name">Forecastie</string>
+
+    <string name="action_search">جستجو</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_settings">تنظیمات</string>
+    <string name="action_about">درباره</string>
+
+    <string name="today">امروز</string>
+    <string name="tomorrow">فردا</string>
+    <string name="later">بعدها</string>
+
+    <string name="wind">باد</string>
+    <string name="pressure">فشار</string>
+    <string name="humidity">رطوبت</string>
+    <string name="sunrise">طلوع</string>
+    <string name="sunset">غروب</string>
+
+    <string name="search_title">جستجوی شهر</string>
+
+    <string name="downloading_data">بارگیری اطلاعات ...</string>
+    <string name="getting_location">گرفتن اطلاعات مکانی شما ...</string>
+
+    <string name="error_dateFormat">خطای قالب تاریخ</string>
+
+    <string name="setting_dateFormat">قالب تاریخ</string>
+    <string name="setting_dateFormatCustom">قالب تاریخ شخصی</string>
+    <string name="setting_dateFormatCustom_summary">لطفا قالب شخصی مورد استفاده را وارد نمایید</string>
+    <string name="setting_lengthUnits">واحد مسافت</string>
+    <string name="setting_speedUnits">واحد سرعت</string>
+    <string name="setting_tempUnits">واحد دما</string>
+    <string name="setting_pressureUnits">واحد فشار</string>
+    <string name="setting_auto_detect_location">شناسایی موقعیت مکانی</string>
+    <string name="setting_differentiateDaysByTint">تمایر روزها بوسیله رنگ</string>
+    <string name="setting_refreshInterval">فاصله زمانی بروزرسانی پشت صحنه</string>
+    <string name="setting_unit_mps">متر بر ثانیه</string>
+    <string name="setting_unit_kph">کیلومتر بر ساعت</string>
+    <string name="setting_unit_mph">مایل بر ساعت</string>
+    <string name="setting_wind_direction_format">قالب جهت وزش باد</string>
+    <string name="settings_none">هیچ</string>
+    <string name="setting_apiKey">API کلید</string>
+    <string name="setting_apiKey_summary">کلید شخصی را برای OpenWeatherMap وارد نمایید</string>
+
+    <string name="setting_unit_Celsuis">سلسیوس</string>
+    <string name="setting_unit_Fahrenheit">فارنهایت</string>
+    <string name="setting_unit_Kelvin">کلوین</string>
+
+    <string name="setting_unit_mm">میلی‌متر</string>
+    <string name="setting_unit_in">اینچ</string>
+
+    <string name="setting_unit_hpa">hPa</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+
+    <string name="speed_unit_mps">m/s</string>
+    <string name="speed_unit_kph">kph</string>
+    <string name="speed_unit_mph">mph</string>
+
+    <string name="wind_direction_format_none">اطلاعاتی موجود نیست</string>
+    <string name="wind_direction_format_arrows">پیکان</string>
+    <string name="wind_direction_format_abbreviations">مخفف سازی</string>
+
+    <string name="pressure_unit_hpa">hPa</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+
+    <string name="dialog_ok">تایید</string>
+    <string name="dialog_cancel">لغو</string>
+
+    <string name="msg_err_parsing_json">خطا در تفسیر فرمت</string>
+    <string name="msg_connection_problem">مشکلی در ارتباط اینترنت شما وجود دارد.</string>
+    <string name="msg_connection_not_available">ارتباطی در دسترسی نیست.</string>
+    <string name="msg_city_not_found">شهر مورد مظر وجود ندارد.</string>
+
+    <string name="wind_direction_north">N</string>
+    <string name="wind_direction_north_north_east">NNE</string>
+    <string name="wind_direction_north_east">NE</string>
+    <string name="wind_direction_east_north_east">ENE</string>
+    <string name="wind_direction_east">E</string>
+    <string name="wind_direction_east_south_east">ESE</string>
+    <string name="wind_direction_south_east">SE</string>
+    <string name="wind_direction_south_south_east">SSE</string>
+    <string name="wind_direction_south">S</string>
+    <string name="wind_direction_south_south_west">SSW</string>
+    <string name="wind_direction_south_west">SW</string>
+    <string name="wind_direction_west_south_west">WSW</string>
+    <string name="wind_direction_west">W</string>
+    <string name="wind_direction_west_north_west">WNW</string>
+    <string name="wind_direction_north_west">NW</string>
+    <string name="wind_direction_north_north_west">NNW</string>
+    <string name="msg_too_many_requests">تعداد درخواست‌ها بالاست. لطفا مجدد تلاش بفرمایید.</string>
+
+    <!-- 1: temperature; 2: unit -->
+    <string name="dash_clock_status">%1$s%2$s</string>
+    <!-- 1: temperature; 2: unit; 3: weather description -->
+    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
+    <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
+    <string name="dash_clock_expanded_body">%1$s, %2$s\nباد: %3$s %4$s\nفشار: %5$s %6$s\nرطوبت: %7$s %%\n</string>
+</resources>
