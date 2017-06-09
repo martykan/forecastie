@@ -2,7 +2,7 @@ machine:
   timezone:
     Europe/Vienna
   java:
-    openjdk8
+    version: oraclejdk8
   environment:
     ZEMU_: "appemu23"
     EMU_: "appemu21"
