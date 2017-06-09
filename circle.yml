@@ -99,7 +99,7 @@ dependencies:
 #      ls -al ~/ ;
 #      pwd ;
 #      ls -al ;
-    - cp -av app/build/outputs/apk/app-debug-unaligned.apk $CIRCLE_ARTIFACTS/${CIRCLE_PROJECT_REPONAME}_circleci_$CIRCLE_SHA1.apk || exit 1
+    - cp -av ./app/build/outputs/apk/app-debug.apk $CIRCLE_ARTIFACTS/${CIRCLE_PROJECT_REPONAME}_circleci_$CIRCLE_SHA1.apk || exit 1
     - qrencode -o $CIRCLE_ARTIFACTS/QR_apk.png 'https://circle-artifacts.com/gh/'${CIRCLE_PROJECT_USERNAME}'/'${CIRCLE_PROJECT_REPONAME}'/'${CIRCLE_BUILD_NUM}'/artifacts/'${CIRCLE_NODE_INDEX}'/tmp/'`basename $CIRCLE_ARTIFACTS`'/'"${CIRCLE_PROJECT_REPONAME}_circleci_$CIRCLE_SHA1.apk" ; exit 0
     - qrencode -o $CIRCLE_ARTIFACTS/QR_artifacts.png 'https://circle-artifacts.com/gh/'${CIRCLE_PROJECT_USERNAME}'/'${CIRCLE_PROJECT_REPONAME}'/'${CIRCLE_BUILD_NUM}'#artifacts' ; exit 0
 test:
@@ -137,7 +137,7 @@ test:
     - adb shell ls -al /storage/ ; exit 0
     - adb shell ls -al /sdcard/ ; exit 0
 
-    - adb install ~/app/build/outputs/apk/app-debug-unaligned.apk
+    - adb install ./app/build/outputs/apk/app-debug.apk
 
     - adb logcat -v time > $CIRCLE_ARTIFACTS/adb_out.txt 2>&1 :
         background: true
