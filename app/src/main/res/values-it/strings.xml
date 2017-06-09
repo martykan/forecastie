@@ -39,8 +39,8 @@
     <string name="setting_differentiateDaysByTint">Differenziare giorni con colori</string>
     <string name="setting_refreshInterval">Intervallo aggiornamento in background</string>
     <string name="setting_unit_mps">Metri al secondo (m/s)</string>
-    <string name="setting_unit_kph">Chilometri all'ora (kph)</string>
-    <string name="setting_unit_mph">Miglia all'ora (mph)</string>
+    <string name="setting_unit_kph">Chilometri all\'ora (kph)</string>
+    <string name="setting_unit_mph">Miglia all\'ora (mph)</string>
     <string name="setting_unit_bft">Scala del vento Beaufort (bft)</string>
     <string name="setting_unit_kn">Nodi (kn)</string>
     <string name="setting_wind_direction_format">Formato direzione del vento</string>
@@ -81,19 +81,10 @@
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Annulla</string>
 
-    <string name="msg_err_parsing_json">Errore durante l'analisi del file JSON.</string>
-    <string name="msg_connection_problem">C'è un problema con la connessione Internet.</string>
+    <string name="msg_err_parsing_json">Errore durante l\'analisi del file JSON.</string>
+    <string name="msg_connection_problem">C\'è un problema con la connessione Internet.</string>
     <string name="msg_connection_not_available">Connessione non disponibile.</string>
     <string name="msg_city_not_found">Città non trovata.</string>
-
-    <string name="weather_sunny" translatable="false">&#xf00d;</string>
-    <string name="weather_clear_night" translatable="false">&#xf02e;</string>
-    <string name="weather_foggy" translatable="false">&#xf014;</string>
-    <string name="weather_cloudy" translatable="false">&#xf013;</string>
-    <string name="weather_rainy" translatable="false">&#xf019;</string>
-    <string name="weather_snowy" translatable="false">&#xf01b;</string>
-    <string name="weather_thunder" translatable="false">&#xf01e;</string>
-    <string name="weather_drizzle" translatable="false">&#xf01c;</string>
 
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_north_east">NNE</string>

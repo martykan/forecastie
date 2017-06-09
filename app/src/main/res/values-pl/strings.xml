@@ -58,12 +58,10 @@
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
     <string name="setting_unit_mmhg">mmHg</string>
-    <string name="speed_unit_kph">km/h</string>
 		
 		<string name="speed_unit_mps">m/s</string>
 		<string name="speed_unit_kph">km/h</string>
 		<string name="speed_unit_mph">mph</string>
-		<string name="setting_unit_kn">węzeł (w.)</string>
 
     <string name="wind_direction_format_none">Brak</string>
 		<string name="wind_direction_format_arrows">Strzałki</string>
@@ -86,14 +84,6 @@
     <string name="msg_connection_not_available">Brak połączenia</string>
 		<string name="msg_city_not_found">Nie można odnaleźć miasta</string>
 		
-    <string name="weather_sunny" translatable="false">&#xf00d;</string>
-    <string name="weather_clear_night" translatable="false">&#xf02e;</string>
-    <string name="weather_foggy" translatable="false">&#xf014;</string>
-    <string name="weather_cloudy" translatable="false">&#xf013;</string>
-    <string name="weather_rainy" translatable="false">&#xf019;</string>
-    <string name="weather_snowy" translatable="false">&#xf01b;</string>
-    <string name="weather_thunder" translatable="false">&#xf01e;</string>
-    <string name="weather_drizzle" translatable="false">&#xf01c;</string>
 <!-- Directions-->
     <string name="wind_direction_north">pn.</string>
     <string name="wind_direction_north_north_east">pn.-pn.-wsch.</string>
