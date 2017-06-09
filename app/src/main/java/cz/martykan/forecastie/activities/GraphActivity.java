@@ -91,7 +91,7 @@ public class GraphActivity extends AppCompatActivity {
                 maxTemp = temperature;
             }
 
-            dataset.addPoint(getDateLabel(weatherList.get(i), i), (float) ((Math.ceil(temperature / 2)) * 2));
+            dataset.addPoint(getDateLabel(weatherList.get(i), i), (float) temperature);
         }
         dataset.setSmooth(false);
         dataset.setColor(Color.parseColor("#FF5722"));
