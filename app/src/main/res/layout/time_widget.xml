@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         tools:text="11:50"
-        android:textColor="@android:color/white"/>
+        android:textColor="@color/text_light"/>
 
     <TextView
         android:id="@+id/date"
@@ -22,7 +22,7 @@
         android:layout_below="@id/time"
         android:textSize="14sp"
         tools:text="Sun 01.01.2017"
-        android:textColor="@android:color/white"/>
+        android:textColor="@color/text_light"/>
 
     <TextView
         android:id="@+id/widgetCity"
@@ -32,7 +32,7 @@
         android:textSize="14sp"
         android:textStyle="bold"
         tools:text="City name, AB"
-        android:textColor="@android:color/white"/>
+        android:textColor="@color/text_light"/>
 
     <ImageView
         android:id="@+id/widgetIcon"
@@ -50,7 +50,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         tools:text="0 °C"
-        android:textColor="@android:color/white"/>
+        android:textColor="@color/text_light"/>
 
     <TextView
         android:id="@+id/widgetDescription"
@@ -61,14 +61,14 @@
         android:layout_alignParentBottom="true"
         android:textSize="16sp"
         tools:text="Clear Sky"
-        android:textColor="@android:color/white" />
+        android:textColor="@color/text_light" />
 
     <TextView
         android:id="@+id/widgetLastUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:textColor="@android:color/white"
+        android:textColor="@color/text_light"
         android:visibility="gone"
         tools:text="Last Update: 00:00" />
 
