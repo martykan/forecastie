@@ -124,7 +124,7 @@ public class SettingsActivity extends PreferenceActivity
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
-                // Explanation not needed, since user requests this himself
+                // Explanation not needed, since user requests this themself
 
             } else {
                 ActivityCompat.requestPermissions(this,
