@@ -208,7 +208,7 @@ public class GraphActivity extends AppCompatActivity {
         // Data
         LineSet dataset = new LineSet();
         for (int i = 0; i < weatherList.size(); i++) {
-            float pressure = UnitConvertor.convertWind(Float.parseFloat(weatherList.get(i).getWind()), sp);
+            float windSpeed = UnitConvertor.convertWind(Float.parseFloat(weatherList.get(i).getWind()), sp);
 
             if (windSpeed < minWindSpeed) {
                 minWindSpeed = windSpeed;
