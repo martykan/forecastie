@@ -6,9 +6,9 @@ import java.util.Locale;
 
 public class UnitConvertor {
     public static float convertTemperature(float temperature, SharedPreferences sp) {
-        if (sp.getString("unit", "C").equals("C")) {
+        if (sp.getString("unit", "C").equals("°C")) {
             return UnitConvertor.kelvinToCelsius(temperature);
-        } else if (sp.getString("unit", "C").equals("F")) {
+        } else if (sp.getString("unit", "C").equals("°F")) {
             return UnitConvertor.kelvinToFahrenheit(temperature);
         } else {
             return temperature;
@@ -49,6 +49,8 @@ public class UnitConvertor {
             return pressure / 10;
         } else if (sp.getString("pressureUnit", "hPa").equals("mm Hg")) {
             return (float) (pressure * 0.750061561303);
+        } else if (sp.getString("pressureUnit", "hPa").equals("in Hg")) {
+            return (float) (pressure * 0.0295299830714);
         } else {
             return pressure;
         }
@@ -56,10 +58,13 @@ public class UnitConvertor {
 
     public static double convertWind(double wind, SharedPreferences sp) {
         if (sp.getString("speedUnit", "m/s").equals("kph")) {
-            return wind * 3.59999999712;
+            return wind * 3.6;
         }
         else if (sp.getString("speedUnit", "m/s").equals("mph")) {
             return wind * 2.23693629205;
+        }
+        else if (sp.getString("speedUnit", "m/s").equals("kn")) {
+            return wind * 1.943844;
         }
         else if (sp.getString("speedUnit", "m/s").equals("bft")) {
             if(wind < 0.3) {

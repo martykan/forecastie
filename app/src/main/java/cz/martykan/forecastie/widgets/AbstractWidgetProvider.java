@@ -113,12 +113,12 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             }
 
             String description = reader.optJSONArray("weather").getJSONObject(0).getString("description");
-            description = description.substring(0,1).toUpperCase() + description.substring(1).toLowerCase();
+            description = description.substring(0,1).toUpperCase() + description.substring(1).toUpperCase();
 
             Weather widgetWeather = new Weather();
             widgetWeather.setCity(reader.getString("name"));
             widgetWeather.setCountry(reader.optJSONObject("sys").getString("country"));
-            widgetWeather.setTemperature(Math.round(temperature) + "°" + localize(sp, context, "unit", "C"));
+            widgetWeather.setTemperature(Math.round(temperature) + localize(sp, context, "unit", "C"));
             widgetWeather.setDescription(description);
             widgetWeather.setWind(context.getString(R.string.wind) + ": " + new DecimalFormat("#.0").format(wind) + " " + localize(sp, context, "speedUnit", "m/s")
                     + (widgetWeather.isWindDirectionAvailable() ? " " + MainActivity.getWindDirectionString(sp, context, widgetWeather) : ""));

@@ -1,88 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widgetRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/widgetRoot"
     android:background="@drawable/widget_card"
-    android:padding="20dp">
+    android:padding="8dp">
 
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="80sp"
-        android:layout_centerHorizontal="true"
-        tools:text="11:50"/>
+        android:textSize="24sp"
+        tools:text="11:50"
+        android:textColor="@color/text_light"/>
 
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Clear Sky"
-        android:layout_marginTop="0sp"
-        android:layout_marginBottom="5sp"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        android:layout_below="@+id/time"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@id/time"
+        android:textSize="14sp"
+        tools:text="Sun 01.01.2017"
+        android:textColor="@color/text_light"/>
 
-    <LinearLayout
-        android:id="@+id/textHolder"
+    <TextView
+        android:id="@+id/widgetCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@id/date">
-
-        <TextView
-            android:id="@+id/widgetDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Clear Sky"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/widgetCity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            tools:text="City name, AB"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="City name, AB"
+        android:textColor="@color/text_light"/>
 
     <ImageView
         android:id="@+id/widgetIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/date"
-        android:layout_toEndOf="@id/textHolder"
-        android:layout_toRightOf="@id/textHolder"
-        android:layout_toLeftOf="@+id/widgetTemperature"
-        android:layout_toStartOf="@+id/widgetTemperature"
-        tools:src="@drawable/ic_cloud_white_48dp"/>
+        android:layout_centerHorizontal="true"
+        tools:src="@drawable/ic_cloud_white_24dp"/>
 
     <TextView
         android:id="@+id/widgetTemperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="0 °C"
-        android:textColor="@android:color/white"
-        android:textSize="48sp"
-        android:layout_below="@id/date"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:text="0 °C"
+        android:textColor="@color/text_light"/>
+
+    <TextView
+        android:id="@+id/widgetDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:textSize="16sp"
+        tools:text="Clear Sky"
+        android:textColor="@color/text_light" />
 
     <TextView
         android:id="@+id/widgetLastUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:textColor="@android:color/white"
+        android:textColor="@color/text_light"
         android:visibility="gone"
         tools:text="Last Update: 00:00" />
 

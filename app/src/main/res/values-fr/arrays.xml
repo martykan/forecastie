@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="windDirectionFormatValues">
+        <item name="none">aucune</item>
+        <item name="arrow">flèche</item>
+        <item name="abbr"></item>
+    </string-array>
+
+
+
+    <string-array name="themesValues">
+        <item name="fresh"></item>
+        <item name="classic">classique</item>
+        <item name="dark">sombre</item>
+        <item name="classicdark">sombre classique</item>
+    </string-array>
+</resources>

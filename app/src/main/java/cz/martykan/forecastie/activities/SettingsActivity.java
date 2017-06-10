@@ -123,8 +123,8 @@ public class SettingsActivity extends PreferenceActivity
         System.out.println("Calling request location permission");
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_CONTACTS)) {
-                // Explanation not needed, since user requests this himself
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                // Explanation not needed, since user requests this themself
 
             } else {
                 ActivityCompat.requestPermissions(this,

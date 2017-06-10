@@ -23,4 +23,10 @@
     <color name="classic_darkTheme_colorAccent">#90a4ae</color>
     <color name="classic_darkTheme_colorBackground">#303030</color>
     <color name="classic_darkTheme_colorTintedBackground">#263238</color>
+
+    <color name="splashBackground">#607d8b</color>
+    
+    <color name="text_light">#ffffff</color>
+    <color name="text_dark">#000000</color>
+    <color name="tab_indicator">#ffffff</color>
 </resources>

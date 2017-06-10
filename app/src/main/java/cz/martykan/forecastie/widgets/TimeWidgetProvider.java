@@ -63,10 +63,10 @@ public class TimeWidgetProvider extends AbstractWidgetProvider {
             DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(context);
             String defaultDateFormat = context.getResources().getStringArray(R.array.dateFormatsValues)[0];
             String dateFormat = sp.getString("dateFormat", defaultDateFormat);
-            dateFormat = dateFormat.substring(0, dateFormat.indexOf("-")-1);
             if ("custom".equals(dateFormat)) {
                 dateFormat = sp.getString("dateFormatCustom", defaultDateFormat);
             }
+            dateFormat = dateFormat.substring(0, dateFormat.indexOf("-")-1);
             String dateString;
             try {
                 SimpleDateFormat resultFormat = new SimpleDateFormat(dateFormat);

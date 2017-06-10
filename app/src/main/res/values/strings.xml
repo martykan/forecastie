@@ -42,6 +42,7 @@
     <string name="setting_unit_kph">Kilometers per hour (kph)</string>
     <string name="setting_unit_mph">Miles per hour (mph)</string>
     <string name="setting_unit_bft">Beaufort wind scale (bft)</string>
+    <string name="setting_unit_kn">Knots (kn)</string>
     <string name="setting_wind_direction_format">Wind direction format</string>
     <string name="settings_none">None</string>
     <string name="setting_apiKey">API key</string>
@@ -57,10 +58,12 @@
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
     <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_inhg">in Hg</string>
 
     <string name="speed_unit_mps">m/s</string>
     <string name="speed_unit_kph">kph</string>
     <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_kn">kn</string>
 
     <string name="wind_direction_format_none">No indication</string>
     <string name="wind_direction_format_arrows">Arrows</string>
@@ -111,9 +114,9 @@
     <string name="msg_too_many_requests">Too many requests. Please try again.</string>
 
     <!-- 1: temperature; 2: unit -->
-    <string name="dash_clock_status">%1$s°%2$s</string>
+    <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
-    <string name="dash_clock_expanded_title">%1$s°%2$s - %3$s</string>
+    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\nWind: %3$s %4$s\nPressure: %5$s %6$s\nHumidity: %7$s %%\n</string>
     <string name="settings_title_units">Units</string>
