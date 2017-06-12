@@ -113,7 +113,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             }
 
             String description = reader.optJSONArray("weather").getJSONObject(0).getString("description");
-            description = description.substring(0,1).toUpperCase() + description.substring(1).toUpperCase();
+            description = description.substring(0,1).toUpperCase() + description.substring(1);
 
             Weather widgetWeather = new Weather();
             widgetWeather.setCity(reader.getString("name"));
