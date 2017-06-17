@@ -221,7 +221,7 @@ public class GraphActivity extends AppCompatActivity {
             dataset.addPoint(getDateLabel(weatherList.get(i), i), windSpeed);
         }
         dataset.setSmooth(false);
-        dataset.setColor(Color.parseColor("#4CAF50"));
+        dataset.setColor(Color.parseColor("#FFF600"));
         dataset.setThickness(4);
 
         lineChartView.addData(dataset);
