@@ -108,7 +108,7 @@ public class GraphActivity extends AppCompatActivity {
         paint.setStrokeWidth(1);
         lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
         lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues((int) minTemp - 1, (int) maxTemp + 1);
+        lineChartView.setAxisBorderValues((int) (Math.round(minTemp)) - 1, (int) (Math.round(maxTemp)) + 1);
         lineChartView.setStep(2);
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
@@ -149,7 +149,7 @@ public class GraphActivity extends AppCompatActivity {
         paint.setStrokeWidth(1);
         lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
         lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues(0, (int) maxRain + 1);
+        lineChartView.setAxisBorderValues(0, (int) (Math.round(maxRain)) + 1);
         lineChartView.setStep(1);
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
