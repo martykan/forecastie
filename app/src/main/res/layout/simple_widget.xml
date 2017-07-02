@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:textSize="12sp"
+        android:textSize="10sp"
         tools:text="City name, AB"
         android:textColor="@color/text_light"/>
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/widgetCity"
         android:layout_alignParentLeft="true"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         tools:text="0 °C"
         android:textColor="@color/text_light"/>
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:textSize="12sp"
+        android:textSize="10sp"
         tools:text="Clear Sky"
         android:textColor="@color/text_light" />
 
