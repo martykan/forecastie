@@ -6,5 +6,5 @@
     android:initialLayout="@layout/simple_widget"
     android:resizeMode="none"
     android:widgetCategory="home_screen|keyguard"
-    android:previewImage="@drawable/widget_preview">
+    android:previewImage="@drawable/widget_preview_simple">
 </appwidget-provider>
