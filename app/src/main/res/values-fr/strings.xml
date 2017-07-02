@@ -16,8 +16,8 @@
     <string name="sunrise">Lever du soleil</string>
     <string name="sunset">Coucher du soleil</string>
 
-    <string name="last_update">Dernière mise à jour:\\n%s</string>
-    <string name="last_update_widget">\\nDernière mise à jour: %s</string>
+    <string name="last_update">Dernière mise à jour:\n%s</string>
+    <string name="last_update_widget">\nDernière mise à jour: %s</string>
 
     <string name="search_title">Rechercher une ville</string>
 
@@ -41,7 +41,7 @@
     <string name="setting_unit_mps">Mètres par seconde (m/s)</string>
     <string name="setting_unit_kph">Kilomètres par heure (km/h)</string>
     <string name="setting_unit_mph">Milles par heure (mph)</string>
-    <string name="setting_unit_bft">échelle Beaufort (bft)</string>
+    <string name="setting_unit_bft">Échelle Beaufort (bft)</string>
     <string name="setting_unit_kn">Nœuds (nd)</string>
     <string name="setting_wind_direction_format">Format de direction du vent</string>
     <string name="settings_none">Aucun</string>
@@ -57,8 +57,8 @@
 
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
-    <string name="setting_unit_mmhg">mm Hg</string>
-    <string name="setting_unit_inhg">en Hg</string>
+    <string name="setting_unit_mmhg">mmHg</string>
+    <string name="setting_unit_inhg">inHg</string>
 
     <string name="speed_unit_mps">m/s</string>
     <string name="speed_unit_kph">kph</string>
@@ -71,7 +71,7 @@
 
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
-    <string name="pressure_unit_mmhg">mm Hg</string>
+    <string name="pressure_unit_mmhg">mmHg</string>
 
     <string name="setting_theme_fresh">Moderne</string>
     <string name="setting_theme_classic">Classique</string>
@@ -82,7 +82,7 @@
     <string name="dialog_cancel">Annuler</string>
 
     <string name="msg_err_parsing_json">Erreur d\'analyse JSON.</string>
-    <string name="msg_connection_problem">Il y a un problème avec votre connexion à internet.</string>
+    <string name="msg_connection_problem">Il y a un problème avec votre connexion à Internet.</string>
     <string name="msg_connection_not_available">Aucune connexion.</string>
     <string name="msg_city_not_found">Ville introuvable.</string>
 
