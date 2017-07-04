@@ -444,7 +444,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         // Pressure
         double pressure = UnitConvertor.convertPressure((float) Double.parseDouble(todayWeather.getPressure()), sp);
 
-        todayTemperature.setText(new DecimalFormat("#.#").format(temperature) + " " + sp.getString("unit", "C"));
+        todayTemperature.setText(new DecimalFormat("#.#").format(temperature) + " " + sp.getString("unit", "°C"));
         todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() +
                 todayWeather.getDescription().substring(1) + rainString);
         if (sp.getString("speedUnit", "m/s").equals("bft")) {
