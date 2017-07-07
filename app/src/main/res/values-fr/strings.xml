@@ -16,8 +16,8 @@
     <string name="sunrise">Lever du soleil</string>
     <string name="sunset">Coucher du soleil</string>
 
-    <string name="last_update">Dernière mise à jour:\n%s</string>
-    <string name="last_update_widget">\nDernière mise à jour: %s</string>
+    <string name="last_update">Dernière mise à jour :\n%s</string>
+    <string name="last_update_widget">\nDernière mise à jour : %s</string>
 
     <string name="search_title">Rechercher une ville</string>
 
