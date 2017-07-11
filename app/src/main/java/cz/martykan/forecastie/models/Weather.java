@@ -72,6 +72,7 @@ public class Weather {
     private String lastUpdated;
     private Date sunrise;
     private Date sunset;
+    private double uvIndex;
 
     public String getCity() {
         return city;
@@ -198,6 +199,10 @@ public class Weather {
     public void setSunset(Date date) {
         this.sunset = date;
     }
+
+    public double getUvIndex() { return this.uvIndex; }
+
+    public void setUvIndex(double uvIndex) { this.uvIndex = uvIndex; }
 
     public String getIcon() {
         return icon;

@@ -81,6 +81,14 @@
                         android:textSize="16dp" />
 
                     <TextView
+                        android:id="@+id/todayUviIndex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uvi: 0 %"
+                        android:textColor="@color/text_light"
+                        android:textSize="16dp" />
+
+                    <TextView
                         android:id="@+id/todaySunrise"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

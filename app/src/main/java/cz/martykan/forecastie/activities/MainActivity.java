@@ -63,6 +63,8 @@ import cz.martykan.forecastie.utils.UnitConvertor;
 import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
 import cz.martykan.forecastie.widgets.DashClockWeatherExtension;
 
+import static cz.martykan.forecastie.utils.UnitConvertor.convertUviIndex;
+
 public class MainActivity extends AppCompatActivity implements LocationListener {
     protected static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
 
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     TextView todayHumidity;
     TextView todaySunrise;
     TextView todaySunset;
+    TextView todayUviIndex;
     TextView lastUpdate;
     TextView todayIcon;
     ViewPager viewPager;
@@ -134,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         todayHumidity = (TextView) findViewById(R.id.todayHumidity);
         todaySunrise = (TextView) findViewById(R.id.todaySunrise);
         todaySunset = (TextView) findViewById(R.id.todaySunset);
+        todayUviIndex = (TextView) findViewById(R.id.todayUviIndex);
         lastUpdate = (TextView) findViewById(R.id.lastUpdate);
         todayIcon = (TextView) findViewById(R.id.todayIcon);
         weatherFont = Typeface.createFromAsset(this.getAssets(), "fonts/weather.ttf");
@@ -179,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         } else if (shouldUpdate() && isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
+            getTodayUVI();
         }
     }
 
@@ -217,6 +222,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         new LongTermWeatherTask(this, this, progressDialog).execute();
     }
 
+    private void getTodayUVI() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        Float latitude = sp.getFloat("latitude", 0);
+        Float longitude = sp.getFloat("longitude", 0);
+        new TodayUVITask(this, this, progressDialog).execute("coords", Float.toString(latitude), Float.toString(longitude));
+    }
+
     private void searchCities() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle(this.getString(R.string.search_title));
@@ -253,6 +265,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             // New location, update weather
             getTodayWeather();
             getLongTermWeather();
+            // update uvi index
+            getTodayUVI();
         }
     }
 
@@ -404,6 +418,30 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         return ParseResult.OK;
     }
 
+    private ParseResult parseTodayUVIJson(String result) {
+        try {
+            JSONObject reader = new JSONObject(result);
+
+            final String code = reader.optString("cod");
+            if ("404".equals(code)) {
+                todayWeather.setUvIndex(-1);
+                return ParseResult.CITY_NOT_FOUND;
+            }
+
+            double value = reader.getDouble("value");
+            todayWeather.setUvIndex(value);
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+            editor.putString("lastToday", result);
+            editor.commit();
+        } catch (JSONException e) {
+            Log.e("JSONException Data", result);
+            e.printStackTrace();
+            return ParseResult.JSON_EXCEPTION;
+        }
+
+        return ParseResult.OK;
+    }
+
     private void updateTodayWeatherUI() {
         try {
             if (todayWeather.getCountry().isEmpty()) {
@@ -461,6 +499,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
         todaySunrise.setText(getString(R.string.sunrise) + ": " + timeFormat.format(todayWeather.getSunrise()));
         todaySunset.setText(getString(R.string.sunset) + ": " + timeFormat.format(todayWeather.getSunset()));
+        todayUviIndex.setText(getString(R.string.uviindex) + ": " + convertUviIndex(todayWeather.getUvIndex()));
         todayIcon.setText(todayWeather.getIcon());
     }
 
@@ -608,6 +647,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             if (isNetworkAvailable()) {
                 getTodayWeather();
                 getLongTermWeather();
+                getTodayUVI();
             } else {
                 Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
             }
@@ -774,6 +814,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
         new ProvideCityNameTask(this, this, progressDialog).execute("coords", Double.toString(latitude), Double.toString(longitude));
+        new TodayUVITask(this, this, progressDialog).execute("coords", Double.toString(latitude), Double.toString(longitude));
     }
 
     @Override
@@ -897,6 +938,42 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         protected void onPostExecute(TaskOutput output) {
             /* Handle possible errors only */
             handleTaskOutput(output);
+        }
+    }
+
+    class TodayUVITask extends GenericRequestTask {
+        public TodayUVITask(Context context, MainActivity activity, ProgressDialog progressDialog) {
+            super(context, activity, progressDialog);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            loading = 0;
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(TaskOutput output) {
+            super.onPostExecute(output);
+            // Update widgets
+            AbstractWidgetProvider.updateWidgets(MainActivity.this);
+            DashClockWeatherExtension.updateDashClock(MainActivity.this);
+        }
+
+        @Override
+        protected ParseResult parseResponse(String response) {
+            return parseTodayUVIJson(response);
+        }
+
+        @Override
+        protected String getAPIName() {
+            return "uvi";
+        }
+
+        @Override
+        protected void updateMainUI() {
+            updateTodayWeatherUI();
+            updateLastUpdateTime();
         }
     }
 
