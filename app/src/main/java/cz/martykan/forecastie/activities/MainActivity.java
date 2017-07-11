@@ -183,7 +183,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         } else if (shouldUpdate() && isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
-            getTodayUVI();
         }
     }
 
@@ -223,10 +222,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     private void getTodayUVI() {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        Float latitude = sp.getFloat("latitude", 0);
-        Float longitude = sp.getFloat("longitude", 0);
-        new TodayUVITask(this, this, progressDialog).execute("coords", Float.toString(latitude), Float.toString(longitude));
+        double latitude = todayWeather.getLat();
+        double longitude = todayWeather.getLon();
+        new TodayUVITask(this, this, progressDialog).execute("coords", Double.toString(latitude), Double.toString(longitude));
     }
 
     private void searchCities() {
@@ -265,8 +263,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             // New location, update weather
             getTodayWeather();
             getLongTermWeather();
-            // update uvi index
-            getTodayUVI();
         }
     }
 
@@ -368,8 +364,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             JSONObject coordinates = reader.getJSONObject("coord");
             if (coordinates != null) {
+                todayWeather.setLat(coordinates.getDouble("lat"));
+                todayWeather.setLon(coordinates.getDouble("lon"));
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-                sp.edit().putFloat("latitude", (float) coordinates.getDouble("lon")).putFloat("longitude", (float) coordinates.getDouble("lat")).commit();
+                sp.edit().putFloat("latitude", (float) todayWeather.getLat()).putFloat("longitude", (float) todayWeather.getLon()).commit();
             }
 
             JSONObject main = reader.getJSONObject("main");
@@ -499,8 +497,26 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
         todaySunrise.setText(getString(R.string.sunrise) + ": " + timeFormat.format(todayWeather.getSunrise()));
         todaySunset.setText(getString(R.string.sunset) + ": " + timeFormat.format(todayWeather.getSunset()));
-        todayUviIndex.setText(getString(R.string.uviindex) + ": " + convertUviIndex(todayWeather.getUvIndex()));
+        todayUviIndex.setText(getString(R.string.uviindex) + ": " + getString(R.string.loading_data));
         todayIcon.setText(todayWeather.getIcon());
+    }
+
+    public void updateUviUi() {
+        {
+            try {
+                if (todayWeather.getCountry().isEmpty()) {
+                    preloadWeather();
+                    return;
+                }
+            } catch (Exception e) {
+                preloadWeather();
+                return;
+            }
+
+            // UVI Index
+            String uviIndex = UnitConvertor.convertUviIndex(todayWeather.getUvIndex());
+            todayUviIndex.setText(getString(R.string.uviindex) + ": " + uviIndex);
+        }
     }
 
     public ParseResult parseLongTermJson(String result) {
@@ -647,7 +663,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             if (isNetworkAvailable()) {
                 getTodayWeather();
                 getLongTermWeather();
-                getTodayUVI();
             } else {
                 Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
             }
@@ -814,7 +829,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
         new ProvideCityNameTask(this, this, progressDialog).execute("coords", Double.toString(latitude), Double.toString(longitude));
-        new TodayUVITask(this, this, progressDialog).execute("coords", Double.toString(latitude), Double.toString(longitude));
     }
 
     @Override
@@ -847,6 +861,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         @Override
         protected void onPostExecute(TaskOutput output) {
             super.onPostExecute(output);
+            // Wee need the coordanate info that comes with the weather request
+            // json and that is why we call the getTodayUVI() here onPostExecute
+            // update uvi index
+            getTodayUVI();
             // Update widgets
             AbstractWidgetProvider.updateWidgets(MainActivity.this);
             DashClockWeatherExtension.updateDashClock(MainActivity.this);
@@ -956,8 +974,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         protected void onPostExecute(TaskOutput output) {
             super.onPostExecute(output);
             // Update widgets
-            AbstractWidgetProvider.updateWidgets(MainActivity.this);
-            DashClockWeatherExtension.updateDashClock(MainActivity.this);
+            //AbstractWidgetProvider.updateWidgets(MainActivity.this);
+            //DashClockWeatherExtension.updateDashClock(MainActivity.this);
         }
 
         @Override
@@ -972,7 +990,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         @Override
         protected void updateMainUI() {
-            updateTodayWeatherUI();
+            updateUviUi();
             updateLastUpdateTime();
         }
     }

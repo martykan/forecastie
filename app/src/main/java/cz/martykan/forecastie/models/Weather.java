@@ -72,6 +72,8 @@ public class Weather {
     private String lastUpdated;
     private Date sunrise;
     private Date sunset;
+    private double lat;
+    private double lon;
     private double uvIndex;
 
     public String getCity() {
@@ -199,6 +201,14 @@ public class Weather {
     public void setSunset(Date date) {
         this.sunset = date;
     }
+
+    public void setLat(double lat) {this.lat = lat; }
+
+    public double getLat() { return this.lat; }
+
+    public void setLon(double lon) { this.lon = lon; }
+
+    public double getLon() { return this.lon; }
 
     public double getUvIndex() { return this.uvIndex; }
 
