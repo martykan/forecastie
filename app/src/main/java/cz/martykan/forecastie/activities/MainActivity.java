@@ -63,7 +63,7 @@ import cz.martykan.forecastie.utils.UnitConvertor;
 import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
 import cz.martykan.forecastie.widgets.DashClockWeatherExtension;
 
-import static cz.martykan.forecastie.utils.UnitConvertor.convertUviIndex;
+import static cz.martykan.forecastie.utils.UnitConvertor.convertUvIndex;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
     protected static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     TextView todayHumidity;
     TextView todaySunrise;
     TextView todaySunset;
-    TextView todayUviIndex;
+    TextView todayUvIndex;
     TextView lastUpdate;
     TextView todayIcon;
     ViewPager viewPager;
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         todayHumidity = (TextView) findViewById(R.id.todayHumidity);
         todaySunrise = (TextView) findViewById(R.id.todaySunrise);
         todaySunset = (TextView) findViewById(R.id.todaySunset);
-        todayUviIndex = (TextView) findViewById(R.id.todayUviIndex);
+        todayUvIndex = (TextView) findViewById(R.id.todayUvIndex);
         lastUpdate = (TextView) findViewById(R.id.lastUpdate);
         todayIcon = (TextView) findViewById(R.id.todayIcon);
         weatherFont = Typeface.createFromAsset(this.getAssets(), "fonts/weather.ttf");
@@ -497,7 +497,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
         todaySunrise.setText(getString(R.string.sunrise) + ": " + timeFormat.format(todayWeather.getSunrise()));
         todaySunset.setText(getString(R.string.sunset) + ": " + timeFormat.format(todayWeather.getSunset()));
-        todayUviIndex.setText(getString(R.string.uviindex) + ": " + getString(R.string.loading_data));
+        todayUvIndex.setText(getString(R.string.uvindex) + ": " + getString(R.string.loading_data));
         todayIcon.setText(todayWeather.getIcon());
     }
 
@@ -513,9 +513,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 return;
             }
 
-            // UVI Index
-            String uviIndex = UnitConvertor.convertUviIndex(todayWeather.getUvIndex());
-            todayUviIndex.setText(getString(R.string.uviindex) + ": " + uviIndex);
+            // UV Index
+            String uvIndex = UnitConvertor.convertUvIndex(todayWeather.getUvIndex());
+            todayUvIndex.setText(getString(R.string.uvindex) + ": " + uvIndex);
         }
     }
 

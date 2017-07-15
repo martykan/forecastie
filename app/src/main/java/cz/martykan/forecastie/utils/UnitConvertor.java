@@ -112,7 +112,7 @@ public class UnitConvertor {
         }
     }
 
-    public static String convertUviIndex(double value) {
+    public static String convertUvIndex(double value) {
         /* based on: https://en.wikipedia.org/wiki/Ultraviolet_index */
         if (value < 0) {
             return "no info"; /* error */
