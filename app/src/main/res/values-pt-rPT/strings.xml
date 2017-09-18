@@ -42,6 +42,7 @@
     <string name="setting_unit_kph">Quilómetros por hora (km/h)</string>
     <string name="setting_unit_mph">Milhas por hora (mi/h)</string>
     <string name="setting_unit_bft">Escala de ventos de Beaufort (bft)</string>
+    <string name="setting_unit_kn">Nós (kn)</string>
     <string name="setting_wind_direction_format">Formato de direção do vento</string>
     <string name="settings_none">Nenhum</string>
     <string name="setting_apiKey">Chave da API</string>
@@ -57,10 +58,12 @@
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
     <string name="setting_unit_mmhg">mmHg</string>
+    <string name="setting_unit_inhg">inHg</string>
 
     <string name="speed_unit_mps">m/s</string>
     <string name="speed_unit_kph">km/h</string>
     <string name="speed_unit_mph">mi/h</string>
+    <string name="speed_unit_kn">kn</string>
 
     <string name="wind_direction_format_none">Sem indicação</string>
     <string name="wind_direction_format_arrows">Setas</string>
