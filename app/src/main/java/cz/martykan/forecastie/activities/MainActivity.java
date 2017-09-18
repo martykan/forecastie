@@ -260,7 +260,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Forecastie");
         final WebView webView = new WebView(this);
-        String about = "<p>A lightweight, opensource weather app.</p>" +
+        String about = "<p>1.5</p>" +
+                "<p>A lightweight, opensource weather app.</p>" +
                 "<p>Developed by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a></p>" +
                 "<p>Data provided by <a href='http://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons license</a>" +
                 "<p>Icons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.";
@@ -443,7 +444,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         // Pressure
         double pressure = UnitConvertor.convertPressure((float) Double.parseDouble(todayWeather.getPressure()), sp);
 
-        todayTemperature.setText(new DecimalFormat("#.#").format(temperature) + " " + sp.getString("unit", "C"));
+        todayTemperature.setText(new DecimalFormat("0.#").format(temperature) + " " + sp.getString("unit", "°C"));
         todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() +
                 todayWeather.getDescription().substring(1) + rainString);
         if (sp.getString("speedUnit", "m/s").equals("bft")) {
@@ -695,7 +696,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
-                // Explanation not needed, since user requests this himself
+                // Explanation not needed, since user requests this themmself
 
             } else {
                 ActivityCompat.requestPermissions(this,

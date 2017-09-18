@@ -1,6 +1,8 @@
 machine:
   timezone:
     Europe/Vienna
+  java:
+    version: oraclejdk8
   environment:
     ZEMU_: "appemu23"
     EMU_: "appemu21"
@@ -78,26 +80,26 @@ dependencies:
 #   --- find test results ---
 
     - mkdir -p app/build/outputs/apk/
-    - cp -v `find ./build/outputs/apk/ -name '*.apk' 2> /dev/null | tail -1 2> /dev/null` app/build/outputs/apk/app-debug-unaligned.apk ; exit 0
+#    - cp -v `find ./build/outputs/apk/ -name '*.apk' 2> /dev/null | tail -1 2> /dev/null` app/build/outputs/apk/app-debug-unaligned.apk ; exit 0
 
-    - zip -d app/build/outputs/apk/app-debug-unaligned.apk META-INF/\* ; exit 0  # remove signature (only if it's unsigned) !!
-    - cp -av app/build/outputs/apk/app-debug-unaligned.apk ~/app.apk ;
-      cd ~/ ;
-      echo xxxxxxrm -f ~/.android/debug.keystore ;
-      ls -al ~/.android/debug.keystore ;
-      if [ ! -f ~/.android/debug.keystore ]; then echo "*** generating new signer key ***" ;
-      echo "*** generating new signer key ***";
-      echo "*** generating new signer key ***";
-      keytool -genkey -v -keystore ~/.android/debug.keystore -storepass android -keyalg RSA -keysize 2048 -validity 10000 -alias androiddebugkey -keypass android -dname "CN=Android Debug,O=Android,C=US" ;
-      fi ;
-      ls -al ~/ ;
-      jarsigner -verbose -keystore ~/.android/debug.keystore -storepass android -keypass android -sigalg SHA1withRSA -digestalg SHA1 -sigfile CERT -signedjar app-signed.apk app.apk androiddebugkey ;
-      ls -al ~/ ;
-      $_SDK_/build-tools/23.0.1/zipalign -v 4 app-signed.apk app-signed-aligned.apk ;
-      ls -al ~/ ;
-      pwd ;
-      ls -al ;
-      cp -av app-signed-aligned.apk $CIRCLE_ARTIFACTS/${CIRCLE_PROJECT_REPONAME}_circleci_$CIRCLE_SHA1.apk || exit 1
+#    - zip -d app/build/outputs/apk/app-debug-unaligned.apk META-INF/\* ; exit 0  # remove signature (only if it's unsigned) !!
+#    - cp -av app/build/outputs/apk/app-debug-unaligned.apk ~/app.apk ;
+#      cd ~/ ;
+#      echo xxxxxxrm -f ~/.android/debug.keystore ;
+#      ls -al ~/.android/debug.keystore ;
+#      if [ ! -f ~/.android/debug.keystore ]; then echo "*** generating new signer key ***" ;
+#      echo "*** generating new signer key ***";
+#      echo "*** generating new signer key ***";
+#      keytool -genkey -v -keystore ~/.android/debug.keystore -storepass android -keyalg RSA -keysize 2048 -validity 10000 -alias androiddebugkey -keypass android -dname "CN=Android Debug,O=Android,C=US" ;
+#      fi ;
+#      ls -al ~/ ;
+#      jarsigner -verbose -keystore ~/.android/debug.keystore -storepass android -keypass android -sigalg SHA1withRSA -digestalg SHA1 -sigfile CERT -signedjar app-signed.apk app.apk androiddebugkey ;
+#      ls -al ~/ ;
+#      $_SDK_/build-tools/23.0.1/zipalign -v 4 app-signed.apk app-signed-aligned.apk ;
+#      ls -al ~/ ;
+#      pwd ;
+#      ls -al ;
+    - cp -av ./app/build/outputs/apk/app-debug.apk $CIRCLE_ARTIFACTS/${CIRCLE_PROJECT_REPONAME}_circleci_$CIRCLE_SHA1.apk || exit 1
     - qrencode -o $CIRCLE_ARTIFACTS/QR_apk.png 'https://circle-artifacts.com/gh/'${CIRCLE_PROJECT_USERNAME}'/'${CIRCLE_PROJECT_REPONAME}'/'${CIRCLE_BUILD_NUM}'/artifacts/'${CIRCLE_NODE_INDEX}'/tmp/'`basename $CIRCLE_ARTIFACTS`'/'"${CIRCLE_PROJECT_REPONAME}_circleci_$CIRCLE_SHA1.apk" ; exit 0
     - qrencode -o $CIRCLE_ARTIFACTS/QR_artifacts.png 'https://circle-artifacts.com/gh/'${CIRCLE_PROJECT_USERNAME}'/'${CIRCLE_PROJECT_REPONAME}'/'${CIRCLE_BUILD_NUM}'#artifacts' ; exit 0
 test:
@@ -135,7 +137,7 @@ test:
     - adb shell ls -al /storage/ ; exit 0
     - adb shell ls -al /sdcard/ ; exit 0
 
-    - adb install ~/app-signed-aligned.apk
+    - adb install ./app/build/outputs/apk/app-debug.apk
 
     - adb logcat -v time > $CIRCLE_ARTIFACTS/adb_out.txt 2>&1 :
         background: true

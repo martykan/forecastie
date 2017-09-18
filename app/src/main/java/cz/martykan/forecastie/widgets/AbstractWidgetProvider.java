@@ -113,7 +113,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             }
 
             String description = reader.optJSONArray("weather").getJSONObject(0).getString("description");
-            description = description.substring(0,1).toUpperCase() + description.substring(1).toLowerCase();
+            description = description.substring(0,1).toUpperCase() + description.substring(1);
 
             Weather widgetWeather = new Weather();
             widgetWeather.setCity(reader.getString("name"));
@@ -145,6 +145,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     public static void updateWidgets(Context context) {
         updateWidgets(context, ExtensiveWidgetProvider.class);
         updateWidgets(context, TimeWidgetProvider.class);
+        updateWidgets(context, SimpleWidgetProvider.class);
     }
 
     private static void updateWidgets(Context context, Class widgetClass) {

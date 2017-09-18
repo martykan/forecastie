@@ -91,7 +91,7 @@ public class GraphActivity extends AppCompatActivity {
                 maxTemp = temperature;
             }
 
-            dataset.addPoint(getDateLabel(weatherList.get(i), i), (float) ((Math.ceil(temperature / 2)) * 2));
+            dataset.addPoint(getDateLabel(weatherList.get(i), i), (float) temperature);
         }
         dataset.setSmooth(false);
         dataset.setColor(Color.parseColor("#FF5722"));
@@ -108,7 +108,7 @@ public class GraphActivity extends AppCompatActivity {
         paint.setStrokeWidth(1);
         lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
         lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues((int) minTemp - 2, (int) maxTemp + 2);
+        lineChartView.setAxisBorderValues((int) (Math.round(minTemp)) - 1, (int) (Math.round(maxTemp)) + 1);
         lineChartView.setStep(2);
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
@@ -149,7 +149,7 @@ public class GraphActivity extends AppCompatActivity {
         paint.setStrokeWidth(1);
         lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
         lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues((int) minRain - 1, (int) maxRain + 2);
+        lineChartView.setAxisBorderValues(0, (int) (Math.round(maxRain)) + 1);
         lineChartView.setStep(1);
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
