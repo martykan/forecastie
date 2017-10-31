@@ -15,6 +15,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -201,11 +202,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         String lastToday = sp.getString("lastToday", "");
         if (!lastToday.isEmpty()) {
-            new TodayWeatherTask(this, this, progressDialog).execute("cachedResponse", lastToday);
+            new TodayWeatherTask(this, this, progressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "cachedResponse", lastToday);
         }
         String lastLongterm = sp.getString("lastLongterm", "");
         if (!lastLongterm.isEmpty()) {
-            new LongTermWeatherTask(this, this, progressDialog).execute("cachedResponse", lastLongterm);
+            new LongTermWeatherTask(this, this, progressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "cachedResponse", lastLongterm);
         }
     }
 
