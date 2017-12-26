@@ -16,6 +16,7 @@ import java.text.DecimalFormat;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.activities.MainActivity;
+import cz.martykan.forecastie.activities.SplashActivity;
 import cz.martykan.forecastie.utils.UnitConvertor;
 
 public class DashClockWeatherExtension extends DashClockExtension {
@@ -67,7 +68,7 @@ public class DashClockWeatherExtension extends DashClockExtension {
                             new DecimalFormat("#.0").format(wind), localize(sp, "speedUnit", "m/s"),
                             new DecimalFormat("#.0").format(pressure), localize(sp, "pressureUnit", "hPa"),
                             reader.optJSONObject("main").getString("humidity")))
-                    .clickIntent(new Intent(this, MainActivity.class)));
+                    .clickIntent(new Intent(this, SplashActivity.class)));
         }
         catch (Exception e) {
             e.printStackTrace();
