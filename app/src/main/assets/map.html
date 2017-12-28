@@ -54,7 +54,7 @@
     windLayer.setOpacity(0.7);
 
     // Rain
-    var rainLayer = new L.TileLayer("http://{s}.maps.owm.io:8099/57b58d2a946d8a0100852aef/{z}/{x}/{y}?hash=d454ac88526eca77574f7d9c24a50efa", {
+    var rainLayer = new L.TileLayer("http://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid="+getUrlParameter('appid'), {
         minZoom: 1,
         maxZoom: 15
     });
