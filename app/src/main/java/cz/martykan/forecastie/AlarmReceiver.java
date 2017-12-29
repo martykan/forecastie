@@ -67,8 +67,8 @@ public class AlarmReceiver extends BroadcastReceiver {
             if (isUpdateLocation()) {
                 new GetLocationAndWeatherTask().execute(); // This method calls the two methods below once it has determined a location
             } else {
-                new GetWeatherTask().execute();
-                new GetLongTermWeatherTask().execute();
+                new GetWeatherTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                new GetLongTermWeatherTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         } else {
             failed = true;
@@ -227,8 +227,8 @@ public class AlarmReceiver extends BroadcastReceiver {
                 new GetCityNameTask().execute(String.valueOf(location.getLatitude()), String.valueOf(location.getLongitude()));
             } else {
                 Log.e(TAG, "Couldn't determine location. Using last known location.");
-                new GetWeatherTask().execute();
-                new GetLongTermWeatherTask().execute();
+                new GetWeatherTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                new GetLongTermWeatherTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
             try {
                 locationManager.removeUpdates(locationListener);
