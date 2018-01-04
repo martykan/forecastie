@@ -47,7 +47,7 @@
         maxZoom: 15
     }));
     // Wind
-    var windLayer = new L.TileLayer("http://{s}.maps.owm.io:8099/57b585fa946d8a0100852aee/{z}/{x}/{y}?hash=d454ac88526eca77574f7d9c24a50efa", {
+    var windLayer = new L.TileLayer("http://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid="+getUrlParameter('appid'), {
         minZoom: 1,
         maxZoom: 15
     });
@@ -62,7 +62,7 @@
     map.addLayer(rainLayer);
 
     // Temperature
-    var tempLayer = new L.TileLayer("http://{s}.maps.owm.io:8099/57b590ff946d8a0100852af0/{z}/{x}/{y}?hash=d454ac88526eca77574f7d9c24a50efa", {
+    var tempLayer = new L.TileLayer("http://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid="+getUrlParameter('appid'), {
         minZoom: 1,
         maxZoom: 15
     });
