@@ -9,6 +9,8 @@
     <string name="wind">Wind</string>
     <string name="pressure">Luftdruck</string>
     <string name="humidity">Feuchtigkeit</string>
+    <string name="rain">Regen</string>
+    <string name="temperature">Temperatur</string>
 
     <string name="search_title">Stadt suchen</string>
 
@@ -32,6 +34,7 @@
     <string name="setting_unit_kph">Kilometer pro Stunde (km/h)</string>
     <string name="setting_unit_mph">Meilen pro Stunde (mph)</string>
     <string name="setting_unit_mps">Meter pro Sekunde (m/s)</string>
+    <string name="setting_unit_bft">Beaufort-Skala (bft)</string>
     <string name="settings_none">Keins</string>
     <string name="getting_location">Erkenne Ort...</string>
     <string name="msg_city_not_found">Stadt konnte nicht gefunden werden.</string>
