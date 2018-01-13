@@ -112,6 +112,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setTheme(theme = getTheme(prefs.getString("theme", "fresh")));
         boolean darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
                 theme == R.style.AppTheme_NoActionBar_Classic_Dark;
+        boolean blackTheme = theme == R.style.AppTheme_NoActionBar_Black ||
+                theme == R.style.AppTheme_NoActionBar_Classic_Black;
 
         // Initiate activity
         super.onCreate(savedInstanceState);
@@ -125,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setSupportActionBar(toolbar);
         if (darkTheme) {
             toolbar.setPopupTheme(R.style.AppTheme_PopupOverlay_Dark);
+        } else if (blackTheme) {
+            toolbar.setPopupTheme(R.style.AppTheme_PopupOverlay_Black);
         }
 
         // Initialize textboxes
@@ -941,10 +945,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         switch (themePref) {
             case "dark":
                 return R.style.AppTheme_NoActionBar_Dark;
+            case "black":
+                return R.style.AppTheme_NoActionBar_Black;
             case "classic":
                 return R.style.AppTheme_NoActionBar_Classic;
             case "classicdark":
                 return R.style.AppTheme_NoActionBar_Classic_Dark;
+            case "classicblack":
+                return R.style.AppTheme_NoActionBar_Classic_Black;
             default:
                 return R.style.AppTheme_NoActionBar;
         }
