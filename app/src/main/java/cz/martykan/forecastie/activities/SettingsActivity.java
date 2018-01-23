@@ -219,10 +219,14 @@ public class SettingsActivity extends PreferenceActivity
         switch (themePref) {
             case "dark":
                 return R.style.AppTheme_Dark;
+            case "black":
+                return R.style.AppTheme_Black;
             case "classic":
                 return R.style.AppTheme_Classic;
             case "classicdark":
                 return R.style.AppTheme_Classic_Dark;
+            case "classicblack":
+                return R.style.AppTheme_Classic_Black;
             default:
                 return R.style.AppTheme;
         }
