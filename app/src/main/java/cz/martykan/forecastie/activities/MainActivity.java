@@ -173,6 +173,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        updateTodayWeatherUI();
+        updateLongTermWeatherUI();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         if (getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")) != theme) {
