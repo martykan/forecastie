@@ -3,7 +3,7 @@
 
     <string name="action_search">Søge</string>
     <string name="action_refresh">Genopfriske</string>
-    <string name="action_settings">opsætning</string>
+    <string name="action_settings">Opsætning</string>
     <string name="action_about">Om</string>
 
     <string name="today">I dag</string>
@@ -22,14 +22,14 @@
 
     <string name="search_title">Søg efter by</string>
 
-    <string name="downloading_data">Henter dine data ...</string>
-    <string name="getting_location">Henter din placering ...</string>
+    <string name="downloading_data">Henter data...</string>
+    <string name="getting_location">Henter placering...</string>
 
     <string name="error_dateFormat">Dato format fejl</string>
 
     <string name="setting_dateFormat">Dato format</string>
     <string name="setting_dateFormatCustom">Tilpasset dato format</string>
-    <string name="setting_dateFormatCustom_summary">Tilbyd tilpasset  SimpleDateFormat streng som bliver brugt</string>
+    <string name="setting_dateFormatCustom_summary">Angiv brugertilpasset SimpleDateFormat streng som skal bruges</string>
     <string name="setting_lengthUnits">Længde enheder</string>
     <string name="setting_speedUnits">Hastighed enheder</string>
     <string name="setting_tempUnits">Temperatur enheder</string>
@@ -40,12 +40,12 @@
     <string name="setting_differentiateDaysByTint">Adskil dage med farver</string>
     <string name="setting_refreshInterval">Baggrund genopfrisk interval</string>
     <string name="setting_unit_mps">Meter pr. sekund (m/s)</string>
-    <string name="setting_unit_kph">Kilometer i timen (km/t)</string>
-    <string name="setting_unit_mph">Mil i timen (mph)</string>
-    <string name="setting_wind_direction_format">Vindretnings format</string>
+    <string name="setting_unit_kph">Kilometer pr. time (km/t)</string>
+    <string name="setting_unit_mph">Mil pr. time (mph)</string>
+    <string name="setting_wind_direction_format">Vindretning format</string>
     <string name="settings_none">Ingen</string>
     <string name="setting_apiKey">API nøgle</string>
-    <string name="setting_apiKey_summary">Tilpasset API nøgle til OpenWeatherMap forespørgsel</string>
+    <string name="setting_apiKey_summary">Brugertilpasset API nøgle til OpenWeatherMap forespørgsel</string>
 
     <string name="setting_unit_Celsuis">Celcius</string>
     <string name="setting_unit_Fahrenheit">Fahrenheit</string>
@@ -79,7 +79,7 @@
     <string name="dialog_cancel">Annullere</string>
 
     <string name="msg_err_parsing_json">Fejl i JSON fortolkning.</string>
-    <string name="msg_connection_problem">Der er et problem med internet forbindelse</string>
+    <string name="msg_connection_problem">Der er problemer med internet forbindelse</string>
     <string name="msg_connection_not_available">Forbindelse ikke tilgængelig</string>
     <string name="msg_city_not_found">Angivet by ikke fundet.</string>
 
@@ -99,7 +99,7 @@
     <string name="wind_direction_west_north_west">VNV</string>
     <string name="wind_direction_north_west">NV</string>
     <string name="wind_direction_north_north_west">NNV</string>
-    <string name="msg_too_many_requests">For mange forspørgseler. Venligst prøv igen.</string>
+    <string name="msg_too_many_requests">For mange forspørgseler. Prøv igen.</string>
 
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s°%2$s</string>
@@ -108,14 +108,14 @@
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\nVind: %3$s %4$s\nLufttryk: %5$s %6$s\nLuftfugtighed: %7$s %%\n</string>
     <string name="settings_title_units">Enheder</string>
-    <string name="settings_title_display">Vis</string>
+    <string name="settings_title_display">Vise</string>
     <string name="settings_title_data">Data</string>
-    <string name="setting_displayDecimalZeroes">Vis decimal nuller</string>
+    <string name="setting_displayDecimalZeroes">Vise decimal nuller</string>
     <string name="settings_title_location">Placering</string>
     <string name="setting_update_location_automatically">Opdatere placering i baggrund</string>
 
     <string name="location_settings">Placering opsætning</string>
-    <string name="location_settings_message">Placering er ikke aktiveret. Ønsker du at gå til opsætningsmenuen?</string>
+    <string name="location_settings_message">Placering er ikke aktiveret. Gå til opsætnings-menuen?</string>
     <string name="location_settings_button">Opsætning</string>
     <string name="action_weather_map">Vejrkort</string>
     <string name="rain">Regn</string>
