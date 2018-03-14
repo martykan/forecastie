@@ -120,9 +120,9 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             widgetWeather.setCountry(reader.optJSONObject("sys").getString("country"));
             widgetWeather.setTemperature(Math.round(temperature) + localize(sp, context, "unit", "C"));
             widgetWeather.setDescription(description);
-            widgetWeather.setWind(context.getString(R.string.wind) + ": " + new DecimalFormat("#.0").format(wind) + " " + localize(sp, context, "speedUnit", "m/s")
+            widgetWeather.setWind(context.getString(R.string.wind) + ": " + new DecimalFormat("0.0").format(wind) + " " + localize(sp, context, "speedUnit", "m/s")
                     + (widgetWeather.isWindDirectionAvailable() ? " " + MainActivity.getWindDirectionString(sp, context, widgetWeather) : ""));
-            widgetWeather.setPressure(context.getString(R.string.pressure) + ": " + new DecimalFormat("#.0").format(pressure) + " " + localize(sp, context, "pressureUnit", "hPa"));
+            widgetWeather.setPressure(context.getString(R.string.pressure) + ": " + new DecimalFormat("0.0").format(pressure) + " " + localize(sp, context, "pressureUnit", "hPa"));
             widgetWeather.setHumidity(reader.optJSONObject("main").getString("humidity"));
             widgetWeather.setSunrise(reader.optJSONObject("sys").getString("sunrise"));
             widgetWeather.setSunset(reader.optJSONObject("sys").getString("sunset"));
