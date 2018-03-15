@@ -62,11 +62,11 @@ public class DashClockWeatherExtension extends DashClockExtension {
             publishUpdate(new ExtensionData()
                     .visible(true)
                     .icon(R.drawable.ic_cloud_white_18dp)
-                    .status(getString(R.string.dash_clock_status, new DecimalFormat("#.#").format(temperature), localize(sp, "unit", "°C")))
-                    .expandedTitle(getString(R.string.dash_clock_expanded_title, new DecimalFormat("#.#").format(temperature), localize(sp, "unit", "°C"), reader.optJSONArray("weather").getJSONObject(0).getString("description")))
+                    .status(getString(R.string.dash_clock_status, new DecimalFormat("0.#").format(temperature), localize(sp, "unit", "°C")))
+                    .expandedTitle(getString(R.string.dash_clock_expanded_title, new DecimalFormat("0.#").format(temperature), localize(sp, "unit", "°C"), reader.optJSONArray("weather").getJSONObject(0).getString("description")))
                     .expandedBody(getString(R.string.dash_clock_expanded_body, reader.getString("name"), reader.optJSONObject("sys").getString("country"),
-                            new DecimalFormat("#.0").format(wind), localize(sp, "speedUnit", "m/s"),
-                            new DecimalFormat("#.0").format(pressure), localize(sp, "pressureUnit", "hPa"),
+                            new DecimalFormat("0.0").format(wind), localize(sp, "speedUnit", "m/s"),
+                            new DecimalFormat("0.0").format(pressure), localize(sp, "pressureUnit", "hPa"),
                             reader.optJSONObject("main").getString("humidity")))
                     .clickIntent(new Intent(this, SplashActivity.class)));
         }
