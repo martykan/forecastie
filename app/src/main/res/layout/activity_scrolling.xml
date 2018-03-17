@@ -95,6 +95,14 @@
                         android:text="Sunset: 00:00"
                         android:textColor="@color/text_light"
                         android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/todayUvIndex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uv Index: Loading..."
+                        android:textColor="@color/text_light"
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
