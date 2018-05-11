@@ -13,6 +13,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,7 +27,6 @@ import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.utils.UnitConvertor;
 
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
-
     protected Bitmap getWeatherIcon(String text, Context context) {
         Bitmap myBitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_4444);
         Canvas myCanvas = new Canvas(myBitmap);
@@ -155,5 +155,24 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 .getAppWidgetIds(new ComponentName(context.getApplicationContext(), widgetClass));
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         context.getApplicationContext().sendBroadcast(intent);
+    }
+
+    protected void setTheme(Context context, RemoteViews remoteViews) {
+        String theme = PreferenceManager.getDefaultSharedPreferences(context).getString("theme", "fresh");
+        switch (theme) {
+            case "dark":
+            case "classicdark":
+                remoteViews.setInt(R.id.widgetRoot, "setBackgroundResource", R.drawable.widget_card_dark);
+                break;
+            case "black":
+            case "classicblack":
+                remoteViews.setInt(R.id.widgetRoot, "setBackgroundResource", R.drawable.widget_card_black);
+                break;
+            case "classic":
+                remoteViews.setInt(R.id.widgetRoot, "setBackgroundResource", R.drawable.widget_card_classic);
+                break;
+            default:
+                remoteViews.setInt(R.id.widgetRoot, "setBackgroundResource", R.drawable.widget_card);
+        }
     }
 }

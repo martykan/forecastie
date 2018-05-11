@@ -23,6 +23,8 @@ public class ExtensiveWidgetProvider extends AbstractWidgetProvider {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                     R.layout.extensive_widget);
 
+            setTheme(context, remoteViews);
+
             Intent intent = new Intent(context, AlarmReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
                     0, intent, PendingIntent.FLAG_UPDATE_CURRENT);

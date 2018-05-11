@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "cz.martykan.forecastie"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 20
         versionName "1.6.1"
