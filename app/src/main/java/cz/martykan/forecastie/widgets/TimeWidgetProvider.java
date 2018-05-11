@@ -1,24 +1,18 @@
 package cz.martykan.forecastie.widgets;
 
-import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import cz.martykan.forecastie.AlarmReceiver;
-import cz.martykan.forecastie.BuildConfig;
 import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.Weather;
