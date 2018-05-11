@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     ProgressDialog progressDialog;
 
     int theme;
-    boolean widgetTransparent;
+    private boolean widgetTransparent;
     boolean destroyed = false;
 
     private List<Weather> longTermWeather = new ArrayList<>();

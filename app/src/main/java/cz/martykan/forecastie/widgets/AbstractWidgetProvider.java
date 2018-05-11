@@ -206,6 +206,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 break;
             default:
                 remoteViews.setInt(R.id.widgetRoot, "setBackgroundResource", R.drawable.widget_card);
+                break;
         }
     }
 
