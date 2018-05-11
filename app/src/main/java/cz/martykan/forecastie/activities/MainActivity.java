@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     ProgressDialog progressDialog;
 
     int theme;
+    boolean widgetTransparent;
     boolean destroyed = false;
 
     private List<Weather> longTermWeather = new ArrayList<>();
@@ -114,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 theme == R.style.AppTheme_NoActionBar_Classic_Dark;
         boolean blackTheme = theme == R.style.AppTheme_NoActionBar_Black ||
                 theme == R.style.AppTheme_NoActionBar_Classic_Black;
+        widgetTransparent = prefs.getBoolean("transparentWidget", false);
 
         // Initiate activity
         super.onCreate(savedInstanceState);
@@ -182,7 +184,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     @Override
     public void onResume() {
         super.onResume();
-        if (getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")) != theme) {
+        if (getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")) != theme ||
+                PreferenceManager.getDefaultSharedPreferences(this).getBoolean("transparentWidget", false) != widgetTransparent) {
             // Restart activity to apply theme
             overridePendingTransition(0, 0);
             finish();

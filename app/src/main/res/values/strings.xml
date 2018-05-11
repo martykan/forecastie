@@ -35,6 +35,7 @@
     <string name="setting_showTempAsInteger">Show temperature only as an integer</string>
     <string name="setting_pressureUnits">Pressure units</string>
     <string name="setting_theme">Theme</string>
+    <string name="setting_transparent_widget">Make widget transparent</string>
     <string name="setting_auto_detect_location">Detect Location</string>
     <string name="setting_differentiateDaysByTint">Differentiate Days with Color</string>
     <string name="setting_refreshInterval">Background refresh interval</string>

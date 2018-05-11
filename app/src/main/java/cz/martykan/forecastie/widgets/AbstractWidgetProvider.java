@@ -1,5 +1,7 @@
 package cz.martykan.forecastie.widgets;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -11,6 +13,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -20,13 +23,39 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
+import cz.martykan.forecastie.BuildConfig;
 import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.utils.UnitConvertor;
 
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
+    protected static final long DURATION_MINUTE = TimeUnit.SECONDS.toMillis(30);
+    protected static final String ACTION_UPDATE_TIME = "cz.martykan.forecastie.UPDATE_TIME";
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (ACTION_UPDATE_TIME.equals(intent.getAction())) {
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            ComponentName provider = new ComponentName(context.getPackageName(), getClass().getName());
+            int ids[] = appWidgetManager.getAppWidgetIds(provider);
+            onUpdate(context, appWidgetManager, ids);
+        } else {
+            super.onReceive(context, intent);
+        }
+    }
+
+    @Override
+    public void onDisabled(Context context) {
+        super.onDisabled(context);
+
+        Log.d(this.getClass().getSimpleName(), "Disable updates for this widget");
+        cancelUpdate(context);
+    }
+
     protected Bitmap getWeatherIcon(String text, Context context) {
         Bitmap myBitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_4444);
         Canvas myCanvas = new Canvas(myBitmap);
@@ -158,6 +187,10 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     }
 
     protected void setTheme(Context context, RemoteViews remoteViews) {
+        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("transparentWidget", false)){
+            remoteViews.setInt(R.id.widgetRoot, "setBackgroundResource", R.drawable.widget_card_transparent);
+            return;
+        }
         String theme = PreferenceManager.getDefaultSharedPreferences(context).getString("theme", "fresh");
         switch (theme) {
             case "dark":
@@ -174,5 +207,31 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             default:
                 remoteViews.setInt(R.id.widgetRoot, "setBackgroundResource", R.drawable.widget_card);
         }
+    }
+
+    protected void scheduleNextUpdate(Context context) {
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        long now = new Date().getTime();
+        long nextUpdate = now + DURATION_MINUTE - now % DURATION_MINUTE;
+        if (BuildConfig.DEBUG) {
+            Log.v(this.getClass().getSimpleName(), "Next widget update: " +
+                    android.text.format.DateFormat.getTimeFormat(context).format(new Date(nextUpdate)));
+        }
+        if (Build.VERSION.SDK_INT >= 19) {
+            alarmManager.setExact(AlarmManager.RTC, nextUpdate, getTimeIntent(context));
+        } else {
+            alarmManager.set(AlarmManager.RTC, nextUpdate, getTimeIntent(context));
+        }
+    }
+
+    protected void cancelUpdate(Context context) {
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(getTimeIntent(context));
+    }
+
+    protected PendingIntent getTimeIntent(Context context) {
+        Intent intent = new Intent(context, this.getClass());
+        intent.setAction(ACTION_UPDATE_TIME);
+        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
     }
 }

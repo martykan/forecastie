@@ -63,6 +63,7 @@ public class ExtensiveWidgetProvider extends AbstractWidgetProvider {
 
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
+        scheduleNextUpdate(context);
     }
 
 }
