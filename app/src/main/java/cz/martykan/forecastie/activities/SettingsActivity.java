@@ -100,7 +100,6 @@ public class SettingsActivity extends PreferenceActivity
             case "dateFormatCustom":
                 updateDateFormatList();
                 break;
-            case "transparentWidget":
             case "theme":
                 // Restart activity to apply theme
                 overridePendingTransition(0, 0);
@@ -115,6 +114,7 @@ public class SettingsActivity extends PreferenceActivity
                 break;
             case "apiKey":
                 checkKey(key);
+                break;
         }
     }
 
