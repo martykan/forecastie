@@ -64,8 +64,6 @@ import cz.martykan.forecastie.utils.UnitConvertor;
 import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
 import cz.martykan.forecastie.widgets.DashClockWeatherExtension;
 
-import static cz.martykan.forecastie.utils.UnitConvertor.convertUvIndex;
-
 public class MainActivity extends AppCompatActivity implements LocationListener {
     protected static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
 
@@ -86,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     TextView todayHumidity;
     TextView todaySunrise;
     TextView todaySunset;
-    TextView todayUvIndex;
+    private TextView todayUvIndex;
     TextView lastUpdate;
     TextView todayIcon;
     ViewPager viewPager;
@@ -158,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         // Preload data from cache
         preloadWeather();
+        preloadUVIndex();
         updateLastUpdateTime();
 
         // Set autoupdater
@@ -181,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         super.onStart();
         updateTodayWeatherUI();
         updateLongTermWeatherUI();
+        updateUVIndexUI();
     }
 
     @Override
@@ -195,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         } else if (shouldUpdate() && isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
+            getTodayUVIndex();
         }
     }
 
@@ -212,6 +213,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
+    private void preloadUVIndex() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+
+        String lastUVIToday = sp.getString("lastToday", "");
+        if (!lastUVIToday.isEmpty()) {
+            double latitude = todayWeather.getLat();
+            double longitude = todayWeather.getLon();
+            new TodayUVITask(this, this, progressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"coords", Double.toString(latitude), Double.toString(longitude));
+        }
+    }
+
     private void preloadWeather() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
@@ -225,18 +237,18 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
+    private void getTodayUVIndex() {
+        double latitude = todayWeather.getLat();
+        double longitude = todayWeather.getLon();
+        new TodayUVITask(this, this, progressDialog).execute("coords", Double.toString(latitude), Double.toString(longitude));
+    }
+
     private void getTodayWeather() {
         new TodayWeatherTask(this, this, progressDialog).execute();
     }
 
     private void getLongTermWeather() {
         new LongTermWeatherTask(this, this, progressDialog).execute();
-    }
-
-    private void getTodayUVI() {
-        double latitude = todayWeather.getLat();
-        double longitude = todayWeather.getLon();
-        new TodayUVITask(this, this, progressDialog).execute("coords", Double.toString(latitude), Double.toString(longitude));
     }
 
     private void searchCities() {
@@ -275,6 +287,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             // New location, update weather
             getTodayWeather();
             getLongTermWeather();
+            getTodayUVIndex();
         }
     }
 
@@ -441,7 +454,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             double value = reader.getDouble("value");
             todayWeather.setUvIndex(value);
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
-            editor.putString("lastToday", result);
+            editor.putString("lastUVIToday", result);
             editor.commit();
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
@@ -509,26 +522,23 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
         todaySunrise.setText(getString(R.string.sunrise) + ": " + timeFormat.format(todayWeather.getSunrise()));
         todaySunset.setText(getString(R.string.sunset) + ": " + timeFormat.format(todayWeather.getSunset()));
-        todayUvIndex.setText(getString(R.string.uvindex) + ": " + getString(R.string.loading_data));
         todayIcon.setText(todayWeather.getIcon());
     }
 
-    public void updateUviUi() {
-        {
-            try {
-                if (todayWeather.getCountry().isEmpty()) {
-                    preloadWeather();
-                    return;
-                }
-            } catch (Exception e) {
-                preloadWeather();
+    private void updateUVIndexUI() {
+        try {
+            if (todayWeather.getUvIndex() == 0) {
+                preloadUVIndex();
                 return;
             }
-
-            // UV Index
-            String uvIndex = UnitConvertor.convertUvIndex(todayWeather.getUvIndex());
-            todayUvIndex.setText(getString(R.string.uvindex) + ": " + uvIndex);
+        } catch (Exception e) {
+            preloadUVIndex();
+            return;
         }
+
+        // UV Index
+        double uvIndex = todayWeather.getUvIndex();
+        todayUvIndex.setText(getString(R.string.uvindex) + ": " + UnitConvertor.convertUvIndexToRiskLevel(uvIndex));
     }
 
     public ParseResult parseLongTermJson(String result) {
@@ -675,6 +685,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             if (isNetworkAvailable()) {
                 getTodayWeather();
                 getLongTermWeather();
+                getTodayUVIndex();
             } else {
                 Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
             }
@@ -873,10 +884,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         @Override
         protected void onPostExecute(TaskOutput output) {
             super.onPostExecute(output);
-            // Wee need the coordanate info that comes with the weather request
-            // json and that is why we call the getTodayUVI() here onPostExecute
-            // update uvi index
-            getTodayUVI();
             // Update widgets
             AbstractWidgetProvider.updateWidgets(MainActivity.this);
             DashClockWeatherExtension.updateDashClock(MainActivity.this);
@@ -896,6 +903,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         protected void updateMainUI() {
             updateTodayWeatherUI();
             updateLastUpdateTime();
+            updateUVIndexUI();
         }
     }
 
@@ -983,14 +991,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
 
         @Override
-        protected void onPostExecute(TaskOutput output) {
-            super.onPostExecute(output);
-            // Update widgets
-            //AbstractWidgetProvider.updateWidgets(MainActivity.this);
-            //DashClockWeatherExtension.updateDashClock(MainActivity.this);
-        }
-
-        @Override
         protected ParseResult parseResponse(String response) {
             return parseTodayUVIJson(response);
         }
@@ -1002,14 +1002,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         @Override
         protected void updateMainUI() {
-            updateUviUi();
-            updateLastUpdateTime();
+            updateUVIndexUI();
         }
     }
 
     public static long saveLastUpdateTime(SharedPreferences sp) {
         Calendar now = Calendar.getInstance();
-        sp.edit().putLong("lastUpdate", now.getTimeInMillis()).apply();
+        sp.edit().putLong("lastUpdate", now.getTimeInMillis()).commit();
         return now.getTimeInMillis();
     }
 
@@ -1024,7 +1023,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             // No time
             lastUpdate.setText("");
         } else {
-            lastUpdate.setText(getString(R.string.last_update, formatTimeWithDayIfNotToday(this, timeInMillis)));
+
+            // FIXME
+            //lastUpdate.setText(getString(R.string.last_update, formatTimeWithDayIfNotToday(this, timeInMillis)));
         }
     }
 
