@@ -527,8 +527,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private void updateUVIndexUI() {
         try {
-            if (todayWeather.getUvIndex() == 0) {
-                preloadUVIndex();
+            if (todayWeather.getCountry().isEmpty()) {
+
                 return;
             }
         } catch (Exception e) {
