@@ -1023,9 +1023,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             // No time
             lastUpdate.setText("");
         } else {
-
-            // FIXME
-            //lastUpdate.setText(getString(R.string.last_update, formatTimeWithDayIfNotToday(this, timeInMillis)));
+            lastUpdate.setText(getString(R.string.last_update, formatTimeWithDayIfNotToday(this, timeInMillis)));
         }
     }
 
