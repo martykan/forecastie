@@ -13,20 +13,13 @@ android {
     }
 
     lintOptions {
-        checkReleaseBuilds true
-        abortOnError false
-        xmlReport true
-        htmlReport true
+        disable 'MissingTranslation'
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-            lintOptions {
-                disable 'MissingTranslation'
-            }
         }
     }
 }
