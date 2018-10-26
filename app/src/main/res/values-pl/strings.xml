@@ -75,6 +75,8 @@
     <string name="setting_theme_classic">Klasyczny</string>
     <string name="setting_theme_dark">Swieży ciemny</string>
 		<string name="setting_theme_classic_dark">Klasyczny ciemny</string>
+    <string name="setting_theme_classic_black">Klasyczny czarny</string>
+    <string name="setting_theme_black">Świeży czarny</string>
 		<!-- Dialogs-->
 		<string name="dialog_ok">OK</string>
 		<string name="dialog_cancel">Anuluj</string>
