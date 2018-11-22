@@ -15,6 +15,7 @@
     <string name="humidity">Humidity</string>
     <string name="sunrise">Sunrise</string>
     <string name="sunset">Sunset</string>
+    <string name="uvindex">Uv Index</string>
 
     <string name="last_update">Last update:\n%s</string>
     <string name="last_update_widget">\nLast update: %s</string>
@@ -23,6 +24,8 @@
 
     <string name="downloading_data">Downloading your data ...</string>
     <string name="getting_location">Getting your location ...</string>
+
+    <string name="loading_data">Loading...</string>
 
     <string name="error_dateFormat">DATE FORMAT ERROR</string>
 

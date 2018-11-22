@@ -12,6 +12,25 @@ import cz.martykan.forecastie.R;
 
 public class Weather {
 
+    private String city;
+    private String country;
+    private Date date;
+    private String temperature;
+    private String description;
+    private String wind;
+    private Double windDirectionDegree;
+    private String pressure;
+    private String humidity;
+    private String rain;
+    private String id;
+    private String icon;
+    private String lastUpdated;
+    private Date sunrise;
+    private Date sunset;
+    private double lat;
+    private double lon;
+    private double uvIndex;
+
     public enum WindDirection {
         // don't change order
         NORTH, NORTH_NORTH_EAST, NORTH_EAST, EAST_NORTH_EAST,
@@ -56,22 +75,6 @@ public class Weather {
 
         return direction % numberOfDirections;
     }
-
-    private String city;
-    private String country;
-    private Date date;
-    private String temperature;
-    private String description;
-    private String wind;
-    private Double windDirectionDegree;
-    private String pressure;
-    private String humidity;
-    private String rain;
-    private String id;
-    private String icon;
-    private String lastUpdated;
-    private Date sunrise;
-    private Date sunset;
 
     public String getCity() {
         return city;
@@ -198,6 +201,18 @@ public class Weather {
     public void setSunset(Date date) {
         this.sunset = date;
     }
+
+    public void setLat(double lat) {this.lat = lat; }
+
+    public double getLat() { return this.lat; }
+
+    public void setLon(double lon) { this.lon = lon; }
+
+    public double getLon() { return this.lon; }
+
+    public double getUvIndex() { return this.uvIndex; }
+
+    public void setUvIndex(double uvIndex) { this.uvIndex = uvIndex; }
 
     public String getIcon() {
         return icon;

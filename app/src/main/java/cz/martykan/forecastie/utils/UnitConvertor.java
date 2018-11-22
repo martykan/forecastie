@@ -112,6 +112,23 @@ public class UnitConvertor {
         }
     }
 
+    public static String convertUvIndexToRiskLevel(double value) {
+        /* based on: https://en.wikipedia.org/wiki/Ultraviolet_index */
+        if (value < 0) {
+            return "no info"; /* error */
+        } else if (value >= 0.0 && value <= 2.9) {
+            return "Low";
+        } else if (value >= 3.0 && value <=5.9) {
+            return "Moderate";
+        } else if (value >= 6.0 && value <= 7.9) {
+            return "High";
+        } else if (value >= 8.0 && value <= 10.9) {
+            return "Very High";
+        } else {
+            return "Extreme";
+        }
+    }
+
     public static String getBeaufortName(int wind) {
         if(wind == 0) {
             return "Calm";

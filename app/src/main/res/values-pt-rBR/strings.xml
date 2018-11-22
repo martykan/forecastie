@@ -16,7 +16,7 @@
     <string name="sunrise">Nascer do sol</string>
     <string name="sunset">Pôr do sol</string>
 
-    <string name="last_update">Última atualização</string>
+    <string name="last_update">Última atualização: %s</string>
     <string name="last_update_widget">\nÚltima atualização: %s</string>
 
     <string name="search_title">Pesquisar uma cidade</string>

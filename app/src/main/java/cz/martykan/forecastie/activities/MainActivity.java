@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     TextView todayHumidity;
     TextView todaySunrise;
     TextView todaySunset;
+    private TextView todayUvIndex;
     TextView lastUpdate;
     TextView todayIcon;
     ViewPager viewPager;
@@ -141,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         todayHumidity = (TextView) findViewById(R.id.todayHumidity);
         todaySunrise = (TextView) findViewById(R.id.todaySunrise);
         todaySunset = (TextView) findViewById(R.id.todaySunset);
+        todayUvIndex = (TextView) findViewById(R.id.todayUvIndex);
         lastUpdate = (TextView) findViewById(R.id.lastUpdate);
         todayIcon = (TextView) findViewById(R.id.todayIcon);
         weatherFont = Typeface.createFromAsset(this.getAssets(), "fonts/weather.ttf");
@@ -156,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         // Preload data from cache
         preloadWeather();
+        preloadUVIndex();
         updateLastUpdateTime();
 
         // Set autoupdater
@@ -179,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         super.onStart();
         updateTodayWeatherUI();
         updateLongTermWeatherUI();
+        updateUVIndexUI();
     }
 
     @Override
@@ -194,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         } else if (shouldUpdate() && isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
+            getTodayUVIndex();
         }
     }
 
@@ -211,6 +216,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
+    private void preloadUVIndex() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+
+        String lastUVIToday = sp.getString("lastToday", "");
+        if (!lastUVIToday.isEmpty()) {
+            double latitude = todayWeather.getLat();
+            double longitude = todayWeather.getLon();
+            new TodayUVITask(this, this, progressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"coords", Double.toString(latitude), Double.toString(longitude));
+        }
+    }
+
     private void preloadWeather() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
@@ -222,6 +238,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         if (!lastLongterm.isEmpty()) {
             new LongTermWeatherTask(this, this, progressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "cachedResponse", lastLongterm);
         }
+    }
+
+    private void getTodayUVIndex() {
+        double latitude = todayWeather.getLat();
+        double longitude = todayWeather.getLon();
+        new TodayUVITask(this, this, progressDialog).execute("coords", Double.toString(latitude), Double.toString(longitude));
     }
 
     private void getTodayWeather() {
@@ -268,6 +290,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             // New location, update weather
             getTodayWeather();
             getLongTermWeather();
+            getTodayUVIndex();
         }
     }
 
@@ -369,8 +392,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             JSONObject coordinates = reader.getJSONObject("coord");
             if (coordinates != null) {
+                todayWeather.setLat(coordinates.getDouble("lat"));
+                todayWeather.setLon(coordinates.getDouble("lon"));
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-                sp.edit().putFloat("latitude", (float) coordinates.getDouble("lon")).putFloat("longitude", (float) coordinates.getDouble("lat")).commit();
+                sp.edit().putFloat("latitude", (float) todayWeather.getLat()).putFloat("longitude", (float) todayWeather.getLon()).commit();
             }
 
             JSONObject main = reader.getJSONObject("main");
@@ -410,6 +435,30 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             editor.putString("lastToday", result);
             editor.commit();
 
+        } catch (JSONException e) {
+            Log.e("JSONException Data", result);
+            e.printStackTrace();
+            return ParseResult.JSON_EXCEPTION;
+        }
+
+        return ParseResult.OK;
+    }
+
+    private ParseResult parseTodayUVIJson(String result) {
+        try {
+            JSONObject reader = new JSONObject(result);
+
+            final String code = reader.optString("cod");
+            if ("404".equals(code)) {
+                todayWeather.setUvIndex(-1);
+                return ParseResult.CITY_NOT_FOUND;
+            }
+
+            double value = reader.getDouble("value");
+            todayWeather.setUvIndex(value);
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+            editor.putString("lastUVIToday", result);
+            editor.commit();
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
@@ -477,6 +526,22 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         todaySunrise.setText(getString(R.string.sunrise) + ": " + timeFormat.format(todayWeather.getSunrise()));
         todaySunset.setText(getString(R.string.sunset) + ": " + timeFormat.format(todayWeather.getSunset()));
         todayIcon.setText(todayWeather.getIcon());
+    }
+
+    private void updateUVIndexUI() {
+        try {
+            if (todayWeather.getCountry().isEmpty()) {
+
+                return;
+            }
+        } catch (Exception e) {
+            preloadUVIndex();
+            return;
+        }
+
+        // UV Index
+        double uvIndex = todayWeather.getUvIndex();
+        todayUvIndex.setText(getString(R.string.uvindex) + ": " + UnitConvertor.convertUvIndexToRiskLevel(uvIndex));
     }
 
     public ParseResult parseLongTermJson(String result) {
@@ -623,6 +688,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             if (isNetworkAvailable()) {
                 getTodayWeather();
                 getLongTermWeather();
+                getTodayUVIndex();
             } else {
                 Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
             }
@@ -840,6 +906,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         protected void updateMainUI() {
             updateTodayWeatherUI();
             updateLastUpdateTime();
+            updateUVIndexUI();
         }
     }
 
@@ -915,9 +982,36 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
+    class TodayUVITask extends GenericRequestTask {
+        public TodayUVITask(Context context, MainActivity activity, ProgressDialog progressDialog) {
+            super(context, activity, progressDialog);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            loading = 0;
+            super.onPreExecute();
+        }
+
+        @Override
+        protected ParseResult parseResponse(String response) {
+            return parseTodayUVIJson(response);
+        }
+
+        @Override
+        protected String getAPIName() {
+            return "uvi";
+        }
+
+        @Override
+        protected void updateMainUI() {
+            updateUVIndexUI();
+        }
+    }
+
     public static long saveLastUpdateTime(SharedPreferences sp) {
         Calendar now = Calendar.getInstance();
-        sp.edit().putLong("lastUpdate", now.getTimeInMillis()).apply();
+        sp.edit().putLong("lastUpdate", now.getTimeInMillis()).commit();
         return now.getTimeInMillis();
     }
 
