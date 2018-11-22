@@ -75,6 +75,8 @@
     <string name="setting_theme_classic">Klasyczny</string>
     <string name="setting_theme_dark">Swieży ciemny</string>
 		<string name="setting_theme_classic_dark">Klasyczny ciemny</string>
+    <string name="setting_theme_classic_black">Klasyczny czarny</string>
+    <string name="setting_theme_black">Świeży czarny</string>
 		<!-- Dialogs-->
 		<string name="dialog_ok">OK</string>
 		<string name="dialog_cancel">Anuluj</string>
@@ -109,9 +111,9 @@
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\nWiatr: %3$s %4$s\nCiśnienie: %5$s %6$s\nWilgotność: %7$s %%\n</string>
-    <string name="settings_title_units">jednostki</string>
-    <string name="settings_title_display">Display</string>
-    <string name="settings_title_data">dane</string>
+    <string name="settings_title_units">Jednostki</string>
+    <string name="settings_title_display">Wyświetlanie</string>
+    <string name="settings_title_data">Dane</string>
     <string name="setting_displayDecimalZeroes">Pokaż zera po przecinku</string>
     <string name="settings_title_location">Lokalizacja</string>
     <string name="setting_update_location_automatically">Aktualizacja lokalizacji w tle</string>
