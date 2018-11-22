@@ -150,4 +150,3 @@ test:
 
     - import -window root $CIRCLE_ARTIFACTS/capture_app_running.png # get proof that the app is running
     - adb shell screencap -p | sed 's/\r$//' > $CIRCLE_ARTIFACTS/capture_app_running_2.png
-

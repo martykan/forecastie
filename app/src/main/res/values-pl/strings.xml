@@ -23,9 +23,9 @@
 
     <string name="downloading_data">Pobieranie danych...</string>
 		<string name="getting_location">Wyszukiwanie lokalizacji...</string>
-		
+
 		<string name="error_dateFormat">Błąd pobierania danych</string>
-		
+
 		<string name="setting_dateFormat">Format daty:</string>
     <string name="setting_dateFormatCustom">Własny format daty</string>
 		<string name="setting_dateFormatCustom_summary">Własny ciąg dla formatu daty</string>
@@ -47,7 +47,7 @@
     <string name="settings_none">Brak</string>
     <string name="setting_apiKey">Klucz API</string>
     <string name="setting_apiKey_summary">Własny klucz API dla zapytań OpenWeatherMap</string>
-		
+
     <string name="setting_unit_Celsuis">Celsjusza</string>
     <string name="setting_unit_Fahrenheit">Fahrenheita</string>
 		<string name="setting_unit_Kelvin">Kelviny</string>
@@ -58,7 +58,7 @@
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
     <string name="setting_unit_mmhg">mmHg</string>
-		
+
 		<string name="speed_unit_mps">m/s</string>
 		<string name="speed_unit_kph">km/h</string>
 		<string name="speed_unit_mph">mph</string>
@@ -85,7 +85,7 @@
     <string name="msg_connection_problem">Brak połączenia z internetem</string>
     <string name="msg_connection_not_available">Brak połączenia</string>
 		<string name="msg_city_not_found">Nie można odnaleźć miasta</string>
-		
+
 <!-- Directions-->
     <string name="wind_direction_north">pn.</string>
     <string name="wind_direction_north_north_east">pn.-pn.-wsch.</string>

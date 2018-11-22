@@ -62,7 +62,8 @@
     <string name="setting_unit_mmhg">mm Hg</string>
     <string name="setting_unit_inhg">in Hg</string>
 
-    <string name="speed_unit_mps">m/s</string>
+    <string name="sp
+                  d_unit_mps">m/s</string>
     <string name="speed_unit_kph">kph</string>
     <string name="speed_unit_mph">mph</string>
     <string name="speed_unit_kn">kn</string>
@@ -94,7 +95,8 @@
     <string name="wind_direction_north_north_east">NNO</string>
     <string name="wind_direction_north_east">NO</string>
     <string name="wind_direction_east_north_east">ONO</string>
-    <string name="wind_direction_east">O</string>
+    <string name="wind_direction_east">O</st
+      ring>
     <string name="wind_direction_east_south_east">OZO</string>
     <string name="wind_direction_south_east">ZO</string>
     <string name="wind_direction_south_south_east">ZZO</string>
@@ -114,6 +116,7 @@
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\nWind: %3$s %4$s\nLuchtdruk: %5$s %6$s\nLuchtvochtigheid: %7$s %%\n</string>
+  
     <string name="settings_title_units">Eenheden</string>
     <string name="settings_title_display">Weergave</string>
     <string name="settings_title_data">Data</string>

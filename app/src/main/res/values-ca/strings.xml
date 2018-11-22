@@ -5,7 +5,7 @@
     <string name="action_refresh">Actualitzar</string>
     <string name="action_settings">Paràmetres</string>
     <string name="action_about">Quant a</string>
-    
+
     <string name="today">Avui</string>
     <string name="tomorrow">Demà</string>
     <string name="later">Més tard</string>
@@ -23,7 +23,7 @@
 
     <string name="downloading_data">Descarregant dades...</string>
     <string name="getting_location">Obtenint la seva ubicació...</string>
-    
+
     <string name="error_dateFormat">ERROR EN EL FORMAT DE DATA</string>
 
     <string name="setting_dateFormat">Format de data</string>
