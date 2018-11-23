@@ -26,8 +26,6 @@
 
     <string name="error_dateFormat">DATUM FORMAAT FOUT</string>
 
-    <string name="action_settings">Instellingen</string>
-
     <string name="setting_dateFormat">Datum formaat</string>
     <string name="setting_dateFormatCustom">Aangepast datum formaat</string>
     <string name="setting_dateFormatCustom_summary">Voer de aangepaste SimpleDateFormat string in om te gebruiken</string>
@@ -62,8 +60,6 @@
     <string name="setting_unit_mmhg">mm Hg</string>
     <string name="setting_unit_inhg">in Hg</string>
 
-    <string name="sp
-                  d_unit_mps">m/s</string>
     <string name="speed_unit_kph">kph</string>
     <string name="speed_unit_mph">mph</string>
     <string name="speed_unit_kn">kn</string>
@@ -95,8 +91,7 @@
     <string name="wind_direction_north_north_east">NNO</string>
     <string name="wind_direction_north_east">NO</string>
     <string name="wind_direction_east_north_east">ONO</string>
-    <string name="wind_direction_east">O</st
-      ring>
+    <string name="wind_direction_east">O</string>
     <string name="wind_direction_east_south_east">OZO</string>
     <string name="wind_direction_south_east">ZO</string>
     <string name="wind_direction_south_south_east">ZZO</string>
