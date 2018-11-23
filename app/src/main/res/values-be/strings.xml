@@ -120,7 +120,7 @@
     <string name="location_settings">Налады месцазнаходжання</string>
     <string name="location_settings_message">Вызначэнне месцазнаходжання адключана. Хочаце перайсці ў налады?</string>
     <string name="location_settings_button">Налады</string>
-    <string name="action_weather_map">Карта надвор'я</string>
+    <string name="action_weather_map">Карта надвор\'я</string>
     <string name="rain">Дождж</string>
     <string name="temperature">Тэмпература</string>
     <string name="action_graphs">Графікі</string>
