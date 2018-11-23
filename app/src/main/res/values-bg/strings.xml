@@ -1,0 +1,123 @@
+<resources>
+    <string name="app_name">Forecastie</string>
+
+    <string name="action_search">Търсене</string>
+    <string name="action_refresh">Опресняване</string>
+    <string name="action_settings">Настройки</string>
+    <string name="action_about">Относно</string>
+
+    <string name="today">Днес</string>
+    <string name="tomorrow">Утре</string>
+    <string name="later">Вдругиден</string>
+
+    <string name="wind">Вятър</string>
+    <string name="pressure">Налягане</string>
+    <string name="humidity">Влажност</string>
+    <string name="sunrise">Изгрев</string>
+    <string name="sunset">Залез</string>
+
+    <string name="last_update">Актуално към:\n%s</string>
+    <string name="last_update_widget">\nАктуално към:%s</string>
+
+    <string name="search_title">Търсене на град</string>
+
+    <string name="downloading_data">Изтегляне на данни ...</string>
+    <string name="getting_location">Определяне на Вашата локация ...</string>
+
+    <string name="error_dateFormat">ГРЕШЕН ФОРМАТ НА ДАТА</string>
+
+    <string name="setting_dateFormat">Формат на дата</string>
+    <string name="setting_dateFormatCustom">Собствен формат на дата</string>
+    <string name="setting_dateFormatCustom_summary">Кратък формат на датата, който да се използва</string>
+    <string name="setting_lengthUnits">Единица за дължина</string>
+    <string name="setting_speedUnits">Единица за скорост</string>
+    <string name="setting_tempUnits">Единица за температура</string>
+    <string name="setting_showTempAsInteger">Показване на температура като цяло число</string>
+    <string name="setting_pressureUnits">Единица за налягане</string>
+    <string name="setting_theme">Тема</string>
+    <string name="setting_auto_detect_location">Определи локация</string>
+    <string name="setting_differentiateDaysByTint">Разделяне на дните с цвят</string>
+    <string name="setting_refreshInterval">Интервал на обновяване</string>
+    <string name="setting_unit_mps">Метри в секунда (м/сек.)</string>
+    <string name="setting_unit_kph">Километри в час (км/ч.)</string>
+    <string name="setting_unit_mph">Мили в час (мили/ч.)</string>
+    <string name="setting_wind_direction_format">Формат на посоката на вятъра</string>
+    <string name="settings_none">Не обновявай</string>
+    <string name="setting_apiKey">API ключ</string>
+    <string name="setting_apiKey_summary">Потреб.API ключ за OpenWeatherMap заявки</string>
+
+    <string name="setting_unit_Celsuis">Целзий</string>
+    <string name="setting_unit_Fahrenheit">Фаренхайт</string>
+    <string name="setting_unit_Kelvin">Келвин</string>
+
+    <string name="setting_unit_mm">Милиметра (mm)</string>
+    <string name="setting_unit_in">Инча (in)</string>
+
+    <string name="setting_unit_hpa">hPa</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+
+    <string name="speed_unit_mps">м/сек.</string>
+    <string name="speed_unit_kph">км/ч.</string>
+    <string name="speed_unit_mph">мили/ч.</string>
+
+    <string name="wind_direction_format_none">Няма индикация</string>
+    <string name="wind_direction_format_arrows">Стрелки</string>
+    <string name="wind_direction_format_abbreviations">Абревиатури</string>
+
+    <string name="pressure_unit_hpa">hPa</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+
+    <string name="setting_theme_fresh">Фреш</string>
+    <string name="setting_theme_classic">Класик</string>
+    <string name="setting_theme_dark">Фреш тъмен</string>
+    <string name="setting_theme_classic_dark">Класик тъмен</string>
+
+    <string name="dialog_ok">ОК</string>
+    <string name="dialog_cancel">Отказ</string>
+
+    <string name="msg_err_parsing_json">Грешка при JSON парсване.</string>
+    <string name="msg_connection_problem">Има проблем с интернет връзката Ви.</string>
+    <string name="msg_connection_not_available">Няма налична връзка.</string>
+    <string name="msg_city_not_found">Посоченият град не е открит.</string>
+
+    <string name="wind_direction_north">С</string>
+    <string name="wind_direction_north_north_east">ССЕ</string>
+    <string name="wind_direction_north_east">СЕ</string>
+    <string name="wind_direction_east_north_east">ИСИ</string>
+    <string name="wind_direction_east">И</string>
+    <string name="wind_direction_east_south_east">ИЮИ</string>
+    <string name="wind_direction_south_east">ЮИ</string>
+    <string name="wind_direction_south_south_east">ЮЮИ</string>
+    <string name="wind_direction_south">Ю</string>
+    <string name="wind_direction_south_south_west">ЮЮЗ</string>
+    <string name="wind_direction_south_west">ЮЗ</string>
+    <string name="wind_direction_west_south_west">ЗЮЗ</string>
+    <string name="wind_direction_west">З</string>
+    <string name="wind_direction_west_north_west">ЗСЗ</string>
+    <string name="wind_direction_north_west">СЗ</string>
+    <string name="wind_direction_north_north_west">ССЗ</string>
+    <string name="msg_too_many_requests">Твърде много заявки. Моля, опитайте пак!</string>
+
+    <!-- 1: temperature; 2: unit -->
+    <string name="dash_clock_status">%1$s%2$s</string>
+    <!-- 1: temperature; 2: unit; 3: weather description -->
+    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
+    <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
+    <string name="dash_clock_expanded_body">%1$s, %2$s\nВятър: %3$s %4$s\nНалягане: %5$s %6$s\nВлажност: %7$s %%\n</string>
+    <string name="settings_title_units">Мерни единици</string>
+    <string name="settings_title_display">Дисплей</string>
+    <string name="settings_title_data">Данни</string>
+    <string name="setting_displayDecimalZeroes">Показвай десетични нули</string>
+    <string name="settings_title_location">Локация</string>
+    <string name="setting_update_location_automatically">Обновявай локацията на заден план</string>
+
+    <string name="location_settings">Настройки на локацията</string>
+    <string name="location_settings_message">Локацията не е разрешена. Желаете ли да отидете в менюто за настройки?</string>
+    <string name="location_settings_button">Настройки</string>
+    <string name="action_weather_map">Метеорологична карта</string>
+    <string name="rain">Валежи</string>
+    <string name="temperature">Температура</string>
+    <string name="action_graphs">Графики</string>
+</resources>
