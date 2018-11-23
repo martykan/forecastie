@@ -17,8 +17,7 @@
     <string name="sunset">Solnedgang</string>
 
     <string name="last_update">Seneste opdatering:\n%s</string>
-    <string name="last_update_widget">
-\nSeneste opdatering: %s</string>
+    <string name="last_update_widget">\nSeneste opdatering: %s</string>
 
     <string name="search_title">Søg efter by</string>
 
@@ -41,7 +40,7 @@
     <string name="setting_refreshInterval">Baggrund genopfrisk interval</string>
     <string name="setting_unit_mps">Meter pr. sekund (m/s)</string>
     <string name="setting_unit_kph">Kilometer pr. time (km/t)</string>
-    <string name="setting_unit_mph">Mil pr. time (mph)</string>
+    <string name="setting_unit_mph">Mil per. time (mph)</string>
     <string name="setting_wind_direction_format">Vindretning format</string>
     <string name="settings_none">Ingen</string>
     <string name="setting_apiKey">API nøgle</string>

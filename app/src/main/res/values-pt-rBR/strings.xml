@@ -16,10 +16,10 @@
     <string name="sunrise">Nascer do sol</string>
     <string name="sunset">Pôr do sol</string>
 
-    <string name="last_update">Última atualização: %s</string>
+    <string name="last_update">Última atualização:\n%s</string>
     <string name="last_update_widget">\nÚltima atualização: %s</string>
 
-    <string name="search_title">Pesquisar uma cidade</string>
+    <string name="search_title">Buscar cidade</string>
 
     <string name="downloading_data">Transferindo dados...</string>
     <string name="getting_location">Obtendo sua localização...</string>
@@ -71,15 +71,15 @@
 
     <string name="setting_theme_fresh">Novo</string>
     <string name="setting_theme_classic">Clássico</string>
-    <string name="setting_theme_dark">Novo Escuro</string>
-    <string name="setting_theme_classic_dark">Clássico Escuro</string>
+    <string name="setting_theme_dark">Novo escuro</string>
+    <string name="setting_theme_classic_dark">Clássico escuro</string>
 
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancelar</string>
 
     <string name="msg_err_parsing_json">Erro ao analisar JSON.</string>
-    <string name="msg_connection_problem">Existe um problema com a sua conexão à Internet.</string>
-    <string name="msg_connection_not_available">Conexão não disponível.</string>
+    <string name="msg_connection_problem">Há um problema com a sua conexão à Internet.</string>
+    <string name="msg_connection_not_available">Conexão indisponível.</string>
     <string name="msg_city_not_found">A cidade especificada não foi encontrada.</string>
 
     <string name="wind_direction_north">N</string>
@@ -98,12 +98,12 @@
     <string name="wind_direction_west_north_west">ONO</string>
     <string name="wind_direction_north_west">NO</string>
     <string name="wind_direction_north_north_west">NNO</string>
-    <string name="msg_too_many_requests">Foram feitos muitas solicitações. Por favor tente novamente.</string>
+    <string name="msg_too_many_requests">Foram feitas muitas solicitações. Por favor, tente novamente.</string>
 
     <!-- 1: temperature; 2: unit -->
-    <string name="dash_clock_status">%1$s°%2$s</string>
+    <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
-    <string name="dash_clock_expanded_title">%1$s°%2$s - %3$s</string>
+    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\nVento: %3$s %4$s\nPressão: %5$s %6$s\nUmidade: %7$s %%\n</string>
     <string name="settings_title_units">Unidades</string>
@@ -113,8 +113,8 @@
     <string name="settings_title_location">Localização</string>
     <string name="setting_update_location_automatically">Atualizar localização em segundo plano</string>
 
-    <string name="location_settings">Definições de localização</string>
-    <string name="location_settings_message">Localização não está ativo. Deseja ir ao menu de configurações?</string>
+    <string name="location_settings">Configurações de localização</string>
+    <string name="location_settings_message">O recurso de localização não está habilitado. Deseja ir ao menu de configurações?</string>
     <string name="location_settings_button">Configurações</string>
     <string name="action_weather_map">Mapa de clima</string>
     <string name="rain">Chuva</string>

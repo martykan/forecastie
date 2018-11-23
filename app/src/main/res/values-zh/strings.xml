@@ -16,6 +16,9 @@
     <string name="sunrise">日出时间</string>
     <string name="sunset">日落时间</string>
 
+    <string name="last_update">最后更新:\n%s</string>
+    <string name="last_update_widget">\n最后更新: %s</string>
+
     <string name="search_title">搜索城市</string>
 
     <string name="downloading_data">正在下载所需数据 ...</string>
@@ -29,7 +32,9 @@
     <string name="setting_lengthUnits">长度单位</string>
     <string name="setting_speedUnits">风速单位</string>
     <string name="setting_tempUnits">气温单位</string>
+    <string name="setting_showTempAsInteger">气温仅以整数显示</string>
     <string name="setting_pressureUnits">气压单位</string>
+    <string name="setting_theme">主题</string>
     <string name="setting_auto_detect_location">检测位置</string>
     <string name="setting_differentiateDaysByTint">用颜色区分不同天数</string>
     <string name="setting_refreshInterval">背景更新间隔</string>
@@ -39,7 +44,7 @@
     <string name="setting_wind_direction_format">风向格式</string>
     <string name="settings_none">无</string>
     <string name="setting_apiKey">API key</string>
-    <string name="setting_apiKey_summary">Custom API key for OpenWeatherMap queries</string>
+    <string name="setting_apiKey_summary">自定义OpenWeatherMap数据的API key</string>
 
     <string name="setting_unit_Celsuis">摄氏度</string>
     <string name="setting_unit_Fahrenheit">华氏度</string>
@@ -64,6 +69,11 @@
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mm Hg</string>
 
+    <string name="setting_theme_fresh">新式</string>
+    <string name="setting_theme_classic">经典</string>
+    <string name="setting_theme_dark">新式夜间模式</string>
+    <string name="setting_theme_classic_dark">经典夜间模式</string>
+
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">取消</string>
 
@@ -72,11 +82,34 @@
     <string name="msg_connection_not_available">连接不可用。</string>
     <string name="msg_city_not_found">没有找到该城市。</string>
 
+    <string name="wind_direction_north">北风</string>
+    <string name="wind_direction_north_east">东北风</string>
+    <string name="wind_direction_east">东风</string>
+    <string name="wind_direction_south_east">东南风</string>
+    <string name="wind_direction_south">南风</string>
+    <string name="wind_direction_south_west">西南风</string>
+    <string name="wind_direction_west">西风</string>
+    <string name="wind_direction_north_west">西北风</string>
+    <string name="msg_too_many_requests">请求太过频繁。请再试一遍。</string>
+
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\n风力: %3$s %4$s\n气压: %5$s %6$s\n湿度: %7$s %%\n</string>
+    <string name="settings_title_units">单位</string>
+    <string name="settings_title_display">显示</string>
+    <string name="settings_title_data">数据</string>
+    <string name="setting_displayDecimalZeroes">显示小数点的零位</string>
+    <string name="settings_title_location">定位</string>
+    <string name="setting_update_location_automatically">后台更新定位</string>
 
+    <string name="location_settings">定位设置</string>
+    <string name="location_settings_message">定位未启用。您想跳转到设置菜单吗？</string>
+    <string name="location_settings_button">设置</string>
+    <string name="action_weather_map">天气地图</string>
+    <string name="rain">雨</string>
+    <string name="temperature">气温</string>
+    <string name="action_graphs">图表</string>
 </resources>

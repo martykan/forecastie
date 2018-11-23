@@ -16,8 +16,8 @@
     <string name="sunrise">Схід сонця</string>
     <string name="sunset">Захід сонця</string>
 
-    <string name="last_update">Востаннє оновлено:\\n%s</string>
-    <string name="last_update_widget">\\nВостаннє оновлено: %s</string>
+    <string name="last_update">Востаннє оновлено:\n%s</string>
+    <string name="last_update_widget">\nВостаннє оновлено: %s</string>
 
     <string name="search_title">Пошук міста</string>
 
@@ -105,7 +105,7 @@
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s°%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\\nВітер: %3$s %4$s\\nТиск: %5$s %6$s\\nВологість: %7$s %%\\n</string>
+    <string name="dash_clock_expanded_body">%1$s, %2$s\nВітер: %3$s %4$s\nТиск: %5$s %6$s\nВологість: %7$s %%\n</string>
     <string name="settings_title_units">Одиниці</string>
     <string name="settings_title_display">Відображення</string>
     <string name="settings_title_data">Дані</string>

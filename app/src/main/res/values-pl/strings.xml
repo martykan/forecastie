@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">Forecastie</string>
 
-    <string name="action_search">Poszukiwanie</string>
-    <string name="action_refresh">Przywróć</string>
+    <string name="action_search">Szukaj</string>
+    <string name="action_refresh">Odśwież</string>
     <string name="action_settings">Ustawienia</string>
     <string name="action_about">O aplikacji</string>
 
     <string name="today">Dziś</string>
-		<string name="tomorrow">Jutro</string>
-		<string name="later">Później</string>
+    <string name="tomorrow">Jutro</string>
+    <string name="later">Później</string>
 
     <string name="wind">Wiatr</string>
     <string name="pressure">Ciśnienie</string>
@@ -16,94 +16,89 @@
     <string name="sunrise">Wschód słońca</string>
     <string name="sunset">Zachód słońca</string>
 
-    <string name="last_update">Ostatnia zmiana:\n%s</string>
-		<string name="last_update_widget">\Ostatnia aktualizacja: %s</string>
+    <string name="last_update">Ostatnia aktualizacja:\n%s</string>
+    <string name="last_update_widget">\nOstatnia aktualizacja: %s</string>
 
-		<string name="search_title">Wyszukaj miejscowość</string>
+    <string name="search_title">Wyszukaj miejscowość</string>
 
     <string name="downloading_data">Pobieranie danych...</string>
-		<string name="getting_location">Wyszukiwanie lokalizacji...</string>
+    <string name="getting_location">Wyszukiwanie lokalizacji...</string>
 
-		<string name="error_dateFormat">Błąd pobierania danych</string>
+    <string name="error_dateFormat">BŁĄD FORMATU DATY</string>
 
-		<string name="setting_dateFormat">Format daty:</string>
-    <string name="setting_dateFormatCustom">Własny format daty</string>
-		<string name="setting_dateFormatCustom_summary">Własny ciąg dla formatu daty</string>
+    <string name="setting_dateFormat">Format daty</string>
+    <string name="setting_dateFormatCustom">Niestandardowy format daty</string>
+    <string name="setting_dateFormatCustom_summary">Własny ciąg dla formatu daty</string>
     <string name="setting_lengthUnits">Długość jednostek</string>
     <string name="setting_speedUnits">Jednostki prędkości</string>
     <string name="setting_tempUnits">Jednostki temperatury</string>
-    <string name="setting_showTempAsInteger">Pokaż temperaturę tylko do liczby całkowitej</string>
+    <string name="setting_showTempAsInteger">Pokaż temperaturę tylko jako liczba całkowita</string>
     <string name="setting_pressureUnits">Jednostki ciśnienia</string>
-    <string name="setting_theme">Wygląd</string>
-    <string name="setting_auto_detect_location">Aktualnie położenie</string>
+    <string name="setting_theme">Motyw</string>
+    <string name="setting_auto_detect_location">Wykrywanie lokalizacji</string>
     <string name="setting_differentiateDaysByTint">Kolorowe rozróżnianie dni</string>
-    <string name="setting_refreshInterval">Interwał aktualizacji w tle</string>
+    <string name="setting_refreshInterval">Interwał odświeżania w tle</string>
     <string name="setting_unit_mps">Metry na sekundę (m/s)</string>
     <string name="setting_unit_kph">Kilometry na godzinę (km/h)</string>
     <string name="setting_unit_mph">Mile na godzinę (mph)</string>
-    <string name="setting_unit_bft">Skala Beauforta (bft)</string>
-    <string name="setting_unit_kn">węzeł (w.)</string>
-		<string name="setting_wind_direction_format">Format kierunku wiatru</string>
+    <string name="setting_wind_direction_format">Kierunek wiatru</string>
     <string name="settings_none">Brak</string>
     <string name="setting_apiKey">Klucz API</string>
     <string name="setting_apiKey_summary">Własny klucz API dla zapytań OpenWeatherMap</string>
 
-    <string name="setting_unit_Celsuis">Celsjusza</string>
-    <string name="setting_unit_Fahrenheit">Fahrenheita</string>
-		<string name="setting_unit_Kelvin">Kelviny</string>
+    <string name="setting_unit_Celsuis">Celsjusz</string>
+    <string name="setting_unit_Fahrenheit">Fahrenheit</string>
+    <string name="setting_unit_Kelvin">Kelvin</string>
 
-		<string name="setting_unit_mm">Millimetry (mm)</string>
+    <string name="setting_unit_mm">Millimetry (mm)</string>
     <string name="setting_unit_in">Cale (in)</string>
 
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
     <string name="setting_unit_mmhg">mmHg</string>
 
-		<string name="speed_unit_mps">m/s</string>
-		<string name="speed_unit_kph">km/h</string>
-		<string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_mps">m/s</string>
+    <string name="speed_unit_kph">km/h</string>
+    <string name="speed_unit_mph">mph</string>
 
-    <string name="wind_direction_format_none">Brak</string>
-		<string name="wind_direction_format_arrows">Strzałki</string>
-		<string name="wind_direction_format_abbreviations">Skróty</string>
+    <string name="wind_direction_format_none">Nieokreślony</string>
+    <string name="wind_direction_format_arrows">Strzałki</string>
+    <string name="wind_direction_format_abbreviations">Skróty</string>
 
     <string name="pressure_unit_hpa">hPa</string>
-		<string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mmHg</string>
-		<!-- Design -->
-		<string name="setting_theme_fresh">Świeży</string>
+
+    <string name="setting_theme_fresh">Świeży</string>
     <string name="setting_theme_classic">Klasyczny</string>
-    <string name="setting_theme_dark">Swieży ciemny</string>
-		<string name="setting_theme_classic_dark">Klasyczny ciemny</string>
-    <string name="setting_theme_classic_black">Klasyczny czarny</string>
-    <string name="setting_theme_black">Świeży czarny</string>
-		<!-- Dialogs-->
-		<string name="dialog_ok">OK</string>
-		<string name="dialog_cancel">Anuluj</string>
-		<!--Errors -->
-		<string name="msg_err_parsing_json">Błąd parsowania JSON</string>
+    <string name="setting_theme_dark">Świeży ciemny</string>
+    <string name="setting_theme_classic_dark">Klasyczny ciemny</string>
+
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Anuluj</string>
+
+    <string name="msg_err_parsing_json">Błąd parsowania JSON</string>
     <string name="msg_connection_problem">Brak połączenia z internetem</string>
     <string name="msg_connection_not_available">Brak połączenia</string>
-		<string name="msg_city_not_found">Nie można odnaleźć miasta</string>
+    <string name="msg_city_not_found">Nie można odnaleźć miasta</string>
 
-<!-- Directions-->
-    <string name="wind_direction_north">pn.</string>
-    <string name="wind_direction_north_north_east">pn.-pn.-wsch.</string>
-    <string name="wind_direction_north_east">pn.-wsch.</string>
-		<string name="wind_direction_east_north_east">pn.-wsch.</string>
-		<string name="wind_direction_east">wsch.</string>
-		<string name="wind_direction_east_south_east">pd.-wsch.</string>
-    <string name="wind_direction_south_east">pd.-wsch.</string>
-    <string name="wind_direction_south_south_west">pd.-pd.-zach.</string>
-    <string name="wind_direction_south">pd.</string>
-		<string name="wind_direction_south_south_east">pd.-pd.-zach</string>
-    <string name="wind_direction_south_west">pd.-zach.</string>
-		<string name="wind_direction_west_south_west">zach.-pd-zach.</string>
-    <string name="wind_direction_west">zach.</string>
-		<string name="wind_direction_west_north_west">zach.-pn-zach.</string>
-    <string name="wind_direction_north_west">pn.-zach.</string>
-    <string name="wind_direction_north_north_west">pn.-pn.-zach.</string>
-		<string name="msg_too_many_requests">Zbyt wiele żądań. Spróbuj ponownie.</string>
+    <string name="wind_direction_north">N</string>
+    <string name="wind_direction_north_north_east">NNE</string>
+    <string name="wind_direction_north_east">NE</string>
+    <string name="wind_direction_east_north_east">ENE</string>
+    <string name="wind_direction_east">O</string>
+    <string name="wind_direction_east_south_east">ESE</string>
+    <string name="wind_direction_south_east">SE</string>
+    <string name="wind_direction_south_south_east">SSE</string>
+    <string name="wind_direction_south">S</string>
+    <string name="wind_direction_south_south_west">SSW</string>
+    <string name="wind_direction_south_west">SW</string>
+    <string name="wind_direction_west_south_west">WSW</string>
+    <string name="wind_direction_west">W</string>
+    <string name="wind_direction_west_north_west">WNW</string>
+    <string name="wind_direction_north_west">NW</string>
+    <string name="wind_direction_north_north_west">NNW</string>
+    <string name="msg_too_many_requests">Zbyt wiele żądań. Proszę spróbuj ponownie.</string>
 
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
@@ -114,9 +109,9 @@
     <string name="settings_title_units">Jednostki</string>
     <string name="settings_title_display">Wyświetlanie</string>
     <string name="settings_title_data">Dane</string>
-    <string name="setting_displayDecimalZeroes">Pokaż zera po przecinku</string>
+    <string name="setting_displayDecimalZeroes">Wyświetl zera po przecinku</string>
     <string name="settings_title_location">Lokalizacja</string>
-    <string name="setting_update_location_automatically">Aktualizacja lokalizacji w tle</string>
+    <string name="setting_update_location_automatically">Aktualizowanie lokalizacji w tle</string>
 
     <string name="location_settings">Ustawienia lokalizacji</string>
     <string name="location_settings_message">Lokalizacja nie jest włączona. Czy chcesz przejść do menu ustawień?</string>

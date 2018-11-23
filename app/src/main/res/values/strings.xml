@@ -16,7 +16,7 @@
     <string name="humidity">Humidity</string>
     <string name="sunrise">Sunrise</string>
     <string name="sunset">Sunset</string>
-    <string name="uvindex">Uv Index</string>
+    <string name="uvindex">UV Index</string>
 
     <string name="last_update">Last update:\n%s</string>
     <string name="last_update_widget">\nLast update: %s</string>
