@@ -95,7 +95,7 @@ public class GraphActivity extends AppCompatActivity {
                 maxTemp = temperature;
             }
 
-            dataset.addPoint(getDateLabel(weatherList.get(i), i), (float) temperature);
+            dataset.addPoint(getDateLabel(weatherList.get(i), i), temperature);
         }
         dataset.setSmooth(false);
         dataset.setColor(Color.parseColor("#FF5722"));
@@ -208,7 +208,7 @@ public class GraphActivity extends AppCompatActivity {
         // Data
         LineSet dataset = new LineSet();
         for (int i = 0; i < weatherList.size(); i++) {
-            float windSpeed = UnitConvertor.convertWind(Float.parseFloat(weatherList.get(i).getWind()), sp);
+            float windSpeed = (float) UnitConvertor.convertWind(Float.parseFloat(weatherList.get(i).getWind()), sp);
 
             if (windSpeed < minWindSpeed) {
                 minWindSpeed = windSpeed;
