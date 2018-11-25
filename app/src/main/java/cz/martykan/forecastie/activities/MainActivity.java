@@ -303,7 +303,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         final WebView webView = new WebView(this);
         String about = "<p>1.6.2</p>" +
                 "<p>A lightweight, opensource weather app.</p>" +
-                "<p>Developed by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a></p>" +
+                "<p>Developed by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> and others</p>" +
                 "<p>Data provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons license</a>" +
                 "<p>Icons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.";
         TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.textColorPrimary, R.attr.colorAccent});
