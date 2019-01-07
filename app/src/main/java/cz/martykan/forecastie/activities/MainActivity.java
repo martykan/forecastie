@@ -606,9 +606,20 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 weather.setIcon(setWeatherIcon(Integer.parseInt(idString), cal.get(Calendar.HOUR_OF_DAY)));
 
                 Calendar today = Calendar.getInstance();
-                if (cal.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR)) {
+                today.set(Calendar.HOUR_OF_DAY, 0);
+                today.set(Calendar.MINUTE, 0);
+                today.set(Calendar.SECOND, 0);
+                today.set(Calendar.MILISECOND, 0);
+
+                Calendar tomorrow = today.clone();
+                tomorrow.add(Calendar.DAY_OF_YEAR, 1);
+
+                Calendar.later = today.clone();
+                tomorrow.add(Calendar.DAY_OF_YEAR, 2);
+
+                if (cal.before(tomorrow)) {
                     longTermTodayWeather.add(weather);
-                } else if (cal.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR) + 1) {
+                } else if (cal.before(later)) {
                     longTermTomorrowWeather.add(weather);
                 } else {
                     longTermWeather.add(weather);
