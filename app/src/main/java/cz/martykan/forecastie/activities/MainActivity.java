@@ -609,13 +609,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 today.set(Calendar.HOUR_OF_DAY, 0);
                 today.set(Calendar.MINUTE, 0);
                 today.set(Calendar.SECOND, 0);
-                today.set(Calendar.MILISECOND, 0);
+                today.set(Calendar.MILLISECOND, 0);
 
-                Calendar tomorrow = today.clone();
+                Calendar tomorrow = (Calendar) today.clone();
                 tomorrow.add(Calendar.DAY_OF_YEAR, 1);
 
-                Calendar.later = today.clone();
-                tomorrow.add(Calendar.DAY_OF_YEAR, 2);
+                Calendar later = (Calendar) today.clone();
+                later.add(Calendar.DAY_OF_YEAR, 2);
 
                 if (cal.before(tomorrow)) {
                     longTermTodayWeather.add(weather);
