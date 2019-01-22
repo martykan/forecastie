@@ -19,11 +19,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     TextView todayIcon;
     ViewPager viewPager;
     TabLayout tabLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     View appView;
 
@@ -122,6 +125,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
         appView = findViewById(R.id.viewApp);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        AppBarLayout appBarLayout = findViewById(R.id.appBarLayout);
 
         progressDialog = new ProgressDialog(MainActivity.this);
 
@@ -163,6 +168,23 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         // Set autoupdater
         AlarmReceiver.setRecurringAlarm(this);
+
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshWeather();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                // Only allow pull to refresh when scrolled to top
+                swipeRefreshLayout.setEnabled(verticalOffset == 0);
+            }
+        });
     }
 
     public WeatherRecyclerAdapter getAdapter(int id) {
@@ -223,10 +245,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         if (!lastUVIToday.isEmpty()) {
             double latitude = todayWeather.getLat();
             double longitude = todayWeather.getLon();
-            if(latitude == 0 && longitude == 0) {
+            if (latitude == 0 && longitude == 0) {
                 return;
             }
-            new TodayUVITask(this, this, progressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"coords", Double.toString(latitude), Double.toString(longitude));
+            new TodayUVITask(this, this, progressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "coords", Double.toString(latitude), Double.toString(longitude));
         }
     }
 
@@ -698,13 +720,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         int id = item.getItemId();
 
         if (id == R.id.action_refresh) {
-            if (isNetworkAvailable()) {
-                getTodayWeather();
-                getLongTermWeather();
-                getTodayUVIndex();
-            } else {
-                Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
-            }
+            refreshWeather();
             return true;
         }
         if (id == R.id.action_map) {
@@ -732,6 +748,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void refreshWeather() {
+        if (isNetworkAvailable()) {
+            getTodayWeather();
+            getLongTermWeather();
+            getTodayUVIndex();
+        } else {
+            Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
+        }
     }
 
     public static void initMappings() {
