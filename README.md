@@ -16,9 +16,9 @@ A simple, opensource weather app for Android. It gathers data from [OpenWeatherM
 * Offline functionality
 
 ## Screenshots
-[<img src="http://i.imgur.com/bvcc7Lt.png" width=250>](http://i.imgur.com/bvcc7Lt.png)
-[<img src="http://i.imgur.com/SaH5X2O.png" width=250>](http://i.imgur.com/SaH5X2O.png)
-[<img src="http://i.imgur.com/ztMbvyY.png" width=250>](http://i.imgur.com/ztMbvyY.png)
+[<img src="https://i.imgur.com/8g7HPIL.png" width=250>](https://i.imgur.com/8g7HPIL.png)
+[<img src="https://i.imgur.com/ye2O2B2.png" width=250>](https://i.imgur.com/ye2O2B2.png)
+[<img src="https://i.imgur.com/olkk2cB.png" width=250>](https://i.imgur.com/olkk2cB.png)
 
 ## Contribution
 If you have any ideas or issues, don't hesitate to reach out to me. Every contribution is welcome.
