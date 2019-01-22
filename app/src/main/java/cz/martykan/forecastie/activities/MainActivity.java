@@ -323,7 +323,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Forecastie");
         final WebView webView = new WebView(this);
-        String about = "<p>1.7</p>" +
+        String about = "<p>1.7.2</p>" +
                 "<p>A lightweight, opensource weather app.</p>" +
                 "<p>Developed by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> and others</p>" +
                 "<p>Data provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons license</a>" +
