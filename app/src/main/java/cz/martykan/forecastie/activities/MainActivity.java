@@ -23,6 +23,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -57,6 +58,7 @@ import cz.martykan.forecastie.Constants;
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.adapters.ViewPagerAdapter;
 import cz.martykan.forecastie.adapters.WeatherRecyclerAdapter;
+import cz.martykan.forecastie.fragments.AmbiguousLocationDialogFragment;
 import cz.martykan.forecastie.fragments.RecyclerViewFragment;
 import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.tasks.GenericRequestTask;
@@ -846,6 +848,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
             }
+
+            Snackbar.make(appView, "Wrong city?", Snackbar.LENGTH_LONG)
+                    .setAction("Change it", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // show locations dialog fragment
+                            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                            fragmentTransaction.add(android.R.id.content, new AmbiguousLocationDialogFragment())
+                                    .addToBackStack(null).commit();
+                        }
+                    })
+                    .show();
         } else {
             showLocationSettingsDialog();
         }
