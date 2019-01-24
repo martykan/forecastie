@@ -5,13 +5,18 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import cz.martykan.forecastie.R;
+import cz.martykan.forecastie.adapters.LocationsRecyclerAdapter;
+import cz.martykan.forecastie.models.Weather;
 
 public class AmbiguousLocationDialogFragment extends DialogFragment {
 
@@ -29,6 +34,21 @@ public class AmbiguousLocationDialogFragment extends DialogFragment {
         RecyclerView recyclerView = view.findViewById(R.id.locationsRecyclerView);
 
         toolbar.setTitle("Locations");
+
+        ArrayList<Weather> weatherArrayList = new ArrayList<>();
+        LocationsRecyclerAdapter recyclerAdapter =
+                new LocationsRecyclerAdapter(getActivity().getApplicationContext(), weatherArrayList);
+
+        Weather testWeather = new Weather();
+        testWeather.setCity("New York");
+        testWeather.setDescription("Partly Cloudy");
+        testWeather.setTemperature("48° F");
+        testWeather.setIcon("\uF02E");
+
+        weatherArrayList.add(testWeather);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(recyclerAdapter);
     }
 
     @NonNull

@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <TextView
-        android:id="@+id/rowTempetureTextView"
+        android:id="@+id/rowTemperatureTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp" android:layout_marginLeft="16dp"
@@ -16,7 +16,7 @@
         android:layout_marginRight="8dp"
         android:text="TextView"
         android:textSize="36sp"
-        app:layout_constraintEnd_toStartOf="@+id/rowConditionImageView"
+        app:layout_constraintEnd_toStartOf="@+id/rowIconTextView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rowCityTextView"/>
@@ -32,9 +32,9 @@
         android:text="TextView"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/rowConditionImageView"
+        app:layout_constraintEnd_toStartOf="@+id/rowIconTextView"
         app:layout_constraintHorizontal_bias="0.0" app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rowTempetureTextView"/>
+        app:layout_constraintTop_toBottomOf="@+id/rowTemperatureTextView"/>
     <TextView
         android:id="@+id/rowCityTextView"
         android:layout_width="0dp"
@@ -45,16 +45,21 @@
         android:layout_marginRight="8dp"
         android:text="TextView"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/rowConditionImageView"
+        app:layout_constraintEnd_toStartOf="@+id/rowIconTextView"
         app:layout_constraintHorizontal_bias="0.0" app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-    <ImageView
-        android:id="@+id/rowConditionImageView"
+    <TextView
+        android:id="@+id/rowIconTextView"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_cloud_black_48dp"/>
+        android:layout_marginBottom="16dp" android:gravity="end"
+        android:paddingEnd="42dp" android:paddingRight="42dp"
+        android:text="C"
+        android:textAlignment="viewEnd"
+        android:textSize="72sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
     <!--todo add map to display location of city-->
 </android.support.constraint.ConstraintLayout>
