@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private List<Weather> longTermTodayWeather = new ArrayList<>();
     private List<Weather> longTermTomorrowWeather = new ArrayList<>();
 
-    public String recentCity = "";
+    public String recentCityId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -307,13 +307,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private void saveLocation(String result) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        recentCity = preferences.getString("city", Constants.DEFAULT_CITY);
+        recentCityId = preferences.getString("cityId", Constants.DEFAULT_CITY_ID);
 
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("city", result);
+        editor.putString("cityId", result);
         editor.commit();
 
-        if (!recentCity.equals(result)) {
+        if (!recentCityId.equals(result)) {
             // New location, update weather
             getTodayWeather();
             getLongTermWeather();
@@ -1011,14 +1011,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     return ParseResult.CITY_NOT_FOUND;
                 }
 
-                String city = reader.getString("name");
-                String country = "";
-                JSONObject countryObj = reader.optJSONObject("sys");
-                if (countryObj != null) {
-                    country = ", " + countryObj.getString("country");
-                }
-
-                saveLocation(city + country);
+                saveLocation(reader.getString("id"));
 
             } catch (JSONException e) {
                 Log.e("JSONException Data", response);

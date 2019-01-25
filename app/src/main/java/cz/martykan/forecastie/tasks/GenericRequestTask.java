@@ -1,6 +1,5 @@
 package cz.martykan.forecastie.tasks;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,7 +8,6 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.ProgressBar;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
@@ -177,8 +175,8 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         if (coords.length == 2) {
             urlBuilder.append("lat=").append(coords[0]).append("&lon=").append(coords[1]);
         } else {
-            final String city = sp.getString("city", Constants.DEFAULT_CITY);
-            urlBuilder.append("q=").append(URLEncoder.encode(city, "UTF-8"));
+            final String cityId = sp.getString("cityId", Constants.DEFAULT_CITY_ID);
+            urlBuilder.append("id=").append(URLEncoder.encode(cityId, "UTF-8"));
         }
         urlBuilder.append("&lang=").append(getLanguage());
         urlBuilder.append("&mode=json");
@@ -188,11 +186,11 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
     }
 
     private void restorePreviousCity() {
-        if (!TextUtils.isEmpty(activity.recentCity)) {
+        if (!TextUtils.isEmpty(activity.recentCityId)) {
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
-            editor.putString("city", activity.recentCity);
+            editor.putString("cityId", activity.recentCityId);
             editor.commit();
-            activity.recentCity = "";
+            activity.recentCityId = "";
         }
     }
 
