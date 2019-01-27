@@ -1,11 +1,13 @@
 package cz.martykan.forecastie.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class LocationsRecyclerAdapter extends RecyclerView.Adapter<LocationsRecy
         return new LocationsViewHolder(inflater.inflate(R.layout.list_location_row, parent, false));
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public void onBindViewHolder(LocationsViewHolder holder, int position) {
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");
@@ -41,6 +44,9 @@ public class LocationsRecyclerAdapter extends RecyclerView.Adapter<LocationsRecy
         holder.descriptionTextView.setText(weather.getDescription());
         holder.iconTextView.setText(weather.getIcon());
         holder.iconTextView.setTypeface(weatherFont);
+
+        holder.webView.getSettings().setJavaScriptEnabled(true);
+        holder.webView.loadUrl("file:///android_asset/map.html?lat=" + weather.getLat()+ "&lon=" + weather.getLon() + "&appid=" + "notneeded");
     }
 
     @Override
@@ -53,6 +59,7 @@ public class LocationsRecyclerAdapter extends RecyclerView.Adapter<LocationsRecy
         private TextView temperatureTextView;
         private TextView descriptionTextView;
         private TextView iconTextView;
+        private WebView webView;
 
         public LocationsViewHolder(View itemView) {
             super(itemView);
@@ -61,6 +68,7 @@ public class LocationsRecyclerAdapter extends RecyclerView.Adapter<LocationsRecy
             temperatureTextView = itemView.findViewById(R.id.rowTemperatureTextView);
             descriptionTextView = itemView.findViewById(R.id.rowDescriptionTextView);
             iconTextView = itemView.findViewById(R.id.rowIconTextView);
+            webView = itemView.findViewById(R.id.webView2);
 
             itemView.setOnClickListener(this);
         }

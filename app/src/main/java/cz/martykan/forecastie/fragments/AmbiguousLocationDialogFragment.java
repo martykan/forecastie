@@ -67,6 +67,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
                 JSONObject city = cityListArray.getJSONObject(i);
                 JSONObject weatherObj = city.getJSONArray("weather").getJSONObject(0);
                 JSONObject main = city.getJSONObject("main");
+                JSONObject coord = city.getJSONObject("coord");
 
                 final String dateMsString = city.getString("dt") + "000";
                 Calendar cal = Calendar.getInstance();
@@ -79,7 +80,8 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
                 weather.setId(city.getString("id"));
                 weather.setDescription(weatherObj.getString("description").substring(0, 1).toUpperCase() +
                         weatherObj.getString("description").substring(1));
-                //weather.setTemperature(main.getString("temp"));
+                weather.setLat(coord.getDouble("lat"));
+                weather.setLon(coord.getDouble("lon"));
                 if (sharedPreferences.getBoolean("displayDecimalZeroes", false)) {
                     weather.setTemperature(new DecimalFormat("0.0").format(temperature) + " " + sharedPreferences.getString("unit", "°C"));
                 } else {
