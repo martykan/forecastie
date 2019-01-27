@@ -1,6 +1,7 @@
 package cz.martykan.forecastie.activities;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -187,6 +188,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 swipeRefreshLayout.setEnabled(verticalOffset == 0);
             }
         });
+
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null) {
+            if (bundle.getBoolean("shouldRefresh")) {
+                refreshWeather();
+            }
+        }
     }
 
     public WeatherRecyclerAdapter getAdapter(int id) {
@@ -289,11 +298,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         input.setMaxLines(1);
         input.setSingleLine(true);
         alert.setView(input, 32, 0, 32, 0);
+
         alert.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String result = input.getText().toString();
                 if (!result.isEmpty()) {
-                    saveLocation(result);
+                    new FindCitiesByNameTask(getApplicationContext(),
+                            MainActivity.this, progressDialog).execute("city", result);
                 }
             }
         });
@@ -752,7 +763,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         return super.onOptionsItemSelected(item);
     }
 
-    private void refreshWeather() {
+    public void refreshWeather() {
         if (isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
@@ -848,19 +859,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
             }
-
-            Snackbar.make(appView, "Wrong city?", Snackbar.LENGTH_LONG)
-                    .setAction("Change it", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            // show locations dialog fragment
-                            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                            fragmentTransaction.add(android.R.id.content, new AmbiguousLocationDialogFragment())
-                                    .addToBackStack(null).commit();
-                        }
-                    })
-                    .show();
         } else {
             showLocationSettingsDialog();
         }
@@ -983,6 +981,69 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         protected void updateMainUI() {
             updateLongTermWeatherUI();
         }
+    }
+
+    class FindCitiesByNameTask extends GenericRequestTask {
+
+        public FindCitiesByNameTask(Context context, MainActivity activity, ProgressDialog progressDialog) {
+            super(context, activity, progressDialog);
+        }
+
+        @Override
+        protected void onPreExecute() { /*Nothing*/ }
+
+        @Override
+        protected ParseResult parseResponse(String response) {
+            try {
+                JSONObject reader = new JSONObject(response);
+
+                final String code = reader.optString("cod");
+                if ("404".equals(code)) {
+                    Log.e("Geolocation", "No city found");
+                    return ParseResult.CITY_NOT_FOUND;
+                }
+
+//                saveLocation(reader.getString("id"));
+                JSONArray cityList = reader.getJSONArray("list");
+
+                if (cityList.length() > 1) {
+                    launchLocationPickerDialog(cityList);
+                } else {
+                    saveLocation(cityList.getJSONObject(0).getString("id"));
+                }
+
+            } catch (JSONException e) {
+                Log.e("JSONException Data", response);
+                e.printStackTrace();
+                return ParseResult.JSON_EXCEPTION;
+            }
+
+            return ParseResult.OK;
+        }
+
+        @Override
+        protected String getAPIName() {
+            return "find";
+        }
+
+        @Override
+        protected void onPostExecute(TaskOutput output) {
+            /* Handle possible errors only */
+            handleTaskOutput(output);
+        }
+    }
+
+    private void launchLocationPickerDialog(JSONArray cityList) {
+        AmbiguousLocationDialogFragment fragment = new AmbiguousLocationDialogFragment();
+        Bundle bundle = new Bundle();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        bundle.putString("cityList", cityList.toString());
+        fragment.setArguments(bundle);
+
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.add(android.R.id.content, fragment)
+                .addToBackStack(null).commit();
     }
 
     class ProvideCityNameTask extends GenericRequestTask {

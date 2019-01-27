@@ -48,7 +48,7 @@ public class LocationsRecyclerAdapter extends RecyclerView.Adapter<LocationsRecy
         return weatherArrayList.size();
     }
 
-    class LocationsViewHolder extends RecyclerView.ViewHolder {
+    class LocationsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView cityTextView;
         private TextView temperatureTextView;
         private TextView descriptionTextView;
@@ -61,15 +61,23 @@ public class LocationsRecyclerAdapter extends RecyclerView.Adapter<LocationsRecy
             temperatureTextView = itemView.findViewById(R.id.rowTemperatureTextView);
             descriptionTextView = itemView.findViewById(R.id.rowDescriptionTextView);
             iconTextView = itemView.findViewById(R.id.rowIconTextView);
+
+            itemView.setOnClickListener(this);
         }
 
-        Weather getItem(int position) {
-            return weatherArrayList.get(position);
+        @Override
+        public void onClick(View view) {
+            if (itemClickListener != null) {
+                itemClickListener.onItemClickListener(view, getAdapterPosition());
+            }
         }
-
     }
 
-    void setClickListener(ItemClickListener itemClickListener) {
+    public Weather getItem(int position) {
+        return weatherArrayList.get(position);
+    }
+
+    public void setClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 

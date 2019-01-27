@@ -40,7 +40,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
     @Override
     protected void onPreExecute() {
         incLoadingCounter();
-        if(!progressDialog.isShowing()) {
+        if (!progressDialog.isShowing()) {
             progressDialog.setMessage(context.getString(R.string.downloading_data));
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
@@ -52,7 +52,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         TaskOutput output = new TaskOutput();
 
         String response = "";
-        String[] coords = new String[]{};
+        String[] reqParams = new String[]{};
 
         if (params != null && params.length > 0) {
             final String zeroParam = params[0];
@@ -63,13 +63,15 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
             } else if ("coords".equals(zeroParam)) {
                 String lat = params[1];
                 String lon = params[2];
-                coords = new String[]{lat, lon};
+                reqParams = new String[]{"coords", lat, lon};
+            } else if ("city".equals(zeroParam)) {
+                reqParams = new String[]{"city", params[1]};
             }
         }
 
         if (response.isEmpty()) {
             try {
-                URL url = provideURL(coords);
+                URL url = provideURL(reqParams);
                 Log.i("URL", url.toString());
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 if (urlConnection.getResponseCode() == 200) {
@@ -88,13 +90,11 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
                     output.taskResult = TaskResult.SUCCESS;
                     // Save date/time for latest successful result
                     activity.saveLastUpdateTime(PreferenceManager.getDefaultSharedPreferences(context));
-                }
-                else if (urlConnection.getResponseCode() == 429) {
+                } else if (urlConnection.getResponseCode() == 429) {
                     // Too many requests
                     Log.i("Task", "too many requests");
                     output.taskResult = TaskResult.TOO_MANY_REQUESTS;
-                }
-                else {
+                } else {
                     // Bad response from server
                     Log.i("Task", "bad response " + urlConnection.getResponseCode());
                     output.taskResult = TaskResult.BAD_RESPONSE;
@@ -122,7 +122,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
 
     @Override
     protected void onPostExecute(TaskOutput output) {
-        if(loading == 1) {
+        if (loading == 1) {
             progressDialog.dismiss();
         }
         decLoadingCounter();
@@ -166,14 +166,19 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         return language;
     }
 
-    private URL provideURL(String[] coords) throws UnsupportedEncodingException, MalformedURLException {
+    private URL provideURL(String[] reqParams) throws UnsupportedEncodingException, MalformedURLException {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String apiKey = sp.getString("apiKey", activity.getResources().getString(R.string.apiKey));
 
         StringBuilder urlBuilder = new StringBuilder("https://api.openweathermap.org/data/2.5/");
         urlBuilder.append(getAPIName()).append("?");
-        if (coords.length == 2) {
-            urlBuilder.append("lat=").append(coords[0]).append("&lon=").append(coords[1]);
+        if (reqParams.length > 0) {
+            final String zeroParam = reqParams[0];
+            if ("coords".equals(zeroParam)) {
+                urlBuilder.append("lat=").append(reqParams[1]).append("&lon=").append(reqParams[2]);
+            } else if ("city".equals(zeroParam)) {
+                urlBuilder.append("q=").append(reqParams[1]);
+            }
         } else {
             final String cityId = sp.getString("cityId", Constants.DEFAULT_CITY_ID);
             urlBuilder.append("id=").append(URLEncoder.encode(cityId, "UTF-8"));
@@ -212,8 +217,10 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         loading--;
     }
 
-    protected void updateMainUI() { }
+    protected void updateMainUI() {
+    }
 
     protected abstract ParseResult parseResponse(String response);
+
     protected abstract String getAPIName();
 }
