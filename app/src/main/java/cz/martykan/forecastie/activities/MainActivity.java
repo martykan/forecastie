@@ -65,6 +65,7 @@ import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.tasks.GenericRequestTask;
 import cz.martykan.forecastie.tasks.ParseResult;
 import cz.martykan.forecastie.tasks.TaskOutput;
+import cz.martykan.forecastie.utils.Formatting;
 import cz.martykan.forecastie.utils.UnitConvertor;
 import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
 import cz.martykan.forecastie.widgets.DashClockWeatherExtension;
@@ -111,6 +112,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     public String recentCityId = "";
 
+    private Formatting formatting;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Initialize the associated SharedPreferences file with default values
@@ -123,6 +126,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         boolean blackTheme = theme == R.style.AppTheme_NoActionBar_Black ||
                 theme == R.style.AppTheme_NoActionBar_Classic_Black;
         widgetTransparent = prefs.getBoolean("transparentWidget", false);
+
+        formatting = new Formatting(this, prefs);
 
         // Initiate activity
         super.onCreate(savedInstanceState);
@@ -363,40 +368,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         alert.show();
     }
 
-    private String setWeatherIcon(int actualId, int hourOfDay) {
-        int id = actualId / 100;
-        String icon = "";
-        if (actualId == 800) {
-            if (hourOfDay >= 7 && hourOfDay < 20) {
-                icon = this.getString(R.string.weather_sunny);
-            } else {
-                icon = this.getString(R.string.weather_clear_night);
-            }
-        } else {
-            switch (id) {
-                case 2:
-                    icon = this.getString(R.string.weather_thunder);
-                    break;
-                case 3:
-                    icon = this.getString(R.string.weather_drizzle);
-                    break;
-                case 7:
-                    icon = this.getString(R.string.weather_foggy);
-                    break;
-                case 8:
-                    icon = this.getString(R.string.weather_cloudy);
-                    break;
-                case 6:
-                    icon = this.getString(R.string.weather_snowy);
-                    break;
-                case 5:
-                    icon = this.getString(R.string.weather_rainy);
-                    break;
-            }
-        }
-        return icon;
-    }
-
     public static String getRainString(JSONObject rainObj) {
         String rain = "0";
         if (rainObj != null) {
@@ -467,7 +438,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             final String idString = reader.getJSONArray("weather").getJSONObject(0).getString("id");
             todayWeather.setId(idString);
-            todayWeather.setIcon(setWeatherIcon(Integer.parseInt(idString), Calendar.getInstance().get(Calendar.HOUR_OF_DAY)));
+            todayWeather.setIcon(formatting.setWeatherIcon(Integer.parseInt(idString), Calendar.getInstance().get(Calendar.HOUR_OF_DAY)));
 
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
             editor.putString("lastToday", result);
@@ -638,7 +609,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 final String dateMsString = listItem.getString("dt") + "000";
                 Calendar cal = Calendar.getInstance();
                 cal.setTimeInMillis(Long.parseLong(dateMsString));
-                weather.setIcon(setWeatherIcon(Integer.parseInt(idString), cal.get(Calendar.HOUR_OF_DAY)));
+                weather.setIcon(formatting.setWeatherIcon(Integer.parseInt(idString), cal.get(Calendar.HOUR_OF_DAY)));
 
                 Calendar today = Calendar.getInstance();
                 today.set(Calendar.HOUR_OF_DAY, 0);

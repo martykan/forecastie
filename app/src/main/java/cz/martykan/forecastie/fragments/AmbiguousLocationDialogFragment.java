@@ -28,6 +28,7 @@ import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.adapters.LocationsRecyclerAdapter;
 import cz.martykan.forecastie.models.Weather;
+import cz.martykan.forecastie.utils.Formatting;
 import cz.martykan.forecastie.utils.UnitConvertor;
 
 public class AmbiguousLocationDialogFragment extends DialogFragment implements LocationsRecyclerAdapter.ItemClickListener {
@@ -53,6 +54,8 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
         toolbar.setTitle("Locations");
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        Formatting formatting = new Formatting(getActivity(), sharedPreferences);
 
         try {
             JSONArray cityListArray = new JSONArray(bundle.getString("cityList"));
@@ -82,7 +85,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
                 } else {
                     weather.setTemperature(new DecimalFormat("#.#").format(temperature) + " " + sharedPreferences.getString("unit", "°C"));
                 }
-                weather.setIcon(setWeatherIcon(Integer.parseInt(weatherObj.getString("id")), cal.get(Calendar.HOUR_OF_DAY)));
+                weather.setIcon(formatting.setWeatherIcon(Integer.parseInt(weatherObj.getString("id")), cal.get(Calendar.HOUR_OF_DAY)));
 
                 weatherArrayList.add(weather);
             }
@@ -95,40 +98,6 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    private String setWeatherIcon(int actualId, int hourOfDay) {
-        int id = actualId / 100;
-        String icon = "";
-        if (actualId == 800) {
-            if (hourOfDay >= 7 && hourOfDay < 20) {
-                icon = this.getString(R.string.weather_sunny);
-            } else {
-                icon = this.getString(R.string.weather_clear_night);
-            }
-        } else {
-            switch (id) {
-                case 2:
-                    icon = this.getString(R.string.weather_thunder);
-                    break;
-                case 3:
-                    icon = this.getString(R.string.weather_drizzle);
-                    break;
-                case 7:
-                    icon = this.getString(R.string.weather_foggy);
-                    break;
-                case 8:
-                    icon = this.getString(R.string.weather_cloudy);
-                    break;
-                case 6:
-                    icon = this.getString(R.string.weather_snowy);
-                    break;
-                case 5:
-                    icon = this.getString(R.string.weather_rainy);
-                    break;
-            }
-        }
-        return icon;
     }
 
 
