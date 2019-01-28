@@ -46,10 +46,10 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Bundle bundle = getArguments();
-
-        Toolbar toolbar = view.findViewById(R.id.dialogToolbar);
-        RecyclerView recyclerView = view.findViewById(R.id.locationsRecyclerView);
+        final Formatting formatting = new Formatting(getActivity(), sharedPreferences);
+        final Bundle bundle = getArguments();
+        final Toolbar toolbar = view.findViewById(R.id.dialogToolbar);
+        final RecyclerView recyclerView = view.findViewById(R.id.locationsRecyclerView);
 
         toolbar.setTitle("Locations");
 
@@ -63,45 +63,53 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        Formatting formatting = new Formatting(getActivity(), sharedPreferences);
-
         try {
-            JSONArray cityListArray = new JSONArray(bundle.getString("cityList"));
-            ArrayList<Weather> weatherArrayList = new ArrayList<>();
+            final JSONArray cityListArray = new JSONArray(bundle.getString("cityList"));
+            final ArrayList<Weather> weatherArrayList = new ArrayList<>();
             recyclerAdapter =
                     new LocationsRecyclerAdapter(getActivity().getApplicationContext(), weatherArrayList);
 
+            recyclerAdapter.setClickListener(AmbiguousLocationDialogFragment.this);
+
             for (int i = 0; i < cityListArray.length(); i++) {
-                JSONObject city = cityListArray.getJSONObject(i);
-                JSONObject weatherObj = city.getJSONArray("weather").getJSONObject(0);
-                JSONObject main = city.getJSONObject("main");
-                JSONObject coord = city.getJSONObject("coord");
+                final JSONObject cityObject = cityListArray.getJSONObject(i);
+                final JSONObject weatherObject = cityObject.getJSONArray("weather").getJSONObject(0);
+                final JSONObject mainObject = cityObject.getJSONObject("main");
+                final JSONObject coordObject = cityObject.getJSONObject("coord");
+                final JSONObject sysObject = cityObject.getJSONObject("sys");
 
-                final String dateMsString = city.getString("dt") + "000";
-                Calendar cal = Calendar.getInstance();
-                cal.setTimeInMillis(Long.parseLong(dateMsString));
+                final Calendar calendar = Calendar.getInstance();
+                final String dateMsString = cityObject.getString("dt") + "000";
+                final String city = cityObject.getString("name");
+                final String country = sysObject.getString("country");
+                final String cityId = cityObject.getString("id");
+                final String description = weatherObject.getString("description");
+                final String weatherId = weatherObject.getString("id");
+                final float temperature = UnitConvertor.convertTemperature(Float.parseFloat(mainObject.getString("temp")), sharedPreferences);
+                final double lat = coordObject.getDouble("lat");
+                final double lon = coordObject.getDouble("lon");
 
-                float temperature = UnitConvertor.convertTemperature(Float.parseFloat(main.getString("temp")), sharedPreferences);
+                calendar.setTimeInMillis(Long.parseLong(dateMsString));
 
                 Weather weather = new Weather();
-                weather.setCity(city.getString("name"));
-                weather.setId(city.getString("id"));
-                weather.setDescription(weatherObj.getString("description").substring(0, 1).toUpperCase() +
-                        weatherObj.getString("description").substring(1));
-                weather.setLat(coord.getDouble("lat"));
-                weather.setLon(coord.getDouble("lon"));
+                weather.setCity(city);
+                weather.setCountry(country);
+                weather.setId(cityId);
+                weather.setDescription(description.substring(0, 1).toUpperCase() + description.substring(1));
+                weather.setLat(lat);
+                weather.setLon(lon);
+                weather.setIcon(formatting.setWeatherIcon(Integer.parseInt(weatherId), calendar.get(Calendar.HOUR_OF_DAY)));
+
                 if (sharedPreferences.getBoolean("displayDecimalZeroes", false)) {
                     weather.setTemperature(new DecimalFormat("0.0").format(temperature) + " " + sharedPreferences.getString("unit", "°C"));
                 } else {
                     weather.setTemperature(new DecimalFormat("#.#").format(temperature) + " " + sharedPreferences.getString("unit", "°C"));
                 }
-                weather.setIcon(formatting.setWeatherIcon(Integer.parseInt(weatherObj.getString("id")), cal.get(Calendar.HOUR_OF_DAY)));
 
                 weatherArrayList.add(weather);
             }
 
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            recyclerAdapter.setClickListener(AmbiguousLocationDialogFragment.this);
             recyclerView.setAdapter(recyclerAdapter);
 
 
@@ -125,12 +133,11 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
     @SuppressLint("ApplySharedPref")
     @Override
     public void onItemClickListener(View view, int position) {
-        Weather weather = recyclerAdapter.getItem(position);
+        final Weather weather = recyclerAdapter.getItem(position);
+        final Intent intent = new Intent(getActivity(), MainActivity.class);
+        final Bundle bundle = new Bundle();
 
         sharedPreferences.edit().putString("cityId", weather.getId()).commit();
-
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        Bundle bundle = new Bundle();
         bundle.putBoolean("shouldRefresh", true);
         intent.putExtras(bundle);
 

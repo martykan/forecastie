@@ -39,7 +39,7 @@ public class LocationsRecyclerAdapter extends RecyclerView.Adapter<LocationsRecy
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");
         Weather weather = weatherArrayList.get(position);
 
-        holder.cityTextView.setText(weather.getCity());
+        holder.cityTextView.setText(String.format("%s, %s", weather.getCity(), weather.getCountry()));
         holder.temperatureTextView.setText(weather.getTemperature());
         holder.descriptionTextView.setText(weather.getDescription());
         holder.iconTextView.setText(weather.getIcon());
@@ -61,7 +61,7 @@ public class LocationsRecyclerAdapter extends RecyclerView.Adapter<LocationsRecy
         private TextView iconTextView;
         private WebView webView;
 
-        public LocationsViewHolder(View itemView) {
+        LocationsViewHolder(View itemView) {
             super(itemView);
 
             cityTextView = itemView.findViewById(R.id.rowCityTextView);
