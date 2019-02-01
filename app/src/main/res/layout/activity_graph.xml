@@ -37,13 +37,14 @@
                     android:layout_margin="16dp">
 
                     <TextView
+                        android:id="@+id/graphTemperatureTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
                         android:text="@string/temperature"
-                        android:textSize="18dp"
-                        android:textColor="@color/text_dark"
                         android:textAlignment="center"
-                        android:layout_marginBottom="12dp" />
+                        android:textColor="@color/text_dark"
+                        android:textSize="18dp"/>
 
                     <com.db.chart.view.LineChartView
                         android:id="@+id/graph_temperature"
@@ -65,13 +66,13 @@
                     android:layout_margin="16dp">
 
                     <TextView
+                        android:id="@+id/graphRainTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
                         android:text="@string/rain"
-                        android:textSize="18dp"
-                        android:textColor="@color/text_dark"
                         android:textAlignment="center"
-                        android:layout_marginBottom="12dp" />
+                        android:textColor="@color/text_dark" android:textSize="18dp"/>
 
                     <com.db.chart.view.LineChartView
                         android:id="@+id/graph_rain"
@@ -93,13 +94,13 @@
                     android:layout_margin="16dp">
 
                     <TextView
+                        android:id="@+id/graphPressureTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
                         android:text="@string/pressure"
-                        android:textSize="18dp"
-                        android:textColor="@color/text_dark"
                         android:textAlignment="center"
-                        android:layout_marginBottom="12dp" />
+                        android:textColor="@color/text_dark" android:textSize="18dp"/>
 
                     <com.db.chart.view.LineChartView
                         android:id="@+id/graph_pressure"
@@ -121,13 +122,14 @@
                     android:layout_margin="16dp">
 
                     <TextView
+                        android:id="@+id/graphWindSpeedTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
                         android:text="@string/wind_speed"
-                        android:textSize="18dp"
-                        android:textColor="@android:color/black"
                         android:textAlignment="center"
-                        android:layout_marginBottom="12dp" />
+                        android:textColor="@android:color/black"
+                        android:textSize="18dp"/>
 
                     <com.db.chart.view.LineChartView
                         android:id="@+id/graph_windspeed"
