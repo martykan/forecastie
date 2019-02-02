@@ -1,7 +1,6 @@
 package cz.martykan.forecastie.activities;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -127,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 theme == R.style.AppTheme_NoActionBar_Classic_Black;
         widgetTransparent = prefs.getBoolean("transparentWidget", false);
 
-        formatting = new Formatting(this, prefs);
+        formatting = new Formatting(this);
 
         // Initiate activity
         super.onCreate(savedInstanceState);
@@ -196,10 +195,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         Bundle bundle = getIntent().getExtras();
 
-        if (bundle != null) {
-            if (bundle.getBoolean("shouldRefresh")) {
-                refreshWeather();
-            }
+        if (bundle != null && bundle.getBoolean("shouldRefresh")) {
+            refreshWeather();
         }
     }
 

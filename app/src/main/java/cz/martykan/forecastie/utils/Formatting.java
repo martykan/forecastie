@@ -1,18 +1,15 @@
 package cz.martykan.forecastie.utils;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import cz.martykan.forecastie.R;
 
 public class Formatting {
 
     private Context context;
-    private SharedPreferences sharedPreferences;
 
-    public Formatting(Context context, SharedPreferences sharedPreferences) {
+    public Formatting(Context context) {
         this.context = context;
-        this.sharedPreferences = sharedPreferences;
     }
 
     public String setWeatherIcon(int actualId, int hourOfDay) {

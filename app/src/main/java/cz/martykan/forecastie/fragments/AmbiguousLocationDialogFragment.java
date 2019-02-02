@@ -48,7 +48,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final Formatting formatting = new Formatting(getActivity(), sharedPreferences);
+        final Formatting formatting = new Formatting(getActivity());
         final Bundle bundle = getArguments();
         final Toolbar toolbar = view.findViewById(R.id.dialogToolbar);
         final RecyclerView recyclerView = view.findViewById(R.id.locationsRecyclerView);
