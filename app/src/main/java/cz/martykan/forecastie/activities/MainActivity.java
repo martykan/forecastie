@@ -324,14 +324,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("cityId", result);
+
         editor.commit();
 
-        if (!recentCityId.equals(result)) {
-            // New location, update weather
-            getTodayWeather();
-            getLongTermWeather();
-            getTodayUVIndex();
-        }
+//        if (!recentCityId.equals(result)) {
+//            // New location, update weather
+//            getTodayWeather();
+//            getLongTermWeather();
+//            getTodayUVIndex();
+//        }
     }
 
     private void aboutDialog() {
@@ -980,7 +981,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 }
 
 //                saveLocation(reader.getString("id"));
-                JSONArray cityList = reader.getJSONArray("list");
+                final JSONArray cityList = reader.getJSONArray("list");
 
                 if (cityList.length() > 1) {
                     launchLocationPickerDialog(cityList);
@@ -1006,6 +1007,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         protected void onPostExecute(TaskOutput output) {
             /* Handle possible errors only */
             handleTaskOutput(output);
+            refreshWeather();
         }
     }
 
@@ -1063,6 +1065,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         protected void onPostExecute(TaskOutput output) {
             /* Handle possible errors only */
             handleTaskOutput(output);
+
+            refreshWeather();
         }
     }
 
