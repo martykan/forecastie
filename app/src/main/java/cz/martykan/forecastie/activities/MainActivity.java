@@ -324,8 +324,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         alert.setTitle("Forecastie");
         final WebView webView = new WebView(this);
         String about = "<p>1.8</p>" +
-                "<p>A lightweight, opensource weather app.</p>" +
+                "<p>A lightweight, Free Software weather app, released under the GPL3 licence.</p>" +
                 "<p>Developed by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> and others</p>" +
+                "<p>Code is available at <a href='https://github.com/martykan/forecastie'>Forecastie</a>" +
                 "<p>Data provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons license</a>" +
                 "<p>Icons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.";
         TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.textColorPrimary, R.attr.colorAccent});
