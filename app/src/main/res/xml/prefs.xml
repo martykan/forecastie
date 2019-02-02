@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/settings_title_units">
         <ListPreference
-            android:defaultValue="C"
+            android:defaultValue="°C"
             android:entries="@array/temperatureUnits"
             android:entryValues="@array/temperatureUnitsValues"
             android:key="unit"
@@ -57,6 +57,10 @@
             android:key="theme"
             android:title="@string/setting_theme" />
 
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="transparentWidget"
+            android:title="@string/setting_transparent_widget" />
         <ListPreference
             android:defaultValue="arrow"
             android:entries="@array/windDirectionFormats"

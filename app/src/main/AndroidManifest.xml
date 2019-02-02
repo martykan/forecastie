@@ -10,6 +10,7 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true">
@@ -25,8 +26,7 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activities.SettingsActivity"
             android:theme="@style/AppTheme" />
@@ -48,6 +48,15 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/time_widget" />
+        </receiver>
+        <receiver android:name=".widgets.SimpleWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/simple_widget" />
         </receiver>
 
         <service
@@ -87,6 +96,11 @@
             android:label="@string/action_graphs"
             android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <provider
+            android:name="cz.martykan.forecastie.utils.StubContentProvider"
+            android:authorities="cz.martykan.forecastie.authority"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -11,10 +11,12 @@
     <string name="later">Later</string>
 
     <string name="wind">Wind</string>
+    <string name="wind_speed">Wind Speed</string>
     <string name="pressure">Pressure</string>
     <string name="humidity">Humidity</string>
     <string name="sunrise">Sunrise</string>
     <string name="sunset">Sunset</string>
+    <string name="uvindex">UV Index</string>
 
     <string name="last_update">Last update:\n%s</string>
     <string name="last_update_widget">\nLast update: %s</string>
@@ -23,6 +25,8 @@
 
     <string name="downloading_data">Downloading your data ...</string>
     <string name="getting_location">Getting your location ...</string>
+
+    <string name="loading_data">Loading...</string>
 
     <string name="error_dateFormat">DATE FORMAT ERROR</string>
 
@@ -35,6 +39,7 @@
     <string name="setting_showTempAsInteger">Show temperature only as an integer</string>
     <string name="setting_pressureUnits">Pressure units</string>
     <string name="setting_theme">Theme</string>
+    <string name="setting_transparent_widget">Make widget transparent</string>
     <string name="setting_auto_detect_location">Detect Location</string>
     <string name="setting_differentiateDaysByTint">Differentiate Days with Color</string>
     <string name="setting_refreshInterval">Background refresh interval</string>
@@ -77,6 +82,8 @@
     <string name="setting_theme_classic">Classic</string>
     <string name="setting_theme_dark">Fresh Dark</string>
     <string name="setting_theme_classic_dark">Classic Dark</string>
+    <string name="setting_theme_black">Fresh Black</string>
+    <string name="setting_theme_classic_black">Classic Black</string>
 
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>

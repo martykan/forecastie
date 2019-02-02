@@ -18,14 +18,12 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 
 import cz.martykan.forecastie.AlarmReceiver;
 import cz.martykan.forecastie.R;
@@ -116,6 +114,7 @@ public class SettingsActivity extends PreferenceActivity
                 break;
             case "apiKey":
                 checkKey(key);
+                break;
         }
     }
 
@@ -219,10 +218,14 @@ public class SettingsActivity extends PreferenceActivity
         switch (themePref) {
             case "dark":
                 return R.style.AppTheme_Dark;
+            case "black":
+                return R.style.AppTheme_Black;
             case "classic":
                 return R.style.AppTheme_Classic;
             case "classicdark":
                 return R.style.AppTheme_Classic_Dark;
+            case "classicblack":
+                return R.style.AppTheme_Classic_Black;
             default:
                 return R.style.AppTheme;
         }

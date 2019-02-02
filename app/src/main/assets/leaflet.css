@@ -83,7 +83,9 @@
 	z-index: 7;
 	pointer-events: auto;
 	}
-.leaflet-top,
+.leaflet-top {
+	padding-top: 20px;
+	}
 .leaflet-bottom {
 	position: absolute;
 	z-index: 1000;

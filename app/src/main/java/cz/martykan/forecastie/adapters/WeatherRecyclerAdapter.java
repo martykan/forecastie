@@ -105,9 +105,9 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
 
         customViewHolder.itemDate.setText(dateString);
         if (sp.getBoolean("displayDecimalZeroes", false)) {
-            customViewHolder.itemTemperature.setText(new DecimalFormat("#.0").format(temperature) + " " + sp.getString("unit", "C"));
+            customViewHolder.itemTemperature.setText(new DecimalFormat("0.0").format(temperature) + " " + sp.getString("unit", "°C"));
         } else {
-            customViewHolder.itemTemperature.setText(new DecimalFormat("#.#").format(temperature) + " " + sp.getString("unit", "C"));
+            customViewHolder.itemTemperature.setText(new DecimalFormat("#.#").format(temperature) + " " + sp.getString("unit", "°C"));
         }
         customViewHolder.itemDescription.setText(weatherItem.getDescription().substring(0, 1).toUpperCase() +
                 weatherItem.getDescription().substring(1) + rainString);
@@ -118,11 +118,11 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
             customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " +
                     UnitConvertor.getBeaufortName((int) wind) + " " + MainActivity.getWindDirectionString(sp, context, weatherItem));
         } else {
-            customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " + new DecimalFormat("#.0").format(wind) + " " +
+            customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " + new DecimalFormat("0.0").format(wind) + " " +
                     MainActivity.localize(sp, context, "speedUnit", "m/s")
                     + " " + MainActivity.getWindDirectionString(sp, context, weatherItem));
         }
-        customViewHolder.itemPressure.setText(context.getString(R.string.pressure) + ": " + new DecimalFormat("#.0").format(pressure) + " " +
+        customViewHolder.itemPressure.setText(context.getString(R.string.pressure) + ": " + new DecimalFormat("0.0").format(pressure) + " " +
                 MainActivity.localize(sp, context, "pressureUnit", "hPa"));
         customViewHolder.itemHumidity.setText(context.getString(R.string.humidity) + ": " + weatherItem.getHumidity() + " %");
     }

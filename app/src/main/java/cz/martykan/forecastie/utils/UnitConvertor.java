@@ -6,9 +6,9 @@ import java.util.Locale;
 
 public class UnitConvertor {
     public static float convertTemperature(float temperature, SharedPreferences sp) {
-        if (sp.getString("unit", "C").equals("°C")) {
+        if (sp.getString("unit", "°C").equals("°C")) {
             return UnitConvertor.kelvinToCelsius(temperature);
-        } else if (sp.getString("unit", "C").equals("°F")) {
+        } else if (sp.getString("unit", "°C").equals("°F")) {
             return UnitConvertor.kelvinToFahrenheit(temperature);
         } else {
             return temperature;
@@ -109,6 +109,23 @@ public class UnitConvertor {
         }
         else {
             return wind;
+        }
+    }
+
+    public static String convertUvIndexToRiskLevel(double value) {
+        /* based on: https://en.wikipedia.org/wiki/Ultraviolet_index */
+        if (value < 0) {
+            return "no info"; /* error */
+        } else if (value >= 0.0 && value <= 2.9) {
+            return "Low";
+        } else if (value >= 3.0 && value <=5.9) {
+            return "Moderate";
+        } else if (value >= 6.0 && value <= 7.9) {
+            return "High";
+        } else if (value >= 8.0 && value <= 10.9) {
+            return "Very High";
+        } else {
+            return "Extreme";
         }
     }
 

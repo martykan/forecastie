@@ -1,0 +1,123 @@
+<resources>
+    <string name="app_name">Forecastie</string>
+
+    <string name="action_search">Ara</string>
+    <string name="action_refresh">Yenile</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="action_about">Hakkinda</string>
+
+    <string name="today">Bugün</string>
+    <string name="tomorrow">Yarın</string>
+    <string name="later">Sonrası</string>
+
+    <string name="wind">Rüzgar</string>
+    <string name="pressure">Basınç</string>
+    <string name="humidity">Nem</string>
+    <string name="sunrise">G. Doğuşu</string>
+    <string name="sunset">G. Batışı</string>
+
+    <string name="last_update">Son güncelleme:\\n%s</string>
+    <string name="last_update_widget">\\nSon güncelleme: %s</string>
+
+    <string name="search_title">Şehir ara</string>
+
+    <string name="downloading_data">Verileriniz indiliyor ....</string>
+    <string name="getting_location">Konumunuz alınıyor ...</string>
+
+    <string name="error_dateFormat">TARİH BİÇİMİ HATASI</string>
+
+    <string name="setting_dateFormat">Tarih Biçimi</string>
+    <string name="setting_dateFormatCustom">Kişisel Tarih Biçimi</string>
+    <string name="setting_dateFormatCustom_summary">Kullanılacak kişisel tarih biçimini SimpleDateFormat olarak girin</string>
+    <string name="setting_lengthUnits">Uzunluk birimi</string>
+    <string name="setting_speedUnits">Hız birimi</string>
+    <string name="setting_tempUnits">Sıcaklık birimi</string>
+    <string name="setting_showTempAsInteger">Sıcaklığı tamsayı olarak göster</string>
+    <string name="setting_pressureUnits">Basınç birimi</string>
+    <string name="setting_theme">Tema</string>
+    <string name="setting_auto_detect_location">Konumumu Bul</string>
+    <string name="setting_differentiateDaysByTint">Günleri renklendir</string>
+    <string name="setting_refreshInterval">Güncelleme sıklığı</string>
+    <string name="setting_unit_mps">Saniyede metre (m/s)</string>
+    <string name="setting_unit_kph">Saatte kilometre (k/s)</string>
+    <string name="setting_unit_mph">Saatte mil (mil/s)</string>
+    <string name="setting_wind_direction_format">Rüzgar yönü biçimi</string>
+    <string name="settings_none">Hiç</string>
+    <string name="setting_apiKey">API Anahtarı</string>
+    <string name="setting_apiKey_summary">Özel OpenWeatherMap sorguları için</string>
+
+    <string name="setting_unit_Celsuis">Santigrat</string>
+    <string name="setting_unit_Fahrenheit">Fahrenhayt</string>
+    <string name="setting_unit_Kelvin">Kelvin</string>
+
+    <string name="setting_unit_mm">Milimetre (mm)</string>
+    <string name="setting_unit_in">İnç (in)</string>
+
+    <string name="setting_unit_hpa">hPa</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+
+    <string name="speed_unit_mps">m/s</string>
+    <string name="speed_unit_kph">k/s</string>
+    <string name="speed_unit_mph">mil/s</string>
+
+    <string name="wind_direction_format_none">İşaret yok</string>
+    <string name="wind_direction_format_arrows">Oklar</string>
+    <string name="wind_direction_format_abbreviations">Kısaltmalar</string>
+
+    <string name="pressure_unit_hpa">hPa</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+
+    <string name="setting_theme_fresh">Taze</string>
+    <string name="setting_theme_classic">Klasik</string>
+    <string name="setting_theme_dark">Taze Koyu</string>
+    <string name="setting_theme_classic_dark">Klasik Koyu</string>
+
+    <string name="dialog_ok">Tamam</string>
+    <string name="dialog_cancel">İptal</string>
+
+    <string name="msg_err_parsing_json">JSON ayrıştırılma hatası.</string>
+    <string name="msg_connection_problem">İnternet bağlantınızda problem var.</string>
+    <string name="msg_connection_not_available">Bağlantı uygun değil.</string>
+    <string name="msg_city_not_found">Belirtilen şehir bulunamadı.</string>
+
+    <string name="wind_direction_north">K</string>
+    <string name="wind_direction_north_north_east">KKD</string>
+    <string name="wind_direction_north_east">KD</string>
+    <string name="wind_direction_east_north_east">DKD</string>
+    <string name="wind_direction_east">D</string>
+    <string name="wind_direction_east_south_east">DGD</string>
+    <string name="wind_direction_south_east">GD</string>
+    <string name="wind_direction_south_south_east">GGD</string>
+    <string name="wind_direction_south">G</string>
+    <string name="wind_direction_south_south_west">GGB</string>
+    <string name="wind_direction_south_west">GB</string>
+    <string name="wind_direction_west_south_west">BGB</string>
+    <string name="wind_direction_west">B</string>
+    <string name="wind_direction_west_north_west">BKB</string>
+    <string name="wind_direction_north_west">KB</string>
+    <string name="wind_direction_north_north_west">KKB</string>
+    <string name="msg_too_many_requests">Çok sayıda istek. Lütfen tekrar edin.</string>
+
+    <!-- 1: temperature; 2: unit -->
+    <string name="dash_clock_status">%1$s°%2$s</string>
+    <!-- 1: temperature; 2: unit; 3: weather description -->
+    <string name="dash_clock_expanded_title">%1$s°%2$s - %3$s</string>
+    <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
+    <string name="dash_clock_expanded_body">%1$s, %2$s\\nRüzgar: %3$s %4$s\\nBasınç: %5$s %6$s\\nNem: %7$s %%\\n</string>
+    <string name="settings_title_units">Biçim</string>
+    <string name="settings_title_display">Ekran</string>
+    <string name="settings_title_data">Veri</string>
+    <string name="setting_displayDecimalZeroes">Ondalık sayıların sıfırlarını göster</string>
+    <string name="settings_title_location">Konum</string>
+    <string name="setting_update_location_automatically">Geriplanda konumu güncelle</string>
+
+    <string name="location_settings">Konum Ayarları</string>
+    <string name="location_settings_message">Konum hizmeti devredışı. Ayarlar menüsüne gitmek ister misin?</string>
+    <string name="location_settings_button">Ayarlar</string>
+    <string name="action_weather_map">Hava Durumu Haritası</string>
+    <string name="rain">Yağmur</string>
+    <string name="temperature">Sıcaklık</string>
+    <string name="action_graphs">Grafikler</string>
+</resources>

@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.db.chart.Tools;
 import com.db.chart.model.LineSet;
@@ -46,21 +47,44 @@ public class GraphActivity extends AppCompatActivity {
     float minPressure = 100000;
     float maxPressure = 0;
 
+    float minWindSpeed = 100000;
+    float maxWindSpeed = 0;
+
+    private String labelColor = "#000000";
+    private String lineColor = "#333333";
+
+    private boolean darkTheme = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         setTheme(theme = getTheme(prefs.getString("theme", "fresh")));
-        boolean darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
-                theme == R.style.AppTheme_NoActionBar_Classic_Dark;
+        darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
+                theme == R.style.AppTheme_NoActionBar_Black ||
+                theme == R.style.AppTheme_NoActionBar_Classic_Dark ||
+                theme == R.style.AppTheme_NoActionBar_Classic_Black;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.graph_toolbar);
+        Toolbar toolbar = findViewById(R.id.graph_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        TextView temperatureTextView = findViewById(R.id.graphTemperatureTextView);
+        TextView rainTextView = findViewById(R.id.graphRainTextView);
+        TextView pressureTextView = findViewById(R.id.graphPressureTextView);
+        TextView windSpeedTextView = findViewById(R.id.graphWindSpeedTextView);
+
         if (darkTheme) {
             toolbar.setPopupTheme(R.style.AppTheme_PopupOverlay_Dark);
+            labelColor = "#FFFFFF";
+            lineColor = "#FAFAFA";
+
+            temperatureTextView.setTextColor(Color.parseColor(labelColor));
+            rainTextView.setTextColor(Color.parseColor(labelColor));
+            pressureTextView.setTextColor(Color.parseColor(labelColor));
+            windSpeedTextView.setTextColor(Color.parseColor(labelColor));
         }
 
         sp = PreferenceManager.getDefaultSharedPreferences(GraphActivity.this);
@@ -70,6 +94,7 @@ public class GraphActivity extends AppCompatActivity {
             temperatureGraph();
             rainGraph();
             pressureGraph();
+            windSpeedGraph();
         } else {
             Snackbar.make(findViewById(android.R.id.content), R.string.msg_err_parsing_json, Snackbar.LENGTH_LONG).show();
         }
@@ -91,7 +116,7 @@ public class GraphActivity extends AppCompatActivity {
                 maxTemp = temperature;
             }
 
-            dataset.addPoint(getDateLabel(weatherList.get(i), i), (float) temperature);
+            dataset.addPoint(getDateLabel(weatherList.get(i), i), temperature);
         }
         dataset.setSmooth(false);
         dataset.setColor(Color.parseColor("#FF5722"));
@@ -103,15 +128,16 @@ public class GraphActivity extends AppCompatActivity {
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
-        paint.setColor(Color.parseColor("#333333"));
+        paint.setColor(Color.parseColor(lineColor));
         paint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
         paint.setStrokeWidth(1);
         lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
         lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues((int) minTemp - 2, (int) maxTemp + 2);
+        lineChartView.setAxisBorderValues((int) (Math.round(minTemp)) - 1, (int) (Math.round(maxTemp)) + 1);
         lineChartView.setStep(2);
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
+        lineChartView.setLabelsColor(Color.parseColor(labelColor));
 
         lineChartView.show();
     }
@@ -144,15 +170,16 @@ public class GraphActivity extends AppCompatActivity {
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
-        paint.setColor(Color.parseColor("#333333"));
+        paint.setColor(Color.parseColor(lineColor));
         paint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
         paint.setStrokeWidth(1);
         lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
         lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues((int) minRain - 1, (int) maxRain + 2);
+        lineChartView.setAxisBorderValues(0, (int) (Math.round(maxRain)) + 1);
         lineChartView.setStep(1);
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
+        lineChartView.setLabelsColor(Color.parseColor(labelColor));
 
         lineChartView.show();
     }
@@ -185,7 +212,7 @@ public class GraphActivity extends AppCompatActivity {
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
-        paint.setColor(Color.parseColor("#333333"));
+        paint.setColor(Color.parseColor(lineColor));
         paint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
         paint.setStrokeWidth(1);
         lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
@@ -194,9 +221,58 @@ public class GraphActivity extends AppCompatActivity {
         lineChartView.setStep(2);
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
+        lineChartView.setLabelsColor(Color.parseColor(labelColor));
 
         lineChartView.show();
     }
+
+    private void windSpeedGraph() {
+        LineChartView lineChartView = (LineChartView) findViewById(R.id.graph_windspeed);
+        String graphLineColor = "#efd214";
+
+        if (darkTheme) {
+            graphLineColor = "#FFF600";
+        }
+
+        // Data
+        LineSet dataset = new LineSet();
+        for (int i = 0; i < weatherList.size(); i++) {
+            float windSpeed = (float) UnitConvertor.convertWind(Float.parseFloat(weatherList.get(i).getWind()), sp);
+
+            if (windSpeed < minWindSpeed) {
+                minWindSpeed = windSpeed;
+            }
+
+            if (windSpeed > maxWindSpeed) {
+                maxWindSpeed = windSpeed;
+            }
+
+            dataset.addPoint(getDateLabel(weatherList.get(i), i), windSpeed);
+        }
+        dataset.setSmooth(false);
+        dataset.setColor(Color.parseColor(graphLineColor));
+        dataset.setThickness(4);
+
+        lineChartView.addData(dataset);
+
+        // Grid
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setAntiAlias(true);
+        paint.setColor(Color.parseColor(lineColor));
+        paint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
+        paint.setStrokeWidth(1);
+        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
+        lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
+        lineChartView.setAxisBorderValues((int) minWindSpeed - 1, (int) maxWindSpeed + 1);
+        lineChartView.setStep(2);
+        lineChartView.setXAxis(false);
+        lineChartView.setYAxis(false);
+        lineChartView.setLabelsColor(Color.parseColor(labelColor));
+
+        lineChartView.show();
+    }
+
 
     public ParseResult parseLongTermJson(String result) {
         int i;
@@ -265,10 +341,14 @@ public class GraphActivity extends AppCompatActivity {
         switch (themePref) {
             case "dark":
                 return R.style.AppTheme_NoActionBar_Dark;
+            case "black":
+                return R.style.AppTheme_NoActionBar_Black;
             case "classic":
                 return R.style.AppTheme_NoActionBar_Classic;
             case "classicdark":
                 return R.style.AppTheme_NoActionBar_Classic_Dark;
+            case "classicblack":
+                return R.style.AppTheme_NoActionBar_Classic_Black;
             default:
                 return R.style.AppTheme_NoActionBar;
         }

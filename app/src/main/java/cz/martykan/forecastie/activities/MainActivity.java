@@ -15,14 +15,17 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -83,10 +86,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     TextView todayHumidity;
     TextView todaySunrise;
     TextView todaySunset;
+    private TextView todayUvIndex;
     TextView lastUpdate;
     TextView todayIcon;
     ViewPager viewPager;
     TabLayout tabLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     View appView;
 
@@ -94,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     ProgressDialog progressDialog;
 
     int theme;
+    private boolean widgetTransparent;
     boolean destroyed = false;
 
     private List<Weather> longTermWeather = new ArrayList<>();
@@ -111,11 +117,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setTheme(theme = getTheme(prefs.getString("theme", "fresh")));
         boolean darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
                 theme == R.style.AppTheme_NoActionBar_Classic_Dark;
+        boolean blackTheme = theme == R.style.AppTheme_NoActionBar_Black ||
+                theme == R.style.AppTheme_NoActionBar_Classic_Black;
+        widgetTransparent = prefs.getBoolean("transparentWidget", false);
 
         // Initiate activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
         appView = findViewById(R.id.viewApp);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        AppBarLayout appBarLayout = findViewById(R.id.appBarLayout);
 
         progressDialog = new ProgressDialog(MainActivity.this);
 
@@ -124,6 +135,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setSupportActionBar(toolbar);
         if (darkTheme) {
             toolbar.setPopupTheme(R.style.AppTheme_PopupOverlay_Dark);
+        } else if (blackTheme) {
+            toolbar.setPopupTheme(R.style.AppTheme_PopupOverlay_Black);
         }
 
         // Initialize textboxes
@@ -134,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         todayHumidity = (TextView) findViewById(R.id.todayHumidity);
         todaySunrise = (TextView) findViewById(R.id.todaySunrise);
         todaySunset = (TextView) findViewById(R.id.todaySunset);
+        todayUvIndex = (TextView) findViewById(R.id.todayUvIndex);
         lastUpdate = (TextView) findViewById(R.id.lastUpdate);
         todayIcon = (TextView) findViewById(R.id.todayIcon);
         weatherFont = Typeface.createFromAsset(this.getAssets(), "fonts/weather.ttf");
@@ -149,10 +163,28 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         // Preload data from cache
         preloadWeather();
+        preloadUVIndex();
         updateLastUpdateTime();
 
         // Set autoupdater
         AlarmReceiver.setRecurringAlarm(this);
+
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshWeather();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                // Only allow pull to refresh when scrolled to top
+                swipeRefreshLayout.setEnabled(verticalOffset == 0);
+            }
+        });
     }
 
     public WeatherRecyclerAdapter getAdapter(int id) {
@@ -168,9 +200,18 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        updateTodayWeatherUI();
+        updateLongTermWeatherUI();
+        updateUVIndexUI();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        if (getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")) != theme) {
+        if (getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")) != theme ||
+                PreferenceManager.getDefaultSharedPreferences(this).getBoolean("transparentWidget", false) != widgetTransparent) {
             // Restart activity to apply theme
             overridePendingTransition(0, 0);
             finish();
@@ -179,6 +220,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         } else if (shouldUpdate() && isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
+            getTodayUVIndex();
         }
     }
 
@@ -196,17 +238,37 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
+    private void preloadUVIndex() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+
+        String lastUVIToday = sp.getString("lastToday", "");
+        if (!lastUVIToday.isEmpty()) {
+            double latitude = todayWeather.getLat();
+            double longitude = todayWeather.getLon();
+            if (latitude == 0 && longitude == 0) {
+                return;
+            }
+            new TodayUVITask(this, this, progressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "coords", Double.toString(latitude), Double.toString(longitude));
+        }
+    }
+
     private void preloadWeather() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
         String lastToday = sp.getString("lastToday", "");
         if (!lastToday.isEmpty()) {
-            new TodayWeatherTask(this, this, progressDialog).execute("cachedResponse", lastToday);
+            new TodayWeatherTask(this, this, progressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "cachedResponse", lastToday);
         }
         String lastLongterm = sp.getString("lastLongterm", "");
         if (!lastLongterm.isEmpty()) {
-            new LongTermWeatherTask(this, this, progressDialog).execute("cachedResponse", lastLongterm);
+            new LongTermWeatherTask(this, this, progressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "cachedResponse", lastLongterm);
         }
+    }
+
+    private void getTodayUVIndex() {
+        double latitude = todayWeather.getLat();
+        double longitude = todayWeather.getLon();
+        new TodayUVITask(this, this, progressDialog).execute("coords", Double.toString(latitude), Double.toString(longitude));
     }
 
     private void getTodayWeather() {
@@ -253,6 +315,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             // New location, update weather
             getTodayWeather();
             getLongTermWeather();
+            getTodayUVIndex();
         }
     }
 
@@ -260,10 +323,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Forecastie");
         final WebView webView = new WebView(this);
-        String about = "<p>Version 1.3</p>" +
+        String about = "<p>1.8</p>" +
                 "<p>A lightweight, opensource weather app.</p>" +
-                "<p>Developed by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a></p>" +
-                "<p>Data provided by <a href='http://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons license</a>" +
+                "<p>Developed by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> and others</p>" +
+                "<p>Data provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons license</a>" +
                 "<p>Icons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.";
         TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.textColorPrimary, R.attr.colorAccent});
         String textColor = String.format("#%06X", (0xFFFFFF & ta.getColor(0, Color.BLACK)));
@@ -354,8 +417,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             JSONObject coordinates = reader.getJSONObject("coord");
             if (coordinates != null) {
+                todayWeather.setLat(coordinates.getDouble("lat"));
+                todayWeather.setLon(coordinates.getDouble("lon"));
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-                sp.edit().putFloat("latitude", (float) coordinates.getDouble("lon")).putFloat("longitude", (float) coordinates.getDouble("lat")).commit();
+                sp.edit().putFloat("latitude", (float) todayWeather.getLat()).putFloat("longitude", (float) todayWeather.getLon()).commit();
             }
 
             JSONObject main = reader.getJSONObject("main");
@@ -395,6 +460,30 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             editor.putString("lastToday", result);
             editor.commit();
 
+        } catch (JSONException e) {
+            Log.e("JSONException Data", result);
+            e.printStackTrace();
+            return ParseResult.JSON_EXCEPTION;
+        }
+
+        return ParseResult.OK;
+    }
+
+    private ParseResult parseTodayUVIJson(String result) {
+        try {
+            JSONObject reader = new JSONObject(result);
+
+            final String code = reader.optString("cod");
+            if ("404".equals(code)) {
+                todayWeather.setUvIndex(-1);
+                return ParseResult.CITY_NOT_FOUND;
+            }
+
+            double value = reader.getDouble("value");
+            todayWeather.setUvIndex(value);
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+            editor.putString("lastUVIToday", result);
+            editor.commit();
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
@@ -444,7 +533,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         // Pressure
         double pressure = UnitConvertor.convertPressure((float) Double.parseDouble(todayWeather.getPressure()), sp);
 
-        todayTemperature.setText(new DecimalFormat("#.#").format(temperature) + " " + sp.getString("unit", "C"));
+        todayTemperature.setText(new DecimalFormat("0.#").format(temperature) + " " + sp.getString("unit", "°C"));
         todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() +
                 todayWeather.getDescription().substring(1) + rainString);
         if (sp.getString("speedUnit", "m/s").equals("bft")) {
@@ -452,16 +541,39 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     UnitConvertor.getBeaufortName((int) wind) +
                     (todayWeather.isWindDirectionAvailable() ? " " + getWindDirectionString(sp, this, todayWeather) : ""));
         } else {
-            todayWind.setText(getString(R.string.wind) + ": " + new DecimalFormat("#.0").format(wind) + " " +
+            todayWind.setText(getString(R.string.wind) + ": " + new DecimalFormat("0.0").format(wind) + " " +
                     localize(sp, "speedUnit", "m/s") +
                     (todayWeather.isWindDirectionAvailable() ? " " + getWindDirectionString(sp, this, todayWeather) : ""));
         }
-        todayPressure.setText(getString(R.string.pressure) + ": " + new DecimalFormat("#.0").format(pressure) + " " +
+        todayPressure.setText(getString(R.string.pressure) + ": " + new DecimalFormat("0.0").format(pressure) + " " +
                 localize(sp, "pressureUnit", "hPa"));
         todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
         todaySunrise.setText(getString(R.string.sunrise) + ": " + timeFormat.format(todayWeather.getSunrise()));
         todaySunset.setText(getString(R.string.sunset) + ": " + timeFormat.format(todayWeather.getSunset()));
         todayIcon.setText(todayWeather.getIcon());
+
+        todayIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, GraphActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void updateUVIndexUI() {
+        try {
+            if (todayWeather.getCountry().isEmpty()) {
+                return;
+            }
+        } catch (Exception e) {
+            preloadUVIndex();
+            return;
+        }
+
+        // UV Index
+        double uvIndex = todayWeather.getUvIndex();
+        todayUvIndex.setText(getString(R.string.uvindex) + ": " + UnitConvertor.convertUvIndexToRiskLevel(uvIndex));
     }
 
     public ParseResult parseLongTermJson(String result) {
@@ -524,9 +636,20 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 weather.setIcon(setWeatherIcon(Integer.parseInt(idString), cal.get(Calendar.HOUR_OF_DAY)));
 
                 Calendar today = Calendar.getInstance();
-                if (cal.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR)) {
+                today.set(Calendar.HOUR_OF_DAY, 0);
+                today.set(Calendar.MINUTE, 0);
+                today.set(Calendar.SECOND, 0);
+                today.set(Calendar.MILLISECOND, 0);
+
+                Calendar tomorrow = (Calendar) today.clone();
+                tomorrow.add(Calendar.DAY_OF_YEAR, 1);
+
+                Calendar later = (Calendar) today.clone();
+                later.add(Calendar.DAY_OF_YEAR, 2);
+
+                if (cal.before(tomorrow)) {
                     longTermTodayWeather.add(weather);
-                } else if (cal.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR) + 1) {
+                } else if (cal.before(later)) {
                     longTermTomorrowWeather.add(weather);
                 } else {
                     longTermWeather.add(weather);
@@ -605,12 +728,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         int id = item.getItemId();
 
         if (id == R.id.action_refresh) {
-            if (isNetworkAvailable()) {
-                getTodayWeather();
-                getLongTermWeather();
-            } else {
-                Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
-            }
+            refreshWeather();
             return true;
         }
         if (id == R.id.action_map) {
@@ -638,6 +756,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void refreshWeather() {
+        if (isNetworkAvailable()) {
+            getTodayWeather();
+            getLongTermWeather();
+            getTodayUVIndex();
+        } else {
+            Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
+        }
     }
 
     public static void initMappings() {
@@ -825,6 +953,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         protected void updateMainUI() {
             updateTodayWeatherUI();
             updateLastUpdateTime();
+            updateUVIndexUI();
         }
     }
 
@@ -900,9 +1029,36 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
+    class TodayUVITask extends GenericRequestTask {
+        public TodayUVITask(Context context, MainActivity activity, ProgressDialog progressDialog) {
+            super(context, activity, progressDialog);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            loading = 0;
+            super.onPreExecute();
+        }
+
+        @Override
+        protected ParseResult parseResponse(String response) {
+            return parseTodayUVIJson(response);
+        }
+
+        @Override
+        protected String getAPIName() {
+            return "uvi";
+        }
+
+        @Override
+        protected void updateMainUI() {
+            updateUVIndexUI();
+        }
+    }
+
     public static long saveLastUpdateTime(SharedPreferences sp) {
         Calendar now = Calendar.getInstance();
-        sp.edit().putLong("lastUpdate", now.getTimeInMillis()).apply();
+        sp.edit().putLong("lastUpdate", now.getTimeInMillis()).commit();
         return now.getTimeInMillis();
     }
 
@@ -940,10 +1096,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         switch (themePref) {
             case "dark":
                 return R.style.AppTheme_NoActionBar_Dark;
+            case "black":
+                return R.style.AppTheme_NoActionBar_Black;
             case "classic":
                 return R.style.AppTheme_NoActionBar_Classic;
             case "classicdark":
                 return R.style.AppTheme_NoActionBar_Classic_Dark;
+            case "classicblack":
+                return R.style.AppTheme_NoActionBar_Classic_Black;
             default:
                 return R.style.AppTheme_NoActionBar;
         }

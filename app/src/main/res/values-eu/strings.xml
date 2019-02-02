@@ -5,7 +5,7 @@
     <string name="action_refresh">Freskatu</string>
     <string name="action_settings">Ezarpenak</string>
     <string name="action_about">Honi buruz</string>
-    
+
     <string name="today">Gaur</string>
     <string name="tomorrow">Bihar</string>
     <string name="later">Aurrerago</string>
@@ -23,9 +23,9 @@
 
     <string name="downloading_data">Zure datuak deskargatzen ...</string>
     <string name="getting_location">Zure kokapena eskuratzen ...</string>
-    
+
     <string name="error_dateFormat">AKATSA DATAREN FORMATUAN</string>
-    
+
     <string name="setting_dateFormat">Dataren formatua</string>
     <string name="setting_dateFormatCustom">Datarentzako formatu pertsonalizatua</string>
     <string name="setting_dateFormatCustom_summary">Goian pertsonalizatua hautatu bada, eman erabiltzeko SimpleDateFormat kate pertsonalizatua</string>
@@ -81,7 +81,7 @@
     <string name="msg_connection_problem">Arazo bat dago zure interneteko konexioarekin.</string>
     <string name="msg_connection_not_available">Konexioa ez dago eskuragarri.</string>
     <string name="msg_city_not_found">Zehaztutako hiria ez da aurkitu.</string>
-    
+
     <string name="wind_direction_north">I</string>
     <string name="wind_direction_north_north_east">IIE</string>
     <string name="wind_direction_north_east">IE</string>
