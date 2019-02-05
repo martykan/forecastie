@@ -46,6 +46,11 @@
         minZoom: 1,
         maxZoom: 15
     }));
+
+    if (getUrlParameter('displayPin') === 'true') {
+        L.marker([getUrlParameter('lat'), getUrlParameter('lon')]).addTo(map)
+    }
+
     // Wind
     var windLayer = new L.TileLayer("http://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid="+getUrlParameter('appid'), {
         minZoom: 1,
