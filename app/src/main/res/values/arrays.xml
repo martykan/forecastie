@@ -109,6 +109,7 @@
         <item>E dd.MM.yyyy - HH:mm</item>
         <item>dd.MM.yyyy - HH:mm</item>
         <item>E MM/dd/yyyy - hh:mm a</item>
+        <item>EEEE, MMMM d, h:mma</item>
         <item>MM/dd/yyyy - hh:mm a</item>
         <item>custom</item>
     </string-array>
