@@ -77,33 +77,33 @@ public class MainActivity extends BaseActivity implements LocationListener {
     private static Map<String, Integer> pressUnits = new HashMap<>(3);
     private static boolean mappingsInitialised = false;
 
-    Typeface weatherFont;
-    Weather todayWeather = new Weather();
+    private Typeface weatherFont;
+    private Weather todayWeather = new Weather();
 
-    TextView todayTemperature;
-    TextView todayDescription;
-    TextView todayWind;
-    TextView todayPressure;
-    TextView todayHumidity;
-    TextView todaySunrise;
-    TextView todaySunset;
+    private TextView todayTemperature;
+    private TextView todayDescription;
+    private TextView todayWind;
+    private TextView todayPressure;
+    private TextView todayHumidity;
+    private TextView todaySunrise;
+    private TextView todaySunset;
     private TextView todayUvIndex;
-    TextView lastUpdate;
-    TextView todayIcon;
-    ViewPager viewPager;
-    TabLayout tabLayout;
+    private TextView lastUpdate;
+    private TextView todayIcon;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    View appView;
+    private View appView;
 
-    LocationManager locationManager;
-    ProgressDialog progressDialog;
+    private LocationManager locationManager;
+    private ProgressDialog progressDialog;
 
-    int theme;
-    boolean darkTheme;
-    boolean blackTheme;
+    private int theme;
+    private boolean darkTheme;
+    private boolean blackTheme;
     private boolean widgetTransparent;
-    boolean destroyed = false;
+    private boolean destroyed = false;
 
     private List<Weather> longTermWeather = new ArrayList<>();
     private List<Weather> longTermTodayWeather = new ArrayList<>();
