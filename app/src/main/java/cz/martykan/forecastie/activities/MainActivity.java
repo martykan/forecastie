@@ -14,6 +14,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -63,11 +64,12 @@ import cz.martykan.forecastie.tasks.GenericRequestTask;
 import cz.martykan.forecastie.tasks.ParseResult;
 import cz.martykan.forecastie.tasks.TaskOutput;
 import cz.martykan.forecastie.utils.Formatting;
+import cz.martykan.forecastie.utils.UI;
 import cz.martykan.forecastie.utils.UnitConvertor;
 import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
 import cz.martykan.forecastie.widgets.DashClockWeatherExtension;
 
-public class MainActivity extends AppCompatActivity implements LocationListener {
+public class MainActivity extends BaseActivity implements LocationListener {
     protected static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
 
     // Time in milliseconds; only reload weather if last update is longer ago than this value
@@ -100,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     ProgressDialog progressDialog;
 
     int theme;
+    boolean darkTheme;
+    boolean blackTheme;
     private boolean widgetTransparent;
     boolean destroyed = false;
 
@@ -117,13 +121,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        setTheme(theme = getTheme(prefs.getString("theme", "fresh")));
-        boolean darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
-                theme == R.style.AppTheme_NoActionBar_Classic_Dark;
-        boolean blackTheme = theme == R.style.AppTheme_NoActionBar_Black ||
-                theme == R.style.AppTheme_NoActionBar_Classic_Black;
-        widgetTransparent = prefs.getBoolean("transparentWidget", false);
 
+        widgetTransparent = prefs.getBoolean("transparentWidget", false);
+        setTheme(theme = UI.getTheme(prefs.getString("theme", "fresh")));
+        darkTheme = super.darkTheme;
+        blackTheme = super.blackTheme;
         formatting = new Formatting(this);
 
         // Initiate activity
@@ -221,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     @Override
     public void onResume() {
         super.onResume();
-        if (getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")) != theme ||
+        if (UI.getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")) != theme ||
                 PreferenceManager.getDefaultSharedPreferences(this).getBoolean("transparentWidget", false) != widgetTransparent) {
             // Restart activity to apply theme
             overridePendingTransition(0, 0);
@@ -1101,23 +1103,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             return timeFormat;
         } else {
             return android.text.format.DateFormat.getDateFormat(context).format(lastCheckedDate) + " " + timeFormat;
-        }
-    }
-
-    private int getTheme(String themePref) {
-        switch (themePref) {
-            case "dark":
-                return R.style.AppTheme_NoActionBar_Dark;
-            case "black":
-                return R.style.AppTheme_NoActionBar_Black;
-            case "classic":
-                return R.style.AppTheme_NoActionBar_Classic;
-            case "classicdark":
-                return R.style.AppTheme_NoActionBar_Classic_Dark;
-            case "classicblack":
-                return R.style.AppTheme_NoActionBar_Classic_Black;
-            default:
-                return R.style.AppTheme_NoActionBar;
         }
     }
 }
