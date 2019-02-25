@@ -9,4 +9,6 @@ public class MapViewModel extends ViewModel {
     public int tabPosition;
     public double mapLat;
     public double mapLon;
+    public int mapZoom = 7;
+    public String apiKey;
 }

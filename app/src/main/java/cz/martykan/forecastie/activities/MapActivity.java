@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -19,25 +20,31 @@ public class MapActivity extends BaseActivity {
 
     private BottomBar bottomBar;
     private WebView webView;
+    private MapViewModel mapViewModel;
 
-    @SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        final MapViewModel mapViewModel = ViewModelProviders.of(this).get(MapViewModel.class);
+        mapViewModel = ViewModelProviders.of(this).get(MapViewModel.class);
 
         if (savedInstanceState == null) {
             mapViewModel.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            mapViewModel.mapLat = prefs.getFloat("latitude", 0);
+            mapViewModel.mapLon = prefs.getFloat("longitude", 0);
+            mapViewModel.apiKey = mapViewModel.sharedPreferences.getString("apiKey", getResources().getString(R.string.apiKey));
         }
 
-        String apiKey = mapViewModel.sharedPreferences.getString("apiKey", getResources().getString(R.string.apiKey));
+        String apiKey = mapViewModel.apiKey;
 
         webView = findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("file:///android_asset/map.html?lat=" + prefs.getFloat("latitude", 0) + "&lon=" + prefs.getFloat("longitude", 0) + "&appid=" + apiKey);
+        webView.loadUrl("file:///android_asset/map.html?lat=" + mapViewModel.mapLat + "&lon="
+                + mapViewModel.mapLon + "&appid=" + apiKey + "&zoom=" + mapViewModel.mapZoom);
+        webView.addJavascriptInterface(new HybridInterface(), "NativeInterface");
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
@@ -82,5 +89,19 @@ public class MapActivity extends BaseActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         bottomBar.onSaveInstanceState(outState);
+    }
+
+    private class HybridInterface {
+
+        @JavascriptInterface
+        public void transferLatLon(double lat, double lon) {
+            mapViewModel.mapLat = lat;
+            mapViewModel.mapLon = lon;
+        }
+
+        @JavascriptInterface
+        public void transferZoom(int level) {
+            mapViewModel.mapZoom = level;
+        }
     }
 }
