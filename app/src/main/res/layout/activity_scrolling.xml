@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -52,66 +51,66 @@
                             android:id="@+id/todayTemperature"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0 °C"
+                            tools:text="0 °C"
                             android:textColor="@color/text_light"
-                            android:textSize="36dp"/>
+                            android:textSize="36sp"/>
 
                         <TextView
                             android:id="@+id/todayDescription"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="No data"
+                            tools:text="No data"
                             android:textColor="@color/text_light"
-                            android:textSize="16dp"/>
+                            android:textSize="16sp"/>
 
                         <TextView
                             android:id="@+id/todayWind"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Wind: 0 m/s"
+                            tools:text="Wind: 0 m/s"
                             android:textColor="@color/text_light"
-                            android:textSize="16dp"/>
+                            android:textSize="16sp"/>
 
                         <TextView
                             android:id="@+id/todayPressure"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Pressure: 0 hpa"
+                            tools:text="Pressure: 0 hpa"
                             android:textColor="@color/text_light"
-                            android:textSize="16dp"/>
+                            android:textSize="16sp"/>
 
                         <TextView
                             android:id="@+id/todayHumidity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Humidity: 0 %"
+                            tools:text="Humidity: 0 %"
                             android:textColor="@color/text_light"
-                            android:textSize="16dp"/>
+                            android:textSize="16sp"/>
 
                         <TextView
                             android:id="@+id/todaySunrise"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Sunrise: 00:00"
+                            tools:text="Sunrise: 00:00"
                             android:textColor="@color/text_light"
-                            android:textSize="16dp"/>
+                            android:textSize="16sp"/>
 
                         <TextView
                             android:id="@+id/todaySunset"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Sunset: 00:00"
+                            tools:text="Sunset: 00:00"
                             android:textColor="@color/text_light"
-                            android:textSize="16dp"/>
+                            android:textSize="16sp"/>
 
                         <TextView
                             android:id="@+id/todayUvIndex"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Uv Index: Loading..."
+                            tools:text="Uv Index: Loading..."
                             android:textColor="@color/text_light"
-                            android:textSize="16dp"/>
+                            android:textSize="16sp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -129,7 +128,7 @@
                             android:paddingRight="42dp"
                             android:text=""
                             android:textAlignment="viewEnd"
-                            android:textSize="72dp"/>
+                            android:textSize="72sp"/>
 
                         <TextView
                             android:id="@+id/lastUpdate"
@@ -139,7 +138,7 @@
                             android:gravity="bottom|end"
                             android:paddingRight="16dp"
                             android:textAlignment="viewEnd"
-                            android:textSize="16dp"/>
+                            android:textSize="16sp"/>
                     </LinearLayout>
 
 
