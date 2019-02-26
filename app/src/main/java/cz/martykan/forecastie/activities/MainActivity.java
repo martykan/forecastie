@@ -77,7 +77,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
     private static Map<String, Integer> pressUnits = new HashMap<>(3);
     private static boolean mappingsInitialised = false;
 
-    private Typeface weatherFont;
     private Weather todayWeather = new Weather();
 
     private TextView todayTemperature;
@@ -100,8 +99,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
     private ProgressDialog progressDialog;
 
     private int theme;
-    private boolean darkTheme;
-    private boolean blackTheme;
     private boolean widgetTransparent;
     private boolean destroyed = false;
 
@@ -122,8 +119,8 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
         widgetTransparent = prefs.getBoolean("transparentWidget", false);
         setTheme(theme = UI.getTheme(prefs.getString("theme", "fresh")));
-        darkTheme = super.darkTheme;
-        blackTheme = super.blackTheme;
+        boolean darkTheme = super.darkTheme;
+        boolean blackTheme = super.blackTheme;
         formatting = new Formatting(this);
 
         // Initiate activity
@@ -155,7 +152,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         todayUvIndex = (TextView) findViewById(R.id.todayUvIndex);
         lastUpdate = (TextView) findViewById(R.id.lastUpdate);
         todayIcon = (TextView) findViewById(R.id.todayIcon);
-        weatherFont = Typeface.createFromAsset(this.getAssets(), "fonts/weather.ttf");
+        Typeface weatherFont = Typeface.createFromAsset(this.getAssets(), "fonts/weather.ttf");
         todayIcon.setTypeface(weatherFont);
 
         // Initialize viewPager

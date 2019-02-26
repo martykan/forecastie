@@ -33,18 +33,16 @@ public class SettingsActivity extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Thursday 2016-01-14 16:00:00
-    Date SAMPLE_DATE = new Date(1452805200000l);
-    int theme;
-    boolean darkTheme;
-    boolean blackTheme;
+    private Date SAMPLE_DATE = new Date(1452805200000l);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        int theme;
         setTheme(theme = UI.getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")));
 
-        darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
+        boolean darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
                 theme == R.style.AppTheme_NoActionBar_Classic_Dark;
-        blackTheme = theme == R.style.AppTheme_NoActionBar_Black ||
+        boolean blackTheme = theme == R.style.AppTheme_NoActionBar_Black ||
                 theme == R.style.AppTheme_NoActionBar_Classic_Black;
 
         UI.setNavigationBarMode(SettingsActivity.this, darkTheme, blackTheme);
