@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorBackground">@color/colorBackground</item>
+        <item name="colorTintedBackground">@color/colorTintedBackground</item>
+        <item name="android:navigationBarColor">@color/colorBackgroundDefault</item>
+    </style>
+
+    <style name="AppTheme.Classic" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/classic_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/classic_colorPrimaryDark</item>
+        <item name="colorAccent">@color/classic_colorAccent</item>
+        <item name="colorBackground">@color/classic_colorBackground</item>
+        <item name="colorTintedBackground">@color/classic_colorTintedBackground</item>
+        <item name="android:navigationBarColor">@color/colorBackgroundDefault</item>
+    </style>
+
+    <!--<style name="AppTheme.Black" parent="Theme.AppCompat">-->
+        <!--<item name="colorPrimary">@color/blackTheme_colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/blackTheme_colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/blackTheme_colorAccent</item>-->
+        <!--<item name="android:colorBackground">@color/blackTheme_colorBackground</item>-->
+        <!--<item name="colorTintedBackground">@color/blackTheme_colorTintedBackground</item>-->
+        <!--<item name="android:navigationBarColor">@color/blackTheme_colorBackground</item>-->
+    <!--</style>-->
+</resources>

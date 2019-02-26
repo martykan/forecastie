@@ -27,16 +27,25 @@ import java.util.Date;
 
 import cz.martykan.forecastie.AlarmReceiver;
 import cz.martykan.forecastie.R;
+import cz.martykan.forecastie.utils.UI;
 
 public class SettingsActivity extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Thursday 2016-01-14 16:00:00
-    Date SAMPLE_DATE = new Date(1452805200000l);
+    private Date SAMPLE_DATE = new Date(1452805200000l);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setTheme(getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")));
+        int theme;
+        setTheme(theme = UI.getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")));
+
+        boolean darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
+                theme == R.style.AppTheme_NoActionBar_Classic_Dark;
+        boolean blackTheme = theme == R.style.AppTheme_NoActionBar_Black ||
+                theme == R.style.AppTheme_NoActionBar_Classic_Black;
+
+        UI.setNavigationBarMode(SettingsActivity.this, darkTheme, blackTheme);
 
         super.onCreate(savedInstanceState);
 
@@ -211,23 +220,6 @@ public class SettingsActivity extends PreferenceActivity
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         if (sp.getString(key, "").equals("")){
             sp.edit().remove(key).apply();
-        }
-    }
-
-    private int getTheme(String themePref) {
-        switch (themePref) {
-            case "dark":
-                return R.style.AppTheme_Dark;
-            case "black":
-                return R.style.AppTheme_Black;
-            case "classic":
-                return R.style.AppTheme_Classic;
-            case "classicdark":
-                return R.style.AppTheme_Classic_Dark;
-            case "classicblack":
-                return R.style.AppTheme_Classic_Black;
-            default:
-                return R.style.AppTheme;
         }
     }
 

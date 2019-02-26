@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#1E88E5</color>
     <color name="colorAccent">#1E88E5</color>
     <color name="colorBackground">@android:color/transparent</color>
+    <color name="colorBackgroundDefault">#fafafa</color>
     <color name="colorTintedBackground">#cdcdcd</color>
 
     <color name="darkTheme_colorPrimary">#2196F3</color>

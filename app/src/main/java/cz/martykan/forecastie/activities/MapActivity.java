@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
-import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 
 import com.roughike.bottombar.BottomBar;
@@ -12,7 +11,7 @@ import com.roughike.bottombar.OnMenuTabClickListener;
 
 import cz.martykan.forecastie.R;
 
-public class MapActivity extends AppCompatActivity {
+public class MapActivity extends BaseActivity {
 
     private BottomBar mBottomBar;
 

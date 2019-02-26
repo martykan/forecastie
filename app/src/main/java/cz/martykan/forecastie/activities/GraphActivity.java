@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.TextView;
@@ -30,7 +29,7 @@ import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.tasks.ParseResult;
 import cz.martykan.forecastie.utils.UnitConvertor;
 
-public class GraphActivity extends AppCompatActivity {
+public class GraphActivity extends BaseActivity {
 
     SharedPreferences sp;
 
