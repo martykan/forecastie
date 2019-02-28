@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -84,6 +85,8 @@ public class MapActivity extends BaseActivity {
                 webView.loadUrl("javascript:map.removeLayer(windLayer);map.removeLayer(rainLayer);"
                         + "map.addLayer(tempLayer);");
                 break;
+            default:
+                Log.w("WeatherMap", "Layer not configured");
         }
     }
 
