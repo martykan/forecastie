@@ -38,12 +38,11 @@ public class MapActivity extends BaseActivity {
             mapViewModel.apiKey = mapViewModel.sharedPreferences.getString("apiKey", getResources().getString(R.string.apiKey));
         }
 
-        String apiKey = mapViewModel.apiKey;
-
         webView = findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl("file:///android_asset/map.html?lat=" + mapViewModel.mapLat + "&lon="
-                + mapViewModel.mapLon + "&appid=" + apiKey + "&zoom=" + mapViewModel.mapZoom);
+                + mapViewModel.mapLon + "&appid=" + mapViewModel.apiKey
+                + "&zoom=" + mapViewModel.mapZoom);
         webView.addJavascriptInterface(new HybridInterface(), "NativeInterface");
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -74,13 +73,16 @@ public class MapActivity extends BaseActivity {
     private void setMapState(int item) {
         switch (item) {
             case R.id.map_rain:
-                webView.loadUrl("javascript:map.removeLayer(windLayer);map.removeLayer(tempLayer);map.addLayer(rainLayer);");
+                webView.loadUrl("javascript:map.removeLayer(windLayer);map.removeLayer(tempLayer);"
+                        + "map.addLayer(rainLayer);");
                 break;
             case R.id.map_wind:
-                webView.loadUrl("javascript:map.removeLayer(rainLayer);map.removeLayer(tempLayer);map.addLayer(windLayer);");
+                webView.loadUrl("javascript:map.removeLayer(rainLayer);map.removeLayer(tempLayer);"
+                        + "map.addLayer(windLayer);");
                 break;
             case R.id.map_temperature:
-                webView.loadUrl("javascript:map.removeLayer(windLayer);map.removeLayer(rainLayer);map.addLayer(tempLayer);");
+                webView.loadUrl("javascript:map.removeLayer(windLayer);map.removeLayer(rainLayer);"
+                        + "map.addLayer(tempLayer);");
                 break;
         }
     }
