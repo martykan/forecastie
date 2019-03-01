@@ -87,6 +87,7 @@ public class MapActivity extends BaseActivity {
                 break;
             default:
                 Log.w("WeatherMap", "Layer not configured");
+                break;
         }
     }
 
