@@ -39,7 +39,7 @@
     <string name="setting_differentiateDaysByTint">Differenziare giorni con colori</string>
     <string name="setting_refreshInterval">Intervallo aggiornamento in background</string>
     <string name="setting_unit_mps">Metri al secondo (m/s)</string>
-    <string name="setting_unit_kph">Chilometri all\'ora (kph)</string>
+    <string name="setting_unit_kph">Chilometri all\'ora (km/h)</string>
     <string name="setting_unit_mph">Miglia all\'ora (mph)</string>
     <string name="setting_unit_bft">Scala del vento Beaufort (bft)</string>
     <string name="setting_unit_kn">Nodi (kn)</string>
@@ -61,7 +61,7 @@
     <string name="setting_unit_inhg">in Hg</string>
 
     <string name="speed_unit_mps">m/s</string>
-    <string name="speed_unit_kph">kph</string>
+    <string name="speed_unit_kph">km/h</string>
     <string name="speed_unit_mph">mph</string>
     <string name="speed_unit_kn">kn</string>
 
