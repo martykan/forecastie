@@ -10,11 +10,12 @@
     <string name="tomorrow">Morgen</string>
     <string name="later">Später</string>
 
-    <string name="wind">Wind</string>
+    <string name="wind_speed">Windgeschwindigkeit</string>
     <string name="pressure">Luftdruck</string>
     <string name="humidity">Feuchtigkeit</string>
     <string name="sunrise">Sonnenaufgang</string>
     <string name="sunset">Sonnenuntergang</string>
+    <string name="uvindex">UV-Index</string>
 
     <string name="last_update">Zuletzt aktualisiert:\n%s</string>
     <string name="last_update_widget">\nZuletzt aktualisiert: %s</string>
@@ -22,33 +23,34 @@
     <string name="search_title">Stadt suchen</string>
 
     <string name="downloading_data">Lade Daten herunter...</string>
-    <string name="getting_location">Erkenne Ort...</string>
+    <string name="getting_location">Suche Standort...</string>
+
+    <string name="loading_data">Laden...</string>
 
     <string name="error_dateFormat">FEHLERHAFTES DATUMSFORMAT</string>
 
     <string name="setting_dateFormat">Datumsformat</string>
     <string name="setting_dateFormatCustom">Eigenes Datumsformat</string>
     <string name="setting_dateFormatCustom_summary">Eigene Zeichenkette für SimpleDateFormat bereitstellen</string>
-    <string name="setting_lengthUnits">Maßeinheit Länge</string>
-    <string name="setting_speedUnits">Maßeinheit Geschwindigkeit</string>
-    <string name="setting_tempUnits">Maßeinheit Temperatur</string>
-    <string name="setting_showTempAsInteger">Zeige Temperatur nur als Ganzzahl</string>
+    <string name="setting_lengthUnits">Längeneinheit</string>
+    <string name="setting_speedUnits">Geschwindigkeitseinheit</string>
+    <string name="setting_tempUnits">Temperatureinheit</string>
+    <string name="setting_showTempAsInteger">Temperatur nur als Ganzzahl anzeigen</string>
     <string name="setting_pressureUnits">Maßeinheit Druck</string>
     <string name="setting_theme">Design</string>
-    <string name="setting_auto_detect_location">Erkenne Ort</string>
+    <string name="setting_transparent_widget">Widget transparent darstellen</string>
+    <string name="setting_auto_detect_location">Standort feststellen</string>
     <string name="setting_differentiateDaysByTint">Farbliche Unterscheidung der Tage</string>
-    <string name="setting_refreshInterval">Aktualisierungs-Interval im Hintergrund</string>
+    <string name="setting_refreshInterval">Aktualisierungsinterval im Hintergrund</string>
     <string name="setting_unit_mps">Meter pro Sekunde (m/s)</string>
     <string name="setting_unit_kph">Kilometer pro Stunde (km/h)</string>
     <string name="setting_unit_mph">Meilen pro Stunde (mph)</string>
+    <string name="setting_unit_bft">Beaufortskala (bft)</string>
+    <string name="setting_unit_kn">Knoten (kn)</string>
     <string name="setting_wind_direction_format">Windrichtungsformat</string>
     <string name="settings_none">Keins</string>
     <string name="setting_apiKey">API-Schlüssel</string>
     <string name="setting_apiKey_summary">Eigener API-Schlüssel für Anfragen an OpenWeatherMap</string>
-
-    <string name="setting_unit_Celsuis">Celsius</string>
-    <string name="setting_unit_Fahrenheit">Fahrenheit</string>
-    <string name="setting_unit_Kelvin">Kelvin</string>
 
     <string name="setting_unit_mm">Millimeter (mm)</string>
     <string name="setting_unit_in">Zoll (in)</string>
@@ -60,6 +62,7 @@
     <string name="speed_unit_mps">m/s</string>
     <string name="speed_unit_kph">km/h</string>
     <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_kn">kn</string>
 
     <string name="wind_direction_format_none">Keine Angabe</string>
     <string name="wind_direction_format_arrows">Pfeile</string>
@@ -113,8 +116,8 @@
     <string name="settings_title_location">Ort</string>
     <string name="setting_update_location_automatically">Ort im Hintergrund aktualisieren</string>
 
-    <string name="location_settings">Standort-Einstellungen</string>
-    <string name="location_settings_message">Standortdienste sind deaktiviert. Zu den System-Einstellungen wechseln?</string>
+    <string name="location_settings">Standorteinstellungen</string>
+    <string name="location_settings_message">Standortdienste sind deaktiviert. Zu Systemeinstellungen wechseln?</string>
     <string name="location_settings_button">Einstellungen</string>
     <string name="action_weather_map">Wetterkarte</string>
     <string name="rain">Niederschlag</string>
