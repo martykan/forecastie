@@ -104,7 +104,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 String language = Locale.getDefault().getLanguage();
                 if(language.equals("cs")) { language = "cz"; }
                 String apiKey = sp.getString("apiKey", context.getResources().getString(R.string.apiKey));
-                URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang="+ language +"&appid=" + apiKey);
+                URL url = new URL("https://api.openweathermap.org/data/2.5/weather?id=" + URLEncoder.encode(sp.getString("cityId", Constants.DEFAULT_CITY_ID), "UTF-8") + "&lang="+ language +"&appid=" + apiKey);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
@@ -148,7 +148,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 String language = Locale.getDefault().getLanguage();
                 if(language.equals("cs")) { language = "cz"; }
                 String apiKey = sp.getString("apiKey", context.getResources().getString(R.string.apiKey));
-                URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang="+ language +"&mode=json&appid=" + apiKey);
+                URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?id=" + URLEncoder.encode(sp.getString("cityId", Constants.DEFAULT_CITY_ID), "UTF-8") + "&lang="+ language +"&mode=json&appid=" + apiKey);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
@@ -298,6 +298,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                     Log.d(TAG, "JSON Result: " + result);
                     try {
                         JSONObject reader = new JSONObject(result);
+                        String cityId = reader.getString("cityId");
                         String city = reader.getString("name");
                         String country = "";
                         JSONObject countryObj = reader.optJSONObject("sys");
@@ -308,6 +309,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                         String lastCity = PreferenceManager.getDefaultSharedPreferences(context).getString("city", "");
                         String currentCity = city + country;
                         SharedPreferences.Editor editor = sp.edit();
+                        editor.putString("cityId", cityId);
                         editor.putString("city", currentCity);
                         editor.putBoolean("cityChanged", !currentCity.equals(lastCity));
                         editor.commit();
