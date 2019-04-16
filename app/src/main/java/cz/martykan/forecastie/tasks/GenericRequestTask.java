@@ -78,11 +78,13 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
                     InputStreamReader inputStreamReader = new InputStreamReader(urlConnection.getInputStream());
                     BufferedReader r = new BufferedReader(inputStreamReader);
 
-                    int responseCode = urlConnection.getResponseCode();
-                    String line = null;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String line;
                     while ((line = r.readLine()) != null) {
-                        response += line + "\n";
+                        stringBuilder.append(line);
+                        stringBuilder.append("\n");
                     }
+                    response += stringBuilder.toString();
                     close(r);
                     urlConnection.disconnect();
                     // Background work finished successfully
