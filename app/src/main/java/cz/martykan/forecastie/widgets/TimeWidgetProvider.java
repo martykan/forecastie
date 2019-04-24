@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
 
@@ -13,8 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cz.martykan.forecastie.AlarmReceiver;
-import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.R;
+import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.models.Weather;
 
 public class TimeWidgetProvider extends AbstractWidgetProvider {
@@ -70,6 +71,14 @@ public class TimeWidgetProvider extends AbstractWidgetProvider {
             remoteViews.setTextViewText(R.id.widgetTemperature, widgetWeather.getTemperature());
             remoteViews.setTextViewText(R.id.widgetDescription, widgetWeather.getDescription());
             remoteViews.setImageViewBitmap(R.id.widgetIcon, getWeatherIcon(widgetWeather.getIcon(), context));
+
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+            {
+                remoteViews.setTextViewText(R.id.date, "mercoledì 24/04/2019");
+
+                if (dateString.length() > 19)
+                    remoteViews.setViewPadding(R.id.widgetIcon, 40, 0, 0, 0);
+            }
 
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
