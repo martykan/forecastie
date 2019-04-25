@@ -74,8 +74,6 @@ public class TimeWidgetProvider extends AbstractWidgetProvider {
 
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
             {
-                remoteViews.setTextViewText(R.id.date, "mercoledì 24/04/2019");
-
                 if (dateString.length() > 19)
                     remoteViews.setViewPadding(R.id.widgetIcon, 40, 0, 0, 0);
             }
