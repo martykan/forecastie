@@ -11,11 +11,13 @@
     <string name="later">Dopo</string>
 
     <string name="wind">Vento</string>
+    <string name="wind_speed">Velocità del vento</string>
     <string name="pressure">Pressione</string>
     <string name="humidity">Umidità</string>
     <string name="sunrise">Alba</string>
     <string name="sunset">Tramonto</string>
-
+    <string name="uvindex">Indice UV</string>
+    
     <string name="last_update">Ultimo aggiornamento:\n%s</string>
     <string name="last_update_widget">\nUltimo aggiornamento: %s</string>
 
