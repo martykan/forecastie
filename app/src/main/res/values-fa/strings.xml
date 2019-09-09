@@ -30,7 +30,6 @@
     <string name="setting_speedUnits">واحد سرعت</string>
     <string name="setting_tempUnits">واحد دما</string>
     <string name="setting_pressureUnits">واحد فشار</string>
-    <string name="setting_darkTheme">قالب تاریک</string>
     <string name="setting_auto_detect_location">شناسایی موقعیت مکانی</string>
     <string name="setting_differentiateDaysByTint">تمایر روزها بوسیله رنگ</string>
     <string name="setting_refreshInterval">فاصله زمانی بروزرسانی پشت صحنه</string>
@@ -73,15 +72,6 @@
     <string name="msg_connection_not_available">ارتباطی در دسترسی نیست.</string>
     <string name="msg_city_not_found">شهر مورد مظر وجود ندارد.</string>
 
-    <string name="weather_sunny" translatable="false">&#xf00d;</string>
-    <string name="weather_clear_night" translatable="false">&#xf02e;</string>
-    <string name="weather_foggy" translatable="false">&#xf014;</string>
-    <string name="weather_cloudy" translatable="false">&#xf013;</string>
-    <string name="weather_rainy" translatable="false">&#xf019;</string>
-    <string name="weather_snowy" translatable="false">&#xf01b;</string>
-    <string name="weather_thunder" translatable="false">&#xf01e;</string>
-    <string name="weather_drizzle" translatable="false">&#xf01c;</string>
-
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_north_east">NNE</string>
     <string name="wind_direction_north_east">NE</string>
@@ -101,9 +91,9 @@
     <string name="msg_too_many_requests">تعداد درخواست‌ها بالاست. لطفا مجدد تلاش بفرمایید.</string>
 
     <!-- 1: temperature; 2: unit -->
-    <string name="dash_clock_status">%1$s°%2$s</string>
+    <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
-    <string name="dash_clock_expanded_title">%1$s°%2$s - %3$s</string>
+    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\nباد: %3$s %4$s\nفشار: %5$s %6$s\nرطوبت: %7$s %%\n</string>
 </resources>

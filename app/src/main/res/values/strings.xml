@@ -11,10 +11,12 @@
     <string name="later">Later</string>
 
     <string name="wind">Wind</string>
+    <string name="wind_speed">Wind Speed</string>
     <string name="pressure">Pressure</string>
     <string name="humidity">Humidity</string>
     <string name="sunrise">Sunrise</string>
     <string name="sunset">Sunset</string>
+    <string name="uvindex">UV Index</string>
 
     <string name="last_update">Last update:\n%s</string>
     <string name="last_update_widget">\nLast update: %s</string>
@@ -24,6 +26,8 @@
     <string name="downloading_data">Downloading your data ...</string>
     <string name="getting_location">Getting your location ...</string>
 
+    <string name="loading_data">Loading...</string>
+
     <string name="error_dateFormat">DATE FORMAT ERROR</string>
 
     <string name="setting_dateFormat">Date Format</string>
@@ -32,14 +36,18 @@
     <string name="setting_lengthUnits">Length units</string>
     <string name="setting_speedUnits">Speed units</string>
     <string name="setting_tempUnits">Temperature units</string>
+    <string name="setting_showTempAsInteger">Show temperature only as an integer</string>
     <string name="setting_pressureUnits">Pressure units</string>
-    <string name="setting_darkTheme">Dark theme</string>
+    <string name="setting_theme">Theme</string>
+    <string name="setting_transparent_widget">Make widget transparent</string>
     <string name="setting_auto_detect_location">Detect Location</string>
     <string name="setting_differentiateDaysByTint">Differentiate Days with Color</string>
     <string name="setting_refreshInterval">Background refresh interval</string>
     <string name="setting_unit_mps">Meters per second (m/s)</string>
     <string name="setting_unit_kph">Kilometers per hour (kph)</string>
     <string name="setting_unit_mph">Miles per hour (mph)</string>
+    <string name="setting_unit_bft">Beaufort wind scale (bft)</string>
+    <string name="setting_unit_kn">Knots (kn)</string>
     <string name="setting_wind_direction_format">Wind direction format</string>
     <string name="settings_none">None</string>
     <string name="setting_apiKey">API key</string>
@@ -55,10 +63,12 @@
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
     <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_inhg">in Hg</string>
 
     <string name="speed_unit_mps">m/s</string>
     <string name="speed_unit_kph">kph</string>
     <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_kn">kn</string>
 
     <string name="wind_direction_format_none">No indication</string>
     <string name="wind_direction_format_arrows">Arrows</string>
@@ -67,6 +77,13 @@
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mm Hg</string>
+
+    <string name="setting_theme_fresh">Fresh</string>
+    <string name="setting_theme_classic">Classic</string>
+    <string name="setting_theme_dark">Fresh Dark</string>
+    <string name="setting_theme_classic_dark">Classic Dark</string>
+    <string name="setting_theme_black">Fresh Black</string>
+    <string name="setting_theme_classic_black">Classic Black</string>
 
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>
@@ -104,9 +121,24 @@
     <string name="msg_too_many_requests">Too many requests. Please try again.</string>
 
     <!-- 1: temperature; 2: unit -->
-    <string name="dash_clock_status">%1$s°%2$s</string>
+    <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
-    <string name="dash_clock_expanded_title">%1$s°%2$s - %3$s</string>
+    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\nWind: %3$s %4$s\nPressure: %5$s %6$s\nHumidity: %7$s %%\n</string>
+    <string name="settings_title_units">Units</string>
+    <string name="settings_title_display">Display</string>
+    <string name="settings_title_data">Data</string>
+    <string name="setting_displayDecimalZeroes">Display decimal zeroes</string>
+    <string name="settings_title_location">Location</string>
+    <string name="setting_update_location_automatically">Update location in background</string>
+
+    <string name="location_settings">Location Settings</string>
+    <string name="location_settings_message">Location is not enabled. Do you wish to go to the settings menu?</string>
+    <string name="location_settings_button">Settings</string>
+    <string name="action_weather_map">Weather Map</string>
+    <string name="rain">Rain</string>
+    <string name="temperature">Temperature</string>
+    <string name="action_graphs">Graphs</string>
+    <string name="about_dialog">1.10.4\n\nA lightweight, Free Software weather app, released under the GPL3 licence.\n\nDeveloped by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> and others\n\nCode is available at <a href='https://github.com/martykan/forecastie'>Forecastie</a>\n\nData provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons license</a>\n\nIcons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.</string>
 </resources>

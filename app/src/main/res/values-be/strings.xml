@@ -1,0 +1,127 @@
+<resources>
+    <string name="app_name">Forecastie</string>
+
+    <string name="action_search">Пошук</string>
+    <string name="action_refresh">Абнавіць</string>
+    <string name="action_settings">Налады</string>
+    <string name="action_about">Аб праграме</string>
+
+    <string name="today">Сёння</string>
+    <string name="tomorrow">Заўтра</string>
+    <string name="later">Пазней</string>
+
+    <string name="wind">Вецер</string>
+    <string name="pressure">Ціск</string>
+    <string name="humidity">Вільготнасць</string>
+    <string name="sunrise">Узыход</string>
+    <string name="sunset">Закат</string>
+
+    <string name="last_update">Апошняе абнаўленне:\n%s</string>
+    <string name="last_update_widget">\nАпошняе абнаўленне: %s</string>
+
+    <string name="search_title">Шукаць населены пункт</string>
+
+    <string name="downloading_data">Выконваецца загрузка дадзеных…</string>
+    <string name="getting_location">Вызначэнне месцазнаходжання…</string>
+
+    <string name="error_dateFormat">НЕКАРЭКТНЫ ФАРМАТ ДАТЫ</string>
+
+    <string name="setting_dateFormat">Фармат даты</string>
+    <string name="setting_dateFormatCustom">Адвольны фармат даты</string>
+    <string name="setting_dateFormatCustom_summary">Задайце адвольны шаблон (патэрн) SimpleDateFormat</string>
+    <string name="setting_lengthUnits">Адзінкі даўжыні</string>
+    <string name="setting_speedUnits">Адзінкі хуткасці</string>
+    <string name="setting_tempUnits">Адзінкі тэмпературы</string>
+    <string name="setting_showTempAsInteger">Цэлалікавыя значэнні тэмпературы</string>
+    <string name="setting_pressureUnits">Адзінкі ціску</string>
+    <string name="setting_theme">Тэма</string>
+    <string name="setting_auto_detect_location">Вызначыць месцазнаходжанне</string>
+    <string name="setting_differentiateDaysByTint">Чаргаваць колер дзён у спісе</string>
+    <string name="setting_refreshInterval">Інтэрвал абнаўлення</string>
+    <string name="setting_unit_mps">Метры ў секунду (м/с)</string>
+    <string name="setting_unit_kph">Кіламетры ў гадзіну (км/г)</string>
+    <string name="setting_unit_mph">Мілі ў гадзіну (міль/г)</string>
+    <string name="setting_unit_bft">Балы Бофарта (бфрт)</string>
+    <string name="setting_unit_kn">Вузлы (вуз)</string>
+    <string name="setting_wind_direction_format">Фармат напрамку ветру</string>
+    <string name="settings_none">Не адлюстроўваць</string>
+    <string name="setting_apiKey">API ключ</string>
+    <string name="setting_apiKey_summary">Ключ для OpenWeatherMap API</string>
+
+    <string name="setting_unit_Celsuis">Цэльсій</string>
+    <string name="setting_unit_Fahrenheit">Фарэнгейт</string>
+    <string name="setting_unit_Kelvin">Кельвін</string>
+
+    <string name="setting_unit_mm">Міліметры (мм)</string>
+    <string name="setting_unit_in">Дзюймы (″)</string>
+
+    <string name="setting_unit_hpa">гПа</string>
+    <string name="setting_unit_kpa">кПа</string>
+    <string name="setting_unit_mmhg">мм рт.сл.</string>
+    <string name="setting_unit_inhg">дзюйм рт.сл.</string>
+
+    <string name="speed_unit_mps">м/с</string>
+    <string name="speed_unit_kph">км/г</string>
+    <string name="speed_unit_mph">міль/г</string>
+    <string name="speed_unit_kn">вуз</string>
+
+    <string name="wind_direction_format_none">Не адлюстроўваць</string>
+    <string name="wind_direction_format_arrows">Стрэлкі</string>
+    <string name="wind_direction_format_abbreviations">Абрэвіятуры</string>
+
+    <string name="pressure_unit_hpa">гПа</string>
+    <string name="pressure_unit_kpa">кПа</string>
+    <string name="pressure_unit_mmhg">мм рт.сл.</string>
+
+    <string name="setting_theme_fresh">Новая</string>
+    <string name="setting_theme_classic">Класічная</string>
+    <string name="setting_theme_dark">Новая цёмная</string>
+    <string name="setting_theme_classic_dark">Класічная цёмная</string>
+
+    <string name="dialog_ok">ОК</string>
+    <string name="dialog_cancel">Скасаваць</string>
+
+    <string name="msg_err_parsing_json">Памылка разбору JSON.</string>
+    <string name="msg_connection_problem">Праблемы з інтэрнэт-злучэннем.</string>
+    <string name="msg_connection_not_available">Інтэрнэт-злучэнне недаступна.</string>
+    <string name="msg_city_not_found">Указаны населены пункт не знойдзены.</string>
+
+    <string name="wind_direction_north">С</string>
+    <string name="wind_direction_north_north_east">ССУ</string>
+    <string name="wind_direction_north_east">СУ</string>
+    <string name="wind_direction_east_north_east">УСУ</string>
+    <string name="wind_direction_east">У</string>
+    <string name="wind_direction_east_south_east">УЮУ</string>
+    <string name="wind_direction_south_east">ЮУ</string>
+    <string name="wind_direction_south_south_east">ЮЮУ</string>
+    <string name="wind_direction_south">Ю</string>
+    <string name="wind_direction_south_south_west">ЮЮЗ</string>
+    <string name="wind_direction_south_west">ЮЗ</string>
+    <string name="wind_direction_west_south_west">ЗЮЗ</string>
+    <string name="wind_direction_west">З</string>
+    <string name="wind_direction_west_north_west">ЗСЗ</string>
+    <string name="wind_direction_north_west">СЗ</string>
+    <string name="wind_direction_north_north_west">ССЗ</string>
+    <string name="msg_too_many_requests">Занадта шмат запытаў. Паспрабуйце яшчэ раз.</string>
+
+    <!-- 1: temperature; 2: unit -->
+    <string name="dash_clock_status">%1$s%2$s</string>
+    <!-- 1: temperature; 2: unit; 3: weather description -->
+    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
+    <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
+    <string name="dash_clock_expanded_body">%1$s, %2$s\nВецер: %3$s %4$s\nЦіск: %5$s %6$s\nВільготнасць: %7$s %%\n</string>
+    <string name="settings_title_units">Адзінкі</string>
+    <string name="settings_title_display">Адлюстраванне</string>
+    <string name="settings_title_data">Дадзеныя</string>
+    <string name="setting_displayDecimalZeroes">Адлюстроўваць дзесятковыя нулі</string>
+    <string name="settings_title_location">Месцазнаходжанне</string>
+    <string name="setting_update_location_automatically">Абнаўляць месцазнаходжанне ў фоне</string>
+
+    <string name="location_settings">Налады месцазнаходжання</string>
+    <string name="location_settings_message">Вызначэнне месцазнаходжання адключана. Хочаце перайсці ў налады?</string>
+    <string name="location_settings_button">Налады</string>
+    <string name="action_weather_map">Карта надвор\'я</string>
+    <string name="rain">Дождж</string>
+    <string name="temperature">Тэмпература</string>
+    <string name="action_graphs">Графікі</string>
+</resources>

@@ -1,5 +1,56 @@
 <resources>
+    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/darkTheme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkTheme_colorPrimaryDark</item>
+        <item name="colorAccent">@color/darkTheme_colorAccent</item>
+        <item name="colorBackground">@color/darkTheme_colorBackground</item>
+        <item name="colorTintedBackground">@color/darkTheme_colorTintedBackground</item>
+        <item name="android:navigationBarColor">@color/darkTheme_colorBackground</item>
+    </style>
+
+    <style name="AppTheme.Black" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/blackTheme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/blackTheme_colorPrimaryDark</item>
+        <item name="colorAccent">@color/blackTheme_colorAccent</item>
+        <item name="android:colorBackground">@color/blackTheme_colorBackground</item>
+        <item name="colorTintedBackground">@color/blackTheme_colorTintedBackground</item>
+        <item name="android:navigationBarColor">@color/blackTheme_colorBackground</item>
+    </style>
+
+    <style name="AppTheme.Classic.Dark" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/classic_darkTheme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/classic_darkTheme_colorPrimaryDark</item>
+        <item name="colorAccent">@color/classic_darkTheme_colorAccent</item>
+        <item name="colorBackground">@color/classic_darkTheme_colorBackground</item>
+        <item name="colorTintedBackground">@color/classic_darkTheme_colorTintedBackground</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:navigationBarColor">@color/classic_darkTheme_colorBackground</item>
+    </style>
+
+    <style name="AppTheme.Classic.Black" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/classic_blackTheme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/classic_blackTheme_colorPrimaryDark</item>
+        <item name="colorAccent">@color/classic_blackTheme_colorAccent</item>
+        <item name="android:colorBackground">@color/classic_blackTheme_colorBackground</item>
+        <item name="colorTintedBackground">@color/classic_blackTheme_colorTintedBackground</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:navigationBarColor">@color/blackTheme_colorBackground</item>
+    </style>
+
+    <style name="AppTheme.NoStatusBar" parent="AppTheme.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
     <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+    <style name="AppTheme.NoActionBar.Classic" parent="AppTheme.Classic">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+    <style name="AppTheme.NoActionBar.Classic.Dark" parent="AppTheme.Classic.Dark">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
@@ -9,4 +60,16 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
+    <style name="AppTheme.NoActionBar.Black" parent="AppTheme.Black">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:statusBarColor">@color/splashBackground</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:navigationBarColor">@color/splashBackground</item>
+    </style>
+
 </resources>

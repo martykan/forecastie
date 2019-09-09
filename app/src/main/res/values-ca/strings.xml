@@ -1,0 +1,123 @@
+<resources>
+    <string name="app_name">Forecastie</string>
+
+    <string name="action_search">Cercar</string>
+    <string name="action_refresh">Actualitzar</string>
+    <string name="action_settings">Paràmetres</string>
+    <string name="action_about">Quant a</string>
+
+    <string name="today">Avui</string>
+    <string name="tomorrow">Demà</string>
+    <string name="later">Més tard</string>
+
+    <string name="wind">Vent</string>
+    <string name="pressure">Pressió</string>
+    <string name="humidity">Humitat</string>
+    <string name="sunrise">Sortida del sol</string>
+    <string name="sunset">Posta de sol</string>
+
+    <string name="last_update">Última actualització:\n%s</string>
+    <string name="last_update_widget">\nÚltima actualització: %s</string>
+
+    <string name="search_title">Cerca una ciutat</string>
+
+    <string name="downloading_data">Descarregant dades...</string>
+    <string name="getting_location">Obtenint la seva ubicació...</string>
+
+    <string name="error_dateFormat">ERROR EN EL FORMAT DE DATA</string>
+
+    <string name="setting_dateFormat">Format de data</string>
+    <string name="setting_dateFormatCustom">Format de data personaltizat</string>
+    <string name="setting_dateFormatCustom_summary">Afegeix el format personalitzat que s\'utilitzarà pel format de data</string>
+    <string name="setting_lengthUnits">Unitats de longitud</string>
+    <string name="setting_speedUnits">Unitats de velocitat</string>
+    <string name="setting_tempUnits">Unitats de temperatura</string>
+    <string name="setting_showTempAsInteger">Mostrar la temperatura només amb números enters</string>
+    <string name="setting_pressureUnits">Unitats de pressió</string>
+    <string name="setting_theme">Tema</string>
+    <string name="setting_auto_detect_location">Detectar ubicació</string>
+    <string name="setting_differentiateDaysByTint">Diferenciar els dies amb colors</string>
+    <string name="setting_refreshInterval">Actualització en segon pla</string>
+    <string name="setting_unit_mps">Metres per segon (m/s)</string>
+    <string name="setting_unit_kph">Quilòmetres per hora (km/h)</string>
+    <string name="setting_unit_mph">Milles per hora (mph)</string>
+    <string name="setting_wind_direction_format">Format de direcció del vent</string>
+    <string name="settings_none">Cap</string>
+    <string name="setting_apiKey">Clau de l\'API</string>
+    <string name="setting_apiKey_summary">Clau personalitzada per fer consultes a OpenWeatherMap</string>
+
+    <string name="setting_unit_Celsuis">Celsius</string>
+    <string name="setting_unit_Fahrenheit">Fahrenheit</string>
+    <string name="setting_unit_Kelvin">Kelvin</string>
+
+    <string name="setting_unit_mm">Mil·límetre (mm)</string>
+    <string name="setting_unit_in">Polzades (in)</string>
+
+    <string name="setting_unit_hpa">hPa</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+
+    <string name="speed_unit_mps">m/s</string>
+    <string name="speed_unit_kph">kph</string>
+    <string name="speed_unit_mph">mph</string>
+
+    <string name="wind_direction_format_none">Sense indicadors</string>
+    <string name="wind_direction_format_arrows">Fletxes</string>
+    <string name="wind_direction_format_abbreviations">Abreviatures</string>
+
+    <string name="pressure_unit_hpa">hPa</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+
+    <string name="setting_theme_fresh">Modern</string>
+    <string name="setting_theme_classic">Clàssic</string>
+    <string name="setting_theme_dark">Modern Fosc</string>
+    <string name="setting_theme_classic_dark">Clásico oscuro</string>
+
+    <string name="dialog_ok">D\'acord</string>
+    <string name="dialog_cancel">Cancel·lar</string>
+
+    <string name="msg_err_parsing_json">Error en analitzar JSON.</string>
+    <string name="msg_connection_problem">Hi ha un problema amb la connexió a Internet.</string>
+    <string name="msg_connection_not_available">Connexió no disponible.</string>
+    <string name="msg_city_not_found">No s\'ha trobat la ciutat especificada.</string>
+
+    <string name="wind_direction_north">N</string>
+    <string name="wind_direction_north_north_east">NNE</string>
+    <string name="wind_direction_north_east">NE</string>
+    <string name="wind_direction_east_north_east">ENE</string>
+    <string name="wind_direction_east">E</string>
+    <string name="wind_direction_east_south_east">ESE</string>
+    <string name="wind_direction_south_east">SE</string>
+    <string name="wind_direction_south_south_east">SSE</string>
+    <string name="wind_direction_south">S</string>
+    <string name="wind_direction_south_south_west">SSO</string>
+    <string name="wind_direction_south_west">SO</string>
+    <string name="wind_direction_west_south_west">OSO</string>
+    <string name="wind_direction_west">O</string>
+    <string name="wind_direction_west_north_west">ONO</string>
+    <string name="wind_direction_north_west">NO</string>
+    <string name="wind_direction_north_north_west">NNO</string>
+    <string name="msg_too_many_requests">Massa sol·licituds. Intenteu-ho més tard.</string>
+
+    <!-- 1: temperature; 2: unit -->
+    <string name="dash_clock_status">%1$s%2$s</string>
+    <!-- 1: temperature; 2: unit; 3: weather description -->
+    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
+    <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
+    <string name="dash_clock_expanded_body">%1$s, %2$s\nVent: %3$s %4$s\nPressió: %5$s %6$s\nHumitat: %7$s %%\n</string>
+    <string name="settings_title_units">Unitats</string>
+    <string name="settings_title_display">Mostra</string>
+    <string name="settings_title_data">Dades</string>
+    <string name="setting_displayDecimalZeroes">Mostrar zeros decimals</string>
+    <string name="settings_title_location">Ubicació</string>
+    <string name="setting_update_location_automatically">Actualitzar l\'ubicació en segon pla</string>
+
+    <string name="location_settings">Paràmetres d\'ubicació</string>
+    <string name="location_settings_message">La ubicació no està activada. Voleu anar al menú de paràmetres del sistema?</string>
+    <string name="location_settings_button">Paràmetres</string>
+    <string name="action_weather_map">Mapa del temps</string>
+    <string name="rain">Pluja</string>
+    <string name="temperature">Temperatura</string>
+    <string name="action_graphs">Gràfiques</string>
+</resources>

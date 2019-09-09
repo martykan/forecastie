@@ -13,6 +13,11 @@
     <string name="wind">Vento</string>
     <string name="pressure">Pressão</string>
     <string name="humidity">Humidade</string>
+    <string name="sunrise">Amanhecer</string>
+    <string name="sunset">Anoitecer</string>
+
+    <string name="last_update">Última atualização:\n%s</string>
+    <string name="last_update_widget">\nÚltima atualização: %s</string>
 
     <string name="search_title">Pesquisar uma cidade</string>
 
@@ -24,10 +29,12 @@
     <string name="setting_dateFormat">Formato de data</string>
     <string name="setting_dateFormatCustom">Formato de data personalizado</string>
     <string name="setting_dateFormatCustom_summary">Introduza a string SimpleDateFormat personalizada a ser usada</string>
+    <string name="setting_lengthUnits">Unidades de comprimento</string>
     <string name="setting_speedUnits">Unidades de velocidade</string>
     <string name="setting_tempUnits">Unidades de temperatura</string>
+    <string name="setting_showTempAsInteger">Mostrar a temperatura apenas como um número</string>
     <string name="setting_pressureUnits">Unidades de pressão</string>
-    <string name="setting_darkTheme">Tema escuro</string>
+    <string name="setting_theme">Tema</string>
     <string name="setting_auto_detect_location">Detetar localização</string>
     <string name="setting_differentiateDaysByTint">Diferenciar dias por cor</string>
     <string name="setting_refreshInterval">Intervalo da atualização em segundo plano</string>
@@ -42,6 +49,9 @@
     <string name="setting_unit_Celsuis">Celsius</string>
     <string name="setting_unit_Fahrenheit">Fahrenheit</string>
     <string name="setting_unit_Kelvin">Kelvin</string>
+
+    <string name="setting_unit_mm">Milímetros (mm)</string>
+    <string name="setting_unit_in">Polegadas (in)</string>
 
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
@@ -58,6 +68,11 @@
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mmHg</string>
+
+    <string name="setting_theme_fresh">Novo</string>
+    <string name="setting_theme_classic">Clássico</string>
+    <string name="setting_theme_dark">Novo Escuro</string>
+    <string name="setting_theme_classic_dark">Clássico Escuro</string>
 
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancelar</string>
@@ -86,9 +101,23 @@
     <string name="msg_too_many_requests">Foram feitos muitos pedidos. Por favor tente novamente.</string>
 
     <!-- 1: temperature; 2: unit -->
-    <string name="dash_clock_status">%1$s°%2$s</string>
+    <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
-    <string name="dash_clock_expanded_title">%1$s°%2$s - %3$s</string>
+    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\nVento: %3$s %4$s\nPressão: %5$s %6$s\nHumidade: %7$s %%\n</string>
+    <string name="settings_title_units">Unidades</string>
+    <string name="settings_title_display">Mostrar</string>
+    <string name="settings_title_data">Dados</string>
+    <string name="setting_displayDecimalZeroes">Mostrar zeros decimais</string>
+    <string name="settings_title_location">Localização</string>
+    <string name="setting_update_location_automatically">Atualizar localização em segundo plano</string>
+
+    <string name="location_settings">Definições de localização</string>
+    <string name="location_settings_message">Localização não está ativo. Deseja ir ao menu de definições?</string>
+    <string name="location_settings_button">Definições</string>
+    <string name="action_weather_map">Mapa de clima</string>
+    <string name="rain">Chuva</string>
+    <string name="temperature">Temperatura</string>
+    <string name="action_graphs">Gráficos</string>
 </resources>

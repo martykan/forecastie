@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:paddingBottom="16dp"
     android:orientation="vertical">
 
     <View
         android:id="@+id/lineView"
         android:layout_width="match_parent"
-        android:layout_height="2px"
+        android:layout_height="1dp"
         android:background="?android:attr/listDivider" />
 
     <RelativeLayout
@@ -26,39 +27,39 @@
                 android:id="@+id/itemDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="16:00"
+                tools:text="16:00"
                 android:textColor="?android:textColorPrimary"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/itemDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No data"
-                android:textSize="16dp" />
+                tools:text="No data"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/itemWind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Wind: 0 m/s"
-                android:textSize="16dp" />
+                tools:text="Wind: 0 m/s"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/itemPressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pressure: 0 hpa"
-                android:textSize="16dp" />
+                tools:text="Pressure: 0 hpa"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/itemHumidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Humidity: 0 %"
-                android:textSize="16dp" />
+                tools:text="Humidity: 0 %"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <TextView
@@ -71,15 +72,15 @@
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:text="o"
-            android:textSize="48dp" />
+            tools:text="o"
+            android:textSize="48sp" />
 
         <TextView
             android:id="@+id/itemTemperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0 °C"
-            android:textSize="22dp"
+            tools:text="0 °C"
+            android:textSize="22sp"
             android:layout_marginTop="8dp"
             android:layout_below="@+id/itemIcon"
             android:layout_alignRight="@+id/itemIcon"

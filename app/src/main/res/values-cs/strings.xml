@@ -21,7 +21,6 @@
     <string name="setting_speedUnits">Jednotky rychlosti</string>
     <string name="setting_tempUnits">Jednotky teploty</string>
     <string name="setting_pressureUnits">Jednotky tlaku</string>
-    <string name="setting_darkTheme">Tmavé téma</string>
     <string name="setting_refreshInterval">Interval obnovení na pozadí</string>
 
     <string name="setting_dateFormat">Formát data</string>
@@ -78,9 +77,33 @@
     <string name="msg_too_many_requests">Příliš mnoho požadavků. Zkuste to prosím znovu.</string>
 
     <!-- 1: temperature; 2: unit -->
-    <string name="dash_clock_status">%1$s°%2$s</string>
+    <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
-    <string name="dash_clock_expanded_title">%1$s°%2$s - %3$s</string>
+    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\nVítr: %3$s %4$s\nTlak: %5$s %6$s\nVlhkost: %7$s %%\n</string>
+    <string name="last_update">Poslední aktualizace:\n%s</string>
+    <string name="last_update_widget">\nPoslední aktualizace: %s</string>
+    <string name="setting_lengthUnits">Jednotky délky</string>
+    <string name="setting_unit_in">Palce (in)</string>
+    <string name="setting_unit_mm">Milimetry (mm)</string>
+    <string name="sunrise">Východ slunce</string>
+    <string name="sunset">Západ slunce</string>
+    <string name="setting_showTempAsInteger">Ukazovat teplotu jen jako celé číslo</string>
+    <string name="setting_theme">Téma</string>
+    <string name="setting_theme_classic">Klasické</string>
+    <string name="setting_theme_classic_dark">Klasické tmavé</string>
+    <string name="action_weather_map">Mapa počasí</string>
+    <string name="location_settings">Nastavení polohy</string>
+    <string name="location_settings_button">Nastavení</string>
+    <string name="location_settings_message">Určovaní polohy není zapnuto. Chcete přejít do nastavení?</string>
+    <string name="setting_displayDecimalZeroes">Zobrazit desetinné nuly</string>
+    <string name="setting_theme_dark">Čerstvé tmavé</string>
+    <string name="setting_theme_fresh">Čerstvé</string>
+    <string name="settings_title_data">Data</string>
+    <string name="settings_title_display">Zobrazení</string>
+    <string name="settings_title_units">Jednotky</string>
+    <string name="rain">Déšť</string>
+    <string name="temperature">Teplota</string>
+    <string name="action_graphs">Grafy</string>
 </resources>
