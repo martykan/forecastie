@@ -76,37 +76,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     private String setWeatherIcon(int actualId, int hourOfDay, Context context) {
         Formatting formatting = new Formatting(context);
         return formatting.setWeatherIcon(actualId, hourOfDay);
-        /*int id = actualId / 100;
-        String icon = "";
-        if (actualId == 800) {
-            if (hourOfDay >= 7 && hourOfDay < 20) {
-                icon = context.getString(R.string.weather_day_sunny);
-            } else {
-                icon = context.getString(R.string.weather_night_clear);
-            }
-        } else {
-            switch (id) {
-                case 2:
-                    icon = context.getString(R.string.weather_thunderstorm);
-                    break;
-                case 3:
-                    icon = context.getString(R.string.weather_sprinkle);
-                    break;
-                case 7:
-                    icon = context.getString(R.string.weather_fog);
-                    break;
-                case 8:
-                    icon = context.getString(R.string.weather_cloudy);
-                    break;
-                case 6:
-                    icon = context.getString(R.string.weather_snow);
-                    break;
-                case 5:
-                    icon = context.getString(R.string.weather_rain);
-                    break;
-            }
-        }
-        return icon;*/
     }
 
     protected Weather parseWidgetJson(String result, Context context) {
