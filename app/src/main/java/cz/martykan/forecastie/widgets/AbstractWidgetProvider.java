@@ -30,6 +30,7 @@ import cz.martykan.forecastie.BuildConfig;
 import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.Weather;
+import cz.martykan.forecastie.utils.Formatting;
 import cz.martykan.forecastie.utils.UnitConvertor;
 
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
@@ -73,37 +74,39 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     }
 
     private String setWeatherIcon(int actualId, int hourOfDay, Context context) {
-        int id = actualId / 100;
+        Formatting formatting = new Formatting(context);
+        return formatting.setWeatherIcon(actualId, hourOfDay);
+        /*int id = actualId / 100;
         String icon = "";
         if (actualId == 800) {
             if (hourOfDay >= 7 && hourOfDay < 20) {
-                icon = context.getString(R.string.weather_sunny);
+                icon = context.getString(R.string.weather_day_sunny);
             } else {
-                icon = context.getString(R.string.weather_clear_night);
+                icon = context.getString(R.string.weather_night_clear);
             }
         } else {
             switch (id) {
                 case 2:
-                    icon = context.getString(R.string.weather_thunder);
+                    icon = context.getString(R.string.weather_thunderstorm);
                     break;
                 case 3:
-                    icon = context.getString(R.string.weather_drizzle);
+                    icon = context.getString(R.string.weather_sprinkle);
                     break;
                 case 7:
-                    icon = context.getString(R.string.weather_foggy);
+                    icon = context.getString(R.string.weather_fog);
                     break;
                 case 8:
                     icon = context.getString(R.string.weather_cloudy);
                     break;
                 case 6:
-                    icon = context.getString(R.string.weather_snowy);
+                    icon = context.getString(R.string.weather_snow);
                     break;
                 case 5:
-                    icon = context.getString(R.string.weather_rainy);
+                    icon = context.getString(R.string.weather_rain);
                     break;
             }
         }
-        return icon;
+        return icon;*/
     }
 
     protected Weather parseWidgetJson(String result, Context context) {
