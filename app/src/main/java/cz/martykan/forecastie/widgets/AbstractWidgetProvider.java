@@ -30,6 +30,7 @@ import cz.martykan.forecastie.BuildConfig;
 import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.Weather;
+import cz.martykan.forecastie.utils.Formatting;
 import cz.martykan.forecastie.utils.UnitConvertor;
 
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
@@ -73,37 +74,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     }
 
     private String setWeatherIcon(int actualId, int hourOfDay, Context context) {
-        int id = actualId / 100;
-        String icon = "";
-        if (actualId == 800) {
-            if (hourOfDay >= 7 && hourOfDay < 20) {
-                icon = context.getString(R.string.weather_sunny);
-            } else {
-                icon = context.getString(R.string.weather_clear_night);
-            }
-        } else {
-            switch (id) {
-                case 2:
-                    icon = context.getString(R.string.weather_thunder);
-                    break;
-                case 3:
-                    icon = context.getString(R.string.weather_drizzle);
-                    break;
-                case 7:
-                    icon = context.getString(R.string.weather_foggy);
-                    break;
-                case 8:
-                    icon = context.getString(R.string.weather_cloudy);
-                    break;
-                case 6:
-                    icon = context.getString(R.string.weather_snowy);
-                    break;
-                case 5:
-                    icon = context.getString(R.string.weather_rainy);
-                    break;
-            }
-        }
-        return icon;
+        Formatting formatting = new Formatting(context);
+        return formatting.setWeatherIcon(actualId, hourOfDay);
     }
 
     protected Weather parseWidgetJson(String result, Context context) {
