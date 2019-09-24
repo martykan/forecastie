@@ -116,7 +116,7 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         customViewHolder.itemIcon.setText(weatherItem.getIcon());
         if (sp.getString("speedUnit", "m/s").equals("bft")) {
             customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " +
-                    UnitConvertor.getBeaufortName((int) wind) + " " + MainActivity.getWindDirectionString(sp, context, weatherItem));
+                    UnitConvertor.getBeaufortName((int) wind, context) + " " + MainActivity.getWindDirectionString(sp, context, weatherItem));
         } else {
             customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " + new DecimalFormat("0.0").format(wind) + " " +
                     MainActivity.localize(sp, context, "speedUnit", "m/s")

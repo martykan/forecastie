@@ -488,7 +488,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
                 todayWeather.getDescription().substring(1) + rainString);
         if (sp.getString("speedUnit", "m/s").equals("bft")) {
             todayWind.setText(getString(R.string.wind) + ": " +
-                    UnitConvertor.getBeaufortName((int) wind) +
+                    UnitConvertor.getBeaufortName((int) wind, this) +
                     (todayWeather.isWindDirectionAvailable() ? " " + getWindDirectionString(sp, this, todayWeather) : ""));
         } else {
             todayWind.setText(getString(R.string.wind) + ": " + new DecimalFormat("0.0").format(wind) + " " +
@@ -523,7 +523,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
         // UV Index
         double uvIndex = todayWeather.getUvIndex();
-        todayUvIndex.setText(getString(R.string.uvindex) + ": " + UnitConvertor.convertUvIndexToRiskLevel(uvIndex));
+        todayUvIndex.setText(getString(R.string.uvindex) + ": " + UnitConvertor.convertUvIndexToRiskLevel(uvIndex, this));
     }
 
     public ParseResult parseLongTermJson(String result) {
