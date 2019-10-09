@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cz.martykan.forecastie.AlarmReceiver;
@@ -50,8 +51,24 @@ public class TimeWidgetProvider extends AbstractWidgetProvider {
             }
 
             DateFormat timeFormat = DateFormat.getTimeInstance(DateFormat.SHORT);
-            DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG);
-            String dateString = dateFormat.format(new Date());
+            String defaultDateFormat = context.getResources().getStringArray(R.array.dateFormatsValues)[0];
+            String simpleDateFormat = sp.getString("dateFormat", defaultDateFormat);
+            if ("custom".equals(simpleDateFormat)) {
+                simpleDateFormat = sp.getString("dateFormatCustom", defaultDateFormat);
+            }
+            String dateString;
+            try {
+                simpleDateFormat = simpleDateFormat.substring(0, simpleDateFormat.indexOf("-") - 1);
+                try {
+                    SimpleDateFormat resultFormat = new SimpleDateFormat(simpleDateFormat);
+                    dateString = resultFormat.format(new Date());
+                } catch (IllegalArgumentException e) {
+                    dateString = context.getResources().getString(R.string.error_dateFormat);
+                }
+            } catch (StringIndexOutOfBoundsException e) {
+                DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG);
+                dateString = dateFormat.format(new Date());
+            }
 
             remoteViews.setTextViewText(R.id.time, timeFormat.format(new Date()));
             remoteViews.setTextViewText(R.id.date, dateString);
