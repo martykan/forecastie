@@ -37,6 +37,7 @@
     <string name="setting_showTempAsInteger">Visualizza la temperatura solo come un intero</string>
     <string name="setting_pressureUnits">Unità di misura per la pressione</string>
     <string name="setting_theme">Tema</string>
+    <string name="setting_transparent_widget">Widget trasparente</string>
     <string name="setting_auto_detect_location">Ricerca posizione</string>
     <string name="setting_differentiateDaysByTint">Differenziare giorni con colori</string>
     <string name="setting_refreshInterval">Intervallo aggiornamento in background</string>
