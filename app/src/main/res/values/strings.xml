@@ -93,14 +93,33 @@
     <string name="msg_connection_not_available">Connection not available.</string>
     <string name="msg_city_not_found">Specified city is not found.</string>
 
-    <string name="weather_sunny" translatable="false">&#xf00d;</string>
-    <string name="weather_clear_night" translatable="false">&#xf02e;</string>
-    <string name="weather_foggy" translatable="false">&#xf014;</string>
     <string name="weather_cloudy" translatable="false">&#xf013;</string>
-    <string name="weather_rainy" translatable="false">&#xf019;</string>
-    <string name="weather_snowy" translatable="false">&#xf01b;</string>
-    <string name="weather_thunder" translatable="false">&#xf01e;</string>
-    <string name="weather_drizzle" translatable="false">&#xf01c;</string>
+    <string name="weather_cloudy_gusts" translatable="false">&#xf011;</string>
+    <string name="weather_day_cloudy" translatable="false">&#xf002;</string>
+    <string name="weather_day_haze" translatable="false">&#xf0b6;</string>
+    <string name="weather_day_sunny" translatable="false">&#xf00d;</string>
+    <string name="weather_dust" translatable="false">&#xf063;</string>
+    <string name="weather_fog" translatable="false">&#xf014;</string>
+    <string name="weather_hail" translatable="false">&#xf015;</string>
+    <string name="weather_hot" translatable="false">&#xf072;</string>
+    <string name="weather_hurricane" translatable="false">&#xf073;</string>
+    <string name="weather_lightning" translatable="false">&#xf016;</string>
+    <string name="weather_night_alt_cloudy" translatable="false">&#xf086;</string>
+    <string name="weather_night_clear" translatable="false">&#xf02e;</string>
+    <string name="weather_rain" translatable="false">&#xf019;</string>
+    <string name="weather_rain_mix" translatable="false">&#xf017;</string>
+    <string name="weather_sandstorm" translatable="false">&#xf082;</string>
+    <string name="weather_showers" translatable="false">&#xf01a;</string>
+    <string name="weather_sleet" translatable="false">&#xf0b5;</string>
+    <string name="weather_smoke" translatable="false">&#xf062;</string>
+    <string name="weather_snow" translatable="false">&#xf01b;</string>
+    <string name="weather_snowflake_cold" translatable="false">&#xf076;</string>
+    <string name="weather_sprinkle" translatable="false">&#xf01c;</string>
+    <string name="weather_storm_showers" translatable="false">&#xf01d;</string>
+    <string name="weather_strong_wind" translatable="false">&#xf050;</string>
+    <string name="weather_thunderstorm" translatable="false">&#xf01e;</string>
+    <string name="weather_tornado" translatable="false">&#xf056;</string>
+    <string name="weather_windy" translatable="false">&#xf021;</string>
 
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_north_east">NNE</string>
@@ -119,6 +138,27 @@
     <string name="wind_direction_north_west">NW</string>
     <string name="wind_direction_north_north_west">NNW</string>
     <string name="msg_too_many_requests">Too many requests. Please try again.</string>
+
+    <string name="beaufort_calm">Calm</string>
+    <string name="beaufort_light_air">Light air</string>
+    <string name="beaufort_light_breeze">Light breeze</string>
+    <string name="beaufort_gentle_breeze">Gentle breeze</string>
+    <string name="beaufort_moderate_breeze">Moderate breeze</string>
+    <string name="beaufort_fresh_breeze">Fresh breeze</string>
+    <string name="beaufort_strong_breeze">Strong breeze</string>
+    <string name="beaufort_high_wind">High wind</string>
+    <string name="beaufort_gale">Gale</string>
+    <string name="beaufort_strong_gale">Strong gale</string>
+    <string name="beaufort_storm">Storm</string>
+    <string name="beaufort_violent_storm">Violent storm</string>
+    <string name="beaufort_hurricane">Hurricane</string>
+
+    <string name="uvi_no_info">No Info</string>
+    <string name="uvi_low">Low</string>
+    <string name="uvi_moderate">Moderate</string>
+    <string name="uvi_high">High</string>
+    <string name="uvi_very_high">Very High</string>
+    <string name="uvi_extreme">Extreme</string>
 
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
@@ -140,5 +180,5 @@
     <string name="rain">Rain</string>
     <string name="temperature">Temperature</string>
     <string name="action_graphs">Graphs</string>
-    <string name="about_dialog">1.10.3\n\nA lightweight, Free Software weather app, released under the GPL3 licence.\n\nDeveloped by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> and others\n\nCode is available at <a href='https://github.com/martykan/forecastie'>Forecastie</a>\n\nData provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons license</a>\n\nIcons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.</string>
+    <string name="about_dialog">1.10.6\n\nA lightweight, Free Software weather app, released under the GPL3 licence.\n\nDeveloped by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> and others\n\nCode is available at <a href='https://github.com/martykan/forecastie'>Forecastie</a>\n\nData provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons license</a>\n\nIcons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.</string>
 </resources>

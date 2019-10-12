@@ -23,9 +23,6 @@ A simple, opensource weather app for Android. It gathers data from [OpenWeatherM
 ## Contribution
 If you have any ideas or issues, don't hesitate to reach out to me. Every contribution is welcome.
 
-## Translators
-If you want to translate you can easily do so on [Transifex](https://www.transifex.com/forecastie/forecastie). I would also recommend joining the [translator mailing list](http://eepurl.com/cbD2BP). You will get notified a few days before a new version comes, so the translations can be done when it's released.
-
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
 

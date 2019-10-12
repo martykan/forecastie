@@ -488,7 +488,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
                 todayWeather.getDescription().substring(1) + rainString);
         if (sp.getString("speedUnit", "m/s").equals("bft")) {
             todayWind.setText(getString(R.string.wind) + ": " +
-                    UnitConvertor.getBeaufortName((int) wind) +
+                    UnitConvertor.getBeaufortName((int) wind, this) +
                     (todayWeather.isWindDirectionAvailable() ? " " + getWindDirectionString(sp, this, todayWeather) : ""));
         } else {
             todayWind.setText(getString(R.string.wind) + ": " + new DecimalFormat("0.0").format(wind) + " " +
@@ -523,7 +523,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
         // UV Index
         double uvIndex = todayWeather.getUvIndex();
-        todayUvIndex.setText(getString(R.string.uvindex) + ": " + UnitConvertor.convertUvIndexToRiskLevel(uvIndex));
+        todayUvIndex.setText(getString(R.string.uvindex) + ": " + UnitConvertor.convertUvIndexToRiskLevel(uvIndex, this));
     }
 
     public ParseResult parseLongTermJson(String result) {
@@ -774,8 +774,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
-                // Explanation not needed, since user requests this themmself
-
+                showLocationSettingsDialog();
             } else {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},

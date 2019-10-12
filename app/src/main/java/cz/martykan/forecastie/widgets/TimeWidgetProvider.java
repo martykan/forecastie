@@ -50,19 +50,24 @@ public class TimeWidgetProvider extends AbstractWidgetProvider {
                 return;
             }
 
-            DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(context);
+            DateFormat timeFormat = DateFormat.getTimeInstance(DateFormat.SHORT);
             String defaultDateFormat = context.getResources().getStringArray(R.array.dateFormatsValues)[0];
-            String dateFormat = sp.getString("dateFormat", defaultDateFormat);
-            if ("custom".equals(dateFormat)) {
-                dateFormat = sp.getString("dateFormatCustom", defaultDateFormat);
+            String simpleDateFormat = sp.getString("dateFormat", defaultDateFormat);
+            if ("custom".equals(simpleDateFormat)) {
+                simpleDateFormat = sp.getString("dateFormatCustom", defaultDateFormat);
             }
-            dateFormat = dateFormat.substring(0, dateFormat.indexOf("-")-1);
             String dateString;
             try {
-                SimpleDateFormat resultFormat = new SimpleDateFormat(dateFormat);
-                dateString = resultFormat.format(new Date());
-            } catch (IllegalArgumentException e) {
-                dateString = context.getResources().getString(R.string.error_dateFormat);
+                simpleDateFormat = simpleDateFormat.substring(0, simpleDateFormat.indexOf("-") - 1);
+                try {
+                    SimpleDateFormat resultFormat = new SimpleDateFormat(simpleDateFormat);
+                    dateString = resultFormat.format(new Date());
+                } catch (IllegalArgumentException e) {
+                    dateString = context.getResources().getString(R.string.error_dateFormat);
+                }
+            } catch (StringIndexOutOfBoundsException e) {
+                DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG);
+                dateString = dateFormat.format(new Date());
             }
 
             remoteViews.setTextViewText(R.id.time, timeFormat.format(new Date()));

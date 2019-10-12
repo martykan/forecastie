@@ -98,28 +98,31 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         @Override
         protected Void doInBackground(String... params) {
-            String result = "";
             try {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
                 String language = Locale.getDefault().getLanguage();
                 if(language.equals("cs")) { language = "cz"; }
                 String apiKey = sp.getString("apiKey", context.getResources().getString(R.string.apiKey));
-                URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang="+ language +"&appid=" + apiKey);
+                URL url = new URL("https://api.openweathermap.org/data/2.5/weather?id=" + URLEncoder.encode(sp.getString("cityId", Constants.DEFAULT_CITY_ID), "UTF-8") + "&lang="+ language +"&appid=" + apiKey);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-
-                if(urlConnection.getResponseCode() == 200) {
-                    String line = null;
-                    while ((line = r.readLine()) != null) {
-                        result += line + "\n";
+                BufferedReader connectionBufferedReader = null;
+                try {
+                    connectionBufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    if (urlConnection.getResponseCode() == 200) {
+                        StringBuilder result = new StringBuilder();
+                        String line;
+                        while ((line = connectionBufferedReader.readLine()) != null) {
+                            result.append(line).append("\n");
+                        }
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putString("lastToday", result.toString());
+                        editor.apply();
+                        MainActivity.saveLastUpdateTime(sp);
+                    } else {
+                        // Connection problem
                     }
-                    SharedPreferences.Editor editor = sp.edit();
-                    editor.putString("lastToday", result);
-                    editor.apply();
-                    MainActivity.saveLastUpdateTime(sp);
-                }
-                else {
-                    // Connection problem
+                } finally {
+                    if (connectionBufferedReader != null) connectionBufferedReader.close();
                 }
             } catch (IOException e) {
                 // No connection
@@ -142,27 +145,30 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         @Override
         protected Void doInBackground(String... params) {
-            String result = "";
             try {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
                 String language = Locale.getDefault().getLanguage();
                 if(language.equals("cs")) { language = "cz"; }
                 String apiKey = sp.getString("apiKey", context.getResources().getString(R.string.apiKey));
-                URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?q=" + URLEncoder.encode(sp.getString("city", Constants.DEFAULT_CITY), "UTF-8") + "&lang="+ language +"&mode=json&appid=" + apiKey);
+                URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?id=" + URLEncoder.encode(sp.getString("cityId", Constants.DEFAULT_CITY_ID), "UTF-8") + "&lang="+ language +"&mode=json&appid=" + apiKey);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-
-                if(urlConnection.getResponseCode() == 200) {
-                    String line = null;
-                    while ((line = r.readLine()) != null) {
-                        result += line + "\n";
+                BufferedReader connectionBufferedReader = null;
+                try {
+                    connectionBufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    if (urlConnection.getResponseCode() == 200) {
+                        StringBuilder result = new StringBuilder();
+                        String line;
+                        while ((line = connectionBufferedReader.readLine()) != null) {
+                            result.append(line).append("\n");
+                        }
+                        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+                        editor.putString("lastLongterm", result.toString());
+                        editor.apply();
+                    } else {
+                        // Connection problem
                     }
-                    SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
-                    editor.putString("lastLongterm", result);
-                    editor.apply();
-                }
-                else {
-                    // Connection problem
+                } finally {
+                    if (connectionBufferedReader != null) connectionBufferedReader.close();
                 }
             } catch (IOException e) {
                 // No connection
@@ -289,15 +295,17 @@ public class AlarmReceiver extends BroadcastReceiver {
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
                 if (urlConnection.getResponseCode() == 200) {
-                    BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                    String result = "";
-                    String line;
-                    while ((line = r.readLine()) != null) {
-                        result += line + "\n";
-                    }
-                    Log.d(TAG, "JSON Result: " + result);
+                    BufferedReader connectionBufferedReader = null;
                     try {
-                        JSONObject reader = new JSONObject(result);
+                        connectionBufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                        StringBuilder result = new StringBuilder();
+                        String line;
+                        while ((line = connectionBufferedReader.readLine()) != null) {
+                            result.append(line).append("\n");
+                        }
+                        Log.d(TAG, "JSON Result: " + result);
+                        JSONObject reader = new JSONObject(result.toString());
+                        String cityId = reader.getString("id");
                         String city = reader.getString("name");
                         String country = "";
                         JSONObject countryObj = reader.optJSONObject("sys");
@@ -308,12 +316,15 @@ public class AlarmReceiver extends BroadcastReceiver {
                         String lastCity = PreferenceManager.getDefaultSharedPreferences(context).getString("city", "");
                         String currentCity = city + country;
                         SharedPreferences.Editor editor = sp.edit();
+                        editor.putString("cityId", cityId);
                         editor.putString("city", currentCity);
                         editor.putBoolean("cityChanged", !currentCity.equals(lastCity));
                         editor.commit();
 
                     } catch (JSONException e){
                         Log.e(TAG, "An error occurred while reading the JSON object", e);
+                    } finally {
+                        if (connectionBufferedReader != null) connectionBufferedReader.close();
                     }
                 } else {
                     Log.e(TAG, "Error: Response code " + urlConnection.getResponseCode());

@@ -100,6 +100,26 @@
     <string name="wind_direction_north_north_west">NNW</string>
     <string name="msg_too_many_requests">Teveel verzoeken; probeer het opnieuw.</string>
 
+    <string name="beaufort_calm">Stil</string>
+    <string name="beaufort_light_air">Flauw en stil</string>
+    <string name="beaufort_light_breeze">Flauwe koelte</string>
+    <string name="beaufort_gentle_breeze">Lichte koelte</string>
+    <string name="beaufort_moderate_breeze">Matige koelte</string>
+    <string name="beaufort_fresh_breeze">Frisse bries</string>
+    <string name="beaufort_strong_breeze">Matige wind</string>
+    <string name="beaufort_high_wind">Harde wind</string>
+    <string name="beaufort_gale">Stormachtig</string>
+    <string name="beaufort_strong_gale">Storm</string>
+    <string name="beaufort_storm">Zware storm</string>
+    <string name="beaufort_violent_storm">Zeer zware storm</string>
+    <string name="beaufort_hurricane">Orkaan</string>
+
+    <string name="uvi_low">Zwak</string>
+    <string name="uvi_moderate">Matig</string>
+    <string name="uvi_high">Hoog</string>
+    <string name="uvi_very_high">Zeer hoog</string>
+    <string name="uvi_extreme">Extreem</string>
+
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->

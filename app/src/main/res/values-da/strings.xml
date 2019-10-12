@@ -93,15 +93,6 @@
     <string name="msg_connection_not_available">Forbindelse ikke tilgængelig</string>
     <string name="msg_city_not_found">Angivet by ikke fundet.</string>
 
-    <string name="weather_sunny" translatable="false">&#xf00d;</string>
-    <string name="weather_clear_night" translatable="false">&#xf02e;</string>
-    <string name="weather_foggy" translatable="false">&#xf014;</string>
-    <string name="weather_cloudy" translatable="false">&#xf013;</string>
-    <string name="weather_rainy" translatable="false">&#xf019;</string>
-    <string name="weather_snowy" translatable="false">&#xf01b;</string>
-    <string name="weather_thunder" translatable="false">&#xf01e;</string>
-    <string name="weather_drizzle" translatable="false">&#xf01c;</string>
-
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_north_east">NNØ</string>
     <string name="wind_direction_north_east">NØ</string>
@@ -119,6 +110,26 @@
     <string name="wind_direction_north_west">NV</string>
     <string name="wind_direction_north_north_west">NNV</string>
     <string name="msg_too_many_requests">For mange forspørgsler. Prøv igen.</string>
+
+    <string name="beaufort_calm">Stille</string>
+    <string name="beaufort_light_air">Luftning</string>
+    <string name="beaufort_light_breeze">Svag vind</string>
+    <string name="beaufort_gentle_breeze">Let vind</string>
+    <string name="beaufort_moderate_breeze">Jævn vind</string>
+    <string name="beaufort_fresh_breeze">Frisk vind</string>
+    <string name="beaufort_strong_breeze">Hård vind</string>
+    <string name="beaufort_high_wind">Stiv kuling</string>
+    <string name="beaufort_gale">Hård kuling</string>
+    <string name="beaufort_strong_gale">Stormende kuling</string>
+    <string name="beaufort_storm">Storm</string>
+    <string name="beaufort_violent_storm">Stærk storm</string>
+    <string name="beaufort_hurricane">Orkan</string>
+
+    <string name="uvi_low">Lav</string>
+    <string name="uvi_moderate">Moderat</string>
+    <string name="uvi_high">Høj</string>
+    <string name="uvi_very_high">Meget høj</string>
+    <string name="uvi_extreme">Ekstrem</string>
 
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s°%2$s</string>
