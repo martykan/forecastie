@@ -45,10 +45,4 @@
         android:layout_alignParentRight="true"
         tools:src="@drawable/ic_cloud_white_24dp"/>
 
-    <!--
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/widgetTemperature"
-    -->
-
 </RelativeLayout>
