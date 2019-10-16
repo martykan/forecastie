@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
@@ -17,7 +18,7 @@ public class AboutDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                 .setTitle(getText(R.string.app_name))
-                .setMessage(getText(R.string.about_dialog))
+                .setMessage(TextUtils.concat(getText(R.string.about_version), "\n\n", getText(R.string.about_text)))
                 .setPositiveButton(R.string.dialog_ok, null)
                 .create();
         alertDialog.show();
