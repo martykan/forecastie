@@ -2,62 +2,62 @@
     <string name="app_name">Forecastie</string>
 
     <string name="action_search">Sök</string>
-    <string name="action_refresh">Refresh</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_about">About</string>
+    <string name="action_refresh">Uppdatera</string>
+    <string name="action_settings">Inställningar</string>
+    <string name="action_about">Om</string>
 
-    <string name="today">Today</string>
-    <string name="tomorrow">Tomorrow</string>
-    <string name="later">Later</string>
+    <string name="today">Idag</string>
+    <string name="tomorrow">Imorgon</string>
+    <string name="later">Senare</string>
 
-    <string name="wind">Wind</string>
-    <string name="wind_speed">Wind Speed</string>
-    <string name="pressure">Pressure</string>
-    <string name="humidity">Humidity</string>
-    <string name="sunrise">Sunrise</string>
-    <string name="sunset">Sunset</string>
-    <string name="uvindex">UV Index</string>
+    <string name="wind">Vind</string>
+    <string name="wind_speed">Vidhastighet</string>
+    <string name="pressure">Tryck</string>
+    <string name="humidity">Fuktighet</string>
+    <string name="sunrise">Soluppgång</string>
+    <string name="sunset">Solnedgång</string>
+    <string name="uvindex">UV-index</string>
 
-    <string name="last_update">Last update:\n%s</string>
-    <string name="last_update_widget">\nLast update: %s</string>
+    <string name="last_update">Senaste uppdateringen:\n%s</string>
+    <string name="last_update_widget">\nSenaste uppdateringen: %s</string>
 
-    <string name="search_title">Search for city</string>
+    <string name="search_title">Sök efter stad</string>
 
-    <string name="downloading_data">Downloading your data ...</string>
-    <string name="getting_location">Getting your location ...</string>
+    <string name="downloading_data">Laddar ned din data ...</string>
+    <string name="getting_location">Hämtar din position ...</string>
 
-    <string name="loading_data">Loading...</string>
+    <string name="loading_data">Laddar...</string>
 
-    <string name="error_dateFormat">DATE FORMAT ERROR</string>
+    <string name="error_dateFormat">DATUM FORMAT FEL</string>
 
-    <string name="setting_dateFormat">Date Format</string>
-    <string name="setting_dateFormatCustom">Custom Date Format</string>
-    <string name="setting_dateFormatCustom_summary">Provide the custom SimpleDateFormat string to be used</string>
-    <string name="setting_lengthUnits">Length units</string>
-    <string name="setting_speedUnits">Speed units</string>
-    <string name="setting_tempUnits">Temperature units</string>
-    <string name="setting_showTempAsInteger">Show temperature only as an integer</string>
-    <string name="setting_pressureUnits">Pressure units</string>
-    <string name="setting_theme">Theme</string>
-    <string name="setting_transparent_widget">Make widget transparent</string>
-    <string name="setting_auto_detect_location">Detect Location</string>
-    <string name="setting_differentiateDaysByTint">Differentiate Days with Color</string>
-    <string name="setting_refreshInterval">Background refresh interval</string>
-    <string name="setting_unit_mps">Meters per second (m/s)</string>
-    <string name="setting_unit_kph">Kilometers per hour (kph)</string>
-    <string name="setting_unit_mph">Miles per hour (mph)</string>
-    <string name="setting_unit_bft">Beaufort wind scale (bft)</string>
-    <string name="setting_unit_kn">Knots (kn)</string>
-    <string name="setting_wind_direction_format">Wind direction format</string>
-    <string name="settings_none">None</string>
-    <string name="setting_apiKey">API key</string>
-    <string name="setting_apiKey_summary">Custom API key for OpenWeatherMap queries</string>
+    <string name="setting_dateFormat">Datum Format</string>
+    <string name="setting_dateFormatCustom">Anpassat Datum Format</string>
+    <string name="setting_dateFormatCustom_summary">Ange det anpassade SimpleDateFormat koden som ska användas</string>
+    <string name="setting_lengthUnits">Längd enheter</string>
+    <string name="setting_speedUnits">Fart enheter</string>
+    <string name="setting_tempUnits">Temperatur enheter</string>
+    <string name="setting_showTempAsInteger">Visa temperatur bara som en siffra</string>
+    <string name="setting_pressureUnits">Tryck enheter</string>
+    <string name="setting_theme">Tema</string>
+    <string name="setting_transparent_widget">Gör widgeten genomskinlig</string>
+    <string name="setting_auto_detect_location">Upptäck Position</string>
+    <string name="setting_differentiateDaysByTint">Skilj på Dagar med Färg</string>
+    <string name="setting_refreshInterval">Bakgrund uppdaterings intervall</string>
+    <string name="setting_unit_mps">Meter i sekunden (m/s)</string>
+    <string name="setting_unit_kph">Kilometer i timmen (kph)</string>
+    <string name="setting_unit_mph">Mile i timmen (mph)</string>
+    <string name="setting_unit_bft">Beaufort vindskala (bft)</string>
+    <string name="setting_unit_kn">Knop (kn)</string>
+    <string name="setting_wind_direction_format">Vindriktningsformat</string>
+    <string name="settings_none">Ingen</string>
+    <string name="setting_apiKey">API nyckel</string>
+    <string name="setting_apiKey_summary">Egen API nyckel för OpenWeatherMap sökfrågor</string>
 
     <string name="setting_unit_Celsuis">Celsius</string>
     <string name="setting_unit_Fahrenheit">Fahrenheit</string>
     <string name="setting_unit_Kelvin">Kelvin</string>
 
-    <string name="setting_unit_mm">Millimeters (mm)</string>
+    <string name="setting_unit_mm">Millimeter (mm)</string>
     <string name="setting_unit_in">Inches (in)</string>
 
     <string name="setting_unit_hpa">hPa</string>
@@ -70,28 +70,28 @@
     <string name="speed_unit_mph">mph</string>
     <string name="speed_unit_kn">kn</string>
 
-    <string name="wind_direction_format_none">No indication</string>
-    <string name="wind_direction_format_arrows">Arrows</string>
-    <string name="wind_direction_format_abbreviations">Abbreviations</string>
+    <string name="wind_direction_format_none">Ingen indikation</string>
+    <string name="wind_direction_format_arrows">Pilar</string>
+    <string name="wind_direction_format_abbreviations">Förkortningar</string>
 
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mm Hg</string>
 
-    <string name="setting_theme_fresh">Fresh</string>
-    <string name="setting_theme_classic">Classic</string>
-    <string name="setting_theme_dark">Fresh Dark</string>
-    <string name="setting_theme_classic_dark">Classic Dark</string>
-    <string name="setting_theme_black">Fresh Black</string>
-    <string name="setting_theme_classic_black">Classic Black</string>
+    <string name="setting_theme_fresh">Fräsh</string>
+    <string name="setting_theme_classic">Klassisk</string>
+    <string name="setting_theme_dark">Fräsh Mörk</string>
+    <string name="setting_theme_classic_dark">Klassisk Mörk</string>
+    <string name="setting_theme_black">Fräsh Svart</string>
+    <string name="setting_theme_classic_black">Klassisk Svart</string>
 
-    <string name="dialog_ok">OK</string>
-    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_ok">Ok</string>
+    <string name="dialog_cancel">Avbryt</string>
 
-    <string name="msg_err_parsing_json">Error parsing JSON.</string>
-    <string name="msg_connection_problem">There is a problem with your internet connection.</string>
-    <string name="msg_connection_not_available">Connection not available.</string>
-    <string name="msg_city_not_found">Specified city is not found.</string>
+    <string name="msg_err_parsing_json">Fel vid parsning av JSON.</string>
+    <string name="msg_connection_problem">Det finns ett problem med din internets anslutning.</string>
+    <string name="msg_connection_not_available">Anslutning inte tillgänglig.</string>
+    <string name="msg_city_not_found">Den angivna staden hittades inte.</string>
 
     <string name="weather_cloudy" translatable="false">&#xf013;</string>
     <string name="weather_cloudy_gusts" translatable="false">&#xf011;</string>
@@ -137,49 +137,49 @@
     <string name="wind_direction_west_north_west">WNW</string>
     <string name="wind_direction_north_west">NW</string>
     <string name="wind_direction_north_north_west">NNW</string>
-    <string name="msg_too_many_requests">Too many requests. Please try again.</string>
+    <string name="msg_too_many_requests">För många förfrågningar. Var snäll och försök igen senare.</string>
 
-    <string name="beaufort_calm">Calm</string>
-    <string name="beaufort_light_air">Light air</string>
-    <string name="beaufort_light_breeze">Light breeze</string>
-    <string name="beaufort_gentle_breeze">Gentle breeze</string>
-    <string name="beaufort_moderate_breeze">Moderate breeze</string>
-    <string name="beaufort_fresh_breeze">Fresh breeze</string>
-    <string name="beaufort_strong_breeze">Strong breeze</string>
-    <string name="beaufort_high_wind">High wind</string>
-    <string name="beaufort_gale">Gale</string>
-    <string name="beaufort_strong_gale">Strong gale</string>
+    <string name="beaufort_calm">Lungt</string>
+    <string name="beaufort_light_air">Lätt luft</string>
+    <string name="beaufort_light_breeze">Lätt vind</string>
+    <string name="beaufort_gentle_breeze">Lätt bris</string>
+    <string name="beaufort_moderate_breeze">Måttlig bris</string>
+    <string name="beaufort_fresh_breeze">Fräsh bris</string>
+    <string name="beaufort_strong_breeze">Stark bris</string>
+    <string name="beaufort_high_wind">Hög vind</string>
+    <string name="beaufort_gale">Kuling</string>
+    <string name="beaufort_strong_gale">Stark kuling</string>
     <string name="beaufort_storm">Storm</string>
-    <string name="beaufort_violent_storm">Violent storm</string>
-    <string name="beaufort_hurricane">Hurricane</string>
+    <string name="beaufort_violent_storm">Våldsam storm</string>
+    <string name="beaufort_hurricane">Orkan</string>
 
-    <string name="uvi_no_info">No Info</string>
-    <string name="uvi_low">Low</string>
-    <string name="uvi_moderate">Moderate</string>
-    <string name="uvi_high">High</string>
-    <string name="uvi_very_high">Very High</string>
-    <string name="uvi_extreme">Extreme</string>
+    <string name="uvi_no_info">Ingen information</string>
+    <string name="uvi_low">Låg</string>
+    <string name="uvi_moderate">Måttlig</string>
+    <string name="uvi_high">Hög</string>
+    <string name="uvi_very_high">Väldigt hög</string>
+    <string name="uvi_extreme">Extrem</string>
 
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\nWind: %3$s %4$s\nPressure: %5$s %6$s\nHumidity: %7$s %%\n</string>
-    <string name="settings_title_units">Units</string>
-    <string name="settings_title_display">Display</string>
+    <string name="dash_clock_expanded_body">%1$s, %2$s\nVind: %3$s %4$s\nTryck: %5$s %6$s\nFuktighet: %7$s %%\n</string>
+    <string name="settings_title_units">Enheter</string>
+    <string name="settings_title_display">Skärm</string>
     <string name="settings_title_data">Data</string>
-    <string name="setting_displayDecimalZeroes">Display decimal zeroes</string>
-    <string name="settings_title_location">Location</string>
-    <string name="setting_update_location_automatically">Update location in background</string>
+    <string name="setting_displayDecimalZeroes">Visa decimal nollor</string>
+    <string name="settings_title_location">Plats</string>
+    <string name="setting_update_location_automatically">Uppdatera plats i bakgrunden</string>
 
-    <string name="location_settings">Location Settings</string>
-    <string name="location_settings_message">Location is not enabled. Do you wish to go to the settings menu?</string>
-    <string name="location_settings_button">Settings</string>
-    <string name="action_weather_map">Weather Map</string>
-    <string name="rain">Rain</string>
-    <string name="temperature">Temperature</string>
-    <string name="action_graphs">Graphs</string>
+    <string name="location_settings">Plats Inställningar</string>
+    <string name="location_settings_message">Position är inte påslaget. Vill du gå till inställningarna?</string>
+    <string name="location_settings_button">Inställningar</string>
+    <string name="action_weather_map">Väder Karta</string>
+    <string name="rain">Regn</string>
+    <string name="temperature">Temperatur</string>
+    <string name="action_graphs">Grafer</string>
     <string name="about_version" translatable="false">1.10.6</string>
-    <string name="about_text">A lightweight, Free Software weather app, released under the GPL3 licence.\n\nDeveloped by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> and others\n\nCode is available at <a href='https://github.com/martykan/forecastie'>Forecastie</a>\n\nData provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons license</a>\n\nIcons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.</string>
+    <string name="about_text">En liten väder app, släppt under GPL3 licensen.\n\nUtvecklag av <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> och andra\n\nKoden är tillgänglig på <a href='https://github.com/martykan/forecastie'>Forecastie</a>\n\nUppgifter tillhandahållna av <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons licensen</a>\n\nIkoner är <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, av <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> och <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licensen.</string>
 </resources>
