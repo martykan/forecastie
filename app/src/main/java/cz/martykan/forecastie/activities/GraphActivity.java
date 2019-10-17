@@ -201,7 +201,7 @@ public class GraphActivity extends BaseActivity {
 
             dataset.addPoint(getDateLabel(weatherList.get(i), i), pressure);
         }
-        dataset.setSmooth(true);
+        dataset.setSmooth(false);
         dataset.setColor(Color.parseColor("#4CAF50"));
         dataset.setThickness(4);
 
