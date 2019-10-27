@@ -31,23 +31,21 @@ import cz.martykan.forecastie.utils.UnitConvertor;
 
 public class GraphActivity extends BaseActivity {
 
-    SharedPreferences sp;
+    private SharedPreferences sp;
 
-    int theme;
+    private ArrayList<Weather> weatherList = new ArrayList<>();
 
-    ArrayList<Weather> weatherList = new ArrayList<>();
+    private float minTemp = 100000;
+    private float maxTemp = 0;
 
-    float minTemp = 100000;
-    float maxTemp = 0;
+    private float minRain = 100000;
+    private float maxRain = 0;
 
-    float minRain = 100000;
-    float maxRain = 0;
+    private float minPressure = 100000;
+    private float maxPressure = 0;
 
-    float minPressure = 100000;
-    float maxPressure = 0;
-
-    float minWindSpeed = 100000;
-    float maxWindSpeed = 0;
+    private float minWindSpeed = 100000;
+    private float maxWindSpeed = 0;
 
     private String labelColor = "#000000";
     private String lineColor = "#333333";
@@ -100,7 +98,7 @@ public class GraphActivity extends BaseActivity {
     }
 
     private void temperatureGraph() {
-        LineChartView lineChartView = (LineChartView) findViewById(R.id.graph_temperature);
+        LineChartView lineChartView = findViewById(R.id.graph_temperature);
 
         // Data
         LineSet dataset = new LineSet();
@@ -132,7 +130,7 @@ public class GraphActivity extends BaseActivity {
         paint.setStrokeWidth(1);
         lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
         lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues((int) (Math.round(minTemp)) - 1, (int) (Math.round(maxTemp)) + 1);
+        lineChartView.setAxisBorderValues((Math.round(minTemp)) - 1, (Math.round(maxTemp)) + 1);
         lineChartView.setStep(2);
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
@@ -142,7 +140,7 @@ public class GraphActivity extends BaseActivity {
     }
 
     private void rainGraph() {
-        LineChartView lineChartView = (LineChartView) findViewById(R.id.graph_rain);
+        LineChartView lineChartView = findViewById(R.id.graph_rain);
 
         // Data
         LineSet dataset = new LineSet();
@@ -174,7 +172,7 @@ public class GraphActivity extends BaseActivity {
         paint.setStrokeWidth(1);
         lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
         lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues(0, (int) (Math.round(maxRain)) + 1);
+        lineChartView.setAxisBorderValues(0, (Math.round(maxRain)) + 1);
         lineChartView.setStep(1);
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
@@ -184,7 +182,7 @@ public class GraphActivity extends BaseActivity {
     }
 
     private void pressureGraph() {
-        LineChartView lineChartView = (LineChartView) findViewById(R.id.graph_pressure);
+        LineChartView lineChartView = findViewById(R.id.graph_pressure);
 
         // Data
         LineSet dataset = new LineSet();
@@ -226,7 +224,7 @@ public class GraphActivity extends BaseActivity {
     }
 
     private void windSpeedGraph() {
-        LineChartView lineChartView = (LineChartView) findViewById(R.id.graph_windspeed);
+        LineChartView lineChartView = findViewById(R.id.graph_windspeed);
         String graphLineColor = "#efd214";
 
         if (darkTheme) {
