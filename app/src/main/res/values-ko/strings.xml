@@ -2,7 +2,7 @@
     <string name="app_name">Forecastie</string>
 
     <string name="action_search">도시 검색</string>
-    <string name="action_refresh">Actualiser</string>
+    <string name="action_refresh"></string>
     <string name="action_settings">설정</string>
     <string name="action_about">정보</string>
 
@@ -69,9 +69,9 @@
     <string name="wind_direction_format_arrows">화살표</string>
     <string name="wind_direction_format_abbreviations">축약표시</string>
 
-    <string name="pressure_unit_hpa">hPa</string>
-    <string name="pressure_unit_kpa">kPa</string>
-    <string name="pressure_unit_mmhg">mmHg</string>
+    <string name="pressure_unit_hpa">헥토파스칼</string>
+    <string name="pressure_unit_kpa">킬로파스칼</string>
+    <string name="pressure_unit_mmhg">수은주 밀리미터</string>
 
     <string name="setting_theme_fresh">밝은</string>
     <string name="setting_theme_classic">클래식한</string>
