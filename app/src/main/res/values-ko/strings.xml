@@ -17,14 +17,14 @@
     <string name="sunset">일몰</string>
 
     <string name="last_update">마지막 업데이트:\n%s</string>
-    <string name="last_update_widget">\nDernière mise à jour : %s</string>
+    <string name="last_update_widget">\n마지막 업데이트: %s</string>
 
     <string name="search_title">도시 검색</string>
 
-    <string name="downloading_data">Téléchargement des données…</string>
+    <string name="downloading_data">다운로드중</string>
     <string name="getting_location">위치 수집중…</string>
 
-    <string name="error_dateFormat">ERREUR FORMAT DATE</string>
+    <string name="error_dateFormat">데이터 형식 오류</string>
 
     <string name="setting_dateFormat">날짜 형식</string>
     <string name="setting_dateFormatCustom">날짜 형식 포맷</string>
@@ -38,53 +38,55 @@
     <string name="setting_auto_detect_location">위치 설정</string>
     <string name="setting_differentiateDaysByTint">날짜들을 색으로 구별</string>
     <string name="setting_refreshInterval">백그라운드 새로고침 간격</string>
-    <string name="setting_unit_mps">Mètres par seconde (m/s)</string>
-    <string name="setting_unit_kph">Kilomètres par heure (km/h)</string>
-    <string name="setting_unit_mph">Milles par heure (mph)</string>
-    <string name="setting_unit_bft">Échelle Beaufort (bft)</string>
-    <string name="setting_unit_kn">Nœuds (nd)</string>
+    <string name="setting_unit_mps">초당 미터</string>
+    <string name="setting_unit_kph">시간당 킬로미터</string>
+    <string name="setting_unit_mph">시간당 마일</string>
+    <string name="setting_unit_bft"> 보 퍼트 바람 규모</string>
+    <string name="setting_unit_kn">매듭</string>
     <string name="setting_wind_direction_format"> 바람 방향 형식</string>
-    <string name="settings_none">Aucun</string>
-    <string name="setting_apiKey">Clé API</string>
-    <string name="setting_apiKey_summary">Clé API personnalisée pour les requêtes OpenWeatherMap</string>
+    <string name="settings_none">존재하지않음</string>
+    <string name="setting_apiKey">API 키</string>
+    <string name="setting_apiKey_summary">날씨지도 쿼리를 위한 사용자 API 키</string>
 
-    <string name="setting_unit_Celsuis">Celsius</string>
-    <string name="setting_unit_Fahrenheit">Fahrenheit</string>
-    <string name="setting_unit_Kelvin">Kelvin</string>
+    <string name="setting_unit_Celsuis">섭씨</string>
+    <string name="setting_unit_Fahrenheit">화씨</string>
+    <string name="setting_unit_Kelvin">켈빈</string>
 
-    <string name="setting_unit_mm">Millimètres (mm)</string>
-    <string name="setting_unit_in">Pouces (in)</string>
+    <string name="setting_unit_mm">밀리미터</string>
+    <string name="setting_unit_in">인치</string>
 
-    <string name="setting_unit_hpa">hPa</string>
-    <string name="setting_unit_kpa">kPa</string>
-    <string name="setting_unit_mmhg">mmHg</string>
-    <string name="setting_unit_inhg">inHg</string>
+    <string name="setting_unit_hpa">헥토파스칼</string>
+    <string name="setting_unit_kpa">킬로파스칼</string>
+    <string name="setting_unit_mmhg">수은주 밀리미터</string>
+    <string name="setting_unit_inhg">수은주 인치</string>
 
-    <string name="speed_unit_mps">m/s</string>
-    <string name="speed_unit_kph">kph</string>
-    <string name="speed_unit_mph">mph</string>
-    <string name="speed_unit_kn">nd</string>
+    <string name="speed_unit_mps">초당 미터</string>
+    <string name="speed_unit_kph">시간당 킬로미터</string>
+    <string name="speed_unit_mph">시간당 마일</string>
+    <string name="speed_unit_kn">매듭</string>
 
-    <string name="wind_direction_format_none">Aucune indication</string>
-    <string name="wind_direction_format_arrows">Flèches</string>
-    <string name="wind_direction_format_abbreviations">Abréviations</string>
+    <string name="wind_direction_format_none">표시 없음</string>
+    <string name="wind_direction_format_arrows">화살표</string>
+    <string name="wind_direction_format_abbreviations">축약표시</string>
 
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mmHg</string>
 
-    <string name="setting_theme_fresh">Moderne</string>
-    <string name="setting_theme_classic">Classique</string>
-    <string name="setting_theme_dark">Foncé moderne</string>
-    <string name="setting_theme_classic_dark">Foncé classique</string>
+    <string name="setting_theme_fresh">밝은</string>
+    <string name="setting_theme_classic">클래식한</string>
+    <string name="setting_theme_dark">밝은 어두운</string>
+    <string name="setting_theme_classic_dark">클래식하게 어두운</string>
+    <string name="setting_theme_black">밝은 검정</string>
+    <string name="setting_theme_classic_black">클래식한 검정</string>
 
     <string name="dialog_ok">확인</string>
     <string name="dialog_cancel">취소</string>
 
-    <string name="msg_err_parsing_json">Erreur d\'analyse JSON.</string>
-    <string name="msg_connection_problem">Il y a un problème avec votre connexion à Internet.</string>
-    <string name="msg_connection_not_available">Aucune connexion.</string>
-    <string name="msg_city_not_found">Ville introuvable.</string>
+    <string name="msg_err_parsing_json">JSON 구문 분석 오류</string>
+    <string name="msg_connection_problem">인터넷 연결에 문제가 있습니다</string>
+    <string name="msg_connection_not_available">접속불가</string>
+    <string name="msg_city_not_found">지정된 도시를 찾을 수 없습니다</string>
 
 
     <string name="wind_direction_north">N</string>
@@ -105,26 +107,26 @@
     <string name="wind_direction_north_north_west">NNO</string>
     <string name="msg_too_many_requests">Trop de requêtes. Veuillez réessayer.</string>
 
-    <string name="beaufort_calm">Calme</string>
-    <string name="beaufort_light_air">Très légère brise</string>
-    <string name="beaufort_light_breeze">Légère brise</string>
-    <string name="beaufort_gentle_breeze">Petite brise</string>
-    <string name="beaufort_moderate_breeze">Jolie brise</string>
-    <string name="beaufort_fresh_breeze">Bonne brise</string>
-    <string name="beaufort_strong_breeze">Vent frais</string>
-    <string name="beaufort_high_wind">Grand frais</string>
-    <string name="beaufort_gale">Coup de vent</string>
-    <string name="beaufort_strong_gale">Fort coup de vent</string>
-    <string name="beaufort_storm">Tempête</string>
-    <string name="beaufort_violent_storm">Violente tempête</string>
-    <string name="beaufort_hurricane">Ouragan</string>
+    <string name="beaufort_calm">잔잔</string>
+    <string name="beaufort_light_air">가벼운 공기</string>
+    <string name="beaufort_light_breeze">가벼운 바람</string>
+    <string name="beaufort_gentle_breeze">산들 바람</string>
+    <string name="beaufort_moderate_breeze">보통 바람</string>
+    <string name="beaufort_fresh_breeze">신선한 바람</string>
+    <string name="beaufort_strong_breeze">강한 바람</string>
+    <string name="beaufort_high_wind">높은 바람</string>
+    <string name="beaufort_gale">강풍</string>
+    <string name="beaufort_strong_gale">강한 강풍</string>
+    <string name="beaufort_storm">폭풍</string>
+    <string name="beaufort_violent_storm">강력한 폭풍</string>
+    <string name="beaufort_hurricane">태풍</string>
 
-    <string name="uvi_no_info">Aucune information</string>
-    <string name="uvi_low">Faible</string>
-    <string name="uvi_moderate">Modéré</string>
-    <string name="uvi_high">Élevé</string>
-    <string name="uvi_very_high">Très élevé</string>
-    <string name="uvi_extreme">Extrême</string>
+    <string name="uvi_no_info">정보가 없습니다</string>
+    <string name="uvi_low">낮음</string>
+    <string name="uvi_moderate">보통</string>
+    <string name="uvi_high">높음</string>
+    <string name="uvi_very_high">매우 높음</string>
+    <string name="uvi_extreme">극도로 높음</string>
 
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
