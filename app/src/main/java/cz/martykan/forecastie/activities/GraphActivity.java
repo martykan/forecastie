@@ -12,7 +12,9 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.db.chart.Tools;
+import com.db.chart.model.BarSet;
 import com.db.chart.model.LineSet;
+import com.db.chart.view.BarChartView;
 import com.db.chart.view.ChartView;
 import com.db.chart.view.LineChartView;
 
@@ -35,17 +37,7 @@ public class GraphActivity extends BaseActivity {
 
     private ArrayList<Weather> weatherList = new ArrayList<>();
 
-    private float minTemp = 100000;
-    private float maxTemp = 0;
-
-    private float minRain = 100000;
-    private float maxRain = 0;
-
-    private float minPressure = 100000;
-    private float maxPressure = 0;
-
-    private float minWindSpeed = 100000;
-    private float maxWindSpeed = 0;
+    private Paint gridPaint = new Paint();
 
     private String labelColor = "#000000";
     private String lineColor = "#333333";
@@ -87,6 +79,12 @@ public class GraphActivity extends BaseActivity {
         sp = PreferenceManager.getDefaultSharedPreferences(GraphActivity.this);
         String lastLongterm = sp.getString("lastLongterm", "");
 
+        gridPaint.setStyle(Paint.Style.STROKE);
+        gridPaint.setAntiAlias(true);
+        gridPaint.setColor(Color.parseColor(lineColor));
+        gridPaint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
+        gridPaint.setStrokeWidth(1);
+
         if (parseLongTermJson(lastLongterm) == ParseResult.OK) {
             temperatureGraph();
             rainGraph();
@@ -100,102 +98,100 @@ public class GraphActivity extends BaseActivity {
     private void temperatureGraph() {
         LineChartView lineChartView = findViewById(R.id.graph_temperature);
 
+        float minTemp = 100000;
+        float maxTemp = 0;
+
         // Data
-        LineSet dataset = new LineSet();
+        LineSet lineDataset = new LineSet();
         for (int i = 0; i < weatherList.size(); i++) {
             float temperature = UnitConvertor.convertTemperature(Float.parseFloat(weatherList.get(i).getTemperature()), sp);
 
-            if (temperature < minTemp) {
-                minTemp = temperature;
-            }
+            minTemp = Math.min(temperature, minTemp);
+            maxTemp = Math.max(temperature, maxTemp);
 
-            if (temperature > maxTemp) {
-                maxTemp = temperature;
-            }
-
-            dataset.addPoint(getDateLabel(weatherList.get(i), i), temperature);
+            lineDataset.addPoint(getDateLabel(weatherList.get(i), i), temperature);
         }
-        dataset.setSmooth(false);
-        dataset.setColor(Color.parseColor("#FF5722"));
-        dataset.setThickness(4);
+        lineDataset.setSmooth(false);
+        lineDataset.setColor(Color.parseColor("#FF5722"));
+        lineDataset.setThickness(4);
+        lineChartView.addData(lineDataset);
 
-        lineChartView.addData(dataset);
+        float range = Math.abs(maxTemp - minTemp);
+        int middle = Math.round(minTemp + (maxTemp - minTemp) / 2);
+        int stepSize = (int) Math.ceil(range / 4);
 
-        // Grid
-        Paint paint = new Paint();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setAntiAlias(true);
-        paint.setColor(Color.parseColor(lineColor));
-        paint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
-        paint.setStrokeWidth(1);
-        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
+        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, 4, 1, gridPaint);
         lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues((Math.round(minTemp)) - 1, (Math.round(maxTemp)) + 1);
-        lineChartView.setStep(2);
+        lineChartView.setAxisBorderValues(middle - 2 * stepSize, middle + 2 * stepSize);
+        lineChartView.setStep(stepSize);
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
         lineChartView.setLabelsColor(Color.parseColor(labelColor));
-
         lineChartView.show();
+
+        BarChartView barChartView = getBackgroundBarChart(R.id.graph_temperature_background, middle - 2 * stepSize, middle + 2 * stepSize, false);
+        barChartView.show();
+
+        TextView textView = findViewById(R.id.graphTemperatureTextView);
+        textView.setText(String.format("%s (%s)", getString(R.string.temperature), sp.getString("unit", "°C")));
     }
 
     private void rainGraph() {
-        LineChartView lineChartView = findViewById(R.id.graph_rain);
+        BarChartView lineChartView = findViewById(R.id.graph_rain);
+
+        float maxRain = 0;
 
         // Data
-        LineSet dataset = new LineSet();
+        BarSet dataset = new BarSet();
         for (int i = 0; i < weatherList.size(); i++) {
-            float rain = Float.parseFloat(weatherList.get(i).getRain());
+            float rain = UnitConvertor.convertRain(Float.parseFloat(weatherList.get(i).getRain()), sp);
 
-            if (rain < minRain) {
-                minRain = rain;
-            }
+            maxRain = Math.max(rain, maxRain);
 
-            if (rain > maxRain) {
-                maxRain = rain;
-            }
-
-            dataset.addPoint(getDateLabel(weatherList.get(i), i), rain);
+            dataset.addBar(getDateLabel(weatherList.get(i), i), rain);
         }
-        dataset.setSmooth(false);
         dataset.setColor(Color.parseColor("#2196F3"));
-        dataset.setThickness(4);
+
+        int step = 1;
+        if (maxRain > 6) {
+            maxRain = (float) Math.ceil(maxRain / 6) * 6;
+            step = (int) Math.ceil(maxRain / 6);
+        } else {
+            maxRain = (float) Math.ceil(maxRain);
+        }
 
         lineChartView.addData(dataset);
 
-        // Grid
-        Paint paint = new Paint();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setAntiAlias(true);
-        paint.setColor(Color.parseColor(lineColor));
-        paint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
-        paint.setStrokeWidth(1);
-        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
+        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, (int) maxRain, 1, gridPaint);
         lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues(0, (Math.round(maxRain)) + 1);
-        lineChartView.setStep(1);
+        lineChartView.setAxisBorderValues(0, (int) Math.ceil(maxRain));
+        lineChartView.setStep(step);
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
         lineChartView.setLabelsColor(Color.parseColor(labelColor));
 
         lineChartView.show();
+
+        BarChartView barChartView = getBackgroundBarChart(R.id.graph_rain_background, 0, (int) maxRain, true);
+        barChartView.show();
+
+        TextView textView = findViewById(R.id.graphRainTextView);
+        textView.setText(String.format("%s (%s)", getString(R.string.rain), sp.getString("lengthUnit", "mm")));
     }
 
     private void pressureGraph() {
         LineChartView lineChartView = findViewById(R.id.graph_pressure);
+
+        float minPressure = 100000;
+        float maxPressure = 0;
 
         // Data
         LineSet dataset = new LineSet();
         for (int i = 0; i < weatherList.size(); i++) {
             float pressure = UnitConvertor.convertPressure(Float.parseFloat(weatherList.get(i).getPressure()), sp);
 
-            if (pressure < minPressure) {
-                minPressure = pressure;
-            }
-
-            if (pressure > maxPressure) {
-                maxPressure = pressure;
-            }
+            minPressure = Math.min(pressure, minPressure);
+            maxPressure = Math.max(pressure, maxPressure);
 
             dataset.addPoint(getDateLabel(weatherList.get(i), i), pressure);
         }
@@ -205,27 +201,33 @@ public class GraphActivity extends BaseActivity {
 
         lineChartView.addData(dataset);
 
+        float range = Math.abs(maxPressure - minPressure);
+        int middle = Math.round(minPressure + (maxPressure - minPressure) / 2);
+        int stepSize = (int) Math.ceil(range / 4);
+
         // Grid
-        Paint paint = new Paint();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setAntiAlias(true);
-        paint.setColor(Color.parseColor(lineColor));
-        paint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
-        paint.setStrokeWidth(1);
-        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
+        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, 4, 1, gridPaint);
         lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues((int) minPressure - 1, (int) maxPressure + 1);
-        lineChartView.setStep(2);
+        lineChartView.setAxisBorderValues(middle - 2 * stepSize, middle + 2 * stepSize);
+        lineChartView.setStep(stepSize);
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
         lineChartView.setLabelsColor(Color.parseColor(labelColor));
 
         lineChartView.show();
+
+        BarChartView barChartView = getBackgroundBarChart(R.id.graph_pressure_background, middle - 2 * stepSize, middle + 2 * stepSize, false);
+        barChartView.show();
+
+        TextView textView = findViewById(R.id.graphPressureTextView);
+        textView.setText(String.format("%s (%s)", getString(R.string.pressure), sp.getString("pressureUnit", "hPa")));
     }
 
     private void windSpeedGraph() {
         LineChartView lineChartView = findViewById(R.id.graph_windspeed);
         String graphLineColor = "#efd214";
+
+        float maxWindSpeed = 0;
 
         if (darkTheme) {
             graphLineColor = "#FFF600";
@@ -236,13 +238,7 @@ public class GraphActivity extends BaseActivity {
         for (int i = 0; i < weatherList.size(); i++) {
             float windSpeed = (float) UnitConvertor.convertWind(Float.parseFloat(weatherList.get(i).getWind()), sp);
 
-            if (windSpeed < minWindSpeed) {
-                minWindSpeed = windSpeed;
-            }
-
-            if (windSpeed > maxWindSpeed) {
-                maxWindSpeed = windSpeed;
-            }
+            maxWindSpeed = Math.max(windSpeed, maxWindSpeed);
 
             dataset.addPoint(getDateLabel(weatherList.get(i), i), windSpeed);
         }
@@ -250,29 +246,34 @@ public class GraphActivity extends BaseActivity {
         dataset.setColor(Color.parseColor(graphLineColor));
         dataset.setThickness(4);
 
+        int step = 1;
+        if (maxWindSpeed > 6) {
+            maxWindSpeed = (float) Math.ceil(maxWindSpeed / 6) * 6;
+            step = (int) Math.ceil(maxWindSpeed / 6);
+        } else {
+            maxWindSpeed = (float) Math.ceil(maxWindSpeed);
+        }
+
         lineChartView.addData(dataset);
 
-        // Grid
-        Paint paint = new Paint();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setAntiAlias(true);
-        paint.setColor(Color.parseColor(lineColor));
-        paint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
-        paint.setStrokeWidth(1);
-        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
+        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, (int) maxWindSpeed, 1, gridPaint);
         lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues((int) minWindSpeed - 1, (int) maxWindSpeed + 1);
-        lineChartView.setStep(2);
+        lineChartView.setAxisBorderValues(0, (int) maxWindSpeed);
+        lineChartView.setStep(step);
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
         lineChartView.setLabelsColor(Color.parseColor(labelColor));
 
         lineChartView.show();
+
+        BarChartView barChartView = getBackgroundBarChart(R.id.graph_windspeed_background, 0, (int) maxWindSpeed, false);
+        barChartView.show();
+
+        TextView textView = findViewById(R.id.graphWindSpeedTextView);
+        textView.setText(String.format("%s (%s)", getString(R.string.wind_speed), sp.getString("speedUnit", "m/s")));
     }
 
-
-    public ParseResult parseLongTermJson(String result) {
-        int i;
+    private ParseResult parseLongTermJson(String result) {
         try {
             JSONObject reader = new JSONObject(result);
 
@@ -282,7 +283,7 @@ public class GraphActivity extends BaseActivity {
             }
 
             JSONArray list = reader.getJSONArray("list");
-            for (i = 0; i < list.length(); i++) {
+            for (int i = 0; i < list.length(); i++) {
                 Weather weather = new Weather();
 
                 JSONObject listItem = list.getJSONObject(i);
@@ -316,22 +317,54 @@ public class GraphActivity extends BaseActivity {
         return ParseResult.OK;
     }
 
-    String previous = "";
+    private String getDateLabel(Weather weather, int i) {
+        SimpleDateFormat resultFormat = new SimpleDateFormat("E");
+        resultFormat.setTimeZone(TimeZone.getDefault());
+        String output = resultFormat.format(weather.getDate());
 
-    public String getDateLabel(Weather weather, int i) {
-        if ((i + 4) % 4 == 0) {
-            SimpleDateFormat resultFormat = new SimpleDateFormat("E");
-            resultFormat.setTimeZone(TimeZone.getDefault());
-            String output = resultFormat.format(weather.getDate());
-            if (!output.equals(previous)) {
-                previous = output;
-                return output;
-            } else {
-                return "";
-            }
+        if (i == 0 && weather.getDate().getHours() > 13) {
+            return output;
+        } else if (i == weatherList.size() - 1 && weather.getDate().getHours() < 11) {
+            return output;
+        } else if (weather.getDate().getHours() >= 11 && weather.getDate().getHours() <= 13) {
+            return output;
         } else {
             return "";
         }
+    }
+
+    private BarChartView getBackgroundBarChart(int id, int min, int max, boolean includeLast) {
+        boolean visible = false;
+        int lastDay = -1;
+
+        if (Math.abs(min) > Math.abs(max)) {
+            max = min;
+        }
+
+        BarSet barDataset = new BarSet();
+        for (int i = 0; i < weatherList.size(); i++) {
+            if (weatherList.get(i).getDate().getDay() != lastDay) {
+                lastDay = weatherList.get(i).getDate().getDay();
+                visible = !visible;
+            }
+
+            if (i != weatherList.size() - 1 || includeLast) {
+                barDataset.addBar("", visible ? max : 0);
+            }
+        }
+        barDataset.setColor(Color.parseColor("#000000"));
+        barDataset.setAlpha(0.05f);
+
+        BarChartView barChartView = findViewById(id);
+        barChartView.addData(barDataset);
+        barChartView.setXAxis(false);
+        barChartView.setYAxis(false);
+        barChartView.setBarSpacing(0);
+        barChartView.setAxisBorderValues(Math.min(0, max), Math.max(0, max));
+        barChartView.setBorderSpacing(Tools.fromDpToPx(10));
+        barChartView.setLabelsColor(Color.parseColor("#00ffffff"));
+
+        return barChartView;
     }
 
     private int getTheme(String themePref) {

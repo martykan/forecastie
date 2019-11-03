@@ -26,6 +26,14 @@ public class UnitConvertor {
         return (((9 * kelvinToCelsius(kelvinTemp)) / 5) + 32);
     }
 
+    public static float convertRain(float rain, SharedPreferences sp) {
+        if (sp.getString("lengthUnit", "mm").equals("mm")) {
+            return rain;
+        } else {
+            return rain / 25.4f;
+        }
+    }
+
     public static String getRainString(double rain, SharedPreferences sp) {
         if (rain > 0) {
             if (sp.getString("lengthUnit", "mm").equals("mm")) {
