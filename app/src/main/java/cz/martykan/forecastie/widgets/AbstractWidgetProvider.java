@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -128,7 +129,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             widgetWeather.setHumidity(reader.optJSONObject("main").getString("humidity"));
             widgetWeather.setSunrise(reader.optJSONObject("sys").getString("sunrise"));
             widgetWeather.setSunset(reader.optJSONObject("sys").getString("sunset"));
-            widgetWeather.setIcon(setWeatherIcon(Integer.parseInt(reader.optJSONArray("weather").getJSONObject(0).getString("id")), isDayTime(widgetWeather), context));
+            widgetWeather.setIcon(setWeatherIcon(Integer.parseInt(reader.optJSONArray("weather").getJSONObject(0).getString("id")), isDayTime(widgetWeather, Calendar.getInstance()), context));
             widgetWeather.setLastUpdated(lastUpdate);
 
             return widgetWeather;

@@ -7,16 +7,15 @@ import cz.martykan.forecastie.models.Weather;
 
 public class timeUtils {
 
-    public static boolean isDayTime(Weather w){
-        Calendar now = Calendar.getInstance();
+    public static boolean isDayTime(Weather w, Calendar cal){
         Date sunrise = w.getSunrise();
         Date sunset = w.getSunset();
         boolean day;
         if((sunrise != null) && (sunset != null))
-            day = now.after(w.getSunrise()) && now.before(w.getSunset());
+            day = cal.after(w.getSunrise()) && cal.before(w.getSunset());
         else{
             // fallback
-            int hourOfDay = now.get(Calendar.HOUR_OF_DAY);
+            int hourOfDay = cal.get(Calendar.HOUR_OF_DAY);
             day = (hourOfDay >= 7 && hourOfDay < 20);
         }
         return day;

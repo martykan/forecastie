@@ -117,7 +117,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
                 weather.setDescription(description.substring(0, 1).toUpperCase() + description.substring(1));
                 weather.setLat(lat);
                 weather.setLon(lon);
-                weather.setIcon(formatting.setWeatherIcon(Integer.parseInt(weatherId), isDayTime(weather)));
+                weather.setIcon(formatting.setWeatherIcon(Integer.parseInt(weatherId), isDayTime(weather, calendar)));
 
                 if (sharedPreferences.getBoolean("displayDecimalZeroes", false)) {
                     weather.setTemperature(new DecimalFormat("0.0").format(temperature) + " " + sharedPreferences.getString("unit", "°C"));
