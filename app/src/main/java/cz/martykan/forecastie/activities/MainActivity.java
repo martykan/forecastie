@@ -406,7 +406,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
             final String idString = reader.getJSONArray("weather").getJSONObject(0).getString("id");
             todayWeather.setId(idString);
-            todayWeather.setIcon(formatting.setWeatherIcon(Integer.parseInt(idString), /*Calendar.getInstance().get(Calendar.HOUR_OF_DAY)*/ isDayTime(todayWeather)));
+            todayWeather.setIcon(formatting.setWeatherIcon(Integer.parseInt(idString), isDayTime(todayWeather)));
 
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
             editor.putString("lastToday", result);
@@ -585,7 +585,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
                 final String dateMsString = listItem.getString("dt") + "000";
                 Calendar cal = Calendar.getInstance();
                 cal.setTimeInMillis(Long.parseLong(dateMsString));
-                weather.setIcon(formatting.setWeatherIcon(Integer.parseInt(idString), /*cal.get(Calendar.HOUR_OF_DAY)*/ isDayTime(weather)));
+                weather.setIcon(formatting.setWeatherIcon(Integer.parseInt(idString), isDayTime(weather)));
 
                 Calendar today = Calendar.getInstance();
                 today.set(Calendar.HOUR_OF_DAY, 0);

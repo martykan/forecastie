@@ -12,7 +12,7 @@ public class Formatting {
         this.context = context;
     }
 
-    public String setWeatherIcon(int actualId, /*int hourOfDay*/ boolean day) {
+    public String setWeatherIcon(int actualId, boolean day) {
         int id = actualId / 100;
         String icon = "";
 
@@ -135,7 +135,6 @@ public class Formatting {
             }
         } else if (id == 8) {
             // clear sky or cloudy
-            //boolean day = (hourOfDay >= 7 && hourOfDay < 20);
             switch (actualId) {
                 case 800:
                     icon = day ? context.getString(R.string.weather_day_sunny) : context.getString(R.string.weather_night_clear);
