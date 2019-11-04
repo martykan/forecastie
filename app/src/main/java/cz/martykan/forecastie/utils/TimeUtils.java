@@ -7,7 +7,7 @@ import cz.martykan.forecastie.models.Weather;
 
 public class TimeUtils {
 
-    public static boolean IsDayTime(Weather W, Calendar Cal){
+    public static boolean isDayTime(Weather W, Calendar Cal){
         Date Sunrise = W.getSunrise();
         Date Sunset = W.getSunset();
         boolean day;

@@ -67,7 +67,7 @@ import cz.martykan.forecastie.utils.UnitConvertor;
 import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
 import cz.martykan.forecastie.widgets.DashClockWeatherExtension;
 
-import static cz.martykan.forecastie.utils.TimeUtils.IsDayTime;
+import static cz.martykan.forecastie.utils.TimeUtils.isDayTime;
 
 public class MainActivity extends BaseActivity implements LocationListener {
     protected static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
@@ -406,7 +406,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
             final String idString = reader.getJSONArray("weather").getJSONObject(0).getString("id");
             todayWeather.setId(idString);
-            todayWeather.setIcon(formatting.setWeatherIcon(Integer.parseInt(idString), IsDayTime(todayWeather, Calendar.getInstance())));
+            todayWeather.setIcon(formatting.setWeatherIcon(Integer.parseInt(idString), isDayTime(todayWeather, Calendar.getInstance())));
 
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
             editor.putString("lastToday", result);
@@ -585,7 +585,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
                 final String dateMsString = listItem.getString("dt") + "000";
                 Calendar cal = Calendar.getInstance();
                 cal.setTimeInMillis(Long.parseLong(dateMsString));
-                weather.setIcon(formatting.setWeatherIcon(Integer.parseInt(idString), IsDayTime(weather, cal)));
+                weather.setIcon(formatting.setWeatherIcon(Integer.parseInt(idString), isDayTime(weather, cal)));
 
                 Calendar today = Calendar.getInstance();
                 today.set(Calendar.HOUR_OF_DAY, 0);
