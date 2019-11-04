@@ -33,7 +33,7 @@ import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.utils.Formatting;
 import cz.martykan.forecastie.utils.UnitConvertor;
 
-import static cz.martykan.forecastie.utils.timeUtils.isDayTime;
+import static cz.martykan.forecastie.utils.TimeUtils.IsDayTime;
 
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     protected static final long DURATION_MINUTE = TimeUnit.SECONDS.toMillis(30);
@@ -129,7 +129,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             widgetWeather.setHumidity(reader.optJSONObject("main").getString("humidity"));
             widgetWeather.setSunrise(reader.optJSONObject("sys").getString("sunrise"));
             widgetWeather.setSunset(reader.optJSONObject("sys").getString("sunset"));
-            widgetWeather.setIcon(setWeatherIcon(Integer.parseInt(reader.optJSONArray("weather").getJSONObject(0).getString("id")), isDayTime(widgetWeather, Calendar.getInstance()), context));
+            widgetWeather.setIcon(setWeatherIcon(Integer.parseInt(reader.optJSONArray("weather").getJSONObject(0).getString("id")), IsDayTime(widgetWeather, Calendar.getInstance()), context));
             widgetWeather.setLastUpdated(lastUpdate);
 
             return widgetWeather;

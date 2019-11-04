@@ -33,7 +33,7 @@ import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.utils.Formatting;
 import cz.martykan.forecastie.utils.UnitConvertor;
 
-import static cz.martykan.forecastie.utils.timeUtils.isDayTime;
+import static cz.martykan.forecastie.utils.TimeUtils.IsDayTime;
 
 public class AmbiguousLocationDialogFragment extends DialogFragment implements LocationsRecyclerAdapter.ItemClickListener {
 
@@ -117,7 +117,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
                 weather.setDescription(description.substring(0, 1).toUpperCase() + description.substring(1));
                 weather.setLat(lat);
                 weather.setLon(lon);
-                weather.setIcon(formatting.setWeatherIcon(Integer.parseInt(weatherId), isDayTime(weather, calendar)));
+                weather.setIcon(formatting.setWeatherIcon(Integer.parseInt(weatherId), IsDayTime(weather, calendar)));
 
                 if (sharedPreferences.getBoolean("displayDecimalZeroes", false)) {
                     weather.setTemperature(new DecimalFormat("0.0").format(temperature) + " " + sharedPreferences.getString("unit", "°C"));
