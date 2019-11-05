@@ -50,6 +50,13 @@
     <string name="setting_unit_kn">매듭</string>
     <string name="setting_wind_direction_format"> 바람 방향 형식</string>
     <string name="settings_none">존재하지않음</string>
+    <string name="settings_15min">15분 </string>
+    <string name="settings_30min">30분 </string>
+    <string name="settings_1hour">1시간 </string>
+    <string name="settings_2hour">2시간 </string>
+    <string name="settings_6hour">6시간 </string>
+    <string name="settings_12hour">12시간 </string>
+    <string name="settings_24hour">24시간 </string>
     <string name="setting_apiKey">API 키</string>
     <string name="setting_apiKey_summary">날씨지도 쿼리를 위한 사용자 API 키</string>
 

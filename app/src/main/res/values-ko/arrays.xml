@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="temperatureUnits">
+        <item name="C">@string/setting_unit_Celsuis</item>
+        <item name="F">@string/setting_unit_Fahrenheit</item>
+        <item name="K">@string/setting_unit_Kelvin</item>
+    </string-array>
+    <string-array name="temperatureUnitsValues">
+        <item name="C">°C</item>
+        <item name="F">°F</item>
+        <item name="K">K</item>
+    </string-array>
+    <string-array name="lengthUnits">
+        <item name="mm">@string/setting_unit_mm</item>
+        <item name="inch">@string/setting_unit_in</item>
+    </string-array>
+    <string-array name="lengthUnitsValues">
+        <item name="mm">mm</item>
+        <item name="inch">in</item>
+    </string-array>
+    <string-array name="speedUnits">
+        <item name="mps">@string/setting_unit_mps</item>
+        <item name="kph">@string/setting_unit_kph</item>
+        <item name="mph">@string/setting_unit_mph</item>
+        <item name="bft">@string/setting_unit_bft</item>
+        <item name="kn">@string/setting_unit_kn</item>
+    </string-array>
+    <string-array name="speedUnitsValues">
+        <item name="mps">m/s</item>
+        <item name="kph">kph</item>
+        <item name="mph">mph</item>
+        <item name="bft">bft</item>
+        <item name="kn">kn</item>
+    </string-array>
+
+    <string-array name="pressureUnits">
+        <item name="hpa">@string/setting_unit_hpa</item>
+        <item name="kpa">@string/setting_unit_kpa</item>
+        <item name="mmhg">@string/setting_unit_mmhg</item>
+        <item name="inhg">@string/setting_unit_inhg</item>
+    </string-array>
+    <string-array name="pressureUnitsValues">
+        <item name="hpa">hPa</item>
+        <item name="kpa">kPa</item>
+        <item name="mmhg">mm Hg</item>
+        <item name="inhg">in Hg</item>
+    </string-array>
+    <string-array name="windDirections">
+        <item name="n">@string/wind_direction_north</item>
+        <item name="nne">@string/wind_direction_north_north_east</item>
+        <item name="ne">@string/wind_direction_north_east</item>
+        <item name="ene">@string/wind_direction_east_north_east</item>
+        <item name="e">@string/wind_direction_east</item>
+        <item name="ese">@string/wind_direction_east_south_east</item>
+        <item name="se">@string/wind_direction_south_east</item>
+        <item name="sse">@string/wind_direction_south_south_east</item>
+        <item name="s">@string/wind_direction_south</item>
+        <item name="ssw">@string/wind_direction_south_south_west</item>
+        <item name="sw">@string/wind_direction_south_west</item>
+        <item name="wsw">@string/wind_direction_west_south_west</item>
+        <item name="w">@string/wind_direction_west</item>
+        <item name="wnw">@string/wind_direction_west_north_west</item>
+        <item name="nw">@string/wind_direction_north_west</item>
+        <item name="nnw">@string/wind_direction_north_north_west</item>
+    </string-array>
+    <string-array name="windDirectionArrows">
+        <item name="n">&#x2193;</item>
+        <item name="ne">&#x2199;</item>
+        <item name="e">&#x2190;</item>
+        <item name="se">&#x2196;</item>
+        <item name="s">&#x2191;</item>
+        <item name="sw">&#x2197;</item>
+        <item name="w">&#x2192;</item>
+        <item name="nw">&#x2198;</item>
+    </string-array>
+    <string-array name="windDirectionFormats">
+        <item name="none">@string/wind_direction_format_none</item>
+        <item name="arrow">@string/wind_direction_format_arrows</item>
+        <item name="abbr">@string/wind_direction_format_abbreviations</item>
+    </string-array>
+    <string-array name="windDirectionFormatValues">
+        <item name="none">none</item>
+        <item name="arrow">arrow</item>
+        <item name="abbr">abbr</item>
+    </string-array>
+
+    <string-array name="refreshIntervals">
+        <item name="none">@string/settings_none</item>
+        <item name="15">@string/settings_15min</item>
+        <item name="30">@string/settings_30min</item>
+        <item name="1">@string/settings_1hour</item>
+        <item name="2">@string/settings_2hour</item>
+        <item name="6">@string/settings_6hour</item>
+        <item name="12">@string/settings_12hour</item>
+        <item name="24">@string/settings_24hour</item>
+    </string-array>
+    <string-array name="refreshIntervalsValues">
+        <item name="none">0</item>
+        <item name="15">15</item>
+        <item name="30">30</item>
+        <item name="1">1</item>
+        <item name="2">2</item>
+        <item name="6">6</item>
+        <item name="12">12</item>
+        <item name="24">24</item>
+    </string-array>
+
+    <string-array name="dateFormatsValues">
+        <item>E dd.MM.yyyy - HH:mm</item>
+
+        <item>dd.MM.yyyy - HH:mm</item>
+        <item>E MM/dd/yyyy - hh:mm a</item>
+        <item>EEEE, MMMM d, h:mma</item>
+        <item>MM/dd/yyyy - hh:mm a</item>
+        <item>custom</item>
+    </string-array>
+
+    <string-array name="themes">
+        <item name="fresh">@string/setting_theme_fresh</item>
+        <item name="classic">@string/setting_theme_classic</item>
+        <item name="dark">@string/setting_theme_dark</item>
+        <item name="black">@string/setting_theme_black</item>
+        <item name="classicdark">@string/setting_theme_classic_dark</item>
+        <item name="classicblack">@string/setting_theme_classic_black</item>
+    </string-array>
+    <string-array name="themesValues">
+        <item name="fresh">fresh</item>
+        <item name="classic">classic</item>
+        <item name="dark">dark</item>
+        <item name="black">black</item>
+        <item name="classicdark">classicdark</item>
+        <item name="classicblack">classicblack</item>
+    </string-array>
+</resources>
