@@ -6,6 +6,7 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.IdRes;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -37,7 +38,16 @@ public class GraphActivity extends BaseActivity {
 
     private ArrayList<Weather> weatherList = new ArrayList<>();
 
-    private Paint gridPaint = new Paint();
+    private Paint gridPaint = new Paint() {{
+        setStyle(Paint.Style.STROKE);
+        setAntiAlias(true);
+        setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
+        setStrokeWidth(1);
+    }};
+
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("E") {{
+        setTimeZone(TimeZone.getDefault());
+    }};
 
     private String labelColor = "#000000";
     private String lineColor = "#333333";
@@ -46,12 +56,7 @@ public class GraphActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        setTheme(theme = getTheme(prefs.getString("theme", "fresh")));
-        darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
-                theme == R.style.AppTheme_NoActionBar_Black ||
-                theme == R.style.AppTheme_NoActionBar_Classic_Dark ||
-                theme == R.style.AppTheme_NoActionBar_Classic_Black;
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
@@ -60,30 +65,33 @@ public class GraphActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        TextView temperatureTextView = findViewById(R.id.graphTemperatureTextView);
-        TextView rainTextView = findViewById(R.id.graphRainTextView);
-        TextView pressureTextView = findViewById(R.id.graphPressureTextView);
-        TextView windSpeedTextView = findViewById(R.id.graphWindSpeedTextView);
+        setTheme(theme = getTheme(sp.getString("theme", "fresh")));
+        darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
+                theme == R.style.AppTheme_NoActionBar_Black ||
+                theme == R.style.AppTheme_NoActionBar_Classic_Dark ||
+                theme == R.style.AppTheme_NoActionBar_Classic_Black;
 
         if (darkTheme) {
             toolbar.setPopupTheme(R.style.AppTheme_PopupOverlay_Dark);
             labelColor = "#FFFFFF";
             lineColor = "#FAFAFA";
 
+            TextView temperatureTextView = findViewById(R.id.graph_temperature_textview);
             temperatureTextView.setTextColor(Color.parseColor(labelColor));
+
+            TextView rainTextView = findViewById(R.id.graph_rain_textview);
             rainTextView.setTextColor(Color.parseColor(labelColor));
+
+            TextView pressureTextView = findViewById(R.id.graph_pressure_textview);
             pressureTextView.setTextColor(Color.parseColor(labelColor));
+
+            TextView windSpeedTextView = findViewById(R.id.graph_windspeed_textview);
             windSpeedTextView.setTextColor(Color.parseColor(labelColor));
         }
 
-        sp = PreferenceManager.getDefaultSharedPreferences(GraphActivity.this);
-        String lastLongterm = sp.getString("lastLongterm", "");
-
-        gridPaint.setStyle(Paint.Style.STROKE);
-        gridPaint.setAntiAlias(true);
         gridPaint.setColor(Color.parseColor(lineColor));
-        gridPaint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
-        gridPaint.setStrokeWidth(1);
+
+        String lastLongterm = sp.getString("lastLongterm", "");
 
         if (parseLongTermJson(lastLongterm) == ParseResult.OK) {
             temperatureGraph();
@@ -98,10 +106,9 @@ public class GraphActivity extends BaseActivity {
     private void temperatureGraph() {
         LineChartView lineChartView = findViewById(R.id.graph_temperature);
 
-        float minTemp = 100000;
-        float maxTemp = 0;
+        float minTemp = 1000;
+        float maxTemp = -1000;
 
-        // Data
         LineSet lineDataset = new LineSet();
         for (int i = 0; i < weatherList.size(); i++) {
             float temperature = UnitConvertor.convertTemperature(Float.parseFloat(weatherList.get(i).getTemperature()), sp);
@@ -114,34 +121,34 @@ public class GraphActivity extends BaseActivity {
         lineDataset.setSmooth(false);
         lineDataset.setColor(Color.parseColor("#FF5722"));
         lineDataset.setThickness(4);
-        lineChartView.addData(lineDataset);
 
-        float range = Math.abs(maxTemp - minTemp);
         int middle = Math.round(minTemp + (maxTemp - minTemp) / 2);
-        int stepSize = (int) Math.ceil(range / 4);
+        int stepSize = (int) Math.ceil(Math.abs(maxTemp - minTemp) / 4);
+        int min = middle - 2 * stepSize;
+        int max = middle + 2 * stepSize;
 
+        lineChartView.addData(lineDataset);
         lineChartView.setGrid(ChartView.GridType.HORIZONTAL, 4, 1, gridPaint);
-        lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues(middle - 2 * stepSize, middle + 2 * stepSize);
+        lineChartView.setAxisBorderValues(min, max);
         lineChartView.setStep(stepSize);
+        lineChartView.setLabelsColor(Color.parseColor(labelColor));
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
-        lineChartView.setLabelsColor(Color.parseColor(labelColor));
+        lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
         lineChartView.show();
 
-        BarChartView barChartView = getBackgroundBarChart(R.id.graph_temperature_background, middle - 2 * stepSize, middle + 2 * stepSize, false);
-        barChartView.show();
+        BarChartView backgroundChartView = getBackgroundBarChart(R.id.graph_temperature_background, min, max, false);
+        backgroundChartView.show();
 
-        TextView textView = findViewById(R.id.graphTemperatureTextView);
+        TextView textView = findViewById(R.id.graph_temperature_textview);
         textView.setText(String.format("%s (%s)", getString(R.string.temperature), sp.getString("unit", "°C")));
     }
 
     private void rainGraph() {
-        BarChartView lineChartView = findViewById(R.id.graph_rain);
+        BarChartView barChartView = findViewById(R.id.graph_rain);
 
-        float maxRain = 0;
+        float maxRain = 1;
 
-        // Data
         BarSet dataset = new BarSet();
         for (int i = 0; i < weatherList.size(); i++) {
             float rain = UnitConvertor.convertRain(Float.parseFloat(weatherList.get(i).getRain()), sp);
@@ -152,30 +159,29 @@ public class GraphActivity extends BaseActivity {
         }
         dataset.setColor(Color.parseColor("#2196F3"));
 
-        int step = 1;
+        int stepSize = 1;
         if (maxRain > 6) {
             maxRain = (float) Math.ceil(maxRain / 6) * 6;
-            step = (int) Math.ceil(maxRain / 6);
+            stepSize = (int) Math.ceil(maxRain / 6);
         } else {
             maxRain = (float) Math.ceil(maxRain);
         }
+        int max = (int) maxRain;
 
-        lineChartView.addData(dataset);
-
-        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, (int) maxRain, 1, gridPaint);
-        lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues(0, (int) Math.ceil(maxRain));
-        lineChartView.setStep(step);
-        lineChartView.setXAxis(false);
-        lineChartView.setYAxis(false);
-        lineChartView.setLabelsColor(Color.parseColor(labelColor));
-
-        lineChartView.show();
-
-        BarChartView barChartView = getBackgroundBarChart(R.id.graph_rain_background, 0, (int) maxRain, true);
+        barChartView.addData(dataset);
+        barChartView.setGrid(ChartView.GridType.HORIZONTAL, max / stepSize, 1, gridPaint);
+        barChartView.setAxisBorderValues(0, (int) Math.ceil(maxRain));
+        barChartView.setStep(stepSize);
+        barChartView.setLabelsColor(Color.parseColor(labelColor));
+        barChartView.setXAxis(false);
+        barChartView.setYAxis(false);
+        barChartView.setBorderSpacing(Tools.fromDpToPx(10));
         barChartView.show();
 
-        TextView textView = findViewById(R.id.graphRainTextView);
+        BarChartView backgroundChartView = getBackgroundBarChart(R.id.graph_rain_background, 0, max, true);
+        backgroundChartView.show();
+
+        TextView textView = findViewById(R.id.graph_rain_textview);
         textView.setText(String.format("%s (%s)", getString(R.string.rain), sp.getString("lengthUnit", "mm")));
     }
 
@@ -185,7 +191,6 @@ public class GraphActivity extends BaseActivity {
         float minPressure = 100000;
         float maxPressure = 0;
 
-        // Data
         LineSet dataset = new LineSet();
         for (int i = 0; i < weatherList.size(); i++) {
             float pressure = UnitConvertor.convertPressure(Float.parseFloat(weatherList.get(i).getPressure()), sp);
@@ -199,27 +204,25 @@ public class GraphActivity extends BaseActivity {
         dataset.setColor(Color.parseColor("#4CAF50"));
         dataset.setThickness(4);
 
-        lineChartView.addData(dataset);
-
-        float range = Math.abs(maxPressure - minPressure);
         int middle = Math.round(minPressure + (maxPressure - minPressure) / 2);
-        int stepSize = (int) Math.ceil(range / 4);
+        int stepSize = (int) Math.ceil(Math.abs(maxPressure - minPressure) / 4);
+        int min = middle - 2 * stepSize;
+        int max = middle + 2 * stepSize;
 
-        // Grid
+        lineChartView.addData(dataset);
         lineChartView.setGrid(ChartView.GridType.HORIZONTAL, 4, 1, gridPaint);
-        lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.setAxisBorderValues(middle - 2 * stepSize, middle + 2 * stepSize);
+        lineChartView.setAxisBorderValues(min, max);
         lineChartView.setStep(stepSize);
+        lineChartView.setLabelsColor(Color.parseColor(labelColor));
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
-        lineChartView.setLabelsColor(Color.parseColor(labelColor));
-
+        lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
         lineChartView.show();
 
-        BarChartView barChartView = getBackgroundBarChart(R.id.graph_pressure_background, middle - 2 * stepSize, middle + 2 * stepSize, false);
+        BarChartView barChartView = getBackgroundBarChart(R.id.graph_pressure_background, min, max, false);
         barChartView.show();
 
-        TextView textView = findViewById(R.id.graphPressureTextView);
+        TextView textView = findViewById(R.id.graph_pressure_textview);
         textView.setText(String.format("%s (%s)", getString(R.string.pressure), sp.getString("pressureUnit", "hPa")));
     }
 
@@ -227,13 +230,12 @@ public class GraphActivity extends BaseActivity {
         LineChartView lineChartView = findViewById(R.id.graph_windspeed);
         String graphLineColor = "#efd214";
 
-        float maxWindSpeed = 0;
+        float maxWindSpeed = 1;
 
         if (darkTheme) {
             graphLineColor = "#FFF600";
         }
 
-        // Data
         LineSet dataset = new LineSet();
         for (int i = 0; i < weatherList.size(); i++) {
             float windSpeed = (float) UnitConvertor.convertWind(Float.parseFloat(weatherList.get(i).getWind()), sp);
@@ -246,30 +248,29 @@ public class GraphActivity extends BaseActivity {
         dataset.setColor(Color.parseColor(graphLineColor));
         dataset.setThickness(4);
 
-        int step = 1;
+        int stepSize = 1;
         if (maxWindSpeed > 6) {
             maxWindSpeed = (float) Math.ceil(maxWindSpeed / 6) * 6;
-            step = (int) Math.ceil(maxWindSpeed / 6);
+            stepSize = (int) Math.ceil(maxWindSpeed / 6);
         } else {
             maxWindSpeed = (float) Math.ceil(maxWindSpeed);
         }
+        int max = (int) maxWindSpeed;
 
         lineChartView.addData(dataset);
-
-        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, (int) maxWindSpeed, 1, gridPaint);
-        lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
+        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, max/ stepSize, 1, gridPaint);
         lineChartView.setAxisBorderValues(0, (int) maxWindSpeed);
-        lineChartView.setStep(step);
+        lineChartView.setStep(stepSize);
+        lineChartView.setLabelsColor(Color.parseColor(labelColor));
         lineChartView.setXAxis(false);
         lineChartView.setYAxis(false);
-        lineChartView.setLabelsColor(Color.parseColor(labelColor));
-
+        lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
         lineChartView.show();
 
-        BarChartView barChartView = getBackgroundBarChart(R.id.graph_windspeed_background, 0, (int) maxWindSpeed, false);
+        BarChartView barChartView = getBackgroundBarChart(R.id.graph_windspeed_background, 0, max, false);
         barChartView.show();
 
-        TextView textView = findViewById(R.id.graphWindSpeedTextView);
+        TextView textView = findViewById(R.id.graph_windspeed_textview);
         textView.setText(String.format("%s (%s)", getString(R.string.wind_speed), sp.getString("speedUnit", "m/s")));
     }
 
@@ -317,27 +318,47 @@ public class GraphActivity extends BaseActivity {
         return ParseResult.OK;
     }
 
+    /**
+     * Returns a label for the dates, only one per day preferably at noon.
+     * @param weather weather entity
+     * @param i number of weather in long term forecast
+     * @return label (either short form of day in week or empty string)
+     */
     private String getDateLabel(Weather weather, int i) {
-        SimpleDateFormat resultFormat = new SimpleDateFormat("E");
-        resultFormat.setTimeZone(TimeZone.getDefault());
-        String output = resultFormat.format(weather.getDate());
+        String output = dateFormat.format(weather.getDate());
 
+        // label for first day if the day start after 13:00
         if (i == 0 && weather.getDate().getHours() > 13) {
             return output;
-        } else if (i == weatherList.size() - 1 && weather.getDate().getHours() < 11) {
+        }
+        // label for the last day if it ends before 13:00
+        else if (i == weatherList.size() - 1 && weather.getDate().getHours() < 11) {
             return output;
-        } else if (weather.getDate().getHours() >= 11 && weather.getDate().getHours() <= 13) {
+        }
+        // label on 13:00 for all other days
+        else if (weather.getDate().getHours() >= 11 && weather.getDate().getHours() <= 13) {
             return output;
-        } else {
+        }
+        // normal case: no date label
+        else {
             return "";
         }
     }
 
-    private BarChartView getBackgroundBarChart(int id, int min, int max, boolean includeLast) {
+    /**
+     * Returns a background chart with alternating vertical bars for each day.
+     * @param id BarChartView resource id
+     * @param min foreground chart min label
+     * @param max foreground chart max label
+     * @param includeLast true for foreground bar charts, false for foreground line charts
+     * @return background bar chart
+     */
+    private BarChartView getBackgroundBarChart(@IdRes int id, int min, int max, boolean includeLast) {
         boolean visible = false;
         int lastDay = -1;
 
-        if (Math.abs(min) > Math.abs(max)) {
+        // get longest label
+        if (getLengthAsString(min) > getLengthAsString(max)) {
             max = min;
         }
 
@@ -353,18 +374,32 @@ public class GraphActivity extends BaseActivity {
             }
         }
         barDataset.setColor(Color.parseColor("#000000"));
-        barDataset.setAlpha(0.05f);
+        barDataset.setAlpha(0.075f);
 
         BarChartView barChartView = findViewById(id);
         barChartView.addData(barDataset);
+        barChartView.setBarSpacing(0); // visually join bars into on bar per day
+        barChartView.setAxisBorderValues(Math.min(0, max), Math.max(0, max));
+        barChartView.setLabelsColor(Color.parseColor("#00ffffff")); // fully transparent (= invisible) labels
         barChartView.setXAxis(false);
         barChartView.setYAxis(false);
-        barChartView.setBarSpacing(0);
-        barChartView.setAxisBorderValues(Math.min(0, max), Math.max(0, max));
         barChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        barChartView.setLabelsColor(Color.parseColor("#00ffffff"));
 
         return barChartView;
+    }
+
+    /**
+     * Returns a comparable abstract length/width an integer number uses as a chart label. Works only for fonts with monospaced digits.
+     * @param i number
+     * @return length
+     */
+    private int getLengthAsString(int i) {
+        char[] array = String.valueOf(i).toCharArray();
+        int sum = 0;
+        for (char c : array) {
+            sum += (c == '-') ? 1 : 2; // minus is smaller than digits
+        }
+        return sum;
     }
 
     private int getTheme(String themePref) {
