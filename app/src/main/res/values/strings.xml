@@ -180,6 +180,16 @@
     <string name="rain">Rain</string>
     <string name="temperature">Temperature</string>
     <string name="action_graphs">Graphs</string>
-    <string name="about_version" translatable="false">1.10.9</string>
+<<<<<<< HEAD
+    <string name="about_version" translatable="false">1.10.8</string>
     <string name="about_text">A lightweight, Free Software weather app, released under the GPL3 licence.\n\nDeveloped by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> and others.\n\nCode is available at <a href='https://github.com/martykan/forecastie'>Forecastie.</a>\n\nData provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA license.</a>\n\nIcons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.</string>
+=======
+    <string name="about_version" translatable="false">1.10.8</string>
+    <string name="about_description">A lightweight, Free Software weather app, released under the GPL3 licence.</string>
+    <string name="about_developers">Developed by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> and others.</string>
+    <string name="about_src">Code is available at <a href='https://github.com/martykan/forecastie'>Forecastie</a>.</string>
+    <string name="about_issues">Issues can be posted at <a href='https://github.com/martykan/forecastie/issues'>here</a>.</string>
+    <string name="about_data">Data provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA license.</a></string>
+    <string name="about_icons">Icons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.</string>
+>>>>>>> 39973c3... #302 - split about string
 </resources>
