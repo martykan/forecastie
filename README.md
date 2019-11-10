@@ -21,7 +21,7 @@ A simple, opensource weather app for Android. It gathers data from [OpenWeatherM
 [<img src="https://i.imgur.com/olkk2cB.png" width=250>](https://i.imgur.com/olkk2cB.png)
 
 ## Contribution
-If you have any ideas or issues, don't hesitate to reach out to me. Every contribution is welcome.
+If you have any ideas or issues, don't hesitate to reach out to us. Every contribution is welcome. See [Contributing](https://github.com/martykan/forecastie/blob/master/CONTRIBUTING.md) for further information.
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
