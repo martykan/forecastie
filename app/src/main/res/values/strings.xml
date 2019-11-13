@@ -50,6 +50,13 @@
     <string name="setting_unit_kn">Knots (kn)</string>
     <string name="setting_wind_direction_format">Wind direction format</string>
     <string name="settings_none">None</string>
+    <string name="settings_15min">15 min</string>
+    <string name="settings_30min">30 min</string>
+    <string name="settings_1hour">1 h</string>
+    <string name="settings_2hour">2 h</string>
+    <string name="settings_6hour">6 h</string>
+    <string name="settings_12hour">12 h</string>
+    <string name="settings_24hour">24 h</string>
     <string name="setting_apiKey">API key</string>
     <string name="setting_apiKey_summary">Custom API key for OpenWeatherMap queries</string>
 
