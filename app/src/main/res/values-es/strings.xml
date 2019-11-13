@@ -6,7 +6,6 @@
     <string name="action_settings">Ajustes</string>
     <string name="action_about">Acerca de</string>
 
-<<<<<<< HEAD
     <string name="today">Hoy</string>
     <string name="tomorrow">Mañana</string>
     <string name="later">Más adelante</string>
@@ -142,12 +141,4 @@
     <string name="rain">Lluvia</string>
     <string name="temperature">Temperatura</string>
     <string name="action_graphs">Gráficas</string>
-=======
-    <string name="wind">Viento</string>
-    <string name="pressure">Presión</string>
-    <string name="humidity">Humedad</string>
-
-    <string name="search_title">Buscar una ciudad</string>
-    <string name="units_title">Seleccionar tu unidad preferida</string>
->>>>>>> 399702d... Modified spanish and basque translation
 </resources>

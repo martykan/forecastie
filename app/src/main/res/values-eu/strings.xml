@@ -6,7 +6,6 @@
     <string name="action_settings">Ezarpenak</string>
     <string name="action_about">Honi buruz</string>
 
-<<<<<<< HEAD
     <string name="today">Gaur</string>
     <string name="tomorrow">Bihar</string>
     <string name="later">Aurrerago</string>
@@ -121,12 +120,4 @@
     <string name="rain">Euria</string>
     <string name="temperature">Tenperatura</string>
     <string name="action_graphs">Grafikoak</string>
-=======
-    <string name="wind">Haizea</string>
-    <string name="pressure">Presio</string>
-    <string name="humidity">Hezetasun</string>
-
-    <string name="search_title">Hiri bat bilatu</string>
-    <string name="units_title">Nahi duzun unitatea hautatu</string>
->>>>>>> 399702d... Modified spanish and basque translation
 </resources>
