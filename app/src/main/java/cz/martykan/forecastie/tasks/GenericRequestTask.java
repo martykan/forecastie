@@ -162,7 +162,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
 
     private String getLanguage() {
         String language = Locale.getDefault().getLanguage();
-        if (language.equals("cs")) {
+        if ("cs".equals(language)) {
             language = "cz";
         }
         return language;

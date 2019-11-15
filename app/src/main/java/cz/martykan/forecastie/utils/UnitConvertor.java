@@ -9,9 +9,9 @@ import cz.martykan.forecastie.R;
 
 public class UnitConvertor {
     public static float convertTemperature(float temperature, SharedPreferences sp) {
-        if (sp.getString("unit", "°C").equals("°C")) {
+        if ("°C".equals(sp.getString("unit", "°C"))) {
             return UnitConvertor.kelvinToCelsius(temperature);
-        } else if (sp.getString("unit", "°C").equals("°F")) {
+        } else if ("°F".equals(sp.getString("unit", "°C"))) {
             return UnitConvertor.kelvinToFahrenheit(temperature);
         } else {
             return temperature;
@@ -28,7 +28,7 @@ public class UnitConvertor {
 
     public static String getRainString(double rain, SharedPreferences sp) {
         if (rain > 0) {
-            if (sp.getString("lengthUnit", "mm").equals("mm")) {
+            if ("mm".equals(sp.getString("lengthUnit", "mm"))) {
                 if (rain < 0.1) {
                     return " (<0.1 mm)";
                 } else {
@@ -48,11 +48,11 @@ public class UnitConvertor {
     }
 
     public static float convertPressure(float pressure, SharedPreferences sp) {
-        if (sp.getString("pressureUnit", "hPa").equals("kPa")) {
+        if ("kPa".equals(sp.getString("pressureUnit", "hPa"))) {
             return pressure / 10;
-        } else if (sp.getString("pressureUnit", "hPa").equals("mm Hg")) {
+        } else if ("mm Hg".equals(sp.getString("pressureUnit", "hPa"))) {
             return (float) (pressure * 0.750061561303);
-        } else if (sp.getString("pressureUnit", "hPa").equals("in Hg")) {
+        } else if ("in Hg".equals(sp.getString("pressureUnit", "hPa"))) {
             return (float) (pressure * 0.0295299830714);
         } else {
             return pressure;
@@ -60,16 +60,16 @@ public class UnitConvertor {
     }
 
     public static double convertWind(double wind, SharedPreferences sp) {
-        if (sp.getString("speedUnit", "m/s").equals("kph")) {
+        if ("kph".equals(sp.getString("speedUnit", "m/s"))) {
             return wind * 3.6;
         }
-        else if (sp.getString("speedUnit", "m/s").equals("mph")) {
+        else if ("mph".equals(sp.getString("speedUnit", "m/s"))) {
             return wind * 2.23693629205;
         }
-        else if (sp.getString("speedUnit", "m/s").equals("kn")) {
+        else if ("kn".equals(sp.getString("speedUnit", "m/s"))) {
             return wind * 1.943844;
         }
-        else if (sp.getString("speedUnit", "m/s").equals("bft")) {
+        else if ("bft".equals(sp.getString("speedUnit", "m/s"))) {
             if(wind < 0.3) {
                 return 0; // Calm
             }

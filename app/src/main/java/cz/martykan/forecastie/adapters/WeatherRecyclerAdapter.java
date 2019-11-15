@@ -114,7 +114,7 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");
         customViewHolder.itemIcon.setTypeface(weatherFont);
         customViewHolder.itemIcon.setText(weatherItem.getIcon());
-        if (sp.getString("speedUnit", "m/s").equals("bft")) {
+        if ("bft".equals(sp.getString("speedUnit", "m/s"))) {
             customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " +
                     UnitConvertor.getBeaufortName((int) wind, context) + " " + MainActivity.getWindDirectionString(sp, context, weatherItem));
         } else {
