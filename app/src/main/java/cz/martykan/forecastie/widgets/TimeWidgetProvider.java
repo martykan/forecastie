@@ -38,7 +38,7 @@ public class TimeWidgetProvider extends AbstractWidgetProvider {
 
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
             Weather widgetWeather = new Weather();
-            if(!sp.getString("lastToday", "").equals("")) {
+            if(!"".equals(sp.getString("lastToday", ""))) {
                 widgetWeather = parseWidgetJson(sp.getString("lastToday", ""), context);
             }
             else {

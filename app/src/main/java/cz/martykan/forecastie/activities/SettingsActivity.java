@@ -218,7 +218,7 @@ public class SettingsActivity extends PreferenceActivity
 
     private void checkKey(String key){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sp.getString(key, "").equals("")){
+        if ("".equals(sp.getString(key, ""))){
             sp.edit().remove(key).apply();
         }
     }

@@ -488,7 +488,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         todayTemperature.setText(new DecimalFormat("0.#").format(temperature) + " " + sp.getString("unit", "°C"));
         todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() +
                 todayWeather.getDescription().substring(1) + rainString);
-        if (sp.getString("speedUnit", "m/s").equals("bft")) {
+        if ("bft".equals(sp.getString("speedUnit", "m/s"))) {
             todayWind.setText(getString(R.string.wind) + ": " +
                     UnitConvertor.getBeaufortName((int) wind, this) +
                     (todayWeather.isWindDirectionAvailable() ? " " + getWindDirectionString(sp, this, todayWeather) : ""));

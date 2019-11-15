@@ -42,7 +42,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
             String interval = sp.getString("refreshInterval", "1");
-            if (!interval.equals("0")) {
+            if (!"0".equals(interval)) {
                 setRecurringAlarm(context);
                 getWeather();
             }
@@ -50,7 +50,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             // Get weather if last attempt failed or if 'update location in background' is activated
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
             String interval = sp.getString("refreshInterval", "1");
-            if (!interval.equals("0") &&
+            if (!"0".equals(interval) &&
                     (sp.getBoolean("backgroundRefreshFailed", false) || isUpdateLocation())) {
                 getWeather();
             }
@@ -148,7 +148,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             try {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
                 String language = Locale.getDefault().getLanguage();
-                if(language.equals("cs")) { language = "cz"; }
+                if("cs".equals(language)) { language = "cz"; }
                 String apiKey = sp.getString("apiKey", context.getResources().getString(R.string.apiKey));
                 URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?id=" + URLEncoder.encode(sp.getString("cityId", Constants.DEFAULT_CITY_ID), "UTF-8") + "&lang="+ language +"&mode=json&appid=" + apiKey);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -283,7 +283,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
             String language = Locale.getDefault().getLanguage();
-            if(language.equals("cs")) {
+            if("cs".equals(language)) {
                 language = "cz";
             }
             String apiKey = sp.getString("apiKey", context.getResources().getString(R.string.apiKey));
