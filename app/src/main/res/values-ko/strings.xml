@@ -56,7 +56,7 @@
     <string name="settings_2hour">2 시간</string>
     <string name="settings_6hour">6 시간</string>
     <string name="settings_12hour">12 시간</string>
-    <String name="settings_24hour">24 시간</string>
+    <string name="settings_24hour">24 시간</string>
     <string name="setting_apiKey">API 키</string>
     <string name="setting_apiKey_summary">날씨지도 쿼리를 위한 사용자 API 키</string>
 
