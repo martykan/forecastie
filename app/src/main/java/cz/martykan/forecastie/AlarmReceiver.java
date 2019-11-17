@@ -94,7 +94,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         String language = Locale.getDefault().getLanguage();
         if (language.equals("cs")) {
             language = "cz";
-        }else if( language.equals("ko")){
+        }else if(language.equals("ko")){
             language = "kr";
         }
         return language;
@@ -291,7 +291,6 @@ public class AlarmReceiver extends BroadcastReceiver {
 
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
             String language = getLanguage();
-
             String apiKey = sp.getString("apiKey", context.getResources().getString(R.string.apiKey));
 
             try {
