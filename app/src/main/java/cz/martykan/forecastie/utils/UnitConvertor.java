@@ -161,4 +161,30 @@ public class UnitConvertor {
             return context.getString(R.string.beaufort_hurricane);
         }
     }
+
+    public static String getDescription(String status, Context context){
+        switch (status){
+            case "clear sky":
+                return context.getString(R.string.desc_clear_sky);
+            case "few clouds":
+                return context.getString(R.string.desc_few_clouds);
+            case "scattered clouds":
+                return context.getString(R.string.desc_scattered_clouds);
+            case "broken clouds":
+                return context.getString(R.string.desc_broken_clouds);
+            case "shower rain":
+                return context.getString(R.string.desc_shower_rain);
+            case "rain":
+                return context.getString(R.string.desc_rain);
+            case "thunderstorm":
+                return context.getString(R.string.desc_thunderstorm);
+            case "snow":
+                return context.getString(R.string.desc_snow);
+            case "mist":
+                return context.getString(R.string.desc_mist);
+            default:
+                return status.substring(0, 1).toUpperCase() +
+                status.substring(1);
+        }
+    }
 }
