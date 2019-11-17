@@ -160,6 +160,16 @@
     <string name="beaufort_violent_storm">Violent storm</string>
     <string name="beaufort_hurricane">Hurricane</string>
 
+    <string name="desc_clear_sky">clear sky</string>
+    <string name="desc_few_clouds">few clouds</string>
+    <string name="desc_scattered_clouds">scattered clouds</string>
+    <string name="desc_broken_clouds">broken clouds</string>
+    <string name="desc_shower_rain">shower rain</string>
+    <string name="desc_rain">rain</string>
+    <string name="desc_thunderstorm">thunderstorm</string>
+    <string name="desc_snow">snow</string>
+    <string name="desc_mist">mist</string>
+
     <string name="uvi_no_info">No Info</string>
     <string name="uvi_low">Low</string>
     <string name="uvi_moderate">Moderate</string>
