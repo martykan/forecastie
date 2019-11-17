@@ -486,8 +486,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         double pressure = UnitConvertor.convertPressure((float) Double.parseDouble(todayWeather.getPressure()), sp);
 
         todayTemperature.setText(new DecimalFormat("0.#").format(temperature) + " " + sp.getString("unit", "°C"));
-        todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() +
-                todayWeather.getDescription().substring(1) + rainString);
+        todayDescription.setText(UnitConvertor.getDescription(todayWeather.getDescription(),this)+rainString);
         if (sp.getString("speedUnit", "m/s").equals("bft")) {
             todayWind.setText(getString(R.string.wind) + ": " +
                     UnitConvertor.getBeaufortName((int) wind, this) +
