@@ -47,6 +47,9 @@ public class GraphActivity extends BaseActivity {
     private float minWindSpeed = 100000;
     private float maxWindSpeed = 0;
 
+    private float minHumidity = 100000;
+    private float maxHumidity = 0;
+
     private String labelColor = "#000000";
     private String lineColor = "#333333";
 
@@ -92,6 +95,7 @@ public class GraphActivity extends BaseActivity {
             rainGraph();
             pressureGraph();
             windSpeedGraph();
+            humidityGraph();
         } else {
             Snackbar.make(findViewById(android.R.id.content), R.string.msg_err_parsing_json, Snackbar.LENGTH_LONG).show();
         }
@@ -270,6 +274,53 @@ public class GraphActivity extends BaseActivity {
         lineChartView.show();
     }
 
+    private void humidityGraph() {
+        LineChartView lineChartView = findViewById(R.id.graph_humidity);
+
+        String graphLineColor = "#ff7f00";
+
+        if (darkTheme) {
+            graphLineColor = "#f89b00";
+        }
+
+        // Data
+        LineSet dataset = new LineSet();
+        for (int i = 0; i < weatherList.size(); i++) {
+            float humidity = Float.parseFloat(weatherList.get(i).getHumidity());
+
+            if (humidity < minHumidity) {
+                minHumidity = humidity;
+            }
+
+            if (humidity > maxHumidity) {
+                maxHumidity = humidity;
+            }
+
+            dataset.addPoint(getDateLabel(weatherList.get(i), i), humidity);
+        }
+        dataset.setSmooth(false);
+        dataset.setColor(Color.parseColor(graphLineColor));
+        dataset.setThickness(4);
+
+        lineChartView.addData(dataset);
+
+        // Grid
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setAntiAlias(true);
+        paint.setColor(Color.parseColor(lineColor));
+        paint.setPathEffect(new DashPathEffect(new float[]{10, 10}, 0));
+        paint.setStrokeWidth(1);
+        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, paint);
+        lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
+        lineChartView.setAxisBorderValues((int) minHumidity/10 * 10, (int) (maxHumidity + 10)/10 * 10);
+        lineChartView.setStep(10);
+        lineChartView.setXAxis(false);
+        lineChartView.setYAxis(false);
+        lineChartView.setLabelsColor(Color.parseColor(labelColor));
+
+        lineChartView.show();
+    }
 
     public ParseResult parseLongTermJson(String result) {
         int i;
@@ -304,6 +355,8 @@ public class GraphActivity extends BaseActivity {
 
                 weather.setDate(listItem.getString("dt"));
                 weather.setTemperature(main.getString("temp"));
+
+                weather.setHumidity(main.getString("humidity"));
 
                 weatherList.add(weather);
             }
