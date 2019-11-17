@@ -133,6 +133,16 @@
     <string name="beaufort_violent_storm">강력한 폭풍</string>
     <string name="beaufort_hurricane">태풍</string>
 
+    <string name="desc_clear_sky">맑음</string>
+    <string name="desc_few_clouds">구름 조금</string>
+    <string name="desc_scattered_clouds">흩어진 구름</string>
+    <string name="desc_broken_clouds">끊어진 구름</string>
+    <string name="desc_shower_rain">소나기</string>
+    <string name="desc_rain">비</string>
+    <string name="desc_thunderstorm">뇌우</string>
+    <string name="desc_snow">눈</string>
+    <string name="desc_mist">안개</string>
+
     <string name="uvi_no_info">정보가 없습니다</string>
     <string name="uvi_low">낮음</string>
     <string name="uvi_moderate">보통</string>
