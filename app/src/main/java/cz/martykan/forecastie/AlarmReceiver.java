@@ -94,7 +94,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         String language = Locale.getDefault().getLanguage();
         if (language.equals("cs")) {
             language = "cz";
-        }else if( "ko".equals(language)){
+        }else if( language.equals("ko")){
             language = "kr";
         }
         return language;
