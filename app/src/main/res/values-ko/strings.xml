@@ -145,10 +145,7 @@
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\n
-   풍량: %3$s %4$s\n
-   압력: %5$s %6$s\n
-   습기: %7$s %%</string>
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n풍량: %3$s %4$s\n압력: %5$s %6$s\n습기: %7$s %%\n</string>
     <string name="settings_title_units">단위</string>
     <string name="settings_title_display">화면</string>
     <string name="settings_title_data">데이터</string>
