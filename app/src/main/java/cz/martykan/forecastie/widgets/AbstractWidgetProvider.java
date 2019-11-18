@@ -27,11 +27,13 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import cz.martykan.forecastie.BuildConfig;
-import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.R;
+import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.utils.Formatting;
 import cz.martykan.forecastie.utils.UnitConvertor;
+
+import static cz.martykan.forecastie.utils.TimeUtils.isDayTime;
 
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     protected static final long DURATION_MINUTE = TimeUnit.SECONDS.toMillis(30);
@@ -73,9 +75,9 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         return myBitmap;
     }
 
-    private String setWeatherIcon(int actualId, int hourOfDay, Context context) {
+    private String setWeatherIcon(int actualId, boolean day, Context context) {
         Formatting formatting = new Formatting(context);
-        return formatting.setWeatherIcon(actualId, hourOfDay);
+        return formatting.setWeatherIcon(actualId, day);
     }
 
     protected Weather parseWidgetJson(String result, Context context) {
@@ -127,7 +129,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             widgetWeather.setHumidity(reader.optJSONObject("main").getString("humidity"));
             widgetWeather.setSunrise(reader.optJSONObject("sys").getString("sunrise"));
             widgetWeather.setSunset(reader.optJSONObject("sys").getString("sunset"));
-            widgetWeather.setIcon(setWeatherIcon(Integer.parseInt(reader.optJSONArray("weather").getJSONObject(0).getString("id")), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), context));
+            widgetWeather.setIcon(setWeatherIcon(Integer.parseInt(reader.optJSONArray("weather").getJSONObject(0).getString("id")), isDayTime(widgetWeather, Calendar.getInstance()), context));
             widgetWeather.setLastUpdated(lastUpdate);
 
             return widgetWeather;

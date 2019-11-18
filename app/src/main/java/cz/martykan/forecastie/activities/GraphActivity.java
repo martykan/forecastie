@@ -98,6 +98,7 @@ public class GraphActivity extends BaseActivity {
             rainGraph();
             pressureGraph();
             windSpeedGraph();
+            humidityGraph();
         } else {
             Snackbar.make(findViewById(android.R.id.content), R.string.msg_err_parsing_json, Snackbar.LENGTH_LONG).show();
         }
@@ -258,7 +259,7 @@ public class GraphActivity extends BaseActivity {
         int max = (int) maxWindSpeed;
 
         lineChartView.addData(dataset);
-        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, max/ stepSize, 1, gridPaint);
+        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, max / stepSize, 1, gridPaint);
         lineChartView.setAxisBorderValues(0, (int) maxWindSpeed);
         lineChartView.setStep(stepSize);
         lineChartView.setLabelsColor(Color.parseColor(labelColor));
@@ -274,7 +275,47 @@ public class GraphActivity extends BaseActivity {
         textView.setText(String.format("%s (%s)", getString(R.string.wind_speed), sp.getString("speedUnit", "m/s")));
     }
 
-    private ParseResult parseLongTermJson(String result) {
+    private void humidityGraph() {
+        LineChartView lineChartView = findViewById(R.id.graph_humidity);
+
+        float minHumidity = 100000;
+        float maxHumidity = 0;
+
+        LineSet dataset = new LineSet();
+        for (int i = 0; i < weatherList.size(); i++) {
+            float humidity = Float.parseFloat(weatherList.get(i).getHumidity());
+
+            minHumidity = Math.min(humidity, minHumidity);
+            maxHumidity = Math.max(humidity, maxHumidity);
+
+            dataset.addPoint(getDateLabel(weatherList.get(i), i), humidity);
+        }
+        dataset.setSmooth(false);
+        dataset.setColor(Color.parseColor("#2196F3"));
+        dataset.setThickness(4);
+
+        int stepSize = 10;
+        int min = (int) minHumidity / 10 * 10;
+        int max = (int) Math.ceil(maxHumidity / 10) * 10;
+
+        lineChartView.addData(dataset);
+        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, (max - min) / stepSize, 1, gridPaint);
+        lineChartView.setAxisBorderValues(min, max);
+        lineChartView.setStep(stepSize);
+        lineChartView.setLabelsColor(Color.parseColor(labelColor));
+        lineChartView.setXAxis(false);
+        lineChartView.setYAxis(false);
+        lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
+        lineChartView.show();
+
+        BarChartView barChartView = getBackgroundBarChart(R.id.graph_humidity_background, min, max, false);
+        barChartView.show();
+
+        TextView textView = findViewById(R.id.graph_humidity_textview);
+        textView.setText(String.format("%s (%s)", getString(R.string.humidity), "%"));
+    }
+
+    public ParseResult parseLongTermJson(String result) {
         try {
             JSONObject reader = new JSONObject(result);
 
@@ -307,6 +348,8 @@ public class GraphActivity extends BaseActivity {
                 weather.setDate(listItem.getString("dt"));
                 weather.setTemperature(main.getString("temp"));
 
+                weather.setHumidity(main.getString("humidity"));
+
                 weatherList.add(weather);
             }
         } catch (JSONException e) {
@@ -331,11 +374,11 @@ public class GraphActivity extends BaseActivity {
         if (i == 0 && weather.getDate().getHours() > 13) {
             return output;
         }
-        // label for the last day if it ends before 13:00
+        // label for the last day if it ends before 11:00
         else if (i == weatherList.size() - 1 && weather.getDate().getHours() < 11) {
             return output;
         }
-        // label on 13:00 for all other days
+        // label in the middle of the day at 11:00 / 12:00 / 13:00 for all other days
         else if (weather.getDate().getHours() >= 11 && weather.getDate().getHours() <= 13) {
             return output;
         }

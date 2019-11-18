@@ -2,7 +2,7 @@
     <string name="app_name">Forecastie</string>
 
     <string name="action_search">도시 검색</string>
-    <string name="action_refresh">Actualiser</string>
+    <string name="action_refresh">날씨 정보 새로고침</string>
     <string name="action_settings">설정</string>
     <string name="action_about">정보</string>
 
@@ -11,20 +11,24 @@
     <string name="later">이후</string>
 
     <string name="wind">풍량</string>
+    <string name="wind_speed">풍속</string>
     <string name="pressure">압력</string>
     <string name="humidity">습기</string>
     <string name="sunrise">일출</string>
     <string name="sunset">일몰</string>
+    <string name="uvindex">자외선 지수</string>
 
     <string name="last_update">마지막 업데이트:\n%s</string>
-    <string name="last_update_widget">\nDernière mise à jour : %s</string>
+    <string name="last_update_widget">\n마지막 업데이트: %s</string>
 
     <string name="search_title">도시 검색</string>
 
-    <string name="downloading_data">Téléchargement des données…</string>
+    <string name="downloading_data">다운로드중</string>
     <string name="getting_location">위치 수집중…</string>
 
-    <string name="error_dateFormat">ERREUR FORMAT DATE</string>
+    <string name="loading_data">로딩</string>
+
+    <string name="error_dateFormat">데이터 형식 오류</string>
 
     <string name="setting_dateFormat">날짜 형식</string>
     <string name="setting_dateFormatCustom">날짜 형식 포맷</string>
@@ -35,96 +39,106 @@
     <string name="setting_showTempAsInteger">온도 단위를 정수로 표현</string>
     <string name="setting_pressureUnits">기압 단위</string>
     <string name="setting_theme">테마</string>
+    <string name="setting_transparent_widget"> 위젯을 투명하게 만들기</string>
     <string name="setting_auto_detect_location">위치 설정</string>
     <string name="setting_differentiateDaysByTint">날짜들을 색으로 구별</string>
     <string name="setting_refreshInterval">백그라운드 새로고침 간격</string>
-    <string name="setting_unit_mps">Mètres par seconde (m/s)</string>
-    <string name="setting_unit_kph">Kilomètres par heure (km/h)</string>
-    <string name="setting_unit_mph">Milles par heure (mph)</string>
-    <string name="setting_unit_bft">Échelle Beaufort (bft)</string>
-    <string name="setting_unit_kn">Nœuds (nd)</string>
+    <string name="setting_unit_mps">초당 미터</string>
+    <string name="setting_unit_kph">시간당 킬로미터</string>
+    <string name="setting_unit_mph">시간당 마일</string>
+    <string name="setting_unit_bft"> 보 퍼트 바람 규모</string>
+    <string name="setting_unit_kn">매듭</string>
     <string name="setting_wind_direction_format"> 바람 방향 형식</string>
-    <string name="settings_none">Aucun</string>
-    <string name="setting_apiKey">Clé API</string>
-    <string name="setting_apiKey_summary">Clé API personnalisée pour les requêtes OpenWeatherMap</string>
+    <string name="settings_none">존재하지않음</string>
+    <string name="settings_15min">15 분</string>
+    <string name="settings_30min">30 분</string>
+    <string name="settings_1hour">1 시간</string>
+    <string name="settings_2hour">2 시간</string>
+    <string name="settings_6hour">6 시간</string>
+    <string name="settings_12hour">12 시간</string>
+    <string name="settings_24hour">24 시간</string>
+    <string name="setting_apiKey">API 키</string>
+    <string name="setting_apiKey_summary">날씨지도 쿼리를 위한 사용자 API 키</string>
 
-    <string name="setting_unit_Celsuis">Celsius</string>
-    <string name="setting_unit_Fahrenheit">Fahrenheit</string>
-    <string name="setting_unit_Kelvin">Kelvin</string>
+    <string name="setting_unit_Celsuis">섭씨</string>
+    <string name="setting_unit_Fahrenheit">화씨</string>
+    <string name="setting_unit_Kelvin">켈빈</string>
 
-    <string name="setting_unit_mm">Millimètres (mm)</string>
-    <string name="setting_unit_in">Pouces (in)</string>
+    <string name="setting_unit_mm">밀리미터</string>
+    <string name="setting_unit_in">인치</string>
 
-    <string name="setting_unit_hpa">hPa</string>
-    <string name="setting_unit_kpa">kPa</string>
-    <string name="setting_unit_mmhg">mmHg</string>
-    <string name="setting_unit_inhg">inHg</string>
+    <string name="setting_unit_hpa">헥토파스칼</string>
+    <string name="setting_unit_kpa">킬로파스칼</string>
+    <string name="setting_unit_mmhg">수은주 밀리미터</string>
+    <string name="setting_unit_inhg">수은주 인치</string>
 
-    <string name="speed_unit_mps">m/s</string>
-    <string name="speed_unit_kph">kph</string>
-    <string name="speed_unit_mph">mph</string>
-    <string name="speed_unit_kn">nd</string>
+    <string name="speed_unit_mps">초당 미터</string>
+    <string name="speed_unit_kph">시간당 킬로미터</string>
+    <string name="speed_unit_mph">시간당 마일</string>
+    <string name="speed_unit_kn">매듭</string>
 
-    <string name="wind_direction_format_none">Aucune indication</string>
-    <string name="wind_direction_format_arrows">Flèches</string>
-    <string name="wind_direction_format_abbreviations">Abréviations</string>
+    <string name="wind_direction_format_none">표시 없음</string>
+    <string name="wind_direction_format_arrows">화살표</string>
+    <string name="wind_direction_format_abbreviations">축약표시</string>
 
-    <string name="pressure_unit_hpa">hPa</string>
-    <string name="pressure_unit_kpa">kPa</string>
-    <string name="pressure_unit_mmhg">mmHg</string>
+    <string name="pressure_unit_hpa">헥토파스칼</string>
+    <string name="pressure_unit_kpa">킬로파스칼</string>
+    <string name="pressure_unit_mmhg">수은주 밀리미터</string>
 
-    <string name="setting_theme_fresh">Moderne</string>
-    <string name="setting_theme_classic">Classique</string>
-    <string name="setting_theme_dark">Foncé moderne</string>
-    <string name="setting_theme_classic_dark">Foncé classique</string>
+    <string name="setting_theme_fresh">밝은</string>
+    <string name="setting_theme_classic">클래식한</string>
+    <string name="setting_theme_dark">밝은 어두운</string>
+    <string name="setting_theme_classic_dark">클래식하게 어두운</string>
+    <string name="setting_theme_black">밝은 검정</string>
+    <string name="setting_theme_classic_black">클래식한 검정</string>
 
     <string name="dialog_ok">확인</string>
     <string name="dialog_cancel">취소</string>
 
-    <string name="msg_err_parsing_json">Erreur d\'analyse JSON.</string>
-    <string name="msg_connection_problem">Il y a un problème avec votre connexion à Internet.</string>
-    <string name="msg_connection_not_available">Aucune connexion.</string>
-    <string name="msg_city_not_found">Ville introuvable.</string>
+    <string name="msg_err_parsing_json">JSON 구문 분석 오류</string>
+    <string name="msg_connection_problem">인터넷 연결에 문제가 있습니다</string>
+    <string name="msg_connection_not_available">접속불가</string>
+    <string name="msg_city_not_found">지정된 도시를 찾을 수 없습니다</string>
 
 
-    <string name="wind_direction_north">N</string>
-    <string name="wind_direction_north_north_east">NNE</string>
-    <string name="wind_direction_north_east">NE</string>
-    <string name="wind_direction_east_north_east">ENE</string>
-    <string name="wind_direction_east">E</string>
-    <string name="wind_direction_east_south_east">ESE</string>
-    <string name="wind_direction_south_east">SE</string>
-    <string name="wind_direction_south_south_east">SSE</string>
-    <string name="wind_direction_south">S</string>
-    <string name="wind_direction_south_south_west">SSO</string>
-    <string name="wind_direction_south_west">SO</string>
-    <string name="wind_direction_west_south_west">OSO</string>
-    <string name="wind_direction_west">O</string>
-    <string name="wind_direction_west_north_west">ONO</string>
-    <string name="wind_direction_north_west">NO</string>
-    <string name="wind_direction_north_north_west">NNO</string>
-    <string name="msg_too_many_requests">Trop de requêtes. Veuillez réessayer.</string>
+    <string name="wind_direction_north">북</string>
+    <string name="wind_direction_north_north_east">북북동</string>
+    <string name="wind_direction_north_east">북동</string>
+    <string name="wind_direction_east_north_east">동북동</string>
+    <string name="wind_direction_east">동</string>
+    <string name="wind_direction_east_south_east">동남동</string>
+    <string name="wind_direction_south_east">남동</string>
+    <string name="wind_direction_south_south_east">남남동</string>
+    <string name="wind_direction_south">남</string>
+    <string name="wind_direction_south_south_west">남남서</string>
+    <string name="wind_direction_south_west">남서</string>
+    <string name="wind_direction_west_south_west">서남서</string>
+    <string name="wind_direction_west">서</string>
+    <string name="wind_direction_west_north_west">서북서</string>
+    <string name="wind_direction_north_west">북서</string>
+    <string name="wind_direction_north_north_west">북북서</string>
+    <string name="msg_too_many_requests">요청이 너무 많습니다. 다시 시도하십시오</string>
 
-    <string name="beaufort_calm">Calme</string>
-    <string name="beaufort_light_air">Très légère brise</string>
-    <string name="beaufort_light_breeze">Légère brise</string>
-    <string name="beaufort_gentle_breeze">Petite brise</string>
-    <string name="beaufort_moderate_breeze">Jolie brise</string>
-    <string name="beaufort_fresh_breeze">Bonne brise</string>
-    <string name="beaufort_strong_breeze">Vent frais</string>
-    <string name="beaufort_high_wind">Grand frais</string>
-    <string name="beaufort_gale">Coup de vent</string>
-    <string name="beaufort_strong_gale">Fort coup de vent</string>
-    <string name="beaufort_storm">Tempête</string>
-    <string name="beaufort_violent_storm">Violente tempête</string>
-    <string name="beaufort_hurricane">Ouragan</string>
+    <string name="beaufort_calm">잔잔</string>
+    <string name="beaufort_light_air">가벼운 공기</string>
+    <string name="beaufort_light_breeze">가벼운 바람</string>
+    <string name="beaufort_gentle_breeze">산들 바람</string>
+    <string name="beaufort_moderate_breeze">보통 바람</string>
+    <string name="beaufort_fresh_breeze">신선한 바람</string>
+    <string name="beaufort_strong_breeze">강한 바람</string>
+    <string name="beaufort_high_wind">높은 바람</string>
+    <string name="beaufort_gale">강풍</string>
+    <string name="beaufort_strong_gale">강한 강풍</string>
+    <string name="beaufort_storm">폭풍</string>
+    <string name="beaufort_violent_storm">강력한 폭풍</string>
+    <string name="beaufort_hurricane">태풍</string>
 
-    <string name="uvi_no_info">Aucune information</string>
-    <string name="uvi_low">Faible</string>
-    <string name="uvi_moderate">Modéré</string>
-    <string name="uvi_high">Élevé</string>
-    <string name="uvi_very_high">Très élevé</string>
-    <string name="uvi_extreme">Extrême</string>
+    <string name="uvi_no_info">정보가 없습니다</string>
+    <string name="uvi_low">낮음</string>
+    <string name="uvi_moderate">보통</string>
+    <string name="uvi_high">높음</string>
+    <string name="uvi_very_high">매우 높음</string>
+    <string name="uvi_extreme">극도로 높음</string>
 
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
@@ -132,9 +146,9 @@
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\n
-   Vent : %3$s %4$s\n
-   Pression : %5$s %6$s\n
-   Humidité : %7$s %%</string>
+   풍량: %3$s %4$s\n
+   압력: %5$s %6$s\n
+   습기: %7$s %%</string>
     <string name="settings_title_units">단위</string>
     <string name="settings_title_display">화면</string>
     <string name="settings_title_data">데이터</string>
@@ -149,5 +163,11 @@
     <string name="rain">강수량</string>
     <string name="temperature">기온</string>
     <string name="action_graphs">그래프</string>
-    <string name="setting_transparent_widget"> 위젯을 투명하게 만들기</string>
+    <string name="about_description">GPL3 라이센스에 따라 출시 된 간단한 자유 소프트웨어 날씨 앱입니다.</string>
+    <string name="about_developers"><a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> 등 <a href='https://github.com/martykan/forecastie/graphs/contributors'>다른 인원들</a>이 개발하였으며, <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>많은 이들의</a> 도움이 있습니다.</string>
+    <string name="about_src">코드는 <a href='https://github.com/martykan/forecastie'>Forecastie</a>에서 이용가능합니다.</string>
+    <string name="about_issues">이슈는 <a href='https://github.com/martykan/forecastie/issues'>이곳에</a> 게시하실 수 있습니다.</string>
+    <string name="about_data"><a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA </a>라이센스에 따라 <a href='https://openweathermap.org/'>OpenWeatherMap</a>에서 제공한 데이터입니다.</string>
+    <string name="about_icons"><a href='http://scripts.sil.org/OFL'>아이콘은 SIL OFL 1.1</a> 라이센스에 따라 <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> 및 <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a><a href='https://erikflowers.github.io/weather-icons/'>의 날씨 아이콘입니다.</a>
+</string>
 </resources>
