@@ -187,7 +187,7 @@
     <string name="rain">Rain</string>
     <string name="temperature">Temperature</string>
     <string name="action_graphs">Graphs</string>
-    <string name="about_version" translatable="false">1.10.9</string>
+    <string name="about_version" translatable="false">1.11</string>
     <string name="about_description">A lightweight, Free Software weather app, released under the GPL3 licence.</string>
     <string name="about_developers">Developed by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> and <a href='https://github.com/martykan/forecastie/graphs/contributors'>others</a>, with assistance from <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>many more</a>.</string>
     <string name="about_src">Code is available at <a href='https://github.com/martykan/forecastie'>Forecastie</a>.</string>
