@@ -12,7 +12,7 @@
 
     <string name="wind_speed">Windgeschwindigkeit</string>
     <string name="pressure">Luftdruck</string>
-    <string name="humidity">Feuchtigkeit</string>
+    <string name="humidity">Luftfeuchtigkeit</string>
     <string name="sunrise">Sonnenaufgang</string>
     <string name="sunset">Sonnenuntergang</string>
     <string name="uvindex">UV-Index</string>
