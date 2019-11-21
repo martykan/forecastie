@@ -294,9 +294,9 @@ public class GraphActivity extends BaseActivity {
         dataset.setColor(Color.parseColor("#2196F3"));
         dataset.setThickness(4);
 
-        int stepSize = 10;
         int min = (int) minHumidity / 10 * 10;
         int max = (int) Math.ceil(maxHumidity / 10) * 10;
+        int stepSize = (max - min == 10) ? 20 : 10;
 
         lineChartView.addData(dataset);
         lineChartView.setGrid(ChartView.GridType.HORIZONTAL, (max - min) / stepSize, 1, gridPaint);
@@ -370,7 +370,7 @@ public class GraphActivity extends BaseActivity {
     private String getDateLabel(Weather weather, int i) {
         String output = dateFormat.format(weather.getDate());
 
-        // label for first day if the day start after 13:00
+        // label for first day if it starts after 13:00
         if (i == 0 && weather.getDate().getHours() > 13) {
             return output;
         }
@@ -398,22 +398,27 @@ public class GraphActivity extends BaseActivity {
      */
     private BarChartView getBackgroundBarChart(@IdRes int id, int min, int max, boolean includeLast) {
         boolean visible = false;
-        int lastDay = -1;
+        int lastHour = 25;
 
-        // get longest label
+        // get label with biggest visual length
         if (getLengthAsString(min) > getLengthAsString(max)) {
             max = min;
         }
 
         BarSet barDataset = new BarSet();
         for (int i = 0; i < weatherList.size(); i++) {
-            if (weatherList.get(i).getDate().getDay() != lastDay) {
-                lastDay = weatherList.get(i).getDate().getDay();
-                visible = !visible;
-            }
-
             if (i != weatherList.size() - 1 || includeLast) {
-                barDataset.addBar("", visible ? max : 0);
+                for (int j = 0; j < 3; j++) {
+                    int hour = (weatherList.get(i).getDate().getHours() + j) % 24;
+
+                    // 23:00 to 0:00 new day
+                    if (hour < lastHour) {
+                        visible = !visible;
+                    }
+
+                    barDataset.addBar("", visible ? max : 0);
+                    lastHour = hour;
+                }
             }
         }
         barDataset.setColor(Color.parseColor("#000000"));
@@ -432,7 +437,7 @@ public class GraphActivity extends BaseActivity {
     }
 
     /**
-     * Returns a comparable abstract length/width an integer number uses as a chart label. Works only for fonts with monospaced digits.
+     * Returns a comparable abstract length/width an integer number uses as a chart label (works best for fonts with monospaced digits).
      * @param i number
      * @return length
      */

@@ -12,6 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="4dp"
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
@@ -24,7 +25,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp">
+            android:layout_margin="12dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -61,7 +62,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp">
+            android:layout_margin="12dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -98,7 +99,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp">
+            android:layout_margin="12dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -135,7 +136,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp">
+            android:layout_margin="12dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -172,7 +173,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp">
+            android:layout_margin="12dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
