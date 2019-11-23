@@ -12,6 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="4dp"
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
@@ -24,16 +25,16 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp">
+            android:layout_margin="12dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/graphTemperatureTextView"
+                    android:id="@+id/graph_temperature_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
@@ -42,27 +43,35 @@
                     android:textColor="@color/text_dark"
                     android:textSize="18sp" />
 
+                <com.db.chart.view.BarChartView
+                    android:id="@+id/graph_temperature_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/graph_temperature_textview"
+                    chart:chart_axisBorderSpacing="8dp" />
+
                 <com.db.chart.view.LineChartView
                     android:id="@+id/graph_temperature"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    android:layout_below="@id/graph_temperature_textview"
                     chart:chart_axisBorderSpacing="8dp" />
-            </LinearLayout>
+            </RelativeLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp">
+            android:layout_margin="12dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/graphRainTextView"
+                    android:id="@+id/graph_rain_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
@@ -71,27 +80,35 @@
                     android:textColor="@color/text_dark"
                     android:textSize="18sp" />
 
-                <com.db.chart.view.LineChartView
+                <com.db.chart.view.BarChartView
+                    android:id="@+id/graph_rain_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/graph_rain_textview"
+                    chart:chart_axisBorderSpacing="8dp" />
+
+                <com.db.chart.view.BarChartView
                     android:id="@+id/graph_rain"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    android:layout_below="@id/graph_rain_textview"
                     chart:chart_axisBorderSpacing="8dp" />
-            </LinearLayout>
+            </RelativeLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp">
+            android:layout_margin="12dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/graphPressureTextView"
+                    android:id="@+id/graph_pressure_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
@@ -100,27 +117,35 @@
                     android:textColor="@color/text_dark"
                     android:textSize="18sp" />
 
+                <com.db.chart.view.BarChartView
+                    android:id="@+id/graph_pressure_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/graph_pressure_textview"
+                    chart:chart_axisBorderSpacing="8dp" />
+
                 <com.db.chart.view.LineChartView
                     android:id="@+id/graph_pressure"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    android:layout_below="@id/graph_pressure_textview"
                     chart:chart_axisBorderSpacing="8dp" />
-            </LinearLayout>
+            </RelativeLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp">
+            android:layout_margin="12dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/graphWindSpeedTextView"
+                    android:id="@+id/graph_windspeed_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
@@ -129,12 +154,57 @@
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
+                <com.db.chart.view.BarChartView
+                    android:id="@+id/graph_windspeed_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/graph_windspeed_textview"
+                    chart:chart_axisBorderSpacing="8dp" />
+
                 <com.db.chart.view.LineChartView
                     android:id="@+id/graph_windspeed"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    android:layout_below="@id/graph_windspeed_textview"
                     chart:chart_axisBorderSpacing="8dp" />
-            </LinearLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="12dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/graph_humidity_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/humidity"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <com.db.chart.view.BarChartView
+                    android:id="@+id/graph_humidity_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/graph_humidity_textview"
+                    chart:chart_axisBorderSpacing="8dp" />
+
+                <com.db.chart.view.LineChartView
+                    android:id="@+id/graph_humidity"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/graph_humidity_textview"
+                    chart:chart_axisBorderSpacing="8dp" />
+            </RelativeLayout>
         </android.support.v7.widget.CardView>
 
     </LinearLayout>
