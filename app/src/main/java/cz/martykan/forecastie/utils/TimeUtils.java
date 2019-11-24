@@ -11,8 +11,11 @@ public class TimeUtils {
         Date Sunrise = W.getSunrise();
         Date Sunset = W.getSunset();
         boolean day;
-        if((Sunrise != null) && (Sunset != null))
-            day = Cal.after(W.getSunrise()) && Cal.before(W.getSunset());
+        if((Sunrise != null) && (Sunset != null)){
+            Date currentTime = Calendar.getInstance().getTime();    // Cal is always set to midnight
+                                                                    // then get real time
+            day = currentTime.after(W.getSunrise()) && currentTime.before(W.getSunset());
+        }
         else{
             // fallback
             int hourOfDay = Cal.get(Calendar.HOUR_OF_DAY);
