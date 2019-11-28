@@ -10,8 +10,8 @@ android {
         minSdkVersion 15
         //noinspection ExpiringTargetSdkVersion
         targetSdkVersion 27
-        versionCode 39
-        versionName "1.11"
+        versionCode 40
+        versionName "1.12"
     }
 
     lintOptions {
