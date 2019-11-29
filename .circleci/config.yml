@@ -24,6 +24,7 @@ jobs:
           name: Build debug APK
           command: ./gradlew :app:assembleDebug
       - run:
+          # place holder for real code to upload artifacts
           name: Creating Dummy Artifacts
           command: |
             echo "my artifact file" > /tmp/artifact-1;
