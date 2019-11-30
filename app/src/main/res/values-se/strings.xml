@@ -154,6 +154,9 @@
     <string name="rain">Regn</string>
     <string name="temperature">Temperatur</string>
     <string name="action_graphs">Grafer</string>
-    <string name="about_text">En liten väder app, släppt under GPL3 licensen.\n\nUtvecklag av <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> och andra\n\nKoden är tillgänglig på <a href='https://github.com/martykan/forecastie'>Forecastie</a>\n\nUppgifter tillhandahållna av <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons licensen</a>\n\nIkoner är <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, av <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> och <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licensen.</string>
-
+    <string name="about_description">En liten väder app, släppt under GPL3 licensen.</string>
+    <string name="about_developers">Utvecklag av <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> och andra</string>
+    <string name="about_src">Koden är tillgänglig på <a href='https://github.com/martykan/forecastie'>Forecastie</a></string>
+    <string name="about_data">Uppgifter tillhandahållna av <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons licensen</a></string>
+    <string name="about_icons">Ikoner är <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, av <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> och <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licensen.</string>
 </resources>

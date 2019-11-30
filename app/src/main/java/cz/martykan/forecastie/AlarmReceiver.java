@@ -90,6 +90,16 @@ public class AlarmReceiver extends BroadcastReceiver {
         return preferences.getBoolean("updateLocationAutomatically", false);
     }
 
+    private String getLanguage() {
+        String language = Locale.getDefault().getLanguage();
+        if (language.equals("cs")) {
+            language = "cz";
+        }else if(language.equals("ko")){
+            language = "kr";
+        }
+        return language;
+    }
+
     public class GetWeatherTask extends AsyncTask<String, String, Void> {
 
         protected void onPreExecute() {
@@ -100,8 +110,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         protected Void doInBackground(String... params) {
             try {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-                String language = Locale.getDefault().getLanguage();
-                if(language.equals("cs")) { language = "cz"; }
+                String language = getLanguage();
                 String apiKey = sp.getString("apiKey", context.getResources().getString(R.string.apiKey));
                 URL url = new URL("https://api.openweathermap.org/data/2.5/weather?id=" + URLEncoder.encode(sp.getString("cityId", Constants.DEFAULT_CITY_ID), "UTF-8") + "&lang="+ language +"&appid=" + apiKey);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -147,8 +156,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         protected Void doInBackground(String... params) {
             try {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-                String language = Locale.getDefault().getLanguage();
-                if(language.equals("cs")) { language = "cz"; }
+                String language = getLanguage();
                 String apiKey = sp.getString("apiKey", context.getResources().getString(R.string.apiKey));
                 URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?id=" + URLEncoder.encode(sp.getString("cityId", Constants.DEFAULT_CITY_ID), "UTF-8") + "&lang="+ language +"&mode=json&appid=" + apiKey);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -282,10 +290,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             String lon = params[1];
 
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-            String language = Locale.getDefault().getLanguage();
-            if(language.equals("cs")) {
-                language = "cz";
-            }
+            String language = getLanguage();
             String apiKey = sp.getString("apiKey", context.getResources().getString(R.string.apiKey));
 
             try {
