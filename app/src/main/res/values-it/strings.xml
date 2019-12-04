@@ -147,4 +147,21 @@
     <string name="rain">Pioggia</string>
     <string name="temperature">Temperatura</string>
     <string name="action_graphs">Grafici</string>
+    <string name="about_data">Dati forniti da <a href="https://openweathermap.org/">OpenWeatherMap</a>, sotto la <a href="http://creativecommons.org/licenses/by-sa/2.0/">licenza Creative Commons CC-BY-SA</a>.</string>
+    <string name="about_description">Una leggera app meteo di Software Libero, rilasciata con licenreleased under the GPL3 licence.</string>
+    <string name="about_developers">Sviluppata da <a href="mailto:t.martykan@gmail.com">Tomas Martykan</a> e <a href="https://github.com/martykan/forecastie/graphs/contributors">altri</a>, con il supporto di <a href="https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue">moltri altri</a>.</string>
+    <string name="about_icons">Le icone sono <a href="https://erikflowers.github.io/weather-icons/">Weather Icons</a>, di <a href="http://www.twitter.com/artill">Lukas Bischoff</a> e <a href="http://www.twitter.com/Erik_UX">Erik Flowers</a>, sotto la licenza <a href="http://scripts.sil.org/OFL">SIL OFL 1.1</a>.</string>
+    <string name="about_issues">È possibile segnalare problemi <a href="https://github.com/martykan/forecastie/issues">qui</a>.</string>
+    <string name="about_src">Il codice è disponibile in <a href="https://github.com/martykan/forecastie">Forecastie</a>.</string>
+    <string name="loading_data">Caricamento...</string>
+    <string name="setting_theme_black">Fresco nero</string>
+    <string name="setting_theme_classic_black">Classico nero</string>
+    <string name="settings_12hour">12 h</string>
+    <string name="settings_15min">15 min</string>
+    <string name="settings_1hour">1 h</string>
+    <string name="settings_24hour">24 h</string>
+    <string name="settings_2hour">2 h</string>
+    <string name="settings_30min">30 min</string>
+    <string name="settings_6hour">6 h</string>
+    <string name="uvi_no_info">Nessuna informazione</string>
 </resources>
