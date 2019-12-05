@@ -51,6 +51,7 @@ public class GraphActivity extends BaseActivity {
 
     private String labelColor = "#000000";
     private String lineColor = "#333333";
+    private String backgroundBarColor = "#000000";
 
     private boolean darkTheme = false;
 
@@ -75,6 +76,7 @@ public class GraphActivity extends BaseActivity {
             toolbar.setPopupTheme(R.style.AppTheme_PopupOverlay_Dark);
             labelColor = "#FFFFFF";
             lineColor = "#FAFAFA";
+            backgroundBarColor = "#FFFFFF";
 
             TextView temperatureTextView = findViewById(R.id.graph_temperature_textview);
             temperatureTextView.setTextColor(Color.parseColor(labelColor));
@@ -87,6 +89,9 @@ public class GraphActivity extends BaseActivity {
 
             TextView windSpeedTextView = findViewById(R.id.graph_windspeed_textview);
             windSpeedTextView.setTextColor(Color.parseColor(labelColor));
+
+            TextView humidityTextView = findViewById(R.id.graph_humidity_textview);
+            humidityTextView.setTextColor(Color.parseColor(labelColor));
         }
 
         gridPaint.setColor(Color.parseColor(lineColor));
@@ -421,7 +426,7 @@ public class GraphActivity extends BaseActivity {
                 }
             }
         }
-        barDataset.setColor(Color.parseColor("#000000"));
+        barDataset.setColor(Color.parseColor(backgroundBarColor));
         barDataset.setAlpha(0.075f);
 
         BarChartView barChartView = findViewById(id);
