@@ -20,6 +20,7 @@ import android.provider.Settings;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -290,13 +291,18 @@ public class MainActivity extends BaseActivity implements LocationListener {
     }
 
     private void searchCities() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle(this.getString(R.string.search_title));
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         input.setMaxLines(1);
         input.setSingleLine(true);
-        alert.setView(input, 32, 0, 32, 0);
+
+        TextInputLayout inputLayout = new TextInputLayout(this);
+        inputLayout.setPadding(32, 0, 32, 0);
+        inputLayout.addView(input);
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(this.getString(R.string.search_title));
+        alert.setView(inputLayout);
 
         alert.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
