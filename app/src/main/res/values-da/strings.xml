@@ -39,7 +39,7 @@
     <string name="setting_showTempAsInteger">Vis temperatur som heltal</string>
     <string name="setting_pressureUnits">Tryk enheder</string>
     <string name="setting_theme">Tema</string>
-    <string name="setting_transparent_widget">Gør dims gennemsigtig</string>
+    <string name="setting_transparent_widget">Gør kontrol gennemsigtig</string>
     <string name="setting_auto_detect_location">Opdage placering</string>
     <string name="setting_differentiateDaysByTint">Adskille dage med farver</string>
     <string name="setting_refreshInterval">Baggrund genopfrisk interval</string>
@@ -50,6 +50,13 @@
     <string name="setting_unit_kn">Knob (kn)</string>
     <string name="setting_wind_direction_format">Vindretning format</string>
     <string name="settings_none">Ingen</string>
+    <string name="settings_15min">15 m.</string>
+    <string name="settings_30min">30 m.</string>
+    <string name="settings_1hour">1 t.</string>
+    <string name="settings_2hour">2 t.</string>
+    <string name="settings_6hour">6 t.</string>
+    <string name="settings_12hour">12 t.</string>
+    <string name="settings_24hour">24 t.</string>
     <string name="setting_apiKey">API nøgle</string>
     <string name="setting_apiKey_summary">Brugertilpasset API nøgle til OpenWeatherMap forespørgsel</string>
 
@@ -89,8 +96,8 @@
     <string name="dialog_cancel">Annullere</string>
 
     <string name="msg_err_parsing_json">Fejl i JSON fortolkning.</string>
-    <string name="msg_connection_problem">Der er problemer med internet forbindelse</string>
-    <string name="msg_connection_not_available">Forbindelse ikke tilgængelig</string>
+    <string name="msg_connection_problem">Der er problemer med internet forbindelse.</string>
+    <string name="msg_connection_not_available">Forbindelse ikke tilgængelig.</string>
     <string name="msg_city_not_found">Angivet by ikke fundet.</string>
 
     <string name="wind_direction_north">N</string>
@@ -125,6 +132,7 @@
     <string name="beaufort_violent_storm">Stærk storm</string>
     <string name="beaufort_hurricane">Orkan</string>
 
+    <string name="uvi_no_info">Ingen information</string>
     <string name="uvi_low">Lav</string>
     <string name="uvi_moderate">Moderat</string>
     <string name="uvi_high">Høj</string>
@@ -151,4 +159,10 @@
     <string name="rain">Regn</string>
     <string name="temperature">Temperatur</string>
     <string name="action_graphs">Grafer</string>
+    <string name="about_description">Letvægt, Free Software vejr program frigivet under GPL3 licens.</string>
+    <string name="about_developers">Udviklet af <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> og <a href='https://github.com/martykan/forecastie/graphs/contributors'>andre</a>, med hjælp fra <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>mange flere</a>.</string>
+    <string name="about_src">Koden tilgængelig hos <a href='https://github.com/martykan/forecastie'>Forecastie</a>.</string>
+    <string name="about_issues">Problemer kan postes <a href='https://github.com/martykan/forecastie/issues'>her</a>.</string>
+    <string name="about_data">Data leveret af <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA licens.</a></string>
+    <string name="about_icons">Ikoner er <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, af <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> og <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licens.</string>
 </resources>
