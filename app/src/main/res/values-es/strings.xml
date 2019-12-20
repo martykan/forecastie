@@ -11,10 +11,12 @@
     <string name="later">Más adelante</string>
 
     <string name="wind">Viento</string>
+    <string name="wind_speed">Velocidad del viento</string>
     <string name="pressure">Presión</string>
     <string name="humidity">Humedad</string>
     <string name="sunrise">Salida del sol</string>
     <string name="sunset">Puesta del sol</string>
+    <string name="uvindex">Índice UV</string>
 
     <string name="last_update">Última actualización:\n%s</string>
     <string name="last_update_widget">\nÚltima actualización: %s</string>
@@ -23,6 +25,8 @@
 
     <string name="downloading_data">Descargando sus datos...</string>
     <string name="getting_location">Obteniendo su ubicación...</string>
+
+    <string name="loading_data">Cargando...</string>
 
     <string name="error_dateFormat">ERROR EN FORMATO DE FECHA</string>
 
@@ -35,14 +39,24 @@
     <string name="setting_showTempAsInteger">Mostrar temperatura sólo como entero</string>
     <string name="setting_pressureUnits">Unidades de presión</string>
     <string name="setting_theme">Tema</string>
+    <string name="setting_transparent_widget">Hacer el widget transparente</string>
     <string name="setting_auto_detect_location">Detectar ubicación</string>
     <string name="setting_differentiateDaysByTint">Diferenciar los días con colores</string>
     <string name="setting_refreshInterval">Intervalo de actualización en segundo plano</string>
     <string name="setting_unit_mps">Metros por segundo (m/s)</string>
     <string name="setting_unit_kph">Kilómetros por hora (km/h)</string>
     <string name="setting_unit_mph">Millas por hora (mph)</string>
+    <string name="setting_unit_bft">Escala de viento Beaufort (bft)</string>
+    <string name="setting_unit_kn">Nudos (kn)</string>
     <string name="setting_wind_direction_format">Formato de dirección del viento</string>
     <string name="settings_none">Ninguno</string>
+    <string name="settings_15min">15 min</string>
+    <string name="settings_30min">30 min</string>
+    <string name="settings_1hour">1 h</string>
+    <string name="settings_2hour">2 h</string>
+    <string name="settings_6hour">6 h</string>
+    <string name="settings_12hour">12 h</string>
+    <string name="settings_24hour">24 h</string>
     <string name="setting_apiKey">Clave de la API</string>
     <string name="setting_apiKey_summary">Clave personalizada de la API para consultas en OpenWeatherMap</string>
 
@@ -55,11 +69,13 @@
 
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
-    <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_mmhg">mmHg</string>
+    <string name="setting_unit_inhg">inHg</string>
 
     <string name="speed_unit_mps">m/s</string>
     <string name="speed_unit_kph">kph</string>
     <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_kn">kn</string>
 
     <string name="wind_direction_format_none">Sin indicadores</string>
     <string name="wind_direction_format_arrows">Flechas</string>
@@ -67,12 +83,14 @@
 
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
-    <string name="pressure_unit_mmhg">mm Hg</string>
+    <string name="pressure_unit_mmhg">mmHg</string>
 
     <string name="setting_theme_fresh">Moderno</string>
     <string name="setting_theme_classic">Clásico</string>
-    <string name="setting_theme_dark">Moderno oscuro</string>
-    <string name="setting_theme_classic_dark">Clásico oscuro</string>
+    <string name="setting_theme_dark">Oscuro moderno</string>
+    <string name="setting_theme_classic_dark">Oscuro clásico</string>
+    <string name="setting_theme_black">Negro moderno</string>
+    <string name="setting_theme_classic_black">Negro clásico</string>
 
     <string name="dialog_ok">Aceptar</string>
     <string name="dialog_cancel">Cancelar</string>
@@ -141,4 +159,10 @@
     <string name="rain">Lluvia</string>
     <string name="temperature">Temperatura</string>
     <string name="action_graphs">Gráficas</string>
+    <string name="about_description">Una aplicación sencilla para consultar el tiempo, desarrollada con software libre y bajo licencia GPLv3.</string>
+    <string name="about_developers">Desarrollada por <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> y <a href='https://github.com/martykan/forecastie/graphs/contributors'>otros</a>, con la ayuda de <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>muchos más</a>.</string>
+    <string name="about_src">Código fuente disponible en <a href='https://github.com/martykan/forecastie'>Github</a>.</string>
+    <string name="about_issues">Puede enviar errores y mejoras a nuestra página <a href='https://github.com/martykan/forecastie/issues'>de seguimiento de errores en Github</a>.</string>
+    <string name="about_data">Datos proporcionados por <a href='https://openweathermap.org/'>OpenWeatherMap</a>, bajo la licencia <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA</a>.</string>
+    <string name="about_icons">Los iconos son de <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, creados por <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> y <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, bajo la licencia <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a>.</string>
 </resources>
