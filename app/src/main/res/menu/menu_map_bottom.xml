@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/map_clouds"
+        android:checkable="false"
         android:icon="@drawable/ic_cloud_grey600_18dp"
-        android:title="@string/clouds" />
+        android:title="@string/clouds"
+        app:showAsAction="always" />
     <item
         android:id="@+id/map_rain"
         android:icon="@drawable/ic_water_grey600_18dp"
-        android:title="@string/rain" />
+        android:title="@string/rain"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/map_wind"
         android:icon="@drawable/ic_weather_windy_grey600_18dp"
-        android:title="@string/wind" />
+        android:title="@string/wind"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/map_temperature"
         android:icon="@drawable/ic_thermometer_grey600_18dp"
-        android:title="@string/temperature" />
+        android:title="@string/temperature"
+        app:showAsAction="always"/>
 </menu>
