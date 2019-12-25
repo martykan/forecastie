@@ -120,12 +120,12 @@
 
     <string name="beaufort_calm">Calma</string>
     <string name="beaufort_light_air">Ventolina</string>
-    <string name="beaufort_light_breeze">Flojito</string>
-    <string name="beaufort_gentle_breeze">Flojo</string>
-    <string name="beaufort_moderate_breeze">Bonancible</string>
-    <string name="beaufort_fresh_breeze">Fresquito</string>
-    <string name="beaufort_strong_breeze">Fresco</string>
-    <string name="beaufort_high_wind">Frescachón</string>
+    <string name="beaufort_light_breeze">Brisa suave</string>
+    <string name="beaufort_gentle_breeze">Brisa ligera</string>
+    <string name="beaufort_moderate_breeze">Brisa moderada</string>
+    <string name="beaufort_fresh_breeze">Brisa fresca</string>
+    <string name="beaufort_strong_breeze">Brisa potente</string>
+    <string name="beaufort_high_wind">Viento fuerte</string>
     <string name="beaufort_gale">Temporal</string>
     <string name="beaufort_strong_gale">Temporal fuerte</string>
     <string name="beaufort_storm">Temporal duro</string>
@@ -153,7 +153,7 @@
     <string name="setting_update_location_automatically">Actualizar ubicación en segundo plano</string>
 
     <string name="location_settings">Ajustes de ubicación</string>
-    <string name="location_settings_message">La ubicación no está activada. ¿Quiere ir al menú de ajustes?</string>
+    <string name="location_settings_message">La ubicación no está activada. ¿Quiere ir al menú de Ajustes?</string>
     <string name="location_settings_button">Ajustes</string>
     <string name="action_weather_map">Mapa del tiempo</string>
     <string name="rain">Lluvia</string>
