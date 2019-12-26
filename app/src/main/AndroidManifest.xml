@@ -31,7 +31,7 @@
             android:name=".activities.SettingsActivity"
             android:theme="@style/AppTheme" />
 
-        <receiver android:name=".widgets.ExtensiveWidgetProvider">
+        <receiver android:name=".widgets.ExtensiveWidgetProvider" android:label="@string/widget_label_extensive">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -40,7 +40,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/extensive_widget" />
         </receiver>
-        <receiver android:name=".widgets.TimeWidgetProvider">
+        <receiver android:name=".widgets.TimeWidgetProvider" android:label="@string/widget_label_time">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -49,7 +49,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/time_widget" />
         </receiver>
-        <receiver android:name=".widgets.SimpleWidgetProvider">
+        <receiver android:name=".widgets.SimpleWidgetProvider" android:label="@string/widget_label_simple">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -58,7 +58,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/simple_widget" />
         </receiver>
-        <receiver android:name=".widgets.ClassicTimeWidgetProvider" android:label="Forecastie Classic">
+        <receiver android:name=".widgets.ClassicTimeWidgetProvider" android:label="@string/widget_label_classic">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
