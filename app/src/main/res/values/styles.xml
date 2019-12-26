@@ -17,10 +17,12 @@
         <item name="colorTintedBackground">@color/darkTheme_colorTintedBackground</item>
     </style>
 
-    <style name="AppTheme.Black" parent="Theme.AppCompat">
+    <style name="AppTheme.Black" parent="AppTheme.Dark">
+        <!--
         <item name="colorPrimary">@color/blackTheme_colorPrimary</item>
         <item name="colorPrimaryDark">@color/blackTheme_colorPrimaryDark</item>
         <item name="colorAccent">@color/blackTheme_colorAccent</item>
+        -->
         <item name="android:colorBackground">@color/blackTheme_colorBackground</item>
         <item name="colorTintedBackground">@color/blackTheme_colorTintedBackground</item>
     </style>
@@ -42,16 +44,22 @@
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 
-    <style name="AppTheme.Classic.Black" parent="Theme.AppCompat">
+    <style name="AppTheme.Classic.Black" parent="AppTheme.Classic.Dark">
+        <!--
         <item name="colorPrimary">@color/classic_blackTheme_colorPrimary</item>
         <item name="colorPrimaryDark">@color/classic_blackTheme_colorPrimaryDark</item>
         <item name="colorAccent">@color/classic_blackTheme_colorAccent</item>
+        -->
         <item name="android:colorBackground">@color/classic_blackTheme_colorBackground</item>
         <item name="colorTintedBackground">@color/classic_blackTheme_colorTintedBackground</item>
+        <!--
         <item name="android:textColorPrimary">@android:color/white</item>
+        -->
     </style>
 
+    <!--
     <style name="AppTheme.NoStatusBar" parent="AppTheme.NoActionBar"></style>
+    -->
 
     <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
