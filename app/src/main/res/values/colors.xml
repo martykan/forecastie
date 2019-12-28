@@ -13,11 +13,6 @@
     <color name="darkTheme_colorBackground">#303030</color>
     <color name="darkTheme_colorTintedBackground">#424242</color>
 
-    <!--
-    <color name="blackTheme_colorPrimary">#2196F3</color>
-    <color name="blackTheme_colorPrimaryDark">#1E88E5</color>
-    <color name="blackTheme_colorAccent">#2196F3</color>
-    -->
     <color name="blackTheme_colorBackground">#000000</color>
     <color name="blackTheme_colorTintedBackground">#303030</color>
 
@@ -33,11 +28,6 @@
     <color name="classic_darkTheme_colorBackground">#303030</color>
     <color name="classic_darkTheme_colorTintedBackground">#263238</color>
 
-    <!--
-    <color name="classic_blackTheme_colorPrimary">#37474f</color>
-    <color name="classic_blackTheme_colorPrimaryDark">#263238</color>
-    <color name="classic_blackTheme_colorAccent">#90a4ae</color>
-    -->
     <color name="classic_blackTheme_colorBackground">#000000</color>
     <color name="classic_blackTheme_colorTintedBackground">#303030</color>
 
