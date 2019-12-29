@@ -23,8 +23,8 @@
 
     <string name="search_title">Cerca città</string>
 
-    <string name="downloading_data">Download dati in corso ...</string>
-    <string name="getting_location">Geolocalizzazione in corso ...</string>
+    <string name="downloading_data">Download dati in corso…</string>
+    <string name="getting_location">Geolocalizzazione in corso…</string>
 
     <string name="error_dateFormat">ERRORE FORMATO DATA</string>
 
@@ -153,7 +153,7 @@
     <string name="about_icons">Le icone sono <a href="https://erikflowers.github.io/weather-icons/">Weather Icons</a>, di <a href="http://www.twitter.com/artill">Lukas Bischoff</a> e <a href="http://www.twitter.com/Erik_UX">Erik Flowers</a>, sotto la licenza <a href="http://scripts.sil.org/OFL">SIL OFL 1.1</a>.</string>
     <string name="about_issues">È possibile segnalare problemi <a href="https://github.com/martykan/forecastie/issues">qui</a>.</string>
     <string name="about_src">Il codice è disponibile in <a href="https://github.com/martykan/forecastie">Forecastie</a>.</string>
-    <string name="loading_data">Caricamento...</string>
+    <string name="loading_data">Caricamento…</string>
     <string name="setting_theme_black">Fresco nero</string>
     <string name="setting_theme_classic_black">Classico nero</string>
     <string name="settings_12hour">12 h</string>
@@ -164,4 +164,9 @@
     <string name="settings_30min">30 min</string>
     <string name="settings_6hour">6 h</string>
     <string name="uvi_no_info">Nessuna informazione</string>
+
+    <string name="widget_label_extensive">Forecastie esteso</string>
+    <string name="widget_label_time">Forecastie orario</string>
+    <string name="widget_label_simple">Forecastie semplice</string>
+    <string name="widget_label_classic">Forecastie classico</string>
 </resources>
