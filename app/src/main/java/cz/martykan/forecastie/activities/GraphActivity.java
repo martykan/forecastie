@@ -214,9 +214,15 @@ public class GraphActivity extends BaseActivity {
         int stepSize = (int) Math.ceil(Math.abs(maxPressure - minPressure) / 4);
         int min = middle - 2 * stepSize;
         int max = middle + 2 * stepSize;
+        int rows = 4;
+        if (Math.ceil(maxPressure) - Math.floor(minPressure) <= 3) {
+            min = (int) Math.floor(minPressure);
+            max = (int) Math.ceil(maxPressure);
+            rows = (int) (Math.ceil(maxPressure) - Math.floor(minPressure));
+        }
 
         lineChartView.addData(dataset);
-        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, 4, 1, gridPaint);
+        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, rows, 1, gridPaint);
         lineChartView.setAxisBorderValues(min, max);
         lineChartView.setStep(stepSize);
         lineChartView.setLabelsColor(Color.parseColor(labelColor));
