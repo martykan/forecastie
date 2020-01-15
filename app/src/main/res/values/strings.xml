@@ -186,6 +186,7 @@
     <string name="action_weather_map">Weather Map</string>
     <string name="rain">Rain</string>
     <string name="temperature">Temperature</string>
+    <string name="clouds">Clouds</string>
     <string name="action_graphs">Graphs</string>
     <string name="about_unknown">Could not get version name</string>
     <string name="about_description">A lightweight, Free Software weather app, released under the GPL3 licence.</string>
