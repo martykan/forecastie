@@ -1,6 +1,8 @@
 package cz.martykan.forecastie.fragments;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -16,9 +18,16 @@ public class AboutDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        String VersionName;
+        Context Cont = getContext();
+        try {
+            VersionName =  Cont.getPackageManager().getPackageInfo(Cont.getPackageName(),0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            VersionName = getString(R.string.about_unknown);
+        }
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                 .setTitle(getText(R.string.app_name))
-                .setMessage(TextUtils.concat(getText(R.string.about_version), "\n\n",
+                .setMessage(TextUtils.concat(VersionName, "\n\n",
                         getText(R.string.about_description), "\n\n",
                         getText(R.string.about_developers), "\n\n",
                         getText(R.string.about_src), "\n\n",
