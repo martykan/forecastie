@@ -148,7 +148,7 @@
     <string name="temperature">Temperatura</string>
     <string name="action_graphs">Grafici</string>
     <string name="about_data">Dati forniti da <a href="https://openweathermap.org/">OpenWeatherMap</a>, sotto la <a href="http://creativecommons.org/licenses/by-sa/2.0/">licenza Creative Commons CC-BY-SA</a>.</string>
-    <string name="about_description">Una leggera app meteo di Software Libero, rilasciata con licenreleased under the GPL3 licence.</string>
+    <string name="about_description">Un\'app meteo leggera di Software Libero, rilasciata con licenza GPL3.</string>
     <string name="about_developers">Sviluppata da <a href="mailto:t.martykan@gmail.com">Tomas Martykan</a> e <a href="https://github.com/martykan/forecastie/graphs/contributors">altri</a>, con il supporto di <a href="https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue">moltri altri</a>.</string>
     <string name="about_icons">Le icone sono <a href="https://erikflowers.github.io/weather-icons/">Weather Icons</a>, di <a href="http://www.twitter.com/artill">Lukas Bischoff</a> e <a href="http://www.twitter.com/Erik_UX">Erik Flowers</a>, sotto la licenza <a href="http://scripts.sil.org/OFL">SIL OFL 1.1</a>.</string>
     <string name="about_issues">È possibile segnalare problemi <a href="https://github.com/martykan/forecastie/issues">qui</a>.</string>
