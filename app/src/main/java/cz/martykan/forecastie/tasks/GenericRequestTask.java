@@ -18,11 +18,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.Locale;
 
 import cz.martykan.forecastie.Constants;
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.activities.MainActivity;
+import cz.martykan.forecastie.utils.Language;
 
 public abstract class GenericRequestTask extends AsyncTask<String, String, TaskOutput> {
 
@@ -160,16 +160,6 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         }
     }
 
-    private String getLanguage() {
-        String language = Locale.getDefault().getLanguage();
-        if (language.equals("cs")) {
-            language = "cz";
-        }else if(language.equals("ko")){
-            language = "kr";
-        }
-        return language;
-    }
-
     private URL provideURL(String[] reqParams) throws UnsupportedEncodingException, MalformedURLException {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String apiKey = sp.getString("apiKey", activity.getResources().getString(R.string.apiKey));
@@ -187,7 +177,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
             final String cityId = sp.getString("cityId", Constants.DEFAULT_CITY_ID);
             urlBuilder.append("id=").append(URLEncoder.encode(cityId, "UTF-8"));
         }
-        urlBuilder.append("&lang=").append(getLanguage());
+        urlBuilder.append("&lang=").append(Language.getOwmLanguage());
         urlBuilder.append("&mode=json");
         urlBuilder.append("&appid=").append(apiKey);
 
