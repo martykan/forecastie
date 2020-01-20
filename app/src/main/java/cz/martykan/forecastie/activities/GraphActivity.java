@@ -353,8 +353,10 @@ public class GraphActivity extends BaseActivity {
                 JSONObject snowObj = listItem.optJSONObject("snow");
                 if (rainObj != null) {
                     weather.setRain(MainActivity.getRainString(rainObj));
-                } else {
+                } else if (snowObj != null) {
                     weather.setRain(MainActivity.getRainString(snowObj));
+                } else {
+                    weather.setRain("0");
                 }
 
                 weather.setDate(listItem.getString("dt"));
