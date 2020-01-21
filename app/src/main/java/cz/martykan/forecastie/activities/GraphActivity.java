@@ -130,7 +130,7 @@ public class GraphActivity extends BaseActivity {
         lineDataset.setThickness(4);
 
         int middle = Math.round(minTemp + (maxTemp - minTemp) / 2);
-        int stepSize = (int) Math.ceil(Math.abs(maxTemp - minTemp) / 4);
+        int stepSize = Math.max(1, (int) Math.ceil(Math.abs(maxTemp - minTemp) / 4));
         int min = middle - 2 * stepSize;
         int max = middle + 2 * stepSize;
 
@@ -212,14 +212,14 @@ public class GraphActivity extends BaseActivity {
         dataset.setThickness(4);
 
         int middle = Math.round(minPressure + (maxPressure - minPressure) / 2);
-        int stepSize = (int) Math.ceil(Math.abs(maxPressure - minPressure) / 4);
+        int stepSize = Math.max(1, (int) Math.ceil(Math.abs(maxPressure - minPressure) / 4));
         int min = middle - 2 * stepSize;
         int max = middle + 2 * stepSize;
         int rows = 4;
         if (Math.ceil(maxPressure) - Math.floor(minPressure) <= 3) {
             min = (int) Math.floor(minPressure);
-            max = (int) Math.ceil(maxPressure);
-            rows = (int) (Math.ceil(maxPressure) - Math.floor(minPressure));
+            max = Math.max(min + 1, (int) Math.ceil(maxPressure));
+            rows = max - min;
         }
 
         lineChartView.addData(dataset);
@@ -308,7 +308,11 @@ public class GraphActivity extends BaseActivity {
 
         int min = (int) minHumidity / 10 * 10;
         int max = (int) Math.ceil(maxHumidity / 10) * 10;
-        int stepSize = (max - min == 10) ? 20 : 10;
+        if (min == max) {
+            max = Math.min(max + 10, 100);
+            min = Math.max(min - 10, 0);
+        }
+        int stepSize = (max - min == 100) ? 20 : 10;
 
         lineChartView.addData(dataset);
         lineChartView.setGrid(ChartView.GridType.HORIZONTAL, (max - min) / stepSize, 1, gridPaint);
@@ -361,8 +365,6 @@ public class GraphActivity extends BaseActivity {
 
                 weather.setDate(listItem.getString("dt"));
                 weather.setTemperature(main.getString("temp"));
-
-                weather.setHumidity(main.getString("humidity"));
 
                 weatherList.add(weather);
             }
