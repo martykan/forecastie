@@ -52,7 +52,7 @@ public class LocationsRecyclerAdapter extends RecyclerView.Adapter<LocationsRecy
         holder.iconTextView.setTypeface(weatherFont);
 
         holder.webView.getSettings().setJavaScriptEnabled(true);
-        holder.webView.loadUrl("file:///android_asset/map.html?lat=" + weather.getLat()+ "&lon=" + weather.getLon() + "&appid=" + "notneeded&displayPin=true");
+        holder.webView.loadUrl("file:///android_asset/map.html?lat=" + weather.getLat()+ "&lon=" + weather.getLon() + "&zoom=" + 10 + "&appid=notneeded&displayPin=true");
 
         if (darkTheme || blackTheme) {
             holder.cityTextView.setTextColor(Color.WHITE);
