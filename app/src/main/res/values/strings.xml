@@ -190,7 +190,7 @@
     <string name="action_graphs">Graphs</string>
     <string name="about_unknown">Could not get version name</string>
     <string name="about_description">A lightweight, Free Software weather app, released under the GPL3 licence.</string>
-    <string name="about_developers">Developed by <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> and <a href='https://github.com/martykan/forecastie/graphs/contributors'>others</a>, with assistance from <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>many more</a>.</string>
+    <string name="about_developers">Developed by <a href='mailto:t.martykan@gmail.com'>Tomáš Martykán</a> and <a href='https://github.com/martykan/forecastie/graphs/contributors'>others</a>, with assistance from <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>many more</a>.</string>
     <string name="about_src">Code is available at <a href='https://github.com/martykan/forecastie'>Github</a>.</string>
     <string name="about_issues">Bugs and enhancements can be posted on our <a href='https://github.com/martykan/forecastie/issues'>Github issues page</a>.</string>
     <string name="about_data">Data provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA licence</a>.</string>
