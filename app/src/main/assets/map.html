@@ -66,13 +66,21 @@
         });
         windLayer.setOpacity(0.7);
 
+        // Clouds
+        var cloudsLayer = new L.TileLayer("http://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=" + getUrlParameter('appid'), {
+            minZoom: 1,
+            maxZoom: 15
+        });
+        cloudsLayer.setOpacity(0.7);
+         map.addLayer(cloudsLayer);
+
         // Rain
         var rainLayer = new L.TileLayer("http://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=" + getUrlParameter('appid'), {
             minZoom: 1,
             maxZoom: 15
         });
         rainLayer.setOpacity(0.7);
-        map.addLayer(rainLayer);
+
 
         // Temperature
         var tempLayer = new L.TileLayer("http://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=" + getUrlParameter('appid'), {

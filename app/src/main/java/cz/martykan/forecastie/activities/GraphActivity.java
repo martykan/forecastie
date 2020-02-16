@@ -25,6 +25,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.TimeZone;
 
 import cz.martykan.forecastie.R;
@@ -129,7 +130,7 @@ public class GraphActivity extends BaseActivity {
         lineDataset.setThickness(4);
 
         int middle = Math.round(minTemp + (maxTemp - minTemp) / 2);
-        int stepSize = (int) Math.ceil(Math.abs(maxTemp - minTemp) / 4);
+        int stepSize = Math.max(1, (int) Math.ceil(Math.abs(maxTemp - minTemp) / 4));
         int min = middle - 2 * stepSize;
         int max = middle + 2 * stepSize;
 
@@ -211,12 +212,18 @@ public class GraphActivity extends BaseActivity {
         dataset.setThickness(4);
 
         int middle = Math.round(minPressure + (maxPressure - minPressure) / 2);
-        int stepSize = (int) Math.ceil(Math.abs(maxPressure - minPressure) / 4);
+        int stepSize = Math.max(1, (int) Math.ceil(Math.abs(maxPressure - minPressure) / 4));
         int min = middle - 2 * stepSize;
         int max = middle + 2 * stepSize;
+        int rows = 4;
+        if (Math.ceil(maxPressure) - Math.floor(minPressure) <= 3) {
+            min = (int) Math.floor(minPressure);
+            max = Math.max(min + 1, (int) Math.ceil(maxPressure));
+            rows = max - min;
+        }
 
         lineChartView.addData(dataset);
-        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, 4, 1, gridPaint);
+        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, rows, 1, gridPaint);
         lineChartView.setAxisBorderValues(min, max);
         lineChartView.setStep(stepSize);
         lineChartView.setLabelsColor(Color.parseColor(labelColor));
@@ -301,7 +308,11 @@ public class GraphActivity extends BaseActivity {
 
         int min = (int) minHumidity / 10 * 10;
         int max = (int) Math.ceil(maxHumidity / 10) * 10;
-        int stepSize = (max - min == 10) ? 20 : 10;
+        if (min == max) {
+            max = Math.min(max + 10, 100);
+            min = Math.max(min - 10, 0);
+        }
+        int stepSize = (max - min == 100) ? 20 : 10;
 
         lineChartView.addData(dataset);
         lineChartView.setGrid(ChartView.GridType.HORIZONTAL, (max - min) / stepSize, 1, gridPaint);
@@ -346,14 +357,14 @@ public class GraphActivity extends BaseActivity {
                 JSONObject snowObj = listItem.optJSONObject("snow");
                 if (rainObj != null) {
                     weather.setRain(MainActivity.getRainString(rainObj));
-                } else {
+                } else if (snowObj != null) {
                     weather.setRain(MainActivity.getRainString(snowObj));
+                } else {
+                    weather.setRain("0");
                 }
 
                 weather.setDate(listItem.getString("dt"));
                 weather.setTemperature(main.getString("temp"));
-
-                weather.setHumidity(main.getString("humidity"));
 
                 weatherList.add(weather);
             }
@@ -375,16 +386,20 @@ public class GraphActivity extends BaseActivity {
     private String getDateLabel(Weather weather, int i) {
         String output = dateFormat.format(weather.getDate());
 
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(weather.getDate());
+        int weatherHour = cal.get(Calendar.HOUR_OF_DAY);
+
         // label for first day if it starts after 13:00
-        if (i == 0 && weather.getDate().getHours() > 13) {
+        if (i == 0 && weatherHour > 13) {
             return output;
         }
         // label for the last day if it ends before 11:00
-        else if (i == weatherList.size() - 1 && weather.getDate().getHours() < 11) {
+        else if (i == weatherList.size() - 1 && weatherHour < 11) {
             return output;
         }
         // label in the middle of the day at 11:00 / 12:00 / 13:00 for all other days
-        else if (weather.getDate().getHours() >= 11 && weather.getDate().getHours() <= 13) {
+        else if (weatherHour >= 11 && weatherHour <= 13) {
             return output;
         }
         // normal case: no date label
@@ -414,7 +429,9 @@ public class GraphActivity extends BaseActivity {
         for (int i = 0; i < weatherList.size(); i++) {
             if (i != weatherList.size() - 1 || includeLast) {
                 for (int j = 0; j < 3; j++) {
-                    int hour = (weatherList.get(i).getDate().getHours() + j) % 24;
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(weatherList.get(i).getDate());
+                    int hour = cal.get(Calendar.HOUR_OF_DAY);
 
                     // 23:00 to 0:00 new day
                     if (hour < lastHour) {

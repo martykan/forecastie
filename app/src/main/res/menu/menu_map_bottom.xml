@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/map_clouds"
+        android:icon="@drawable/ic_cloud_grey600_24dp"
+        android:title="@string/clouds" />
+    <item
         android:id="@+id/map_rain"
         android:icon="@drawable/ic_water_grey600_24dp"
         android:title="@string/rain" />
