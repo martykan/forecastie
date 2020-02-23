@@ -33,6 +33,8 @@ public class ClassicTimeWidgetProvider extends AbstractWidgetProvider {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                     R.layout.time_widget_classic);
 
+            setTheme(context, remoteViews);
+
             Intent intent = new Intent(context, AlarmReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
                     0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
