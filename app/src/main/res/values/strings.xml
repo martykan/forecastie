@@ -67,7 +67,7 @@
     <string name="setting_unit_mm">Millimeters (mm)</string>
     <string name="setting_unit_in">Inches (in)</string>
 
-    <string name="setting_unit_hpa">hPa</string>
+    <string name="setting_unit_hpa">hPa/mBar</string>
     <string name="setting_unit_kpa">kPa</string>
     <string name="setting_unit_mmhg">mm Hg</string>
     <string name="setting_unit_inhg">in Hg</string>
@@ -81,7 +81,7 @@
     <string name="wind_direction_format_arrows">Arrows</string>
     <string name="wind_direction_format_abbreviations">Abbreviations</string>
 
-    <string name="pressure_unit_hpa">hPa</string>
+    <string name="pressure_unit_hpa">hPa/mBar</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mm Hg</string>
 
