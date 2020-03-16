@@ -40,7 +40,7 @@
         <item name="inhg">@string/setting_unit_inhg</item>
     </string-array>
     <string-array name="pressureUnitsValues">
-        <item name="hpa">hPa</item>
+        <item name="hpa">hPa/mBar</item>
         <item name="kpa">kPa</item>
         <item name="mmhg">mm Hg</item>
         <item name="inhg">in Hg</item>
