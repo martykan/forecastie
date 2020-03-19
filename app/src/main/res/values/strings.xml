@@ -33,6 +33,12 @@
     <string name="setting_dateFormat">Date Format</string>
     <string name="setting_dateFormatCustom">Custom Date Format</string>
     <string name="setting_dateFormatCustom_summary">Provide the custom SimpleDateFormat string to be used</string>
+
+    <string name="setting_simple_string_formatting_intro">The codes below can be used to construct a custom date and time format</string>
+    <string name="setting_available_simple_string_codes">yYMwWDdFEuaHkKhmsSzZX</string>
+    <string name="setting_example_simple_string">EEEE, d MMM yyyy h:mm:ss a, zzzz</string>
+    <string name="setting_example_date_format">Wednesday, 4 Jul 2001 12:08:32 PM, Pacific Daylight Time</string>
+
     <string name="setting_lengthUnits">Length units</string>
     <string name="setting_speedUnits">Speed units</string>
     <string name="setting_tempUnits">Temperature units</string>
@@ -200,8 +206,4 @@
     <string name="widget_label_time">Forecastie Time</string>
     <string name="widget_label_simple">Forecastie Simple</string>
     <string name="widget_label_classic">Forecastie Classic</string>
-    <string name="simple_string_formatting_intro">The codes below can be used to construct a custom date and time format</string>
-    <string name="available_simple_string_codes">yYMwWDdFEuaHkKhmsSzZX</string>
-    <string name="example_simple_string">EEEE, d MMM yyyy h:mm:ss a, zzzz</string>
-    <string name="example_date_format">Wednesday, 4 Jul 2001 12:08:32 PM, Pacific Daylight Time</string>
 </resources>
