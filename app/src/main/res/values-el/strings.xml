@@ -12,22 +12,22 @@
     <string name="later">Αργότερα</string>
 
     <string name="wind">Άνεμος</string>
-
+    <string name="wind_speed">Ταχύτητα ανέμου</string>
     <string name="pressure">Πίεση</string>
     <string name="humidity">Υγρασία</string>
     <string name="sunrise">Ανατολή</string>
     <string name="sunset">Δύση</string>
-
+    <string name="uvindex">Δείκτης UV</string>
 
     <string name="last_update">Τελευταία ενημέρωση:\n%s</string>
     <string name="last_update_widget">\nΤελευταία ενημέρωση: %s</string>
 
     <string name="search_title">Αναζήτηση πόλης</string>
 
-    <string name="downloading_data">Κατέβασμα των δεδομένων σας ...</string>
-    <string name="getting_location">Εύρεση της τοποθεσίας σας ...</string>
+    <string name="downloading_data">Κατέβασμα των δεδομένων...</string>
+    <string name="getting_location">Εύρεση της τοποθεσίας σας...</string>
 
-
+    <string name="loading_data">Φόρτωση...</string>
 
     <string name="error_dateFormat">ΛΑΝΘΑΣΜΕΝΗ ΜΟΡΦΗ ΗΜΕΡΟΜΗΝΙΑΣ</string>
 
@@ -35,10 +35,10 @@
     <string name="setting_dateFormatCustom">Προσαρμοσμένη μορφή ημερομηνίας</string>
     <string name="setting_dateFormatCustom_summary">Δώστε την προσαρμοσμένη ημερομηνία σε μορφή SimpleDateFormat</string>
 
-
-
-
-
+    <string name="setting_simple_string_formatting_intro">Τα παρακάτω σύμβολα μπορούν να χρησιμοποιηθούν για τον ορισμό μιας προσαρμοσμένης μορφής ημερομηνίας και ώρας</string>
+    <string name="setting_available_simple_string_codes">yYMwWDdFEuaHkKhmsSzZX</string>
+    <string name="setting_example_simple_string">EEEE, d MMM yyyy h:mm:ss a, zzzz</string>
+    <string name="setting_example_date_format">Τετάρτη, 4 Ιουλ 2001 12:08:32 ΜΜ, Θερινή Ώρα Ειρηνικού</string>
 
     <string name="setting_lengthUnits">Μονάδες μήκους</string>
     <string name="setting_speedUnits">Μονάδες ταχύτητας</string>
@@ -46,24 +46,24 @@
     <string name="setting_showTempAsInteger">Εμφάνιση θερμοκρασίας χωρίς δεκαδικά</string>
     <string name="setting_pressureUnits">Μονάδες πίεσης</string>
     <string name="setting_theme">Θέμα</string>
-
+    <string name="setting_transparent_widget">Διαφανές widget</string>
     <string name="setting_auto_detect_location">Εντοπισμός τοποθεσίας</string>
     <string name="setting_differentiateDaysByTint">Διαφοροποίηση ημερών με χρώμα</string>
     <string name="setting_refreshInterval">Περίοδος ανανέωσης στο παρασκήνιο</string>
     <string name="setting_unit_mps">Μέτρα ανά δευτερόλεπτο</string>
     <string name="setting_unit_kph">Χιλιόμετρα ανά ώρα</string>
     <string name="setting_unit_mph">Μίλια ανά ώρα</string>
-
-
+    <string name="setting_unit_bft">Κλίμακα Μποφόρ (bft)</string>
+    <string name="setting_unit_kn">Κόμβοι (kn)</string>
     <string name="setting_wind_direction_format">Μορφή κατεύθυνσης ανέμου</string>
     <string name="settings_none">Κανένα</string>
-
-
-
-
-
-
-
+    <string name="settings_15min">15 λεπτά</string>
+    <string name="settings_30min">30 λεπτά</string>
+    <string name="settings_1hour">1 ώρα</string>
+    <string name="settings_2hour">2 ώρες</string>
+    <string name="settings_6hour">6 ώρες</string>
+    <string name="settings_12hour">12 ώρες</string>
+    <string name="settings_24hour">24 ώρες</string>
     <string name="setting_apiKey">Κλειδί API</string>
     <string name="setting_apiKey_summary">Προσωπικό κλειδί API για αναζήτηση στο OpenWeatherMap</string>
 
@@ -77,12 +77,12 @@
     <string name="setting_unit_hpa">hPa/mBar</string>
     <string name="setting_unit_kpa">kPa</string>
     <string name="setting_unit_mmhg">mm Hg</string>
-
+    <string name="setting_unit_inhg">in Hg</string>
 
     <string name="speed_unit_mps">m/s</string>
     <string name="speed_unit_kph">kph</string>
     <string name="speed_unit_mph">mph</string>
-
+    <string name="speed_unit_kn">kn</string>
 
     <string name="wind_direction_format_none">Καμιά ένδειξη</string>
     <string name="wind_direction_format_arrows">Βέλη</string>
@@ -96,8 +96,8 @@
     <string name="setting_theme_classic">Κλασικό</string>
     <string name="setting_theme_dark">Νέο σκοτεινό</string>
     <string name="setting_theme_classic_dark">Κλασικό σκοτεινό</string>
-
-
+    <string name="setting_theme_black">Νέο μάυρο</string>
+    <string name="setting_theme_classic_black">Κλασικό μάυρο</string>
 
     <string name="dialog_ok">Εντάξει</string>
     <string name="dialog_cancel">Ακύρωση</string>
@@ -153,26 +153,26 @@
     <string name="wind_direction_north_north_west">ΒΒΔ</string>
     <string name="msg_too_many_requests">Υπερβολικά πολλές αιτήσεις. Παρακαλώ προσπαθήστε αργότερα.</string>
 
+    <string name="beaufort_calm">Άπνοια (0)</string>
+    <string name="beaufort_light_air">Σχεδόν άπνοια (1)</string>
+    <string name="beaufort_light_breeze">Πολύ ασθενής (2)</string>
+    <string name="beaufort_gentle_breeze">Ασθενής (3)</string>
+    <string name="beaufort_moderate_breeze">Σχεδόν μέτριος (4)</string>
+    <string name="beaufort_fresh_breeze">Μέτριος (5)</string>
+    <string name="beaufort_strong_breeze">Ισχυρός (6)</string>
+    <string name="beaufort_high_wind">Σφοδρός (7)</string>
+    <string name="beaufort_gale">Θυελλώδης (8)</string>
+    <string name="beaufort_strong_gale">Πολύ Θυελλώδης (9)</string>
+    <string name="beaufort_storm">Θύελλα (10)</string>
+    <string name="beaufort_violent_storm">Σφοδρή θύελλα (11)</string>
+    <string name="beaufort_hurricane">Τυφώνας (12)</string>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <string name="uvi_no_info">Ελλιπείς πληροφορίες</string>
+    <string name="uvi_low">Χαμηλός</string>
+    <string name="uvi_moderate">Μέσος</string>
+    <string name="uvi_high">Υψηλός</string>
+    <string name="uvi_very_high">Πολύ υψηλός</string>
+    <string name="uvi_extreme">Ακραίος</string>
 
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
@@ -184,7 +184,7 @@
     <string name="settings_title_display">Εμφάνιση</string>
     <string name="settings_title_data">Δεδομένα</string>
     <string name="setting_displayDecimalZeroes">Εμφάνιση μηδενικών στα δεκαδικά</string>
-
+    <string name="settings_title_location">Τοποθεσία</string>
     <string name="setting_update_location_automatically">Ενημέρωση τοποθεσίας στο παρασκήνιο</string>
 
     <string name="location_settings">Ρυθμίσεις τοποθεσίας</string>
@@ -193,18 +193,18 @@
     <string name="action_weather_map">Χάρτης καιρού</string>
     <string name="rain">Βροχή</string>
     <string name="temperature">Θερμοκρασία</string>
-
+    <string name="clouds">Σύννεφα</string>
     <string name="action_graphs">Γραφήματα</string>
+    <string name="about_unknown">Αδυναμία εύρεσης του αριθμού έκδοσης</string>
+    <string name="about_description">Μια ελαφριά και ελεύθερου λογισμικού εφαρμογή καιρού που διανέμεται υπό την άδεια GPLv3.</string>
+    <string name="about_developers">Ανεπτυγμένη από τον <a href='mailto:t.martykan@gmail.com'>Tomáš Martykán</a> και <a href='https://github.com/martykan/forecastie/graphs/contributors'>άλλες/ους</a>, με βοήθεια από <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>πολλές/ούς άλλες/ους</a>.</string>
+    <string name="about_src">Ο κώδικας είναι διαθέσιμος στο <a href='https://github.com/martykan/forecastie'>Github</a>.</string>
+    <string name="about_issues">Προβλήματα και προτάσεις για βελτίωση μπορούν να αναφερθούν στην <a href='https://github.com/martykan/forecastie/issues'>σελίδα προβλημάτων μας στο Github</a>.</string>
+    <string name="about_data">Τα δεδομένα παρέχονται από το <a href='https://openweathermap.org/'>OpenWeatherMap</a>, υπό την άδεια <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA 2.0</a>.</string>
+    <string name="about_icons">Τα εικονίδια είναι τα <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, από τον <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> και τον <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, υπό την άδεια <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a>.</string>
 
-
-
-
-
-
-
-
-
-
-
-
+    <string name="widget_label_extensive">Εκτεταμένο Forecastie</string>
+    <string name="widget_label_time">Forecastie με Ώρα</string>
+    <string name="widget_label_simple">Απλό Forecastie</string>
+    <string name="widget_label_classic">Κλασικό Forecastie</string>
 </resources>
