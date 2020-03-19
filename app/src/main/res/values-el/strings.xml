@@ -153,19 +153,19 @@
     <string name="wind_direction_north_north_west">ΒΒΔ</string>
     <string name="msg_too_many_requests">Υπερβολικά πολλές αιτήσεις. Παρακαλώ προσπαθήστε αργότερα.</string>
 
-    <string name="beaufort_calm">Άπνοια (0)</string>
-    <string name="beaufort_light_air">Σχεδόν άπνοια (1)</string>
-    <string name="beaufort_light_breeze">Πολύ ασθενής (2)</string>
-    <string name="beaufort_gentle_breeze">Ασθενής (3)</string>
-    <string name="beaufort_moderate_breeze">Σχεδόν μέτριος (4)</string>
-    <string name="beaufort_fresh_breeze">Μέτριος (5)</string>
-    <string name="beaufort_strong_breeze">Ισχυρός (6)</string>
-    <string name="beaufort_high_wind">Σφοδρός (7)</string>
-    <string name="beaufort_gale">Θυελλώδης (8)</string>
-    <string name="beaufort_strong_gale">Πολύ Θυελλώδης (9)</string>
-    <string name="beaufort_storm">Θύελλα (10)</string>
-    <string name="beaufort_violent_storm">Σφοδρή θύελλα (11)</string>
-    <string name="beaufort_hurricane">Τυφώνας (12)</string>
+    <string name="beaufort_calm">0 (Άπνοια)</string>
+    <string name="beaufort_light_air">1 (Σχεδόν άπνοια)</string>
+    <string name="beaufort_light_breeze">2 (Πολύ ασθενής)</string>
+    <string name="beaufort_gentle_breeze">3 (Ασθενής)</string>
+    <string name="beaufort_moderate_breeze">4 (Σχεδόν μέτριος)</string>
+    <string name="beaufort_fresh_breeze">5 (Μέτριος)</string>
+    <string name="beaufort_strong_breeze">6 (Ισχυρός)</string>
+    <string name="beaufort_high_wind">7 (Σφοδρός)</string>
+    <string name="beaufort_gale">8 (Θυελλώδης)</string>
+    <string name="beaufort_strong_gale">9 (Πολύ Θυελλώδης)</string>
+    <string name="beaufort_storm">10 (Θύελλα)</string>
+    <string name="beaufort_violent_storm">11 (Σφοδρή θύελλα)</string>
+    <string name="beaufort_hurricane">12 (Τυφώνας)</string>
 
     <string name="uvi_no_info">Ελλιπείς πληροφορίες</string>
     <string name="uvi_low">Χαμηλός</string>
