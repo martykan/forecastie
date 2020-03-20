@@ -24,10 +24,6 @@
     <string name="sunset">Sunset</string>
     <string name="uvindex">UV Index</string>
 
-    <!-- Updates -->
-    <string name="last_update">Last update:\n%s</string>
-    <string name="last_update_widget">\nLast update: %s</string>
-
     <!-- Settings/Units -->
     <string name="settings_title_units">Units</string>
     <string name="setting_lengthUnits">Length units</string>
@@ -89,6 +85,8 @@
     <string name="setting_displayDecimalZeroes">Display decimal zeroes</string>
 
     <!-- Settings/Data -->
+    <string name="last_update">Last update:\n%s</string>
+    <string name="last_update_widget">\nLast update: %s</string>
     <string name="settings_title_data">Data</string>
     <string name="setting_refreshInterval">Background refresh interval</string>
     <string name="settings_none">None</string>
