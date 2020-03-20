@@ -89,7 +89,7 @@
     <string name="wind_direction_format_abbreviations">Abbreviations</string>
     <string name="setting_displayDecimalZeroes">Display decimal zeroes</string>
 
-    # Data
+    ## Data
     <string name="settings_title_data">Data</string>
     <string name="setting_refreshInterval">Background refresh interval</string>
     <string name="settings_none">None</string>
@@ -103,7 +103,7 @@
     <string name="setting_apiKey">API key</string>
     <string name="setting_apiKey_summary">Custom API key for OpenWeatherMap queries</string>
 
-    # Date format
+    ## Date format
     <string name="error_dateFormat">DATE FORMAT ERROR</string>
     <string name="setting_dateFormat">Date Format</string>
     <string name="setting_dateFormatCustom">Custom Date Format</string>
