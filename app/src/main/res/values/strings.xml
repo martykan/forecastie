@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Forecastie</string>
-    # Main activity titles
+    <!-- Main activity titles -->
     <string name="action_search">Search</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_settings">Settings</string>
@@ -10,12 +10,12 @@
     <string name="getting_location">Getting your location ...</string>
     <string name="loading_data">Loading...</string>
 
-    # Forecast cards
+    <!-- Forecast cards -->
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
     <string name="later">Later</string>
 
-    # Main activity headings
+    <!-- Main activity headings -->
     <string name="wind">Wind</string>
     <string name="wind_speed">Wind Speed</string>
     <string name="pressure">Pressure</string>
@@ -24,12 +24,11 @@
     <string name="sunset">Sunset</string>
     <string name="uvindex">UV Index</string>
 
-    # Updates
+    <!-- Updates -->
     <string name="last_update">Last update:\n%s</string>
     <string name="last_update_widget">\nLast update: %s</string>
 
-    # Settings
-    ## Units
+    <!-- Settings/Units -->
     <string name="settings_title_units">Units</string>
     <string name="setting_lengthUnits">Length units</string>
     <string name="setting_speedUnits">Speed units</string>
@@ -72,7 +71,7 @@
     <string name="uvi_very_high">Very High</string>
     <string name="uvi_extreme">Extreme</string>
 
-    ## Appearance
+    <!-- Settings/Appearance -->
     <string name="settings_title_display">Display</string>
     <string name="setting_theme">Theme</string>
     <string name="setting_transparent_widget">Make widget transparent</string>
@@ -89,7 +88,7 @@
     <string name="wind_direction_format_abbreviations">Abbreviations</string>
     <string name="setting_displayDecimalZeroes">Display decimal zeroes</string>
 
-    ## Data
+    <!-- Settings/Data -->
     <string name="settings_title_data">Data</string>
     <string name="setting_refreshInterval">Background refresh interval</string>
     <string name="settings_none">None</string>
@@ -103,7 +102,7 @@
     <string name="setting_apiKey">API key</string>
     <string name="setting_apiKey_summary">Custom API key for OpenWeatherMap queries</string>
 
-    ## Date format
+    <!-- Settings/Date format -->
     <string name="error_dateFormat">DATE FORMAT ERROR</string>
     <string name="setting_dateFormat">Date Format</string>
     <string name="setting_dateFormatCustom">Custom Date Format</string>
@@ -115,13 +114,13 @@
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>
 
-    # Errors
+    <!-- Errors -->
     <string name="msg_err_parsing_json">Error parsing JSON.</string>
     <string name="msg_connection_problem">There is a problem with your internet connection.</string>
     <string name="msg_connection_not_available">Connection not available.</string>
     <string name="msg_city_not_found">Specified city is not found.</string>
 
-    # Weather icons
+    <!-- Weather icons -->
     <string name="weather_cloudy" translatable="false">&#xf013;</string>
     <string name="weather_cloudy_gusts" translatable="false">&#xf011;</string>
     <string name="weather_day_cloudy" translatable="false">&#xf002;</string>
@@ -150,7 +149,7 @@
     <string name="weather_tornado" translatable="false">&#xf056;</string>
     <string name="weather_windy" translatable="false">&#xf021;</string>
 
-    # Wind direction
+    <!-- Wind direction -->
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_north_east">NNE</string>
     <string name="wind_direction_north_east">NE</string>
@@ -169,7 +168,7 @@
     <string name="wind_direction_north_north_west">NNW</string>
     <string name="msg_too_many_requests">Too many requests. Please try again.</string>
 
-    # Wind strength - Beaufort
+    <!-- Wind strength - Beaufort -->
     <string name="beaufort_calm">Calm (0)</string>
     <string name="beaufort_light_air">Light air (1)</string>
     <string name="beaufort_light_breeze">Light breeze (2)</string>
@@ -184,7 +183,7 @@
     <string name="beaufort_violent_storm">Violent storm (11)</string>
     <string name="beaufort_hurricane">Hurricane (12)</string>
 
-    # Dash clock
+    <!-- Dash clock -->
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
@@ -192,23 +191,23 @@
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\nWind: %3$s %4$s\nPressure: %5$s %6$s\nHumidity: %7$s %%\n</string>
 
-    # Location
+    <!-- Location -->
     <string name="settings_title_location">Location</string>
     <string name="setting_update_location_automatically">Update location in background</string>
     <string name="location_settings">Location Settings</string>
     <string name="location_settings_message">Location is not enabled. Do you wish to go to the settings menu?</string>
     <string name="location_settings_button">Settings</string>
 
-    # Map
+    <!-- Map -->
     <string name="action_weather_map">Weather Map</string>
     <string name="rain">Rain</string>
     <string name="temperature">Temperature</string>
     <string name="clouds">Clouds</string>
 
-    # Graphs
+    <!-- Graphs -->
     <string name="action_graphs">Graphs</string>
 
-    # About dialogue
+    <!-- About dialogue -->
     <string name="about_unknown">Could not get version name</string>
     <string name="about_description">A lightweight, Free Software weather app, released under the GPL3 licence.</string>
     <string name="about_developers">Developed by <a href='mailto:t.martykan@gmail.com'>Tomáš Martykán</a> and <a href='https://github.com/martykan/forecastie/graphs/contributors'>others</a>, with assistance from <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>many more</a>.</string>
@@ -217,7 +216,7 @@
     <string name="about_data">Data provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA licence</a>.</string>
     <string name="about_icons">Icons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.</string>
 
-    # Widget
+    <!-- Widget -->
     <string name="widget_label_extensive">Forecastie Extensive</string>
     <string name="widget_label_time">Forecastie Time</string>
     <string name="widget_label_simple">Forecastie Simple</string>
