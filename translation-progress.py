@@ -101,6 +101,7 @@ def detailed_print(language_stats: LangStats, verbosity_level: int = 1):
         not_translated = len(language_stats[lang]['not_translated'])
         missing = len(language_stats[lang]['missing'])
         total = translated + not_translated + missing
+        completion = int(100 * translated / total)
         print('Language: ' + lang)
         print('  File:           ' + language_stats[lang]['filename'])
         print('  Translated:     ' + str(translated)
@@ -118,6 +119,7 @@ def detailed_print(language_stats: LangStats, verbosity_level: int = 1):
         if verbosity_level > 1:
             for s in language_stats[lang]['missing']:
                 print('      ' + s)
+        print('  Completion:     ' + str(completion) + ' %')
 
 
 
