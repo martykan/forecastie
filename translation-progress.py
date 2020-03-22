@@ -2,6 +2,43 @@
 #
 # SPDX-FileCopyrightText: 2020 Sotiris Papatheodorou
 # SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Show the translation progress for each language in Forecastie. All languages
+# are compared to English which is considered the original language of the
+# program.
+#
+# Each translatable string is put in one of three categories:
+# - Translated: The string is present in both the English and the other
+#               language translations and its value in the other language
+#               translation is different than in English.
+# - Not translated: The string is present in both the English and the other
+#                   language translations but its value in the other language
+#                   translation is the same as in English.
+# - Missing: The string is present only in the English translation and not in
+#            the other language translation.
+#
+# Strings with the translatable="false" attribute or whose names are in the
+# string_blacklist are ignored.
+#
+# There are two output formats:
+# - CSV: Machine readable, can be used in CI scripts. This is the default
+#        output format. It contains the following columns:
+#        - Language       The name of the language.
+#        - Filename       The path to the respective strings.xml.
+#        - Translated     The number of translated strings.
+#        - Not Translated The number of not translated strings.
+#        - Missing        The number of missing strings.
+#        - Completion     The percentage of translated strings.
+# - Human readable: This format is not as structured as CSV but is easier for
+#                   humans to read and provides some extra information. This
+#                   format is used when increasing the verbosity level. The
+#                   information shown per verbosity level:
+#                   - 1 The same information as CSV plus percentages for
+#                       translated, not translated and missing.
+#                   - 2 The same information as verbosity level 1 plus the
+#                       names of strings that are not translated or missing.
+#                   - 3 The same information as verbosity level 2 plus the
+#                       names of strings that are translated.
 
 from glob import glob
 from os import path
@@ -12,8 +49,12 @@ import xml.etree.ElementTree as ET
 
 
 
+# These paths are relative to the script and should be changed accordingly if
+# the script is moved
 english_translation = 'app/src/main/res/values/strings.xml'
 other_translations = 'app/src/main/res/values-*/strings.xml'
+
+# String names in this list will not be considered
 string_blacklist = [
         'setting_available_simple_string_codes',
         'setting_example_simple_string',
@@ -24,6 +65,12 @@ string_blacklist = [
 
 
 def parse_arguments():
+    """
+    Parse command line arguments.
+
+    :return: A Namespace containing the arguments and their values.
+    :rtype: argparse.Namespace
+    """
     parser = argparse.ArgumentParser(description='Show translation progress for Forecastie')
     parser.add_argument('--verbose', '-v', action='count', default=0,
                         help='Produce more verbose output. Extra occurrences '
@@ -39,9 +86,18 @@ def parse_arguments():
 
 
 
+# A dictionary with string names and string values,
+# e.g. 'action_search' : 'Search'
 StringsXML = Dict[str, str]
 
 def parse_strings_xml(filename: str) -> StringsXML:
+    """
+    Parse a strings.xml into a dictionary.
+
+    :param str filename: The path to the strings.xml file.
+    :return: A dictionary with the string names and values as keys and values.
+    :rtype: StringsXML
+    """
     d = {}
     # Read in the strings.xml data
     xml_root = ET.parse(filename).getroot()
@@ -59,9 +115,23 @@ def parse_strings_xml(filename: str) -> StringsXML:
 
 
 
+# A dictionary containing statistics for a single language's translation
+# status. The valid keys are 'translated', 'not_translated' and 'missing' and
+# their values are lists of string names that fall into each category. It may
+# also contain a key 'filename' with an str value containing the path to the
+# strings.xml file it refers to.
 SingleLangStats = Dict[str, List[str]]
 
 def compare_strings_xml(eng: StringsXML, other: StringsXML) -> SingleLangStats:
+    """
+    Compare the translation status of a language with English.
+
+    :param StringsXML eng: The parsed data of the English translation.
+    :param StringsXML other: The parsed data of the other language translation.
+    :return: A dictionary with the translation statuses and string names as
+             keys and values.
+    :rtype: SingleLangStats
+    """
     result = {'translated': [], 'not_translated': [], 'missing': []}
     # Iterate over all English strings
     for s in eng:
@@ -78,9 +148,16 @@ def compare_strings_xml(eng: StringsXML, other: StringsXML) -> SingleLangStats:
  
 
 
+# A dictionary with language names as keys and SingleLangStats as values. It
+# contains all the gathered data about all the languages.
 LangStats = Dict[str, SingleLangStats]
 
 def csv_print(language_stats: LangStats):
+    """
+    Print language translation status in CSV format.
+
+    :param LangStats language_stats: The data to be printed.
+    """
     print('Language,Filename,Translated,Not Translated,Missing,Completion')
     for lang in language_stats:
         translated = len(language_stats[lang]['translated'])
@@ -96,11 +173,24 @@ def csv_print(language_stats: LangStats):
                 + str(completion))
 
 def detailed_print(language_stats: LangStats, verbosity_level: int = 1):
+    """
+    Print language translation status in human readable format.
+
+    :param LangStats language_stats: The data to be printed.
+    :param int verbosity_level: A value of up to 1 will show the number of
+                                strings in each translation status
+                                ('translated', 'not_translated' and 'missing').
+                                A value of 2 will additionally show the names
+                                of strings that are 'not_translated' or
+                                'missing'. A value of 3 or more with also show
+                                the names of strings that are 'translated'.
+    """
     for lang in language_stats:
         translated = len(language_stats[lang]['translated'])
         not_translated = len(language_stats[lang]['not_translated'])
         missing = len(language_stats[lang]['missing'])
         total = translated + not_translated + missing
+        completion = int(100 * translated / total)
         print('Language: ' + lang)
         print('  File:           ' + language_stats[lang]['filename'])
         print('  Translated:     ' + str(translated)
@@ -118,10 +208,12 @@ def detailed_print(language_stats: LangStats, verbosity_level: int = 1):
         if verbosity_level > 1:
             for s in language_stats[lang]['missing']:
                 print('      ' + s)
+        print('  Completion:     ' + str(completion) + ' %')
 
 
 
 if __name__ == "__main__":
+    # Parse command line arguments
     args = parse_arguments()
 
     # Add the script directory before relative paths to allow calling the
@@ -136,21 +228,24 @@ if __name__ == "__main__":
     # Iterate over all the other translations
     language_stats = {}
     for filename in other_translations:
+        # Get the language name by removing a prefix and a suffix from the
+        # filename
         prefix_end_idx = len(script_dir)+len('app/src/main/res/values-')
         suffix_start_idx = len('/strings.xml')
         language_name = filename[prefix_end_idx:-suffix_start_idx]
 
-        # If a language was specified skip all others
+        # If a specific language was specified then skip all others
         if args.language and language_name.lower() != args.language.lower():
             continue
 
         # Read in the other translation
         other_strings = parse_strings_xml(filename)
 
-        # Compare agains the English translation
+        # Compare against the English translation
         res = compare_strings_xml(english_strings, other_strings)
 
-        # Add filename info and add the results to the language dictionary
+        # Add filename info to the results and add the results to the language
+        # dictionary
         res['filename'] = filename[len(script_dir):]
         language_stats[language_name] = res
 
