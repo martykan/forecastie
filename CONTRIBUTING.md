@@ -11,3 +11,7 @@ We also accept pull requests; anything you submit will be reviewed and discussed
 Although we will discuss every pull request, we'd like you to prepare your contribution as well as possible. Keep your code easy to understand and maintainable as well as consistent with the existing code. Add helpful comments or JavaDoc when necessary.
 
 We don't have an official code style but you can find reasonable guidelines in the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) and the [Android Contributors Code Style](https://source.android.com/setup/contribute/code-style).
+
+## Translations
+
+It is very important to have Forecastie available in as many languages as possible: we currently offer 27 languages beside the default English, unfortunately they are not always as up-to-date as we would like. All translators and their contributions are very welcome, please do whatever you can, no matter how small the change. There are two tools available to assist with this work, [Transifex](https://www.transifex.com/forecastie/forecastie/) and a [Python script](https://github.com/martykan/forecastie/blob/master/translation-progress.py) which shows untranslated strings for a selected language.
