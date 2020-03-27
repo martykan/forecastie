@@ -5,21 +5,18 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
-import android.webkit.JavascriptInterface;
+import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnMenuTabClickListener;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.viewmodels.MapViewModel;
 
 public class MapActivity extends BaseActivity {
 
-    private BottomBar bottomBar;
     private WebView webView;
     private MapViewModel mapViewModel;
 
@@ -44,7 +41,6 @@ public class MapActivity extends BaseActivity {
         webView.loadUrl("file:///android_asset/map.html?lat=" + mapViewModel.mapLat + "&lon="
                 + mapViewModel.mapLon + "&appid=" + mapViewModel.apiKey
                 + "&zoom=" + mapViewModel.mapZoom);
-        webView.addJavascriptInterface(new HybridInterface(), "NativeInterface");
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
@@ -56,19 +52,17 @@ public class MapActivity extends BaseActivity {
             }
         });
 
-        bottomBar = BottomBar.attach(this, savedInstanceState);
-        bottomBar.setItems(R.menu.menu_map_bottom);
-        bottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
+        BottomNavigationView bottomBar = findViewById(R.id.navigationBar);
+        bottomBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onMenuTabSelected(@IdRes int menuItemId) {
-                setMapState(menuItemId);
-                mapViewModel.tabPosition = menuItemId;
-            }
-
-            @Override
-            public void onMenuTabReSelected(@IdRes int menuItemId) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int i = item.getItemId();
+                setMapState(i);
+                mapViewModel.tabPosition = i;
+                return true;
             }
         });
+
     }
 
     private void setMapState(int item) {
@@ -98,20 +92,6 @@ public class MapActivity extends BaseActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        bottomBar.onSaveInstanceState(outState);
     }
 
-    private class HybridInterface {
-
-        @JavascriptInterface
-        public void transferLatLon(double lat, double lon) {
-            mapViewModel.mapLat = lat;
-            mapViewModel.mapLon = lon;
-        }
-
-        @JavascriptInterface
-        public void transferZoom(int level) {
-            mapViewModel.mapZoom = level;
-        }
-    }
 }
