@@ -3,10 +3,10 @@
 [![Release](https://img.shields.io/github/release/martykan/forecastie.png)](https://github.com/martykan/forecastie/releases)
 [![Circle CI](https://circleci.com/gh/martykan/forecastie/tree/master.png)](https://circleci.com/gh/martykan/forecastie/tree/master)
 
-A simple, free software weather app for Android. It gathers data from [OpenWeatherMap](https://openweathermap.org/), via their public API.
+A simple, copylefted libre software weather app for Android. It gathers data from [OpenWeatherMap](https://openweathermap.org/), via their public API.
 
 [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Get_it_on_F-Droid.svg/200px-Get_it_on_F-Droid.svg.png" style="float: left; padding-right: 10px;">](https://f-droid.org/repository/browse/?fdid=cz.martykan.forecastie)
-[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Get_it_on_Google_play.svg/500px-Get_it_on_Google_play.svg.png" style="float: left; padding-right: 10px;" height="70">](https://play.google.com/store/apps/details?id=com.casticalabs.forecastie)
+[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/200px-Google_Play_Store_badge_EN.svg.png" style="float: left; padding-right: 10px;" height="70">](https://play.google.com/store/apps/details?id=com.casticalabs.forecastie)
 
 ## Features
 * Simple design
