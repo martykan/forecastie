@@ -2,7 +2,7 @@
 
 [![Release](https://img.shields.io/github/release/martykan/forecastie.png)](https://github.com/martykan/forecastie/releases)
 [![Circle CI](https://circleci.com/gh/martykan/forecastie/tree/master.png)](https://circleci.com/gh/martykan/forecastie/tree/master)
-[![Android CI](https://github.com/martykan/forecastie/workflows/Android%20CI/badge.svg)]
+[![Android CI](https://github.com/martykan/forecastie/workflows/Android%20CI/badge.svg)](https://github.com/martykan/forecastie/releases=)
 
 A simple, copylefted libre software weather app for Android. It gathers data from [OpenWeatherMap](https://openweathermap.org/), via their public API.
 
