@@ -1,3 +1,5 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
 <resources>
     <string name="app_name">Forecastie</string>
     <!-- Main activity titles -->
@@ -167,19 +169,19 @@
     <string name="wind_direction_north_north_west">NNO</string>
 
     <!-- Wind strength - Beaufort -->
-    <string name="beaufort_calm">Calme</string>
-    <string name="beaufort_light_air">Très légère brise</string>
-    <string name="beaufort_light_breeze">Légère brise</string>
-    <string name="beaufort_gentle_breeze">Petite brise</string>
-    <string name="beaufort_moderate_breeze">Jolie brise</string>
-    <string name="beaufort_fresh_breeze">Bonne brise</string>
-    <string name="beaufort_strong_breeze">Vent frais</string>
-    <string name="beaufort_high_wind">Grand frais</string>
-    <string name="beaufort_gale">Coup de vent</string>
-    <string name="beaufort_strong_gale">Fort coup de vent</string>
-    <string name="beaufort_storm">Tempête</string>
-    <string name="beaufort_violent_storm">Violente tempête</string>
-    <string name="beaufort_hurricane">Ouragan</string>
+    <string name="beaufort_calm">Calme (0)</string>
+    <string name="beaufort_light_air">Très légère brise (1)</string>
+    <string name="beaufort_light_breeze">Légère brise (2)</string>
+    <string name="beaufort_gentle_breeze">Petite brise (3)</string>
+    <string name="beaufort_moderate_breeze">Jolie brise (4)</string>
+    <string name="beaufort_fresh_breeze">Bonne brise (5)</string>
+    <string name="beaufort_strong_breeze">Vent frais (6)</string>
+    <string name="beaufort_high_wind">Grand frais (7)</string>
+    <string name="beaufort_gale">Coup de vent (8)</string>
+    <string name="beaufort_strong_gale">Fort coup de vent (9)</string>
+    <string name="beaufort_storm">Tempête (10)</string>
+    <string name="beaufort_violent_storm">Violente tempête (11)</string>
+    <string name="beaufort_hurricane">Ouragan (12)</string>
 
     <!-- Dash clock -->
     <!-- 1: temperature; 2: unit -->
