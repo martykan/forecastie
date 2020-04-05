@@ -24,7 +24,7 @@ reorder(){
                         # Line exists in template but not in strings.xml.
                         # Use an identifying string so that we identify this
                         # as a line we shouldn't insert (so that we don't end up
-                        # with invalid xml
+                        # with invalid xml)
                         OUTPUTLINE="465761321687"
                     fi
                 fi
