@@ -27,7 +27,7 @@ jobs:
           run: |
             ll -R /home/runner/work/forecastie/forecastie/ > file_list
         - name: Upload file list
-            uses: actions/upload-artifact@v1
-            with:
-                name: all_files
-                path: file_list
+          uses: actions/upload-artifact@v1
+          with:
+            name: all_files
+            path: file_list
