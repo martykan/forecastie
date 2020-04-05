@@ -31,6 +31,7 @@ import java.util.TimeZone;
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.tasks.ParseResult;
+import cz.martykan.forecastie.utils.UI;
 import cz.martykan.forecastie.utils.UnitConvertor;
 
 public class GraphActivity extends BaseActivity {
@@ -67,7 +68,7 @@ public class GraphActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setTheme(theme = getTheme(sp.getString("theme", "fresh")));
+        setTheme(theme = UI.getTheme(sp.getString("theme", "fresh")));
         darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
                 theme == R.style.AppTheme_NoActionBar_Black ||
                 theme == R.style.AppTheme_NoActionBar_Classic_Dark ||
@@ -472,20 +473,4 @@ public class GraphActivity extends BaseActivity {
         return sum;
     }
 
-    private int getTheme(String themePref) {
-        switch (themePref) {
-            case "dark":
-                return R.style.AppTheme_NoActionBar_Dark;
-            case "black":
-                return R.style.AppTheme_NoActionBar_Black;
-            case "classic":
-                return R.style.AppTheme_NoActionBar_Classic;
-            case "classicdark":
-                return R.style.AppTheme_NoActionBar_Classic_Dark;
-            case "classicblack":
-                return R.style.AppTheme_NoActionBar_Classic_Black;
-            default:
-                return R.style.AppTheme_NoActionBar;
-        }
-    }
 }

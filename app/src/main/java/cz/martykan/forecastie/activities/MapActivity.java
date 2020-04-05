@@ -14,6 +14,7 @@ import android.webkit.WebViewClient;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.viewmodels.MapViewModel;
+import cz.martykan.forecastie.utils.UI;
 
 public class MapActivity extends BaseActivity {
 
@@ -27,6 +28,7 @@ public class MapActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        setTheme(theme = UI.getTheme(prefs.getString("theme", "fresh")));
         mapViewModel = ViewModelProviders.of(this).get(MapViewModel.class);
 
         if (savedInstanceState == null) {
