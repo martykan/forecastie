@@ -19,15 +19,3 @@ jobs:
       with:
         name: app
         path: project/build/apk/
-
-  list_files:
-    runs-on: ubuntu-latest
-    steps:
-        - shell: bash
-          run: |
-            ls -R /home/runner/work/forecastie/ > file_list
-        - name: Upload file list
-          uses: actions/upload-artifact@v1
-          with:
-            name: all_files
-            path: file_list
