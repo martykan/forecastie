@@ -1,0 +1,194 @@
+<\\!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<\\!-- Do not delete any blank lines -->
+<resources>
+    <string name="app_name">
+    <\!-- Main activity titles -->
+    <string name="action_search">
+    <string name="action_refresh">
+    <string name="action_settings">
+    <string name="action_about">
+    <string name="search_title">
+    <string name="downloading_data">
+    <string name="getting_location">
+    <string name="loading_data">
+
+    <\!-- Forecast cards -->
+    <string name="today">
+    <string name="tomorrow">
+    <string name="later">
+
+    <\!-- Main activity headings -->
+    <string name="wind">
+    <string name="wind_speed">
+    <string name="pressure">
+    <string name="humidity">
+    <string name="sunrise">
+    <string name="sunset">
+    <string name="uvindex">
+
+    <\!-- Settings/Units -->
+    <string name="settings_title_units">
+    <string name="setting_lengthUnits">
+    <string name="setting_speedUnits">
+    <string name="setting_tempUnits">
+    <string name="setting_showTempAsInteger">
+    <string name="setting_pressureUnits">
+    <string name="setting_auto_detect_location">
+    <string name="setting_differentiateDaysByTint">
+
+    <string name="setting_unit_mps">
+    <string name="setting_unit_kph">
+    <string name="setting_unit_mph">
+    <string name="setting_unit_bft">
+    <string name="setting_unit_kn">
+    <string name="setting_unit_Celsuis">
+    <string name="setting_unit_Fahrenheit">
+    <string name="setting_unit_Kelvin">
+
+    <string name="setting_unit_mm">
+    <string name="setting_unit_in">
+
+    <string name="setting_unit_hpa">
+    <string name="setting_unit_kpa">
+    <string name="setting_unit_mmhg">
+    <string name="setting_unit_inhg">
+
+    <string name="speed_unit_mps">
+    <string name="speed_unit_kph">
+    <string name="speed_unit_mph">
+    <string name="speed_unit_kn">
+
+    <string name="pressure_unit_hpa">
+    <string name="pressure_unit_kpa">
+    <string name="pressure_unit_mmhg">
+
+    <string name="uvi_no_info">
+    <string name="uvi_low">
+    <string name="uvi_moderate">
+    <string name="uvi_high">
+    <string name="uvi_very_high">
+    <string name="uvi_extreme">
+
+    <\!-- Settings/Appearance -->
+    <string name="settings_title_display">
+    <string name="setting_theme">
+    <string name="setting_transparent_widget">
+    <string name="setting_wind_direction_format">
+    <string name="setting_theme_fresh">
+    <string name="setting_theme_classic">
+    <string name="setting_theme_dark">
+    <string name="setting_theme_classic_dark">
+    <string name="setting_theme_black">
+    <string name="setting_theme_classic_black">
+
+    <string name="wind_direction_format_none">
+    <string name="wind_direction_format_arrows">
+    <string name="wind_direction_format_abbreviations">
+    <string name="setting_displayDecimalZeroes">
+
+    <\!-- Settings/Data -->
+    <string name="last_update">
+    <string name="last_update_widget">
+    <string name="settings_title_data">
+    <string name="setting_refreshInterval">
+    <string name="settings_none">
+    <string name="settings_15min">
+    <string name="settings_30min">
+    <string name="settings_1hour">
+    <string name="settings_2hour">
+    <string name="settings_6hour">
+    <string name="settings_12hour">
+    <string name="settings_24hour">
+    <string name="setting_apiKey">
+    <string name="setting_apiKey_summary">
+
+    <\!-- Settings/Date format -->
+    <string name="error_dateFormat">
+    <string name="setting_dateFormat">
+    <string name="setting_dateFormatCustom">
+    <string name="setting_dateFormatCustom_summary">
+    <string name="setting_simple_string_formatting_intro">
+    <string name="setting_available_simple_string_codes">
+    <string name="setting_example_simple_string">
+    <string name="setting_example_date_format">
+    <string name="dialog_ok">
+    <string name="dialog_cancel">
+
+    <\!-- Errors -->
+    <string name="msg_err_parsing_json">
+    <string name="msg_connection_problem">
+    <string name="msg_connection_not_available">
+    <string name="msg_city_not_found">
+    <string name="msg_too_many_requests">
+
+    <\!-- Wind direction -->
+    <string name="wind_direction_north">
+    <string name="wind_direction_north_north_east">
+    <string name="wind_direction_north_east">
+    <string name="wind_direction_east_north_east">
+    <string name="wind_direction_east">
+    <string name="wind_direction_east_south_east">
+    <string name="wind_direction_south_east">
+    <string name="wind_direction_south_south_east">
+    <string name="wind_direction_south">
+    <string name="wind_direction_south_south_west">
+    <string name="wind_direction_south_west">
+    <string name="wind_direction_west_south_west">
+    <string name="wind_direction_west">
+    <string name="wind_direction_west_north_west">
+    <string name="wind_direction_north_west">
+    <string name="wind_direction_north_north_west">
+
+    <\!-- Wind strength - Beaufort -->
+    <string name="beaufort_calm">
+    <string name="beaufort_light_air">
+    <string name="beaufort_light_breeze">
+    <string name="beaufort_gentle_breeze">
+    <string name="beaufort_moderate_breeze">
+    <string name="beaufort_fresh_breeze">
+    <string name="beaufort_strong_breeze">
+    <string name="beaufort_high_wind">
+    <string name="beaufort_gale">
+    <string name="beaufort_strong_gale">
+    <string name="beaufort_storm">
+    <string name="beaufort_violent_storm">
+    <string name="beaufort_hurricane">
+
+    <\!-- Dash clock -->
+    <\!-- 1: temperature; 2: unit -->
+    <string name="dash_clock_status">
+    <\!-- 1: temperature; 2: unit; 3: weather description -->
+    <string name="dash_clock_expanded_title">
+    <\!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
+    <string name="dash_clock_expanded_body">
+
+    <\!-- Location -->
+    <string name="settings_title_location">
+    <string name="setting_update_location_automatically">
+    <string name="location_settings">
+    <string name="location_settings_message">
+    <string name="location_settings_button">
+
+    <\!-- Map -->
+    <string name="action_weather_map">
+    <string name="rain">
+    <string name="temperature">
+    <string name="clouds">
+
+    <\!-- Graphs -->
+    <string name="action_graphs">
+
+    <\!-- About dialogue -->
+    <string name="about_unknown">
+    <string name="about_description">
+    <string name="about_developers">
+    <string name="about_src">
+    <string name="about_data">
+    <string name="about_icons">
+
+    <\!-- Widget -->
+    <string name="widget_label_extensive">
+    <string name="widget_label_time">
+    <string name="widget_label_simple">
+    <string name="widget_label_classic">
+</resources>

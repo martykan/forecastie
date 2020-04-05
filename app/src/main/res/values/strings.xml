@@ -1,3 +1,5 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
 <resources>
     <string name="app_name">Forecastie</string>
     <!-- Main activity titles -->
@@ -117,6 +119,7 @@
     <string name="msg_connection_problem">There is a problem with your internet connection.</string>
     <string name="msg_connection_not_available">Connection not available.</string>
     <string name="msg_city_not_found">Specified city is not found.</string>
+    <string name="msg_too_many_requests">Too many requests. Please try again.</string>
 
     <!-- Weather icons -->
     <string name="weather_cloudy" translatable="false">&#xf013;</string>
@@ -164,7 +167,6 @@
     <string name="wind_direction_west_north_west">WNW</string>
     <string name="wind_direction_north_west">NW</string>
     <string name="wind_direction_north_north_west">NNW</string>
-    <string name="msg_too_many_requests">Too many requests. Please try again.</string>
 
     <!-- Wind strength - Beaufort -->
     <string name="beaufort_calm">Calm (0)</string>
@@ -187,7 +189,10 @@
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\nWind: %3$s %4$s\nPressure: %5$s %6$s\nHumidity: %7$s %%\n</string>
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n
+        Wind: %3$s %4$s\n
+        Pressure: %5$s %6$s\n
+        Humidity: %7$s %%\n</string>
 
     <!-- Location -->
     <string name="settings_title_location">Location</string>
@@ -211,7 +216,7 @@
     <string name="about_developers">Developed by <a href='mailto:t.martykan@gmail.com'>Tomáš Martykán</a> and <a href='https://github.com/martykan/forecastie/graphs/contributors'>others</a>, with assistance from <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>many more</a>.</string>
     <string name="about_src">Code is available at <a href='https://github.com/martykan/forecastie'>Github</a>.</string>
     <string name="about_issues">Bugs and enhancements can be posted on our <a href='https://github.com/martykan/forecastie/issues'>Github issues page</a>.</string>
-    <string name="about_data">Data provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA licence</a>.</string>
+    <string name="about_data">Data provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA 2.0 licence</a>.</string>
     <string name="about_icons">Icons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.</string>
 
     <!-- Widget -->
