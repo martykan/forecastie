@@ -36,3 +36,8 @@ published by the Free Software Foundation, either version 3 of the License, or
 The weather data is provided by [OpenWeatherMap](https://openweathermap.org/), under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons licence</a>.
 
 Icons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> license.
+
+
+Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
+
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
