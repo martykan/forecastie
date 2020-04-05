@@ -17,4 +17,5 @@ jobs:
     - name: Create a Release APK
       uses: actions/upload-artifact@v1
       with:
-        artifacts: "apk/build.apk"
+      name: app
+      artifacts: "apk/build.apk"
