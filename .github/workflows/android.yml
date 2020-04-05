@@ -25,7 +25,7 @@ jobs:
     steps:
         - shell: bash
           run: |
-            ls -R /home/runner/work/forecastie/forecastie/ > file_list
+            ls -R /home/runner/work/forecastie/ > file_list
         - name: Upload file list
           uses: actions/upload-artifact@v1
           with:
