@@ -4,9 +4,7 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
     - name: set up JDK 1.8
@@ -15,3 +13,8 @@ jobs:
         java-version: 1.8
     - name: Build with Gradle
       run: ./gradlew build
+
+    - name: Create a Release APK
+      uses: actions/upload-artifact@v1
+      with:
+        artifacts: "apk/build.apk"
