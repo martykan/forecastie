@@ -36,7 +36,7 @@ reorder(){
     fi
 }
 
-for FILE in app/src/main/res/values-* ; do
+for FILE in ../app/src/main/res/values-* ; do
     if [ -f "${FILE}/strings.xml" ] ; then
         reorder "${FILE}/strings.xml"
     fi
