@@ -51,8 +51,8 @@ import xml.etree.ElementTree as ET
 
 # These paths are relative to the script and should be changed accordingly if
 # the script is moved
-english_translation = 'app/src/main/res/values/strings.xml'
-other_translations = 'app/src/main/res/values-*/strings.xml'
+english_translation = '../app//main/res/values/strings.xml'
+other_translations = '../app/src/main/res/values-*/strings.xml'
 
 # String names in this list will not be considered
 string_blacklist = [
@@ -80,7 +80,7 @@ def parse_arguments():
                         default=None,
                         help='Only show translation progress for language '
                         'LANGUAGE. LANGUAGE should be one of the suffixes of '
-                        'app/src/main/res/values-*')
+                        '../app/src/main/res/values-*')
     args = parser.parse_args()
     return args
 
@@ -230,7 +230,7 @@ if __name__ == "__main__":
     for filename in other_translations:
         # Get the language name by removing a prefix and a suffix from the
         # filename
-        prefix_end_idx = len(script_dir)+len('app/src/main/res/values-')
+        prefix_end_idx = len(script_dir)+len('../app/src/main/res/values-')
         suffix_start_idx = len('/strings.xml')
         language_name = filename[prefix_end_idx:-suffix_start_idx]
 
