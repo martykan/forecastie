@@ -6,8 +6,8 @@
 TEMPLATE='reorderTemplate'
 
 reorder(){
-    if [ -f "$1" ] ; then
-        echo "$1 already exists. Nothing done to it".
+    if [ -f "$1.out" ] ; then
+        echo "$1.out already exists. Nothing done to it".
     else
         while read LINE ; do
             OUTPUTLINE=""
