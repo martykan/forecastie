@@ -14,14 +14,16 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
-    - name: Create a Dev APK
-      uses: actions/upload-artifact@v1
-      with:
-        name: app-dev
-        path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
-
-    - name: Create a Release APK
-      uses: actions/upload-artifact@v1
-      with:
-        name: app-release
-        path: platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+# failed attempts to build a release apk using github actions
+#
+#    - name: Create a Dev APK
+#      uses: actions/upload-artifact@v1
+#      with:
+#        name: app-dev
+#        path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+#
+#    - name: Create a Release APK
+#      uses: actions/upload-artifact@v1
+#      with:
+#        name: app-release
+#        path: platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
