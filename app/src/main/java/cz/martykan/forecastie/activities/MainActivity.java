@@ -92,6 +92,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
     private TextView todayUvIndex;
     private TextView lastUpdate;
     private TextView todayIcon;
+    private TextView tapGraph;
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -104,6 +105,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
     private int theme;
     private boolean widgetTransparent;
     private boolean destroyed = false;
+    private boolean firstRun;
 
     private List<Weather> longTermWeather = new ArrayList<>();
     private List<Weather> longTermTodayWeather = new ArrayList<>();
@@ -112,13 +114,17 @@ public class MainActivity extends BaseActivity implements LocationListener {
     public String recentCityId = "";
 
     private Formatting formatting;
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Initialize the associated SharedPreferences file with default values
         PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = prefs.edit();
+        firstRun = prefs.getBoolean("firstRun", true);
 
         widgetTransparent = prefs.getBoolean("transparentWidget", false);
         setTheme(theme = UI.getTheme(prefs.getString("theme", "fresh")));
@@ -155,6 +161,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         todayUvIndex = (TextView) findViewById(R.id.todayUvIndex);
         lastUpdate = (TextView) findViewById(R.id.lastUpdate);
         todayIcon = (TextView) findViewById(R.id.todayIcon);
+        tapGraph = findViewById(R.id.tapGraph);
         Typeface weatherFont = Typeface.createFromAsset(this.getAssets(), "fonts/weather.ttf");
         todayIcon.setTypeface(weatherFont);
 
@@ -232,6 +239,11 @@ public class MainActivity extends BaseActivity implements LocationListener {
             getTodayWeather();
             getLongTermWeather();
             getTodayUVIndex();
+        }
+        if(firstRun) {
+            tapGraph.setText("Tap for Graphs");
+            editor.putBoolean("firstRun",false);
+            editor.commit();
         }
     }
 

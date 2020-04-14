@@ -129,6 +129,17 @@
                             android:text=""
                             android:textAlignment="viewEnd"
                             android:textSize="72sp"/>
+                        <TextView
+                            android:id="@+id/tapGraph"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="16sp"
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textAlignment="viewEnd"
+                            android:layout_gravity="end"/>
+
+
 
                         <TextView
                             android:id="@+id/lastUpdate"
