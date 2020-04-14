@@ -318,7 +318,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
         alert.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                String result = input.getText().toString();
+                String result = input.getText().toString().trim();
                 if (!result.isEmpty()) {
                     new FindCitiesByNameTask(getApplicationContext(),
                             MainActivity.this, progressDialog).execute("city", result);
