@@ -141,7 +141,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:paddingRight="42dp"
-                                android:text="@string/tap_for_graphs"
+                                android:text=""
                                 android:textSize="16sp" />
 
 
