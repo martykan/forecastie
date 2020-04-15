@@ -237,7 +237,7 @@ public class GraphActivity extends BaseActivity {
         barChartView.show();
 
         TextView textView = findViewById(R.id.graph_pressure_textview);
-        textView.setText(String.format("%s (%s)", getString(R.string.pressure), sp.getString("pressureUnit", "hPa")));
+        textView.setText(String.format("%s (%s)", getString(R.string.pressure), sp.getString("pressureUnit", "hPa/mBar")));
     }
 
     private void windSpeedGraph() {
