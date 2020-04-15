@@ -232,6 +232,8 @@ public class MainActivity extends BaseActivity implements LocationListener {
                 PreferenceManager.getDefaultSharedPreferences(this).getBoolean("transparentWidget", false) != widgetTransparent) {
             // Restart activity to apply theme
             overridePendingTransition(0, 0);
+            editor.putBoolean("firstRun", true);
+            editor.commit();
             finish();
             overridePendingTransition(0, 0);
             startActivity(getIntent());
