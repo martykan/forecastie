@@ -131,6 +131,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
                                 android:paddingRight="42dp"
+                                android:textColor="@color/text_light"
                                 android:text=""
                                 android:textAlignment="viewEnd"
                                 android:textSize="72sp"/>
@@ -140,9 +141,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:paddingRight="42dp"
+                                android:paddingRight="16dp"
+                                android:textColor="@color/text_light"
                                 android:text=""
-                                android:textSize="16sp" />
+                                android:textSize="14sp" />
 
 
                         </LinearLayout>
@@ -160,7 +162,7 @@
                             android:gravity="bottom|end"
                             android:paddingRight="16dp"
                             android:textAlignment="viewEnd"
-                            android:textSize="16sp"/>
+                            android:textSize="14sp"/>
                     </LinearLayout>
 
 
