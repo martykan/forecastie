@@ -34,6 +34,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -116,6 +117,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
     private Formatting formatting;
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
+    private LinearLayout linearLayoutTapForGraphs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,6 +164,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         lastUpdate = (TextView) findViewById(R.id.lastUpdate);
         todayIcon = (TextView) findViewById(R.id.todayIcon);
         tapGraph = findViewById(R.id.tapGraph);
+        linearLayoutTapForGraphs = findViewById(R.id.linearLayout_tap_for_graphs);
         Typeface weatherFont = Typeface.createFromAsset(this.getAssets(), "fonts/weather.ttf");
         todayIcon.setTypeface(weatherFont);
 
@@ -524,7 +527,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         todaySunset.setText(getString(R.string.sunset) + ": " + timeFormat.format(todayWeather.getSunset()));
         todayIcon.setText(todayWeather.getIcon());
 
-        todayIcon.setOnClickListener(new View.OnClickListener() {
+        linearLayoutTapForGraphs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, GraphActivity.class);
