@@ -129,11 +129,11 @@
                                 android:id="@+id/todayIcon"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="end"
+                                android:layout_gravity="center"
+                                android:gravity="center"
                                 android:paddingRight="42dp"
                                 android:textColor="@color/text_light"
                                 android:text=""
-                                android:textAlignment="viewEnd"
                                 android:textSize="72sp"/>
 
                             <TextView
@@ -141,7 +141,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:paddingRight="16dp"
+                                android:gravity="center"
+                                android:paddingRight="42dp"
+                                android:layout_marginTop="-20dp"
                                 android:textColor="@color/text_light"
                                 android:text=""
                                 android:textSize="14sp" />
