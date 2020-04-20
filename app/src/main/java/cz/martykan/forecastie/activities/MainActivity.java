@@ -34,6 +34,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -92,6 +93,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
     private TextView todayUvIndex;
     private TextView lastUpdate;
     private TextView todayIcon;
+    private TextView tapGraph;
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -104,6 +106,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
     private int theme;
     private boolean widgetTransparent;
     private boolean destroyed = false;
+    private boolean firstRun;
 
     private List<Weather> longTermWeather = new ArrayList<>();
     private List<Weather> longTermTodayWeather = new ArrayList<>();
@@ -112,13 +115,18 @@ public class MainActivity extends BaseActivity implements LocationListener {
     public String recentCityId = "";
 
     private Formatting formatting;
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+    private LinearLayout linearLayoutTapForGraphs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Initialize the associated SharedPreferences file with default values
         PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = prefs.edit();
+        firstRun = prefs.getBoolean("firstRun", true);
 
         widgetTransparent = prefs.getBoolean("transparentWidget", false);
         setTheme(theme = UI.getTheme(prefs.getString("theme", "fresh")));
@@ -155,6 +163,8 @@ public class MainActivity extends BaseActivity implements LocationListener {
         todayUvIndex = (TextView) findViewById(R.id.todayUvIndex);
         lastUpdate = (TextView) findViewById(R.id.lastUpdate);
         todayIcon = (TextView) findViewById(R.id.todayIcon);
+        tapGraph = findViewById(R.id.tapGraph);
+        linearLayoutTapForGraphs = findViewById(R.id.linearLayout_tap_for_graphs);
         Typeface weatherFont = Typeface.createFromAsset(this.getAssets(), "fonts/weather.ttf");
         todayIcon.setTypeface(weatherFont);
 
@@ -225,6 +235,8 @@ public class MainActivity extends BaseActivity implements LocationListener {
                 PreferenceManager.getDefaultSharedPreferences(this).getBoolean("transparentWidget", false) != widgetTransparent) {
             // Restart activity to apply theme
             overridePendingTransition(0, 0);
+            editor.putBoolean("firstRun", true);
+            editor.commit();
             finish();
             overridePendingTransition(0, 0);
             startActivity(getIntent());
@@ -232,6 +244,11 @@ public class MainActivity extends BaseActivity implements LocationListener {
             getTodayWeather();
             getLongTermWeather();
             getTodayUVIndex();
+        }
+        if(firstRun) {
+            tapGraph.setText(getString(R.string.tap_for_graphs));
+            editor.putBoolean("firstRun",false);
+            editor.commit();
         }
     }
 
@@ -306,7 +323,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
         alert.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                String result = input.getText().toString();
+                String result = input.getText().toString().trim();
                 if (!result.isEmpty()) {
                     new FindCitiesByNameTask(getApplicationContext(),
                             MainActivity.this, progressDialog).execute("city", result);
@@ -510,7 +527,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         todaySunset.setText(getString(R.string.sunset) + ": " + timeFormat.format(todayWeather.getSunset()));
         todayIcon.setText(todayWeather.getIcon());
 
-        todayIcon.setOnClickListener(new View.OnClickListener() {
+        linearLayoutTapForGraphs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, GraphActivity.class);
