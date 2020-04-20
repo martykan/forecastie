@@ -1,0 +1,1 @@
+A simple, copylefted libre software weather app for Android.

@@ -1,0 +1,12 @@
+Code changes
+
+* Added on-first-run "Tap for Graphs" label to weather icon on "main" screen
+* Updated Spanish translation (thanks Elsa Andrés)
+* Fixed trailing-space error when searching for city
+* Fixed error in graph units
+
+Behind-the-scenes changes
+
+* Minor fixes to translation script
+* Minor updates to contributing.md
+* Added contact email address to CoC

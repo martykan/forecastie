@@ -1,0 +1,7 @@
+A simple, copylefted libre software weather app for Android. It gathers data from OpenWeatherMap, via their public API.
+
+* Simple design
+* Detailed 5 day forecast
+* Multiple units
+* Works with any city in the world
+* Offline functionality
