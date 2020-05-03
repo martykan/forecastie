@@ -31,7 +31,7 @@
     <color name="classic_blackTheme_colorBackground">#000000</color>
     <color name="classic_blackTheme_colorTintedBackground">#303030</color>
 
-    <color name="splashBackground">#607d8b</color>
+    <color name="splashBackground">#2196F3</color>
 
     <color name="text_light">#ffffff</color>
     <color name="text_dark">#000000</color>
