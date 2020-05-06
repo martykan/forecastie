@@ -36,8 +36,6 @@
     <string name="setting_dateFormatCustom_summary">Δώστε την προσαρμοσμένη ημερομηνία σε μορφή SimpleDateFormat</string>
 
     <string name="setting_simple_string_formatting_intro">Τα παρακάτω σύμβολα μπορούν να χρησιμοποιηθούν για τον ορισμό μιας προσαρμοσμένης μορφής ημερομηνίας και ώρας</string>
-    <string name="setting_available_simple_string_codes">yYMwWDdFEuaHkKhmsSzZX</string>
-    <string name="setting_example_simple_string">EEEE, d MMM yyyy h:mm:ss a, zzzz</string>
     <string name="setting_example_date_format">Τετάρτη, 4 Ιουλ 2001 12:08:32 ΜΜ, Θερινή Ώρα Ειρηνικού</string>
 
     <string name="setting_lengthUnits">Μονάδες μήκους</string>
