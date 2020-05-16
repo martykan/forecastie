@@ -209,6 +209,7 @@
 
     <!-- Graphs -->
     <string name="action_graphs">Graphs</string>
+    <string name="graphs_more_days">More days</string>
 
     <!-- About dialogue -->
     <string name="about_unknown">Could not get version name</string>
