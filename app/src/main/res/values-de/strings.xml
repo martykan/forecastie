@@ -173,6 +173,7 @@
 
     <!-- Graphs -->
     <string name="action_graphs">Diagramme</string>
+    <string name="graphs_more_days">Mehr Tage</string>
 
     <!-- About dialogue -->
     <string name="about_unknown">Version unbekannt</string>
