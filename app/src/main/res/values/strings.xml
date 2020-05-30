@@ -120,6 +120,7 @@
     <string name="msg_connection_not_available">Connection not available.</string>
     <string name="msg_city_not_found">Specified city is not found.</string>
     <string name="msg_too_many_requests">Too many requests. Please try again.</string>
+    <string name="msg_invalid_api_key">Invalid API key.</string>
 
     <!-- Weather icons -->
     <string name="weather_cloudy" translatable="false">&#xf013;</string>
