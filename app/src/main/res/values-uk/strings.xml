@@ -78,7 +78,6 @@
     <string name="dialog_cancel">Скасувати</string>
 
     <string name="msg_err_parsing_json">Помилка розбору JSON.</string>
-    <string name="msg_connection_problem">Виникла проблема з підключенням до інтернету.</string>
     <string name="msg_connection_not_available">Підключення недоступне.</string>
     <string name="msg_city_not_found">Вказане місто не знайдено.</string>
 

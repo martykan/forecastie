@@ -89,7 +89,6 @@
     <string name="dialog_cancel">Avbryt</string>
 
     <string name="msg_err_parsing_json">Fel vid parsning av JSON.</string>
-    <string name="msg_connection_problem">Det finns ett problem med din internets anslutning.</string>
     <string name="msg_connection_not_available">Anslutning inte tillgänglig.</string>
     <string name="msg_city_not_found">Den angivna staden hittades inte.</string>
 

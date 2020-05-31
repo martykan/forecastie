@@ -116,7 +116,6 @@
 
     <!-- Errors -->
     <string name="msg_err_parsing_json">Erreur d\'analyse JSON.</string>
-    <string name="msg_connection_problem">Il y a un problème avec votre connexion à Internet.</string>
     <string name="msg_connection_not_available">Aucune connexion.</string>
     <string name="msg_city_not_found">Ville introuvable.</string>
     <string name="msg_too_many_requests">Trop de requêtes. Veuillez réessayer.</string>

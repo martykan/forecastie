@@ -82,7 +82,6 @@
     <string name="dialog_cancel">Скасаваць</string>
 
     <string name="msg_err_parsing_json">Памылка разбору JSON.</string>
-    <string name="msg_connection_problem">Праблемы з інтэрнэт-злучэннем.</string>
     <string name="msg_connection_not_available">Інтэрнэт-злучэнне недаступна.</string>
     <string name="msg_city_not_found">Указаны населены пункт не знойдзены.</string>
 

@@ -78,7 +78,6 @@
     <string name="dialog_cancel">キャンセル</string>
 
     <string name="msg_err_parsing_json">JSON 解析エラー。</string>
-    <string name="msg_connection_problem">インターネット接続に問題があります。</string>
     <string name="msg_connection_not_available">接続が利用できません。</string>
     <string name="msg_city_not_found">指定した都市が見つかりません。</string>
 

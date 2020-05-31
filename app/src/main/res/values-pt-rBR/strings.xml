@@ -78,7 +78,6 @@
     <string name="dialog_cancel">Cancelar</string>
 
     <string name="msg_err_parsing_json">Erro ao analisar JSON.</string>
-    <string name="msg_connection_problem">Há um problema com a sua conexão à Internet.</string>
     <string name="msg_connection_not_available">Conexão indisponível.</string>
     <string name="msg_city_not_found">A cidade especificada não foi encontrada.</string>
 

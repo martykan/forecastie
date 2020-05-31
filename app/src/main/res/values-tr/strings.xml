@@ -78,7 +78,6 @@
     <string name="dialog_cancel">İptal</string>
 
     <string name="msg_err_parsing_json">JSON ayrıştırılma hatası.</string>
-    <string name="msg_connection_problem">İnternet bağlantınızda problem var.</string>
     <string name="msg_connection_not_available">Bağlantı uygun değil.</string>
     <string name="msg_city_not_found">Belirtilen şehir bulunamadı.</string>
 

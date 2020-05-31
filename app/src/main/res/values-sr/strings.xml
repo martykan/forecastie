@@ -35,7 +35,6 @@
     <string name="location_settings_message">Није омогућено лоцирање у подешавањима уређаја. Желите ли да отворите подешавања?</string>
     <string name="msg_city_not_found">Захтевано место није пронађено.</string>
     <string name="msg_connection_not_available">Веза није доступна.</string>
-    <string name="msg_connection_problem">Постоји проблем са Интернет везом.</string>
     <string name="msg_err_parsing_json">Грешка у преузимању JSON.</string>
     <string name="msg_too_many_requests">Превише захтева. Молимо покушајте поново.</string>
     <string name="pressure">Притисак</string>

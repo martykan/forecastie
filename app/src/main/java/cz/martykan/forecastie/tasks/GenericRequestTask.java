@@ -102,8 +102,8 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
                     output.taskResult = TaskResult.TOO_MANY_REQUESTS;
                 } else {
                     // Bad response from server
-                    Log.w("Task", "bad response " + urlConnection.getResponseCode());
-                    output.taskResult = TaskResult.BAD_RESPONSE;
+                    Log.w("Task", "http error " + urlConnection.getResponseCode());
+                    output.taskResult = TaskResult.HTTP_ERROR;
                 }
             } catch (IOException e) {
                 Log.e("IOException Data", response);
@@ -154,8 +154,8 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
             case INVALID_API_KEY:
                 Snackbar.make(activity.findViewById(android.R.id.content), context.getString(R.string.msg_invalid_api_key), Snackbar.LENGTH_LONG).show();
                 break;
-            case BAD_RESPONSE:
-                Snackbar.make(activity.findViewById(android.R.id.content), context.getString(R.string.msg_connection_problem), Snackbar.LENGTH_LONG).show();
+            case HTTP_ERROR:
+                Snackbar.make(activity.findViewById(android.R.id.content), context.getString(R.string.msg_http_error), Snackbar.LENGTH_LONG).show();
                 break;
             case IO_EXCEPTION:
                 Snackbar.make(activity.findViewById(android.R.id.content), context.getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
