@@ -116,7 +116,6 @@
 
     <!-- Errors -->
     <string name="msg_err_parsing_json">Fejl i JSON fortolkning.</string>
-    <string name="msg_connection_problem">Der er problemer med internet forbindelse.</string>
     <string name="msg_connection_not_available">Forbindelse ikke tilgængelig.</string>
     <string name="msg_city_not_found">Angivet by ikke fundet.</string>
     <string name="msg_too_many_requests">For mange forspørgsler. Prøv igen.</string>

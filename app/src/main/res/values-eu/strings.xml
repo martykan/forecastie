@@ -78,7 +78,6 @@
     <string name="dialog_cancel">Utzi</string>
 
     <string name="msg_err_parsing_json">Akatsa JSON irakurtzerakoan.</string>
-    <string name="msg_connection_problem">Arazo bat dago zure interneteko konexioarekin.</string>
     <string name="msg_connection_not_available">Konexioa ez dago eskuragarri.</string>
     <string name="msg_city_not_found">Zehaztutako hiria ez da aurkitu.</string>
 

@@ -78,7 +78,6 @@
     <string name="dialog_cancel">Отмена</string>
 
     <string name="msg_err_parsing_json">Ошибка разбора JSON.</string>
-    <string name="msg_connection_problem">Проблемы с интернет-соединением.</string>
     <string name="msg_connection_not_available">Интернет-соединение отсутствует.</string>
     <string name="msg_city_not_found">Указанный населённый пункт не найден.</string>
 

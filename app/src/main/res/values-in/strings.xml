@@ -79,7 +79,6 @@ Pembaruan terakhir: %s</string>
     <string name="dialog_cancel">Batalkan</string>
 
     <string name="msg_err_parsing_json">Galat menguraikan JSON.</string>
-    <string name="msg_connection_problem">Ada masalah dengan koneksi internet Anda.</string>
     <string name="msg_connection_not_available">Koneksi tidak tersedia.</string>
     <string name="msg_city_not_found">Kota yang dispesifik tidak tersedia.</string>
 

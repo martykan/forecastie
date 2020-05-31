@@ -101,7 +101,6 @@
     <string name="dialog_cancel">Ακύρωση</string>
 
     <string name="msg_err_parsing_json">Σφάλμα ανάγνωσης JSON.</string>
-    <string name="msg_connection_problem">Πρόβλημα στην σύνδεση με το ίντερνετ.</string>
     <string name="msg_connection_not_available">Η σύνδεση δεν είναι διαθέσιμη.</string>
     <string name="msg_city_not_found">Δεν βρέθηκε η πόλη.</string>
 
