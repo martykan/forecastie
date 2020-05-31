@@ -111,6 +111,7 @@
         <item>E MM/dd/yyyy - hh:mm a</item>
         <item>EEEE, MMMM d, h:mma</item>
         <item>MM/dd/yyyy - hh:mm a</item>
+        <item>EEEE, HH:mm</item>
         <item>custom</item>
     </string-array>
 
