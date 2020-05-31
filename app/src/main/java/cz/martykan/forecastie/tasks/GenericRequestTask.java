@@ -92,13 +92,17 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
                     output.taskResult = TaskResult.SUCCESS;
                     // Save date/time for latest successful result
                     activity.saveLastUpdateTime(PreferenceManager.getDefaultSharedPreferences(context));
+                } else if (urlConnection.getResponseCode() == 401) {
+                    // Invalid API key
+                    Log.w("Task", "invalid API key");
+                    output.taskResult = TaskResult.INVALID_API_KEY;
                 } else if (urlConnection.getResponseCode() == 429) {
                     // Too many requests
-                    Log.i("Task", "too many requests");
+                    Log.w("Task", "too many requests");
                     output.taskResult = TaskResult.TOO_MANY_REQUESTS;
                 } else {
                     // Bad response from server
-                    Log.i("Task", "bad response " + urlConnection.getResponseCode());
+                    Log.w("Task", "bad response " + urlConnection.getResponseCode());
                     output.taskResult = TaskResult.BAD_RESPONSE;
                 }
             } catch (IOException e) {
@@ -136,7 +140,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
 
     protected final void handleTaskOutput(TaskOutput output) {
         switch (output.taskResult) {
-            case SUCCESS: {
+            case SUCCESS:
                 ParseResult parseResult = output.parseResult;
                 if (ParseResult.CITY_NOT_FOUND.equals(parseResult)) {
                     Snackbar.make(activity.findViewById(android.R.id.content), context.getString(R.string.msg_city_not_found), Snackbar.LENGTH_LONG).show();
@@ -144,19 +148,18 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
                     Snackbar.make(activity.findViewById(android.R.id.content), context.getString(R.string.msg_err_parsing_json), Snackbar.LENGTH_LONG).show();
                 }
                 break;
-            }
-            case TOO_MANY_REQUESTS: {
+            case TOO_MANY_REQUESTS:
                 Snackbar.make(activity.findViewById(android.R.id.content), context.getString(R.string.msg_too_many_requests), Snackbar.LENGTH_LONG).show();
                 break;
-            }
-            case BAD_RESPONSE: {
+            case INVALID_API_KEY:
+                Snackbar.make(activity.findViewById(android.R.id.content), context.getString(R.string.msg_invalid_api_key), Snackbar.LENGTH_LONG).show();
+                break;
+            case BAD_RESPONSE:
                 Snackbar.make(activity.findViewById(android.R.id.content), context.getString(R.string.msg_connection_problem), Snackbar.LENGTH_LONG).show();
                 break;
-            }
-            case IO_EXCEPTION: {
+            case IO_EXCEPTION:
                 Snackbar.make(activity.findViewById(android.R.id.content), context.getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
                 break;
-            }
         }
     }
 

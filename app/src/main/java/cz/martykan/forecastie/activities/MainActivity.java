@@ -966,8 +966,8 @@ public class MainActivity extends BaseActivity implements LocationListener {
             try {
                 JSONObject reader = new JSONObject(response);
 
-                final String code = reader.optString("cod");
-                if ("404".equals(code)) {
+                final int count = reader.optInt("count");
+                if (count == 0) {
                     Log.e("Geolocation", "No city found");
                     return ParseResult.CITY_NOT_FOUND;
                 }
