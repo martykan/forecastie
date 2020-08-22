@@ -68,7 +68,6 @@
     <string name="dialog_cancel">لغو</string>
 
     <string name="msg_err_parsing_json">خطا در تفسیر فرمت</string>
-    <string name="msg_connection_problem">مشکلی در ارتباط اینترنت شما وجود دارد.</string>
     <string name="msg_connection_not_available">ارتباطی در دسترسی نیست.</string>
     <string name="msg_city_not_found">شهر مورد مظر وجود ندارد.</string>
 

@@ -78,7 +78,6 @@
     <string name="dialog_cancel">取消</string>
 
     <string name="msg_err_parsing_json">JSOM解析错误。</string>
-    <string name="msg_connection_problem">网络连接出错。</string>
     <string name="msg_connection_not_available">连接不可用。</string>
     <string name="msg_city_not_found">没有找到该城市。</string>
 

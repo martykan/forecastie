@@ -78,7 +78,6 @@
     <string name="dialog_cancel">Anuluj</string>
 
     <string name="msg_err_parsing_json">Błąd parsowania JSON</string>
-    <string name="msg_connection_problem">Brak połączenia z internetem</string>
     <string name="msg_connection_not_available">Brak połączenia</string>
     <string name="msg_city_not_found">Nie można odnaleźć miasta</string>
 

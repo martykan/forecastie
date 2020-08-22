@@ -108,18 +108,19 @@
     <string name="setting_dateFormatCustom">Custom Date Format</string>
     <string name="setting_dateFormatCustom_summary">Provide the custom SimpleDateFormat string to be used</string>
     <string name="setting_simple_string_formatting_intro">The codes below can be used to construct a custom date and time format</string>
-    <string name="setting_available_simple_string_codes">yYMwWDdFEuaHkKhmsSzZX</string>
-    <string name="setting_example_simple_string">EEEE, d MMM yyyy h:mm:ss a, zzzz</string>
+    <string name="setting_available_simple_string_codes" translatable="false">yYMwWDdFEuaHkKhmsSzZX</string>
+    <string name="setting_example_simple_string" translatable="false">EEEE, d MMM yyyy h:mm:ss a, zzzz</string>
     <string name="setting_example_date_format">Wednesday, 4 Jul 2001 12:08:32 PM, Pacific Daylight Time</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>
 
     <!-- Errors -->
     <string name="msg_err_parsing_json">Error parsing JSON.</string>
-    <string name="msg_connection_problem">There is a problem with your internet connection.</string>
+    <string name="msg_http_error">Error while requesting or receiving data.</string>
     <string name="msg_connection_not_available">Connection not available.</string>
     <string name="msg_city_not_found">Specified city is not found.</string>
     <string name="msg_too_many_requests">Too many requests. Please try again.</string>
+    <string name="msg_invalid_api_key">Invalid API key.</string>
 
     <!-- Weather icons -->
     <string name="weather_cloudy" translatable="false">&#xf013;</string>
@@ -209,6 +210,7 @@
 
     <!-- Graphs -->
     <string name="action_graphs">Graphs</string>
+    <string name="graphs_more_days">More days</string>
 
     <!-- About dialogue -->
     <string name="about_unknown">Could not get version name</string>
@@ -224,4 +226,6 @@
     <string name="widget_label_time">Forecastie Time</string>
     <string name="widget_label_simple">Forecastie Simple</string>
     <string name="widget_label_classic">Forecastie Classic</string>
+
+    <string name="tap_for_graphs">Tap for Graphs</string>
 </resources>

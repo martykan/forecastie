@@ -108,15 +108,12 @@
     <string name="setting_dateFormatCustom">Formato de fecha personalizado</string>
     <string name="setting_dateFormatCustom_summary">Elija la cadena SimpleDateFormat personalizada a utilizar</string>
     <string name="setting_simple_string_formatting_intro">Puede usar los siguientes códigos para construir un formato de fecha y hora personalizado</string>
-    <string name="setting_available_simple_string_codes">yYMwWDdFEuaHkKhmsSzZX</string>
-    <string name="setting_example_simple_string">EEEE, d MMM yyyy h:mm:ss a, zzzz</string>
     <string name="setting_example_date_format">Miércoles, 4 Jul 2001 12:08:32 PM, Tiempo del Pacífico con horario de verano</string>
     <string name="dialog_ok">Aceptar</string>
     <string name="dialog_cancel">Cancelar</string>
 
     <!-- Errors -->
     <string name="msg_err_parsing_json">Error al analizar JSON.</string>
-    <string name="msg_connection_problem">Hay un problema con su conexión a Internet.</string>
     <string name="msg_connection_not_available">Conexión no disponible.</string>
     <string name="msg_city_not_found">No se encuentra la ciudad especificada.</string>
     <string name="msg_too_many_requests">Demasiadas solicitudes. Inténtelo más tarde.</string>

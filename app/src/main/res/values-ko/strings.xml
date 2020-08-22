@@ -96,7 +96,6 @@
     <string name="dialog_cancel">취소</string>
 
     <string name="msg_err_parsing_json">JSON 구문 분석 오류</string>
-    <string name="msg_connection_problem">인터넷 연결에 문제가 있습니다</string>
     <string name="msg_connection_not_available">접속불가</string>
     <string name="msg_city_not_found">지정된 도시를 찾을 수 없습니다</string>
 

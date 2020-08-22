@@ -44,7 +44,6 @@
     <string name="msg_err_parsing_json">Chyba čtení JSON.</string>
     <string name="msg_connection_not_available">Připojení není k dispozici.</string>
     <string name="msg_city_not_found">Město nebylo nalezeno.</string>
-    <string name="msg_connection_problem">Je tu problém s Vaším připojením.</string>
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mm Hg</string>
