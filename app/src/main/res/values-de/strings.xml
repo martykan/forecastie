@@ -105,8 +105,6 @@
     <string name="setting_dateFormat">Datumsformat</string>
     <string name="setting_dateFormatCustom">Eigenes Datumsformat</string>
     <string name="setting_dateFormatCustom_summary">Eigene Zeichenkette für SimpleDateFormat bereitstellen</string>
-    <string name="setting_simple_string_formatting_intro">Die folgenden Zeichen können für ein eigenes Datums- und Zeitformat genutzt werden</string>
-    <string name="setting_example_date_format">Mittwoch, 4 Jul 2001 12:08:32 PM, Mitteleuropäische Sommerzeit</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Abbrechen</string>
 

@@ -107,10 +107,8 @@
     <string name="setting_dateFormat">
     <string name="setting_dateFormatCustom">
     <string name="setting_dateFormatCustom_summary">
-    <string name="setting_simple_string_formatting_intro">
     <string name="setting_available_simple_string_codes">
     <string name="setting_example_simple_string">
-    <string name="setting_example_date_format">
     <string name="dialog_ok">
     <string name="dialog_cancel">
 

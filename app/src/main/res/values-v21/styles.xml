@@ -6,12 +6,14 @@
         <item name="colorBackground">@color/darkTheme_colorBackground</item>
         <item name="colorTintedBackground">@color/darkTheme_colorTintedBackground</item>
         <item name="android:navigationBarColor">@color/darkTheme_colorBackground</item>
+        <item name="colorControlActivated">@color/fresh_theme_colorControlActivated</item>
     </style>
 
     <style name="AppTheme.Black" parent="AppTheme.Dark">
         <item name="android:colorBackground">@color/blackTheme_colorBackground</item>
         <item name="colorTintedBackground">@color/blackTheme_colorTintedBackground</item>
         <item name="android:navigationBarColor">@color/blackTheme_colorBackground</item>
+        <item name="colorControlActivated">@color/fresh_theme_colorControlActivated</item>
     </style>
 
     <style name="AppTheme.Classic.Dark" parent="Theme.AppCompat">
