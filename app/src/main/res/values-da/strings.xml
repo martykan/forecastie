@@ -107,10 +107,8 @@
     <string name="setting_dateFormat">Dato format</string>
     <string name="setting_dateFormatCustom">Tilpasset dato format</string>
     <string name="setting_dateFormatCustom_summary">Angiv brugertilpasset SimpleDateFormat streng som skal bruges</string>
-    <string name="setting_simple_string_formatting_intro">Nedenstående kode kan bruges til at konstruere bruger dato og tidsformat</string>
     <string name="setting_available_simple_string_codes" translatable="false">yYMwWDdFEuaHkKhmsSzZX</string>
     <string name="setting_example_simple_string" translatable="false">EEEE, d MMM yyyy h:mm:ss a, zzzz</string>
-    <string name="setting_example_date_format">Onsdag, 4 jul 2001 13:08:32, Pacific Daylight Time</string>
     <string name="dialog_ok">O.k.</string>
     <string name="dialog_cancel">Annullere</string>
 
