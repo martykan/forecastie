@@ -7,6 +7,7 @@
         <item name="colorBackground">@color/colorBackground</item>
         <item name="colorTintedBackground">@color/colorTintedBackground</item>
         <item name="android:navigationBarColor">@color/colorBackgroundDefault</item>
+        <item name="colorControlActivated">@color/fresh_theme_colorControlActivated</item>
     </style>
 
     <style name="AppTheme.Classic" parent="Theme.AppCompat.Light.DarkActionBar">
