@@ -170,4 +170,8 @@
     <string name="widget_label_simple">Forecastie semplice</string>
     <string name="widget_label_classic">Forecastie classico</string>
     <string name="clouds">Nuvole</string>
+    <string name="msg_http_error">Errore durante la richiesta o la ricezione dei dati.</string>
+    <string name="msg_invalid_api_key">Chiave API non valida.</string>
+    <string name="graphs_more_days">Più giorni</string>
+    <string name="tap_for_graphs">Tocca per i grafici</string>
 </resources>

@@ -8,9 +8,9 @@
     <string name="action_settings">Ajustes</string>
     <string name="action_about">Acerca de</string>
     <string name="search_title">Buscar una ciudad</string>
-    <string name="downloading_data">Descargando sus datos...</string>
-    <string name="getting_location">Obteniendo su ubicación...</string>
-    <string name="loading_data">Cargando...</string>
+    <string name="downloading_data">Descargando sus datos…</string>
+    <string name="getting_location">Obteniendo su ubicación…</string>
+    <string name="loading_data">Cargando…</string>
 
     <!-- Forecast cards -->
     <string name="today">Hoy</string>
@@ -114,9 +114,12 @@
 
     <!-- Errors -->
     <string name="msg_err_parsing_json">Error al analizar JSON.</string>
+    <string name="msg_http_error">Error al recibir o enviar datos.</string>
     <string name="msg_connection_not_available">Conexión no disponible.</string>
     <string name="msg_city_not_found">No se encuentra la ciudad especificada.</string>
     <string name="msg_too_many_requests">Demasiadas solicitudes. Inténtelo más tarde.</string>
+    <string name="msg_invalid_api_key">Clave API no válida.</string>
+
 
     <!-- Wind direction -->
     <string name="wind_direction_north">N</string>
@@ -177,6 +180,7 @@
 
     <!-- Graphs -->
     <string name="action_graphs">Gráficas</string>
+    <string name="graphs_more_days">Más días</string>
 
     <!-- About dialogue -->
     <string name="about_unknown">No se puede obtener el nombre de la versión</string>
@@ -192,4 +196,6 @@
     <string name="widget_label_time">Forecastie Fecha</string>
     <string name="widget_label_simple">Forecastie Sencillo</string>
     <string name="widget_label_classic">Forecastie Clásico</string>
+
+    <string name="tap_for_graphs">Pulsar para las Gráficas</string>
 </resources>
