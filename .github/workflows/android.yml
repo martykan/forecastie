@@ -15,12 +15,13 @@ jobs:
       run: |
         ./gradlew build
         ls -lR > files.txt
+        mv app/build/outputs/apk/release/app-release-unsigned.apk forecastie.apk
 
-    - name: get list of files
+    - name: Upload unsigned apk
       uses: actions/upload-artifact@v1
       with:
-        name: List_of_files
-        path: files.txt
+        name: Forecastie
+        path: forecastie.apk
 
 
 # failed attempts to build a release apk using github actions
