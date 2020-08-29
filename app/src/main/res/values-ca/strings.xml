@@ -88,7 +88,7 @@
 
     <!-- Settings/Data -->
     <string name="last_update">Última actualització:\n%s</string>
-    <string name="last_update_widget"\nÚltima actualització:\n%s</string>
+    <string name="last_update_widget">\nÚltima actualització:\n%s</string>
     <string name="settings_title_data">Dades</string>
     <string name="setting_refreshInterval">Interval de l'actualització en segon pla</string>
     <string name="settings_none">Cap</string>
