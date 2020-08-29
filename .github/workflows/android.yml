@@ -21,7 +21,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: List_of_files
-        path: files.txt
+        path: build/files.txt
 
 
 # failed attempts to build a release apk using github actions
