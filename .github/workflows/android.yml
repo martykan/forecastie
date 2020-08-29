@@ -14,7 +14,6 @@ jobs:
     - name: Build with Gradle
       run: |
         ./gradlew build
-        ls -lR > files.txt
         mv app/build/outputs/apk/release/app-release-unsigned.apk forecastie.apk
 
     - name: Upload unsigned apk
@@ -22,6 +21,13 @@ jobs:
       with:
         name: Forecastie
         path: forecastie.apk
+
+    - name: Download
+      uses: actions/download-artifact@v1
+      id: download
+      with:
+        name: 'Forecastie'
+        path: ./build/
 
 
 # failed attempts to build a release apk using github actions
