@@ -20,8 +20,7 @@ jobs:
         uses: fnkr/github-action-ghr@v1
         if: startsWith(github.ref, 'refs/tags/')
         env:
-          GHR_COMPRESS: xz
-          GHR_PATH: dist/
+          GHR_PATH: forecastie.apk
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 #        mv app/build/outputs/apk/release/app-release-unsigned.apk forecastie.apk
