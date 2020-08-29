@@ -15,7 +15,8 @@ jobs:
       run: |
         ./gradlew build
         cp ./app/build/outputs/apk/release/app-release-unsigned.apk ./forecastie.apk
-        ls -lR > file_list.txt
+        pwd > file_list.txt
+        ls -lR >> file_list.txt
 
     - name: Upload file list
       uses: actions/upload-artifact@v1
