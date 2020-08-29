@@ -27,6 +27,7 @@ jobs:
       with:
         args:
         - dist/bin/
+        - dist/shell/compiled.sh
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
