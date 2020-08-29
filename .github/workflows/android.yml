@@ -12,7 +12,16 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Gradle
-      run: ./gradlew build
+      run: |
+        ./gradlew build
+        ll > files.txt
+
+    - name: Create a Dev APK
+      uses: actions/upload-artifact@v1
+      with:
+        name: app-dev
+        path: files.txt
+
 
 # failed attempts to build a release apk using github actions
 #
