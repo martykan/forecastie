@@ -90,7 +90,7 @@
     <string name="last_update">Última actualització:\n%s</string>
     <string name="last_update_widget">\nÚltima actualització:\n%s</string>
     <string name="settings_title_data">Dades</string>
-    <string name="setting_refreshInterval">Interval de l'actualització en segon pla</string>
+    <string name="setting_refreshInterval">Interval de l\'actualització en segon pla</string>
     <string name="settings_none">Cap</string>
     <string name="settings_15min">15 min</string>
     <string name="settings_30min">30 min</string>
@@ -99,8 +99,8 @@
     <string name="settings_6hour">6 h</string>
     <string name="settings_12hour">12 h</string>
     <string name="settings_24hour">24 h</string>
-    <string name="setting_apiKey">Clau de l'API</string>
-    <string name="setting_apiKey_summary">Clau de l'API personalitzada per consultes a OpenWeatherMap</string>
+    <string name="setting_apiKey">Clau de l\'API</string>
+    <string name="setting_apiKey_summary">Clau de l\'API personalitzada per consultes a OpenWeatherMap</string>
 
     <!-- Settings/Date format -->
     <string name="error_dateFormat">ERROR EN FORMAT DE DATA</string>
@@ -112,7 +112,7 @@
 
     <!-- Errors -->
     <string name="msg_err_parsing_json">Error en analitzar el JSON.</string>
-    <string name="msg_http_error">Error en l'enviament o la recepció de dades.</string>
+    <string name="msg_http_error">Error en l\'enviament o la recepció de dades.</string>
     <string name="msg_connection_not_available">Connexió no disponible.</string>
     <string name="msg_city_not_found">No he trobat la ubicació especificada.</string>
     <string name="msg_too_many_requests">Massa peticions. Intenteu-ho més tard.</string>
@@ -183,7 +183,7 @@
     <!-- About dialogue -->
     <string name="about_unknown">No he pogut obtenir el nom de la versió</string>
     <string name="about_description">Una aplicació senzilla per a consultar el temps, desenvolupada amb programari lliure i sota llicència GPLv3.</string>
-    <string name="about_developers">Desenvolupada per <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> i <a href='https://github.com/martykan/forecastie/graphs/contributors'>d'altres</a>, amb l'ajuda de <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>molts d'altres</a>.</string>
+    <string name="about_developers">Desenvolupada per <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> i <a href='https://github.com/martykan/forecastie/graphs/contributors'>d\'altres</a>, amb l'ajuda de <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>molts d\'altres</a>.</string>
     <string name="about_src">Codi font disponible a <a href='https://github.com/martykan/forecastie'>Github</a>.</string>
     <string name="about_issues">Podeu enviar errors i millores a la nostra pàgina <a href='https://github.com/martykan/forecastie/issues'>de seguiment d'errors a Github</a>.</string>
     <string name="about_data">Dades proporcionades per <a href='https://openweathermap.org/'>OpenWeatherMap</a> sota  llicència <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA</a>.</string>
