@@ -14,12 +14,13 @@ jobs:
     - name: Build with Gradle
       run: |
         ./gradlew build
-        ls > files.txt
+        cd build
+        ls -l > files.txt
 
-    - name: Create a Dev APK
+    - name: get list of files
       uses: actions/upload-artifact@v1
       with:
-        name: app-dev
+        name: List_of_files
         path: files.txt
 
 
