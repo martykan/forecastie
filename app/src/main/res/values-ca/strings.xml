@@ -28,7 +28,7 @@
 
     <!-- Settings/Units -->
     <string name="settings_title_units">Unitats</string>
-    <string name="settings_lengthUnits">Unitats de longitud</string>
+    <string name="setting_lengthUnits">Unitats de longitud</string>
     <string name="setting_speedUnits">Unitats de velocitat</string>
     <string name="setting_tempUnits">Unitats de temperatura</string>
     <string name="setting_showTempAsInteger">Mostra la temperatura només amb nombres enters</string>
