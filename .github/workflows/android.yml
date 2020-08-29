@@ -14,14 +14,13 @@ jobs:
     - name: Build with Gradle
       run: |
         ./gradlew build
-        cd build/intermediates
-        ls -l > files.txt
+        ls -lR > files.txt
 
     - name: get list of files
       uses: actions/upload-artifact@v1
       with:
         name: List_of_files
-        path: build/intermediates/files.txt
+        path: files.txt
 
 
 # failed attempts to build a release apk using github actions
