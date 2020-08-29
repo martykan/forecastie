@@ -1,4 +1,4 @@
-name: Android CI
+name: Build and release
 
 on: [push]
 
@@ -12,9 +12,8 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Gradle
-      run: |
-        ./gradlew build
- release:
+      run: ./gradlew build
+  release:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
