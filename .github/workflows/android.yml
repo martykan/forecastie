@@ -16,30 +16,32 @@ jobs:
         ./gradlew build
         mv app/build/outputs/apk/release/app-release-unsigned.apk forecastie.apk
 
-    - name: Upload unsigned apk
-      uses: actions/upload-artifact@v1
+    #- name: Upload unsigned apk
+      #uses: actions/upload-artifact@v1
+      #with:
+        #name: Forecastie
+        #path: forecastie.apk
+
+    #- name: Download
+      #uses: actions/download-artifact@v1
+      #id: download
+      #with:
+        #name: 'Forecastie'
+        #path: ./build/
+
+ release:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+    - uses: actions/checkout@master
+    - name: Create release
+      uses: Roang-zero1/github-create-release-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create GitHub release
+      uses: Roang-zero1/github-upload-release-artifacts-action@master
       with:
-        name: Forecastie
-        path: forecastie.apk
-
-    - name: Download
-      uses: actions/download-artifact@v1
-      id: download
-      with:
-        name: 'Forecastie'
-        path: ./build/
-
-
-# failed attempts to build a release apk using github actions
-#
-#    - name: Create a Dev APK
-#      uses: actions/upload-artifact@v1
-#      with:
-#        name: app-dev
-#        path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
-#
-#    - name: Create a Release APK
-#      uses: actions/upload-artifact@v1
-#      with:
-#        name: app-release
-#        path: platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+        args:
+        - dist/bin/
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
