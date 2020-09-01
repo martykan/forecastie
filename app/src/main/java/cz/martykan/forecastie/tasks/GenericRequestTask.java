@@ -3,21 +3,41 @@ package cz.martykan.forecastie.tasks;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertPathValidatorException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLHandshakeException;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManagerFactory;
 
 import cz.martykan.forecastie.Constants;
 import cz.martykan.forecastie.R;
@@ -30,6 +50,11 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
     Context context;
     MainActivity activity;
     public int loading = 0;
+
+    private static CountDownLatch certificateCountDownLatch = new CountDownLatch(0);
+    private static AtomicBoolean certificateCheckInProgress = new AtomicBoolean(false);
+    private static AtomicBoolean certificateTried = new AtomicBoolean(false);
+    private static SSLContext sslContext;
 
     public GenericRequestTask(Context context, MainActivity activity, ProgressDialog progressDialog) {
         this.context = context;
@@ -70,47 +95,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         }
 
         if (response.isEmpty()) {
-            try {
-                URL url = provideURL(reqParams);
-                Log.i("URL", url.toString());
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                if (urlConnection.getResponseCode() == 200) {
-                    InputStreamReader inputStreamReader = new InputStreamReader(urlConnection.getInputStream());
-                    BufferedReader r = new BufferedReader(inputStreamReader);
-
-                    StringBuilder stringBuilder = new StringBuilder();
-                    String line;
-                    while ((line = r.readLine()) != null) {
-                        stringBuilder.append(line);
-                        stringBuilder.append("\n");
-                    }
-                    response += stringBuilder.toString();
-                    close(r);
-                    urlConnection.disconnect();
-                    // Background work finished successfully
-                    Log.i("Task", "done successfully");
-                    output.taskResult = TaskResult.SUCCESS;
-                    // Save date/time for latest successful result
-                    activity.saveLastUpdateTime(PreferenceManager.getDefaultSharedPreferences(context));
-                } else if (urlConnection.getResponseCode() == 401) {
-                    // Invalid API key
-                    Log.w("Task", "invalid API key");
-                    output.taskResult = TaskResult.INVALID_API_KEY;
-                } else if (urlConnection.getResponseCode() == 429) {
-                    // Too many requests
-                    Log.w("Task", "too many requests");
-                    output.taskResult = TaskResult.TOO_MANY_REQUESTS;
-                } else {
-                    // Bad response from server
-                    Log.w("Task", "http error " + urlConnection.getResponseCode());
-                    output.taskResult = TaskResult.HTTP_ERROR;
-                }
-            } catch (IOException e) {
-                Log.e("IOException Data", response);
-                e.printStackTrace();
-                // Exception while reading data from url connection
-                output.taskResult = TaskResult.IO_EXCEPTION;
-            }
+            response = makeRequest(output, response, reqParams);
         }
 
         if (TaskResult.SUCCESS.equals(output.taskResult)) {
@@ -124,6 +109,143 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         }
 
         return output;
+    }
+
+    private String makeRequest(TaskOutput output, String response, String[] reqParams) {
+        try {
+            URL url = provideURL(reqParams);
+            Log.i("URL", url.toString());
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            if (urlConnection instanceof HttpsURLConnection) {
+                try {
+                    certificateCountDownLatch.await();
+                    if (sslContext != null) {
+                        SSLSocketFactory socketFactory = sslContext.getSocketFactory();
+                        ((HttpsURLConnection) urlConnection).setSSLSocketFactory(socketFactory);
+                    }
+                    certificateCountDownLatch.countDown();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (urlConnection.getResponseCode() == 200) {
+                InputStreamReader inputStreamReader = new InputStreamReader(urlConnection.getInputStream());
+                BufferedReader r = new BufferedReader(inputStreamReader);
+
+                StringBuilder stringBuilder = new StringBuilder();
+                String line;
+                while ((line = r.readLine()) != null) {
+                    stringBuilder.append(line);
+                    stringBuilder.append("\n");
+                }
+                response += stringBuilder.toString();
+                close(r);
+                urlConnection.disconnect();
+                // Background work finished successfully
+                Log.i("Task", "done successfully");
+                output.taskResult = TaskResult.SUCCESS;
+                // Save date/time for latest successful result
+                activity.saveLastUpdateTime(PreferenceManager.getDefaultSharedPreferences(context));
+            } else if (urlConnection.getResponseCode() == 401) {
+                // Invalid API key
+                Log.w("Task", "invalid API key");
+                output.taskResult = TaskResult.INVALID_API_KEY;
+            } else if (urlConnection.getResponseCode() == 429) {
+                // Too many requests
+                Log.w("Task", "too many requests");
+                output.taskResult = TaskResult.TOO_MANY_REQUESTS;
+            } else {
+                // Bad response from server
+                Log.w("Task", "http error " + urlConnection.getResponseCode());
+                output.taskResult = TaskResult.HTTP_ERROR;
+            }
+        } catch (IOException e) {
+            if (isCertificateException(e)) {
+                Log.e("Invalid Certificate", e.getMessage());
+                e.printStackTrace();
+                try {
+                    certificateCountDownLatch.await();
+                    if (!certificateTried.get() && !certificateCheckInProgress.get()) {
+                        if (addCertificate()) {
+                            certificateCheckInProgress.set(true);
+                            certificateCountDownLatch.countDown();
+                            response = makeRequest(output, response, reqParams);
+                            certificateTried.compareAndSet(false,
+                                    output.taskResult == TaskResult.SUCCESS);
+                            certificateCheckInProgress.compareAndSet(true, false);
+                        } else {
+                            certificateCountDownLatch.countDown();
+                        }
+                    } else {
+                        certificateCountDownLatch.countDown();
+                    }
+                } catch (InterruptedException ex) {
+                    Log.e("Invalid Certificate", "await had been interrupted");
+                    ex.printStackTrace();
+                }
+            } else {
+                Log.e("IOException Data", response);
+                e.printStackTrace();
+            }
+            // Exception while reading data from url connection
+            output.taskResult = TaskResult.IO_EXCEPTION;
+        }
+
+        return response;
+    }
+
+    private boolean isCertificateException(IOException e) {
+        if (!(e instanceof SSLHandshakeException))
+            return false;
+        Throwable cause = e;
+        do {
+            cause = cause.getCause();
+        } while (cause != null && !(cause instanceof CertPathValidatorException));
+        return cause != null;
+    }
+
+    private boolean addCertificate() {
+        try {
+            // Load CAs from an InputStream
+            CertificateFactory cf = CertificateFactory.getInstance("X.509");
+            AssetManager assetManager = context.getAssets();
+            if (assetManager == null)
+                return false;
+            InputStream assetInputStream = null;
+            assetInputStream = assetManager.open("openweathermap.crt");
+            InputStream caInput = new BufferedInputStream(assetInputStream);
+            Certificate ca;
+            try {
+                ca = cf.generateCertificate(caInput);
+                System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
+            } finally {
+                caInput.close();
+            }
+
+            // Create a KeyStore containing our trusted CAs
+            String keyStoreType = KeyStore.getDefaultType();
+            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+            keyStore.load(null, null);
+            keyStore.setCertificateEntry("ca", ca);
+
+            // Create a TrustManager that trusts the CAs in our KeyStore
+            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+            tmf.init(keyStore);
+
+            // Create an SSLContext that uses our TrustManager
+            sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, tmf.getTrustManagers(), null);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (CertificateException | KeyStoreException | NoSuchAlgorithmException | KeyManagementException e) {
+            e.printStackTrace();
+            certificateTried.set(true);
+            sslContext = null;
+            return false;
+        }
+        return true;
     }
 
     @Override
