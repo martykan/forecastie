@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="cz.martykan.forecastie">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
@@ -14,6 +16,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true">
+
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -23,13 +26,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity
             android:name=".activities.SettingsActivity"
-            android:theme="@style/AppTheme" />
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme"
+            tools:ignore="UnusedAttribute" />
+
+        <activity
+            android:name=".activities.MapActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme.NoStatusBar"
+            tools:ignore="UnusedAttribute" />
+
+        <activity
+            android:name=".activities.GraphActivity"
+            android:label="@string/action_graphs"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="UnusedAttribute" />
+
+
+        <!-- Receivers -->
 
         <receiver android:name=".widgets.ExtensiveWidgetProvider" android:label="@string/widget_label_extensive">
             <intent-filter>
@@ -40,6 +63,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/extensive_widget" />
         </receiver>
+
         <receiver android:name=".widgets.TimeWidgetProvider" android:label="@string/widget_label_time">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -49,6 +73,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/time_widget" />
         </receiver>
+
         <receiver android:name=".widgets.SimpleWidgetProvider" android:label="@string/widget_label_simple">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -58,6 +83,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/simple_widget" />
         </receiver>
+
         <receiver android:name=".widgets.ClassicTimeWidgetProvider" android:label="@string/widget_label_classic">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -67,6 +93,16 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/time_widget_classic" />
         </receiver>
+
+        <receiver android:name=".AlarmReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+
+        <!-- Services -->
 
         <service
             android:name=".widgets.DashClockWeatherExtension"
@@ -88,28 +124,15 @@
                 android:value=".ExampleSettingsActivity" />
         </service>
 
-        <receiver android:name=".AlarmReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
+        <service android:name=".services.WeatherNotificationService"
+            android:exported="false"
+            android:description="@string/notification_service_description"/>
 
-        <activity
-            android:name=".activities.MapActivity"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoStatusBar" />
-
-        <activity
-            android:name=".activities.GraphActivity"
-            android:label="@string/action_graphs"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <!-- Providers -->
 
         <provider
             android:name="cz.martykan.forecastie.utils.StubContentProvider"
             android:authorities="cz.martykan.forecastie.authority"
             android:exported="true" />
     </application>
-
 </manifest>

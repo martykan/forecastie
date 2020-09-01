@@ -15,6 +15,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
@@ -31,9 +32,10 @@ import cz.martykan.forecastie.utils.UI;
 
 public class SettingsActivity extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
+    protected static final int MY_PERMISSIONS_FOREGROUND_SERVICE = 2;
 
     // Thursday 2016-01-14 16:00:00
-    private Date SAMPLE_DATE = new Date(1452805200000l);
+    private Date SAMPLE_DATE = new Date(1452805200000L);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,15 @@ public class SettingsActivity extends PreferenceActivity
         });
 
         addPreferencesFromResource(R.xml.prefs);
+
+        // TODO uncomment when target sdk is changed to Android 9 (API level 28) or higher
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.FOREGROUND_SERVICE},
+                    MY_PERMISSIONS_FOREGROUND_SERVICE);
+        } else {
+            showNotification();
+        }*/
     }
 
     @Override
@@ -145,14 +156,22 @@ public class SettingsActivity extends PreferenceActivity
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == MainActivity.MY_PERMISSIONS_ACCESS_FINE_LOCATION) {
-            boolean permissionGranted = grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
-            CheckBoxPreference checkBox = (CheckBoxPreference) findPreference("updateLocationAutomatically");
-            checkBox.setChecked(permissionGranted);
-            if (permissionGranted) {
-                privacyGuardWorkaround();
-            }
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MainActivity.MY_PERMISSIONS_ACCESS_FINE_LOCATION:
+                boolean permissionGranted = grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                CheckBoxPreference checkBox = (CheckBoxPreference) findPreference("updateLocationAutomatically");
+                checkBox.setChecked(permissionGranted);
+                if (permissionGranted) {
+                    privacyGuardWorkaround();
+                }
+                break;
+            /*case MY_PERMISSIONS_FOREGROUND_SERVICE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    showNotification();
+                }
+                break;*/
         }
     }
 

@@ -17,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -755,6 +756,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         pressUnits.put("hPa", R.string.pressure_unit_hpa);
         pressUnits.put("kPa", R.string.pressure_unit_kpa);
         pressUnits.put("mm Hg", R.string.pressure_unit_mmhg);
+        pressUnits.put("in Hg", R.string.pressure_unit_inhg);
     }
 
     private String localize(SharedPreferences sp, String preferenceKey, String defaultValueKey) {
@@ -852,14 +854,12 @@ public class MainActivity extends BaseActivity implements LocationListener {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    getCityByLocation();
-                }
-                return;
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == MY_PERMISSIONS_ACCESS_FINE_LOCATION) {
+            // If request is cancelled, the result arrays are empty.
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getCityByLocation();
             }
         }
     }
@@ -1091,8 +1091,9 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
     public static long saveLastUpdateTime(SharedPreferences sp) {
         Calendar now = Calendar.getInstance();
-        sp.edit().putLong("lastUpdate", now.getTimeInMillis()).commit();
-        return now.getTimeInMillis();
+        long lastUpdate = now.getTimeInMillis();
+        sp.edit().putLong("lastUpdate", lastUpdate).commit();
+        return lastUpdate;
     }
 
     private void updateLastUpdateTime() {

@@ -36,4 +36,6 @@
     <color name="text_light">#ffffff</color>
     <color name="text_dark">#000000</color>
     <color name="tab_indicator">#ffffff</color>
+
+    <color name="notification_icon_color">#8A000000</color>
 </resources>

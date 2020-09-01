@@ -1,5 +1,6 @@
 package cz.martykan.forecastie.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
@@ -33,6 +34,7 @@ import java.util.TimeZone;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.Weather;
+import cz.martykan.forecastie.services.WeatherNotificationService;
 import cz.martykan.forecastie.tasks.ParseResult;
 import cz.martykan.forecastie.utils.UI;
 import cz.martykan.forecastie.utils.UnitConvertor;
@@ -140,6 +142,9 @@ public class GraphActivity extends BaseActivity {
         } else {
             Snackbar.make(findViewById(android.R.id.content), R.string.msg_err_parsing_json, Snackbar.LENGTH_LONG).show();
         }
+
+        Intent intent = new Intent(this, WeatherNotificationService.class);
+        stopService(intent);
     }
 
     private void updateGraphs() {

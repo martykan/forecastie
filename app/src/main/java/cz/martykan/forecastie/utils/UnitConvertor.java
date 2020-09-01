@@ -9,13 +9,24 @@ import cz.martykan.forecastie.R;
 
 public class UnitConvertor {
     public static float convertTemperature(float temperature, SharedPreferences sp) {
-        if (sp.getString("unit", "°C").equals("°C")) {
-            return UnitConvertor.kelvinToCelsius(temperature);
-        } else if (sp.getString("unit", "°C").equals("°F")) {
-            return UnitConvertor.kelvinToFahrenheit(temperature);
-        } else {
-            return temperature;
+        String unit = sp.getString("unit", "°C");
+        return convertTemperature(temperature, unit);
+    }
+
+    public static float convertTemperature(float temperature, String unit) {
+        float result;
+        switch (unit) {
+            case "°C":
+                result = UnitConvertor.kelvinToCelsius(temperature);
+                break;
+            case "°F":
+                result = UnitConvertor.kelvinToFahrenheit(temperature);
+                break;
+            default:
+                result = temperature;
+                break;
         }
+        return result;
     }
 
     public static float kelvinToCelsius(float kelvinTemp) {
@@ -67,60 +78,100 @@ public class UnitConvertor {
         }
     }
 
+    public static double convertPressure(double pressure, String unit) {
+        double result;
+        switch (unit) {
+            case "kPa":
+                result = pressure / 10;
+                break;
+            case "mm Hg":
+                result = pressure * 0.750061561303;
+                break;
+            case "in Hg":
+                result = pressure * 0.0295299830714;
+                break;
+            default:
+                result = pressure;
+                break;
+        }
+        return result;
+    }
+
     public static double convertWind(double wind, SharedPreferences sp) {
-        if (sp.getString("speedUnit", "m/s").equals("kph")) {
-            return wind * 3.6;
+        double result;
+        String unit = sp.getString("speedUnit", "m/s");
+        switch (unit) {
+            case "kph":
+                result = wind * 3.6;
+                break;
+            case "mph":
+                result = wind * 2.23693629205;
+                break;
+            case "kn":
+                result = wind * 1.943844;
+                break;
+            case "bft":
+                result = convertWindIntoBFT(wind);
+                break;
+            default:
+                result = wind;
+                break;
         }
-        else if (sp.getString("speedUnit", "m/s").equals("mph")) {
-            return wind * 2.23693629205;
+        return result;
+    }
+
+    public static double convertWind(double wind, String unit) {
+        double result;
+        switch (unit) {
+            case "kph":
+                result = wind * 3.6;
+                break;
+            case "mph":
+                result = wind * 2.23693629205;
+                break;
+            case "kn":
+                result = wind * 1.943844;
+                break;
+            case "bft":
+                result = convertWindIntoBFT(wind);
+                break;
+            default:
+                result = wind;
+                break;
         }
-        else if (sp.getString("speedUnit", "m/s").equals("kn")) {
-            return wind * 1.943844;
+        return result;
+    }
+
+    private static double convertWindIntoBFT(double wind) {
+        int result;
+        if (wind < 0.3) {
+            result = 0; // Calm
+        } else if (wind < 1.5) {
+            result =  1; // Light air
+        } else if (wind < 3.3) {
+            result =  2; // Light breeze
+        } else if (wind < 5.5) {
+            result =  3; // Gentle breeze
+        } else if (wind < 7.9) {
+            result =  4; // Moderate breeze
+        } else if (wind < 10.7) {
+            result =  5; // Fresh breeze
+        } else if (wind < 13.8) {
+            result =  6; // Strong breeze
+        } else if (wind < 17.1) {
+            result =  7; // High wind
+        } else if (wind < 20.7) {
+            result =  8; // Gale
+        } else if (wind < 24.4) {
+            result =  9; // Strong gale
+        } else if (wind < 28.4) {
+            result =  10; // Storm
+        } else if (wind < 32.6) {
+            result =  11; // Violent storm
+        } else {
+            result =  12; // Hurricane
         }
-        else if (sp.getString("speedUnit", "m/s").equals("bft")) {
-            if(wind < 0.3) {
-                return 0; // Calm
-            }
-            else if (wind < 1.5) {
-                return 1; // Light air
-            }
-            else if (wind < 3.3) {
-                return 2; // Light breeze
-            }
-            else if (wind < 5.5) {
-                return 3; // Gentle breeze
-            }
-            else if (wind < 7.9) {
-                return 4; // Moderate breeze
-            }
-            else if (wind < 10.7) {
-                return 5; // Fresh breeze
-            }
-            else if (wind < 13.8) {
-                return 6; // Strong breeze
-            }
-            else if (wind < 17.1) {
-                return 7; // High wind
-            }
-            else if (wind < 20.7) {
-                return 8; // Gale
-            }
-            else if (wind < 24.4) {
-                return 9; // Strong gale
-            }
-            else if (wind < 28.4) {
-                return 10; // Storm
-            }
-            else if (wind < 32.6) {
-                return 11; // Violent storm
-            }
-            else {
-                return 12; // Hurricane
-            }
-        }
-        else {
-            return wind;
-        }
+        return result;
     }
 
     public static String convertUvIndexToRiskLevel(double value, Context context) {

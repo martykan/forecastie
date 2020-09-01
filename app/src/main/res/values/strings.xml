@@ -61,6 +61,7 @@
     <string name="pressure_unit_hpa">hPa/mBar</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mm Hg</string>
+    <string name="pressure_unit_inhg">in Hg</string>
 
     <string name="uvi_no_info">No Info</string>
     <string name="uvi_low">Low</string>
