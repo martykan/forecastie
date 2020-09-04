@@ -3,46 +3,33 @@ package cz.martykan.forecastie.tasks;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.util.Log;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertPathValidatorException;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManagerFactory;
 
 import cz.martykan.forecastie.Constants;
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.utils.Language;
+import cz.martykan.forecastie.utils.certificate.CertificateUtils;
 
 public abstract class GenericRequestTask extends AsyncTask<String, String, TaskOutput> {
 
@@ -52,8 +39,8 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
     public int loading = 0;
 
     private static CountDownLatch certificateCountDownLatch = new CountDownLatch(0);
-    private static AtomicBoolean certificateCheckInProgress = new AtomicBoolean(false);
-    private static AtomicBoolean certificateTried = new AtomicBoolean(false);
+    private static boolean certificateTried = false;
+    private static boolean certificateFetchTried = false;
     private static SSLContext sslContext;
 
     public GenericRequestTask(Context context, MainActivity activity, ProgressDialog progressDialog) {
@@ -95,7 +82,38 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         }
 
         if (response.isEmpty()) {
-            response = makeRequest(output, response, reqParams);
+            boolean tryAgain = false;
+            do {
+                response = makeRequest(output, response, reqParams);
+                if (output.taskResult == TaskResult.IO_EXCEPTION && output.taskError instanceof IOException) {
+                    if (CertificateUtils.isCertificateException((IOException) output.taskError)) {
+                        Log.e("Invalid Certificate", output.taskError.getMessage());
+                        try {
+                            certificateCountDownLatch.await();
+                            tryAgain = !certificateTried || !certificateFetchTried;
+                            if (tryAgain) {
+                                AtomicBoolean doNotRetry = new AtomicBoolean(false);
+                                sslContext = CertificateUtils.addCertificate(context, doNotRetry,
+                                        certificateTried);
+                                certificateTried = true;
+                                if (!certificateFetchTried) {
+                                    certificateFetchTried = doNotRetry.get();
+                                }
+                                tryAgain = sslContext != null;
+                            }
+                            certificateCountDownLatch.countDown();
+                        } catch (InterruptedException ex) {
+                            Log.e("Invalid Certificate", "await had been interrupted");
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        Log.e("IOException Data", response);
+                        tryAgain = false;
+                    }
+                } else {
+                    tryAgain = false;
+                }
+            } while (tryAgain);
         }
 
         if (TaskResult.SUCCESS.equals(output.taskResult)) {
@@ -160,92 +178,13 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
                 output.taskResult = TaskResult.HTTP_ERROR;
             }
         } catch (IOException e) {
-            if (isCertificateException(e)) {
-                Log.e("Invalid Certificate", e.getMessage());
-                e.printStackTrace();
-                try {
-                    certificateCountDownLatch.await();
-                    if (!certificateTried.get() && !certificateCheckInProgress.get()) {
-                        if (addCertificate()) {
-                            certificateCheckInProgress.set(true);
-                            certificateCountDownLatch.countDown();
-                            response = makeRequest(output, response, reqParams);
-                            certificateTried.compareAndSet(false,
-                                    output.taskResult == TaskResult.SUCCESS);
-                            certificateCheckInProgress.compareAndSet(true, false);
-                        } else {
-                            certificateCountDownLatch.countDown();
-                        }
-                    } else {
-                        certificateCountDownLatch.countDown();
-                    }
-                } catch (InterruptedException ex) {
-                    Log.e("Invalid Certificate", "await had been interrupted");
-                    ex.printStackTrace();
-                }
-            } else {
-                Log.e("IOException Data", response);
-                e.printStackTrace();
-            }
+            e.printStackTrace();
             // Exception while reading data from url connection
             output.taskResult = TaskResult.IO_EXCEPTION;
+            output.taskError = e;
         }
 
         return response;
-    }
-
-    private boolean isCertificateException(IOException e) {
-        if (!(e instanceof SSLHandshakeException))
-            return false;
-        Throwable cause = e;
-        do {
-            cause = cause.getCause();
-        } while (cause != null && !(cause instanceof CertPathValidatorException));
-        return cause != null;
-    }
-
-    private boolean addCertificate() {
-        try {
-            // Load CAs from an InputStream
-            CertificateFactory cf = CertificateFactory.getInstance("X.509");
-            AssetManager assetManager = context.getAssets();
-            if (assetManager == null)
-                return false;
-            InputStream assetInputStream = null;
-            assetInputStream = assetManager.open("openweathermap.crt");
-            InputStream caInput = new BufferedInputStream(assetInputStream);
-            Certificate ca;
-            try {
-                ca = cf.generateCertificate(caInput);
-                System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
-            } finally {
-                caInput.close();
-            }
-
-            // Create a KeyStore containing our trusted CAs
-            String keyStoreType = KeyStore.getDefaultType();
-            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-            keyStore.load(null, null);
-            keyStore.setCertificateEntry("ca", ca);
-
-            // Create a TrustManager that trusts the CAs in our KeyStore
-            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-            tmf.init(keyStore);
-
-            // Create an SSLContext that uses our TrustManager
-            sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, tmf.getTrustManagers(), null);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        } catch (CertificateException | KeyStoreException | NoSuchAlgorithmException | KeyManagementException e) {
-            e.printStackTrace();
-            certificateTried.set(true);
-            sslContext = null;
-            return false;
-        }
-        return true;
     }
 
     @Override
