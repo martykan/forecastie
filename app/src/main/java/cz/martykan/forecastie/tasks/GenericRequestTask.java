@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
@@ -82,38 +83,11 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         }
 
         if (response.isEmpty()) {
-            boolean tryAgain = false;
-            do {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
                 response = makeRequest(output, response, reqParams);
-                if (output.taskResult == TaskResult.IO_EXCEPTION && output.taskError instanceof IOException) {
-                    if (CertificateUtils.isCertificateException((IOException) output.taskError)) {
-                        Log.e("Invalid Certificate", output.taskError.getMessage());
-                        try {
-                            certificateCountDownLatch.await();
-                            tryAgain = !certificateTried || !certificateFetchTried;
-                            if (tryAgain) {
-                                AtomicBoolean doNotRetry = new AtomicBoolean(false);
-                                sslContext = CertificateUtils.addCertificate(context, doNotRetry,
-                                        certificateTried);
-                                certificateTried = true;
-                                if (!certificateFetchTried) {
-                                    certificateFetchTried = doNotRetry.get();
-                                }
-                                tryAgain = sslContext != null;
-                            }
-                            certificateCountDownLatch.countDown();
-                        } catch (InterruptedException ex) {
-                            Log.e("Invalid Certificate", "await had been interrupted");
-                            ex.printStackTrace();
-                        }
-                    } else {
-                        Log.e("IOException Data", response);
-                        tryAgain = false;
-                    }
-                } else {
-                    tryAgain = false;
-                }
-            } while (tryAgain);
+            } else {
+                response = makeRequestWithCheckForCertificate(output, response, reqParams);
+            }
         }
 
         if (TaskResult.SUCCESS.equals(output.taskResult)) {
@@ -184,6 +158,42 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
             output.taskError = e;
         }
 
+        return response;
+    }
+
+    private String makeRequestWithCheckForCertificate(TaskOutput output, String response, String[] reqParams) {
+        boolean tryAgain = false;
+        do {
+            response = makeRequest(output, response, reqParams);
+            if (output.taskResult == TaskResult.IO_EXCEPTION && output.taskError instanceof IOException) {
+                if (CertificateUtils.isCertificateException((IOException) output.taskError)) {
+                    Log.e("Invalid Certificate", output.taskError.getMessage());
+                    try {
+                        certificateCountDownLatch.await();
+                        tryAgain = !certificateTried || !certificateFetchTried;
+                        if (tryAgain) {
+                            AtomicBoolean doNotRetry = new AtomicBoolean(false);
+                            sslContext = CertificateUtils.addCertificate(context, doNotRetry,
+                                    certificateTried);
+                            certificateTried = true;
+                            if (!certificateFetchTried) {
+                                certificateFetchTried = doNotRetry.get();
+                            }
+                            tryAgain = sslContext != null;
+                        }
+                        certificateCountDownLatch.countDown();
+                    } catch (InterruptedException ex) {
+                        Log.e("Invalid Certificate", "await had been interrupted");
+                        ex.printStackTrace();
+                    }
+                } else {
+                    Log.e("IOException Data", response);
+                    tryAgain = false;
+                }
+            } else {
+                tryAgain = false;
+            }
+        } while (tryAgain);
         return response;
     }
 
