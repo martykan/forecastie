@@ -21,8 +21,8 @@ jobs:
     - name: Upload file list
       uses: actions/upload-artifact@v1
       with:
-        name: file list
-        path: file_list.txt
+        name: Forecastie
+        path: forecastie.apk
 
   release:
     runs-on: ubuntu-latest
