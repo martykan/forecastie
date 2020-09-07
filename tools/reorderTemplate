@@ -25,6 +25,7 @@
     <string name="sunrise">
     <string name="sunset">
     <string name="uvindex">
+    <string name="tap_for_graphs">
 
     <\!-- Settings/Units -->
     <string name="settings_title_units">
@@ -176,6 +177,7 @@
 
     <\!-- Graphs -->
     <string name="action_graphs">
+    <string name="graphs_more_days">
 
     <\!-- About dialogue -->
     <string name="about_unknown">
@@ -183,6 +185,7 @@
     <string name="about_developers">
     <string name="about_src">
     <string name="about_data">
+    <string name="about_issues">
     <string name="about_icons">
 
     <\!-- Widget -->
