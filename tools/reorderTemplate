@@ -115,10 +115,12 @@
 
     <\!-- Errors -->
     <string name="msg_err_parsing_json">
+    <string name="msg_http_error">
     <string name="msg_connection_problem">
     <string name="msg_connection_not_available">
     <string name="msg_city_not_found">
     <string name="msg_too_many_requests">
+    <string name="msg_invalid_api_key">
 
     <\!-- Wind direction -->
     <string name="wind_direction_north">

@@ -1,3 +1,5 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
 <resources>
     <string name="app_name">Forecastie</string>
     <!-- Main activity titles -->
@@ -62,10 +64,10 @@
 
     <string name="uvi_no_info">Keine Daten</string>
     <string name="uvi_low">Niedrig</string>
-    <string name="uvi_high">Hoch</string>
-    <string name="uvi_extreme">Extrem</string>
     <string name="uvi_moderate">Mäßig</string>
+    <string name="uvi_high">Hoch</string>
     <string name="uvi_very_high">Sehr hoch</string>
+    <string name="uvi_extreme">Extrem</string>
 
     <!-- Settings/Appearance -->
     <string name="settings_title_display">Anzeige</string>
@@ -85,7 +87,7 @@
     <string name="setting_displayDecimalZeroes">Zeige Null nach Komma</string>
 
     <!-- Settings/Data -->
-    <string name="last_update">Zuletzt aktualisiert:\n%s</string>
+    <string name="last_update">Zuletzt aktualisiert:\n %s</string>
     <string name="last_update_widget">\nZuletzt aktualisiert: %s</string>
     <string name="settings_title_data">Daten</string>
     <string name="setting_refreshInterval">Aktualisierungsintervall im Hintergrund</string>
@@ -111,6 +113,7 @@
     <!-- Errors -->
     <string name="msg_err_parsing_json">Fehler beim Parsen von JSON.</string>
     <string name="msg_http_error">Fehler beim Abrufen oder Empfangen der Daten.</string>
+    <string name="msg_connection_problem"></string>
     <string name="msg_connection_not_available">Keine Verbindung</string>
     <string name="msg_city_not_found">Stadt konnte nicht gefunden werden.</string>
     <string name="msg_too_many_requests">Zu viele Anfragen. Bitte erneut versuchen.</string>
