@@ -119,4 +119,5 @@
     <string name="rain">雨</string>
     <string name="temperature">气温</string>
     <string name="action_graphs">图表</string>
+    <string name="location_search_heading">位置</string>
 </resources>
