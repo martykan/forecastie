@@ -19,6 +19,7 @@
     <string name="last_update">最后更新:\n%s</string>
     <string name="last_update_widget">\n最后更新: %s</string>
 
+    <string name="wind_speed">风速</string>
     <string name="search_title">搜索城市</string>
 
     <string name="downloading_data">正在下载所需数据 ...</string>
@@ -60,6 +61,13 @@
     <string name="speed_unit_mps">m/s</string>
     <string name="speed_unit_kph">kph</string>
     <string name="speed_unit_mph">mph</string>
+
+    <string name="uvi_no_info">No Info</string>
+    <string name="uvi_low">Low</string>
+    <string name="uvi_moderate">Moderate</string>
+    <string name="uvi_high">High</string>
+    <string name="uvi_very_high">Very High</string>
+    <string name="uvi_extreme">Extreme</string>
 
     <string name="wind_direction_format_none">不显示</string>
     <string name="wind_direction_format_arrows">箭头</string>
@@ -105,6 +113,7 @@
     <string name="setting_update_location_automatically">后台更新定位</string>
 
     <string name="location_settings">定位设置</string>
+    <string name="setting_dateFormatCustom_summary">提供要使用的简单自定义日期格式的字符串</string>
     <string name="location_settings_message">定位未启用。您想跳转到设置菜单吗？</string>
     <string name="location_settings_button">设置</string>
     <string name="action_weather_map">天气地图</string>
