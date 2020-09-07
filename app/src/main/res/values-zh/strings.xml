@@ -29,7 +29,7 @@
 
     <string name="setting_dateFormat">日期格式</string>
     <string name="setting_dateFormatCustom">自定义日期格式</string>
-    <string name="setting_dateFormatCustom_summary">Provide the custom SimpleDateFormat string to be used</string>
+    <string name="setting_dateFormatCustom_summary">提供要使用的简单自定义日期格式的字符串</string>
     <string name="setting_lengthUnits">长度单位</string>
     <string name="setting_speedUnits">风速单位</string>
     <string name="setting_tempUnits">气温单位</string>
@@ -113,7 +113,6 @@
     <string name="setting_update_location_automatically">后台更新定位</string>
 
     <string name="location_settings">定位设置</string>
-    <string name="setting_dateFormatCustom_summary">提供要使用的简单自定义日期格式的字符串</string>
     <string name="location_settings_message">定位未启用。您想跳转到设置菜单吗？</string>
     <string name="location_settings_button">设置</string>
     <string name="action_weather_map">天气地图</string>
