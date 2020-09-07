@@ -25,6 +25,7 @@
     <string name="sunrise">Salida del sol</string>
     <string name="sunset">Puesta del sol</string>
     <string name="uvindex">Índice UV</string>
+    <string name="tap_for_graphs">Pulsar para las Gráficas</string>
 
     <!-- Settings/Units -->
     <string name="settings_title_units">Unidades</string>
@@ -118,7 +119,6 @@
     <string name="msg_too_many_requests">Demasiadas solicitudes. Inténtelo más tarde.</string>
     <string name="msg_invalid_api_key">Clave API no válida.</string>
 
-
     <!-- Wind direction -->
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_north_east">NNE</string>
@@ -161,7 +161,8 @@
     <string name="dash_clock_expanded_body">%1$s, %2$s\n
         Viento: %3$s %4$s\n
         Presión: %5$s %6$s\n
-        Humedad: %7$s %%\n</string>
+        Humedad: %7$s %%\n
+    </string>
 
     <!-- Location -->
     <string name="settings_title_location">Ubicación</string>
@@ -194,6 +195,4 @@
     <string name="widget_label_time">Forecastie Fecha</string>
     <string name="widget_label_simple">Forecastie Sencillo</string>
     <string name="widget_label_classic">Forecastie Clásico</string>
-
-    <string name="tap_for_graphs">Pulsar para las Gráficas</string>
 </resources>
