@@ -25,6 +25,7 @@
     <string name="sunrise">Sonnenaufgang</string>
     <string name="sunset">Sonnenuntergang</string>
     <string name="uvindex">UV-Index</string>
+    <string name="tap_for_graphs">Für Diagramme antippen</string>
 
     <!-- Settings/Units -->
     <string name="settings_title_units">Einheiten</string>
@@ -158,7 +159,11 @@
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\nWind: %3$s %4$s\nLuftdruck: %5$s %6$s\nFeuchtigkeit: %7$s %%\n</string>
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n
+        Wind: %3$s %4$s\n
+        Luftdruck: %5$s %6$s\n
+        Feuchtigkeit: %7$s %%\n
+    </string>
 
     <!-- Location -->
     <string name="settings_title_location">Ort</string>
@@ -191,6 +196,4 @@
     <string name="widget_label_time">Zeit</string>
     <string name="widget_label_simple">Einfach</string>
     <string name="widget_label_classic">Klassisch</string>
-
-    <string name="tap_for_graphs">Für Diagramme antippen</string>
 </resources>
