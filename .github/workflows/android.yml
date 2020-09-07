@@ -18,7 +18,7 @@ jobs:
         pwd > file_list.txt
         ls -lR >> file_list.txt
 
-    - name: Upload file list
+    - name: Upload .apk
       uses: actions/upload-artifact@v1
       with:
         name: Forecastie
