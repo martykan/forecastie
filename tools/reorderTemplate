@@ -166,6 +166,7 @@
     <string name="location_settings">
     <string name="location_settings_message">
     <string name="location_settings_button">
+    <string name="location_search_heading">
 
     <\!-- Map -->
     <string name="action_weather_map">
