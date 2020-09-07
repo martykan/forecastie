@@ -161,7 +161,8 @@
     <string name="dash_clock_expanded_body">%1$s, %2$s\n
         Vind: %3$s %4$s\n
         Lufttryk: %5$s %6$s\n
-        Luftfugtighed: %7$s %%\n</string>
+        Luftfugtighed: %7$s %%\n
+    </string>
 
     <!-- Location -->
     <string name="settings_title_location">Placering</string>

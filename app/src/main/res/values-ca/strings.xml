@@ -87,11 +87,8 @@
     <string name="setting_displayDecimalZeroes">Mostrar zeros decimals</string>
 
     <!-- Settings/Data -->
-    <string name="last_update">Última actualització:
-    %s</string>
-    <string name="last_update_widget">
-    Última actualització:
-    %s</string>
+    <string name="last_update">Última actualització:\n%s</string>
+    <string name="last_update_widget">\nÚltima actualització: %s</string>
     <string name="settings_title_data">Dades</string>
     <string name="setting_refreshInterval">Interval de l\'actualització en segon pla</string>
     <string name="settings_none">Cap</string>
@@ -158,8 +155,11 @@
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s
-
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n
+        Wind: %3$s %4$s\n
+        Pressure: %5$s %6$s\n
+        Humidity: %7$s %%\n
+    </string>
 
     <!-- Location -->
     <string name="settings_title_location">Ubicació</string>

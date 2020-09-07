@@ -75,10 +75,8 @@
     <string name="setting_displayDecimalZeroes">Адлюстроўваць дзесятковыя нулі</string>
 
     <!-- Settings/Data -->
-    <string name="last_update">Апошняе абнаўленне:
-    %s</string>
-    <string name="last_update_widget">
-    Апошняе абнаўленне: %s</string>
+    <string name="last_update">Апошняе абнаўленне:\n%s</string>
+    <string name="last_update_widget">\nАпошняе абнаўленне: %s</string>
     <string name="settings_title_data">Дадзеныя</string>
     <string name="setting_refreshInterval">Інтэрвал абнаўлення</string>
     <string name="settings_none">Не адлюстроўваць</string>
@@ -125,10 +123,10 @@
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s
-    Вецер: %3$s %4$s
-    Ціск: %5$s %6$s
-    Вільготнасць: %7$s %%
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n
+        Вецер: %3$s %4$s\n
+        Ціск: %5$s %6$s\n
+        Вільготнасць: %7$s %%\n
     </string>
 
     <!-- Location -->

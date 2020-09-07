@@ -71,10 +71,8 @@
     <string name="setting_displayDecimalZeroes">Показвай десетични нули</string>
 
     <!-- Settings/Data -->
-    <string name="last_update">Актуално към:
-    %s</string>
-    <string name="last_update_widget">
-    Актуално към:%s</string>
+    <string name="last_update">Актуално към:\n%s</string>
+    <string name="last_update_widget">\nАктуално към: %s</string>
     <string name="settings_title_data">Данни</string>
     <string name="setting_refreshInterval">Интервал на обновяване</string>
     <string name="settings_none">Не обновявай</string>
@@ -121,10 +119,10 @@
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s
-    Вятър: %3$s %4$s
-    Налягане: %5$s %6$s
-    Влажност: %7$s %%
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n
+        Вятър: %3$s %4$s\n
+        Налягане: %5$s %6$s\n
+        Влажност: %7$s %%\n
     </string>
 
     <!-- Location -->
