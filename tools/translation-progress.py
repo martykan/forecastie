@@ -51,7 +51,7 @@ import xml.etree.ElementTree as ET
 
 # These paths are relative to the script and should be changed accordingly if
 # the script is moved
-english_translation = '../app//main/res/values/strings.xml'
+english_translation = '../app/src/main/res/values/strings.xml'
 other_translations = '../app/src/main/res/values-*/strings.xml'
 
 # String names in this list will not be considered
