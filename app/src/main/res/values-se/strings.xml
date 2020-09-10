@@ -171,7 +171,7 @@
 
     <!-- About dialogue -->
     <string name="about_description">En liten väder app, släppt under GPL3 licensen.</string>
-    <string name="about_developers">Utvecklag av &lt;a href='mailto:t.martykan@gmail.com'&gt;Tomas Martykan&lt;/a&gt; och andra</string>
+    <string name="about_developers">Utvecklag av &lt;a "href=mailto:t.martykan@gmail.com"&gt;Tomas Martykan&lt;/a&gt; och andra</string>
     <string name="about_src">Koden är tillgänglig på &lt;a href='https://github.com/martykan/forecastie'&gt;Forecastie&lt;/a&gt;</string>
     <string name="about_data">Uppgifter tillhandahållna av &lt;a href='https://openweathermap.org/'&gt;OpenWeatherMap&lt;/a&gt;, under &lt;a href='http://creativecommons.org/licenses/by-sa/2.0/'&gt;Creative Commons licensen&lt;/a&gt;</string>
     <string name="about_icons">Ikoner är &lt;a href='https://erikflowers.github.io/weather-icons/'&gt;Weather Icons&lt;/a&gt;, av &lt;a href='http://www.twitter.com/artill'&gt;Lukas Bischoff&lt;/a&gt; och &lt;a href='http://www.twitter.com/Erik_UX'&gt;Erik Flowers&lt;/a&gt;, under &lt;a href='http://scripts.sil.org/OFL'&gt;SIL OFL 1.1&lt;/a&gt; licensen.</string>
