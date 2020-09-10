@@ -165,10 +165,10 @@
 
     <!-- About dialogue -->
     <string name="about_description">Мала апликација отвореног кода за временску прогнозу, издата под GPL3.</string>
-    <string name="about_developers">Апликацију направили <a href="mailto:t.martykan@gmail.com">Tomas Martykan</a> и <a href="https://github.com/martykan/forecastie/graphs/contributors">остали</a>, уз подршку <a href="https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue">још много других</a>.</string>
-    <string name="about_src">Код је доступан на <a href="https://github.com/martykan/forecastie">Forecastie</a>.</string>
-    <string name="about_data">Податке пружа <a href="https://openweathermap.org/">OpenWeatherMap</a> под <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA лиценцом.</a></string>
-    <string name="about_icons">Иконице су <a href="https://erikflowers.github.io/weather-icons/">Weather Icons</a>, од <a href="http://www.twitter.com/artill">Lukas Bischoff</a> и <a href="http://www.twitter.com/Erik_UX">Erik Flowers</a>, под <a href="http://scripts.sil.org/OFL">SIL OFL 1.1</a> лиценцом.</string>
+    <string name="about_developers">Апликацију направили &lt;a href="mailto:t.martykan@gmail.com"&gt;Tomas Martykan&lt;/a&gt; и &lt;a href="https://github.com/martykan/forecastie/graphs/contributors"&gt;остали&lt;/a&gt;, уз подршку &lt;a href="https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue"&gt;још много других&lt;/a&gt;.</string>
+    <string name="about_src">Код је доступан на &lt;a href="https://github.com/martykan/forecastie"&gt;Forecastie&lt;/a&gt;.</string>
+    <string name="about_data">Податке пружа &lt;a href="https://openweathermap.org/"&gt;OpenWeatherMap&lt;/a&gt; под &lt;a href="http://creativecommons.org/licenses/by-sa/2.0/"&gt;CC-BY-SA лиценцом.&lt;/a&gt;</string>
+    <string name="about_icons">Иконице су &lt;a href="https://erikflowers.github.io/weather-icons/"&gt;Weather Icons&lt;/a&gt;, од &lt;a href="http://www.twitter.com/artill"&gt;Lukas Bischoff&lt;/a&gt; и &lt;a href="http://www.twitter.com/Erik_UX"&gt;Erik Flowers&lt;/a&gt;, под &lt;a href="http://scripts.sil.org/OFL"&gt;SIL OFL 1.1&lt;/a&gt; лиценцом.</string>
 
     <!-- Widget -->
 </resources>

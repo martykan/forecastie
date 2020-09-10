@@ -184,11 +184,11 @@
     <!-- About dialogue -->
     <string name="about_unknown">No se puede obtener el nombre de la versión</string>
     <string name="about_description">Una aplicación sencilla para consultar el tiempo, desarrollada con software libre y bajo licencia GPLv3.</string>
-    <string name="about_developers">Desarrollada por <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> y <a href='https://github.com/martykan/forecastie/graphs/contributors'>otros</a>, con la ayuda de <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>muchos más</a>.</string>
-    <string name="about_src">Código fuente disponible en <a href='https://github.com/martykan/forecastie'>Github</a>.</string>
-    <string name="about_issues">Puede enviar errores y mejoras a nuestra página <a href='https://github.com/martykan/forecastie/issues'>de seguimiento de errores en Github</a>.</string>
-    <string name="about_data">Datos proporcionados por <a href='https://openweathermap.org/'>OpenWeatherMap</a>, bajo la licencia <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA</a>.</string>
-    <string name="about_icons">Los iconos son de <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, creados por <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> y <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, bajo la licencia <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a>.</string>
+    <string name="about_developers">Desarrollada por &lt;a href='mailto:t.martykan@gmail.com'&gt;Tomas Martykan&lt;/a&gt; y &lt;a href='https://github.com/martykan/forecastie/graphs/contributors'&gt;otros&lt;/a&gt;, con la ayuda de &lt;a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'&gt;muchos más&lt;/a&gt;.</string>
+    <string name="about_src">Código fuente disponible en &lt;a href='https://github.com/martykan/forecastie'&gt;Github&lt;/a&gt;.</string>
+    <string name="about_issues">Puede enviar errores y mejoras a nuestra página &lt;a href='https://github.com/martykan/forecastie/issues'&gt;de seguimiento de errores en Github&lt;/a&gt;.</string>
+    <string name="about_data">Datos proporcionados por &lt;a href='https://openweathermap.org/'&gt;OpenWeatherMap&lt;/a&gt;, bajo la licencia &lt;a href='http://creativecommons.org/licenses/by-sa/2.0/'&gt;Creative Commons CC-BY-SA&lt;/a&gt;.</string>
+    <string name="about_icons">Los iconos son de &lt;a href='https://erikflowers.github.io/weather-icons/'&gt;Weather Icons&lt;/a&gt;, creados por &lt;a href='http://www.twitter.com/artill'&gt;Lukas Bischoff&lt;/a&gt; y &lt;a href='http://www.twitter.com/Erik_UX'&gt;Erik Flowers&lt;/a&gt;, bajo la licencia &lt;a href='http://scripts.sil.org/OFL'&gt;SIL OFL 1.1&lt;/a&gt;.</string>
 
     <!-- Widget -->
     <string name="widget_label_extensive">Forecastie Ampliado</string>
