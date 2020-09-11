@@ -160,8 +160,8 @@ public class GraphActivity extends BaseActivity {
         for (int i = 0; i < numWeatherData; i++) {
             float temperature = UnitConvertor.convertTemperature(Float.parseFloat(weatherList.get(i).getTemperature()), sp);
 
-            minTemp = Math.min(temperature, minTemp);
-            maxTemp = Math.max(temperature, maxTemp);
+            minTemp = (float) Math.min(Math.floor(temperature), minTemp);
+            maxTemp = (float) Math.max(Math.ceil(temperature), maxTemp);
 
             dataset.addPoint(getDateLabel(weatherList.get(i), i), temperature);
         }
@@ -240,8 +240,8 @@ public class GraphActivity extends BaseActivity {
         for (int i = 0; i < numWeatherData; i++) {
             float pressure = UnitConvertor.convertPressure(Float.parseFloat(weatherList.get(i).getPressure()), sp);
 
-            minPressure = Math.min(pressure, minPressure);
-            maxPressure = Math.max(pressure, maxPressure);
+            minPressure = (float) Math.min(Math.floor(pressure), minPressure);
+            maxPressure = (float) Math.max(Math.ceil(pressure), maxPressure);
 
             dataset.addPoint(getDateLabel(weatherList.get(i), i), pressure);
         }
