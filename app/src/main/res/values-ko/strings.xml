@@ -163,10 +163,10 @@
     <string name="temperature">기온</string>
     <string name="action_graphs">그래프</string>
     <string name="about_description">GPL3 라이센스에 따라 출시 된 간단한 자유 소프트웨어 날씨 앱입니다.</string>
-    <string name="about_developers">&lt;a href='mailto:t.martykan@gmail.com'&gt;Tomas Martykan&lt;/a&gt; 등 &lt;a href='https://github.com/martykan/forecastie/graphs/contributors'&gt;다른 인원들&lt;/a&gt; 이 개발하였으며, &lt;a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'&gt;많은 이들의&lt;/a&gt; 도움이 있습니다.</string>
-    <string name="about_src">코드는 &lt;a href='https://github.com/martykan/forecastie'&gt;Forecastie&lt;/a&gt;에서 이용가능합니다.</string>
-    <string name="about_issues">이슈는 &lt;a href='https://github.com/martykan/forecastie/issues'&gt;이곳에&lt;/a&gt; 게시하실 수 있습니다.</string>
-    <string name="about_data">&lt;a href='http://creativecommons.org/licenses/by-sa/2.0/'&gt;Creative Commons CC-BY-SA&lt;/a&gt;라이센스에 따라 &lt;a href='https://openweathermap.org/'&gt;OpenWeatherMap&lt;/a&gt; 에서 제공한 데이터입니다.</string>
-    <string name="about_icons">&lt;a href='http://scripts.sil.org/OFL'&gt;아이콘은 SIL OFL 1.1&lt;/a&gt; 라이센스에 따라 &lt;a href='http://www.twitter.com/artill'&gt;Lukas Bischoff&lt;/a&gt; 및 &lt;a href='http://www.twitter.com/Erik_UX'&gt;Erik Flowers&lt;/a&gt;&lt;a href='https://erikflowers.github.io/weather-icons/'&gt;의 날씨 아이콘입니다.&lt;/a&gt;</string>
+    <string name="about_developers">&lt;a href=\'mailto:t.martykan@gmail.com\'&gt;Tomas Martykan&lt;/a&gt; 등 &lt;a href=\'https://github.com/martykan/forecastie/graphs/contributors\'&gt;다른 인원들&lt;/a&gt; 이 개발하였으며, &lt;a href=\'https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue\'&gt;많은 이들의&lt;/a&gt; 도움이 있습니다.</string>
+    <string name="about_src">코드는 &lt;a href=\'https://github.com/martykan/forecastie\'&gt;Forecastie&lt;/a&gt;에서 이용가능합니다.</string>
+    <string name="about_issues">이슈는 &lt;a href=\'https://github.com/martykan/forecastie/issues\'&gt;이곳에&lt;/a&gt; 게시하실 수 있습니다.</string>
+    <string name="about_data">&lt;a href=\'http://creativecommons.org/licenses/by-sa/2.0/\'&gt;Creative Commons CC-BY-SA&lt;/a&gt;라이센스에 따라 &lt;a href=\'https://openweathermap.org/\'&gt;OpenWeatherMap&lt;/a&gt; 에서 제공한 데이터입니다.</string>
+    <string name="about_icons">&lt;a href=\'http://scripts.sil.org/OFL\'&gt;아이콘은 SIL OFL 1.1&lt;/a&gt; 라이센스에 따라 &lt;a href=\'http://www.twitter.com/artill\'&gt;Lukas Bischoff&lt;/a&gt; 및 &lt;a href=\'http://www.twitter.com/Erik_UX\'&gt;Erik Flowers&lt;/a&gt;&lt;a href=\'https://erikflowers.github.io/weather-icons/\'&gt;의 날씨 아이콘입니다.&lt;/a&gt;</string>
     <string name="clouds">구름량</string>
 </resources>
