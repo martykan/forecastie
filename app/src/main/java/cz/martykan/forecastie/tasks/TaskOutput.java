@@ -5,4 +5,6 @@ public class TaskOutput {
     ParseResult parseResult;
     // Indicates result of background task
     TaskResult taskResult;
+    // Error caused unsuccessful result
+    Throwable taskError;
 }
