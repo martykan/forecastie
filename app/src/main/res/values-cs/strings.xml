@@ -1,108 +1,144 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
 <resources>
     <string name="app_name">Forecastie</string>
-
+    <!-- Main activity titles -->
     <string name="action_search">Hledat</string>
     <string name="action_refresh">Obnovit</string>
     <string name="action_settings">Nastavení</string>
     <string name="action_about">O aplikaci</string>
+    <string name="search_title">Hledejte město</string>
+    <string name="downloading_data">Stahování dat...</string>
+    <string name="getting_location">Získávání Vaší polohy...</string>
 
+    <!-- Forecast cards -->
     <string name="today">Dnes</string>
     <string name="tomorrow">Zítra</string>
     <string name="later">Později</string>
 
+    <!-- Main activity headings -->
     <string name="wind">Vítr</string>
     <string name="pressure">Tlak</string>
     <string name="humidity">Vlhkost</string>
+    <string name="sunrise">Východ slunce</string>
+    <string name="sunset">Západ slunce</string>
 
-    <string name="search_title">Hledejte město</string>
-
-    <string name="error_dateFormat">CHYBA FORMÁTU DATA</string>
-
+    <!-- Settings/Units -->
+    <string name="settings_title_units">Jednotky</string>
+    <string name="setting_lengthUnits">Jednotky délky</string>
     <string name="setting_speedUnits">Jednotky rychlosti</string>
     <string name="setting_tempUnits">Jednotky teploty</string>
+    <string name="setting_showTempAsInteger">Ukazovat teplotu jen jako celé číslo</string>
     <string name="setting_pressureUnits">Jednotky tlaku</string>
-    <string name="setting_refreshInterval">Interval obnovení na pozadí</string>
-
-    <string name="setting_dateFormat">Formát data</string>
-    <string name="setting_dateFormatCustom">Vlastní formát data</string>
-    <string name="setting_dateFormatCustom_summary">Pokud je výše vybráno Vlastní, tak zadejte SimpleDateFormat, který má být použit</string>
-    <string name="setting_differentiateDaysByTint">Oddělit dny barvou</string>
-    <string name="dialog_ok">OK</string>
-    <string name="dialog_cancel">Storno</string>
-    <string name="downloading_data">Stahování dat...</string>
-    <string name="getting_location">Získávání Vaší polohy...</string>
-    <string name="setting_apiKey">API klíč</string>
-    <string name="setting_apiKey_summary">Vlastní API klíč pro OpenWeatherMap</string>
     <string name="setting_auto_detect_location">Detekovat polohu</string>
-    <string name="setting_unit_hpa">hPa</string>
-    <string name="setting_unit_kpa">kPa</string>
-    <string name="setting_unit_kph">Kilometry za hodinu (km/h)</string>
-    <string name="setting_unit_mmhg">mm Hg</string>
-    <string name="setting_unit_mph">Míle za hodinu (mph)</string>
-    <string name="settings_none">Nikdy</string>
+    <string name="setting_differentiateDaysByTint">Oddělit dny barvou</string>
+
     <string name="setting_unit_mps">Metry za sekundu (m/s)</string>
-    <string name="msg_err_parsing_json">Chyba čtení JSON.</string>
-    <string name="msg_connection_not_available">Připojení není k dispozici.</string>
-    <string name="msg_city_not_found">Město nebylo nalezeno.</string>
-    <string name="pressure_unit_hpa">hPa</string>
-    <string name="pressure_unit_kpa">kPa</string>
-    <string name="pressure_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_kph">Kilometry za hodinu (km/h)</string>
+    <string name="setting_unit_mph">Míle za hodinu (mph)</string>
     <string name="setting_unit_Celsuis">Celsius</string>
     <string name="setting_unit_Fahrenheit">Fahrenheit</string>
     <string name="setting_unit_Kelvin">Kelvin</string>
-    <string name="setting_wind_direction_format">Formát zobrazení rychlosti větru</string>
+
+    <string name="setting_unit_mm">Milimetry (mm)</string>
+    <string name="setting_unit_in">Palce (in)</string>
+
+    <string name="setting_unit_hpa">hPa</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+
+    <string name="speed_unit_mps">m/s</string>
     <string name="speed_unit_kph">km/h</string>
     <string name="speed_unit_mph">mph</string>
-    <string name="speed_unit_mps">m/s</string>
-    <string name="wind_direction_east">V</string>
-    <string name="wind_direction_west">Z</string>
-    <string name="wind_direction_south">J</string>
-    <string name="wind_direction_north">S</string>
-    <string name="wind_direction_north_west">SZ</string>
-    <string name="wind_direction_south_west">JZ</string>
-    <string name="wind_direction_north_east">SV</string>
-    <string name="wind_direction_south_south_east">JJV</string>
-    <string name="wind_direction_south_east">JV</string>
-    <string name="wind_direction_south_south_west">JJZ</string>
-    <string name="wind_direction_west_north_west">ZSZ</string>
-    <string name="wind_direction_west_south_west">ZJZ</string>
-    <string name="wind_direction_north_north_west">SSZ</string>
-    <string name="wind_direction_north_north_east">SSV</string>
+
+    <string name="pressure_unit_hpa">hPa</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+
+
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">Zobrazení</string>
+    <string name="setting_theme">Téma</string>
+    <string name="setting_wind_direction_format">Formát zobrazení rychlosti větru</string>
+    <string name="setting_theme_fresh">Čerstvé</string>
+    <string name="setting_theme_classic">Klasické</string>
+    <string name="setting_theme_dark">Čerstvé tmavé</string>
+    <string name="setting_theme_classic_dark">Klasické tmavé</string>
+
     <string name="wind_direction_format_none">Žádný ukazatel</string>
     <string name="wind_direction_format_arrows">Šipka</string>
     <string name="wind_direction_format_abbreviations">Zkratky</string>
-    <string name="wind_direction_east_north_east">VSV</string>
-    <string name="wind_direction_east_south_east">VJV</string>
+    <string name="setting_displayDecimalZeroes">Zobrazit desetinné nuly</string>
+
+    <!-- Settings/Data -->
+    <string name="last_update">Poslední aktualizace:\n%s</string>
+    <string name="last_update_widget">\nPoslední aktualizace: %s</string>
+    <string name="settings_title_data">Data</string>
+    <string name="setting_refreshInterval">Interval obnovení na pozadí</string>
+    <string name="settings_none">Nikdy</string>
+    <string name="setting_apiKey">API klíč</string>
+    <string name="setting_apiKey_summary">Vlastní API klíč pro OpenWeatherMap</string>
+
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">CHYBA FORMÁTU DATA</string>
+    <string name="setting_dateFormat">Formát data</string>
+    <string name="setting_dateFormatCustom">Vlastní formát data</string>
+    <string name="setting_dateFormatCustom_summary">Pokud je výše vybráno Vlastní, tak zadejte SimpleDateFormat, který má být použit</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Storno</string>
+
+    <!-- Errors -->
+    <string name="msg_err_parsing_json">Chyba čtení JSON.</string>
+    <string name="msg_connection_not_available">Připojení není k dispozici.</string>
+    <string name="msg_city_not_found">Město nebylo nalezeno.</string>
     <string name="msg_too_many_requests">Příliš mnoho požadavků. Zkuste to prosím znovu.</string>
 
+    <!-- Wind direction -->
+    <string name="wind_direction_north">S</string>
+    <string name="wind_direction_north_north_east">SSV</string>
+    <string name="wind_direction_north_east">SV</string>
+    <string name="wind_direction_east_north_east">VSV</string>
+    <string name="wind_direction_east">V</string>
+    <string name="wind_direction_east_south_east">VJV</string>
+    <string name="wind_direction_south_east">JV</string>
+    <string name="wind_direction_south_south_east">JJV</string>
+    <string name="wind_direction_south">J</string>
+    <string name="wind_direction_south_south_west">JJZ</string>
+    <string name="wind_direction_south_west">JZ</string>
+    <string name="wind_direction_west_south_west">ZJZ</string>
+    <string name="wind_direction_west">Z</string>
+    <string name="wind_direction_west_north_west">ZSZ</string>
+    <string name="wind_direction_north_west">SZ</string>
+    <string name="wind_direction_north_north_west">SSZ</string>
+
+    <!-- Wind strength - Beaufort -->
+
+    <!-- Dash clock -->
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\nVítr: %3$s %4$s\nTlak: %5$s %6$s\nVlhkost: %7$s %%\n</string>
-    <string name="last_update">Poslední aktualizace:\n%s</string>
-    <string name="last_update_widget">\nPoslední aktualizace: %s</string>
-    <string name="setting_lengthUnits">Jednotky délky</string>
-    <string name="setting_unit_in">Palce (in)</string>
-    <string name="setting_unit_mm">Milimetry (mm)</string>
-    <string name="sunrise">Východ slunce</string>
-    <string name="sunset">Západ slunce</string>
-    <string name="setting_showTempAsInteger">Ukazovat teplotu jen jako celé číslo</string>
-    <string name="setting_theme">Téma</string>
-    <string name="setting_theme_classic">Klasické</string>
-    <string name="setting_theme_classic_dark">Klasické tmavé</string>
-    <string name="action_weather_map">Mapa počasí</string>
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n
+        Vítr: %3$s %4$s\n
+        Tlak: %5$s %6$s\n
+        Vlhkost: %7$s %%\n
+    </string>
+
+    <!-- Location -->
     <string name="location_settings">Nastavení polohy</string>
-    <string name="location_settings_button">Nastavení</string>
     <string name="location_settings_message">Určovaní polohy není zapnuto. Chcete přejít do nastavení?</string>
-    <string name="setting_displayDecimalZeroes">Zobrazit desetinné nuly</string>
-    <string name="setting_theme_dark">Čerstvé tmavé</string>
-    <string name="setting_theme_fresh">Čerstvé</string>
-    <string name="settings_title_data">Data</string>
-    <string name="settings_title_display">Zobrazení</string>
-    <string name="settings_title_units">Jednotky</string>
+    <string name="location_settings_button">Nastavení</string>
+
+    <!-- Map -->
+    <string name="action_weather_map">Mapa počasí</string>
     <string name="rain">Déšť</string>
     <string name="temperature">Teplota</string>
+
+    <!-- Graphs -->
     <string name="action_graphs">Grafy</string>
+
+    <!-- About dialogue -->
+
+    <!-- Widget -->
 </resources>

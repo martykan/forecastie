@@ -1,51 +1,41 @@
-<resources>
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+    <resources>
     <string name="app_name">Forecastie</string>
-
+    <!-- Main activity titles -->
     <string name="action_search">Zoeken</string>
     <string name="action_refresh">Verversen</string>
     <string name="action_settings">Instellingen</string>
     <string name="action_about">Over</string>
+    <string name="search_title">Stad zoeken</string>
+    <string name="downloading_data">Bezig met downloaden van gegevens...</string>
+    <string name="getting_location">Bezig met ophalen van locatie...</string>
 
+    <!-- Forecast cards -->
     <string name="today">Vandaag</string>
     <string name="tomorrow">Morgen</string>
     <string name="later">Later deze week</string>
 
+    <!-- Main activity headings -->
     <string name="wind">Wind</string>
     <string name="pressure">Luchtdruk</string>
     <string name="humidity">Luchtvochtigheid</string>
     <string name="sunrise">Zonsopkomst</string>
     <string name="sunset">Zonsondergang</string>
 
-    <string name="last_update">Laatst bijgewerkt:\n%s</string>
-    <string name="last_update_widget">\nLaatst bijgewerkt: %s</string>
-
-    <string name="search_title">Stad zoeken</string>
-
-    <string name="downloading_data">Bezig met downloaden van gegevens...</string>
-    <string name="getting_location">Bezig met ophalen van locatie...</string>
-
-    <string name="error_dateFormat">DATUMOPMAAKFOUT</string>
-
-    <string name="setting_dateFormat">Datumopmaak</string>
-    <string name="setting_dateFormatCustom">Aangepaste datumopmaak</string>
-    <string name="setting_dateFormatCustom_summary">Geef de te gebruiken aangepaste datumopmaak op</string>
+    <!-- Settings/Units -->
+    <string name="settings_title_units">Eenheden</string>
     <string name="setting_lengthUnits">Lengte-eenheden</string>
     <string name="setting_speedUnits">Snelheidseenheden</string>
     <string name="setting_tempUnits">Temperatuureenheden</string>
     <string name="setting_showTempAsInteger">Temperatuur tonen als geheel getal</string>
     <string name="setting_pressureUnits">Luchtdrukeenheden</string>
-    <string name="setting_theme">Thema</string>
     <string name="setting_auto_detect_location">Locatie detecteren</string>
     <string name="setting_differentiateDaysByTint">Dagen onderscheiden d.m.v. kleur</string>
-    <string name="setting_refreshInterval">Achtergrond-ververstussenpoos</string>
+
     <string name="setting_unit_mps">Meter per seconde (m/s)</string>
     <string name="setting_unit_kph">Kilometer per uur (kpu)</string>
     <string name="setting_unit_mph">Mijl per uur (mpu)</string>
-    <string name="setting_wind_direction_format">Windrichting-opmaak</string>
-    <string name="settings_none">Geen</string>
-    <string name="setting_apiKey">API-sleutel</string>
-    <string name="setting_apiKey_summary">Aangepaste API-sleutel voor OpenWeatherMap-verzoeken</string>
-
     <string name="setting_unit_Celsuis">Celsius</string>
     <string name="setting_unit_Fahrenheit">Fahrenheit</string>
     <string name="setting_unit_Kelvin">Kelvin</string>
@@ -61,26 +51,54 @@
     <string name="speed_unit_kph">kpu</string>
     <string name="speed_unit_mph">mpu</string>
 
-    <string name="wind_direction_format_none">Geen indicatie</string>
-    <string name="wind_direction_format_arrows">Pijlen</string>
-    <string name="wind_direction_format_abbreviations">Afkortingen</string>
-
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mm Hg</string>
 
+    <string name="uvi_low">Zwak</string>
+    <string name="uvi_moderate">Matig</string>
+    <string name="uvi_high">Hoog</string>
+    <string name="uvi_very_high">Zeer hoog</string>
+    <string name="uvi_extreme">Extreem</string>
+
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">Weergave</string>
+    <string name="setting_theme">Thema</string>
+    <string name="setting_wind_direction_format">Windrichting-opmaak</string>
     <string name="setting_theme_fresh">Fris</string>
     <string name="setting_theme_classic">Klassiek</string>
     <string name="setting_theme_dark">Fris donker</string>
     <string name="setting_theme_classic_dark">Klassiek donker</string>
 
+    <string name="wind_direction_format_none">Geen indicatie</string>
+    <string name="wind_direction_format_arrows">Pijlen</string>
+    <string name="wind_direction_format_abbreviations">Afkortingen</string>
+    <string name="setting_displayDecimalZeroes">Decimale nullen tonen</string>
+
+    <!-- Settings/Data -->
+    <string name="last_update">Laatst bijgewerkt:\n%s</string>
+    <string name="last_update_widget">\nLaatst bijgewerkt: %s</string>
+    <string name="settings_title_data">Gegevens</string>
+    <string name="setting_refreshInterval">Achtergrond-ververstussenpoos</string>
+    <string name="settings_none">Geen</string>
+    <string name="setting_apiKey">API-sleutel</string>
+    <string name="setting_apiKey_summary">Aangepaste API-sleutel voor OpenWeatherMap-verzoeken</string>
+
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">DATUMOPMAAKFOUT</string>
+    <string name="setting_dateFormat">Datumopmaak</string>
+    <string name="setting_dateFormatCustom">Aangepaste datumopmaak</string>
+    <string name="setting_dateFormatCustom_summary">Geef de te gebruiken aangepaste datumopmaak op</string>
     <string name="dialog_ok">Oké</string>
     <string name="dialog_cancel">Annuleren</string>
 
+    <!-- Errors -->
     <string name="msg_err_parsing_json">Fout bij verwerken van JSON.</string>
     <string name="msg_connection_not_available">Verbinding niet beschikbaar.</string>
     <string name="msg_city_not_found">De opgegeven stad kan niet worden gevonden.</string>
+    <string name="msg_too_many_requests">Teveel verzoeken; probeer het opnieuw.</string>
 
+    <!-- Wind direction -->
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_north_east">NNO</string>
     <string name="wind_direction_north_east">NO</string>
@@ -97,8 +115,8 @@
     <string name="wind_direction_west_north_west">WNW</string>
     <string name="wind_direction_north_west">NW</string>
     <string name="wind_direction_north_north_west">NNW</string>
-    <string name="msg_too_many_requests">Teveel verzoeken; probeer het opnieuw.</string>
 
+    <!-- Wind strength - Beaufort -->
     <string name="beaufort_calm">Stil</string>
     <string name="beaufort_light_air">Flauw en stil</string>
     <string name="beaufort_light_breeze">Flauwe koelte</string>
@@ -113,30 +131,34 @@
     <string name="beaufort_violent_storm">Zeer zware storm</string>
     <string name="beaufort_hurricane">Orkaan</string>
 
-    <string name="uvi_low">Zwak</string>
-    <string name="uvi_moderate">Matig</string>
-    <string name="uvi_high">Hoog</string>
-    <string name="uvi_very_high">Zeer hoog</string>
-    <string name="uvi_extreme">Extreem</string>
-
+    <!-- Dash clock -->
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\nWind: %3$s %4$s\nLuchtdruk: %5$s %6$s\nLuchtvochtigheid: %7$s %%\n</string>
-    <string name="settings_title_units">Eenheden</string>
-    <string name="settings_title_display">Weergave</string>
-    <string name="settings_title_data">Gegevens</string>
-    <string name="setting_displayDecimalZeroes">Decimale nullen tonen</string>
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n
+        Wind: %3$s %4$s\n
+        Luchtdruk: %5$s %6$s\n
+        Luchtvochtigheid: %7$s %%\n
+    </string>
+
+    <!-- Location -->
     <string name="settings_title_location">Locatie</string>
     <string name="setting_update_location_automatically">Locatie bijwerken op de achtergrond</string>
-
     <string name="location_settings">Locatie-instellingen</string>
     <string name="location_settings_message">Locatie is niet ingeschakeld. Wil je nu naar de instellingen gaan?</string>
     <string name="location_settings_button">Instellingen</string>
+
+    <!-- Map -->
     <string name="action_weather_map">Weerkaart</string>
     <string name="rain">Regen</string>
     <string name="temperature">Temperatuur</string>
+
+    <!-- Graphs -->
     <string name="action_graphs">Grafieken</string>
+
+    <!-- About dialogue -->
+
+    <!-- Widget -->
 </resources>

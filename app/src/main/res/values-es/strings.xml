@@ -8,9 +8,9 @@
     <string name="action_settings">Ajustes</string>
     <string name="action_about">Acerca de</string>
     <string name="search_title">Buscar una ciudad</string>
-    <string name="downloading_data">Descargando sus datos...</string>
-    <string name="getting_location">Obteniendo su ubicación...</string>
-    <string name="loading_data">Cargando...</string>
+    <string name="downloading_data">Descargando sus datos…</string>
+    <string name="getting_location">Obteniendo su ubicación…</string>
+    <string name="loading_data">Cargando…</string>
 
     <!-- Forecast cards -->
     <string name="today">Hoy</string>
@@ -25,6 +25,7 @@
     <string name="sunrise">Salida del sol</string>
     <string name="sunset">Puesta del sol</string>
     <string name="uvindex">Índice UV</string>
+    <string name="tap_for_graphs">Pulsar para las Gráficas</string>
 
     <!-- Settings/Units -->
     <string name="settings_title_units">Unidades</string>
@@ -107,16 +108,16 @@
     <string name="setting_dateFormat">Formato de fecha</string>
     <string name="setting_dateFormatCustom">Formato de fecha personalizado</string>
     <string name="setting_dateFormatCustom_summary">Elija la cadena SimpleDateFormat personalizada a utilizar</string>
-    <string name="setting_simple_string_formatting_intro">Puede usar los siguientes códigos para construir un formato de fecha y hora personalizado</string>
-    <string name="setting_example_date_format">Miércoles, 4 Jul 2001 12:08:32 PM, Tiempo del Pacífico con horario de verano</string>
     <string name="dialog_ok">Aceptar</string>
     <string name="dialog_cancel">Cancelar</string>
 
     <!-- Errors -->
     <string name="msg_err_parsing_json">Error al analizar JSON.</string>
+    <string name="msg_http_error">Error al recibir o enviar datos.</string>
     <string name="msg_connection_not_available">Conexión no disponible.</string>
     <string name="msg_city_not_found">No se encuentra la ciudad especificada.</string>
     <string name="msg_too_many_requests">Demasiadas solicitudes. Inténtelo más tarde.</string>
+    <string name="msg_invalid_api_key">Clave API no válida.</string>
 
     <!-- Wind direction -->
     <string name="wind_direction_north">N</string>
@@ -160,7 +161,8 @@
     <string name="dash_clock_expanded_body">%1$s, %2$s\n
         Viento: %3$s %4$s\n
         Presión: %5$s %6$s\n
-        Humedad: %7$s %%\n</string>
+        Humedad: %7$s %%\n
+    </string>
 
     <!-- Location -->
     <string name="settings_title_location">Ubicación</string>
@@ -177,15 +179,16 @@
 
     <!-- Graphs -->
     <string name="action_graphs">Gráficas</string>
+    <string name="graphs_more_days">Más días</string>
 
     <!-- About dialogue -->
     <string name="about_unknown">No se puede obtener el nombre de la versión</string>
     <string name="about_description">Una aplicación sencilla para consultar el tiempo, desarrollada con software libre y bajo licencia GPLv3.</string>
-    <string name="about_developers">Desarrollada por <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> y <a href='https://github.com/martykan/forecastie/graphs/contributors'>otros</a>, con la ayuda de <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>muchos más</a>.</string>
-    <string name="about_src">Código fuente disponible en <a href='https://github.com/martykan/forecastie'>Github</a>.</string>
-    <string name="about_issues">Puede enviar errores y mejoras a nuestra página <a href='https://github.com/martykan/forecastie/issues'>de seguimiento de errores en Github</a>.</string>
-    <string name="about_data">Datos proporcionados por <a href='https://openweathermap.org/'>OpenWeatherMap</a>, bajo la licencia <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA</a>.</string>
-    <string name="about_icons">Los iconos son de <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, creados por <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> y <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, bajo la licencia <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a>.</string>
+    <string name="about_developers">Desarrollada por &lt;a href=\'mailto:t.martykan@gmail.com\'&gt;Tomas Martykan&lt;/a&gt; y &lt;a href=\'https://github.com/martykan/forecastie/graphs/contributors\'&gt;otros&lt;/a&gt;, con la ayuda de &lt;a href=\'https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue\'&gt;muchos más&lt;/a&gt;.</string>
+    <string name="about_src">Código fuente disponible en &lt;a href=\'https://github.com/martykan/forecastie\'&gt;Github&lt;/a&gt;.</string>
+    <string name="about_issues">Puede enviar errores y mejoras a nuestra página &lt;a href=\'https://github.com/martykan/forecastie/issues\'&gt;de seguimiento de errores en Github&lt;/a&gt;.</string>
+    <string name="about_data">Datos proporcionados por &lt;a href=\'https://openweathermap.org/\'&gt;OpenWeatherMap&lt;/a&gt;, bajo la licencia &lt;a href=\'http://creativecommons.org/licenses/by-sa/2.0/\'&gt;Creative Commons CC-BY-SA&lt;/a&gt;.</string>
+    <string name="about_icons">Los iconos son de &lt;a href=\'https://erikflowers.github.io/weather-icons/\'&gt;Weather Icons&lt;/a&gt;, creados por &lt;a href=\'http://www.twitter.com/artill\'&gt;Lukas Bischoff&lt;/a&gt; y &lt;a href=\'http://www.twitter.com/Erik_UX\'&gt;Erik Flowers&lt;/a&gt;, bajo la licencia &lt;a href=\'http://scripts.sil.org/OFL\'&gt;SIL OFL 1.1&lt;/a&gt;.</string>
 
     <!-- Widget -->
     <string name="widget_label_extensive">Forecastie Ampliado</string>

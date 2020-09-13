@@ -56,7 +56,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
         final RecyclerView recyclerView = view.findViewById(R.id.locationsRecyclerView);
         final LinearLayout linearLayout = view.findViewById(R.id.locationsLinearLayout);
 
-        toolbar.setTitle("Locations");
+        toolbar.setTitle(getString(R.string.location_search_heading));
 
         toolbar.setNavigationIcon(R.drawable.ic_close_black_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

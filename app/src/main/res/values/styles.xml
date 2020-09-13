@@ -7,6 +7,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorBackground">@color/colorBackground</item>
         <item name="colorTintedBackground">@color/colorTintedBackground</item>
+        <item name="colorControlActivated">@color/fresh_theme_colorControlActivated</item>
     </style>
 
     <style name="AppTheme.Dark" parent="Theme.AppCompat">
@@ -15,11 +16,13 @@
         <item name="colorAccent">@color/darkTheme_colorAccent</item>
         <item name="colorBackground">@color/darkTheme_colorBackground</item>
         <item name="colorTintedBackground">@color/darkTheme_colorTintedBackground</item>
+        <item name="colorControlActivated">@color/fresh_theme_colorControlActivated</item>
     </style>
 
     <style name="AppTheme.Black" parent="AppTheme.Dark">
         <item name="android:colorBackground">@color/blackTheme_colorBackground</item>
         <item name="colorTintedBackground">@color/blackTheme_colorTintedBackground</item>
+        <item name="colorControlActivated">@color/fresh_theme_colorControlActivated</item>
     </style>
 
     <style name="AppTheme.Classic" parent="Theme.AppCompat.Light.DarkActionBar">

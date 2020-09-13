@@ -1,86 +1,122 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
 <resources>
     <string name="app_name">Forecastie</string>
-
-    <string name="action_search">Cercar</string>
-    <string name="action_refresh">Actualitzar</string>
+    <!-- Main activity titles -->
+    <string name="action_search">Cerca</string>
+    <string name="action_refresh">Actualitza</string>
     <string name="action_settings">Paràmetres</string>
     <string name="action_about">Quant a</string>
+    <string name="search_title">Cerca una ciutat</string>
+    <string name="downloading_data">Descarregant dades…</string>
+    <string name="getting_location">Cercant ubicació…</string>
+    <string name="loading_data">Carregant…</string>
 
+    <!-- Forecast cards -->
     <string name="today">Avui</string>
     <string name="tomorrow">Demà</string>
     <string name="later">Més tard</string>
 
+    <!-- Main activity headings -->
     <string name="wind">Vent</string>
+    <string name="wind_speed">Velocitat del vent</string>
     <string name="pressure">Pressió</string>
     <string name="humidity">Humitat</string>
     <string name="sunrise">Sortida del sol</string>
     <string name="sunset">Posta de sol</string>
+    <string name="uvindex">Índex UV</string>
 
-    <string name="last_update">Última actualització:\n%s</string>
-    <string name="last_update_widget">\nÚltima actualització: %s</string>
-
-    <string name="search_title">Cerca una ciutat</string>
-
-    <string name="downloading_data">Descarregant dades...</string>
-    <string name="getting_location">Obtenint la seva ubicació...</string>
-
-    <string name="error_dateFormat">ERROR EN EL FORMAT DE DATA</string>
-
-    <string name="setting_dateFormat">Format de data</string>
-    <string name="setting_dateFormatCustom">Format de data personaltizat</string>
-    <string name="setting_dateFormatCustom_summary">Afegeix el format personalitzat que s\'utilitzarà pel format de data</string>
+    <!-- Settings/Units -->
+    <string name="settings_title_units">Unitats</string>
     <string name="setting_lengthUnits">Unitats de longitud</string>
     <string name="setting_speedUnits">Unitats de velocitat</string>
     <string name="setting_tempUnits">Unitats de temperatura</string>
-    <string name="setting_showTempAsInteger">Mostrar la temperatura només amb números enters</string>
+    <string name="setting_showTempAsInteger">Mostra la temperatura només amb nombres enters</string>
     <string name="setting_pressureUnits">Unitats de pressió</string>
-    <string name="setting_theme">Tema</string>
-    <string name="setting_auto_detect_location">Detectar ubicació</string>
-    <string name="setting_differentiateDaysByTint">Diferenciar els dies amb colors</string>
-    <string name="setting_refreshInterval">Actualització en segon pla</string>
+    <string name="setting_auto_detect_location">Detecta la ubicació</string>
+    <string name="setting_differentiateDaysByTint">Diferencia els dies amb colors</string>
+
     <string name="setting_unit_mps">Metres per segon (m/s)</string>
     <string name="setting_unit_kph">Quilòmetres per hora (km/h)</string>
     <string name="setting_unit_mph">Milles per hora (mph)</string>
-    <string name="setting_wind_direction_format">Format de direcció del vent</string>
-    <string name="settings_none">Cap</string>
-    <string name="setting_apiKey">Clau de l\'API</string>
-    <string name="setting_apiKey_summary">Clau personalitzada per fer consultes a OpenWeatherMap</string>
-
+    <string name="setting_unit_bft">Escala de vent Beaufort (bft)</string>
+    <string name="setting_unit_kn">Nusos (kn)</string>
     <string name="setting_unit_Celsuis">Celsius</string>
     <string name="setting_unit_Fahrenheit">Fahrenheit</string>
     <string name="setting_unit_Kelvin">Kelvin</string>
 
-    <string name="setting_unit_mm">Mil·límetre (mm)</string>
+    <string name="setting_unit_mm">Mil·límetres (mm)</string>
     <string name="setting_unit_in">Polzades (in)</string>
 
-    <string name="setting_unit_hpa">hPa</string>
+    <string name="setting_unit_hpa">hPa/mBar</string>
     <string name="setting_unit_kpa">kPa</string>
     <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_inhg">inHg</string>
 
     <string name="speed_unit_mps">m/s</string>
     <string name="speed_unit_kph">kph</string>
     <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_kn">kn</string>
+
+    <string name="pressure_unit_hpa">hPa/mBar</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+
+    <string name="uvi_no_info">Sense dades</string>
+    <string name="uvi_low">Baix</string>
+    <string name="uvi_moderate">Moderat</string>
+    <string name="uvi_high">Alt</string>
+    <string name="uvi_very_high">Molt alt</string>
+    <string name="uvi_extreme">Extrem</string>
+
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">Mostra</string>
+    <string name="setting_theme">Tema</string>
+    <string name="setting_transparent_widget">Fes el widget transparent</string>
+    <string name="setting_wind_direction_format">Format de la direcció del vent</string>
+    <string name="setting_theme_fresh">Modern</string>
+    <string name="setting_theme_classic">Clàssic</string>
+    <string name="setting_theme_dark">Fosc</string>
+    <string name="setting_theme_classic_dark">Clàssic fosc</string>
+    <string name="setting_theme_black">Negre modern</string>
+    <string name="setting_theme_classic_black">Clàssic negre</string>
 
     <string name="wind_direction_format_none">Sense indicadors</string>
     <string name="wind_direction_format_arrows">Fletxes</string>
     <string name="wind_direction_format_abbreviations">Abreviatures</string>
+    <string name="setting_displayDecimalZeroes">Mostrar zeros decimals</string>
 
-    <string name="pressure_unit_hpa">hPa</string>
-    <string name="pressure_unit_kpa">kPa</string>
-    <string name="pressure_unit_mmhg">mm Hg</string>
+    <!-- Settings/Data -->
+    <string name="last_update">Última actualització:\n%s</string>
+    <string name="last_update_widget">\nÚltima actualització: %s</string>
+    <string name="settings_title_data">Dades</string>
+    <string name="setting_refreshInterval">Interval de l\'actualització en segon pla</string>
+    <string name="settings_none">Cap</string>
+    <string name="settings_15min">15 min</string>
+    <string name="settings_30min">30 min</string>
+    <string name="settings_1hour">1 h</string>
+    <string name="settings_2hour">2 h</string>
+    <string name="settings_6hour">6 h</string>
+    <string name="settings_12hour">12 h</string>
+    <string name="settings_24hour">24 h</string>
+    <string name="setting_apiKey">Clau de l\'API</string>
+    <string name="setting_apiKey_summary">Clau de l\'API personalitzada per consultes a OpenWeatherMap</string>
 
-    <string name="setting_theme_fresh">Modern</string>
-    <string name="setting_theme_classic">Clàssic</string>
-    <string name="setting_theme_dark">Modern Fosc</string>
-    <string name="setting_theme_classic_dark">Clásico oscuro</string>
-
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">ERROR EN FORMAT DE DATA</string>
+    <string name="setting_dateFormat">Format de data</string>
+    <string name="setting_dateFormatCustom">Format de data personalitzado</string>
+    <string name="setting_dateFormatCustom_summary">Escolliu la cadena SimpleDateFormat personalitzada que vulgueu utilizar</string>
     <string name="dialog_ok">D\'acord</string>
     <string name="dialog_cancel">Cancel·lar</string>
 
-    <string name="msg_err_parsing_json">Error en analitzar JSON.</string>
+    <!-- Errors -->
+    <string name="msg_err_parsing_json">Error en analitzar el JSON.</string>
     <string name="msg_connection_not_available">Connexió no disponible.</string>
-    <string name="msg_city_not_found">No s\'ha trobat la ciutat especificada.</string>
+    <string name="msg_city_not_found">No he trobat la ubicació especificada.</string>
+    <string name="msg_too_many_requests">Massa peticions. Intenteu-ho més tard.</string>
 
+    <!-- Wind direction -->
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_north_east">NNE</string>
     <string name="wind_direction_north_east">NE</string>
@@ -97,26 +133,61 @@
     <string name="wind_direction_west_north_west">ONO</string>
     <string name="wind_direction_north_west">NO</string>
     <string name="wind_direction_north_north_west">NNO</string>
-    <string name="msg_too_many_requests">Massa sol·licituds. Intenteu-ho més tard.</string>
 
+    <!-- Wind strength - Beaufort -->
+    <string name="beaufort_calm">Calma (0)</string>
+    <string name="beaufort_light_air">Ventolina (1)</string>
+    <string name="beaufort_light_breeze">Vent fluixet (2)</string>
+    <string name="beaufort_gentle_breeze">Vent fluix (3)</string>
+    <string name="beaufort_moderate_breeze">Vent moderat (4)</string>
+    <string name="beaufort_fresh_breeze">Vent fresquet (5)</string>
+    <string name="beaufort_strong_breeze">Vent fresc (6)</string>
+    <string name="beaufort_high_wind">Vent fort (7)</string>
+    <string name="beaufort_gale">Temporal (8)</string>
+    <string name="beaufort_strong_gale">Temporal fort (9)</string>
+    <string name="beaufort_storm">Temporal molt fort (10)</string>
+    <string name="beaufort_violent_storm">Temporal violent (11)</string>
+    <string name="beaufort_hurricane">Huracà (12)</string>
+
+    <!-- Dash clock -->
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\nVent: %3$s %4$s\nPressió: %5$s %6$s\nHumitat: %7$s %%\n</string>
-    <string name="settings_title_units">Unitats</string>
-    <string name="settings_title_display">Mostra</string>
-    <string name="settings_title_data">Dades</string>
-    <string name="setting_displayDecimalZeroes">Mostrar zeros decimals</string>
-    <string name="settings_title_location">Ubicació</string>
-    <string name="setting_update_location_automatically">Actualitzar l\'ubicació en segon pla</string>
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n
+        Wind: %3$s %4$s\n
+        Pressure: %5$s %6$s\n
+        Humidity: %7$s %%\n
+    </string>
 
+    <!-- Location -->
+    <string name="settings_title_location">Ubicació</string>
+    <string name="setting_update_location_automatically">Actualitza la ubicació en segon pla automàticament</string>
     <string name="location_settings">Paràmetres d\'ubicació</string>
     <string name="location_settings_message">La ubicació no està activada. Voleu anar al menú de paràmetres del sistema?</string>
     <string name="location_settings_button">Paràmetres</string>
+
+    <!-- Map -->
     <string name="action_weather_map">Mapa del temps</string>
     <string name="rain">Pluja</string>
     <string name="temperature">Temperatura</string>
+    <string name="clouds">Nuvolositat</string>
+
+    <!-- Graphs -->
     <string name="action_graphs">Gràfiques</string>
+
+    <!-- About dialogue -->
+    <string name="about_unknown">No he pogut obtenir el nom de la versió</string>
+    <string name="about_description">Una aplicació senzilla per a consultar el temps, desenvolupada amb programari lliure i sota llicència GPLv3.</string>
+    <string name="about_developers">Desenvolupada per &lt;a href=\'mailto:t.martykan@gmail.com\'&gt;Tomas Martykan&lt;/a&gt; i &lt;a href=\'https://github.com/martykan/forecastie/graphs/contributors\'&gt;d\'altres&lt;/a&gt;, amb l\'ajuda de &lt;a href=\'https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue\'&gt;molts d\'altres&lt;/a&gt;.</string>
+    <string name="about_src">Codi font disponible a &lt;a href=\'https://github.com/martykan/forecastie\'&gt;Github&lt;/a&gt;.</string>
+    <string name="about_data">Dades proporcionades per &lt;a href=\'https://openweathermap.org/\'&gt;OpenWeatherMap&lt;/a&gt; sota llicència &lt;a href=\'http://creativecommons.org/licenses/by-sa/2.0/\'&gt;Creative Commons CC-BY-SA&lt;/a&gt;.</string>
+    <string name="about_icons">Les icones són de &lt;a href=\'https://erikflowers.github.io/weather-icons/\'&gt;Weather Icons&lt;/a&gt;, creades per &lt;a href=\'http://www.twitter.com/artill\'&gt;Lukas Bischoff&lt;/a&gt; i &lt;a href=\'http://www.twitter.com/Erik_UX\'&gt;Erik Flowers&lt;/a&gt;, sota llicència &lt;a href=\'http://scripts.sil.org/OFL\'&gt;SIL OFL 1.1&lt;/a&gt;.</string>
+
+    <!-- Widget -->
+    <string name="widget_label_extensive">Forecastie Ampliat</string>
+    <string name="widget_label_time">Forecastie Data</string>
+    <string name="widget_label_simple">Forecastie Senzill</string>
+    <string name="widget_label_classic">Forecastie Clàssic</string>
 </resources>

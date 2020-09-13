@@ -11,7 +11,6 @@
     <string name="downloading_data">Téléchargement des données…</string>
     <string name="getting_location">Localisation en cours…</string>
 
-
     <!-- Forecast cards -->
     <string name="today">Aujourd\'hui</string>
     <string name="tomorrow">Demain</string>
@@ -19,12 +18,10 @@
 
     <!-- Main activity headings -->
     <string name="wind">Vent </string>
-
     <string name="pressure">Pression </string>
     <string name="humidity">Humidité </string>
     <string name="sunrise">Lever du soleil </string>
     <string name="sunset">Coucher du soleil </string>
-
 
     <!-- Settings/Units -->
     <string name="settings_title_units">Unités</string>
@@ -72,15 +69,11 @@
     <!-- Settings/Appearance -->
     <string name="settings_title_display">Afficher</string>
     <string name="setting_theme">Thème</string>
-
     <string name="setting_wind_direction_format">Format de direction du vent</string>
     <string name="setting_theme_fresh">Moderne</string>
     <string name="setting_theme_classic">Classique</string>
     <string name="setting_theme_dark">Foncé moderne</string>
     <string name="setting_theme_classic_dark">Foncé classique</string>
-
-
-
     <string name="wind_direction_format_none">Aucune indication</string>
     <string name="wind_direction_format_arrows">Flèches</string>
     <string name="wind_direction_format_abbreviations">Abréviations</string>
@@ -92,13 +85,6 @@
     <string name="settings_title_data">Données</string>
     <string name="setting_refreshInterval">Intervalle d\'actualisation</string>
     <string name="settings_none">Aucun</string>
-
-
-
-
-
-
-
     <string name="setting_apiKey">Clé API</string>
     <string name="setting_apiKey_summary">Clé API personnalisée pour les requêtes OpenWeatherMap</string>
 
@@ -107,10 +93,6 @@
     <string name="setting_dateFormat">Format de date</string>
     <string name="setting_dateFormatCustom">Format de date personnalisé</string>
     <string name="setting_dateFormatCustom_summary">Fournir le code SimpleDateFormat personnalisé pour être utilisé</string>
-
-
-
-
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Annuler</string>
 
@@ -119,35 +101,6 @@
     <string name="msg_connection_not_available">Aucune connexion.</string>
     <string name="msg_city_not_found">Ville introuvable.</string>
     <string name="msg_too_many_requests">Trop de requêtes. Veuillez réessayer.</string>
-
-    <!-- Weather icons -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- Wind direction -->
     <string name="wind_direction_north">N</string>
@@ -191,7 +144,8 @@
     <string name="dash_clock_expanded_body">%1$s, %2$s\n
         Vent : %3$s %4$s\n
         Pression : %5$s %6$s\n
-        Humidité : %7$s %%</string>
+        Humidité : %7$s %%
+    </string>
 
     <!-- Location -->
     <string name="settings_title_location">Localisation</string>
@@ -205,22 +159,10 @@
     <string name="rain">Pluie</string>
     <string name="temperature">Température</string>
 
-
     <!-- Graphs -->
     <string name="action_graphs">Graphiques</string>
 
     <!-- About dialogue -->
 
-
-
-
-
-
-
-
     <!-- Widget -->
-
-
-
-
 </resources>

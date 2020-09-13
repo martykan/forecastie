@@ -1,15 +1,23 @@
-<resources>
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+    <resources>
     <string name="app_name">Forecastie</string>
-
+    <!-- Main activity titles -->
     <string name="action_search">Cerca</string>
     <string name="action_refresh">Aggiorna</string>
     <string name="action_settings">Impostazioni</string>
     <string name="action_about">Informazioni</string>
+    <string name="search_title">Cerca città</string>
+    <string name="downloading_data">Download dati in corso…</string>
+    <string name="getting_location">Geolocalizzazione in corso…</string>
+    <string name="loading_data">Caricamento…</string>
 
+    <!-- Forecast cards -->
     <string name="today">Oggi</string>
     <string name="tomorrow">Domani</string>
     <string name="later">Dopo</string>
 
+    <!-- Main activity headings -->
     <string name="wind">Vento</string>
     <string name="wind_speed">Velocità del vento</string>
     <string name="pressure">Pressione</string>
@@ -17,40 +25,23 @@
     <string name="sunrise">Alba</string>
     <string name="sunset">Tramonto</string>
     <string name="uvindex">Indice UV</string>
-    
-    <string name="last_update">Ultimo aggiornamento:\n%s</string>
-    <string name="last_update_widget">\nUltimo aggiornamento: %s</string>
+    <string name="tap_for_graphs">Tocca per i grafici</string>
 
-    <string name="search_title">Cerca città</string>
-
-    <string name="downloading_data">Download dati in corso…</string>
-    <string name="getting_location">Geolocalizzazione in corso…</string>
-
-    <string name="error_dateFormat">ERRORE FORMATO DATA</string>
-
-    <string name="setting_dateFormat">Formato data</string>
-    <string name="setting_dateFormatCustom">Formato data personalizzato</string>
-    <string name="setting_dateFormatCustom_summary">Fornire la stringa SimpleDateFormat personalizzata da utilizzare</string>
+    <!-- Settings/Units -->
+    <string name="settings_title_units">Unità</string>
     <string name="setting_lengthUnits">Unità di misura per la lunghezza</string>
     <string name="setting_speedUnits">Unità di misura per la velocità</string>
     <string name="setting_tempUnits">Unità di misura per la temperatura</string>
     <string name="setting_showTempAsInteger">Visualizza la temperatura solo come un intero</string>
     <string name="setting_pressureUnits">Unità di misura per la pressione</string>
-    <string name="setting_theme">Tema</string>
-    <string name="setting_transparent_widget">Widget trasparente</string>
     <string name="setting_auto_detect_location">Ricerca posizione</string>
     <string name="setting_differentiateDaysByTint">Differenziare giorni con colori</string>
-    <string name="setting_refreshInterval">Intervallo aggiornamento in background</string>
+
     <string name="setting_unit_mps">Metri al secondo (m/s)</string>
     <string name="setting_unit_kph">Chilometri all\'ora (km/h)</string>
     <string name="setting_unit_mph">Miglia all\'ora (mph)</string>
     <string name="setting_unit_bft">Scala del vento Beaufort (bft)</string>
     <string name="setting_unit_kn">Nodi (kn)</string>
-    <string name="setting_wind_direction_format">Formato direzione del vento</string>
-    <string name="settings_none">Nessuna</string>
-    <string name="setting_apiKey">API key</string>
-    <string name="setting_apiKey_summary">Personalizza la query per le API di OpenWeatherMap</string>
-
     <string name="setting_unit_Celsuis">Celsius</string>
     <string name="setting_unit_Fahrenheit">Fahrenheit</string>
     <string name="setting_unit_Kelvin">Kelvin</string>
@@ -68,26 +59,67 @@
     <string name="speed_unit_mph">mph</string>
     <string name="speed_unit_kn">kn</string>
 
-    <string name="wind_direction_format_none">Nessuna indicazione</string>
-    <string name="wind_direction_format_arrows">Frecce</string>
-    <string name="wind_direction_format_abbreviations">Abbreviazioni</string>
-
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mm Hg</string>
 
+    <string name="uvi_no_info">Nessuna informazione</string>
+    <string name="uvi_low">Basso</string>
+    <string name="uvi_moderate">Medio</string>
+    <string name="uvi_high">Alto</string>
+    <string name="uvi_very_high">Molto alto</string>
+    <string name="uvi_extreme">Estremamente alto</string>
+
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">Display</string>
+    <string name="setting_theme">Tema</string>
+    <string name="setting_transparent_widget">Widget trasparente</string>
+    <string name="setting_wind_direction_format">Formato direzione del vento</string>
     <string name="setting_theme_fresh">Fresco</string>
     <string name="setting_theme_classic">Classico</string>
     <string name="setting_theme_dark">Fresco scuro</string>
     <string name="setting_theme_classic_dark">Classico scuro</string>
+    <string name="setting_theme_black">Fresco nero</string>
+    <string name="setting_theme_classic_black">Classico nero</string>
 
+    <string name="wind_direction_format_none">Nessuna indicazione</string>
+    <string name="wind_direction_format_arrows">Frecce</string>
+    <string name="wind_direction_format_abbreviations">Abbreviazioni</string>
+    <string name="setting_displayDecimalZeroes">Visualizza decimali</string>
+
+    <!-- Settings/Data -->
+    <string name="last_update">Ultimo aggiornamento:\n%s</string>
+    <string name="last_update_widget">\nUltimo aggiornamento: %s</string>
+    <string name="settings_title_data">Data</string>
+    <string name="setting_refreshInterval">Intervallo aggiornamento in background</string>
+    <string name="settings_none">Nessuna</string>
+    <string name="settings_15min">15 min</string>
+    <string name="settings_30min">30 min</string>
+    <string name="settings_1hour">1 h</string>
+    <string name="settings_2hour">2 h</string>
+    <string name="settings_6hour">6 h</string>
+    <string name="settings_12hour">12 h</string>
+    <string name="settings_24hour">24 h</string>
+    <string name="setting_apiKey">API key</string>
+    <string name="setting_apiKey_summary">Personalizza la query per le API di OpenWeatherMap</string>
+
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">ERRORE FORMATO DATA</string>
+    <string name="setting_dateFormat">Formato data</string>
+    <string name="setting_dateFormatCustom">Formato data personalizzato</string>
+    <string name="setting_dateFormatCustom_summary">Fornire la stringa SimpleDateFormat personalizzata da utilizzare</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Annulla</string>
 
+    <!-- Errors -->
     <string name="msg_err_parsing_json">Errore durante l\'analisi del file JSON.</string>
+    <string name="msg_http_error">Errore durante la richiesta o la ricezione dei dati.</string>
     <string name="msg_connection_not_available">Connessione non disponibile.</string>
     <string name="msg_city_not_found">Città non trovata.</string>
+    <string name="msg_too_many_requests">Troppe richieste. Riprova.</string>
+    <string name="msg_invalid_api_key">Chiave API non valida.</string>
 
+    <!-- Wind direction -->
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_north_east">NNE</string>
     <string name="wind_direction_north_east">NE</string>
@@ -104,8 +136,8 @@
     <string name="wind_direction_west_north_west">WNW</string>
     <string name="wind_direction_north_west">NW</string>
     <string name="wind_direction_north_north_west">NNW</string>
-    <string name="msg_too_many_requests">Troppe richieste. Riprova.</string>
 
+    <!-- Wind strength - Beaufort -->
     <string name="beaufort_calm">Calma</string>
     <string name="beaufort_light_air">Bava di vento</string>
     <string name="beaufort_light_breeze">Brezza leggera</string>
@@ -120,54 +152,46 @@
     <string name="beaufort_violent_storm">Fortunale</string>
     <string name="beaufort_hurricane">Uragano</string>
 
-    <string name="uvi_low">Basso</string>
-    <string name="uvi_moderate">Medio</string>
-    <string name="uvi_high">Alto</string>
-    <string name="uvi_very_high">Molto alto</string>
-    <string name="uvi_extreme">Estremamente alto</string>
-
+    <!-- Dash clock -->
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\nVento: %3$s %4$s\nPressione: %5$s %6$s\nUmidità: %7$s %%\n</string>
-    <string name="settings_title_units">Unità</string>
-    <string name="settings_title_display">Display</string>
-    <string name="settings_title_data">Data</string>
-    <string name="setting_displayDecimalZeroes">Visualizza decimali</string>
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n
+        Vento: %3$s %4$s\n
+        Pressione: %5$s %6$s\n
+        Umidità: %7$s %%\n
+    </string>
+
+    <!-- Location -->
     <string name="settings_title_location">Posizione</string>
     <string name="setting_update_location_automatically">Aggiorna posizione in background</string>
-
     <string name="location_settings">Impostazioni posizione</string>
     <string name="location_settings_message">Il GPS non è abilitato. Vuoi raggiungere le impostazioni?</string>
     <string name="location_settings_button">Impostazioni</string>
+
+    <!-- Map -->
     <string name="action_weather_map">Mappa perturbazioni</string>
     <string name="rain">Pioggia</string>
     <string name="temperature">Temperatura</string>
-    <string name="action_graphs">Grafici</string>
-    <string name="about_data">Dati forniti da <a href="https://openweathermap.org/">OpenWeatherMap</a>, sotto la <a href="http://creativecommons.org/licenses/by-sa/2.0/">licenza Creative Commons CC-BY-SA</a>.</string>
-    <string name="about_description">Un\'app meteo leggera di Software Libero, rilasciata con licenza GPL3.</string>
-    <string name="about_developers">Sviluppata da <a href="mailto:t.martykan@gmail.com">Tomas Martykan</a> e <a href="https://github.com/martykan/forecastie/graphs/contributors">altri</a>, con il supporto di <a href="https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue">moltri altri</a>.</string>
-    <string name="about_icons">Le icone sono <a href="https://erikflowers.github.io/weather-icons/">Weather Icons</a>, di <a href="http://www.twitter.com/artill">Lukas Bischoff</a> e <a href="http://www.twitter.com/Erik_UX">Erik Flowers</a>, sotto la licenza <a href="http://scripts.sil.org/OFL">SIL OFL 1.1</a>.</string>
-    <string name="about_issues">È possibile segnalare problemi <a href="https://github.com/martykan/forecastie/issues">qui</a>.</string>
-    <string name="about_src">Il codice è disponibile in <a href="https://github.com/martykan/forecastie">Forecastie</a>.</string>
-    <string name="about_unknown">Impossibile recuperare versione</string>
-    <string name="loading_data">Caricamento…</string>
-    <string name="setting_theme_black">Fresco nero</string>
-    <string name="setting_theme_classic_black">Classico nero</string>
-    <string name="settings_12hour">12 h</string>
-    <string name="settings_15min">15 min</string>
-    <string name="settings_1hour">1 h</string>
-    <string name="settings_24hour">24 h</string>
-    <string name="settings_2hour">2 h</string>
-    <string name="settings_30min">30 min</string>
-    <string name="settings_6hour">6 h</string>
-    <string name="uvi_no_info">Nessuna informazione</string>
+    <string name="clouds">Nuvole</string>
 
+    <!-- Graphs -->
+    <string name="action_graphs">Grafici</string>
+
+    <!-- About dialogue -->
+    <string name="about_unknown">Impossibile recuperare versione</string>
+    <string name="about_description">Un\'app meteo leggera di Software Libero, rilasciata con licenza GPL3.</string>
+    <string name="about_developers">Sviluppata da &lt;a href="mailto:t.martykan@gmail.com"&gt;Tomas Martykan&lt;/a&gt; e &lt;a href="https://github.com/martykan/forecastie/graphs/contributors"&gt;altri&lt;/a&gt;, con il supporto di &lt;a href="https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue"&gt;moltri altri&lt;/a&gt;.</string>
+    <string name="about_src">Il codice è disponibile in &lt;a href="https://github.com/martykan/forecastie"&gt;Forecastie&lt;/a&gt;.</string>
+    <string name="about_issues">È possibile segnalare problemi &lt;a href="https://github.com/martykan/forecastie/issues"&gt;qui&lt;/a&gt;.</string>
+    <string name="about_data">Dati forniti da &lt;a href="https://openweathermap.org/"&gt;OpenWeatherMap&lt;/a&gt;, sotto la &lt;a href="http://creativecommons.org/licenses/by-sa/2.0/"&gt;licenza Creative Commons CC-BY-SA&lt;/a&gt;.</string>
+    <string name="about_icons">Le icone sono &lt;a href="https://erikflowers.github.io/weather-icons/"&gt;Weather Icons&lt;/a&gt;, di &lt;a href="http://www.twitter.com/artill"&gt;Lukas Bischoff&lt;/a&gt; e &lt;a href="http://www.twitter.com/Erik_UX"&gt;Erik Flowers&lt;/a&gt;, sotto la licenza &lt;a href="http://scripts.sil.org/OFL"&gt;SIL OFL 1.1&lt;/a&gt;.</string>
+
+    <!-- Widget -->
     <string name="widget_label_extensive">Forecastie esteso</string>
     <string name="widget_label_time">Forecastie orario</string>
     <string name="widget_label_simple">Forecastie semplice</string>
     <string name="widget_label_classic">Forecastie classico</string>
-    <string name="clouds">Nuvole</string>
 </resources>

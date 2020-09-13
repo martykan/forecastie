@@ -1,51 +1,41 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
 <resources>
     <string name="app_name">Forecastie</string>
-
+    <!-- Main activity titles -->
     <string name="action_search">Szukaj</string>
     <string name="action_refresh">Odśwież</string>
     <string name="action_settings">Ustawienia</string>
     <string name="action_about">O aplikacji</string>
+    <string name="search_title">Wyszukaj miejscowość</string>
+    <string name="downloading_data">Pobieranie danych...</string>
+    <string name="getting_location">Wyszukiwanie lokalizacji...</string>
 
+    <!-- Forecast cards -->
     <string name="today">Dziś</string>
     <string name="tomorrow">Jutro</string>
     <string name="later">Później</string>
 
+    <!-- Main activity headings -->
     <string name="wind">Wiatr</string>
     <string name="pressure">Ciśnienie</string>
     <string name="humidity">Wilgotność</string>
     <string name="sunrise">Wschód słońca</string>
     <string name="sunset">Zachód słońca</string>
 
-    <string name="last_update">Ostatnia aktualizacja:\n%s</string>
-    <string name="last_update_widget">\nOstatnia aktualizacja: %s</string>
-
-    <string name="search_title">Wyszukaj miejscowość</string>
-
-    <string name="downloading_data">Pobieranie danych...</string>
-    <string name="getting_location">Wyszukiwanie lokalizacji...</string>
-
-    <string name="error_dateFormat">BŁĄD FORMATU DATY</string>
-
-    <string name="setting_dateFormat">Format daty</string>
-    <string name="setting_dateFormatCustom">Niestandardowy format daty</string>
-    <string name="setting_dateFormatCustom_summary">Własny ciąg dla formatu daty</string>
+    <!-- Settings/Units -->
+    <string name="settings_title_units">Jednostki</string>
     <string name="setting_lengthUnits">Długość jednostek</string>
     <string name="setting_speedUnits">Jednostki prędkości</string>
     <string name="setting_tempUnits">Jednostki temperatury</string>
     <string name="setting_showTempAsInteger">Pokaż temperaturę tylko jako liczba całkowita</string>
     <string name="setting_pressureUnits">Jednostki ciśnienia</string>
-    <string name="setting_theme">Motyw</string>
     <string name="setting_auto_detect_location">Wykrywanie lokalizacji</string>
     <string name="setting_differentiateDaysByTint">Kolorowe rozróżnianie dni</string>
-    <string name="setting_refreshInterval">Interwał odświeżania w tle</string>
+
     <string name="setting_unit_mps">Metry na sekundę (m/s)</string>
     <string name="setting_unit_kph">Kilometry na godzinę (km/h)</string>
     <string name="setting_unit_mph">Mile na godzinę (mph)</string>
-    <string name="setting_wind_direction_format">Kierunek wiatru</string>
-    <string name="settings_none">Brak</string>
-    <string name="setting_apiKey">Klucz API</string>
-    <string name="setting_apiKey_summary">Własny klucz API dla zapytań OpenWeatherMap</string>
-
     <string name="setting_unit_Celsuis">Celsjusz</string>
     <string name="setting_unit_Fahrenheit">Fahrenheit</string>
     <string name="setting_unit_Kelvin">Kelvin</string>
@@ -61,26 +51,54 @@
     <string name="speed_unit_kph">km/h</string>
     <string name="speed_unit_mph">mph</string>
 
-    <string name="wind_direction_format_none">Nieokreślony</string>
-    <string name="wind_direction_format_arrows">Strzałki</string>
-    <string name="wind_direction_format_abbreviations">Skróty</string>
-
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mmHg</string>
 
+    <string name="uvi_low">Niski</string>
+    <string name="uvi_moderate">Średni</string>
+    <string name="uvi_high">Wysoki</string>
+    <string name="uvi_very_high">Bardzo Wysoki</string>
+    <string name="uvi_extreme">Ekstremalny</string>
+
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">Wyświetlanie</string>
+    <string name="setting_theme">Motyw</string>
+    <string name="setting_wind_direction_format">Kierunek wiatru</string>
     <string name="setting_theme_fresh">Świeży</string>
     <string name="setting_theme_classic">Klasyczny</string>
     <string name="setting_theme_dark">Świeży ciemny</string>
     <string name="setting_theme_classic_dark">Klasyczny ciemny</string>
 
+    <string name="wind_direction_format_none">Nieokreślony</string>
+    <string name="wind_direction_format_arrows">Strzałki</string>
+    <string name="wind_direction_format_abbreviations">Skróty</string>
+    <string name="setting_displayDecimalZeroes">Wyświetl zera po przecinku</string>
+
+    <!-- Settings/Data -->
+    <string name="last_update">Ostatnia aktualizacja:\n%s</string>
+    <string name="last_update_widget">\nOstatnia aktualizacja: %s</string>
+    <string name="settings_title_data">Dane</string>
+    <string name="setting_refreshInterval">Interwał odświeżania w tle</string>
+    <string name="settings_none">Brak</string>
+    <string name="setting_apiKey">Klucz API</string>
+    <string name="setting_apiKey_summary">Własny klucz API dla zapytań OpenWeatherMap</string>
+
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">BŁĄD FORMATU DATY</string>
+    <string name="setting_dateFormat">Format daty</string>
+    <string name="setting_dateFormatCustom">Niestandardowy format daty</string>
+    <string name="setting_dateFormatCustom_summary">Własny ciąg dla formatu daty</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Anuluj</string>
 
+    <!-- Errors -->
     <string name="msg_err_parsing_json">Błąd parsowania JSON</string>
     <string name="msg_connection_not_available">Brak połączenia</string>
     <string name="msg_city_not_found">Nie można odnaleźć miasta</string>
+    <string name="msg_too_many_requests">Zbyt wiele żądań. Proszę spróbuj ponownie.</string>
 
+    <!-- Wind direction -->
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_north_east">NNE</string>
     <string name="wind_direction_north_east">NE</string>
@@ -97,8 +115,8 @@
     <string name="wind_direction_west_north_west">WNW</string>
     <string name="wind_direction_north_west">NW</string>
     <string name="wind_direction_north_north_west">NNW</string>
-    <string name="msg_too_many_requests">Zbyt wiele żądań. Proszę spróbuj ponownie.</string>
 
+    <!-- Wind strength - Beaufort -->
     <string name="beaufort_calm">Cisza</string>
     <string name="beaufort_light_air">Powiew</string>
     <string name="beaufort_light_breeze">Słaby wiatr</string>
@@ -113,30 +131,34 @@
     <string name="beaufort_violent_storm">Gwałtowny sztorm</string>
     <string name="beaufort_hurricane">Huragan</string>
 
-    <string name="uvi_low">Niski</string>
-    <string name="uvi_moderate">Średni</string>
-    <string name="uvi_high">Wysoki</string>
-    <string name="uvi_very_high">Bardzo Wysoki</string>
-    <string name="uvi_extreme">Ekstremalny</string>
-
+    <!-- Dash clock -->
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\nWiatr: %3$s %4$s\nCiśnienie: %5$s %6$s\nWilgotność: %7$s %%\n</string>
-    <string name="settings_title_units">Jednostki</string>
-    <string name="settings_title_display">Wyświetlanie</string>
-    <string name="settings_title_data">Dane</string>
-    <string name="setting_displayDecimalZeroes">Wyświetl zera po przecinku</string>
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n
+        Wiatr: %3$s %4$s\n
+        Ciśnienie: %5$s %6$s\n
+        Wilgotność: %7$s %%\n
+    </string>
+
+    <!-- Location -->
     <string name="settings_title_location">Lokalizacja</string>
     <string name="setting_update_location_automatically">Aktualizowanie lokalizacji w tle</string>
-
     <string name="location_settings">Ustawienia lokalizacji</string>
     <string name="location_settings_message">Lokalizacja nie jest włączona. Czy chcesz przejść do menu ustawień?</string>
     <string name="location_settings_button">Ustawienia</string>
+
+    <!-- Map -->
     <string name="action_weather_map">Mapa pogody</string>
     <string name="rain">Deszcz</string>
     <string name="temperature">Temperatura</string>
+
+    <!-- Graphs -->
     <string name="action_graphs">Wykresy</string>
+
+    <!-- About dialogue -->
+
+    <!-- Widget -->
 </resources>
