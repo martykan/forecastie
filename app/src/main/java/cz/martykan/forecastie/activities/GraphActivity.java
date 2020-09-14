@@ -10,6 +10,7 @@ import androidx.annotation.IdRes;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -72,6 +73,12 @@ public class GraphActivity extends BaseActivity {
         Toolbar toolbar = findViewById(R.id.graph_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         setTheme(theme = UI.getTheme(sp.getString("theme", "fresh")));
         darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
