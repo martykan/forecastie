@@ -191,7 +191,8 @@
     <string name="dash_clock_expanded_body">%1$s, %2$s\n
         Wind: %3$s %4$s\n
         Pressure: %5$s %6$s\n
-        Humidity: %7$s %%\n</string>
+        Humidity: %7$s %%\n
+    </string>
 
     <!-- Location -->
     <string name="settings_title_location">Location</string>
@@ -199,6 +200,7 @@
     <string name="location_settings">Location Settings</string>
     <string name="location_settings_message">Location is not enabled. Do you wish to go to the settings menu?</string>
     <string name="location_settings_button">Settings</string>
+    <string name="location_search_heading">Locations</string>
 
     <!-- Map -->
     <string name="action_weather_map">Weather Map</string>
@@ -213,11 +215,11 @@
     <!-- About dialogue -->
     <string name="about_unknown">Could not get version name</string>
     <string name="about_description">A lightweight, Free Software weather app, released under the GPL3 licence.</string>
-    <string name="about_developers">Developed by <a href='mailto:t.martykan@gmail.com'>Tomáš Martykán</a> and <a href='https://github.com/martykan/forecastie/graphs/contributors'>others</a>, with assistance from <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>many more</a>.</string>
-    <string name="about_src">Code is available at <a href='https://github.com/martykan/forecastie'>Github</a>.</string>
-    <string name="about_issues">Bugs and enhancements can be posted on our <a href='https://github.com/martykan/forecastie/issues'>Github issues page</a>.</string>
-    <string name="about_data">Data provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under the <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA 2.0 licence</a>.</string>
-    <string name="about_icons">Icons are <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, by <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> and <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under the <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licence.</string>
+    <string name="about_developers">Developed by &lt;a href=\'mailto:t.martykan@gmail.com\'&gt;Tomáš Martykán&lt;/a&gt; and &lt;a href=\'https://github.com/martykan/forecastie/graphs/contributors\'&gt;others&lt;/a&gt;, with assistance from &lt;a href=\'https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue\'&gt;many more&lt;/a&gt;.</string>
+    <string name="about_src">Code is available at &lt;a href=\'https://github.com/martykan/forecastie\'&gt;Github&lt;/a&gt;.</string>
+    <string name="about_issues">Bugs and enhancements can be posted on our &lt;a href=\'https://github.com/martykan/forecastie/issues\'&gt;Github issues page&lt;/a&gt;.</string>
+    <string name="about_data">Data provided by &lt;a href=\'https://openweathermap.org/\'&gt;OpenWeatherMap&lt;/a&gt;, under the &lt;a href=\'http://creativecommons.org/licenses/by-sa/2.0/\'&gt;Creative Commons CC-BY-SA 2.0 licence&lt;/a&gt;.</string>
+    <string name="about_icons">Icons are &lt;a href=\'https://erikflowers.github.io/weather-icons/\'&gt;Weather Icons&lt;/a&gt;, by &lt;a href=\'http://www.twitter.com/artill\'&gt;Lukas Bischoff&lt;/a&gt; and &lt;a href=\'http://www.twitter.com/Erik_UX\'&gt;Erik Flowers&lt;/a&gt;, under the &lt;a href=\'http://scripts.sil.org/OFL\'&gt;SIL OFL 1.1&lt;/a&gt; licence.</string>
 
     <!-- Widget -->
     <string name="widget_label_extensive">Forecastie Extensive</string>

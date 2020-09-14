@@ -1,5 +1,5 @@
-<\\!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
-<\\!-- Do not delete any blank lines -->
+<\!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<\!-- Do not delete any blank lines -->
 <resources>
     <string name="app_name">
     <\!-- Main activity titles -->
@@ -25,6 +25,7 @@
     <string name="sunrise">
     <string name="sunset">
     <string name="uvindex">
+    <string name="tap_for_graphs">
 
     <\!-- Settings/Units -->
     <string name="settings_title_units">
@@ -114,10 +115,12 @@
 
     <\!-- Errors -->
     <string name="msg_err_parsing_json">
+    <string name="msg_http_error">
     <string name="msg_connection_problem">
     <string name="msg_connection_not_available">
     <string name="msg_city_not_found">
     <string name="msg_too_many_requests">
+    <string name="msg_invalid_api_key">
 
     <\!-- Wind direction -->
     <string name="wind_direction_north">
@@ -166,6 +169,7 @@
     <string name="location_settings">
     <string name="location_settings_message">
     <string name="location_settings_button">
+    <string name="location_search_heading">
 
     <\!-- Map -->
     <string name="action_weather_map">
@@ -175,12 +179,14 @@
 
     <\!-- Graphs -->
     <string name="action_graphs">
+    <string name="graphs_more_days">
 
     <\!-- About dialogue -->
     <string name="about_unknown">
     <string name="about_description">
     <string name="about_developers">
     <string name="about_src">
+    <string name="about_issues">
     <string name="about_data">
     <string name="about_icons">
 

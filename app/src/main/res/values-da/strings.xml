@@ -25,6 +25,7 @@
     <string name="sunrise">Solopgang</string>
     <string name="sunset">Solnedgang</string>
     <string name="uvindex">UV indeks</string>
+    <string name="tap_for_graphs">Tryk for grafer</string>
 
     <!-- Settings/Units -->
     <string name="settings_title_units">Enheder</string>
@@ -107,8 +108,6 @@
     <string name="setting_dateFormat">Dato format</string>
     <string name="setting_dateFormatCustom">Tilpasset dato format</string>
     <string name="setting_dateFormatCustom_summary">Angiv brugertilpasset SimpleDateFormat streng som skal bruges</string>
-    <string name="setting_available_simple_string_codes" translatable="false">yYMwWDdFEuaHkKhmsSzZX</string>
-    <string name="setting_example_simple_string" translatable="false">EEEE, d MMM yyyy h:mm:ss a, zzzz</string>
     <string name="dialog_ok">O.k.</string>
     <string name="dialog_cancel">Annullere</string>
 
@@ -119,35 +118,6 @@
     <string name="msg_city_not_found">Angivet by ikke fundet.</string>
     <string name="msg_too_many_requests">For mange forspørgsler. Prøv igen.</string>
     <string name="msg_invalid_api_key">Ugyldig API nøgle.</string>
-
-    <!-- Weather icons -->
-    <string name="weather_cloudy" translatable="false">&#xf013;</string>
-    <string name="weather_cloudy_gusts" translatable="false">&#xf011;</string>
-    <string name="weather_day_cloudy" translatable="false">&#xf002;</string>
-    <string name="weather_day_haze" translatable="false">&#xf0b6;</string>
-    <string name="weather_day_sunny" translatable="false">&#xf00d;</string>
-    <string name="weather_dust" translatable="false">&#xf063;</string>
-    <string name="weather_fog" translatable="false">&#xf014;</string>
-    <string name="weather_hail" translatable="false">&#xf015;</string>
-    <string name="weather_hot" translatable="false">&#xf072;</string>
-    <string name="weather_hurricane" translatable="false">&#xf073;</string>
-    <string name="weather_lightning" translatable="false">&#xf016;</string>
-    <string name="weather_night_alt_cloudy" translatable="false">&#xf086;</string>
-    <string name="weather_night_clear" translatable="false">&#xf02e;</string>
-    <string name="weather_rain" translatable="false">&#xf019;</string>
-    <string name="weather_rain_mix" translatable="false">&#xf017;</string>
-    <string name="weather_sandstorm" translatable="false">&#xf082;</string>
-    <string name="weather_showers" translatable="false">&#xf01a;</string>
-    <string name="weather_sleet" translatable="false">&#xf0b5;</string>
-    <string name="weather_smoke" translatable="false">&#xf062;</string>
-    <string name="weather_snow" translatable="false">&#xf01b;</string>
-    <string name="weather_snowflake_cold" translatable="false">&#xf076;</string>
-    <string name="weather_sprinkle" translatable="false">&#xf01c;</string>
-    <string name="weather_storm_showers" translatable="false">&#xf01d;</string>
-    <string name="weather_strong_wind" translatable="false">&#xf050;</string>
-    <string name="weather_thunderstorm" translatable="false">&#xf01e;</string>
-    <string name="weather_tornado" translatable="false">&#xf056;</string>
-    <string name="weather_windy" translatable="false">&#xf021;</string>
 
     <!-- Wind direction -->
     <string name="wind_direction_north">N</string>
@@ -191,7 +161,8 @@
     <string name="dash_clock_expanded_body">%1$s, %2$s\n
         Vind: %3$s %4$s\n
         Lufttryk: %5$s %6$s\n
-        Luftfugtighed: %7$s %%\n</string>
+        Luftfugtighed: %7$s %%\n
+    </string>
 
     <!-- Location -->
     <string name="settings_title_location">Placering</string>
@@ -213,17 +184,15 @@
     <!-- About dialogue -->
     <string name="about_unknown">Kunne ikke få version navn</string>
     <string name="about_description">Letvægt, Free Software vejr program frigivet under GPL3 licens.</string>
-    <string name="about_developers">Udviklet af <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> og <a href='https://github.com/martykan/forecastie/graphs/contributors'>andre</a>, med hjælp fra <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>mange flere</a>.</string>
-    <string name="about_src">Koden tilgængelig hos <a href='https://github.com/martykan/forecastie'>Forecastie</a>.</string>
-    <string name="about_issues">Problemer kan postes <a href='https://github.com/martykan/forecastie/issues'>her</a>.</string>
-    <string name="about_data">Data leveret af <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA licens.</a></string>
-    <string name="about_icons">Ikoner er <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, af <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> og <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licens.</string>
+    <string name="about_developers">Udviklet af &lt;a href=\'mailto:t.martykan@gmail.com\'&gt;Tomas Martykan&lt;/a&gt; og &lt;a href=\'https://github.com/martykan/forecastie/graphs/contributors\'&gt;andre&lt;/a&gt;, med hjælp fra &lt;a href=\'https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue\'&gt;mange flere&lt;/a&gt;.</string>
+    <string name="about_src">Koden tilgængelig hos &lt;a href=\'https://github.com/martykan/forecastie\'&gt;Forecastie&lt;/a&gt;.</string>
+    <string name="about_issues">Problemer kan postes &lt;a href=\'https://github.com/martykan/forecastie/issues\'&gt;her&lt;/a&gt;.</string>
+    <string name="about_data">Data leveret af &lt;a href=\'https://openweathermap.org/\'&gt;OpenWeatherMap&lt;/a&gt;, under &lt;a href=\'http://creativecommons.org/licenses/by-sa/2.0/\'&gt;Creative Commons CC-BY-SA licens.&lt;/a&gt;</string>
+    <string name="about_icons">Ikoner er &lt;a href=\'https://erikflowers.github.io/weather-icons/\'&gt;Weather Icons&lt;/a&gt;, af &lt;a href=\'http://www.twitter.com/artill\'&gt;Lukas Bischoff&lt;/a&gt; og &lt;a href=\'http://www.twitter.com/Erik_UX\'&gt;Erik Flowers&lt;/a&gt;, under &lt;a href=\'http://scripts.sil.org/OFL\'&gt;SIL OFL 1.1&lt;/a&gt; licens.</string>
 
     <!-- Widget -->
     <string name="widget_label_extensive">Forecastie omfattende</string>
     <string name="widget_label_time">Forecastie tid</string>
     <string name="widget_label_simple">Forecastie enkel</string>
     <string name="widget_label_classic">Forecastie klassisk</string>
-
-    <string name="tap_for_graphs">Tryk for grafer</string>
 </resources>

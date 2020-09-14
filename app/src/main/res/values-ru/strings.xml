@@ -1,51 +1,41 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
 <resources>
     <string name="app_name">Forecastie</string>
-
+    <!-- Main activity titles -->
     <string name="action_search">Поиск</string>
     <string name="action_refresh">Обновить</string>
     <string name="action_settings">Настройки</string>
     <string name="action_about">О приложении</string>
+    <string name="search_title">Найти населённый пункт</string>
+    <string name="downloading_data">Выполняется загрузка данных…</string>
+    <string name="getting_location">Определение местоположения…</string>
 
+    <!-- Forecast cards -->
     <string name="today">Сегодня</string>
     <string name="tomorrow">Завтра</string>
     <string name="later">Позже</string>
 
+    <!-- Main activity headings -->
     <string name="wind">Ветер</string>
     <string name="pressure">Давление</string>
     <string name="humidity">Влажность</string>
     <string name="sunrise">Восход</string>
     <string name="sunset">Закат</string>
 
-    <string name="last_update">Обновлено:\n%s</string>
-    <string name="last_update_widget">\nОбновлено: %s</string>
-
-    <string name="search_title">Найти населённый пункт</string>
-
-    <string name="downloading_data">Выполняется загрузка данных…</string>
-    <string name="getting_location">Определение местоположения…</string>
-
-    <string name="error_dateFormat">НЕКОРРЕКТНЫЙ ФОРМАТ ДАТЫ</string>
-
-    <string name="setting_dateFormat">Формат даты</string>
-    <string name="setting_dateFormatCustom">Собственный формат даты</string>
-    <string name="setting_dateFormatCustom_summary">Задайте собственный шаблон в формате SimpleDateFormat\nНапример: E, d MMM H:mm</string>
+    <!-- Settings/Units -->
+    <string name="settings_title_units">Единицы</string>
     <string name="setting_lengthUnits">Единицы длинны</string>
     <string name="setting_speedUnits">Единицы скорости </string>
     <string name="setting_tempUnits">Единицы температуры</string>
     <string name="setting_showTempAsInteger">Показывать только целое значение температуры</string>
     <string name="setting_pressureUnits">Единицы давления</string>
-    <string name="setting_theme">Тема</string>
     <string name="setting_auto_detect_location">Определить местоположение</string>
     <string name="setting_differentiateDaysByTint">Чередовать цвет дней в списке</string>
-    <string name="setting_refreshInterval">Интервал обновления</string>
+
     <string name="setting_unit_mps">Метры в секунду (м/с)</string>
     <string name="setting_unit_kph">Километры в час (км/ч)</string>
     <string name="setting_unit_mph">Мили в час (миль/ч)</string>
-    <string name="setting_wind_direction_format">Формат направления ветра</string>
-    <string name="settings_none">Отключено</string>
-    <string name="setting_apiKey">Ключ к API</string>
-    <string name="setting_apiKey_summary">Ключ для обращений к API OpenWeatherMap</string>
-
     <string name="setting_unit_Celsuis">по Цельсию</string>
     <string name="setting_unit_Fahrenheit">по Фаренгейту</string>
     <string name="setting_unit_Kelvin">по Кельвину</string>
@@ -61,26 +51,49 @@
     <string name="speed_unit_kph">км/ч</string>
     <string name="speed_unit_mph">миль/ч</string>
 
-    <string name="wind_direction_format_none">Не отображать</string>
-    <string name="wind_direction_format_arrows">Стрелками</string>
-    <string name="wind_direction_format_abbreviations">Сокращениями</string>
-
     <string name="pressure_unit_hpa">гПа</string>
     <string name="pressure_unit_kpa">кПа</string>
     <string name="pressure_unit_mmhg">мм рт.ст.</string>
 
+
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">Отображение</string>
+    <string name="setting_theme">Тема</string>
+    <string name="setting_wind_direction_format">Формат направления ветра</string>
     <string name="setting_theme_fresh">Новая</string>
     <string name="setting_theme_classic">Классическая</string>
     <string name="setting_theme_dark">Новая темная</string>
     <string name="setting_theme_classic_dark">Классическая темная</string>
 
+    <string name="wind_direction_format_none">Не отображать</string>
+    <string name="wind_direction_format_arrows">Стрелками</string>
+    <string name="wind_direction_format_abbreviations">Сокращениями</string>
+    <string name="setting_displayDecimalZeroes">Показывать десятичные нули</string>
+
+    <!-- Settings/Data -->
+    <string name="last_update">Обновлено:\n%s</string>
+    <string name="last_update_widget">\nОбновлено: %s</string>
+    <string name="settings_title_data">Данные</string>
+    <string name="setting_refreshInterval">Интервал обновления</string>
+    <string name="settings_none">Отключено</string>
+    <string name="setting_apiKey">Ключ к API</string>
+    <string name="setting_apiKey_summary">Ключ для обращений к API OpenWeatherMap</string>
+
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">НЕКОРРЕКТНЫЙ ФОРМАТ ДАТЫ</string>
+    <string name="setting_dateFormat">Формат даты</string>
+    <string name="setting_dateFormatCustom">Собственный формат даты</string>
+    <string name="setting_dateFormatCustom_summary">Задайте собственный шаблон в формате SimpleDateFormat\nНапример: E, d MMM H:mm</string>
     <string name="dialog_ok">ОК</string>
     <string name="dialog_cancel">Отмена</string>
 
+    <!-- Errors -->
     <string name="msg_err_parsing_json">Ошибка разбора JSON.</string>
     <string name="msg_connection_not_available">Интернет-соединение отсутствует.</string>
     <string name="msg_city_not_found">Указанный населённый пункт не найден.</string>
+    <string name="msg_too_many_requests">Слишком много запросов. Попробуйте ещё раз.</string>
 
+    <!-- Wind direction -->
     <string name="wind_direction_north">С</string>
     <string name="wind_direction_north_north_east">ССВ</string>
     <string name="wind_direction_north_east">СВ</string>
@@ -97,26 +110,37 @@
     <string name="wind_direction_west_north_west">ЗСЗ</string>
     <string name="wind_direction_north_west">СЗ</string>
     <string name="wind_direction_north_north_west">ССЗ</string>
-    <string name="msg_too_many_requests">Слишком много запросов. Попробуйте ещё раз.</string>
 
+    <!-- Wind strength - Beaufort -->
+
+    <!-- Dash clock -->
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\nВетер: %3$s %4$s\nДавление: %5$s %6$s\nВлажность: %7$s %%\n</string>
-    <string name="settings_title_units">Единицы</string>
-    <string name="settings_title_display">Отображение</string>
-    <string name="settings_title_data">Данные</string>
-    <string name="setting_displayDecimalZeroes">Показывать десятичные нули</string>
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n
+        Ветер: %3$s %4$s\n
+        Давление: %5$s %6$s\n
+        Влажность: %7$s %%\n
+    </string>
+
+    <!-- Location -->
     <string name="settings_title_location">Местоположение</string>
     <string name="setting_update_location_automatically">Проверять местоположение в фоне</string>
-
     <string name="location_settings">Настройки местоположения</string>
     <string name="location_settings_message">Определение местоположения отключено. Перейти в меню настроек?</string>
     <string name="location_settings_button">Настройки</string>
+
+    <!-- Map -->
     <string name="action_weather_map">Погодная карта</string>
     <string name="rain">Осадки</string>
     <string name="temperature">Температура</string>
+
+    <!-- Graphs -->
     <string name="action_graphs">Графики</string>
+
+    <!-- About dialogue -->
+
+    <!-- Widget -->
 </resources>

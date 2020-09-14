@@ -1,3 +1,5 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
 <resources>
     <string name="app_name">Forecastie</string>
     <!-- Main activity titles -->
@@ -23,6 +25,7 @@
     <string name="sunrise">Sonnenaufgang</string>
     <string name="sunset">Sonnenuntergang</string>
     <string name="uvindex">UV-Index</string>
+    <string name="tap_for_graphs">Für Diagramme antippen</string>
 
     <!-- Settings/Units -->
     <string name="settings_title_units">Einheiten</string>
@@ -62,10 +65,10 @@
 
     <string name="uvi_no_info">Keine Daten</string>
     <string name="uvi_low">Niedrig</string>
-    <string name="uvi_high">Hoch</string>
-    <string name="uvi_extreme">Extrem</string>
     <string name="uvi_moderate">Mäßig</string>
+    <string name="uvi_high">Hoch</string>
     <string name="uvi_very_high">Sehr hoch</string>
+    <string name="uvi_extreme">Extrem</string>
 
     <!-- Settings/Appearance -->
     <string name="settings_title_display">Anzeige</string>
@@ -85,7 +88,7 @@
     <string name="setting_displayDecimalZeroes">Zeige Null nach Komma</string>
 
     <!-- Settings/Data -->
-    <string name="last_update">Zuletzt aktualisiert:\n%s</string>
+    <string name="last_update">Zuletzt aktualisiert:\n %s</string>
     <string name="last_update_widget">\nZuletzt aktualisiert: %s</string>
     <string name="settings_title_data">Daten</string>
     <string name="setting_refreshInterval">Aktualisierungsintervall im Hintergrund</string>
@@ -155,7 +158,11 @@
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\nWind: %3$s %4$s\nLuftdruck: %5$s %6$s\nFeuchtigkeit: %7$s %%\n</string>
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n
+        Wind: %3$s %4$s\n
+        Luftdruck: %5$s %6$s\n
+        Feuchtigkeit: %7$s %%\n
+    </string>
 
     <!-- Location -->
     <string name="settings_title_location">Ort</string>
@@ -177,17 +184,15 @@
     <!-- About dialogue -->
     <string name="about_unknown">Version unbekannt</string>
     <string name="about_description">Eine leichtgewichtige freie Wetter-App, veröffentlicht unter der GPL3 Lizenz.</string>
-    <string name="about_developers">Entwickelt von <a href='mailto:t.martykan@gmail.com'>Tomáš Martykán</a> und <a href='https://github.com/martykan/forecastie/graphs/contributors'>anderen</a>, mit Unterstützung von <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>vielen mehr</a>.</string>
-    <string name="about_src">Der Code ist verfügbar auf <a href='https://github.com/martykan/forecastie'>Github</a>.</string>
-    <string name="about_issues">Fehler und Verbesserungsvorschläge können auf unserer <a href='https://github.com/martykan/forecastie/issues'>Github Issues Seite</a> gemeldet werden.</string>
-    <string name="about_data">Daten sind bereitgestellt von <a href='https://openweathermap.org/'>OpenWeatherMap</a>, unter der <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA 2.0 Lizenz</a>.</string>
-    <string name="about_icons">Die Icons sind <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, von <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> und <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, unter der <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> Lizenz.</string>
+    <string name="about_developers">Entwickelt von &lt;a href=\'mailto:t.martykan@gmail.com\'&gt;Tomáš Martykán&lt;/a&gt; und &lt;a href=\'https://github.com/martykan/forecastie/graphs/contributors\'&gt;anderen&lt;/a&gt;, mit Unterstützung von &lt;a href=\'https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue\'&gt;vielen mehr&lt;/a&gt;.</string>
+    <string name="about_src">Der Code ist verfügbar auf &lt;a href=\'https://github.com/martykan/forecastie\'&gt;Github&lt;/a&gt;.</string>
+    <string name="about_issues">Fehler und Verbesserungsvorschläge können auf unserer &lt;a href=\'https://github.com/martykan/forecastie/issues\'&gt;Github Issues Seite&lt;/a&gt; gemeldet werden.</string>
+    <string name="about_data">Daten sind bereitgestellt von &lt;a href=\'https://openweathermap.org/\'&gt;OpenWeatherMap&lt;/a&gt;, unter der &lt;a href=\'http://creativecommons.org/licenses/by-sa/2.0/\'&gt;Creative Commons CC-BY-SA 2.0 Lizenz&lt;/a&gt;.</string>
+    <string name="about_icons">Die Icons sind &lt;a href=\'https://erikflowers.github.io/weather-icons/\'&gt;Weather Icons&lt;/a&gt;, von &lt;a href=\'http://www.twitter.com/artill\'>Lukas Bischoff&lt;/a&gt; und &lt;a href=\'http://www.twitter.com/Erik_UX\'&gt;Erik Flowers&lt;/a&gt;, unter der &lt;a href=\'http://scripts.sil.org/OFL\'&gt;SIL OFL 1.1&lt;/a&gt; Lizenz.</string>
 
     <!-- Widget -->
     <string name="widget_label_extensive">Ausführlich</string>
     <string name="widget_label_time">Zeit</string>
     <string name="widget_label_simple">Einfach</string>
     <string name="widget_label_classic">Klassisch</string>
-
-    <string name="tap_for_graphs">Für Diagramme antippen</string>
 </resources>

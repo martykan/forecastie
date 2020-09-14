@@ -1,51 +1,41 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
 <resources>
     <string name="app_name">Forecastie</string>
-
+    <!-- Main activity titles -->
     <string name="action_search">Bilatu</string>
     <string name="action_refresh">Freskatu</string>
     <string name="action_settings">Ezarpenak</string>
     <string name="action_about">Honi buruz</string>
+    <string name="search_title">Hiri bat bilatu</string>
+    <string name="downloading_data">Zure datuak deskargatzen ...</string>
+    <string name="getting_location">Zure kokapena eskuratzen ...</string>
 
+    <!-- Forecast cards -->
     <string name="today">Gaur</string>
     <string name="tomorrow">Bihar</string>
     <string name="later">Aurrerago</string>
 
+    <!-- Main activity headings -->
     <string name="wind">Haizea</string>
     <string name="pressure">Presioa</string>
     <string name="humidity">Hezetasuna</string>
     <string name="sunrise">Egunsentia</string>
     <string name="sunset">Ilunabarra</string>
 
-    <string name="last_update">Azken eguneraketa:\n%s</string>
-    <string name="last_update_widget">\nAzken eguneraketa: %s</string>
-
-    <string name="search_title">Hiri bat bilatu</string>
-
-    <string name="downloading_data">Zure datuak deskargatzen ...</string>
-    <string name="getting_location">Zure kokapena eskuratzen ...</string>
-
-    <string name="error_dateFormat">AKATSA DATAREN FORMATUAN</string>
-
-    <string name="setting_dateFormat">Dataren formatua</string>
-    <string name="setting_dateFormatCustom">Datarentzako formatu pertsonalizatua</string>
-    <string name="setting_dateFormatCustom_summary">Goian pertsonalizatua hautatu bada, eman erabiltzeko SimpleDateFormat kate pertsonalizatua</string>
+    <!-- Settings/Units -->
+    <string name="settings_title_units">Unitateak</string>
     <string name="setting_lengthUnits">Luzeraren unitateak</string>
     <string name="setting_speedUnits">Abiaduraren unitateak</string>
     <string name="setting_tempUnits">Tenperaturaren unitateak</string>
     <string name="setting_showTempAsInteger">Tenperatura zenbaki oso bat bezala soilik erakutsi</string>
     <string name="setting_pressureUnits">Presioaren unitateak</string>
-    <string name="setting_theme">Gaia</string>
     <string name="setting_auto_detect_location">Kokapena antzeman</string>
     <string name="setting_differentiateDaysByTint">Egunak kolorez bereizi</string>
-    <string name="setting_refreshInterval">Atzeko planoko freskatze tartea</string>
+
     <string name="setting_unit_mps">Metroak segunduko (m/s)</string>
     <string name="setting_unit_kph">Kilometroak orduko (km/o)</string>
     <string name="setting_unit_mph">Miliak orduko (m/o)</string>
-    <string name="setting_wind_direction_format">Haizearen norabidearen formatua</string>
-    <string name="settings_none">Bat ere ez</string>
-    <string name="setting_apiKey">APIaren gakoa</string>
-    <string name="setting_apiKey_summary">OpenWeatherMapen kontsultak egiteko APIaren gako pertsonalizatua</string>
-
     <string name="setting_unit_Celsuis">Celsius</string>
     <string name="setting_unit_Fahrenheit">Fahrenheit</string>
     <string name="setting_unit_Kelvin">Kelvin</string>
@@ -61,26 +51,49 @@
     <string name="speed_unit_kph">km/o</string>
     <string name="speed_unit_mph">m/o</string>
 
-    <string name="wind_direction_format_none">Seinalerik ez</string>
-    <string name="wind_direction_format_arrows">Geziak</string>
-    <string name="wind_direction_format_abbreviations">Laburdurak</string>
-
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mm Hg</string>
 
+
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">Erakutsi</string>
+    <string name="setting_theme">Gaia</string>
+    <string name="setting_wind_direction_format">Haizearen norabidearen formatua</string>
     <string name="setting_theme_fresh">Freskoa</string>
     <string name="setting_theme_classic">Klasikoa</string>
     <string name="setting_theme_dark">Freskoa iluna</string>
     <string name="setting_theme_classic_dark">Klasikoa iluna</string>
 
+    <string name="wind_direction_format_none">Seinalerik ez</string>
+    <string name="wind_direction_format_arrows">Geziak</string>
+    <string name="wind_direction_format_abbreviations">Laburdurak</string>
+    <string name="setting_displayDecimalZeroes">Zero hamartarrak erakutsi</string>
+
+    <!-- Settings/Data -->
+    <string name="last_update">Azken eguneraketa:\n%s</string>
+    <string name="last_update_widget">\nAzken eguneraketa: %s</string>
+    <string name="settings_title_data">Datuak</string>
+    <string name="setting_refreshInterval">Atzeko planoko freskatze tartea</string>
+    <string name="settings_none">Bat ere ez</string>
+    <string name="setting_apiKey">APIaren gakoa</string>
+    <string name="setting_apiKey_summary">OpenWeatherMapen kontsultak egiteko APIaren gako pertsonalizatua</string>
+
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">AKATSA DATAREN FORMATUAN</string>
+    <string name="setting_dateFormat">Dataren formatua</string>
+    <string name="setting_dateFormatCustom">Datarentzako formatu pertsonalizatua</string>
+    <string name="setting_dateFormatCustom_summary">Goian pertsonalizatua hautatu bada, eman erabiltzeko SimpleDateFormat kate pertsonalizatua</string>
     <string name="dialog_ok">Ados</string>
     <string name="dialog_cancel">Utzi</string>
 
+    <!-- Errors -->
     <string name="msg_err_parsing_json">Akatsa JSON irakurtzerakoan.</string>
     <string name="msg_connection_not_available">Konexioa ez dago eskuragarri.</string>
     <string name="msg_city_not_found">Zehaztutako hiria ez da aurkitu.</string>
+    <string name="msg_too_many_requests">Eskaera gehiegi. Mesedez saiatu berriz.</string>
 
+    <!-- Wind direction -->
     <string name="wind_direction_north">I</string>
     <string name="wind_direction_north_north_east">IIE</string>
     <string name="wind_direction_north_east">IE</string>
@@ -97,26 +110,37 @@
     <string name="wind_direction_west_north_west">MIM</string>
     <string name="wind_direction_north_west">IM</string>
     <string name="wind_direction_north_north_west">IIM</string>
-    <string name="msg_too_many_requests">Eskaera gehiegi. Mesedez saiatu berriz.</string>
 
+    <!-- Wind strength - Beaufort -->
+
+    <!-- Dash clock -->
     <!-- 1: temperature; 2: unit -->
     <string name="dash_clock_status">%1$s%2$s</string>
     <!-- 1: temperature; 2: unit; 3: weather description -->
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\nHaizea: %3$s %4$s\nPresioa: %5$s %6$s\nHezetasuna: %7$s %%\n</string>
-    <string name="settings_title_units">Unitateak</string>
-    <string name="settings_title_display">Erakutsi</string>
-    <string name="settings_title_data">Datuak</string>
-    <string name="setting_displayDecimalZeroes">Zero hamartarrak erakutsi</string>
+    <string name="dash_clock_expanded_body">%1$s, %2$s\n
+        Haizea: %3$s %4$s\n
+        Presioa: %5$s %6$s\n
+        Hezetasuna: %7$s %%\n
+    </string>
+
+    <!-- Location -->
     <string name="settings_title_location">Kokapena</string>
     <string name="setting_update_location_automatically">Kokapena atzeko planoan eguneratu</string>
-
     <string name="location_settings">Kokapenaren ezarpenak</string>
     <string name="location_settings_message">Kokapena ez dago gaituta. Ezarpenen menura joan nahi al duzu?</string>
     <string name="location_settings_button">Ezarpenak</string>
+
+    <!-- Map -->
     <string name="action_weather_map">Eguraldiaren mapa</string>
     <string name="rain">Euria</string>
     <string name="temperature">Tenperatura</string>
+
+    <!-- Graphs -->
     <string name="action_graphs">Grafikoak</string>
+
+    <!-- About dialogue -->
+
+    <!-- Widget -->
 </resources>

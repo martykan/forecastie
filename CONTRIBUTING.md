@@ -12,7 +12,7 @@ Although we will discuss every pull request, we'd like you to prepare your contr
 
 We don't have a prescribed code style but you can find reasonable guidelines in the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) and the [Android Contributors Code Style](https://source.android.com/setup/contribute/code-style).
 
-We currently support devices which run Android version 4.0.3/API 14. We will continue this so those with older Android phones may use the software. Please bear this in mind when preparing code for a pull request.
+We currently support devices which run Android version 4.0.3/API 15. We will continue this so those with older Android phones may use the software. Please bear this in mind when preparing code for a pull request.
 
 ## Translations
 

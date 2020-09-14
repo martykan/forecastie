@@ -88,7 +88,7 @@
 
     <!-- Settings/Data -->
     <string name="last_update">Última actualització:\n%s</string>
-    <string name="last_update_widget">\nÚltima actualització:\n%s</string>
+    <string name="last_update_widget">\nÚltima actualització: %s</string>
     <string name="settings_title_data">Dades</string>
     <string name="setting_refreshInterval">Interval de l\'actualització en segon pla</string>
     <string name="settings_none">Cap</string>
@@ -112,12 +112,9 @@
 
     <!-- Errors -->
     <string name="msg_err_parsing_json">Error en analitzar el JSON.</string>
-    <string name="msg_http_error">Error en l\'enviament o la recepció de dades.</string>
     <string name="msg_connection_not_available">Connexió no disponible.</string>
     <string name="msg_city_not_found">No he trobat la ubicació especificada.</string>
     <string name="msg_too_many_requests">Massa peticions. Intenteu-ho més tard.</string>
-    <string name="msg_invalid_api_key">Clau API no vàlida.</string>
-
 
     <!-- Wind direction -->
     <string name="wind_direction_north">N</string>
@@ -159,9 +156,10 @@
     <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
     <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
     <string name="dash_clock_expanded_body">%1$s, %2$s\n
-    Vent: %3$s %4$s\n
-    Pressió: %5$s %6$s\n
-    Humitat: %7$s %%\n</string>
+        Wind: %3$s %4$s\n
+        Pressure: %5$s %6$s\n
+        Humidity: %7$s %%\n
+    </string>
 
     <!-- Location -->
     <string name="settings_title_location">Ubicació</string>
@@ -178,22 +176,18 @@
 
     <!-- Graphs -->
     <string name="action_graphs">Gràfiques</string>
-    <string name="graphs_more_days">Més dies</string>
 
     <!-- About dialogue -->
     <string name="about_unknown">No he pogut obtenir el nom de la versió</string>
     <string name="about_description">Una aplicació senzilla per a consultar el temps, desenvolupada amb programari lliure i sota llicència GPLv3.</string>
-    <string name="about_developers">Desenvolupada per <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> i <a href='https://github.com/martykan/forecastie/graphs/contributors'>d\'altres</a>, amb l\'ajuda de <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>molts d\'altres</a>.</string>
-    <string name="about_src">Codi font disponible a <a href='https://github.com/martykan/forecastie'>Github</a>.</string>
-    <string name="about_issues">Podeu enviar errors i millores a la nostra pàgina <a href='https://github.com/martykan/forecastie/issues'>de seguiment d\'errors a Github</a>.</string>
-    <string name="about_data">Dades proporcionades per <a href='https://openweathermap.org/'>OpenWeatherMap</a> sota  llicència <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA</a>.</string>
-    <string name="about_icons">Les icones són de <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, creades per <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> i <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, sota llicència <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a>.</string>
+    <string name="about_developers">Desenvolupada per &lt;a href=\'mailto:t.martykan@gmail.com\'&gt;Tomas Martykan&lt;/a&gt; i &lt;a href=\'https://github.com/martykan/forecastie/graphs/contributors\'&gt;d\'altres&lt;/a&gt;, amb l\'ajuda de &lt;a href=\'https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue\'&gt;molts d\'altres&lt;/a&gt;.</string>
+    <string name="about_src">Codi font disponible a &lt;a href=\'https://github.com/martykan/forecastie\'&gt;Github&lt;/a&gt;.</string>
+    <string name="about_data">Dades proporcionades per &lt;a href=\'https://openweathermap.org/\'&gt;OpenWeatherMap&lt;/a&gt; sota llicència &lt;a href=\'http://creativecommons.org/licenses/by-sa/2.0/\'&gt;Creative Commons CC-BY-SA&lt;/a&gt;.</string>
+    <string name="about_icons">Les icones són de &lt;a href=\'https://erikflowers.github.io/weather-icons/\'&gt;Weather Icons&lt;/a&gt;, creades per &lt;a href=\'http://www.twitter.com/artill\'&gt;Lukas Bischoff&lt;/a&gt; i &lt;a href=\'http://www.twitter.com/Erik_UX\'&gt;Erik Flowers&lt;/a&gt;, sota llicència &lt;a href=\'http://scripts.sil.org/OFL\'&gt;SIL OFL 1.1&lt;/a&gt;.</string>
 
     <!-- Widget -->
     <string name="widget_label_extensive">Forecastie Ampliat</string>
     <string name="widget_label_time">Forecastie Data</string>
     <string name="widget_label_simple">Forecastie Senzill</string>
     <string name="widget_label_classic">Forecastie Clàssic</string>
-
-    <string name="tap_for_graphs">Premeu per veure les gràfiques</string>
 </resources>
