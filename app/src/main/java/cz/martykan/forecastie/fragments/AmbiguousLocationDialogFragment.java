@@ -7,12 +7,13 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         final Formatting formatting = new Formatting(getActivity());
@@ -68,6 +69,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
+        @SuppressWarnings("ConstantConditions")
         final int theme = getTheme(sharedPreferences.getString("theme", "fresh"));
         final boolean darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
                 theme == R.style.AppTheme_NoActionBar_Classic_Dark;
@@ -85,8 +87,8 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
         try {
             final JSONArray cityListArray = new JSONArray(bundle.getString("cityList"));
             final ArrayList<Weather> weatherArrayList = new ArrayList<>();
-            recyclerAdapter =
-                    new LocationsRecyclerAdapter(getActivity().getApplicationContext(), weatherArrayList, darkTheme, blackTheme);
+            recyclerAdapter = new LocationsRecyclerAdapter(view.getContext().getApplicationContext(),
+                    weatherArrayList, darkTheme, blackTheme);
 
             recyclerAdapter.setClickListener(AmbiguousLocationDialogFragment.this);
 

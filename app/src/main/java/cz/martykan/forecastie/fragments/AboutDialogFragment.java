@@ -4,9 +4,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+import androidx.appcompat.app.AlertDialog;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
@@ -19,13 +19,14 @@ public class AboutDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         String VersionName;
-        Context Cont = getContext();
+        Context context = getContext();
         try {
-            VersionName =  Cont.getPackageManager().getPackageInfo(Cont.getPackageName(),0).versionName;
+            //noinspection ConstantConditions
+            VersionName =  context.getPackageManager().getPackageInfo(context.getPackageName(),0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
             VersionName = getString(R.string.about_unknown);
         }
-        AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+        AlertDialog alertDialog = new AlertDialog.Builder(context)
                 .setTitle(getText(R.string.app_name))
                 .setMessage(TextUtils.concat(VersionName, "\n\n",
                         getText(R.string.about_description), "\n\n",
@@ -37,7 +38,10 @@ public class AboutDialogFragment extends DialogFragment {
                 .setPositiveButton(R.string.dialog_ok, null)
                 .create();
         alertDialog.show();
-        ((TextView)alertDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+        TextView message = alertDialog.findViewById(android.R.id.message);
+        if (message != null) {
+            message.setMovementMethod(LinkMovementMethod.getInstance());
+        }
         return alertDialog;
     }
 }

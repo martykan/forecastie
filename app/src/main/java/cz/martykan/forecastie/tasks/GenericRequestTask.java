@@ -1,12 +1,13 @@
 package cz.martykan.forecastie.tasks;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
+import com.google.android.material.snackbar.Snackbar;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -35,8 +36,8 @@ import cz.martykan.forecastie.utils.certificate.CertificateUtils;
 public abstract class GenericRequestTask extends AsyncTask<String, String, TaskOutput> {
 
     ProgressDialog progressDialog;
-    Context context;
-    MainActivity activity;
+    protected Context context;
+    protected MainActivity activity;
     public int loading = 0;
 
     private static CountDownLatch certificateCountDownLatch = new CountDownLatch(0);
@@ -137,7 +138,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
                 Log.i("Task", "done successfully");
                 output.taskResult = TaskResult.SUCCESS;
                 // Save date/time for latest successful result
-                activity.saveLastUpdateTime(PreferenceManager.getDefaultSharedPreferences(context));
+                MainActivity.saveLastUpdateTime(PreferenceManager.getDefaultSharedPreferences(context));
             } else if (urlConnection.getResponseCode() == 401) {
                 // Invalid API key
                 Log.w("Task", "invalid API key");
@@ -236,7 +237,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
 
     private URL provideURL(String[] reqParams) throws UnsupportedEncodingException, MalformedURLException {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        String apiKey = sp.getString("apiKey", activity.getResources().getString(R.string.apiKey));
+        String apiKey = sp.getString("apiKey", context.getString(R.string.apiKey));
 
         StringBuilder urlBuilder = new StringBuilder("https://api.openweathermap.org/data/2.5/");
         urlBuilder.append(getAPIName()).append("?");
@@ -258,11 +259,12 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         return new URL(urlBuilder.toString());
     }
 
+    @SuppressLint("ApplySharedPref")
     private void restorePreviousCity() {
         if (!TextUtils.isEmpty(activity.recentCityId)) {
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
-            editor.putString("cityId", activity.recentCityId);
-            editor.commit();
+            PreferenceManager.getDefaultSharedPreferences(context).edit()
+                    .putString("cityId", activity.recentCityId)
+                    .commit();
             activity.recentCityId = "";
         }
     }
