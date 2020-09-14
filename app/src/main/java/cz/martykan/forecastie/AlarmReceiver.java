@@ -30,7 +30,6 @@ import java.net.URLEncoder;
 import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.utils.Language;
 import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
-import cz.martykan.forecastie.widgets.DashClockWeatherExtension;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
@@ -132,7 +131,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         protected void onPostExecute(Void v) {
             // Update widgets
             AbstractWidgetProvider.updateWidgets(context);
-            DashClockWeatherExtension.updateDashClock(context);
         }
     }
 
