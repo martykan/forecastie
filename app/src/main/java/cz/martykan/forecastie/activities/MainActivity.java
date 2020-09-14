@@ -70,7 +70,6 @@ import cz.martykan.forecastie.utils.Formatting;
 import cz.martykan.forecastie.utils.UI;
 import cz.martykan.forecastie.utils.UnitConvertor;
 import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
-import cz.martykan.forecastie.widgets.DashClockWeatherExtension;
 
 import static cz.martykan.forecastie.utils.TimeUtils.isDayTime;
 
@@ -915,7 +914,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
             super.onPostExecute(output);
             // Update widgets
             AbstractWidgetProvider.updateWidgets(context);
-            DashClockWeatherExtension.updateDashClock(context);
         }
 
         @Override

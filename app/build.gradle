@@ -41,7 +41,6 @@ dependencies {
 
     /** other dependencies */
     implementation "com.diogobernardino:williamchart:2.2"
-    implementation "com.google.android.apps.dashclock:dashclock-api:2.0.0"
 
     /** Tests */
     testImplementation "junit:junit:4.13"
