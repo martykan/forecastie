@@ -63,7 +63,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().popBackStack();
+                close();
             }
         });
 
@@ -156,6 +156,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
     public void onItemClickListener(View view, int position) {
         final Weather weather = recyclerAdapter.getItem(position);
         final Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         final Bundle bundle = new Bundle();
 
         sharedPreferences.edit().putString("cityId", weather.getId()).commit();
@@ -163,6 +164,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
         intent.putExtras(bundle);
 
         startActivity(intent);
+        close();
     }
 
     private int getTheme(String themePref) {
@@ -182,4 +184,10 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
         }
     }
 
+    private void close() {
+        FragmentActivity activity = getActivity();
+        if (activity != null) {
+            activity.getSupportFragmentManager().popBackStack();
+        }
+    }
 }
