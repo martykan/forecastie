@@ -1,15 +1,23 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
 <resources>
     <string name="app_name">Forecastie</string>
-
+    <!-- Main activity titles -->
     <string name="action_search">도시 검색</string>
     <string name="action_refresh">날씨 정보 새로고침</string>
     <string name="action_settings">설정</string>
     <string name="action_about">정보</string>
+    <string name="search_title">도시 검색</string>
+    <string name="downloading_data">다운로드중</string>
+    <string name="getting_location">위치 수집중…</string>
+    <string name="loading_data">로딩</string>
 
+    <!-- Forecast cards -->
     <string name="today">오늘</string>
     <string name="tomorrow">내일</string>
     <string name="later">이후</string>
 
+    <!-- Main activity headings -->
     <string name="wind">풍량</string>
     <string name="wind_speed">풍속</string>
     <string name="pressure">압력</string>
@@ -18,36 +26,34 @@
     <string name="sunset">일몰</string>
     <string name="uvindex">자외선 지수</string>
 
-    <string name="last_update">마지막 업데이트:\n%s</string>
-    <string name="last_update_widget">\n마지막 업데이트: %s</string>
-
-    <string name="search_title">도시 검색</string>
-
-    <string name="downloading_data">다운로드중</string>
-    <string name="getting_location">위치 수집중…</string>
-
-    <string name="loading_data">로딩</string>
-
-    <string name="error_dateFormat">데이터 형식 오류</string>
-
-    <string name="setting_dateFormat">날짜 형식</string>
-    <string name="setting_dateFormatCustom">날짜 형식 포맷</string>
-    <string name="setting_dateFormatCustom_summary">문자열을 제공하십시오</string>
+    <!-- Settings/Units -->
+    <string name="settings_title_units">단위</string>
     <string name="setting_lengthUnits">길이 단위</string>
     <string name="setting_speedUnits">풍속 단위</string>
     <string name="setting_tempUnits">온도 단위</string>
     <string name="setting_showTempAsInteger">온도 단위를 정수로 표현</string>
     <string name="setting_pressureUnits">기압 단위</string>
-    <string name="setting_theme">테마</string>
-    <string name="setting_transparent_widget"> 위젯을 투명하게 만들기</string>
     <string name="setting_auto_detect_location">위치 설정</string>
     <string name="setting_differentiateDaysByTint">날짜들을 색으로 구별</string>
-    <string name="setting_refreshInterval">백그라운드 새로고침 간격</string>
+
     <string name="setting_unit_mps">초당 미터</string>
     <string name="setting_unit_kph">시간당 킬로미터</string>
     <string name="setting_unit_mph">시간당 마일</string>
     <string name="setting_unit_bft"> 보 퍼트 바람 규모</string>
     <string name="setting_unit_kn">매듭</string>
+    <string name="setting_unit_Celsuis">섭씨</string>
+    <string name="setting_unit_Fahrenheit">화씨</string>
+    <string name="setting_unit_Kelvin">켈빈</string>
+
+    <string name="setting_unit_mm">밀리미터</string>
+    <string name="setting_unit_in">인치</string>
+
+    <string name="setting_dateFormat">날짜 형식</string>
+    <string name="setting_dateFormatCustom">날짜 형식 포맷</string>
+    <string name="setting_dateFormatCustom_summary">문자열을 제공하십시오</string>
+    <string name="setting_theme">테마</string>
+    <string name="setting_transparent_widget"> 위젯을 투명하게 만들기</string>
+    <string name="setting_refreshInterval">백그라운드 새로고침 간격</string>
     <string name="setting_wind_direction_format"> 바람 방향 형식</string>
     <string name="settings_none">존재하지않음</string>
     <string name="settings_15min">15 분</string>
@@ -59,13 +65,6 @@
     <string name="settings_24hour">24 시간</string>
     <string name="setting_apiKey">API 키</string>
     <string name="setting_apiKey_summary">날씨지도 쿼리를 위한 사용자 API 키</string>
-
-    <string name="setting_unit_Celsuis">섭씨</string>
-    <string name="setting_unit_Fahrenheit">화씨</string>
-    <string name="setting_unit_Kelvin">켈빈</string>
-
-    <string name="setting_unit_mm">밀리미터</string>
-    <string name="setting_unit_in">인치</string>
 
     <string name="setting_unit_hpa">헥토파스칼</string>
     <string name="setting_unit_kpa">킬로파스칼</string>
@@ -94,6 +93,11 @@
 
     <string name="dialog_ok">확인</string>
     <string name="dialog_cancel">취소</string>
+
+    <string name="last_update">마지막 업데이트:\n%s</string>
+    <string name="last_update_widget">\n마지막 업데이트: %s</string>
+
+    <string name="error_dateFormat">데이터 형식 오류</string>
 
     <string name="msg_err_parsing_json">JSON 구문 분석 오류</string>
     <string name="msg_connection_not_available">접속불가</string>
@@ -139,16 +143,6 @@
     <string name="uvi_very_high">매우 높음</string>
     <string name="uvi_extreme">극도로 높음</string>
 
-    <!-- 1: temperature; 2: unit -->
-    <string name="dash_clock_status">%1$s%2$s</string>
-    <!-- 1: temperature; 2: unit; 3: weather description -->
-    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
-    <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\n
-   풍량: %3$s %4$s\n
-   압력: %5$s %6$s\n
-   습기: %7$s %%</string>
-    <string name="settings_title_units">단위</string>
     <string name="settings_title_display">화면</string>
     <string name="settings_title_data">데이터</string>
     <string name="setting_displayDecimalZeroes">십진수 0을 표시</string>
