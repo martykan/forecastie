@@ -2,11 +2,10 @@ package cz.martykan.forecastie.activities;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.utils.UI;

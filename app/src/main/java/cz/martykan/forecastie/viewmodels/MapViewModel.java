@@ -1,6 +1,6 @@
 package cz.martykan.forecastie.viewmodels;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 import android.content.SharedPreferences;
 
 import cz.martykan.forecastie.Constants;
