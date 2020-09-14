@@ -17,17 +17,20 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.textfield.TextInputLayout;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
@@ -116,7 +119,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
     private Formatting formatting;
     private SharedPreferences prefs;
-    private SharedPreferences.Editor editor;
     private LinearLayout linearLayoutTapForGraphs;
 
     @Override
@@ -125,10 +127,10 @@ public class MainActivity extends BaseActivity implements LocationListener {
         PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        editor = prefs.edit();
         firstRun = prefs.getBoolean("firstRun", true);
 
         widgetTransparent = prefs.getBoolean("transparentWidget", false);
+        //noinspection ConstantConditions
         setTheme(theme = UI.getTheme(prefs.getString("theme", "fresh")));
         boolean darkTheme = super.darkTheme;
         boolean blackTheme = super.blackTheme;
@@ -144,7 +146,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         progressDialog = new ProgressDialog(MainActivity.this);
 
         // Load toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (darkTheme) {
             toolbar.setPopupTheme(R.style.AppTheme_PopupOverlay_Dark);
@@ -153,24 +155,24 @@ public class MainActivity extends BaseActivity implements LocationListener {
         }
 
         // Initialize textboxes
-        todayTemperature = (TextView) findViewById(R.id.todayTemperature);
-        todayDescription = (TextView) findViewById(R.id.todayDescription);
-        todayWind = (TextView) findViewById(R.id.todayWind);
-        todayPressure = (TextView) findViewById(R.id.todayPressure);
-        todayHumidity = (TextView) findViewById(R.id.todayHumidity);
-        todaySunrise = (TextView) findViewById(R.id.todaySunrise);
-        todaySunset = (TextView) findViewById(R.id.todaySunset);
-        todayUvIndex = (TextView) findViewById(R.id.todayUvIndex);
-        lastUpdate = (TextView) findViewById(R.id.lastUpdate);
-        todayIcon = (TextView) findViewById(R.id.todayIcon);
+        todayTemperature = findViewById(R.id.todayTemperature);
+        todayDescription = findViewById(R.id.todayDescription);
+        todayWind = findViewById(R.id.todayWind);
+        todayPressure = findViewById(R.id.todayPressure);
+        todayHumidity = findViewById(R.id.todayHumidity);
+        todaySunrise = findViewById(R.id.todaySunrise);
+        todaySunset = findViewById(R.id.todaySunset);
+        todayUvIndex = findViewById(R.id.todayUvIndex);
+        lastUpdate = findViewById(R.id.lastUpdate);
+        todayIcon = findViewById(R.id.todayIcon);
         tapGraph = findViewById(R.id.tapGraph);
         linearLayoutTapForGraphs = findViewById(R.id.linearLayout_tap_for_graphs);
         Typeface weatherFont = Typeface.createFromAsset(this.getAssets(), "fonts/weather.ttf");
         todayIcon.setTypeface(weatherFont);
 
         // Initialize viewPager
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        viewPager = findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabs);
 
         destroyed = false;
 
@@ -211,11 +213,11 @@ public class MainActivity extends BaseActivity implements LocationListener {
     public WeatherRecyclerAdapter getAdapter(int id) {
         WeatherRecyclerAdapter weatherRecyclerAdapter;
         if (id == 0) {
-            weatherRecyclerAdapter = new WeatherRecyclerAdapter(this, longTermTodayWeather);
+            weatherRecyclerAdapter = new WeatherRecyclerAdapter(longTermTodayWeather);
         } else if (id == 1) {
-            weatherRecyclerAdapter = new WeatherRecyclerAdapter(this, longTermTomorrowWeather);
+            weatherRecyclerAdapter = new WeatherRecyclerAdapter(longTermTomorrowWeather);
         } else {
-            weatherRecyclerAdapter = new WeatherRecyclerAdapter(this, longTermWeather);
+            weatherRecyclerAdapter = new WeatherRecyclerAdapter(longTermWeather);
         }
         return weatherRecyclerAdapter;
     }
@@ -231,12 +233,12 @@ public class MainActivity extends BaseActivity implements LocationListener {
     @Override
     public void onResume() {
         super.onResume();
-        if (UI.getTheme(PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "fresh")) != theme ||
+        //noinspection ConstantConditions
+        if (UI.getTheme(prefs.getString("theme", "fresh")) != theme ||
                 PreferenceManager.getDefaultSharedPreferences(this).getBoolean("transparentWidget", false) != widgetTransparent) {
             // Restart activity to apply theme
             overridePendingTransition(0, 0);
-            editor.putBoolean("firstRun", true);
-            editor.commit();
+            prefs.edit().putBoolean("firstRun", true).commit();
             finish();
             overridePendingTransition(0, 0);
             startActivity(getIntent());
@@ -245,10 +247,9 @@ public class MainActivity extends BaseActivity implements LocationListener {
             getLongTermWeather();
             getTodayUVIndex();
         }
-        if(firstRun) {
+        if (firstRun) {
             tapGraph.setText(getString(R.string.tap_for_graphs));
-            editor.putBoolean("firstRun",false);
-            editor.commit();
+            prefs.edit().putBoolean("firstRun",false).commit();
         }
     }
 
@@ -269,8 +270,8 @@ public class MainActivity extends BaseActivity implements LocationListener {
     private void preloadUVIndex() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
-        String lastUVIToday = sp.getString("lastToday", "");
-        if (!lastUVIToday.isEmpty()) {
+        String lastUVIToday = sp.getString("lastToday", null);
+        if (lastUVIToday != null && !lastUVIToday.isEmpty()) {
             double latitude = todayWeather.getLat();
             double longitude = todayWeather.getLon();
             if (latitude == 0 && longitude == 0) {
@@ -283,12 +284,12 @@ public class MainActivity extends BaseActivity implements LocationListener {
     private void preloadWeather() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
-        String lastToday = sp.getString("lastToday", "");
-        if (!lastToday.isEmpty()) {
+        String lastToday = sp.getString("lastToday", null);
+        if (lastToday != null && !lastToday.isEmpty()) {
             new TodayWeatherTask(this, this, progressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "cachedResponse", lastToday);
         }
-        String lastLongterm = sp.getString("lastLongterm", "");
-        if (!lastLongterm.isEmpty()) {
+        String lastLongterm = sp.getString("lastLongterm", null);
+        if (lastLongterm != null && !lastLongterm.isEmpty()) {
             new LongTermWeatherTask(this, this, progressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "cachedResponse", lastLongterm);
         }
     }
@@ -342,10 +343,9 @@ public class MainActivity extends BaseActivity implements LocationListener {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         recentCityId = preferences.getString("cityId", Constants.DEFAULT_CITY_ID);
 
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("cityId", result);
-
-        editor.commit();
+        preferences.edit()
+                .putString("cityId", result)
+                .commit();
 
 //        if (!recentCityId.equals(result)) {
 //            // New location, update weather
@@ -431,9 +431,10 @@ public class MainActivity extends BaseActivity implements LocationListener {
             todayWeather.setId(idString);
             todayWeather.setIcon(formatting.setWeatherIcon(Integer.parseInt(idString), isDayTime(todayWeather, Calendar.getInstance())));
 
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
-            editor.putString("lastToday", result);
-            editor.commit();
+            PreferenceManager.getDefaultSharedPreferences(MainActivity.this)
+                    .edit()
+                    .putString("lastToday", result)
+                    .commit();
 
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
@@ -456,9 +457,10 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
             double value = reader.getDouble("value");
             todayWeather.setUvIndex(value);
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
-            editor.putString("lastUVIToday", result);
-            editor.commit();
+            PreferenceManager.getDefaultSharedPreferences(MainActivity.this)
+                    .edit()
+                    .putString("lastUVIToday", result)
+                    .commit();
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
@@ -481,7 +483,10 @@ public class MainActivity extends BaseActivity implements LocationListener {
         String city = todayWeather.getCity();
         String country = todayWeather.getCountry();
         DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(getApplicationContext());
-        getSupportActionBar().setTitle(city + (country.isEmpty() ? "" : ", " + country));
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(city + (country.isEmpty() ? "" : ", " + country));
+        }
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
@@ -630,9 +635,10 @@ public class MainActivity extends BaseActivity implements LocationListener {
                     longTermWeather.add(weather);
                 }
             }
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
-            editor.putString("lastLongterm", result);
-            editor.commit();
+            PreferenceManager.getDefaultSharedPreferences(MainActivity.this)
+                    .edit()
+                    .putString("lastLongterm", result)
+                    .commit();
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
@@ -766,10 +772,12 @@ public class MainActivity extends BaseActivity implements LocationListener {
         String result = preferenceValue;
         if ("speedUnit".equals(preferenceKey)) {
             if (speedUnits.containsKey(preferenceValue)) {
+                //noinspection ConstantConditions
                 result = context.getString(speedUnits.get(preferenceValue));
             }
         } else if ("pressureUnit".equals(preferenceKey)) {
             if (pressUnits.containsKey(preferenceValue)) {
+                //noinspection ConstantConditions
                 result = context.getString(pressUnits.get(preferenceValue));
             }
         }
@@ -852,14 +860,11 @@ public class MainActivity extends BaseActivity implements LocationListener {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    getCityByLocation();
-                }
-                return;
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == MY_PERMISSIONS_ACCESS_FINE_LOCATION) {
+            // If request is cancelled, the result arrays are empty.
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getCityByLocation();
             }
         }
     }
@@ -909,8 +914,8 @@ public class MainActivity extends BaseActivity implements LocationListener {
         protected void onPostExecute(TaskOutput output) {
             super.onPostExecute(output);
             // Update widgets
-            AbstractWidgetProvider.updateWidgets(MainActivity.this);
-            DashClockWeatherExtension.updateDashClock(MainActivity.this);
+            AbstractWidgetProvider.updateWidgets(context);
+            DashClockWeatherExtension.updateDashClock(context);
         }
 
         @Override

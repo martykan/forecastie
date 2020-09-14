@@ -38,4 +38,6 @@
     <color name="tab_indicator">#ffffff</color>
 
     <color name="fresh_theme_colorControlActivated">#ff8800</color>
+
+    <color name="light_theme_textColor">#89000000</color>
 </resources>

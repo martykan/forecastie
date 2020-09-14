@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +36,9 @@ public class LocationsRecyclerAdapter extends RecyclerView.Adapter<LocationsRecy
         inflater = LayoutInflater.from(context);
     }
 
+    @NonNull
     @Override
-    public LocationsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public LocationsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new LocationsViewHolder(inflater.inflate(R.layout.list_location_row, parent, false));
     }
 

@@ -2,11 +2,10 @@ package cz.martykan.forecastie.activities;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.utils.UI;
@@ -22,6 +21,7 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //noinspection ConstantConditions
         setTheme(theme = UI.getTheme(prefs.getString("theme", "fresh")));
         darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
                 theme == R.style.AppTheme_NoActionBar_Classic_Dark;

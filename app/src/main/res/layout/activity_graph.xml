@@ -15,7 +15,7 @@
         android:padding="4dp"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/graph_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -33,9 +33,9 @@
                 android:layout_gravity="center_vertical|end"
                 android:text="@string/graphs_more_days" />
 
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="12dp">
@@ -71,9 +71,9 @@
                     android:layout_below="@id/graph_temperature_textview"
                     chart:chart_axisBorderSpacing="8dp" />
             </RelativeLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="12dp">
@@ -109,9 +109,9 @@
                     android:layout_below="@id/graph_rain_textview"
                     chart:chart_axisBorderSpacing="8dp" />
             </RelativeLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="12dp">
@@ -147,9 +147,9 @@
                     android:layout_below="@id/graph_pressure_textview"
                     chart:chart_axisBorderSpacing="8dp" />
             </RelativeLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="12dp">
@@ -185,9 +185,9 @@
                     android:layout_below="@id/graph_windspeed_textview"
                     chart:chart_axisBorderSpacing="8dp" />
             </RelativeLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="12dp">
@@ -223,7 +223,7 @@
                     android:layout_below="@id/graph_humidity_textview"
                     chart:chart_axisBorderSpacing="8dp" />
             </RelativeLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 </ScrollView>
