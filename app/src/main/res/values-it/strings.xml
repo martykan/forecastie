@@ -194,4 +194,6 @@
     <string name="widget_label_time">Forecastie orario</string>
     <string name="widget_label_simple">Forecastie semplice</string>
     <string name="widget_label_classic">Forecastie classico</string>
+    <string name="graphs_more_days">Più giorni</string>
+    <string name="location_search_heading">Luoghi</string>
 </resources>
