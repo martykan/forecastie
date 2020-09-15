@@ -3,12 +3,12 @@ apply plugin: 'com.android.application'
 def lifecycleVersion = '2.2.0'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "cz.martykan.forecastie"
         minSdkVersion 15
         //noinspection ExpiringTargetSdkVersion
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 58
         versionName "1.15.8"
     }
