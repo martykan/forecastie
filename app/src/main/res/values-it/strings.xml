@@ -38,8 +38,8 @@
     <string name="setting_differentiateDaysByTint">Differenziare giorni con colori</string>
 
     <string name="setting_unit_mps">Metri al secondo (m/s)</string>
-    <string name="setting_unit_kph">Chilometri all'ora (km/h)</string>
-    <string name="setting_unit_mph">Miglia all'ora (mph)</string>
+    <string name="setting_unit_kph">Chilometri all\'ora (km/h)</string>
+    <string name="setting_unit_mph">Miglia all\'ora (mph)</string>
     <string name="setting_unit_bft">Scala del vento Beaufort (bft)</string>
     <string name="setting_unit_kn">Nodi (kn)</string>
     <string name="setting_unit_Celsuis">Celsius</string>
@@ -112,7 +112,7 @@
     <string name="dialog_cancel">Annulla</string>
 
     <!-- Errors -->
-    <string name="msg_err_parsing_json">Errore durante l'analisi del file JSON.</string>
+    <string name="msg_err_parsing_json">Errore durante l\'analisi del file JSON.</string>
     <string name="msg_http_error">Errore durante la richiesta o la ricezione dei dati.</string>
     <string name="msg_connection_not_available">Connessione non disponibile.</string>
     <string name="msg_city_not_found">Città non trovata.</string>
@@ -171,7 +171,7 @@
 
     <!-- About dialogue -->
     <string name="about_unknown">Impossibile recuperare versione</string>
-    <string name="about_description">Un'app meteo leggera di Software Libero, rilasciata con licenza GPL3.</string>
+    <string name="about_description">Un\'app meteo leggera di Software Libero, rilasciata con licenza GPL3.</string>
     <string name="about_developers">Sviluppata da <a href="mailto:t.martykan@gmail.com">Tomas Martykan</a> e <a href="https://github.com/martykan/forecastie/graphs/contributors">altri</a>, con il supporto di <a href="https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue">moltri altri</a>.</string>
     <string name="about_src">Il codice è disponibile in <a href="https://github.com/martykan/forecastie">Forecastie</a>.</string>
     <string name="about_issues">È possibile segnalare problemi <a href="https://github.com/martykan/forecastie/issues">qui</a>.</string>
