@@ -203,7 +203,7 @@
     <!-- About dialogue -->
     <string name="about_unknown">Could not get version name</string>
     <string name="about_description">A lightweight, Free Software weather app, released under the GPL3 licence.</string>
-    <string name="about_developers">Developed by <a href=\'mailto:t.martykan@gmail.com\'>Tomáš Martykán</a> and <a href=\'https://github.com/martykan/forecastie/graphs/contributors\'>others</a>, with assistance from <a href=\'https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue\'>many more</a>.</string>
+    <string name="about_developers">Developed by <a href='mailto:t.martykan@gmail.com'>Tomáš Martykán</a> and <a href='https://github.com/martykan/forecastie/graphs/contributors'>others</a>, with assistance from <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>many more</a>.</string>
     <string name="about_src">Code is available at &lt;a href=\'https://github.com/martykan/forecastie\'&gt;Github&lt;/a&gt;.</string>
     <string name="about_issues">Bugs and enhancements can be posted on our &lt;a href=\'https://github.com/martykan/forecastie/issues\'&gt;Github issues page&lt;/a&gt;.</string>
     <string name="about_data">Data provided by &lt;a href=\'https://openweathermap.org/\'&gt;OpenWeatherMap&lt;/a&gt;, under the &lt;a href=\'http://creativecommons.org/licenses/by-sa/2.0/\'&gt;Creative Commons CC-BY-SA 2.0 licence&lt;/a&gt;.</string>
