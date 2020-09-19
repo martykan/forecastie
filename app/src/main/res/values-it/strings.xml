@@ -38,8 +38,8 @@
     <string name="setting_differentiateDaysByTint">Differenziare giorni con colori</string>
 
     <string name="setting_unit_mps">Metri al secondo (m/s)</string>
-    <string name="setting_unit_kph">Chilometri all\'ora (km/h)</string>
-    <string name="setting_unit_mph">Miglia all\'ora (mph)</string>
+    <string name="setting_unit_kph">Chilometri all'ora (km/h)</string>
+    <string name="setting_unit_mph">Miglia all'ora (mph)</string>
     <string name="setting_unit_bft">Scala del vento Beaufort (bft)</string>
     <string name="setting_unit_kn">Nodi (kn)</string>
     <string name="setting_unit_Celsuis">Celsius</string>
@@ -112,7 +112,7 @@
     <string name="dialog_cancel">Annulla</string>
 
     <!-- Errors -->
-    <string name="msg_err_parsing_json">Errore durante l\'analisi del file JSON.</string>
+    <string name="msg_err_parsing_json">Errore durante l'analisi del file JSON.</string>
     <string name="msg_http_error">Errore durante la richiesta o la ricezione dei dati.</string>
     <string name="msg_connection_not_available">Connessione non disponibile.</string>
     <string name="msg_city_not_found">Città non trovata.</string>
@@ -171,12 +171,12 @@
 
     <!-- About dialogue -->
     <string name="about_unknown">Impossibile recuperare versione</string>
-    <string name="about_description">Un\'app meteo leggera di Software Libero, rilasciata con licenza GPL3.</string>
-    <string name="about_developers">Sviluppata da &lt;a href="mailto:t.martykan@gmail.com"&gt;Tomas Martykan&lt;/a&gt; e &lt;a href="https://github.com/martykan/forecastie/graphs/contributors"&gt;altri&lt;/a&gt;, con il supporto di &lt;a href="https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue"&gt;moltri altri&lt;/a&gt;.</string>
-    <string name="about_src">Il codice è disponibile in &lt;a href="https://github.com/martykan/forecastie"&gt;Forecastie&lt;/a&gt;.</string>
-    <string name="about_issues">È possibile segnalare problemi &lt;a href="https://github.com/martykan/forecastie/issues"&gt;qui&lt;/a&gt;.</string>
-    <string name="about_data">Dati forniti da &lt;a href="https://openweathermap.org/"&gt;OpenWeatherMap&lt;/a&gt;, sotto la &lt;a href="http://creativecommons.org/licenses/by-sa/2.0/"&gt;licenza Creative Commons CC-BY-SA&lt;/a&gt;.</string>
-    <string name="about_icons">Le icone sono &lt;a href="https://erikflowers.github.io/weather-icons/"&gt;Weather Icons&lt;/a&gt;, di &lt;a href="http://www.twitter.com/artill"&gt;Lukas Bischoff&lt;/a&gt; e &lt;a href="http://www.twitter.com/Erik_UX"&gt;Erik Flowers&lt;/a&gt;, sotto la licenza &lt;a href="http://scripts.sil.org/OFL"&gt;SIL OFL 1.1&lt;/a&gt;.</string>
+    <string name="about_description">Un'app meteo leggera di Software Libero, rilasciata con licenza GPL3.</string>
+    <string name="about_developers">Sviluppata da <a href="mailto:t.martykan@gmail.com">Tomas Martykan</a> e <a href="https://github.com/martykan/forecastie/graphs/contributors">altri</a>, con il supporto di <a href="https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue">moltri altri</a>.</string>
+    <string name="about_src">Il codice è disponibile in <a href="https://github.com/martykan/forecastie">Forecastie</a>.</string>
+    <string name="about_issues">È possibile segnalare problemi <a href="https://github.com/martykan/forecastie/issues">qui</a>.</string>
+    <string name="about_data">Dati forniti da <a href="https://openweathermap.org/">OpenWeatherMap</a>, sotto la <a href="http://creativecommons.org/licenses/by-sa/2.0/">licenza Creative Commons CC-BY-SA</a>.</string>
+    <string name="about_icons">Le icone sono <a href="https://erikflowers.github.io/weather-icons/">Weather Icons</a>, di <a href="http://www.twitter.com/artill">Lukas Bischoff</a> e <a href="http://www.twitter.com/Erik_UX">Erik Flowers</a>, sotto la licenza <a href="http://scripts.sil.org/OFL">SIL OFL 1.1</a>.</string>
 
     <!-- Widget -->
     <string name="widget_label_extensive">Forecastie esteso</string>
