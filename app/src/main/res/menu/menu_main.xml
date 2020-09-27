@@ -19,16 +19,19 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_graphs"
+        android:icon="@drawable/sharp_insert_chart_outlined_white_24dp"
         android:title="@string/action_graphs"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_location"
+        android:icon="@drawable/sharp_my_location_white_24dp"
         android:title="@string/setting_auto_detect_location"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_settings"
+        android:icon="@drawable/sharp_settings_white_24dp"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_about"
         android:title="@string/action_about"
