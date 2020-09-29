@@ -135,8 +135,10 @@ public class UnitConvertor {
             return context.getString(R.string.uvi_high);
         } else if (value >= 8.0 && value < 11.0) {
             return context.getString(R.string.uvi_very_high);
-        } else {
+        } else if (value >= 11.0 && value <= 14.0) {
             return context.getString(R.string.uvi_extreme);
+        } else if (value > 14.0) {
+            return context.getString(R.string.uvi_no_info);
         }
     }
 
