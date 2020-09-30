@@ -50,7 +50,7 @@
             attributionControl: false
         }).setView([getUrlParameter('lat'), getUrlParameter('lon')], getUrlParameter('zoom'));
 
-        map.addLayer(new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        map.addLayer(new L.TileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             minZoom: 1,
             maxZoom: 15
         }));
@@ -60,22 +60,22 @@
         }
 
         // Wind
-        var windLayer = new L.TileLayer("http://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=" + getUrlParameter('appid'), {
+        var windLayer = new L.TileLayer("https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=" + getUrlParameter('appid'), {
             minZoom: 1,
             maxZoom: 15
         });
         windLayer.setOpacity(0.7);
 
         // Clouds
-        var cloudsLayer = new L.TileLayer("http://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=" + getUrlParameter('appid'), {
+        var cloudsLayer = new L.TileLayer("https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=" + getUrlParameter('appid'), {
             minZoom: 1,
             maxZoom: 15
         });
         cloudsLayer.setOpacity(0.7);
-         map.addLayer(cloudsLayer);
+        map.addLayer(cloudsLayer);
 
         // Rain
-        var rainLayer = new L.TileLayer("http://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=" + getUrlParameter('appid'), {
+        var rainLayer = new L.TileLayer("https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=" + getUrlParameter('appid'), {
             minZoom: 1,
             maxZoom: 15
         });
@@ -83,7 +83,7 @@
 
 
         // Temperature
-        var tempLayer = new L.TileLayer("http://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=" + getUrlParameter('appid'), {
+        var tempLayer = new L.TileLayer("https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=" + getUrlParameter('appid'), {
             minZoom: 1,
             maxZoom: 15
         });
