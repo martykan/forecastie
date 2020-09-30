@@ -552,7 +552,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
         // UV Index
         double uvIndex = todayWeather.getUvIndex();
-        todayUvIndex.setText(getString(R.string.uvindex) + ": " + uvIndex + "("UnitConvertor.convertUvIndexToRiskLevel(uvIndex, this))+ ")";
+        todayUvIndex.setText(getString(R.string.uvindex) + ": " + uvIndex + " (" + UnitConvertor.convertUvIndexToRiskLevel(uvIndex, this) + ")");
     }
 
     public ParseResult parseLongTermJson(String result) {
