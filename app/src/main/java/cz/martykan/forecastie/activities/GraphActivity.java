@@ -7,10 +7,11 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.IdRes;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.IdRes;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -74,6 +75,12 @@ public class GraphActivity extends BaseActivity {
         Toolbar toolbar = findViewById(R.id.graph_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         setTheme(theme = UI.getTheme(sp.getString("theme", "fresh")));
         darkTheme = theme == R.style.AppTheme_NoActionBar_Dark ||
@@ -165,8 +172,8 @@ public class GraphActivity extends BaseActivity {
         for (int i = 0; i < numWeatherData; i++) {
             float temperature = UnitConvertor.convertTemperature(Float.parseFloat(weatherList.get(i).getTemperature()), sp);
 
-            minTemp = Math.min(temperature, minTemp);
-            maxTemp = Math.max(temperature, maxTemp);
+            minTemp = (float) Math.min(Math.floor(temperature), minTemp);
+            maxTemp = (float) Math.max(Math.ceil(temperature), maxTemp);
 
             dataset.addPoint(getDateLabel(weatherList.get(i), i), temperature);
         }
@@ -245,8 +252,8 @@ public class GraphActivity extends BaseActivity {
         for (int i = 0; i < numWeatherData; i++) {
             float pressure = UnitConvertor.convertPressure(Float.parseFloat(weatherList.get(i).getPressure()), sp);
 
-            minPressure = Math.min(pressure, minPressure);
-            maxPressure = Math.max(pressure, maxPressure);
+            minPressure = (float) Math.min(Math.floor(pressure), minPressure);
+            maxPressure = (float) Math.max(Math.ceil(pressure), maxPressure);
 
             dataset.addPoint(getDateLabel(weatherList.get(i), i), pressure);
         }

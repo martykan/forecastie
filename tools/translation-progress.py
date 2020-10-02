@@ -58,8 +58,6 @@ other_translations = '../app/src/main/res/values-*/strings.xml'
 string_blacklist = [
         'setting_available_simple_string_codes',
         'setting_example_simple_string',
-        'dash_clock_status',
-        'dash_clock_expanded_title'
 ]
 
 

@@ -1,0 +1,46 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">Display</string>
+    <string name="setting_theme">Theme</string>
+    <string name="setting_transparent_widget">Make widget transparent</string>
+    <string name="setting_wind_direction_format">Wind direction format</string>
+    <string name="setting_theme_fresh">Fresh</string>
+    <string name="setting_theme_classic">Classic</string>
+    <string name="setting_theme_dark">Fresh Dark</string>
+    <string name="setting_theme_classic_dark">Classic Dark</string>
+    <string name="setting_theme_black">Fresh Black</string>
+    <string name="setting_theme_classic_black">Classic Black</string>
+
+    <string name="wind_direction_format_none">No indication</string>
+    <string name="wind_direction_format_arrows">Arrows</string>
+    <string name="wind_direction_format_abbreviations">Abbreviations</string>
+    <string name="setting_displayDecimalZeroes">Display decimal zeroes</string>
+
+    <!-- Settings/Data -->
+    <string name="last_update">Last update:\n%s</string>
+    <string name="last_update_widget">\nLast update: %s</string>
+    <string name="settings_title_data">Data</string>
+    <string name="setting_refreshInterval">Background refresh interval</string>
+    <string name="settings_none">None</string>
+    <string name="settings_15min">15 min</string>
+    <string name="settings_30min">30 min</string>
+    <string name="settings_1hour">1 h</string>
+    <string name="settings_2hour">2 h</string>
+    <string name="settings_6hour">6 h</string>
+    <string name="settings_12hour">12 h</string>
+    <string name="settings_24hour">24 h</string>
+    <string name="setting_apiKey">API key</string>
+    <string name="setting_apiKey_summary">Custom API key for OpenWeatherMap queries</string>
+
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">DATE FORMAT ERROR</string>
+    <string name="setting_dateFormat">Date Format</string>
+    <string name="setting_dateFormatCustom">Custom Date Format</string>
+    <string name="setting_dateFormatCustom_summary">Provide the custom SimpleDateFormat string to be used</string>
+    <string name="setting_available_simple_string_codes" translatable="false">yYMwWDdFEuaHkKhmsSzZX</string>
+    <string name="setting_example_simple_string" translatable="false">EEEE, d MMM yyyy h:mm:ss a, zzzz</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+</resources>

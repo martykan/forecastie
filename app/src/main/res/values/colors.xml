@@ -39,5 +39,7 @@
 
     <color name="fresh_theme_colorControlActivated">#ff8800</color>
 
+    <color name="light_theme_textColor">#89000000</color>
+
     <color name="notification_icon_color">#8A000000</color>
 </resources>

@@ -1,0 +1,32 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Weather icons -->
+    <string name="weather_cloudy" translatable="false">&#xf013;</string>
+    <string name="weather_cloudy_gusts" translatable="false">&#xf011;</string>
+    <string name="weather_day_cloudy" translatable="false">&#xf002;</string>
+    <string name="weather_day_haze" translatable="false">&#xf0b6;</string>
+    <string name="weather_day_sunny" translatable="false">&#xf00d;</string>
+    <string name="weather_dust" translatable="false">&#xf063;</string>
+    <string name="weather_fog" translatable="false">&#xf014;</string>
+    <string name="weather_hail" translatable="false">&#xf015;</string>
+    <string name="weather_hot" translatable="false">&#xf072;</string>
+    <string name="weather_hurricane" translatable="false">&#xf073;</string>
+    <string name="weather_lightning" translatable="false">&#xf016;</string>
+    <string name="weather_night_alt_cloudy" translatable="false">&#xf086;</string>
+    <string name="weather_night_clear" translatable="false">&#xf02e;</string>
+    <string name="weather_rain" translatable="false">&#xf019;</string>
+    <string name="weather_rain_mix" translatable="false">&#xf017;</string>
+    <string name="weather_sandstorm" translatable="false">&#xf082;</string>
+    <string name="weather_showers" translatable="false">&#xf01a;</string>
+    <string name="weather_sleet" translatable="false">&#xf0b5;</string>
+    <string name="weather_smoke" translatable="false">&#xf062;</string>
+    <string name="weather_snow" translatable="false">&#xf01b;</string>
+    <string name="weather_snowflake_cold" translatable="false">&#xf076;</string>
+    <string name="weather_sprinkle" translatable="false">&#xf01c;</string>
+    <string name="weather_storm_showers" translatable="false">&#xf01d;</string>
+    <string name="weather_strong_wind" translatable="false">&#xf050;</string>
+    <string name="weather_thunderstorm" translatable="false">&#xf01e;</string>
+    <string name="weather_tornado" translatable="false">&#xf056;</string>
+    <string name="weather_windy" translatable="false">&#xf021;</string>
+</resources>

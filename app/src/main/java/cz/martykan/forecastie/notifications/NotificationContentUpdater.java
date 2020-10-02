@@ -1,10 +1,11 @@
 package cz.martykan.forecastie.notifications;
 
 import android.content.Context;
-import android.support.annotation.CallSuper;
-import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
 import android.widget.RemoteViews;
+
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 
 import cz.martykan.forecastie.models.ImmutableWeather;
 

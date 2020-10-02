@@ -2,9 +2,9 @@ package cz.martykan.forecastie.utils.formatters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import java.text.DecimalFormat;
 import java.util.Locale;

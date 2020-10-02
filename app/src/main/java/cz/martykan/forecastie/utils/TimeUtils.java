@@ -1,6 +1,6 @@
 package cz.martykan.forecastie.utils;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.util.Calendar;
 import java.util.Date;

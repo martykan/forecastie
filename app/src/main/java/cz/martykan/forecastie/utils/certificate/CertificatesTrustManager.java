@@ -1,6 +1,6 @@
 package cz.martykan.forecastie.utils.certificate;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;

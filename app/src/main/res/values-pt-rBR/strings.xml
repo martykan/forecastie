@@ -10,6 +10,7 @@
     <string name="search_title">Buscar cidade</string>
     <string name="downloading_data">Transferindo dados...</string>
     <string name="getting_location">Obtendo sua localização...</string>
+    <string name="loading_data">Carregando...</string>
 
     <!-- Forecast cards -->
     <string name="today">Hoje</string>
@@ -18,10 +19,12 @@
 
     <!-- Main activity headings -->
     <string name="wind">Vento</string>
+    <string name="wind_speed">Velocidade do vento</string>
     <string name="pressure">Pressão</string>
     <string name="humidity">Umidade</string>
     <string name="sunrise">Nascer do sol</string>
     <string name="sunset">Pôr do sol</string>
+    <string name="uvindex">Índice UV</string>
 
     <!-- Settings/Units -->
     <string name="settings_title_units">Unidades</string>
@@ -36,6 +39,8 @@
     <string name="setting_unit_mps">Metros por segundo (m/s)</string>
     <string name="setting_unit_kph">Quilômetros por hora (km/h)</string>
     <string name="setting_unit_mph">Milhas por hora (mi/h)</string>
+    <string name="setting_unit_bft">Escala de Beaufort</string>
+    <string name="setting_unit_kn">Nós</string>
     <string name="setting_unit_Celsuis">Celsius</string>
     <string name="setting_unit_Fahrenheit">Fahrenheit</string>
     <string name="setting_unit_Kelvin">Kelvin</string>
@@ -46,23 +51,35 @@
     <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
     <string name="setting_unit_mmhg">mmHg</string>
+    <string name="setting_unit_inhg">em Hg</string>
 
     <string name="speed_unit_mps">m/s</string>
     <string name="speed_unit_kph">km/h</string>
     <string name="speed_unit_mph">mi/h</string>
+    <string name="speed_unit_kn">nó</string>
 
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mmHg</string>
 
+    <string name="uvi_no_info">Sem informação</string>
+    <string name="uvi_low">Baixo</string>
+    <string name="uvi_moderate">Moderado</string>
+    <string name="uvi_high">Alto</string>
+    <string name="uvi_very_high">Muito Alto</string>
+    <string name="uvi_extreme">Extremo</string>
+
     <!-- Settings/Appearance -->
     <string name="settings_title_display">Mostrar</string>
     <string name="setting_theme">Tema</string>
+    <string name="setting_transparent_widget">Tornar widget transparente</string>
     <string name="setting_wind_direction_format">Formato da direção do vento</string>
     <string name="setting_theme_fresh">Novo</string>
     <string name="setting_theme_classic">Clássico</string>
     <string name="setting_theme_dark">Novo escuro</string>
     <string name="setting_theme_classic_dark">Clássico escuro</string>
+    <string name="setting_theme_black">Novo preto</string>
+    <string name="setting_theme_classic_black">Clássico preto</string>
 
     <string name="wind_direction_format_none">Sem indicação</string>
     <string name="wind_direction_format_arrows">Setas</string>
@@ -75,6 +92,13 @@
     <string name="settings_title_data">Dados</string>
     <string name="setting_refreshInterval">Intervalo da atualização em segundo plano</string>
     <string name="settings_none">Nenhum</string>
+    <string name="settings_15min">15 min</string>
+    <string name="settings_30min">30 min</string>
+    <string name="settings_1hour">1 h</string>
+    <string name="settings_2hour">2 h</string>
+    <string name="settings_6hour">6 h</string>
+    <string name="settings_12hour">12 h</string>
+    <string name="settings_24hour">24 h</string>
     <string name="setting_apiKey">Chave da API</string>
     <string name="setting_apiKey_summary">Usar uma chave da API do OpenWeatherMap personalizada</string>
 
@@ -88,9 +112,11 @@
 
     <!-- Errors -->
     <string name="msg_err_parsing_json">Erro ao analisar JSON.</string>
+    <string name="msg_http_error">Erro ao solicitar ou receber dados.</string>
     <string name="msg_connection_not_available">Conexão indisponível.</string>
     <string name="msg_city_not_found">A cidade especificada não foi encontrada.</string>
     <string name="msg_too_many_requests">Foram feitas muitas solicitações. Por favor, tente novamente.</string>
+    <string name="msg_invalid_api_key">Chave inválida da API.</string>
 
     <!-- Wind direction -->
     <string name="wind_direction_north">N</string>
@@ -111,18 +137,19 @@
     <string name="wind_direction_north_north_west">NNO</string>
 
     <!-- Wind strength - Beaufort -->
-
-    <!-- Dash clock -->
-    <!-- 1: temperature; 2: unit -->
-    <string name="dash_clock_status">%1$s%2$s</string>
-    <!-- 1: temperature; 2: unit; 3: weather description -->
-    <string name="dash_clock_expanded_title">%1$s%2$s - %3$s</string>
-    <!-- 1: city; 2: country; 3: wind; 4: speed units; 5: pressure; 6: pressure units; 7: humidity -->
-    <string name="dash_clock_expanded_body">%1$s, %2$s\n
-        Vento: %3$s %4$s\n
-        Pressão: %5$s %6$s\n
-        Umidade: %7$s %%\n
-    </string>
+    <string name="beaufort_calm">Calmo (0)</string>
+    <string name="beaufort_light_air">Quase calmo (1)</string>
+    <string name="beaufort_light_breeze">Brisa leve (2)</string>
+    <string name="beaufort_gentle_breeze">Brisa suave (3)</string>
+    <string name="beaufort_moderate_breeze">Brisa moderada (4)</string>
+    <string name="beaufort_fresh_breeze">Brisa fresca (5)</string>
+    <string name="beaufort_strong_breeze">Brisa forte (6)</string>
+    <string name="beaufort_high_wind">Vento forte (7)</string>
+    <string name="beaufort_gale">Ventania (8)</string>
+    <string name="beaufort_strong_gale">Ventania forte (9)</string>
+    <string name="beaufort_storm">Tempestade (10)</string>
+    <string name="beaufort_violent_storm">Tempestade violenta (11)</string>
+    <string name="beaufort_hurricane">Furacão (12)</string>
 
     <!-- Location -->
     <string name="settings_title_location">Localização</string>
@@ -130,16 +157,32 @@
     <string name="location_settings">Configurações de localização</string>
     <string name="location_settings_message">O recurso de localização não está habilitado. Deseja ir ao menu de configurações?</string>
     <string name="location_settings_button">Configurações</string>
+    <string name="location_search_heading">Localizações</string>
 
     <!-- Map -->
     <string name="action_weather_map">Mapa de clima</string>
     <string name="rain">Chuva</string>
     <string name="temperature">Temperatura</string>
+    <string name="clouds">Nuvens</string>
 
     <!-- Graphs -->
     <string name="action_graphs">Gráficos</string>
+    <string name="graphs_more_days">Mais dias</string>
 
     <!-- About dialogue -->
+    <string name="about_unknown">Não foi possível obter o nome da versão</string>
+    <string name="about_description">Um aplicativo Software Livre leve de clima, lançado sob a licença GPL3.</string>
+    <string name="about_developers">Desenvolvido por <a href="mailto:t.martykan@gmail.com">Tomáš Martykán</a> e <a href="https://github.com/martykan/forecastie/graphs/contributors">outros</a>, com assistência de <a href="https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue">muitos mais</a>.</string>
+    <string name="about_src">Código está disponível no <a href="https://github.com/martykan/forecastie">Github</a>.</string>
+    <string name="about_issues">Problemas e melhorias podem ser postados em nossa <a href="https://github.com/martykan/forecastie/issues">página de problemas do Github</a>.</string>
+    <string name="about_data">Dados fornecidos por <a href="https://openweathermap.org/">OpenWeatherMap</a>, sob a licença <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative Commons CC-BY-SA 2.0</a>.</string>
+    <string name="about_icons">Ícones são <a href="https://erikflowers.github.io/weather-icons/">Weather Icons</a>, por <a href="http://www.twitter.com/artill">Lukas Bischoff</a> e <a href="http://www.twitter.com/Erik_UX">Erik Flowers</a>, sob a licença <a href="http://scripts.sil.org/OFL">SIL OFL 1.1</a>.</string>
 
     <!-- Widget -->
+    <string name="widget_label_extensive">Forecastie Extenso</string>
+    <string name="widget_label_time">Forecastie Hora</string>
+    <string name="widget_label_simple">Forecastie Simples</string>
+    <string name="widget_label_classic">Forecastie Clássico</string>
+
+    <string name="tap_for_graphs">Toque para gráficos</string>
 </resources>

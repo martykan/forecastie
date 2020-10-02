@@ -5,7 +5,9 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,26 +26,28 @@ import cz.martykan.forecastie.utils.UnitConvertor;
 
 public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHolder> {
     private List<Weather> itemList;
-    private Context context;
 
-    public WeatherRecyclerAdapter(Context context, List<Weather> itemList) {
+    public WeatherRecyclerAdapter(List<Weather> itemList) {
         this.itemList = itemList;
-        this.context = context;
     }
 
+    @NonNull
     @Override
     public WeatherViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_row, null);
-
-        WeatherViewHolder viewHolder = new WeatherViewHolder(view);
-        return viewHolder;
+        View view = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.list_row, viewGroup, false);
+        return new WeatherViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(WeatherViewHolder customViewHolder, int i) {
-        Weather weatherItem = itemList.get(i);
+    public void onBindViewHolder(@NonNull WeatherViewHolder customViewHolder, int i) {
+        if (i < 0 || i >= itemList.size())
+            return;
 
+        Context context = customViewHolder.itemView.getContext();
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+
+        Weather weatherItem = itemList.get(i);
 
         // Temperature
         float temperature = UnitConvertor.convertTemperature(Float.parseFloat(weatherItem.getTemperature()), sp);

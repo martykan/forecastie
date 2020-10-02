@@ -1,6 +1,6 @@
 package cz.martykan.forecastie.notifications;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import cz.martykan.forecastie.utils.formatters.WeatherFormatter;
 import cz.martykan.forecastie.utils.formatters.WeatherFormatterFactory;

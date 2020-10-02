@@ -1,8 +1,9 @@
 package cz.martykan.forecastie.notifications;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.utils.formatters.WeatherFormatter;

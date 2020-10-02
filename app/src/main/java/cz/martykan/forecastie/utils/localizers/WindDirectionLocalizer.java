@@ -1,7 +1,8 @@
 package cz.martykan.forecastie.utils.localizers;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import cz.martykan.forecastie.models.Weather;
 

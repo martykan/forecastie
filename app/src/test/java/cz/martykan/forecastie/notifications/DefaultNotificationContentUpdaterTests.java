@@ -2,12 +2,13 @@ package cz.martykan.forecastie.notifications;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.function.ThrowingRunnable;
+
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -15,6 +16,7 @@ import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.ImmutableWeather;
 import cz.martykan.forecastie.utils.formatters.WeatherFormatter;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
@@ -82,6 +84,7 @@ public class DefaultNotificationContentUpdaterTests {
         when(formatterMock.isEnoughValidData(same(weatherMock))).thenReturn(true);
         when(formatterMock.getWeatherIconAsBitmap(same(weatherMock), same(contextMock)))
                 .thenReturn(expectedIcon);
+        when(notificationSpy.setLargeIcon(any(Bitmap.class))).thenReturn(notificationSpy);
 
         contentUpdater.setWeather(weatherMock);
         contentUpdater.updateNotification(notificationSpy, contextMock);

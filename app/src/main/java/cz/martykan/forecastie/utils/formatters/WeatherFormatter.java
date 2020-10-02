@@ -5,7 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.ImmutableWeather;
