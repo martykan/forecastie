@@ -1,20 +1,19 @@
 package cz.martykan.forecastie.activities;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.IdRes;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import androidx.annotation.IdRes;
+import androidx.appcompat.widget.Toolbar;
 
 import com.db.chart.Tools;
 import com.db.chart.model.BarSet;
@@ -23,6 +22,7 @@ import com.db.chart.model.LineSet;
 import com.db.chart.view.BarChartView;
 import com.db.chart.view.ChartView;
 import com.db.chart.view.LineChartView;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +35,6 @@ import java.util.TimeZone;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.Weather;
-import cz.martykan.forecastie.services.WeatherNotificationService;
 import cz.martykan.forecastie.tasks.ParseResult;
 import cz.martykan.forecastie.utils.UI;
 import cz.martykan.forecastie.utils.UnitConvertor;
@@ -149,9 +148,6 @@ public class GraphActivity extends BaseActivity {
         } else {
             Snackbar.make(findViewById(android.R.id.content), R.string.msg_err_parsing_json, Snackbar.LENGTH_LONG).show();
         }
-
-        Intent intent = new Intent(this, WeatherNotificationService.class);
-        stopService(intent);
     }
 
     private void updateGraphs() {

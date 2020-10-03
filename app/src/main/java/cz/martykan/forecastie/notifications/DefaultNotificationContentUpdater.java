@@ -14,25 +14,8 @@ import cz.martykan.forecastie.utils.formatters.WeatherFormatter;
 public class DefaultNotificationContentUpdater extends NotificationContentUpdater {
     private WeatherFormatter formatter;
 
-    private boolean roundedTemperature = false;
-    private String temperatureUnits = "°C";
-
     public DefaultNotificationContentUpdater(@NonNull WeatherFormatter formatter) {
         this.formatter = formatter;
-    }
-
-    @Override
-    public void setRoundedTemperature(boolean isRoundedTemperature) {
-        roundedTemperature = isRoundedTemperature;
-    }
-
-    @Override
-    public void setTemperatureUnits(@NonNull String temperatureUnits) throws NullPointerException {
-        //noinspection ConstantConditions
-        if (temperatureUnits == null)
-            throw new NullPointerException("temperatureUnits is null");
-
-        this.temperatureUnits = temperatureUnits;
     }
 
     @Override
@@ -45,6 +28,13 @@ public class DefaultNotificationContentUpdater extends NotificationContentUpdate
         //noinspection ConstantConditions
         if (context == null)
             throw new NullPointerException("context is null");
+
+        notification
+                .setCustomContentView(null)
+                .setContent(null)
+                .setCustomBigContentView(null)
+                .setColorized(false)
+                .setColor(NotificationCompat.COLOR_DEFAULT);
 
         if (formatter.isEnoughValidData(weather)) {
             String temperature = formatter.getTemperature(weather, temperatureUnits,

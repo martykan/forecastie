@@ -15,56 +15,8 @@ import cz.martykan.forecastie.utils.formatters.WeatherSimpleNotificationFormatte
 public class SimpleNotificationContentUpdater extends NotificationContentUpdater {
     private WeatherFormatter formatter;
 
-    private boolean roundedTemperature = false;
-    private String temperatureUnits = "°C";
-    private String windSpeedUnits = "m/s";
-    private String windDirectionFormat = "arrow";
-    private String pressureUnits = "hPa/mBar";
-
     public SimpleNotificationContentUpdater(@NonNull WeatherFormatter formatter) {
         this.formatter = formatter;
-    }
-
-    @Override
-    public void setRoundedTemperature(boolean isRoundedTemperature) {
-        roundedTemperature = isRoundedTemperature;
-    }
-
-    @Override
-    public void setTemperatureUnits(@NonNull String temperatureUnits) throws NullPointerException {
-        //noinspection ConstantConditions
-        if (temperatureUnits == null)
-            throw new NullPointerException("temperatureUnits is null");
-
-        this.temperatureUnits = temperatureUnits;
-    }
-
-    @Override
-    public void setWindSpeedUnits(@NonNull String windSpeedUnits) throws NullPointerException {
-        //noinspection ConstantConditions
-        if (windSpeedUnits == null)
-            throw new NullPointerException("windSpeedUnits is null");
-
-        this.windSpeedUnits = windSpeedUnits;
-    }
-
-    @Override
-    public void setWindDirectionFormat(@NonNull String windDirectionFormat)
-            throws NullPointerException {
-        //noinspection ConstantConditions
-        if (windDirectionFormat == null)
-            throw new NullPointerException("windDirectionFormat is null");
-
-        this.windDirectionFormat = windDirectionFormat;
-    }
-
-    @Override
-    public void setPressureUnits(@NonNull String pressureUnits) throws NullPointerException {
-        //noinspection ConstantConditions
-        if (pressureUnits == null)
-            throw new NullPointerException("pressureUnits is null");
-
-        this.pressureUnits = pressureUnits;
     }
 
     @Override

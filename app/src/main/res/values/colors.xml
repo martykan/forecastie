@@ -41,5 +41,5 @@
 
     <color name="light_theme_textColor">#89000000</color>
 
-    <color name="notification_icon_color">#8A000000</color>
+    <color name="notification_icon_color">#DE000000</color>
 </resources>

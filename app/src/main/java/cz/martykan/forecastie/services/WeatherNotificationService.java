@@ -7,6 +7,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -33,23 +34,23 @@ public class WeatherNotificationService extends Service {
     public static int WEATHER_NOTIFICATION_ID = 1;
     private static String WEATHER_NOTIFICATION_CHANNEL_ID = "weather_notification_channel";
 
+    private String typeKey;
+    private String typeDefaultKey;
+    private String typeSimpleKey;
+    private String typeDefault;
+
     private NotificationManagerCompat notificationManager;
     private NotificationCompat.Builder notification;
     private SharedPreferences prefs;
     private SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener;
-
-    // TODO move constants in some another place to remove code duplication
-    private final boolean DEFAULT_DO_ROUND_TEMPERATURE = false;
-    private final String DEFAULT_TEMPERATURE_UNITS = "°C";
-    private final String DEFAULT_WIND_SPEED_UNITS = "m/s";
-    private final String DEFAULT_WIND_DIRECTION_FORMAT = "none";
-    private final String DEFAULT_PRESSURE_UNITS = "hPa/mBar";
 
     private WeatherFormatterType type = WeatherFormatterType.NOTIFICATION_SIMPLE;
     private NotificationContentUpdater contentUpdater;
 
     @Override
     public void onCreate() {
+        prepareSettingsConstants();
+
         createNotificationChannelIfNeeded();
         notificationManager = NotificationManagerCompat.from(this);
 
@@ -60,6 +61,13 @@ public class WeatherNotificationService extends Service {
 
         readValuesFromStorageAndUpdateNotification();
         observeValuesChanges();
+    }
+
+    // catch update of system's dark theme flags
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        updateNotification();
     }
 
     private void configureNotification(PendingIntent pendingIntent) {
@@ -118,20 +126,41 @@ public class WeatherNotificationService extends Service {
      */
     private void readValuesFromStorageAndUpdateNotification() {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        // TODO read type
+        readNotificationType();
         NotificationContentUpdater updater = getContentUpdater(type);
 
         String json = prefs.getString("lastToday", "{}");
         long lastUpdate = prefs.getLong("lastUpdate", -1L);
         updater.setWeather(ImmutableWeather.fromJson(json, lastUpdate));
-        updater.setRoundedTemperature(prefs.getBoolean("temperatureInteger", DEFAULT_DO_ROUND_TEMPERATURE));
-        updater.setTemperatureUnits(prefs.getString("unit", DEFAULT_TEMPERATURE_UNITS));
-        updater.setWindSpeedUnits(prefs.getString("speedUnit", DEFAULT_WIND_SPEED_UNITS));
-        String windDirectionFormat = prefs.getString("windDirectionFormat", this.DEFAULT_WIND_DIRECTION_FORMAT);
+        updater.setRoundedTemperature(prefs.getBoolean("temperatureInteger",
+                NotificationContentUpdater.DEFAULT_DO_ROUND_TEMPERATURE));
+        updater.setTemperatureUnits(prefs.getString("unit",
+                NotificationContentUpdater.DEFAULT_TEMPERATURE_UNITS));
+        updater.setWindSpeedUnits(prefs.getString("speedUnit",
+                NotificationContentUpdater.DEFAULT_WIND_SPEED_UNITS));
+        String windDirectionFormat = prefs.getString("windDirectionFormat",
+                NotificationContentUpdater.DEFAULT_WIND_DIRECTION_FORMAT);
         updater.setWindDirectionFormat(windDirectionFormat);
-        updater.setPressureUnits(prefs.getString("pressureUnit", DEFAULT_PRESSURE_UNITS));
+        updater.setPressureUnits(prefs.getString("pressureUnit",
+                NotificationContentUpdater.DEFAULT_PRESSURE_UNITS));
 
         updateNotification();
+    }
+
+    /** Retrieve notification type from preferences. */
+    private void readNotificationType() {
+        String typePref = prefs.getString(typeKey, typeDefault);
+        if (typePref != null && typePref.equalsIgnoreCase(typeDefaultKey)) {
+            type = WeatherFormatterType.NOTIFICATION_DEFAULT;
+        } else if (typePref != null && typePref.equalsIgnoreCase(typeSimpleKey)) {
+            type = WeatherFormatterType.NOTIFICATION_SIMPLE;
+        } else {
+            if (typeDefault == null || typeDefault.equalsIgnoreCase(typeDefaultKey)) {
+                type = WeatherFormatterType.NOTIFICATION_DEFAULT;
+            } else {
+                type = WeatherFormatterType.NOTIFICATION_SIMPLE;
+            }
+        }
     }
 
     /**
@@ -155,6 +184,9 @@ public class WeatherNotificationService extends Service {
     ) {
         if (contentUpdater == null) {
             contentUpdater = NotificationContentUpdaterFactory.createNotificationContentUpdater(type);
+        } else if (!NotificationContentUpdaterFactory.doesContentUpdaterMatchType(type, contentUpdater)) {
+            contentUpdater = NotificationContentUpdaterFactory.createNotificationContentUpdater(type,
+                    contentUpdater);
         }
         return contentUpdater;
     }
@@ -184,36 +216,42 @@ public class WeatherNotificationService extends Service {
                         }
                         break;
                     case "temperatureInteger":
-                        updater.setRoundedTemperature(
-                                sharedPreferences.getBoolean(key, DEFAULT_DO_ROUND_TEMPERATURE)
-                        );
+                        boolean roundTemperature = sharedPreferences.getBoolean(key,
+                                NotificationContentUpdater.DEFAULT_DO_ROUND_TEMPERATURE);
+                        updater.setRoundedTemperature(roundTemperature);
                         break;
                     case "unit":
-                        updater.setTemperatureUnits(
-                                sharedPreferences.getString(key, DEFAULT_TEMPERATURE_UNITS)
-                        );
+                        String temperatureUnits = sharedPreferences.getString(key,
+                                NotificationContentUpdater.DEFAULT_TEMPERATURE_UNITS);
+                        updater.setTemperatureUnits(temperatureUnits);
                         break;
                     case "speedUnit":
-                        updater.setWindSpeedUnits(
-                                sharedPreferences.getString(key, DEFAULT_WIND_SPEED_UNITS)
-                        );
+                        String windSpeedUnits = sharedPreferences.getString(key,
+                                NotificationContentUpdater.DEFAULT_WIND_SPEED_UNITS);
+                        updater.setWindSpeedUnits(windSpeedUnits);
                         break;
                     case "windDirectionFormat":
-                        updater.setWindDirectionFormat(
-                                sharedPreferences.getString(key, DEFAULT_WIND_DIRECTION_FORMAT)
-                        );
+                        String windDirectionFormat = sharedPreferences.getString(key,
+                                NotificationContentUpdater.DEFAULT_WIND_DIRECTION_FORMAT);
+                        updater.setWindDirectionFormat(windDirectionFormat);
                         break;
                     case "pressureUnit":
-                        updater.setPressureUnits(
-                                sharedPreferences.getString(key, DEFAULT_PRESSURE_UNITS)
-                        );
+                        String pressureUnits = sharedPreferences.getString(key,
+                                NotificationContentUpdater.DEFAULT_PRESSURE_UNITS);
+                        updater.setPressureUnits(pressureUnits);
                         break;
+
                     default:
                         needToUpdate = false;
                         break;
                 }
-                if (needToUpdate)
+                if (key.equalsIgnoreCase(typeKey)) {
+                    readNotificationType();
+                    needToUpdate = true;
+                }
+                if (needToUpdate) {
                     updateNotification();
+                }
             }
         };
         prefs.registerOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener);
@@ -245,9 +283,27 @@ public class WeatherNotificationService extends Service {
      */
     public static void start(@NonNull Context context) {
         Intent intent = new Intent(context, WeatherNotificationService.class);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             context.startForegroundService(intent);
-        else
+        } else {
             context.startService(intent);
+        }
+    }
+
+    /**
+     * Stop service and hide notification.
+     *
+     * @param context Android context
+     */
+    public static void stop(@NonNull Context context) {
+        Intent intent = new Intent(context, WeatherNotificationService.class);
+        context.stopService(intent);
+    }
+
+    private void prepareSettingsConstants() {
+        typeKey = getString(R.string.settings_notification_type_key);
+        typeDefaultKey = getString(R.string.settings_notification_type_key_default);
+        typeSimpleKey = getString(R.string.settings_notification_type_key_simple);
+        typeDefault = getString(R.string.settings_notification_type_default_value);
     }
 }

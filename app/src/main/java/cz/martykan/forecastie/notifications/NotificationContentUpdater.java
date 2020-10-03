@@ -14,21 +14,35 @@ import cz.martykan.forecastie.models.ImmutableWeather;
  * <br/>
  * Setters need to store values. Notification only updates by invoking
  * {@link #updateNotification(NotificationCompat.Builder, Context)}.
- * <br/>
- * NOTE: default implementation for all methods except {@link #setWeather(ImmutableWeather)} is
- * to do nothing.
  */
 @SuppressWarnings("SameParameterValue")
 public abstract class NotificationContentUpdater {
+    // TODO maybe these constant should be moved into ImmutableWeather
+    /** Do not round temperature by default. */
+    public static final boolean DEFAULT_DO_ROUND_TEMPERATURE = false;
+    /** Default temperature unit is Celsius. */
+    public static final String DEFAULT_TEMPERATURE_UNITS = "°C";
+    /** Default wind speed unit is meters per second. */
+    public static final String DEFAULT_WIND_SPEED_UNITS = "m/s";
+    /** Default wind direction format is arrows. */
+    public static final String DEFAULT_WIND_DIRECTION_FORMAT = "arrow";
+    /** Default pressure units is hPa/mBar. */
+    public static final String DEFAULT_PRESSURE_UNITS = "hPa/mBar";
+
+    protected boolean roundedTemperature = DEFAULT_DO_ROUND_TEMPERATURE;
+    protected String temperatureUnits = DEFAULT_TEMPERATURE_UNITS;
+    protected String windSpeedUnits = DEFAULT_WIND_SPEED_UNITS;
+    protected String windDirectionFormat = DEFAULT_WIND_DIRECTION_FORMAT;
+    protected String pressureUnits = DEFAULT_PRESSURE_UNITS;
     /** Weather information. */
     protected ImmutableWeather weather = ImmutableWeather.EMPTY;
 
     /**
      * Set is temperature should be rounded to integer.
-     * @param isRoundedTemperature {@code true} for rounding and {@code false} for not.
+     * @param roundTemperature {@code true} for rounding and {@code false} for not.
      */
-    public void setRoundedTemperature(boolean isRoundedTemperature) {
-
+    public void setRoundedTemperature(boolean roundTemperature) {
+        roundedTemperature = roundTemperature;
     }
 
     /**
@@ -37,7 +51,11 @@ public abstract class NotificationContentUpdater {
      * @throws NullPointerException if {@code temperatureUnits} is null
      */
     public void setTemperatureUnits(@NonNull String temperatureUnits) throws NullPointerException {
+        //noinspection ConstantConditions
+        if (temperatureUnits == null)
+            throw new NullPointerException("temperatureUnits is null");
 
+        this.temperatureUnits = temperatureUnits;
     }
 
     /**
@@ -46,7 +64,11 @@ public abstract class NotificationContentUpdater {
      * @throws NullPointerException if {@code windSpeedUnits} is null
      */
     public void setWindSpeedUnits(@NonNull String windSpeedUnits) throws NullPointerException {
+        //noinspection ConstantConditions
+        if (windSpeedUnits == null)
+            throw new NullPointerException("windSpeedUnits is null");
 
+        this.windSpeedUnits = windSpeedUnits;
     }
 
     /**
@@ -54,8 +76,13 @@ public abstract class NotificationContentUpdater {
      * @param windDirectionFormat wind direction format.
      * @throws NullPointerException if {@code windDirectionFormat} is null
      */
-    public void setWindDirectionFormat(@NonNull String windDirectionFormat) throws NullPointerException {
+    public void setWindDirectionFormat(@NonNull String windDirectionFormat)
+            throws NullPointerException {
+        //noinspection ConstantConditions
+        if (windDirectionFormat == null)
+            throw new NullPointerException("windDirectionFormat is null");
 
+        this.windDirectionFormat = windDirectionFormat;
     }
 
     /**
@@ -64,7 +91,11 @@ public abstract class NotificationContentUpdater {
      * @throws NullPointerException if {@code pressureUnits} is null
      */
     public void setPressureUnits(@NonNull String pressureUnits) throws NullPointerException {
+        //noinspection ConstantConditions
+        if (pressureUnits == null)
+            throw new NullPointerException("pressureUnits is null");
 
+        this.pressureUnits = pressureUnits;
     }
 
     /**
@@ -79,6 +110,19 @@ public abstract class NotificationContentUpdater {
             throw new NullPointerException("weather is null");
 
         this.weather = weather;
+    }
+
+    /**
+     * Copy properties from another content updater.
+     * @param contentUpdater content updater
+     */
+    void copyPreviousValues(@NonNull NotificationContentUpdater contentUpdater) {
+        roundedTemperature = contentUpdater.roundedTemperature;
+        temperatureUnits = contentUpdater.temperatureUnits;
+        windSpeedUnits = contentUpdater.windSpeedUnits;
+        windDirectionFormat = contentUpdater.windDirectionFormat;
+        pressureUnits = contentUpdater.pressureUnits;
+        weather = contentUpdater.weather;
     }
 
     /**
