@@ -51,7 +51,7 @@ public class WeatherNotificationService extends Service {
     public void onCreate() {
         prepareSettingsConstants();
 
-        createNotificationChannelIfNeeded();
+        createNotificationChannelIfNeeded(this);
         notificationManager = NotificationManagerCompat.from(this);
 
         PendingIntent pendingIntent = getNotificationTapPendingIntent();
@@ -261,18 +261,33 @@ public class WeatherNotificationService extends Service {
      * Create Notification Channels added in Android O to let a user configure notification
      * per channel and not by app.
      */
-    private void createNotificationChannelIfNeeded() {
+    private static void createNotificationChannelIfNeeded(@NonNull Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String name = getString(R.string.channel_name);
-            // TODO add listener for Intent.ACTION_LOCALE_CHANGED to update channel name
+            String name = context.getString(R.string.channel_name);
             NotificationChannel channel = new NotificationChannel(WEATHER_NOTIFICATION_CHANNEL_ID,
                     name, NotificationManager.IMPORTANCE_LOW);
             channel.enableLights(false);
             channel.enableVibration(false);
             channel.setShowBadge(false);
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            if (notificationManager != null)
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+            if (notificationManager != null) {
                 notificationManager.createNotificationChannel(channel);
+            }
+        }
+    }
+
+    /**
+     * Update Notification Channels if it has been created.
+     * @param context Android context
+     */
+    public static void updateNotificationChannelIfNeeded(@NonNull Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager notificationManager =
+                    context.getSystemService(NotificationManager.class);
+            if (notificationManager != null
+                    && notificationManager.getNotificationChannel(WEATHER_NOTIFICATION_CHANNEL_ID) != null) {
+                createNotificationChannelIfNeeded(context);
+            }
         }
     }
 

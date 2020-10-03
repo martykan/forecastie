@@ -39,7 +39,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         this.context = context;
-        // TODO move processing of ACTION_BOOT_COMPLETE and ACTION_PACKAGE_REPLACED into separate receiver for single responsibility
         boolean packageReplacedAction;
         if (Intent.ACTION_PACKAGE_REPLACED.equals(intent.getAction())) {
             String packageName = intent.getStringExtra(Intent.EXTRA_UID);
@@ -66,6 +65,9 @@ public class AlarmReceiver extends BroadcastReceiver {
                     (sp.getBoolean("backgroundRefreshFailed", false) || isUpdateLocation())) {
                 getWeather();
             }
+        } else if (Intent.ACTION_LOCALE_CHANGED.equals(intent.getAction())) {
+            WeatherNotificationService.updateNotificationChannelIfNeeded(context);
+            getWeather();
         } else {
             getWeather();
         }
