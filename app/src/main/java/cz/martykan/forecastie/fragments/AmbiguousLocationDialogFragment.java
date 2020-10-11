@@ -156,7 +156,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
     public void onItemClickListener(View view, int position) {
         final Weather weather = recyclerAdapter.getItem(position);
         final Intent intent = new Intent(getActivity(), MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+       
         final Bundle bundle = new Bundle();
 
         sharedPreferences.edit().putString("cityId", weather.getId()).commit();
