@@ -1,20 +1,23 @@
 package cz.martykan.forecastie.activities;
 
 import android.annotation.SuppressLint;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import cz.martykan.forecastie.R;
-import cz.martykan.forecastie.viewmodels.MapViewModel;
 import cz.martykan.forecastie.utils.UI;
+import cz.martykan.forecastie.viewmodels.MapViewModel;
 
 public class MapActivity extends BaseActivity {
 
@@ -30,7 +33,7 @@ public class MapActivity extends BaseActivity {
 
         //noinspection ConstantConditions
         setTheme(theme = UI.getTheme(prefs.getString("theme", "fresh")));
-        mapViewModel = ViewModelProviders.of(this).get(MapViewModel.class);
+        mapViewModel = new ViewModelProvider(this).get(MapViewModel.class);
 
         if (savedInstanceState == null) {
             mapViewModel.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -44,6 +47,7 @@ public class MapActivity extends BaseActivity {
         webView.loadUrl("file:///android_asset/map.html?lat=" + mapViewModel.mapLat + "&lon="
                 + mapViewModel.mapLon + "&appid=" + mapViewModel.apiKey
                 + "&zoom=" + mapViewModel.mapZoom);
+        webView.addJavascriptInterface(new HybridInterface(), "NativeInterface");
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
@@ -87,14 +91,28 @@ public class MapActivity extends BaseActivity {
                         + "map.addLayer(tempLayer);");
                 break;
             default:
-                Log.w("WeatherMap", "Layer not configured");
+                Log.w("MapActivity", "Layer not configured");
                 break;
         }
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+    }
+
+    private class HybridInterface {
+
+        @JavascriptInterface
+        public void transferLatLon(double lat, double lon) {
+            mapViewModel.mapLat = lat;
+            mapViewModel.mapLon = lon;
+        }
+
+        @JavascriptInterface
+        public void transferZoom(int level) {
+            mapViewModel.mapZoom = level;
+        }
     }
 
 }
