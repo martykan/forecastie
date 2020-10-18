@@ -113,6 +113,16 @@
     <string name="dialog_ok">
     <string name="dialog_cancel">
 
+    <\!-- Settings/Notification -->
+    <string name="notification_service_description">
+    <string name="channel_name">
+    <string name="no_data">
+    <string name="settings_title_notifications">
+    <string name="settings_enable_notification_title">
+    <string name="settings_notification_type_title">
+    <string name="settings_notification_type_default">
+    <string name="settings_notification_type_simple">
+
     <\!-- Errors -->
     <string name="msg_err_parsing_json">
     <string name="msg_http_error">

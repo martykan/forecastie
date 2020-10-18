@@ -5,23 +5,8 @@
     <string name="no_data">No data</string>
 
     <string name="settings_title_notifications">Notification</string>
-
-    <string name="settings_enable_notification_key" translatable="false">showNotification</string>
     <string name="settings_enable_notification_title">Show notification</string>
-
-    <string name="settings_notification_type_key" translatable="false">notificationType</string>
     <string name="settings_notification_type_title">Notification type</string>
-    <string name="settings_notification_type_key_default" translatable="false">default</string>
-    <string name="settings_notification_type_key_simple" translatable="false">simple</string>
-    <string name="settings_notification_type_default_value" translatable="false">@string/settings_notification_type_key_simple</string>
-    <string-array name="settings_notification_type_value_keys" translatable="false">
-        <item translatable="false">@string/settings_notification_type_key_default</item>
-        <item translatable="false">@string/settings_notification_type_key_simple</item>
-    </string-array>
     <string name="settings_notification_type_default">Default Android notification</string>
     <string name="settings_notification_type_simple">Simple notification</string>
-    <string-array name="settings_notification_type_value_titles">
-        <item>@string/settings_notification_type_default</item>
-        <item>@string/settings_notification_type_simple</item>
-    </string-array>
 </resources>
