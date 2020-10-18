@@ -30,7 +30,7 @@ import java.util.Date;
 
 import cz.martykan.forecastie.AlarmReceiver;
 import cz.martykan.forecastie.R;
-import cz.martykan.forecastie.services.WeatherNotificationService;
+import cz.martykan.forecastie.notifications.WeatherNotificationService;
 import cz.martykan.forecastie.utils.UI;
 
 public class SettingsActivity extends PreferenceActivity

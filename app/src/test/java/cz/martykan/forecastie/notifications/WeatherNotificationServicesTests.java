@@ -1,4 +1,4 @@
-package cz.martykan.forecastie.services;
+package cz.martykan.forecastie.notifications;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -9,9 +9,8 @@ import android.content.Intent;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ServiceTestRule;
 
-import junit.framework.Assert;
-
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;

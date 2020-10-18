@@ -106,7 +106,7 @@
 
         <!-- Services -->
 
-        <service android:name=".services.WeatherNotificationService"
+        <service android:name=".notifications.WeatherNotificationService"
             android:exported="false"
             android:description="@string/notification_service_description"/>
 

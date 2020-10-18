@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import cz.martykan.forecastie.R;
-import cz.martykan.forecastie.services.WeatherNotificationService;
+import cz.martykan.forecastie.notifications.WeatherNotificationService;
 
 public class SplashActivity extends AppCompatActivity {
 

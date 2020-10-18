@@ -108,7 +108,7 @@
         <CheckBoxPreference
             android:key="@string/settings_enable_notification_key"
             android:title="@string/settings_enable_notification_title"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
 
         <ListPreference
             android:key="@string/settings_notification_type_key"

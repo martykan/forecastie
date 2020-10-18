@@ -1,4 +1,4 @@
-package cz.martykan.forecastie.notifications;
+package cz.martykan.forecastie.notifications.ui;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,21 +9,36 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import cz.martykan.forecastie.R;
+import cz.martykan.forecastie.models.WeatherPresentation;
 import cz.martykan.forecastie.utils.formatters.WeatherFormatter;
 import cz.martykan.forecastie.utils.formatters.WeatherSimpleNotificationFormatter;
 
 public class SimpleNotificationContentUpdater extends NotificationContentUpdater {
-    private WeatherFormatter formatter;
+    private final WeatherFormatter formatter;
 
     public SimpleNotificationContentUpdater(@NonNull WeatherFormatter formatter) {
         this.formatter = formatter;
     }
 
     @Override
-    public void updateNotification(@NonNull NotificationCompat.Builder notification,
-                            @NonNull RemoteViews notificationLayout,
-                            @NonNull Context context
-    ) throws NullPointerException {
+    public boolean isLayoutCustom() {
+        return true;
+    }
+
+    @NonNull
+    @Override
+    public RemoteViews prepareRemoteView(@NonNull Context context) throws NullPointerException {
+        return new RemoteViews(context.getPackageName(), R.layout.notification_simple);
+    }
+
+    @Override
+    public void updateNotification(@NonNull WeatherPresentation weatherPresentation,
+                                   @NonNull NotificationCompat.Builder notification,
+                                   @NonNull RemoteViews notificationLayout,
+                                   @NonNull Context context) throws NullPointerException {
+        //noinspection ConstantConditions
+        if (weatherPresentation == null)
+            throw new NullPointerException("weatherPresentation is null");
         //noinspection ConstantConditions
         if (notification == null)
             throw new NullPointerException("notification is null");
@@ -41,26 +56,30 @@ public class SimpleNotificationContentUpdater extends NotificationContentUpdater
                 .setContent(notificationLayout)
                 .setCustomBigContentView(notificationLayout);
 
-        if (formatter.isEnoughValidData(weather)) {
-            setTemperatureAndDescription(notificationLayout);
+        if (formatter.isEnoughValidData(weatherPresentation.getWeather())) {
+            setTemperatureAndDescription(notificationLayout, weatherPresentation);
 
             notificationLayout.setViewVisibility(R.id.icon, View.VISIBLE);
-            Bitmap weatherIcon = formatter.getWeatherIconAsBitmap(weather, context);
+            Bitmap weatherIcon = formatter.getWeatherIconAsBitmap(weatherPresentation.getWeather(), context);
             notificationLayout.setImageViewBitmap(R.id.icon, weatherIcon);
 
-            String wind = formatter.getWind(weather, windSpeedUnits, windDirectionFormat, context);
+            String wind = formatter.getWind(weatherPresentation.getWeather(),
+                    weatherPresentation.getWindSpeedUnits(),
+                    weatherPresentation.getWindDirectionFormat(), context);
             notificationLayout.setTextViewText(R.id.wind, wind);
 
-            String pressure = formatter.getPressure(weather, pressureUnits, context);
+            String pressure = formatter.getPressure(weatherPresentation.getWeather(),
+                    weatherPresentation.getPressureUnits(), context);
             notificationLayout.setTextViewText(R.id.pressure, pressure);
 
-            String humidity = formatter.getHumidity(weather, context);
+            String humidity = formatter.getHumidity(weatherPresentation.getWeather(), context);
             notificationLayout.setTextViewText(R.id.humidity, humidity);
         } else {
             if (formatter instanceof WeatherSimpleNotificationFormatter
-                    && ((WeatherSimpleNotificationFormatter) formatter).isEnoughValidMainData(weather)
+                    && ((WeatherSimpleNotificationFormatter) formatter)
+                    .isEnoughValidMainData(weatherPresentation.getWeather())
             ) {
-                setTemperatureAndDescription(notificationLayout);
+                setTemperatureAndDescription(notificationLayout, weatherPresentation);
             } else {
                 notificationLayout.setTextViewText(R.id.temperature, "");
                 notificationLayout.setTextViewText(R.id.description, "");
@@ -72,17 +91,14 @@ public class SimpleNotificationContentUpdater extends NotificationContentUpdater
         }
     }
 
-    private void setTemperatureAndDescription(@NonNull RemoteViews notificationLayout) {
-        String temperature = formatter.getTemperature(weather, temperatureUnits,
-                roundedTemperature);
+    private void setTemperatureAndDescription(@NonNull RemoteViews notificationLayout,
+                                              @NonNull WeatherPresentation weatherPresentation) {
+        String temperature = formatter.getTemperature(weatherPresentation.getWeather(),
+                weatherPresentation.getTemperatureUnits(),
+                weatherPresentation.isRoundedTemperature());
         notificationLayout.setTextViewText(R.id.temperature, temperature);
 
-        String description = formatter.getDescription(weather);
+        String description = formatter.getDescription(weatherPresentation.getWeather());
         notificationLayout.setTextViewText(R.id.description, description);
-    }
-
-    @Override
-    public RemoteViews prepareRemoteView(@NonNull Context context) throws NullPointerException {
-        return new RemoteViews(context.getPackageName(), R.layout.notification_simple);
     }
 }

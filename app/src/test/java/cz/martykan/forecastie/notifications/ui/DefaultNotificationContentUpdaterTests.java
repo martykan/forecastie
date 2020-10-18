@@ -1,4 +1,4 @@
-package cz.martykan.forecastie.notifications;
+package cz.martykan.forecastie.notifications.ui;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,6 +14,8 @@ import org.mockito.MockitoAnnotations;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.ImmutableWeather;
+import cz.martykan.forecastie.models.WeatherPresentation;
+import cz.martykan.forecastie.notifications.ui.DefaultNotificationContentUpdater;
 import cz.martykan.forecastie.utils.formatters.WeatherFormatter;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -33,6 +35,7 @@ public class DefaultNotificationContentUpdaterTests {
     @Mock private ImmutableWeather weatherMock;
     private NotificationCompat.Builder notificationSpy;
 
+    private WeatherPresentation weatherPresentation;
     private DefaultNotificationContentUpdater contentUpdater;
 
     @Before
@@ -42,6 +45,15 @@ public class DefaultNotificationContentUpdaterTests {
         contentUpdater = new DefaultNotificationContentUpdater(formatterMock);
 
         notificationSpy = spy(new NotificationCompat.Builder(contextMock, "channel"));
+
+        weatherPresentation = new WeatherPresentation();
+    }
+
+    @Test
+    public void isLayoutCustomReturnsTrue() {
+        boolean actual = contentUpdater.isLayoutCustom();
+
+        Assert.assertFalse("default notification should has default layout", actual);
     }
 
     @Test
@@ -51,15 +63,14 @@ public class DefaultNotificationContentUpdaterTests {
         when(formatterMock.getTemperature(same(weatherMock), anyString(), anyBoolean()))
                 .thenReturn(expectedTemperature);
 
-        contentUpdater.setWeather(weatherMock);
-        contentUpdater.updateNotification(notificationSpy, contextMock);
+        weatherPresentation = weatherPresentation.copy(weatherMock);
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, contextMock);
 
         verify(notificationSpy).setContentTitle(eq(expectedTemperature));
 
         String expectedTemperatureUnits = "K";
-        contentUpdater.setRoundedTemperature(true);
-        contentUpdater.setTemperatureUnits(expectedTemperatureUnits);
-        contentUpdater.updateNotification(notificationSpy, contextMock);
+        weatherPresentation = weatherPresentation.copy(true).copyTemperatureUnits(expectedTemperatureUnits);
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, contextMock);
 
         verify(formatterMock).getTemperature(eq(weatherMock), eq(expectedTemperatureUnits),
                 eq(true));
@@ -72,8 +83,8 @@ public class DefaultNotificationContentUpdaterTests {
         when(formatterMock.getDescription(same(weatherMock)))
                 .thenReturn(expectedDescription);
 
-        contentUpdater.setWeather(weatherMock);
-        contentUpdater.updateNotification(notificationSpy, contextMock);
+        weatherPresentation = weatherPresentation.copy(weatherMock);
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, contextMock);
 
         verify(notificationSpy).setContentText(eq(expectedDescription));
     }
@@ -86,8 +97,8 @@ public class DefaultNotificationContentUpdaterTests {
                 .thenReturn(expectedIcon);
         when(notificationSpy.setLargeIcon(any(Bitmap.class))).thenReturn(notificationSpy);
 
-        contentUpdater.setWeather(weatherMock);
-        contentUpdater.updateNotification(notificationSpy, contextMock);
+        weatherPresentation = weatherPresentation.copy(weatherMock);;
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, contextMock);
 
         verify(notificationSpy).setLargeIcon(expectedIcon);
     }
@@ -98,8 +109,8 @@ public class DefaultNotificationContentUpdaterTests {
         when(contextMock.getString(R.string.no_data)).thenReturn(expectedString);
         when(formatterMock.isEnoughValidData(same(weatherMock))).thenReturn(false);
 
-        contentUpdater.setWeather(weatherMock);
-        contentUpdater.updateNotification(notificationSpy, contextMock);
+        weatherPresentation = weatherPresentation.copy(weatherMock);;
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, contextMock);
 
         verify(notificationSpy).setContentTitle(eq(expectedString));
         verify(notificationSpy).setContentText((String) isNull());
@@ -112,28 +123,21 @@ public class DefaultNotificationContentUpdaterTests {
         Assert.assertThrows(NullPointerException.class, new ThrowingRunnable() {
             @Override
             public void run() {
-                contentUpdater.setTemperatureUnits(null);
+                contentUpdater.updateNotification(null, notificationSpy, contextMock);
             }
         });
 
         Assert.assertThrows(NullPointerException.class, new ThrowingRunnable() {
             @Override
             public void run() {
-                contentUpdater.setWeather(null);
+                contentUpdater.updateNotification(weatherPresentation, null, contextMock);
             }
         });
 
         Assert.assertThrows(NullPointerException.class, new ThrowingRunnable() {
             @Override
             public void run() {
-                contentUpdater.updateNotification((NotificationCompat.Builder) null, contextMock);
-            }
-        });
-
-        Assert.assertThrows(NullPointerException.class, new ThrowingRunnable() {
-            @Override
-            public void run() {
-                contentUpdater.updateNotification(notificationSpy, null);
+                contentUpdater.updateNotification(weatherPresentation, notificationSpy, null);
             }
         });
     }

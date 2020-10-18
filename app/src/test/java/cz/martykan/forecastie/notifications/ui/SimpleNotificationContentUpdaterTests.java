@@ -1,15 +1,14 @@
-package cz.martykan.forecastie.notifications;
+package cz.martykan.forecastie.notifications.ui;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import androidx.core.app.NotificationCompat;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import androidx.core.app.NotificationCompat;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.function.ThrowingRunnable;
@@ -20,6 +19,8 @@ import org.robolectric.annotation.Config;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.ImmutableWeather;
+import cz.martykan.forecastie.models.WeatherPresentation;
+import cz.martykan.forecastie.notifications.ui.SimpleNotificationContentUpdater;
 import cz.martykan.forecastie.utils.formatters.WeatherSimpleNotificationFormatter;
 
 import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
@@ -44,6 +45,7 @@ public class SimpleNotificationContentUpdaterTests {
     private NotificationCompat.Builder notificationSpy;
     private RemoteViews layoutSpy;
 
+    private WeatherPresentation weatherPresentation;
     private SimpleNotificationContentUpdater contentUpdater;
 
     @Before
@@ -54,6 +56,15 @@ public class SimpleNotificationContentUpdaterTests {
 
         layoutSpy = spy(new RemoteViews(context.getPackageName(), R.layout.notification_simple));
         notificationSpy = spy(new NotificationCompat.Builder(context, "channel"));
+
+        weatherPresentation = new WeatherPresentation();
+    }
+
+    @Test
+    public void isLayoutCustomReturnsTrue() {
+        boolean actual = contentUpdater.isLayoutCustom();
+
+        Assert.assertTrue("simple notification should has custom layout", actual);
     }
 
     @Test
@@ -66,7 +77,7 @@ public class SimpleNotificationContentUpdaterTests {
 
     @Test
     public void updateNotificationSetsLayoutAsCustomLayoutIntoNotification() {
-        contentUpdater.updateNotification(notificationSpy, layoutSpy, context);
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, layoutSpy, context);
 
         verify(notificationSpy).setContent(refEq(layoutSpy));
         verify(notificationSpy).setCustomBigContentView(refEq(layoutSpy));
@@ -78,8 +89,8 @@ public class SimpleNotificationContentUpdaterTests {
         when(formatterMock.isEnoughValidMainData(same(weatherMock))).thenReturn(false);
         String noDataString = context.getString(R.string.no_data);
 
-        contentUpdater.setWeather(weatherMock);
-        contentUpdater.updateNotification(notificationSpy, layoutSpy, context);
+        weatherPresentation = weatherPresentation.copy(weatherMock);
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, layoutSpy, context);
 
         verify(layoutSpy).setTextViewText(eq(R.id.temperature), eq(""));
         verify(layoutSpy).setTextViewText(eq(R.id.description), eq(""));
@@ -100,8 +111,8 @@ public class SimpleNotificationContentUpdaterTests {
                 .thenReturn(expectedTemperature);
         String noDataString = context.getString(R.string.no_data);
 
-        contentUpdater.setWeather(weatherMock);
-        contentUpdater.updateNotification(notificationSpy, layoutSpy, context);
+        weatherPresentation = weatherPresentation.copy(weatherMock);
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, layoutSpy, context);
 
         verify(layoutSpy).setTextViewText(eq(R.id.temperature), eq(expectedTemperature));
         verify(layoutSpy).setTextViewText(eq(R.id.description), eq(expectedDescription));
@@ -119,15 +130,14 @@ public class SimpleNotificationContentUpdaterTests {
         when(formatterMock.getTemperature(same(weatherMock), anyString(), anyBoolean()))
                 .thenReturn(expectedTemperature);
 
-        contentUpdater.setWeather(weatherMock);
-        contentUpdater.updateNotification(notificationSpy, layoutSpy, context);
+        weatherPresentation = weatherPresentation.copy(weatherMock);
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, layoutSpy, context);
 
         verify(layoutSpy).setTextViewText(eq(R.id.temperature), eq(expectedTemperature));
 
         String expectedTemperatureUnits = "K";
-        contentUpdater.setRoundedTemperature(true);
-        contentUpdater.setTemperatureUnits(expectedTemperatureUnits);
-        contentUpdater.updateNotification(notificationSpy, layoutSpy, context);
+        weatherPresentation = weatherPresentation.copy(true).copyTemperatureUnits(expectedTemperatureUnits);
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, layoutSpy, context);
 
         verify(formatterMock).getTemperature(eq(weatherMock), eq(expectedTemperatureUnits),
                 eq(true));
@@ -140,8 +150,8 @@ public class SimpleNotificationContentUpdaterTests {
         String expectedDescription = "description";
         when(formatterMock.getDescription(same(weatherMock))).thenReturn(expectedDescription);
 
-        contentUpdater.setWeather(weatherMock);
-        contentUpdater.updateNotification(notificationSpy, layoutSpy, context);
+        weatherPresentation = weatherPresentation.copy(weatherMock);
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, layoutSpy, context);
 
         verify(layoutSpy).setTextViewText(eq(R.id.description), eq(expectedDescription));
         verify(formatterMock).getDescription(eq(weatherMock));
@@ -155,8 +165,8 @@ public class SimpleNotificationContentUpdaterTests {
         when(formatterMock.getWeatherIconAsBitmap(same(weatherMock), any(Context.class)))
                 .thenReturn(iconMock);
 
-        contentUpdater.setWeather(weatherMock);
-        contentUpdater.updateNotification(notificationSpy, layoutSpy, context);
+        weatherPresentation = weatherPresentation.copy(weatherMock);
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, layoutSpy, context);
 
         verify(layoutSpy).setViewVisibility(eq(R.id.icon), eq(View.VISIBLE));
         verify(layoutSpy).setImageViewBitmap(eq(R.id.icon), same(iconMock));
@@ -173,8 +183,8 @@ public class SimpleNotificationContentUpdaterTests {
         String expectedWindSpeedUnits = "m/s";
         String expectedWindDirectionFormat = "arrow";
 
-        contentUpdater.setWeather(weatherMock);
-        contentUpdater.updateNotification(notificationSpy, layoutSpy, context);
+        weatherPresentation = weatherPresentation.copy(weatherMock);;
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, layoutSpy, context);
 
         verify(layoutSpy).setTextViewText(eq(R.id.wind), eq(expectedWind));
         verify(formatterMock)
@@ -183,9 +193,9 @@ public class SimpleNotificationContentUpdaterTests {
 
         expectedWindSpeedUnits = "kph";
         expectedWindDirectionFormat = "none";
-        contentUpdater.setWindSpeedUnits(expectedWindSpeedUnits);
-        contentUpdater.setWindDirectionFormat(expectedWindDirectionFormat);
-        contentUpdater.updateNotification(notificationSpy, layoutSpy, context);
+        weatherPresentation = weatherPresentation.copyWindSpeedUnits(expectedWindSpeedUnits)
+                .copyWindDirectionFormat(expectedWindDirectionFormat);
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, layoutSpy, context);
 
         verify(formatterMock)
                 .getWind(eq(weatherMock), eq(expectedWindSpeedUnits),
@@ -201,15 +211,15 @@ public class SimpleNotificationContentUpdaterTests {
                 .thenReturn(expectedPressure);
         String expectedPressureUnits = "hPa/mBar";
 
-        contentUpdater.setWeather(weatherMock);
-        contentUpdater.updateNotification(notificationSpy, layoutSpy, context);
+        weatherPresentation = weatherPresentation.copy(weatherMock);
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, layoutSpy, context);
 
         verify(layoutSpy).setTextViewText(eq(R.id.pressure), eq(expectedPressure));
         verify(formatterMock).getPressure(eq(weatherMock), eq(expectedPressureUnits), same(context));
 
         expectedPressureUnits = "mm Hg";
-        contentUpdater.setPressureUnits(expectedPressureUnits);
-        contentUpdater.updateNotification(notificationSpy, layoutSpy, context);
+        weatherPresentation = weatherPresentation.copyPressureUnits(expectedPressureUnits);
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, layoutSpy, context);
 
         verify(formatterMock).getPressure(eq(weatherMock), eq(expectedPressureUnits), same(context));
     }
@@ -222,8 +232,8 @@ public class SimpleNotificationContentUpdaterTests {
         when(formatterMock.getHumidity(same(weatherMock), any(Context.class)))
                 .thenReturn(expectedHumidity);
 
-        contentUpdater.setWeather(weatherMock);
-        contentUpdater.updateNotification(notificationSpy, layoutSpy, context);
+        weatherPresentation = weatherPresentation.copy(weatherMock);
+        contentUpdater.updateNotification(weatherPresentation, notificationSpy, layoutSpy, context);
 
         verify(layoutSpy).setTextViewText(eq(R.id.humidity), eq(expectedHumidity));
         verify(formatterMock).getHumidity(eq(weatherMock), same(context));
@@ -235,56 +245,28 @@ public class SimpleNotificationContentUpdaterTests {
         assertThrows(NullPointerException.class, new ThrowingRunnable() {
             @Override
             public void run() {
-                contentUpdater.setTemperatureUnits(null);
+                contentUpdater.updateNotification(null, notificationSpy, layoutSpy, context);
             }
         });
 
         assertThrows(NullPointerException.class, new ThrowingRunnable() {
             @Override
             public void run() {
-                contentUpdater.setWindSpeedUnits(null);
+                contentUpdater.updateNotification(weatherPresentation, null, layoutSpy, context);
             }
         });
 
         assertThrows(NullPointerException.class, new ThrowingRunnable() {
             @Override
             public void run() {
-                contentUpdater.setWindDirectionFormat(null);
+                contentUpdater.updateNotification(weatherPresentation, notificationSpy, null, context);
             }
         });
 
         assertThrows(NullPointerException.class, new ThrowingRunnable() {
             @Override
             public void run() {
-                contentUpdater.setPressureUnits(null);
-            }
-        });
-
-        assertThrows(NullPointerException.class, new ThrowingRunnable() {
-            @Override
-            public void run() {
-                contentUpdater.setWeather(null);
-            }
-        });
-
-        assertThrows(NullPointerException.class, new ThrowingRunnable() {
-            @Override
-            public void run() {
-                contentUpdater.updateNotification((NotificationCompat.Builder) null, layoutSpy, context);
-            }
-        });
-
-        assertThrows(NullPointerException.class, new ThrowingRunnable() {
-            @Override
-            public void run() {
-                contentUpdater.updateNotification(notificationSpy, null, context);
-            }
-        });
-
-        assertThrows(NullPointerException.class, new ThrowingRunnable() {
-            @Override
-            public void run() {
-                contentUpdater.updateNotification(notificationSpy, layoutSpy, null);
+                contentUpdater.updateNotification(weatherPresentation, notificationSpy, layoutSpy, null);
             }
         });
     }

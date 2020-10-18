@@ -1,7 +1,6 @@
-package cz.martykan.forecastie.notifications;
+package cz.martykan.forecastie.notifications.ui;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import cz.martykan.forecastie.utils.formatters.WeatherFormatter;
 import cz.martykan.forecastie.utils.formatters.WeatherFormatterFactory;
@@ -20,38 +19,15 @@ public abstract class NotificationContentUpdaterFactory {
     public static NotificationContentUpdater createNotificationContentUpdater(
             @NonNull WeatherFormatterType type
     ) {
-        return createNotificationContentUpdater(type, null);
-    }
-
-    /**
-     * Create notification content updater for specified type.
-     * @param type type of weather formatter
-     * @param previousContentUpdater previous content updater to copy current values
-     * @return notification content updater for {@code type}
-     */
-    @NonNull
-    public static NotificationContentUpdater createNotificationContentUpdater(
-            @NonNull WeatherFormatterType type,
-            @Nullable  NotificationContentUpdater previousContentUpdater
-    ) {
         WeatherFormatter formatter = WeatherFormatterFactory.createFormatter(type);
-        NotificationContentUpdater contentUpdater;
         switch (type) {
             case NOTIFICATION_DEFAULT:
-                contentUpdater = new DefaultNotificationContentUpdater(formatter);
-                break;
+                return new DefaultNotificationContentUpdater(formatter);
             case NOTIFICATION_SIMPLE:
-                contentUpdater = new SimpleNotificationContentUpdater(formatter);
-                break;
+                return new SimpleNotificationContentUpdater(formatter);
             default:
                 throw new IllegalArgumentException("Unknown type" + type);
         }
-
-        if (previousContentUpdater != null) {
-            contentUpdater.copyPreviousValues(previousContentUpdater);
-        }
-
-        return contentUpdater;
     }
 
     /**
