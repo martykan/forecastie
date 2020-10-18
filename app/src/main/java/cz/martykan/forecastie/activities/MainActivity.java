@@ -75,6 +75,7 @@ import static cz.martykan.forecastie.utils.TimeUtils.isDayTime;
 
 public class MainActivity extends BaseActivity implements LocationListener {
     protected static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
+    public static final String SHOULD_REFRESH_FLAG = "shouldRefresh";
 
     // Time in milliseconds; only reload weather if last update is longer ago than this value
     private static final int NO_UPDATE_REQUIRED_THRESHOLD = 300000;
@@ -201,10 +202,16 @@ public class MainActivity extends BaseActivity implements LocationListener {
                 swipeRefreshLayout.setEnabled(verticalOffset == 0);
             }
         });
+    }
 
-        Bundle bundle = getIntent().getExtras();
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (intent == null)
+            return;
 
-        if (bundle != null && bundle.getBoolean("shouldRefresh")) {
+        Bundle bundle = intent.getExtras();
+        if (bundle != null && bundle.getBoolean(SHOULD_REFRESH_FLAG)) {
             refreshWeather();
         }
     }

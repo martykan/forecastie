@@ -160,7 +160,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
         final Bundle bundle = new Bundle();
 
         sharedPreferences.edit().putString("cityId", weather.getId()).commit();
-        bundle.putBoolean("shouldRefresh", true);
+        bundle.putBoolean(MainActivity.SHOULD_REFRESH_FLAG, true);
         intent.putExtras(bundle);
 
         startActivity(intent);
