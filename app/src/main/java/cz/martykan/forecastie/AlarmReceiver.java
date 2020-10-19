@@ -28,6 +28,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 import cz.martykan.forecastie.activities.MainActivity;
+import cz.martykan.forecastie.notifications.WeatherNotificationService;
 import cz.martykan.forecastie.utils.Language;
 import cz.martykan.forecastie.widgets.AbstractWidgetProvider;
 
@@ -38,12 +39,23 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         this.context = context;
-        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
+        boolean packageReplacedAction;
+        if (Intent.ACTION_PACKAGE_REPLACED.equals(intent.getAction())) {
+            String packageName = intent.getStringExtra(Intent.EXTRA_UID);
+            packageReplacedAction = packageName != null && packageName.equals(context.getPackageName());
+        } else {
+            packageReplacedAction = false;
+        }
+        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()) || packageReplacedAction) {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
             String interval = sp.getString("refreshInterval", "1");
             if (!interval.equals("0")) {
                 setRecurringAlarm(context);
                 getWeather();
+            }
+            String enableNotificationKey = context.getString(R.string.settings_enable_notification_key);
+            if (sp.getBoolean(enableNotificationKey, false)) {
+                WeatherNotificationService.start(context);
             }
         } else if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
             // Get weather if last attempt failed or if 'update location in background' is activated
@@ -53,6 +65,9 @@ public class AlarmReceiver extends BroadcastReceiver {
                     (sp.getBoolean("backgroundRefreshFailed", false) || isUpdateLocation())) {
                 getWeather();
             }
+        } else if (Intent.ACTION_LOCALE_CHANGED.equals(intent.getAction())) {
+            WeatherNotificationService.updateNotificationChannelIfNeeded(context);
+            getWeather();
         } else {
             getWeather();
         }

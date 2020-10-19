@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -15,25 +16,29 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cz.martykan.forecastie.AlarmReceiver;
 import cz.martykan.forecastie.R;
+import cz.martykan.forecastie.notifications.WeatherNotificationService;
 import cz.martykan.forecastie.utils.UI;
 
 public class SettingsActivity extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
+    protected static final int MY_PERMISSIONS_FOREGROUND_SERVICE = 2;
 
     // Thursday 2016-01-14 16:00:00
-    private Date SAMPLE_DATE = new Date(1452805200000l);
+    private Date SAMPLE_DATE = new Date(1452805200000L);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,6 +84,7 @@ public class SettingsActivity extends PreferenceActivity
         setListPreferenceSummary("refreshInterval");
         setListPreferenceSummary("windDirectionFormat");
         setListPreferenceSummary("theme");
+        setListPreferenceSummary(getString(R.string.settings_notification_type_key));
     }
 
     @Override
@@ -117,12 +123,23 @@ public class SettingsActivity extends PreferenceActivity
                 startActivity(getIntent());
                 break;
             case "updateLocationAutomatically":
-                if (sharedPreferences.getBoolean(key, false) == true) {
+                if (sharedPreferences.getBoolean(key, false)) {
                     requestReadLocationPermission();
                 }
                 break;
             case "apiKey":
                 checkKey(key);
+                break;
+            default:
+                if (key.equalsIgnoreCase(getString(R.string.settings_enable_notification_key))) {
+                    if (sharedPreferences.getBoolean(key, false)) {
+                        requestForegroundServicePermission();
+                    } else {
+                        hideNotification();
+                    }
+                } else if (key.equalsIgnoreCase(getString(R.string.settings_notification_type_key))) {
+                    setListPreferenceSummary(key);
+                }
                 break;
         }
     }
@@ -144,15 +161,42 @@ public class SettingsActivity extends PreferenceActivity
         }
     }
 
+    private void requestForegroundServicePermission() {
+        System.out.println("Calling request foreground service permission");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
+                && ContextCompat.checkSelfPermission(this, Manifest.permission.FOREGROUND_SERVICE)
+                        != PackageManager.PERMISSION_GRANTED) {
+            // this is normal permission, so no need to show explanation to user
+            ActivityCompat.requestPermissions(this,
+                    new String[]{ Manifest.permission.FOREGROUND_SERVICE },
+                    MY_PERMISSIONS_FOREGROUND_SERVICE);
+        } else {
+            showNotification();
+        }
+    }
+
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == MainActivity.MY_PERMISSIONS_ACCESS_FINE_LOCATION) {
-            boolean permissionGranted = grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
-            CheckBoxPreference checkBox = (CheckBoxPreference) findPreference("updateLocationAutomatically");
-            checkBox.setChecked(permissionGranted);
-            if (permissionGranted) {
-                privacyGuardWorkaround();
-            }
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MainActivity.MY_PERMISSIONS_ACCESS_FINE_LOCATION:
+                boolean permissionGranted = grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                CheckBoxPreference checkBox = (CheckBoxPreference) findPreference("updateLocationAutomatically");
+                checkBox.setChecked(permissionGranted);
+                if (permissionGranted) {
+                    privacyGuardWorkaround();
+                }
+                break;
+            case MY_PERMISSIONS_FOREGROUND_SERVICE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    showNotification();
+                } else {
+                    String enableNotificationKey = getString(R.string.settings_enable_notification_key);
+                    CheckBoxPreference notificationCheckBox =
+                            (CheckBoxPreference) findPreference(enableNotificationKey);
+                    notificationCheckBox.setChecked(false);
+                }
+                break;
         }
     }
 
@@ -166,6 +210,14 @@ public class SettingsActivity extends PreferenceActivity
         } catch (SecurityException e) {
             // This will most probably not happen, as we just got granted the permission
         }
+    }
+
+    private void showNotification() {
+        WeatherNotificationService.start(this);
+    }
+
+    private void hideNotification() {
+        WeatherNotificationService.stop(this);
     }
 
     private void setListPreferenceSummary(String preferenceKey) {

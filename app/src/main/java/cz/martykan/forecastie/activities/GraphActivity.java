@@ -6,14 +6,14 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.IdRes;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import androidx.annotation.IdRes;
+import androidx.appcompat.widget.Toolbar;
 
 import com.db.chart.Tools;
 import com.db.chart.model.BarSet;
@@ -22,6 +22,7 @@ import com.db.chart.model.LineSet;
 import com.db.chart.view.BarChartView;
 import com.db.chart.view.ChartView;
 import com.db.chart.view.LineChartView;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;

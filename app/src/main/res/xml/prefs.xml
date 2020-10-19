@@ -103,4 +103,19 @@
             android:title="@string/setting_update_location_automatically" />
 
     </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings_title_notifications">
+        <CheckBoxPreference
+            android:key="@string/settings_enable_notification_key"
+            android:title="@string/settings_enable_notification_title"
+            android:defaultValue="false" />
+
+        <ListPreference
+            android:key="@string/settings_notification_type_key"
+            android:title="@string/settings_notification_type_title"
+            android:entryValues="@array/settings_notification_type_value_keys"
+            android:entries="@array/settings_notification_type_value_titles"
+            android:defaultValue="@string/settings_notification_type_default_value"
+            android:dependency="@string/settings_enable_notification_key" />
+    </PreferenceCategory>
 </PreferenceScreen>

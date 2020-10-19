@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:layout_height="64dp">
+
+    <LinearLayout
+        android:id="@+id/more_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true">
+
+        <TextView
+            android:id="@+id/wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:gravity="start"
+            style="@style/TextAppearance.Compat.Notification"
+            tools:text="Wind: 0 m/s"/>
+
+        <TextView
+            android:id="@+id/pressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:gravity="start"
+            style="@style/TextAppearance.Compat.Notification"
+            tools:text="Pressure: 0 hpa"/>
+
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:gravity="start"
+            style="@style/TextAppearance.Compat.Notification"
+            tools:text="Humidity: 0%"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:gravity="center"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@+id/more_info"
+        android:layout_toEndOf="@+id/more_info"
+        android:layout_toLeftOf="@+id/base_info"
+        android:layout_toStartOf="@+id/base_info"
+        tools:tint="@color/notification_icon_color"
+        tools:src="@drawable/ic_cloud_white_24dp"/>
+
+    <LinearLayout
+        android:id="@+id/base_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true">
+
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:gravity="end"
+            android:layout_gravity="end"
+            style="@style/TextAppearance.Compat.Notification.Title"
+            tools:text="0°C"/>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:gravity="end"
+            android:layout_gravity="end"
+            style="@style/TextAppearance.Compat.Notification"
+            tools:text="Clear sky"/>
+    </LinearLayout>
+</RelativeLayout>
