@@ -39,8 +39,6 @@
     <string name="setting_dateFormat">Date Format</string>
     <string name="setting_dateFormatCustom">Custom Date Format</string>
     <string name="setting_dateFormatCustom_summary">Provide the custom SimpleDateFormat string to be used</string>
-    <string name="setting_available_simple_string_codes" translatable="false">yYMwWDdFEuaHkKhmsSzZX</string>
-    <string name="setting_example_simple_string" translatable="false">EEEE, d MMM yyyy h:mm:ss a, zzzz</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>
 </resources>

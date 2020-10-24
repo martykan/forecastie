@@ -5,8 +5,8 @@
     <string name="no_data">No data</string>
 
     <string name="settings_title_notifications">Notification</string>
-    <string name="settings_enable_notification_title">Show notification</string>
+    <string name="settings_enable_notification_title">Show weather in notification</string>
     <string name="settings_notification_type_title">Notification type</string>
-    <string name="settings_notification_type_default">Default Android notification</string>
+    <string name="settings_notification_type_default">Default Android view</string>
     <string name="settings_notification_type_simple">Simple notification</string>
 </resources>

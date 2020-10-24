@@ -30,6 +30,10 @@
     <string name="weather_tornado" translatable="false">&#xf056;</string>
     <string name="weather_windy" translatable="false">&#xf021;</string>
 
+    <!-- Settings/Date format -->
+    <string name="setting_available_simple_string_codes" translatable="false">yYMwWDdFEuaHkKhmsSzZX</string>
+    <string name="setting_example_simple_string" translatable="false">EEEE, d MMM yyyy h:mm:ss a, zzzz</string>
+
     <!-- Notification -->
     <string name="settings_enable_notification_key" translatable="false">showNotification</string>
     <string name="settings_notification_type_key" translatable="false">notificationType</string>
