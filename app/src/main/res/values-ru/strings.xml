@@ -10,6 +10,7 @@
     <string name="search_title">Найти населённый пункт</string>
     <string name="downloading_data">Выполняется загрузка данных…</string>
     <string name="getting_location">Определение местоположения…</string>
+    <string name="loading_data">Загрузка…</string>
 
     <!-- Forecast cards -->
     <string name="today">Сегодня</string>
@@ -18,10 +19,13 @@
 
     <!-- Main activity headings -->
     <string name="wind">Ветер</string>
+    <string name="wind_speed">Скорость ветра</string>
     <string name="pressure">Давление</string>
     <string name="humidity">Влажность</string>
     <string name="sunrise">Восход</string>
     <string name="sunset">Закат</string>
+    <string name="uvindex">УФ-индекс</string>
+    <string name="tap_for_graphs">Перейти к графикам</string>
 
     <!-- Settings/Units -->
     <string name="settings_title_units">Единицы</string>
@@ -36,6 +40,8 @@
     <string name="setting_unit_mps">Метры в секунду (м/с)</string>
     <string name="setting_unit_kph">Километры в час (км/ч)</string>
     <string name="setting_unit_mph">Мили в час (миль/ч)</string>
+    <string name="setting_unit_bft">Шкала бофорта</string>
+    <string name="setting_unit_kn">Узлы (уз)</string>
     <string name="setting_unit_Celsuis">по Цельсию</string>
     <string name="setting_unit_Fahrenheit">по Фаренгейту</string>
     <string name="setting_unit_Kelvin">по Кельвину</string>
@@ -45,25 +51,37 @@
 
     <string name="setting_unit_hpa">Гектопаскаль (гПа)</string>
     <string name="setting_unit_kpa">Килопаскаль (кПа)</string>
-    <string name="setting_unit_mmhg">мм ртутного столба (мм.рт.ст.)</string>
+    <string name="setting_unit_mmhg">мм ртутного столба (мм. рт. ст.)</string>
+    <string name="setting_unit_inhg">дюйм ртутного столба (дюйм рт. ст.)</string>
 
     <string name="speed_unit_mps">м/с</string>
     <string name="speed_unit_kph">км/ч</string>
     <string name="speed_unit_mph">миль/ч</string>
+    <string name="speed_unit_kn">уз</string>
 
     <string name="pressure_unit_hpa">гПа</string>
     <string name="pressure_unit_kpa">кПа</string>
-    <string name="pressure_unit_mmhg">мм рт.ст.</string>
+    <string name="pressure_unit_mmhg">мм рт. ст.</string>
+    <string name="pressure_unit_inhg">дюйм рт. ст.</string>
 
+    <string name="uvi_no_info">Нет данных</string>
+    <string name="uvi_low">Низкое</string>
+    <string name="uvi_moderate">Умеренное</string>
+    <string name="uvi_high">Высокое</string>
+    <string name="uvi_very_high">Очень высокое</string>
+    <string name="uvi_extreme">Экстремальное</string>
 
     <!-- Settings/Appearance -->
     <string name="settings_title_display">Отображение</string>
     <string name="setting_theme">Тема</string>
+    <string name="setting_transparent_widget">Прозрачный фон виджетов</string>
     <string name="setting_wind_direction_format">Формат направления ветра</string>
     <string name="setting_theme_fresh">Новая</string>
     <string name="setting_theme_classic">Классическая</string>
     <string name="setting_theme_dark">Новая темная</string>
     <string name="setting_theme_classic_dark">Классическая темная</string>
+    <string name="setting_theme_black">Новая чёрная</string>
+    <string name="setting_theme_classic_black">Классическая чёрная</string>
 
     <string name="wind_direction_format_none">Не отображать</string>
     <string name="wind_direction_format_arrows">Стрелками</string>
@@ -76,6 +94,13 @@
     <string name="settings_title_data">Данные</string>
     <string name="setting_refreshInterval">Интервал обновления</string>
     <string name="settings_none">Отключено</string>
+    <string name="settings_15min">15 мин</string>
+    <string name="settings_30min">30 мин</string>
+    <string name="settings_1hour">1 ч</string>
+    <string name="settings_2hour">2 ч</string>
+    <string name="settings_6hour">6 ч</string>
+    <string name="settings_12hour">12 ч</string>
+    <string name="settings_24hour">24 ч</string>
     <string name="setting_apiKey">Ключ к API</string>
     <string name="setting_apiKey_summary">Ключ для обращений к API OpenWeatherMap</string>
 
@@ -87,11 +112,23 @@
     <string name="dialog_ok">ОК</string>
     <string name="dialog_cancel">Отмена</string>
 
+    <!-- Settings/Notification -->
+    <string name="notification_service_description">Service for showing Forecastie weather notification.</string>
+    <string name="channel_name">Уведомление о погоде</string>
+    <string name="no_data">Нет данных</string>
+    <string name="settings_title_notifications">Уведомление</string>
+    <string name="settings_enable_notification_title">Показывать уведомление с погодой</string>
+    <string name="settings_notification_type_title">Вид уведомления</string>
+    <string name="settings_notification_type_default">Стандартное уведомление Android</string>
+    <string name="settings_notification_type_simple">Простое уведомление</string>
+
     <!-- Errors -->
     <string name="msg_err_parsing_json">Ошибка разбора JSON.</string>
+    <string name="msg_http_error">Ошибка при запросе или получении данных.</string>
     <string name="msg_connection_not_available">Интернет-соединение отсутствует.</string>
     <string name="msg_city_not_found">Указанный населённый пункт не найден.</string>
     <string name="msg_too_many_requests">Слишком много запросов. Попробуйте ещё раз.</string>
+    <string name="msg_invalid_api_key">Неверный ключ к API.</string>
 
     <!-- Wind direction -->
     <string name="wind_direction_north">С</string>
@@ -112,7 +149,19 @@
     <string name="wind_direction_north_north_west">ССЗ</string>
 
     <!-- Wind strength - Beaufort -->
-
+    <string name="beaufort_calm">Штиль (0)</string>
+    <string name="beaufort_light_air">Тихий (1)</string>
+    <string name="beaufort_light_breeze">Лёгкий (2)</string>
+    <string name="beaufort_gentle_breeze">Слабый (3)</string>
+    <string name="beaufort_moderate_breeze">Умеренный (4)</string>
+    <string name="beaufort_fresh_breeze">Свежий (5)</string>
+    <string name="beaufort_strong_breeze">Сильный (6)</string>
+    <string name="beaufort_high_wind">Крепкий (7)</string>
+    <string name="beaufort_gale">Очень крепкий (8)</string>
+    <string name="beaufort_strong_gale">Шторм (9)</string>
+    <string name="beaufort_storm">Сильный шторм (10)</string>
+    <string name="beaufort_violent_storm">Жестокий шторм (11)</string>
+    <string name="beaufort_hurricane">Ураган (12)</string>
 
     <!-- Location -->
     <string name="settings_title_location">Местоположение</string>
@@ -120,16 +169,30 @@
     <string name="location_settings">Настройки местоположения</string>
     <string name="location_settings_message">Определение местоположения отключено. Перейти в меню настроек?</string>
     <string name="location_settings_button">Настройки</string>
+    <string name="location_search_heading">Места</string>
 
     <!-- Map -->
     <string name="action_weather_map">Погодная карта</string>
     <string name="rain">Осадки</string>
     <string name="temperature">Температура</string>
+    <string name="clouds">Облака</string>
 
     <!-- Graphs -->
     <string name="action_graphs">Графики</string>
+    <string name="graphs_more_days">Больше дней</string>
 
     <!-- About dialogue -->
+    <string name="about_unknown">Версия неизвестна</string>
+    <string name="about_description">Лёгкое, свободное погодное приложение, распространяемое под лицензией GPL3.</string>
+    <string name="about_developers">Разработано <a href='mailto:t.martykan@gmail.com'>Tomáš Martykán</a> и <a href='https://github.com/martykan/forecastie/graphs/contributors'>другими участниками</a>, при содействии <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>ещё многих</a>.</string>
+    <string name="about_src">Код доступен на <a href='https://github.com/martykan/forecastie'>GitHub</a>.</string>
+    <string name="about_issues">Ошибки и советы можно разместить в нашей <a href='https://github.com/martykan/forecastie/issues'>системе отслежвания ошибок на GitHub</a>.</string>
+    <string name="about_data">Данные предоставляются сайтом <a href='https://openweathermap.org/'>OpenWeatherMap</a> под лицензией <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA 2.0</a>.</string>
+    <string name="about_icons">Иконки <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, созданные <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> и <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, под лицензией <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a>.</string>
 
     <!-- Widget -->
+    <string name="widget_label_extensive">Forecastie Расширенный</string>
+    <string name="widget_label_time">Forecastie Часы</string>
+    <string name="widget_label_simple">Forecastie Простой</string>
+    <string name="widget_label_classic">Forecastie Классический</string>
 </resources>
