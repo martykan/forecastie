@@ -78,8 +78,8 @@
     <string name="setting_wind_direction_format">Формат направления ветра</string>
     <string name="setting_theme_fresh">Новая</string>
     <string name="setting_theme_classic">Классическая</string>
-    <string name="setting_theme_dark">Новая темная</string>
-    <string name="setting_theme_classic_dark">Классическая темная</string>
+    <string name="setting_theme_dark">Новая тёмная</string>
+    <string name="setting_theme_classic_dark">Классическая тёмная</string>
     <string name="setting_theme_black">Новая чёрная</string>
     <string name="setting_theme_classic_black">Классическая чёрная</string>
 
@@ -94,14 +94,14 @@
     <string name="settings_title_data">Данные</string>
     <string name="setting_refreshInterval">Интервал обновления</string>
     <string name="settings_none">Отключено</string>
-    <string name="settings_15min">15 мин</string>
-    <string name="settings_30min">30 мин</string>
-    <string name="settings_1hour">1 ч</string>
-    <string name="settings_2hour">2 ч</string>
-    <string name="settings_6hour">6 ч</string>
-    <string name="settings_12hour">12 ч</string>
-    <string name="settings_24hour">24 ч</string>
-    <string name="setting_apiKey">Ключ к API</string>
+    <string name="settings_15min">15 мин.</string>
+    <string name="settings_30min">30 мин.</string>
+    <string name="settings_1hour">1 ч.</string>
+    <string name="settings_2hour">2 ч.</string>
+    <string name="settings_6hour">6 ч.</string>
+    <string name="settings_12hour">12 ч.</string>
+    <string name="settings_24hour">24 ч.</string>
+    <string name="setting_apiKey">Ключ API</string>
     <string name="setting_apiKey_summary">Ключ для обращений к API OpenWeatherMap</string>
 
     <!-- Settings/Date format -->
@@ -113,7 +113,7 @@
     <string name="dialog_cancel">Отмена</string>
 
     <!-- Settings/Notification -->
-    <string name="notification_service_description">Service for showing Forecastie weather notification.</string>
+    <string name="notification_service_description">Служба отображения уведомления о погоде Forecastie.</string>
     <string name="channel_name">Уведомление о погоде</string>
     <string name="no_data">Нет данных</string>
     <string name="settings_title_notifications">Уведомление</string>
@@ -186,13 +186,13 @@
     <string name="about_description">Лёгкое, свободное погодное приложение, распространяемое под лицензией GPL3.</string>
     <string name="about_developers">Разработано <a href='mailto:t.martykan@gmail.com'>Tomáš Martykán</a> и <a href='https://github.com/martykan/forecastie/graphs/contributors'>другими участниками</a>, при содействии <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>ещё многих</a>.</string>
     <string name="about_src">Код доступен на <a href='https://github.com/martykan/forecastie'>GitHub</a>.</string>
-    <string name="about_issues">Ошибки и советы можно разместить в нашей <a href='https://github.com/martykan/forecastie/issues'>системе отслежвания ошибок на GitHub</a>.</string>
+    <string name="about_issues">Ошибки и советы можно разместить в нашей <a href='https://github.com/martykan/forecastie/issues'>системе отслеживания ошибок на GitHub</a>.</string>
     <string name="about_data">Данные предоставляются сайтом <a href='https://openweathermap.org/'>OpenWeatherMap</a> под лицензией <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA 2.0</a>.</string>
     <string name="about_icons">Иконки <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, созданные <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> и <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, под лицензией <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a>.</string>
 
     <!-- Widget -->
-    <string name="widget_label_extensive">Forecastie Расширенный</string>
-    <string name="widget_label_time">Forecastie Часы</string>
-    <string name="widget_label_simple">Forecastie Простой</string>
-    <string name="widget_label_classic">Forecastie Классический</string>
+    <string name="widget_label_extensive">Forecastie расширенный</string>
+    <string name="widget_label_time">Forecastie часы</string>
+    <string name="widget_label_simple">Forecastie простой</string>
+    <string name="widget_label_classic">Forecastie классический</string>
 </resources>
