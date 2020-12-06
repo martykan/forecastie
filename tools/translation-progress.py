@@ -8,14 +8,16 @@
 # program.
 #
 # Each translatable string is put in one of three categories:
-# - Translated: The string is present in both the English and the other
-#               language translations and its value in the other language
-#               translation is different than in English.
+# - Translated:     The string is present in both the English and the other
+#                   language translations and its value in the other language
+#                   translation is different than in English.
 # - Not translated: The string is present in both the English and the other
 #                   language translations but its value in the other language
 #                   translation is the same as in English.
-# - Missing: The string is present only in the English translation and not in
-#            the other language translation.
+# - Missing:        The string is present only in the English translation and
+#                   not in the other language translation.
+# - Misplaced:      The string is located in the wrong file. Both translated
+#                   and not translated strings are considered.
 #
 # Strings with the translatable="false" attribute or whose names are in the
 # _ignored_strings are ignored.
@@ -29,6 +31,8 @@
 #        - Not Translated The number of not translated strings.
 #        - Missing        The number of missing strings.
 #        - Completion     The percentage of translated strings.
+#        - Misplaced      The number of misplaced strings (only if the
+#                         respective option is provided).
 # - Human readable: This format is not as structured as CSV but is easier for
 #                   humans to read and provides some extra information. This
 #                   format is used when increasing the verbosity level. The
@@ -43,7 +47,7 @@
 from glob import glob
 from os import path
 from sys import exit
-from typing import Dict, List
+from typing import Dict, List, Tuple
 import argparse
 import xml.etree.ElementTree as ET
 
@@ -77,15 +81,15 @@ _ignored_strings = [
 
 
 
-# A dictionary with string names and string values,
-# e.g. 'action_search' : 'Search'
-StringsXML = Dict[str, str]
+# A dictionary from string names to tuples of string values and filenames,
+# e.g. 'action_search' : ('Search', 'strings_main_graphs_map_about.xml')
+StringsXML = Dict[str, Tuple[str, str]]
 
 # A dictionary containing statistics for a single language's translation
-# status. The valid keys are 'translated', 'not_translated' and 'missing' and
-# their values are lists of string names that fall into each category. It may
-# also contain a key 'dirname' with an str value containing the path to the
-# strings.xml file it refers to.
+# status. The valid keys are 'translated', 'not_translated', 'missing' and
+# 'misplaced' and their values are lists of string names that fall into each
+# category. It may also contain a key 'dirname' with an str value containing
+# the path to the strings.xml file it refers to.
 SingleLangStats = Dict[str, List[str]]
 
 # A dictionary with language names as keys and SingleLangStats as values. It
@@ -177,7 +181,7 @@ def parse_strings_xml(filenames: List[str]) -> StringsXML:
                     string_name = xml_child.attrib['name']
                     if string_name not in _ignored_strings:
                         string_value = xml_child.text
-                        d[string_name] = string_value
+                        d[string_name] = (string_value, path.basename(filename))
     return d
 
 
@@ -192,45 +196,55 @@ def compare_strings_xml(eng: StringsXML, other: StringsXML) -> SingleLangStats:
              keys and values.
     :rtype: SingleLangStats
     """
-    result = {'translated': [], 'not_translated': [], 'missing': []}
+    result = {'translated': [], 'not_translated': [], 'missing': [], 'misplaced': []}
     # Iterate over all English strings
     for s in eng:
         # Strings are considered translated if they exist in the other
         # strings.xml and their value is different than the English one
         if s in other:
-            if other[s] != eng[s]:
+            # Test if the value of the string differs from the English one
+            if other[s][0] != eng[s][0]:
                 result['translated'].append(s)
             else:
                 result['not_translated'].append(s)
+            # Test if the file the string was in differs from the English one
+            if other[s][1] != eng[s][1]:
+                result['misplaced'].append(s)
         else:
             result['missing'].append(s)
     return result
  
 
 
-def csv_print(language_stats: LangStats):
+def csv_print(language_stats: LangStats, show_misplaced: bool = False):
     """
     Print language translation status in CSV format.
 
     :param LangStats language_stats: The data to be printed.
+    :param bool show_misplaced: Show data for misplaced strings.
     """
-    print('Language,Filename,Translated,Not Translated,Missing,Completion')
+    header = 'Language,Filename,Translated,Not Translated,Missing'
+    if show_misplaced:
+        header += ',Misplaced'
+    header += ',Completion'
+    print(header)
     for lang in language_stats:
         translated = len(language_stats[lang]['translated'])
         not_translated = len(language_stats[lang]['not_translated'])
         missing = len(language_stats[lang]['missing'])
+        misplaced = len(language_stats[lang]['misplaced'])
         total = translated + not_translated + missing
         completion = int(100 * translated / total)
-        print(lang + ','
-                + '"' + language_stats[lang]['dirname'] + '"' + ','
-                + str(translated) + ','
-                + str(not_translated) + ','
-                + str(missing) + ','
-                + str(completion))
+        line = ','.join([lang, '"' + language_stats[lang]['dirname'] + '"',
+                str(translated), str(not_translated), str(missing)])
+        if show_misplaced:
+            line += ',' + str(misplaced)
+        line += ',' + str(completion)
+        print(line)
 
 
 
-def detailed_print(language_stats: LangStats, verbosity_level: int = 1):
+def detailed_print(language_stats: LangStats, verbosity_level: int = 1, show_misplaced: bool = False):
     """
     Print language translation status in human readable format.
 
@@ -242,16 +256,19 @@ def detailed_print(language_stats: LangStats, verbosity_level: int = 1):
                                 of strings that are 'not_translated' or
                                 'missing'. A value of 3 or more with also show
                                 the names of strings that are 'translated'.
+    :param bool show_misplaced: Show data for misplaced strings.
     """
     num_pc_fmt = '{:3d} ({:3d}%)'
     for lang in language_stats:
         translated = len(language_stats[lang]['translated'])
         not_translated = len(language_stats[lang]['not_translated'])
         missing = len(language_stats[lang]['missing'])
+        misplaced = len(language_stats[lang]['misplaced'])
         total = translated + not_translated + missing
         completion = int(100 * translated / total)
         not_translated_pc = int(100 * not_translated / total)
         missing_pc = int(100 * missing / total)
+        misplaced_pc = int(100 * misplaced / (translated + not_translated))
         print('Language: ' + lang)
         print('  File:           ' + language_stats[lang]['dirname'])
         print(('  Translated:     ' + num_pc_fmt).format(translated, completion))
@@ -266,6 +283,10 @@ def detailed_print(language_stats: LangStats, verbosity_level: int = 1):
         if verbosity_level > 1:
             for s in language_stats[lang]['missing']:
                 print('      ' + s)
+        print(('  Misplaced:      ' + num_pc_fmt).format(misplaced, misplaced_pc))
+        if verbosity_level > 1:
+            for s in language_stats[lang]['misplaced']:
+                print('      ' + s)
         print('  Completion:     {:3d}%'.format(completion))
 
 
@@ -278,6 +299,9 @@ def parse_arguments():
     :rtype: argparse.Namespace
     """
     parser = argparse.ArgumentParser(description='Show translation progress for Forecastie')
+    parser.add_argument('--misplaced', '-m', action='store_true',
+                        help='Gather and show statistics about misplaced'
+                        'strings (strings located in the wrong file).')
     parser.add_argument('--verbose', '-v', action='count', default=0,
                         help='Produce more verbose output. Extra occurrences '
                         'of this option, up to 3 total, increase the amount '
@@ -323,9 +347,9 @@ if __name__ == "__main__":
     # Print the results
     if language_stats:
         if args.verbose == 0:
-            csv_print(language_stats)
+            csv_print(language_stats, args.misplaced)
         else:
-            detailed_print(language_stats, args.verbose)
+            detailed_print(language_stats, args.verbose, args.misplaced)
     else:
         print('Error: language ' + args.language + ' could not be found')
         exit(1)
