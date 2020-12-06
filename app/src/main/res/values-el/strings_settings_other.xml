@@ -1,0 +1,44 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">Εμφάνιση</string>
+    <string name="setting_theme">Θέμα</string>
+    <string name="setting_transparent_widget">Διαφανές widget</string>
+    <string name="setting_wind_direction_format">Μορφή κατεύθυνσης ανέμου</string>
+    <string name="setting_theme_fresh">Νέο</string>
+    <string name="setting_theme_classic">Κλασικό</string>
+    <string name="setting_theme_dark">Νέο σκοτεινό</string>
+    <string name="setting_theme_classic_dark">Κλασικό σκοτεινό</string>
+    <string name="setting_theme_black">Νέο μάυρο</string>
+    <string name="setting_theme_classic_black">Κλασικό μάυρο</string>
+
+    <string name="wind_direction_format_none">Καμιά ένδειξη</string>
+    <string name="wind_direction_format_arrows">Βέλη</string>
+    <string name="wind_direction_format_abbreviations">Αρχικά</string>
+    <string name="setting_displayDecimalZeroes">Εμφάνιση μηδενικών στα δεκαδικά</string>
+
+    <!-- Settings/Data -->
+    <string name="last_update">Τελευταία ενημέρωση:\n%s</string>
+    <string name="last_update_widget">\nΤελευταία ενημέρωση: %s</string>
+    <string name="settings_title_data">Δεδομένα</string>
+    <string name="setting_refreshInterval">Περίοδος ανανέωσης στο παρασκήνιο</string>
+    <string name="settings_none">Κανένα</string>
+    <string name="settings_15min">15 λεπτά</string>
+    <string name="settings_30min">30 λεπτά</string>
+    <string name="settings_1hour">1 ώρα</string>
+    <string name="settings_2hour">2 ώρες</string>
+    <string name="settings_6hour">6 ώρες</string>
+    <string name="settings_12hour">12 ώρες</string>
+    <string name="settings_24hour">24 ώρες</string>
+    <string name="setting_apiKey">Κλειδί API</string>
+    <string name="setting_apiKey_summary">Προσωπικό κλειδί API για αναζήτηση στο OpenWeatherMap</string>
+
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">ΛΑΝΘΑΣΜΕΝΗ ΜΟΡΦΗ ΗΜΕΡΟΜΗΝΙΑΣ</string>
+    <string name="setting_dateFormat">Μορφή ημερομηνίας</string>
+    <string name="setting_dateFormatCustom">Προσαρμοσμένη μορφή ημερομηνίας</string>
+    <string name="setting_dateFormatCustom_summary">Δώστε την προσαρμοσμένη ημερομηνία σε μορφή SimpleDateFormat</string>
+    <string name="dialog_ok">Εντάξει</string>
+    <string name="dialog_cancel">Ακύρωση</string>
+</resources>
