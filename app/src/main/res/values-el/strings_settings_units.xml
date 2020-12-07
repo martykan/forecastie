@@ -1,0 +1,47 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Settings/Units -->
+    <string name="settings_title_units">Μονάδες</string>
+    <string name="setting_lengthUnits">Μονάδες μήκους</string>
+    <string name="setting_speedUnits">Μονάδες ταχύτητας</string>
+    <string name="setting_tempUnits">Μονάδες θερμοκρασίας</string>
+    <string name="setting_showTempAsInteger">Εμφάνιση θερμοκρασίας χωρίς δεκαδικά</string>
+    <string name="setting_pressureUnits">Μονάδες πίεσης</string>
+    <string name="setting_auto_detect_location">Εντοπισμός Τοποθεσίας</string>
+    <string name="setting_differentiateDaysByTint">Διαφοροποίηση ημερών με χρώμα</string>
+
+    <string name="setting_unit_mps">Μέτρα ανά δευτερόλεπτο (m/s)</string>
+    <string name="setting_unit_kph">Χιλιόμετρα ανά ώρα (kph)</string>
+    <string name="setting_unit_mph">Μίλια ανά ώρα (mph)</string>
+    <string name="setting_unit_bft">Κλίμακα Μποφόρ (bft)</string>
+    <string name="setting_unit_kn">Κόμβοι (kn)</string>
+    <string name="setting_unit_Celsuis">Κελσίου</string>
+    <string name="setting_unit_Fahrenheit">Φαρενάιτ</string>
+    <string name="setting_unit_Kelvin">Κέλβιν</string>
+
+    <string name="setting_unit_mm">Χιλιοστά (mm)</string>
+    <string name="setting_unit_in">Ίντσες (in)</string>
+
+    <string name="setting_unit_hpa">hPa/mBar</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_inhg">in Hg</string>
+
+    <string name="speed_unit_mps">m/s</string>
+    <string name="speed_unit_kph">kph</string>
+    <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_kn">kn</string>
+
+    <string name="pressure_unit_hpa">hPa/mBar</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+    <string name="pressure_unit_inhg">in Hg</string>
+
+    <string name="uvi_no_info">Ελλιπείς πληροφορίες</string>
+    <string name="uvi_low">Χαμηλός</string>
+    <string name="uvi_moderate">Μέσος</string>
+    <string name="uvi_high">Υψηλός</string>
+    <string name="uvi_very_high">Πολύ υψηλός</string>
+    <string name="uvi_extreme">Ακραίος</string>
+</resources>

@@ -1,0 +1,48 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <string name="app_name">Forecastie</string>
+    <!-- Main activity titles -->
+    <string name="action_search">Αναζήτηση</string>
+    <string name="action_refresh">Ανανέωση</string>
+    <string name="action_settings">Ρυθμίσεις</string>
+    <string name="action_about">Σχετικά</string>
+    <string name="search_title">Αναζήτηση πόλης</string>
+    <string name="downloading_data">Κατέβασμα των δεδομένων...</string>
+    <string name="getting_location">Εύρεση της τοποθεσίας σας...</string>
+    <string name="loading_data">Φόρτωση...</string>
+
+    <!-- Forecast cards -->
+    <string name="today">Σήμερα</string>
+    <string name="tomorrow">Αύριο</string>
+    <string name="later">Αργότερα</string>
+
+    <!-- Main activity headings -->
+    <string name="wind">Άνεμος</string>
+    <string name="wind_speed">Ταχύτητα Ανέμου</string>
+    <string name="pressure">Πίεση</string>
+    <string name="humidity">Υγρασία</string>
+    <string name="sunrise">Ανατολή</string>
+    <string name="sunset">Δύση</string>
+    <string name="uvindex">Δείκτης UV</string>
+    <string name="tap_for_graphs">Πατήστε για γραφήματα</string>
+
+    <!-- Graphs -->
+    <string name="action_graphs">Γραφήματα</string>
+    <string name="graphs_more_days">Περισσότερες μέρες</string>
+
+    <!-- Map -->
+    <string name="action_weather_map">Χάρτης Καιρού</string>
+    <string name="rain">Βροχή</string>
+    <string name="temperature">Θερμοκρασία</string>
+    <string name="clouds">Σύννεφα</string>
+
+    <!-- About dialogue -->
+    <string name="about_unknown">Αδυναμία εύρεσης του αριθμού έκδοσης</string>
+    <string name="about_description">Μια ελαφριά και ελεύθερου λογισμικού εφαρμογή καιρού που διανέμεται υπό την άδεια GPLv3.</string>
+    <string name="about_developers">Ανεπτυγμένη από τον <a href='mailto:t.martykan@gmail.com'>Tomáš Martykán</a> και <a href='https://github.com/martykan/forecastie/graphs/contributors'>άλλες/ους</a>, με βοήθεια από <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>πολλές/ούς άλλες/ους</a>.</string>
+    <string name="about_src">Ο κώδικας είναι διαθέσιμος στο <a href='https://github.com/martykan/forecastie'>Github</a>.</string>
+    <string name="about_issues">Προβλήματα και βελτιώσεις μπορούν να αναφερθούν στην <a href='https://github.com/martykan/forecastie/issues'>σελίδα μας στο Github</a>.</string>
+    <string name="about_data">Τα δεδομένα παρέχονται από το <a href='https://openweathermap.org/'>OpenWeatherMap</a>, υπό την άδεια <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA 2.0</a>.</string>
+    <string name="about_icons">Τα εικονίδια είναι τα <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, από τον <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> και τον <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, υπό την άδεια <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a>.</string>
+</resources>

@@ -1,0 +1,25 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Errors -->
+    <string name="msg_err_parsing_json">Σφάλμα ανάγνωσης JSON.</string>
+    <string name="msg_http_error">Σφάλμα κατά την λήψη ή αποστολή δεδομένων.</string>
+    <string name="msg_connection_not_available">Η σύνδεση δεν είναι διαθέσιμη.</string>
+    <string name="msg_city_not_found">Δεν βρέθηκε η πόλη.</string>
+    <string name="msg_too_many_requests">Υπερβολικά πολλές αιτήσεις. Παρακαλώ προσπαθήστε αργότερα.</string>
+    <string name="msg_invalid_api_key">Μη έγκυρο κλειδί API.</string>
+
+    <!-- Location -->
+    <string name="settings_title_location">Τοποθεσία</string>
+    <string name="setting_update_location_automatically">Ενημέρωση τοποθεσίας στο παρασκήνιο</string>
+    <string name="location_settings">Ρυθμίσεις Τοποθεσίας</string>
+    <string name="location_settings_message">Η τοποθεσία δεν έχει οριστεί. Θέλετε να μεταβείτε στο μενού ρύθμισης;</string>
+    <string name="location_settings_button">Ρυθμίσεις</string>
+    <string name="location_search_heading">Τοποθεσίες</string>
+
+    <!-- Widget -->
+    <string name="widget_label_extensive">Εκτεταμένο Forecastie</string>
+    <string name="widget_label_time">Forecastie με Ώρα</string>
+    <string name="widget_label_simple">Απλό Forecastie</string>
+    <string name="widget_label_classic">Κλασικό Forecastie</string>
+</resources>

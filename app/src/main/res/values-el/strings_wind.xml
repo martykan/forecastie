@@ -1,0 +1,36 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Wind direction -->
+    <string name="wind_direction_north">Β</string>
+    <string name="wind_direction_north_north_east">ΒΒΑ</string>
+    <string name="wind_direction_north_east">ΒΑ</string>
+    <string name="wind_direction_east_north_east">ΑΒA</string>
+    <string name="wind_direction_east">Α</string>
+    <string name="wind_direction_east_south_east">ΑΝA</string>
+    <string name="wind_direction_south_east">ΝΑ</string>
+    <string name="wind_direction_south_south_east">ΝΝΑ</string>
+    <string name="wind_direction_south">Ν</string>
+    <string name="wind_direction_south_south_west">ΝΝΔ</string>
+    <string name="wind_direction_south_west">ΝΔ</string>
+    <string name="wind_direction_west_south_west">ΔΝΔ</string>
+    <string name="wind_direction_west">Δ</string>
+    <string name="wind_direction_west_north_west">ΔBΔ</string>
+    <string name="wind_direction_north_west">ΒΔ</string>
+    <string name="wind_direction_north_north_west">ΒΒΔ</string>
+
+    <!-- Wind strength - Beaufort -->
+    <string name="beaufort_calm">0 (Άπνοια)</string>
+    <string name="beaufort_light_air">1 (Σχεδόν άπνοια)</string>
+    <string name="beaufort_light_breeze">2 (Πολύ ασθενής)</string>
+    <string name="beaufort_gentle_breeze">3 (Ασθενής)</string>
+    <string name="beaufort_moderate_breeze">4 (Σχεδόν μέτριος)</string>
+    <string name="beaufort_fresh_breeze">5 (Μέτριος)</string>
+    <string name="beaufort_strong_breeze">6 (Ισχυρός)</string>
+    <string name="beaufort_high_wind">7 (Σφοδρός)</string>
+    <string name="beaufort_gale">8 (Θυελλώδης)</string>
+    <string name="beaufort_strong_gale">9 (Πολύ Θυελλώδης)</string>
+    <string name="beaufort_storm">10 (Θύελλα)</string>
+    <string name="beaufort_violent_storm">11 (Σφοδρή θύελλα)</string>
+    <string name="beaufort_hurricane">12 (Τυφώνας)</string>
+</resources>
