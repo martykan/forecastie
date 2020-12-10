@@ -62,6 +62,7 @@
     <string name="pressure_unit_hpa">hPa/mBar</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mmHg</string>
+    <string name="pressure_unit_inhg">inHg</string>
 
     <string name="uvi_no_info">Sin datos</string>
     <string name="uvi_low">Bajo</string>
@@ -152,13 +153,24 @@
     <string name="beaufort_violent_storm">Borrasca (11)</string>
     <string name="beaufort_hurricane">Huracán (12)</string>
 
-
     <!-- Location -->
     <string name="settings_title_location">Ubicación</string>
     <string name="setting_update_location_automatically">Actualizar ubicación en segundo plano</string>
     <string name="location_settings">Ajustes de ubicación</string>
     <string name="location_settings_message">La ubicación no está activada. ¿Quiere ir al menú de ajustes?</string>
     <string name="location_settings_button">Ajustes</string>
+    <string name="location_search_heading">Ubicaciones</string>
+
+    <!-- Notification -->
+    <string name="notification_service_description">Servicio para mostrar notificaciones del tiempo en Forecastie.</string>
+    <string name="channel_name">Notificaciones del tiempo</string>
+    <string name="no_data">Sin datos</string>
+
+    <string name="settings_title_notifications">Notificaciones</string>
+    <string name="settings_enable_notification_title">Mostrar el tiempo en la notificación</string>
+    <string name="settings_notification_type_title">Tipo de notificación</string>
+    <string name="settings_notification_type_default">Vista predeterminada de Android</string>
+    <string name="settings_notification_type_simple">Notificación simple</string>
 
     <!-- Map -->
     <string name="action_weather_map">Mapa del tiempo</string>
