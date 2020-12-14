@@ -185,4 +185,12 @@
     <string name="widget_label_classic">Forecastie classico</string>
     <string name="graphs_more_days">Più giorni</string>
     <string name="location_search_heading">Luoghi</string>
+    <string name="no_data">Nessun dato</string>
+    <string name="settings_title_notifications">Notifiche</string>
+    <string name="settings_enable_notification_title">Mostra il meteo nelle notifiche</string>
+    <string name="settings_notification_type_title">Tipo di notifica</string>
+    <string name="settings_notification_type_simple">Notifica semplice</string>
+    <string name="settings_notification_type_default">Vista predefinita di Android</string>
+    <string name="channel_name">Notifiche meteo</string>
+    <string name="notification_service_description">Servizio di notifica meteo di Forecastie</string>
 </resources>
