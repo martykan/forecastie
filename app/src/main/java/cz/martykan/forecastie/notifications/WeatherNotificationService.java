@@ -18,6 +18,8 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.app.TaskStackBuilder;
 
+import java.util.concurrent.Executors;
+
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.models.WeatherPresentation;
@@ -50,7 +52,7 @@ public class WeatherNotificationService extends Service {
 
         startForeground(WEATHER_NOTIFICATION_ID, notification.build());
 
-        repository = new WeatherRepository(this);
+        repository = new WeatherRepository(this, Executors.newSingleThreadExecutor());
         repositoryListener = new WeatherRepository.RepositoryListener() {
             @Override
             public void onChange(@NonNull WeatherPresentation newData) {

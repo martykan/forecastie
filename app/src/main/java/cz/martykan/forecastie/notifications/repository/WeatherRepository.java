@@ -14,7 +14,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
 
 import cz.martykan.forecastie.R;
@@ -35,13 +34,14 @@ public class WeatherRepository {
     private String typeSimpleKey;
     private String typeDefault;
 
-    private final Executor executor = Executors.newSingleThreadExecutor();
+    private final Executor executor;
     private SharedPreferences prefs;
     private final Set<WeakReference<RepositoryListener>> listeners = new HashSet<>();
     private SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener;
     private final AtomicReference<WeatherPresentation> weatherPresentation = new AtomicReference<>();
 
-    public WeatherRepository(@NonNull Context context) {
+    public WeatherRepository(@NonNull Context context, @NonNull Executor executor) {
+        this.executor = executor;
         prepareSettingsConstants(context);
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
