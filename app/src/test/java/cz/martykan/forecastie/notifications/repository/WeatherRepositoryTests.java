@@ -13,7 +13,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Shadows;
+import org.robolectric.android.util.concurrent.PausedExecutorService;
 import org.robolectric.annotation.Config;
+import org.robolectric.annotation.LooperMode;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.ImmutableWeather;
@@ -22,22 +24,26 @@ import cz.martykan.forecastie.utils.formatters.WeatherFormatterType;
 
 import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 
+@SuppressWarnings("UnstableApiUsage")
 @RunWith(AndroidJUnit4.class)
 @Config(sdk = 27)
+@LooperMode(LooperMode.Mode.PAUSED)
 public class WeatherRepositoryTests {
     private Context context;
     private SharedPreferences prefs;
+    private PausedExecutorService executor;
 
     @Before
     public void setUp() {
         context = getApplicationContext();
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        executor = new PausedExecutorService();
     }
 
     @Test
     public void observeWeatherEmitsWeatherPresentationWithDefaultValuesIfThereAreNoValues() {
         final WeatherPresentation[] actual = new WeatherPresentation[1];
-        WeatherRepository repository = new WeatherRepository(context);
+        WeatherRepository repository = new WeatherRepository(context, executor);
 
         repository.observeWeather(new WeatherRepository.RepositoryListener() {
             @Override
@@ -45,6 +51,8 @@ public class WeatherRepositoryTests {
                 actual[0] = newData;
             }
         });
+        executor.runAll();
+        Shadows.shadowOf(Looper.getMainLooper()).idle();
 
         Assert.assertEquals("weather data isn't default",
                 ImmutableWeather.EMPTY, actual[0].getWeather());
@@ -72,7 +80,7 @@ public class WeatherRepositoryTests {
         String pressureUnit = "in Hg";
         putValuesIntoPrefs(type, temperatureUnit, windSpeedUnit, windDirectionFormat, pressureUnit);
         final WeatherPresentation[] actual = new WeatherPresentation[1];
-        WeatherRepository repository = new WeatherRepository(context);
+        WeatherRepository repository = new WeatherRepository(context, executor);
 
         repository.observeWeather(new WeatherRepository.RepositoryListener() {
             @Override
@@ -80,6 +88,8 @@ public class WeatherRepositoryTests {
                 actual[0] = newData;
             }
         });
+        executor.runAll();
+        Shadows.shadowOf(Looper.getMainLooper()).idle();
 
         Assert.assertNotEquals("weather data is default",
                 ImmutableWeather.EMPTY, actual[0].getWeather());
@@ -105,7 +115,7 @@ public class WeatherRepositoryTests {
         String windDirectionFormat = "none";
         String pressureUnit = "in Hg";
         final WeatherPresentation[] actual = new WeatherPresentation[1];
-        WeatherRepository repository = new WeatherRepository(context);
+        WeatherRepository repository = new WeatherRepository(context, executor);
         repository.observeWeather(new WeatherRepository.RepositoryListener() {
             @Override
             public void onChange(@NonNull WeatherPresentation newData) {
@@ -117,7 +127,7 @@ public class WeatherRepositoryTests {
                 .putString("lastToday", "{\"main\": {\"temp\": 315.25}}")
                 .putLong("lastUpdate", 100L)
                 .commit();
-        Thread.sleep(50);
+        executor.runAll();
         Shadows.shadowOf(Looper.getMainLooper()).idle();
 
         Assert.assertNotEquals("weather data is default",
@@ -126,7 +136,7 @@ public class WeatherRepositoryTests {
         prefs.edit()
                 .putString(context.getString(R.string.settings_notification_type_key), type)
                 .commit();
-        Thread.sleep(50);
+        executor.runAll();
         Shadows.shadowOf(Looper.getMainLooper()).idle();
 
         Assert.assertEquals("weather formatter type is default",
@@ -135,35 +145,35 @@ public class WeatherRepositoryTests {
         prefs.edit()
                 .putBoolean("temperatureInteger", !WeatherPresentation.DEFAULT_DO_ROUND_TEMPERATURE)
                 .commit();
-        Thread.sleep(50);
+        executor.runAll();
         Shadows.shadowOf(Looper.getMainLooper()).idle();
 
         Assert.assertEquals("rounded temperature value is default",
                 !WeatherPresentation.DEFAULT_DO_ROUND_TEMPERATURE, actual[0].isRoundedTemperature());
 
         prefs.edit().putString("unit", temperatureUnit).commit();
-        Thread.sleep(50);
+        executor.runAll();
         Shadows.shadowOf(Looper.getMainLooper()).idle();
 
         Assert.assertEquals("temperature unit is default",
                 temperatureUnit, actual[0].getTemperatureUnits());
 
         prefs.edit().putString("speedUnit", windSpeedUnit).commit();
-        Thread.sleep(50);
+        executor.runAll();
         Shadows.shadowOf(Looper.getMainLooper()).idle();
 
         Assert.assertEquals("wind speed unit is default",
                 windSpeedUnit, actual[0].getWindSpeedUnits());
 
         prefs.edit().putString("windDirectionFormat", windDirectionFormat).commit();
-        Thread.sleep(50);
+        executor.runAll();
         Shadows.shadowOf(Looper.getMainLooper()).idle();
 
         Assert.assertEquals("wind direction format isn default",
                 windDirectionFormat, actual[0].getWindDirectionFormat());
 
         prefs.edit().putString("pressureUnit", pressureUnit).commit();
-        Thread.sleep(50);
+        executor.runAll();
         Shadows.shadowOf(Looper.getMainLooper()).idle();
 
         Assert.assertEquals("pressure unit is default",
@@ -173,7 +183,7 @@ public class WeatherRepositoryTests {
     @Test
     public void observeWeatherEmitsNewValuesInEveryListener() throws InterruptedException {
         final WeatherPresentation[] actual = new WeatherPresentation[2];
-        WeatherRepository repository = new WeatherRepository(context);
+        WeatherRepository repository = new WeatherRepository(context, executor);
         repository.observeWeather(new WeatherRepository.RepositoryListener() {
             @Override
             public void onChange(@NonNull WeatherPresentation newData) {
@@ -191,7 +201,7 @@ public class WeatherRepositoryTests {
                 .putString("lastToday", "{\"main\": {\"temp\": 315.25}}")
                 .putLong("lastUpdate", 100L)
                 .commit();
-        Thread.sleep(50);
+        executor.runAll();
         Shadows.shadowOf(Looper.getMainLooper()).idle();
 
         Assert.assertNotEquals("weather data of first listener is default",
@@ -203,7 +213,7 @@ public class WeatherRepositoryTests {
     @Test
     public void getWeatherReturnsCurrentValues() {
         String pressureUnit = "in Hg";
-        WeatherRepository repository = new WeatherRepository(context);
+        WeatherRepository repository = new WeatherRepository(context, executor);
 
         WeatherPresentation actual = repository.getWeather();
         Assert.assertEquals("weather data isn't default",
@@ -216,6 +226,8 @@ public class WeatherRepositoryTests {
                 .putLong("lastUpdate", 100L)
                 .putString("pressureUnit", pressureUnit)
                 .commit();
+        executor.runAll();
+        Shadows.shadowOf(Looper.getMainLooper()).idle();
         actual = repository.getWeather();
 
         Assert.assertNotEquals("weather data of first listener is default",
