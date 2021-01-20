@@ -184,15 +184,4 @@
     <string name="widget_label_time">Zeit</string>
     <string name="widget_label_simple">Einfach</string>
     <string name="widget_label_classic">Klassisch</string>
-
-    <!-- Notification -->
-    <string name="notification_service_description">Dienst für die Anzeige von Forecastie Wetter-Benachrichtigungen.</string>
-    <string name="channel_name">Weather-Benachrichtigung</string>
-    <string name="no_data">Keine Daten</string>
-
-    <string name="settings_title_notifications">Benachrichtigung</string>
-    <string name="settings_enable_notification_title">Wetter in den Benachrichtigungen zeigen</string>
-    <string name="settings_notification_type_title">Benachrichtigungstyp</string>
-    <string name="settings_notification_type_default">Android Standardansicht</string>
-    <string name="settings_notification_type_simple">Einfache Benachrichtigung</string>
 </resources>
