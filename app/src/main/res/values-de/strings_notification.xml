@@ -1,0 +1,14 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Notification -->
+    <string name="notification_service_description">Dienst für die Anzeige von Forecastie Wetter-Benachrichtigungen.</string>
+    <string name="channel_name">Weather-Benachrichtigung</string>
+    <string name="no_data">Keine Daten</string>
+
+    <string name="settings_title_notifications">Benachrichtigung</string>
+    <string name="settings_enable_notification_title">Wetter in den Benachrichtigungen zeigen</string>
+    <string name="settings_notification_type_title">Benachrichtigungstyp</string>
+    <string name="settings_notification_type_default">Android Standardansicht</string>
+    <string name="settings_notification_type_simple">Einfache Benachrichtigung</string>
+</resources>
