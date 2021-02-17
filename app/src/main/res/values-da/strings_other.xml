@@ -1,0 +1,25 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Errors -->
+    <string name="msg_err_parsing_json">Fejl i JSON fortolkning.</string>
+    <string name="msg_http_error">Fejl under forespørgsel eller modtagelse af data.</string>
+    <string name="msg_connection_not_available">Forbindelse ikke tilgængelig.</string>
+    <string name="msg_city_not_found">Angivet by ikke fundet.</string>
+    <string name="msg_too_many_requests">For mange forspørgsler. Prøv igen.</string>
+    <string name="msg_invalid_api_key">Ugyldig API nøgle.</string>
+
+    <!-- Location -->
+    <string name="settings_title_location">Placering</string>
+    <string name="setting_update_location_automatically">Opdatere placering i baggrund</string>
+    <string name="location_settings">Placering opsætning</string>
+    <string name="location_settings_message">Placering er ikke aktiveret. Gå til opsætnings-menuen?</string>
+    <string name="location_settings_button">Opsætning</string>
+    <string name="location_search_heading">Placeringer</string>
+
+    <!-- Widget -->
+    <string name="widget_label_extensive">Forecastie omfattende</string>
+    <string name="widget_label_time">Forecastie tid</string>
+    <string name="widget_label_simple">Forecastie enkel</string>
+    <string name="widget_label_classic">Forecastie klassisk</string>
+</resources>

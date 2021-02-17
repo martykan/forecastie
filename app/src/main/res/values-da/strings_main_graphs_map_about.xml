@@ -1,0 +1,48 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <string name="app_name">Forecastie</string>
+    <!-- Main activity titles -->
+    <string name="action_search">Søge</string>
+    <string name="action_refresh">Genopfriske</string>
+    <string name="action_settings">Opsætning</string>
+    <string name="action_about">Om</string>
+    <string name="search_title">Søge efter by</string>
+    <string name="downloading_data">Henter data...</string>
+    <string name="getting_location">Henter placering...</string>
+    <string name="loading_data">Indlæser...</string>
+
+    <!-- Forecast cards -->
+    <string name="today">I dag</string>
+    <string name="tomorrow">I morgen</string>
+    <string name="later">Senere</string>
+
+    <!-- Main activity headings -->
+    <string name="wind">Vind</string>
+    <string name="wind_speed">Vind hastighed</string>
+    <string name="pressure">Lufttryk</string>
+    <string name="humidity">Luftfugtighed</string>
+    <string name="sunrise">Solopgang</string>
+    <string name="sunset">Solnedgang</string>
+    <string name="uvindex">UV indeks</string>
+    <string name="tap_for_graphs">Tryk for grafer</string>
+
+    <!-- Graphs -->
+    <string name="action_graphs">Grafer</string>
+    <string name="graphs_more_days">Flere dage</string>
+
+    <!-- Map -->
+    <string name="action_weather_map">Vejrkort</string>
+    <string name="rain">Regn</string>
+    <string name="temperature">Temperatur</string>
+    <string name="clouds">Skyer</string>
+
+    <!-- About dialogue -->
+    <string name="about_unknown">Kunne ikke få version navn</string>
+    <string name="about_description">Letvægt, fri Software vejr program frigivet under GPL3 licens.</string>
+    <string name="about_developers">Udviklet af <a href='mailto:t.martykan@gmail.com'>Tomas Martykan</a> og <a href='https://github.com/martykan/forecastie/graphs/contributors'>andre</a>, med hjælp fra <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>mange flere</a>.</string>
+    <string name="about_src">Koden tilgængelig hos <a href='https://github.com/martykan/forecastie'>Forecastie</a>.</string>
+    <string name="about_issues">Problemer kan postes <a href='https://github.com/martykan/forecastie/issues'>her</a>.</string>
+    <string name="about_data">Data leveret af <a href='https://openweathermap.org/'>OpenWeatherMap</a>, under <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA licens.</a></string>
+    <string name="about_icons">Ikoner er <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, af <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> og <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, under <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licens.</string>
+</resources>
