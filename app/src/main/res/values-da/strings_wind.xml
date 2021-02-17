@@ -1,0 +1,36 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Wind direction -->
+    <string name="wind_direction_north">N</string>
+    <string name="wind_direction_north_north_east">NNØ</string>
+    <string name="wind_direction_north_east">NØ</string>
+    <string name="wind_direction_east_north_east">ØNØ</string>
+    <string name="wind_direction_east">Ø</string>
+    <string name="wind_direction_east_south_east">ØSØ</string>
+    <string name="wind_direction_south_east">SØ</string>
+    <string name="wind_direction_south_south_east">SSØ</string>
+    <string name="wind_direction_south">S</string>
+    <string name="wind_direction_south_south_west">SSV</string>
+    <string name="wind_direction_south_west">SV</string>
+    <string name="wind_direction_west_south_west">VSV</string>
+    <string name="wind_direction_west">V</string>
+    <string name="wind_direction_west_north_west">VNV</string>
+    <string name="wind_direction_north_west">NV</string>
+    <string name="wind_direction_north_north_west">NNV</string>
+
+    <!-- Wind strength - Beaufort -->
+    <string name="beaufort_calm">Stille (0)</string>
+    <string name="beaufort_light_air">Luftning (1)</string>
+    <string name="beaufort_light_breeze">Svag vind (2)</string>
+    <string name="beaufort_gentle_breeze">Let vind (3)</string>
+    <string name="beaufort_moderate_breeze">Jævn vind (4)</string>
+    <string name="beaufort_fresh_breeze">Frisk vind (5)</string>
+    <string name="beaufort_strong_breeze">Hård vind (6)</string>
+    <string name="beaufort_high_wind">Stiv kuling (7)</string>
+    <string name="beaufort_gale">Hård kuling (8)</string>
+    <string name="beaufort_strong_gale">Stormende kuling (9)</string>
+    <string name="beaufort_storm">Storm (10)</string>
+    <string name="beaufort_violent_storm">Stærk storm (11)</string>
+    <string name="beaufort_hurricane">Orkan (12)</string>
+</resources>

@@ -1,0 +1,46 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Settings/Units -->
+    <string name="settings_title_units">Enheder</string>
+    <string name="setting_lengthUnits">Længde enheder</string>
+    <string name="setting_speedUnits">Hastighed enheder</string>
+    <string name="setting_tempUnits">Temperatur enheder</string>
+    <string name="setting_showTempAsInteger">Vis temperatur som heltal</string>
+    <string name="setting_pressureUnits">Tryk enheder</string>
+    <string name="setting_auto_detect_location">Opdage placering</string>
+    <string name="setting_differentiateDaysByTint">Adskille dage med farver</string>
+
+    <string name="setting_unit_mps">Meter pr. sekund (m/s)</string>
+    <string name="setting_unit_kph">Kilometer pr. time (km/t)</string>
+    <string name="setting_unit_mph">Mil pr. time (mph)</string>
+    <string name="setting_unit_bft">Beaufort vind skalering (bft)</string>
+    <string name="setting_unit_kn">Knob (kn)</string>
+    <string name="setting_unit_Celsuis">Celcius</string>
+    <string name="setting_unit_Fahrenheit">Fahrenheit</string>
+    <string name="setting_unit_Kelvin">Kelvin</string>
+
+    <string name="setting_unit_mm">Millimeter (mm)</string>
+    <string name="setting_unit_in">Tommer (in)</string>
+
+    <string name="setting_unit_hpa">hPa/mBar</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_inhg">tommer Hg</string>
+
+    <string name="speed_unit_mps">m/s</string>
+    <string name="speed_unit_kph">km/t</string>
+    <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_kn">kn</string>
+
+    <string name="pressure_unit_hpa">hPa</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+
+    <string name="uvi_no_info">Ingen information</string>
+    <string name="uvi_low">Lav</string>
+    <string name="uvi_moderate">Moderat</string>
+    <string name="uvi_high">Høj</string>
+    <string name="uvi_very_high">Meget høj</string>
+    <string name="uvi_extreme">Ekstrem</string>
+</resources>
