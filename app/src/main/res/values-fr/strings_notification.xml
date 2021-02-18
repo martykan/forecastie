@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_service_description">Service de notification pour Forecastie.</string>
+    <string name="channel_name">Notification Météo</string>
+    <string name="no_data">Pas de données</string>
+
+    <string name="settings_title_notifications">Notification</string>
+    <string name="settings_enable_notification_title">Météo dans les notifications</string>
+    <string name="settings_notification_type_title">Type de notification</string>
+    <string name="settings_notification_type_default">Notification par défaut</string>
+    <string name="settings_notification_type_simple">Notification simple</string>
+</resources>

@@ -1,0 +1,47 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Settings/Units -->
+    <string name="settings_title_units">Unités</string>
+    <string name="setting_lengthUnits">Unité de longueur</string>
+    <string name="setting_speedUnits">Unité de vitesse</string>
+    <string name="setting_tempUnits">Unité de température</string>
+    <string name="setting_showTempAsInteger">Afficher la t° en nombre entier</string>
+    <string name="setting_pressureUnits">Unité de pression</string>
+    <string name="setting_auto_detect_location">Détecter la localisation</string>
+    <string name="setting_differentiateDaysByTint">Différencier les jours avec de la couleur</string>
+
+    <string name="setting_unit_mps">Mètres par seconde (m/s)</string>
+    <string name="setting_unit_kph">Kilomètres par heure (km/h)</string>
+    <string name="setting_unit_mph">Milles par heure (mph)</string>
+    <string name="setting_unit_bft">Échelle Beaufort (bft)</string>
+    <string name="setting_unit_kn">Nœuds (nd)</string>
+    <string name="setting_unit_Celsuis">Celsius</string>
+    <string name="setting_unit_Fahrenheit">Fahrenheit</string>
+    <string name="setting_unit_Kelvin">Kelvin</string>
+
+    <string name="setting_unit_mm">Millimètres (mm)</string>
+    <string name="setting_unit_in">Pouces (in)</string>
+
+    <string name="setting_unit_hpa">hPa</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mmHg</string>
+    <string name="setting_unit_inhg">inHg</string>
+
+    <string name="speed_unit_mps">m/s</string>
+    <string name="speed_unit_kph">kph</string>
+    <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_kn">nd</string>
+
+    <string name="pressure_unit_hpa">hPa</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mmHg</string>
+    <string name="pressure_unit_inhg">inHg</string>
+
+    <string name="uvi_no_info">Aucune information</string>
+    <string name="uvi_low">Faible</string>
+    <string name="uvi_moderate">Modéré</string>
+    <string name="uvi_high">Élevé</string>
+    <string name="uvi_very_high">Très élevé</string>
+    <string name="uvi_extreme">Extrême</string>
+</resources>
