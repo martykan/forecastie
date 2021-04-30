@@ -21,8 +21,8 @@ A simple, copylefted libre software weather app for Android. It gathers data fro
 [<img src="https://i.imgur.com/ye2O2B2.png" width=250>](https://i.imgur.com/ye2O2B2.png)
 [<img src="https://i.imgur.com/olkk2cB.png" width=250>](https://i.imgur.com/olkk2cB.png)
 
-## Gif
-<img src='gifs/gif_1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+## Demo
+<img src='gifs/gif_1.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
 
 
 ## Contribution
