@@ -21,6 +21,10 @@ A simple, copylefted libre software weather app for Android. It gathers data fro
 [<img src="https://i.imgur.com/ye2O2B2.png" width=250>](https://i.imgur.com/ye2O2B2.png)
 [<img src="https://i.imgur.com/olkk2cB.png" width=250>](https://i.imgur.com/olkk2cB.png)
 
+## Gif
+<img src="gifs/gif_1"
+
+
 ## Contribution
 If you have any ideas or issues, don't hesitate to make contact via the Issues page. Every contribution is welcome. See [Contributing](https://github.com/martykan/forecastie/blob/master/CONTRIBUTING.md) for further information.
 
