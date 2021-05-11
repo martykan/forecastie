@@ -1,0 +1,44 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">Wyświetlanie</string>
+    <string name="setting_theme">Motyw</string>
+    <string name="setting_transparent_widget">Przeźroczyste tło widżetu</string>
+    <string name="setting_wind_direction_format">Format kierunku wiatru</string>
+    <string name="setting_theme_fresh">Świeży</string>
+    <string name="setting_theme_classic">Klasyczny</string>
+    <string name="setting_theme_dark">Świeży Ciemny</string>
+    <string name="setting_theme_classic_dark">Klasyczny Ciemny</string>
+    <string name="setting_theme_black">Świeży Czarny</string>
+    <string name="setting_theme_classic_black">Klasyczny Czarny</string>
+
+    <string name="wind_direction_format_none">Nieokreślony</string>
+    <string name="wind_direction_format_arrows">Strzałki</string>
+    <string name="wind_direction_format_abbreviations">Skróty</string>
+    <string name="setting_displayDecimalZeroes">Wyświetlaj zera po przecinku</string>
+
+    <!-- Settings/Data -->
+    <string name="last_update">Ostatnia aktualizacja:\n%s</string>
+    <string name="last_update_widget">\nOstatnia aktualizacja: %s</string>
+    <string name="settings_title_data">Dane</string>
+    <string name="setting_refreshInterval">Odstępy odświeżania w tle</string>
+    <string name="settings_none">Brak</string>
+    <string name="settings_15min">15 minut</string>
+    <string name="settings_30min">30 minut</string>
+    <string name="settings_1hour">1 godzina</string>
+    <string name="settings_2hour">2 godziny</string>
+    <string name="settings_6hour">6 godzin</string>
+    <string name="settings_12hour">12 godzin</string>
+    <string name="settings_24hour">24 godziny</string>
+    <string name="setting_apiKey">Klucz API</string>
+    <string name="setting_apiKey_summary">Niestandardowy klucz API dla zapytań OpenWeatherMap</string>
+
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">BŁĄD FORMATU DATY</string>
+    <string name="setting_dateFormat">Format daty</string>
+    <string name="setting_dateFormatCustom">Niestandardowy format daty</string>
+    <string name="setting_dateFormatCustom_summary">Podaj własny ciąg dla formatu daty</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Anuluj</string>
+</resources>
