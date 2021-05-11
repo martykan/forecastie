@@ -1,0 +1,48 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <string name="app_name">Forecastie</string>
+    <!-- Main activity titles -->
+    <string name="action_search">Szukaj</string>
+    <string name="action_refresh">Odśwież</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="action_about">O aplikacji</string>
+    <string name="search_title">Wyszukaj miejscowość</string>
+    <string name="downloading_data">Pobieranie danych ...</string>
+    <string name="getting_location">Wyszukiwanie lokalizacji ...</string>
+    <string name="loading_data">Ładowanie...</string>
+
+    <!-- Forecast cards -->
+    <string name="today">Dziś</string>
+    <string name="tomorrow">Jutro</string>
+    <string name="later">Później</string>
+
+    <!-- Main activity headings -->
+    <string name="wind">Wiatr</string>
+    <string name="wind_speed">Szybkość wiatru</string>
+    <string name="pressure">Ciśnienie</string>
+    <string name="humidity">Wilgotność</string>
+    <string name="sunrise">Wschód słońca</string>
+    <string name="sunset">Zachód słońca</string>
+    <string name="uvindex">Indeks UV</string>
+    <string name="tap_for_graphs">Kliknij po Wykresy</string>
+
+    <!-- Graphs -->
+    <string name="action_graphs">Wykresy</string>
+    <string name="graphs_more_days">Więcej dni</string>
+
+    <!-- Map -->
+    <string name="action_weather_map">Mapa pogody</string>
+    <string name="rain">Deszcz</string>
+    <string name="temperature">Temperatura</string>
+    <string name="clouds">Zachmurzenie</string>
+
+    <!-- About dialogue -->
+    <string name="about_unknown">Nie udało się znaleźć nazwy wersji</string>
+    <string name="about_description">Lekka aplikacja pogodowa, udostępniana na wolnej i otwartej licencji GPLv3.</string>
+    <string name="about_developers">Stworzona przez <a href='mailto:t.martykan@gmail.com'>Tomáša Martykána</a> i <a href='https://github.com/martykan/forecastie/graphs/contributors'>innych</a>, z pomocą od <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>wielu innych</a>.</string>
+    <string name="about_src">Kod dostępny jest na platformie <a href='https://github.com/martykan/forecastie'>Github</a>.</string>
+    <string name="about_issues">Błędy i ulepszenia mogą być wysyłane na naszej <a href='https://github.com/martykan/forecastie/issues'>stronie problemów na Github</a>.</string>
+    <string name="about_data">Dane dostarczone przez <a href='https://openweathermap.org/'>OpenWeatherMap</a>, pod licencją <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA 2.0</a>.</string>
+    <string name="about_icons">Ikony wzięte z <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, przez <a href='http://www.twitter.com/artill'>Lukasa Bischoffa</a> i <a href='http://www.twitter.com/Erik_UX'>Erika Flowersa</a>, pod licencją <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a>.</string>
+</resources>
