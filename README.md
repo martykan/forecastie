@@ -30,6 +30,8 @@ If you have any ideas or issues, don't hesitate to make contact via the Issues p
 
 Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
 
+Vistit the [Wiki]
+
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE-OF-CONDUCT.md)
 
 ## Licence
