@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 tools:text="16:00"
                 android:textColor="?android:textColorPrimary"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="No data"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/itemWind"
@@ -45,21 +45,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 tools:text="Wind: 0 m/s"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/itemPressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Pressure: 0 hpa"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/itemHumidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Humidity: 0 %"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
         </LinearLayout>
 
         <TextView
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="0 °C"
-            android:textSize="22sp"
+            android:textSize="22dp"
             android:layout_marginTop="8dp"
             android:layout_below="@+id/itemIcon"
             android:layout_alignRight="@+id/itemIcon"
