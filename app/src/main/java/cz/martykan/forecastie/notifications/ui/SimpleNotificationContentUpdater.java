@@ -49,6 +49,8 @@ public class SimpleNotificationContentUpdater extends NotificationContentUpdater
         if (context == null)
             throw new NullPointerException("context is null");
 
+        super.updateNotification(weatherPresentation, notification, notificationLayout, context);
+
         notification
                 // Too much information for decorated view. Only two strings fit.
                 /*.setStyle(new NotificationCompat.DecoratedCustomViewStyle())

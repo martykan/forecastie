@@ -4,7 +4,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 
 import androidx.annotation.NonNull;
 
@@ -18,6 +21,9 @@ import cz.martykan.forecastie.models.ImmutableWeather;
  */
 @SuppressWarnings("unused")
 public abstract class WeatherFormatter {
+    public static final int DEFAULT_ICON_TEXT_SIZE = 24;
+    public static final int MIN_ICON_TEXT_SIZE = 8;
+
     /**
      * Check is {@code weather} has enough valid data to show all necessary weather information to
      * a user or {@code no data} should be shown.
@@ -319,16 +325,64 @@ public abstract class WeatherFormatter {
                                                 int color) {
         Bitmap myBitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_4444);
         Canvas myCanvas = new Canvas(myBitmap);
-        Paint paint = new Paint();
+        Paint paint = getPaint(color, 150);
         Typeface clock = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");
-        paint.setAntiAlias(true);
-        paint.setSubpixelText(true);
         paint.setTypeface(clock);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(color);
-        paint.setTextSize(150);
-        paint.setTextAlign(Paint.Align.CENTER);
         myCanvas.drawText(text, 128, 180, paint);
         return myBitmap;
+    }
+
+    /**
+     * Returns weather icon as {@link Bitmap}.
+     * @param context android context
+     * @param weather weather information
+     * @param temperatureUnit temperature unit
+     * @param color text color (not a color resource)
+     * @return weather icon as {@link Bitmap}
+     */
+    // TODO static is temporary solution to avoid code duplication. Should be moved in another
+    // class and retrieved through DI.
+    @NonNull
+    public static Bitmap getTemperatureAsBitmap(
+            @NonNull Context context,
+            @NonNull ImmutableWeather weather,
+            @NonNull String temperatureUnit,
+            int color
+    ) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        float size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, DEFAULT_ICON_TEXT_SIZE, displayMetrics);
+        float textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, DEFAULT_ICON_TEXT_SIZE, displayMetrics);
+        float oneSp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 1, displayMetrics);
+        float minTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, MIN_ICON_TEXT_SIZE - 1, displayMetrics);
+        Bitmap bitmap = Bitmap.createBitmap((int) size, (int) size, Bitmap.Config.ARGB_4444);
+        Canvas canvas = new Canvas(bitmap);
+        Paint paint = getPaint(color, textSize);
+
+        int temperature = Math.round(weather.getTemperature(temperatureUnit));
+        String text = temperature + "°";
+        Rect bounds = new Rect();
+        float measuredWidth;
+        do {
+            paint.setTextSize(textSize);
+            paint.getTextBounds(text, 0, text.length(), bounds);
+            measuredWidth = bounds.width();
+            textSize -= oneSp;
+        } while (measuredWidth > size && textSize > minTextSize);
+
+        float x = size / 2f;
+        float textHeight = (float) bounds.height();
+        float y = (size - textHeight) / 2f + textHeight;
+        canvas.drawText(text, x, y, paint);
+        return bitmap;
+    }
+
+    private static Paint getPaint(int color, float size) {
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setSubpixelText(true);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(color);
+        paint.setTextAlign(Paint.Align.CENTER);
+        return paint;
     }
 }
