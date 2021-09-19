@@ -1,0 +1,47 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Settings/Units -->
+    <string name="settings_title_units">Jednostki</string>
+    <string name="setting_lengthUnits">Jednostki długości</string>
+    <string name="setting_speedUnits">Jednostki prędkości</string>
+    <string name="setting_tempUnits">Jednostki temperatury</string>
+    <string name="setting_showTempAsInteger">Pokaż temperaturę tylko jako liczbę całkowitą</string>
+    <string name="setting_pressureUnits">Jednostki ciśnienia</string>
+    <string name="setting_auto_detect_location">Wykrywanie lokalizacji</string>
+    <string name="setting_differentiateDaysByTint">Rozróżnij dni kolorami</string>
+
+    <string name="setting_unit_mps">Metry na sekundę (m/s)</string>
+    <string name="setting_unit_kph">Kilometry na godzinę (kph)</string>
+    <string name="setting_unit_mph">Mile na godzinę (mph)</string>
+    <string name="setting_unit_bft">Skala Beauforta (bft)</string>
+    <string name="setting_unit_kn">Węzły (kn)</string>
+    <string name="setting_unit_Celsuis">Celsjusz</string>
+    <string name="setting_unit_Fahrenheit">Fahrenheit</string>
+    <string name="setting_unit_Kelvin">Kelwin</string>
+
+    <string name="setting_unit_mm">Milimetry (mm)</string>
+    <string name="setting_unit_in">Stopy (in)</string>
+
+    <string name="setting_unit_hpa">hPa/mBar</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_inhg">in Hg</string>
+
+    <string name="speed_unit_mps">m/s</string>
+    <string name="speed_unit_kph">kph</string>
+    <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_kn">kn</string>
+
+    <string name="pressure_unit_hpa">hPa/mBar</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+    <string name="pressure_unit_inhg">in Hg</string>
+
+    <string name="uvi_no_info">Brak danych</string>
+    <string name="uvi_low">Niski</string>
+    <string name="uvi_moderate">Średni</string>
+    <string name="uvi_high">Wysoki</string>
+    <string name="uvi_very_high">Bardzo Wysoki</string>
+    <string name="uvi_extreme">Ekstremalny</string>
+</resources>

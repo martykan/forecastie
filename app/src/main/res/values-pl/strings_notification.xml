@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_service_description">Serwis do wyświetlania powiadomień pogodowych aplikacji Forecastie.</string>
+    <string name="channel_name">Powiadomienia pogodowe</string>
+    <string name="no_data">Brak danych</string>
+
+    <string name="settings_title_notifications">Powiadomienia</string>
+    <string name="settings_enable_notification_title">Pokazuj pogodę na pasku powiadomień.</string>
+    <string name="settings_notification_type_title">Typ powiadomienia</string>
+    <string name="settings_notification_type_default">Podstawowe powiadomienie Android</string>
+    <string name="settings_notification_type_simple">Proste powiadomienie</string>
+</resources>

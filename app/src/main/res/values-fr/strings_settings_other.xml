@@ -1,0 +1,44 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">Afficher</string>
+    <string name="setting_theme">Thème</string>
+    <string name="setting_transparent_widget">Rendre le widget transparent</string>
+    <string name="setting_wind_direction_format">Format de direction du vent</string>
+    <string name="setting_theme_fresh">Moderne</string>
+    <string name="setting_theme_classic">Classique</string>
+    <string name="setting_theme_dark">Foncé moderne</string>
+    <string name="setting_theme_classic_dark">Foncé classique</string>
+    <string name="setting_theme_black">Noir moderne</string>
+    <string name="setting_theme_classic_black">Noir classique</string>
+
+    <string name="wind_direction_format_none">Aucune indication</string>
+    <string name="wind_direction_format_arrows">Flèches</string>
+    <string name="wind_direction_format_abbreviations">Abréviations</string>
+    <string name="setting_displayDecimalZeroes">Voir les zéros après la virgule</string>
+
+    <!-- Settings/Data -->
+    <string name="last_update">Dernière mise à jour :\n%s</string>
+    <string name="last_update_widget">\nDernière mise à jour : %s</string>
+    <string name="settings_title_data">Données</string>
+    <string name="setting_refreshInterval">Intervalle d\'actualisation</string>
+    <string name="settings_none">Aucun</string>
+    <string name="settings_15min">15 min</string>
+    <string name="settings_30min">30 min</string>
+    <string name="settings_1hour">1 h</string>
+    <string name="settings_2hour">2 h</string>
+    <string name="settings_6hour">6 h</string>
+    <string name="settings_12hour">12 h</string>
+    <string name="settings_24hour">24 h</string>
+    <string name="setting_apiKey">Clé API</string>
+    <string name="setting_apiKey_summary">Clé API personnalisée pour les requêtes OpenWeatherMap</string>
+
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">Erreur du format de la date</string>
+    <string name="setting_dateFormat">Format de date</string>
+    <string name="setting_dateFormatCustom">Format de date personnalisé</string>
+    <string name="setting_dateFormatCustom_summary">Fournir le code SimpleDateFormat personnalisé pour être utilisé</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Annuler</string>
+</resources>

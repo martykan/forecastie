@@ -16,4 +16,31 @@ We currently support devices which run Android version 4.0.3/API 15. We will con
 
 ## Translations
 
-It is very important to have Forecastie available in as many languages as possible: we currently offer 27 languages beside the default English, unfortunately they are not always as up-to-date as they should be. All translators and their contributions are very welcome, please do whatever you can, no matter how small the change. There is a [Python script](https://github.com/martykan/forecastie/blob/master/translation-progress.py) which shows untranslated strings for a selected language. We have suspended the Transifex page, as we no longer have access. However, all remaining strings will be copied across manually.
+It is very important to have Forecastie available in as many languages as possible: we currently offer 27 languages beside the default English, unfortunately they are not always as up-to-date as they should be. All translators and their contributions are very welcome, please do whatever you can, no matter how small the change. We have suspended the Transifex page, as we no longer have access. However, all remaining strings will be copied across manually.
+
+The translation strings for the various languages are located in `strings_*.xml` files inside the [`app/src/main/res/values-*`](./app/src/main/res/) folders. The translation strings are organized in several files such as `strings_notification.xml` and `strings_settings_units.xml` depending on their purpose. For your translation please follow the same file structure as the English translation in [`app/src/main/res/values`](./app/src/main/res/values). Please note that you should only create the `strings_*.xml` files, the other files in `app/src/main/res/values` are not related to translations.
+
+There is also a [Python3 script](./tools/translation-progress.py) to help in your translation efforts. Some useful commands:
+
+``` sh
+# Show the avialable options.
+./tools/translation-progress.py --help
+
+# Show an overview of the translation status for all languages.
+./tools/translation-progress.py -v
+
+# Show an overview of the translation status for Swedish.
+./tools/translation-progress.py -v se
+
+# Show an overview of the translation status for Korean. Also include
+# information about misplaced translation strings, meaning those that are
+# present but not in the correct `strings_*.xml` file.
+./tools/translation-progress.py -v -m ko
+
+# Show an overview of the translation status for Greek and which strings still
+# need to be translated.
+./tools/translation-progress.py -vv el
+```
+
+Detailed documentation ofthe script's output is located in the form of comments in the beginning of the script.
+

@@ -1,0 +1,44 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">Vise</string>
+    <string name="setting_theme">Tema</string>
+    <string name="setting_transparent_widget">Gør kontrol gennemsigtig</string>
+    <string name="setting_wind_direction_format">Vindretning format</string>
+    <string name="setting_theme_fresh">Frisk</string>
+    <string name="setting_theme_classic">Klassisk</string>
+    <string name="setting_theme_dark">Frisk mørk</string>
+    <string name="setting_theme_classic_dark">Klassisk mørk</string>
+    <string name="setting_theme_black">Frisk sort</string>
+    <string name="setting_theme_classic_black">Klassisk sort</string>
+
+    <string name="wind_direction_format_none">Ingen visning</string>
+    <string name="wind_direction_format_arrows">Pile</string>
+    <string name="wind_direction_format_abbreviations">Forkortelser</string>
+    <string name="setting_displayDecimalZeroes">Vis decimal nuller</string>
+
+    <!-- Settings/Data -->
+    <string name="last_update">Seneste opdatering:\n%s</string>
+    <string name="last_update_widget">\nSeneste opdatering: %s</string>
+    <string name="settings_title_data">Data</string>
+    <string name="setting_refreshInterval">Baggrund genopfrisk interval</string>
+    <string name="settings_none">Ingen</string>
+    <string name="settings_15min">15 m.</string>
+    <string name="settings_30min">30 m.</string>
+    <string name="settings_1hour">1 t.</string>
+    <string name="settings_2hour">2 t.</string>
+    <string name="settings_6hour">6 t.</string>
+    <string name="settings_12hour">12 t.</string>
+    <string name="settings_24hour">24 t.</string>
+    <string name="setting_apiKey">API nøgle</string>
+    <string name="setting_apiKey_summary">Brugertilpasset API nøgle til OpenWeatherMap forespørgsel</string>
+
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">Dato format fejl</string>
+    <string name="setting_dateFormat">Dato format</string>
+    <string name="setting_dateFormatCustom">Tilpasset dato format</string>
+    <string name="setting_dateFormatCustom_summary">Angiv brugertilpasset SimpleDateFormat streng som skal bruges</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Annullere</string>
+</resources>

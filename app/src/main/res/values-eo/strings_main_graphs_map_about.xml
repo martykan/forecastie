@@ -1,0 +1,48 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <string name="app_name">Forecastie</string>
+    <!-- Main activity titles -->
+    <string name="action_search">Serĉi</string>
+    <string name="action_refresh">Aktualigi</string>
+    <string name="action_settings">Agordoj</string>
+    <string name="action_about">Pri</string>
+    <string name="search_title">Serĉi urbon</string>
+    <string name="downloading_data">Elŝutas vian datumon...</string>
+    <string name="getting_location">Prenas vian location ...</string>
+    <string name="loading_data">Ŝarĝas...</string>
+
+    <!-- Forecast cards -->
+    <string name="today">Hodiaŭ</string>
+    <string name="tomorrow">Morgaŭ</string>
+    <string name="later">Poste</string>
+
+    <!-- Main activity headings -->
+    <string name="wind">Vento</string>
+    <string name="wind_speed">Venta rapido</string>
+    <string name="pressure">Aeropremo</string>
+    <string name="humidity">Humido</string>
+    <string name="sunrise">Sunleviĝo</string>
+    <string name="sunset">Sunsubiro</string>
+    <string name="uvindex">UV-a indekso</string>
+    <string name="tap_for_graphs">Tuŝetu por diagramoj</string>
+
+    <!-- Graphs -->
+    <string name="action_graphs">Diagramoj</string>
+    <string name="graphs_more_days">Pliaj tagoj</string>
+
+    <!-- Map -->
+    <string name="action_weather_map">Vetera mapo</string>
+    <string name="rain">Pluvo</string>
+    <string name="temperature">Temperaturo</string>
+    <string name="clouds">Nuboj</string>
+
+    <!-- About dialogue -->
+    <string name="about_unknown">Ne povas preni versian namon</string>
+    <string name="about_description">Plumpeza, senpaga, vetera apo eldonita sur la GPL3 permesilo.</string>
+    <string name="about_developers">Programita de <a href='mailto:t.martykan@gmail.com'>Tomáš Martykán</a> kaj <a href='https://github.com/martykan/forecastie/graphs/contributors'>aliaj</a>, kun helpo el <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>multaj pli</a>.</string>
+    <string name="about_src">Kodo estas disponebla sur je <a href='https://github.com/martykan/forecastie'>Github</a>.</string>
+    <string name="about_issues">Cimoj kaj plibonigoj oni povas afiŝi sur nia <a href='https://github.com/martykan/forecastie/issues'>Github issues paĝo</a>.</string>
+    <string name="about_data">Datumo provizata per <a href='https://openweathermap.org/'>OpenWeatherMap</a>, sur la <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA 2.0 permesilo</a>.</string>
+    <string name="about_icons">Piktogramoj estas <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, de <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> kaj <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, sur la <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> permesilo.</string>
+</resources>

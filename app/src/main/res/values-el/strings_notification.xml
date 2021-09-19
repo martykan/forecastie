@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_service_description">Υπηρεσία για την εμφάνιση της ειδοποίησης καιρού του Forecastie.</string>
+    <string name="channel_name">Ειδοποίηση καιρού</string>
+    <string name="no_data">Δεν υπάρχουν δεδομένα</string>
+
+    <string name="settings_title_notifications">Ειδοποίηση</string>
+    <string name="settings_enable_notification_title">Εμφάνιση του καιρού στην ειδοποίηση</string>
+    <string name="settings_notification_type_title">Τύπος ειδοποίησης</string>
+    <string name="settings_notification_type_default">Προεπιλεγμένη ειδοποίηση Android</string>
+    <string name="settings_notification_type_simple">Απλή ειδοποίηση</string>
+</resources>
