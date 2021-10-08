@@ -74,7 +74,7 @@ public class WeatherNotificationService extends Service {
 
     private void configureNotification(PendingIntent pendingIntent) {
         notification = new NotificationCompat.Builder(this, WEATHER_NOTIFICATION_CHANNEL_ID)
-                .setSmallIcon(R.drawable.cloud)
+                .setSmallIcon(NotificationContentUpdater.DEFAULT_NOTIFICATION_ICON)
                 .setContentIntent(pendingIntent)
                 .setOngoing(true)
                 .setOnlyAlertOnce(true)

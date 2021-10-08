@@ -24,6 +24,8 @@ import cz.martykan.forecastie.utils.formatters.WeatherFormatter;
  * {@link #updateNotification(WeatherPresentation, NotificationCompat.Builder, Context)}.
  */
 public abstract class NotificationContentUpdater {
+    public static final int DEFAULT_NOTIFICATION_ICON = R.drawable.cloud;
+
     /**
      * Returns {@code true} if notification has custom layout and {@code false} otherwise.
      * @return {@code true} if notification has custom layout and {@code false} otherwise
@@ -77,16 +79,27 @@ public abstract class NotificationContentUpdater {
         setTemperatureAsIcon(weatherPresentation, notification, context);
     }
 
-    private void setTemperatureAsIcon(@NonNull WeatherPresentation weatherPresentation,
-                                      @NonNull NotificationCompat.Builder notification,
-                                      @NonNull Context context) {
+    // TODO add tests
+    private void setTemperatureAsIcon(
+            @NonNull WeatherPresentation weatherPresentation,
+            @NonNull NotificationCompat.Builder notification,
+            @NonNull Context context
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            int color = ContextCompat.getColor(context, R.color.notification_icon_color);
-            Bitmap statusBarIcon = WeatherFormatter.getTemperatureAsBitmap(context,
-                    weatherPresentation.getWeather(),
-                    weatherPresentation.getTemperatureUnits(),
-                    color);
-            notification.setSmallIcon(IconCompat.createWithBitmap(statusBarIcon));
+            final IconCompat icon;
+            if (weatherPresentation.shouldShowTemperatureInStatusBar()) {
+                int color = ContextCompat.getColor(context, R.color.notification_icon_color);
+                Bitmap statusBarIcon = WeatherFormatter.getTemperatureAsBitmap(context,
+                        weatherPresentation.getWeather(),
+                        weatherPresentation.getTemperatureUnits(),
+                        color);
+                icon = IconCompat.createWithBitmap(statusBarIcon);
+            } else {
+                icon = IconCompat.createWithResource(context, DEFAULT_NOTIFICATION_ICON);
+            }
+            notification.setSmallIcon(icon);
+        } else {
+            notification.setSmallIcon(DEFAULT_NOTIFICATION_ICON);
         }
     }
 }
