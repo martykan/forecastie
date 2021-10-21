@@ -121,6 +121,8 @@
     <string name="settings_notification_type_title">Вид уведомления</string>
     <string name="settings_notification_type_default">Стандартное уведомление Android</string>
     <string name="settings_notification_type_simple">Простое уведомление</string>
+    <string name="settings_show_temperature_in_status_bar_title">Показывать температуру в статусной строке</string>
+    <string name="settings_show_temperature_in_status_bar_summary">Если эта опция включена, то вместо иконки в статсной строке будет отображаться текущее значение температуры. Данная опция доступна только с Android 6.0 (Marshmallow).</string>
 
     <!-- Errors -->
     <string name="msg_err_parsing_json">Ошибка разбора JSON.</string>
