@@ -1,0 +1,48 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <string name="app_name">Forecastie</string>
+    <!-- Main activity titles -->
+    <string name="action_search">Căutare</string>
+    <string name="action_refresh">Actualizare</string>
+    <string name="action_settings">Setări</string>
+    <string name="action_about">Despre</string>
+    <string name="search_title">Căutare oraș</string>
+    <string name="downloading_data">Descărcarea datelor dvs. ...</string>
+    <string name="getting_location">Obținerea locației dvs. ...</string>
+    <string name="loading_data">Încărcare...</string>
+
+    <!-- Forecast cards -->
+    <string name="today">Astăzi</string>
+    <string name="tomorrow">Mâine</string>
+    <string name="later">Mai târziu</string>
+
+    <!-- Main activity headings -->
+    <string name="wind">Vânt</string>
+    <string name="wind_speed">Viteza vântului</string>
+    <string name="pressure">Presiune</string>
+    <string name="humidity">Umiditate</string>
+    <string name="sunrise">Răsărit</string>
+    <string name="sunset">Apus</string>
+    <string name="uvindex">Indice UV</string>
+    <string name="tap_for_graphs">Atingeți ușor pentru grafice</string>
+
+    <!-- Graphs -->
+    <string name="action_graphs">Grafice</string>
+    <string name="graphs_more_days">Mai multe zile</string>
+
+    <!-- Map -->
+    <string name="action_weather_map">Hartă meteo</string>
+    <string name="rain">Ploaie</string>
+    <string name="temperature">Temperatură</string>
+    <string name="clouds">Nori</string>
+
+    <!-- About dialogue -->
+    <string name="about_unknown">Nu s-a putut obține numele versiunii</string>
+    <string name="about_description">O aplicație meteo ușoară, de tip Free Software, lansată sub licența GPL3.</string>
+    <string name="about_developers">Dezvoltată de <a href='mailto:t.martykan@gmail.com'>Tomáš Martykán</a> şi <a href='https://github.com/martykan/forecastie/graphs/contributors'>alte persoane</a>, cu asistență de la <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>mulţi alţii</a>.</string>
+    <string name="about_src">Codul este disponibil pe <a href='https://github.com/martykan/forecastie'>Github</a>.</string>
+    <string name="about_issues">Bug-urile și îmbunătățirile pot fi postate pe <a href='https://github.com/martykan/forecastie/issues'>pagina Github cu probleme</a>.</string>
+    <string name="about_data">Date furnizate de <a href='https://openweathermap.org/'>OpenWeatherMap</a>, în conformitate cu <a href='http://creativecommons.org/licenses/by-sa/2.0/'>licența Creative Commons CC-BY-SA 2.0</a>.</string>
+    <string name="about_icons">Pictogramele sunt <a href='https://erikflowers.github.io/weather-icons/'>Pictograme meteo</a>, de către <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> şi <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, în conformitate cu licența <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a>.</string>
+</resources>

@@ -1,0 +1,25 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Errors -->
+    <string name="msg_err_parsing_json">Eroare la parsarea JSON.</string>
+    <string name="msg_http_error">Eroare în timpul solicitării sau primirii datelor.</string>
+    <string name="msg_connection_not_available">Conexiunea nu este disponibilă.</string>
+    <string name="msg_city_not_found">Orașul specificat nu a fost găsit.</string>
+    <string name="msg_too_many_requests">Prea multe cereri. Vă rugăm să încercați din nou.</string>
+    <string name="msg_invalid_api_key">Cheie API invalidă.</string>
+
+    <!-- Location -->
+    <string name="settings_title_location">Locație</string>
+    <string name="setting_update_location_automatically">Actualizarea locației în fundal</string>
+    <string name="location_settings">Setări privind locația</string>
+    <string name="location_settings_message">Locația nu este activată. Doriți să accesați meniul de setări?</string>
+    <string name="location_settings_button">Setări</string>
+    <string name="location_search_heading">Locaţii</string>
+
+    <!-- Widget -->
+    <string name="widget_label_extensive">Forecastie Extensiv</string>
+    <string name="widget_label_time">Forecastie Timp</string>
+    <string name="widget_label_simple">Forecastie Simplu</string>
+    <string name="widget_label_classic">Forecastie Clasic</string>
+</resources>
