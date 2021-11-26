@@ -32,12 +32,16 @@
                     android:background="?attr/colorPrimary"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-                <LinearLayout
+                <com.google.android.flexbox.FlexboxLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="6dp"
                     android:layout_marginBottom="22dp"
+                    app:flexWrap="wrap"
+                    app:flexDirection="row"
+                    app:justifyContent="space_between"
+                    app:alignItems="flex_start"
                     android:baselineAligned="false"
                     android:paddingTop="?attr/actionBarSize">
 
@@ -168,7 +172,8 @@
                     </LinearLayout>
 
 
-                </LinearLayout>
+
+                </com.google.android.flexbox.FlexboxLayout>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
