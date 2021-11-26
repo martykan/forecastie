@@ -100,6 +100,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private ViewPagerAdapter pagerAdapter;
 
     private View appView;
 
@@ -679,11 +680,14 @@ public class MainActivity extends BaseActivity implements LocationListener {
         recyclerViewFragment.setArguments(bundle);
         viewPagerAdapter.addFragment(recyclerViewFragment, getString(R.string.later));
 
-        int currentPage = viewPager.getCurrentItem();
+        if(this.pagerAdapter == null) {
+            pagerAdapter = viewPagerAdapter;
+            viewPager.setAdapter(pagerAdapter);
+            tabLayout.setupWithViewPager(viewPager);
+        }
+        pagerAdapter.notifyDataSetChanged();
 
-        viewPagerAdapter.notifyDataSetChanged();
-        viewPager.setAdapter(viewPagerAdapter);
-        tabLayout.setupWithViewPager(viewPager);
+        int currentPage = viewPager.getCurrentItem();
 
         if (currentPage == 0 && longTermTodayWeather.isEmpty()) {
             currentPage = 1;
