@@ -117,5 +117,12 @@
             android:entries="@array/settings_notification_type_value_titles"
             android:defaultValue="@string/settings_notification_type_default_value"
             android:dependency="@string/settings_enable_notification_key" />
+
+        <CheckBoxPreference
+            android:key="@string/settings_show_temperature_in_status_bar_key"
+            android:title="@string/settings_show_temperature_in_status_bar_title"
+            android:summary="@string/settings_show_temperature_in_status_bar_summary"
+            android:defaultValue="true"
+            android:dependency="@string/settings_enable_notification_key" />
     </PreferenceCategory>
 </PreferenceScreen>

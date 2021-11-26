@@ -4,7 +4,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.os.Build;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 
 import androidx.annotation.NonNull;
 
@@ -18,6 +22,9 @@ import cz.martykan.forecastie.models.ImmutableWeather;
  */
 @SuppressWarnings("unused")
 public abstract class WeatherFormatter {
+    public static final int DEFAULT_ICON_TEXT_SIZE = 24;
+    public static final int MIN_ICON_TEXT_SIZE = 14;
+
     /**
      * Check is {@code weather} has enough valid data to show all necessary weather information to
      * a user or {@code no data} should be shown.
@@ -319,16 +326,87 @@ public abstract class WeatherFormatter {
                                                 int color) {
         Bitmap myBitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_4444);
         Canvas myCanvas = new Canvas(myBitmap);
-        Paint paint = new Paint();
+        Paint paint = getPaint(color);
         Typeface clock = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");
-        paint.setAntiAlias(true);
-        paint.setSubpixelText(true);
         paint.setTypeface(clock);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(color);
         paint.setTextSize(150);
-        paint.setTextAlign(Paint.Align.CENTER);
         myCanvas.drawText(text, 128, 180, paint);
         return myBitmap;
+    }
+
+    /**
+     * Returns weather icon as {@link Bitmap}.
+     * @param context android context
+     * @param weather weather information
+     * @param temperatureUnit temperature unit
+     * @param color text color (not a color resource)
+     * @return weather icon as {@link Bitmap}
+     */
+    // TODO static is temporary solution to avoid code duplication. Should be moved in another
+    // class and retrieved through DI.
+    @NonNull
+    public static Bitmap getTemperatureAsBitmap(
+            @NonNull Context context,
+            @NonNull ImmutableWeather weather,
+            @NonNull String temperatureUnit,
+            int color
+    ) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        final float size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, DEFAULT_ICON_TEXT_SIZE, displayMetrics);
+        final float oneDp = size / DEFAULT_ICON_TEXT_SIZE;
+        final float minTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, MIN_ICON_TEXT_SIZE - 1, displayMetrics);
+        final Bitmap bitmap = Bitmap.createBitmap((int) size, (int) size, Bitmap.Config.ARGB_4444);
+        final int temperature = Math.round(weather.getTemperature(temperatureUnit));
+        drawTemperature(bitmap, getTemperaturePaint(color), temperature, size, oneDp, minTextSize);
+        return bitmap;
+    }
+
+    private static void drawTemperature(
+            @NonNull Bitmap bitmap,
+            @NonNull Paint paint,
+            final int temperature,
+            final float size, final float oneDp, final float minTextSize
+    ) {
+        final Canvas canvas = new Canvas(bitmap);
+        float textSize = size;
+        final String text = temperature + "°";
+
+        Rect bounds = new Rect();
+        float measuredWidth;
+        do {
+            paint.setTextSize(textSize);
+            paint.getTextBounds(text, 0, text.length(), bounds);
+            measuredWidth = bounds.width();
+            textSize -= oneDp;
+        } while (measuredWidth > size && textSize > minTextSize);
+
+        final float textHeight = (float) bounds.height();
+        final float verticalPadding = (size - textHeight) / 2f;
+
+        final float x = size / 2f;
+        final float y = verticalPadding + textHeight;
+        canvas.drawText(text, x, y, paint);
+    }
+
+    @NonNull
+    private static Paint getTemperaturePaint(int color) {
+        final Paint paint = getPaint(color);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            paint.setLetterSpacing(-0.05f);
+        }
+        //paint.setTextAlign(Paint.Align.LEFT);
+        paint.setTypeface(Typeface.DEFAULT_BOLD);
+        return paint;
+    }
+
+    @NonNull
+    private static Paint getPaint(int color) {
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setSubpixelText(true);
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setColor(color);
+        paint.setTextAlign(Paint.Align.CENTER);
+        return paint;
     }
 }

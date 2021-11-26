@@ -121,6 +121,8 @@
     <string name="settings_notification_type_title">Вид уведомления</string>
     <string name="settings_notification_type_default">Стандартное уведомление Android</string>
     <string name="settings_notification_type_simple">Простое уведомление</string>
+    <string name="settings_show_temperature_in_status_bar_title">Показывать температуру в статусной строке</string>
+    <string name="settings_show_temperature_in_status_bar_summary">Если эта функция включена, то вместо значка в статусной строке будет отображаться текущее значение температуры. Функция доступна с Android 6.0 (Marshmallow).</string>
 
     <!-- Errors -->
     <string name="msg_err_parsing_json">Ошибка разбора JSON.</string>
@@ -188,7 +190,7 @@
     <string name="about_src">Код доступен на <a href='https://github.com/martykan/forecastie'>GitHub</a>.</string>
     <string name="about_issues">Ошибки и советы можно разместить в нашей <a href='https://github.com/martykan/forecastie/issues'>системе отслеживания ошибок на GitHub</a>.</string>
     <string name="about_data">Данные предоставляются сайтом <a href='https://openweathermap.org/'>OpenWeatherMap</a> под лицензией <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA 2.0</a>.</string>
-    <string name="about_icons">Иконки <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, созданные <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> и <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, под лицензией <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a>.</string>
+    <string name="about_icons">Значки <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a>, созданные <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> и <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, под лицензией <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a>.</string>
 
     <!-- Widget -->
     <string name="widget_label_extensive">Forecastie расширенный</string>
