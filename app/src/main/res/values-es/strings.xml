@@ -171,6 +171,8 @@
     <string name="settings_notification_type_title">Tipo de notificación</string>
     <string name="settings_notification_type_default">Vista predeterminada de Android</string>
     <string name="settings_notification_type_simple">Notificación simple</string>
+    <string name="settings_show_temperature_in_status_bar_title">Mostrar la temperatura en la barra de estado</string>
+    <string name="settings_show_temperature_in_status_bar_summary">Si activa esta opción, se mostrará la temperatura actual en la barra de estado en lugar del icono de la aplicación. Esta opción está disponible desde Android 6.0 (Marshmallow).</string>
 
     <!-- Map -->
     <string name="action_weather_map">Mapa del tiempo</string>
