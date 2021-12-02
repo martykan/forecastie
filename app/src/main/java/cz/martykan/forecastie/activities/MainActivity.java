@@ -276,7 +276,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
   /*  private void preloadUVIndex() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        refreshWeather();
+
         String lastUVIToday = sp.getString("lastToday", null);
         if (lastUVIToday != null && !lastUVIToday.isEmpty()) {
             double latitude = todayWeather.getLat();
