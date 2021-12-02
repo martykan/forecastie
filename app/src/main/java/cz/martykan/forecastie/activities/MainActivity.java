@@ -100,6 +100,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private ViewPagerAdapter pagerAdapter;
 
     private View appView;
 
@@ -180,7 +181,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
         // Preload data from cache
         preloadWeather();
-        preloadUVIndex();
+        //preloadUVIndex();
         updateLastUpdateTime();
 
         // Set autoupdater
@@ -251,7 +252,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         } else if (shouldUpdate() && isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
-            getTodayUVIndex();
+        //    getTodayUVIndex();
         }
         if (firstRun) {
             tapGraph.setText(getString(R.string.tap_for_graphs));
@@ -273,9 +274,9 @@ public class MainActivity extends BaseActivity implements LocationListener {
         }
     }
 
-    private void preloadUVIndex() {
+  /*  private void preloadUVIndex() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-
+        refreshWeather();
         String lastUVIToday = sp.getString("lastToday", null);
         if (lastUVIToday != null && !lastUVIToday.isEmpty()) {
             double latitude = todayWeather.getLat();
@@ -285,7 +286,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
             }
             new TodayUVITask(this, this, progressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "coords", Double.toString(latitude), Double.toString(longitude));
         }
-    }
+    } */
 
     private void preloadWeather() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
@@ -553,7 +554,8 @@ public class MainActivity extends BaseActivity implements LocationListener {
                 return;
             }
         } catch (Exception e) {
-            preloadUVIndex();
+            //   preloadUVIndex();
+            preloadWeather();
             return;
         }
 
@@ -679,11 +681,14 @@ public class MainActivity extends BaseActivity implements LocationListener {
         recyclerViewFragment.setArguments(bundle);
         viewPagerAdapter.addFragment(recyclerViewFragment, getString(R.string.later));
 
-        int currentPage = viewPager.getCurrentItem();
+        if(this.pagerAdapter == null) {
+            pagerAdapter = viewPagerAdapter;
+            viewPager.setAdapter(pagerAdapter);
+            tabLayout.setupWithViewPager(viewPager);
+        }
+        pagerAdapter.notifyDataSetChanged();
 
-        viewPagerAdapter.notifyDataSetChanged();
-        viewPager.setAdapter(viewPagerAdapter);
-        tabLayout.setupWithViewPager(viewPager);
+        int currentPage = viewPager.getCurrentItem();
 
         if (currentPage == 0 && longTermTodayWeather.isEmpty()) {
             currentPage = 1;
@@ -749,7 +754,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         if (isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
-            getTodayUVIndex();
+        //    getTodayUVIndex();
         } else {
             Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
         }
@@ -923,6 +928,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
             super.onPostExecute(output);
             // Update widgets
             AbstractWidgetProvider.updateWidgets(context);
+            getTodayUVIndex();
         }
 
         @Override
@@ -939,7 +945,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         protected void updateMainUI() {
             updateTodayWeatherUI();
             updateLastUpdateTime();
-            updateUVIndexUI();
+         //   updateUVIndexUI();
         }
     }
 
