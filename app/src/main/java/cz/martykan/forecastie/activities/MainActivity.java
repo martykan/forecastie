@@ -187,6 +187,8 @@ public class MainActivity extends BaseActivity implements LocationListener {
         // Set autoupdater
         AlarmReceiver.setRecurringAlarm(this);
 
+        // Load currenty city when start the app
+        getCityByLocation();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
