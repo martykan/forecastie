@@ -181,12 +181,14 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
         // Preload data from cache
         preloadWeather();
-        //preloadUVIndex();
+        //preloadUVIndex();    //Deleted to fix the UVIndex bug.
         updateLastUpdateTime();
 
         // Set autoupdater
         AlarmReceiver.setRecurringAlarm(this);
 
+        // Load currenty city when start the app
+        getCityByLocation();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -252,7 +254,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         } else if (shouldUpdate() && isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
-        //    getTodayUVIndex();
+        //  getTodayUVIndex();     //Deleted to fix UVIndex bug
         }
         if (firstRun) {
             tapGraph.setText(getString(R.string.tap_for_graphs));
@@ -273,7 +275,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
             }
         }
     }
-
+  //  Deleted to fix the UVIndex bug.
   /*  private void preloadUVIndex() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
@@ -554,8 +556,8 @@ public class MainActivity extends BaseActivity implements LocationListener {
                 return;
             }
         } catch (Exception e) {
-            //   preloadUVIndex();
-            preloadWeather();
+            //preloadUVIndex();    Deleted to fix the UVIndex bug
+            preloadWeather();    //Added to fix the UVIndex bug
             return;
         }
 
@@ -754,7 +756,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         if (isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
-        //    getTodayUVIndex();
+        //  getTodayUVIndex();        //Deleted to fix UVIndex bug
         } else {
             Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
         }
@@ -928,7 +930,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
             super.onPostExecute(output);
             // Update widgets
             AbstractWidgetProvider.updateWidgets(context);
-            getTodayUVIndex();
+            getTodayUVIndex();   //Added to fix UVIndex bug
         }
 
         @Override
@@ -945,7 +947,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         protected void updateMainUI() {
             updateTodayWeatherUI();
             updateLastUpdateTime();
-         //   updateUVIndexUI();
+         // updateUVIndexUI();       // Deleted to fix UVIndex bug
         }
     }
 
