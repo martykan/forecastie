@@ -241,7 +241,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
     @Override
     public void onResume() {
         super.onResume();
-        //noinspection ConstantConditions
         if (UI.getTheme(prefs.getString("theme", "fresh")) != theme ||
                 PreferenceManager.getDefaultSharedPreferences(this).getBoolean("transparentWidget", false) != widgetTransparent) {
             // Restart activity to apply theme
@@ -768,12 +767,10 @@ public class MainActivity extends BaseActivity implements LocationListener {
         String result = preferenceValue;
         if ("speedUnit".equals(preferenceKey)) {
             if (speedUnits.containsKey(preferenceValue)) {
-                //noinspection ConstantConditions
                 result = context.getString(speedUnits.get(preferenceValue));
             }
         } else if ("pressureUnit".equals(preferenceKey)) {
             if (pressUnits.containsKey(preferenceValue)) {
-                //noinspection ConstantConditions
                 result = context.getString(pressUnits.get(preferenceValue));
             }
         }
@@ -973,7 +970,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
                     return ParseResult.CITY_NOT_FOUND;
                 }
 
-//                saveLocation(reader.getString("id"));
                 final JSONArray cityList = reader.getJSONArray("list");
 
                 if (cityList.length() > 1) {
