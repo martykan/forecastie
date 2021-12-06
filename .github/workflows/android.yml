@@ -33,9 +33,9 @@ jobs:
           GHR_PATH: ./github/workspace/forecastie.apk
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Download
-      uses: actions/download-artifact@v1
-      id: download
-      with:
-        name: 'Forecastie'
-        path: ./build/
+      - name: Download
+        uses: actions/download-artifact@v1
+        id: download
+        with:
+          name: 'Forecastie'
+          path: ./build/
