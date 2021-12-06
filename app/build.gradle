@@ -8,8 +8,8 @@ android {
         applicationId "cz.martykan.forecastie"
         minSdkVersion 15
         targetSdkVersion 29
-        versionCode 66
-        versionName "1.18.0"
+        versionCode 67
+        versionName "1.18.1"
     }
 
     lintOptions {
