@@ -154,7 +154,6 @@
     <string name="action_weather_map">Sääkartta</string>
     <string name="clouds">Pilvet</string>
     <string name="rain">Sade</string>
-    <string name="wind">Tuuli</string>
     <string name="temperature">Lämpötila</string>
 
     <!-- Graphs -->
