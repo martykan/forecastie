@@ -490,7 +490,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
         // Rain
         double rain = Double.parseDouble(todayWeather.getRain());
-        String rainString = UnitConvertor.getRainString(rain, sp);
+        String rainString = UnitConvertor.getRainString(rain, todayWeather.getChanceOfPrecipitation(), sp);
 
         // Wind
         double wind;
@@ -598,6 +598,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
                     }
                 }
                 weather.setRain(rain);
+                weather.setChanceOfPrecipitation(listItem.optDouble("pop", 0));
 
                 final String idString = listItem.optJSONArray("weather").getJSONObject(0).getString("id");
                 weather.setId(idString);
