@@ -30,7 +30,7 @@ public class Weather {
     private double lat;
     private double lon;
     private double uvIndex;
-    private double percentOfPrecipitation;
+    private double chanceOfPrecipitation;
 
     public enum WindDirection {
         // don't change order
@@ -289,11 +289,11 @@ public class Weather {
         return lastUpdated;
     }
 
-    public double getPercentOfPrecipitation() {
-        return percentOfPrecipitation;
+    public double getChanceOfPrecipitation() {
+        return chanceOfPrecipitation;
     }
 
-    public void setPercentOfPrecipitation(double percentOfPrecipitation) {
-        this.percentOfPrecipitation = percentOfPrecipitation;
+    public void setChanceOfPrecipitation(double chanceOfPrecipitation) {
+        this.chanceOfPrecipitation = chanceOfPrecipitation;
     }
 }

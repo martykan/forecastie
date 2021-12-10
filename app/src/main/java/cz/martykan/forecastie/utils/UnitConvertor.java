@@ -45,7 +45,7 @@ public class UnitConvertor {
         }
     }
 
-    public static String getRainString(double rain, double percentOfPrecipitation, SharedPreferences sp) {
+    public static String getRainString(double rain, double chanceOfPrecipitation, SharedPreferences sp) {
         StringBuilder sb = new StringBuilder();
         if (rain > 0) {
             sb.append(" (");
@@ -60,8 +60,8 @@ public class UnitConvertor {
                 sb.append(String.format(Locale.ENGLISH, "%.2f %s", rain, lengthUnit));
             }
 
-            if (percentOfPrecipitation > 0) {
-                sb.append(", ").append(percentOfPrecipitation * 100).append("%");
+            if (chanceOfPrecipitation > 0) {
+                sb.append(", ").append(chanceOfPrecipitation * 100).append("%");
             }
 
             sb.append(")");
