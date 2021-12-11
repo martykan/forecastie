@@ -32,7 +32,6 @@ import cz.martykan.forecastie.utils.formatters.WeatherFormatterType;
  * Service for showing and updating notification.
  */
 public class WeatherNotificationService extends Service {
-    private static final String TAG = "WeatherNotificationServ";
     public static int WEATHER_NOTIFICATION_ID = 1;
     private static final String WEATHER_NOTIFICATION_CHANNEL_ID = "weather_notification_channel";
 
@@ -57,6 +56,7 @@ public class WeatherNotificationService extends Service {
         repositoryListener = new WeatherRepository.RepositoryListener() {
             @Override
             public void onChange(@NonNull WeatherPresentation newData) {
+                Log.e("f", "RepositoryListener: " + newData.toString());
                 updateNotification(newData);
             }
         };
@@ -74,7 +74,7 @@ public class WeatherNotificationService extends Service {
 
     private void configureNotification(PendingIntent pendingIntent) {
         notification = new NotificationCompat.Builder(this, WEATHER_NOTIFICATION_CHANNEL_ID)
-                .setSmallIcon(NotificationContentUpdater.DEFAULT_NOTIFICATION_ICON)
+                .setSmallIcon(R.drawable.cloud)
                 .setContentIntent(pendingIntent)
                 .setOngoing(true)
                 .setOnlyAlertOnce(true)
@@ -127,7 +127,7 @@ public class WeatherNotificationService extends Service {
      * Put data into notification.
      */
     private void updateNotification(@NonNull WeatherPresentation weatherPresentation) {
-        Log.e(TAG, "notification update: " + weatherPresentation.toString());
+        Log.e("f", "notification update: " + weatherPresentation.toString());
         NotificationContentUpdater updater = getContentUpdater(weatherPresentation.getType());
         if (updater.isLayoutCustom()) {
             RemoteViews layout = updater.prepareRemoteView(this);

@@ -39,8 +39,6 @@ public class DefaultNotificationContentUpdater extends NotificationContentUpdate
         if (context == null)
             throw new NullPointerException("context is null");
 
-        super.updateNotification(weatherPresentation, notification, context);
-
         notification
                 .setCustomContentView(null)
                 .setContent(null)

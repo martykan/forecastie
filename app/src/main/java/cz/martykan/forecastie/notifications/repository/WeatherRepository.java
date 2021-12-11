@@ -29,11 +29,10 @@ import cz.martykan.forecastie.utils.formatters.WeatherFormatterType;
  * Intent when some class updates data because Observer pattern grants us one source of truth.
  */
 public class WeatherRepository {
-    private String notificationTypeKey;
-    private String notificationTypeDefaultKey;
-    private String notificationTypeSimpleKey;
-    private String notificationTypeDefault;
-    private String showTemperatureInStatusBarKey;
+    private String typeKey;
+    private String typeDefaultKey;
+    private String typeSimpleKey;
+    private String typeDefault;
 
     private final Executor executor;
     private SharedPreferences prefs;
@@ -119,7 +118,6 @@ public class WeatherRepository {
                 prefs.getString("speedUnit", WeatherPresentation.DEFAULT_WIND_SPEED_UNITS),
                 prefs.getString("windDirectionFormat", WeatherPresentation.DEFAULT_WIND_DIRECTION_FORMAT),
                 prefs.getString("pressureUnit", WeatherPresentation.DEFAULT_PRESSURE_UNITS),
-                prefs.getBoolean(showTemperatureInStatusBarKey, WeatherPresentation.DEFAULT_SHOW_TEMPERATURE_IN_STATUS_BAR),
                 weather, type
         );
     }
@@ -128,13 +126,13 @@ public class WeatherRepository {
     @NonNull
     private WeatherFormatterType readNotificationType(@NonNull SharedPreferences prefs) {
         WeatherFormatterType result;
-        String typePref = prefs.getString(notificationTypeKey, notificationTypeDefault);
-        if (typePref != null && typePref.equalsIgnoreCase(notificationTypeDefaultKey)) {
+        String typePref = prefs.getString(typeKey, typeDefault);
+        if (typePref != null && typePref.equalsIgnoreCase(typeDefaultKey)) {
             result = WeatherFormatterType.NOTIFICATION_DEFAULT;
-        } else if (typePref != null && typePref.equalsIgnoreCase(notificationTypeSimpleKey)) {
+        } else if (typePref != null && typePref.equalsIgnoreCase(typeSimpleKey)) {
             result = WeatherFormatterType.NOTIFICATION_SIMPLE;
         } else {
-            if (notificationTypeDefault == null || notificationTypeDefault.equalsIgnoreCase(notificationTypeDefaultKey)) {
+            if (typeDefault == null || typeDefault.equalsIgnoreCase(typeDefaultKey)) {
                 result = WeatherFormatterType.NOTIFICATION_DEFAULT;
             } else {
                 result = WeatherFormatterType.NOTIFICATION_SIMPLE;
@@ -144,11 +142,10 @@ public class WeatherRepository {
     }
 
     private void prepareSettingsConstants(@NonNull Context context) {
-        notificationTypeKey = context.getString(R.string.settings_notification_type_key);
-        notificationTypeDefaultKey = context.getString(R.string.settings_notification_type_key_default);
-        notificationTypeSimpleKey = context.getString(R.string.settings_notification_type_key_simple);
-        notificationTypeDefault = context.getString(R.string.settings_notification_type_default_value);
-        showTemperatureInStatusBarKey = context.getString(R.string.settings_show_temperature_in_status_bar_key);
+        typeKey = context.getString(R.string.settings_notification_type_key);
+        typeDefaultKey = context.getString(R.string.settings_notification_type_key_default);
+        typeSimpleKey = context.getString(R.string.settings_notification_type_key_simple);
+        typeDefault = context.getString(R.string.settings_notification_type_default_value);
     }
 
     /** Callback method to get updated weather data and settings. */
@@ -198,7 +195,7 @@ public class WeatherRepository {
                     case "lastUpdate":
                     case "lastToday":
                         String json = sharedPreferences.getString("lastToday", "");
-                        if (json != null && !json.isEmpty()) {
+                        if (!json.isEmpty()) {
                             long lastUpdate = sharedPreferences.getLong("lastUpdate", -1L);
                             ImmutableWeather weather = ImmutableWeather.fromJson(json, lastUpdate);
                             result = weatherPresentation.copy(weather);
@@ -212,41 +209,27 @@ public class WeatherRepository {
                     case "unit":
                         String temperatureUnits = sharedPreferences.getString(key,
                                 WeatherPresentation.DEFAULT_TEMPERATURE_UNITS);
-                        if (temperatureUnits != null) {
-                            result = weatherPresentation.copyTemperatureUnits(temperatureUnits);
-                        }
+                        result = weatherPresentation.copyTemperatureUnits(temperatureUnits);
                         break;
                     case "speedUnit":
                         String windSpeedUnits = sharedPreferences.getString(key,
                                 WeatherPresentation.DEFAULT_WIND_SPEED_UNITS);
-                        if (windSpeedUnits != null) {
-                            result = weatherPresentation.copyWindSpeedUnits(windSpeedUnits);
-                        }
+                        result = weatherPresentation.copyWindSpeedUnits(windSpeedUnits);
                         break;
                     case "windDirectionFormat":
                         String windDirectionFormat = sharedPreferences.getString(key,
                                 WeatherPresentation.DEFAULT_WIND_DIRECTION_FORMAT);
-                        if (windDirectionFormat != null) {
-                            result = weatherPresentation.copyWindDirectionFormat(windDirectionFormat);
-                        }
+                        result = weatherPresentation.copyWindDirectionFormat(windDirectionFormat);
                         break;
                     case "pressureUnit":
                         String pressureUnits = sharedPreferences.getString(key,
                                 WeatherPresentation.DEFAULT_PRESSURE_UNITS);
-                        if (pressureUnits != null) {
-                            result = weatherPresentation.copyPressureUnits(pressureUnits);
-                        }
+                        result = weatherPresentation.copyPressureUnits(pressureUnits);
                         break;
 
                     default:
-                        if (key.equalsIgnoreCase(notificationTypeKey)) {
+                        if (key.equalsIgnoreCase(typeKey)) {
                             result = weatherPresentation.copy(readNotificationType(sharedPreferences));
-                        } else if (key.equalsIgnoreCase(showTemperatureInStatusBarKey)) {
-                            boolean showTemperatureInStatusBar = sharedPreferences.getBoolean(
-                                    showTemperatureInStatusBarKey,
-                                    WeatherPresentation.DEFAULT_SHOW_TEMPERATURE_IN_STATUS_BAR
-                            );
-                            result = weatherPresentation.copyShowTemperatureInStatusBar(showTemperatureInStatusBar);
                         }
                         break;
                 }

@@ -252,7 +252,7 @@ public class SimpleNotificationContentUpdaterTests {
         assertThrows(NullPointerException.class, new ThrowingRunnable() {
             @Override
             public void run() {
-                contentUpdater.updateNotification(weatherPresentation, (NotificationCompat.Builder) null, layoutSpy, context);
+                contentUpdater.updateNotification(weatherPresentation, null, layoutSpy, context);
             }
         });
 

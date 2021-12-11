@@ -1,19 +1,12 @@
 package cz.martykan.forecastie.notifications.ui;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.os.Build;
 import android.widget.RemoteViews;
 
-import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.IconCompat;
 
-import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.WeatherPresentation;
-import cz.martykan.forecastie.utils.formatters.WeatherFormatter;
 
 /**
  * Notification content updater populates notification with data from {@link WeatherPresentation}.
@@ -24,8 +17,6 @@ import cz.martykan.forecastie.utils.formatters.WeatherFormatter;
  * {@link #updateNotification(WeatherPresentation, NotificationCompat.Builder, Context)}.
  */
 public abstract class NotificationContentUpdater {
-    public static final int DEFAULT_NOTIFICATION_ICON = R.drawable.cloud;
-
     /**
      * Returns {@code true} if notification has custom layout and {@code false} otherwise.
      * @return {@code true} if notification has custom layout and {@code false} otherwise
@@ -44,9 +35,7 @@ public abstract class NotificationContentUpdater {
     public void updateNotification(@NonNull WeatherPresentation weatherPresentation,
                                    @NonNull NotificationCompat.Builder notification,
                                    @NonNull Context context
-    ) throws NullPointerException {
-        setTemperatureAsIcon(weatherPresentation, notification, context);
-    }
+    ) throws NullPointerException {}
 
     /**
      * Create custom layout for notification.
@@ -70,36 +59,9 @@ public abstract class NotificationContentUpdater {
      * @param context android context.
      * @throws NullPointerException if any of parameters are {@code null}
      */
-    @CallSuper
     public void updateNotification(@NonNull WeatherPresentation weatherPresentation,
                                    @NonNull NotificationCompat.Builder notification,
                                    @NonNull RemoteViews notificationLayout,
                                    @NonNull Context context
-    ) throws NullPointerException {
-        setTemperatureAsIcon(weatherPresentation, notification, context);
-    }
-
-    // TODO add tests
-    private void setTemperatureAsIcon(
-            @NonNull WeatherPresentation weatherPresentation,
-            @NonNull NotificationCompat.Builder notification,
-            @NonNull Context context
-    ) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            final IconCompat icon;
-            if (weatherPresentation.shouldShowTemperatureInStatusBar()) {
-                int color = ContextCompat.getColor(context, R.color.notification_icon_color);
-                Bitmap statusBarIcon = WeatherFormatter.getTemperatureAsBitmap(context,
-                        weatherPresentation.getWeather(),
-                        weatherPresentation.getTemperatureUnits(),
-                        color);
-                icon = IconCompat.createWithBitmap(statusBarIcon);
-            } else {
-                icon = IconCompat.createWithResource(context, DEFAULT_NOTIFICATION_ICON);
-            }
-            notification.setSmallIcon(icon);
-        } else {
-            notification.setSmallIcon(DEFAULT_NOTIFICATION_ICON);
-        }
-    }
+    ) throws NullPointerException {}
 }
