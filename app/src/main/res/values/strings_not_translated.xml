@@ -36,6 +36,7 @@
 
     <!-- Notification -->
     <string name="settings_enable_notification_key" translatable="false">showNotification</string>
+    <string name="settings_show_temperature_in_status_bar_key" translatable="false">showTemperatureInStatusBar</string>
     <string name="settings_notification_type_key" translatable="false">notificationType</string>
     <string name="settings_notification_type_key_default" translatable="false">default</string>
     <string name="settings_notification_type_key_simple" translatable="false">simple</string>

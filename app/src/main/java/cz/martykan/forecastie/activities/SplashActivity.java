@@ -15,27 +15,35 @@ import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.notifications.WeatherNotificationService;
 
 public class SplashActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // we should check permission here because user can update Android version between app launches
-        boolean foregroundServicesPermissionGranted =
-                Build.VERSION.SDK_INT < Build.VERSION_CODES.P
-                        ||
-                        ContextCompat.checkSelfPermission(this, Manifest.permission.FOREGROUND_SERVICE)
-                                == PackageManager.PERMISSION_GRANTED;
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (prefs != null
-                && prefs.getBoolean(getString(R.string.settings_enable_notification_key), false)
-                && foregroundServicesPermissionGranted
-        ) {
-            WeatherNotificationService.start(this);
-        }
+        showWeatherNotificationIfNeeded();
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void showWeatherNotificationIfNeeded() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (prefs == null)
+            return;
+
+        // we should check permission here because user can update Android version between app launches
+        boolean foregroundServicesPermissionGranted = isForegroundServicesPermissionGranted();
+        boolean isWeatherNotificationEnabled =
+                prefs.getBoolean(getString(R.string.settings_enable_notification_key), false);
+        if (isWeatherNotificationEnabled && foregroundServicesPermissionGranted) {
+            WeatherNotificationService.start(this);
+        }
+    }
+
+    private boolean isForegroundServicesPermissionGranted() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P)
+            return true;    // There is no need for this permission prior Android Pie (Android SDK 28)
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.FOREGROUND_SERVICE)
+                == PackageManager.PERMISSION_GRANTED;
     }
 }

@@ -69,6 +69,8 @@ public class WeatherRepositoryTests {
                 actual[0].getWindDirectionFormat());
         Assert.assertEquals("pressure unit isn't default",
                 WeatherPresentation.DEFAULT_PRESSURE_UNITS, actual[0].getPressureUnits());
+        Assert.assertEquals("show temperature in status bar isn't default",
+                WeatherPresentation.DEFAULT_SHOW_TEMPERATURE_IN_STATUS_BAR, actual[0].shouldShowTemperatureInStatusBar());
     }
 
     @Test
@@ -78,7 +80,10 @@ public class WeatherRepositoryTests {
         String windSpeedUnit = "kn";
         String windDirectionFormat = "none";
         String pressureUnit = "in Hg";
-        putValuesIntoPrefs(type, temperatureUnit, windSpeedUnit, windDirectionFormat, pressureUnit);
+        putValuesIntoPrefs(
+                type, temperatureUnit, windSpeedUnit, windDirectionFormat, pressureUnit,
+                !WeatherPresentation.DEFAULT_SHOW_TEMPERATURE_IN_STATUS_BAR
+        );
         final WeatherPresentation[] actual = new WeatherPresentation[1];
         WeatherRepository repository = new WeatherRepository(context, executor);
 
@@ -105,10 +110,12 @@ public class WeatherRepositoryTests {
                 windDirectionFormat, actual[0].getWindDirectionFormat());
         Assert.assertEquals("pressure unit is default",
                 pressureUnit, actual[0].getPressureUnits());
+        Assert.assertEquals("show temperature in status bar is default",
+                !WeatherPresentation.DEFAULT_SHOW_TEMPERATURE_IN_STATUS_BAR, actual[0].shouldShowTemperatureInStatusBar());
     }
 
     @Test
-    public void observeWeatherEmitsNewValuesWhenTheyAreUpdatedInSharedPreference() throws InterruptedException {
+    public void observeWeatherEmitsNewValuesWhenTheyAreUpdatedInSharedPreference() {
         String type = context.getString(R.string.settings_notification_type_key_default);
         String temperatureUnit = "°F";
         String windSpeedUnit = "kn";
@@ -178,10 +185,25 @@ public class WeatherRepositoryTests {
 
         Assert.assertEquals("pressure unit is default",
                 pressureUnit, actual[0].getPressureUnits());
+
+        prefs.edit()
+                .putBoolean(
+                        context.getString(R.string.settings_show_temperature_in_status_bar_key),
+                        !WeatherPresentation.DEFAULT_SHOW_TEMPERATURE_IN_STATUS_BAR
+                )
+                .commit();
+        executor.runAll();
+        Shadows.shadowOf(Looper.getMainLooper()).idle();
+
+        Assert.assertEquals(
+                "show temperature in status bar is default",
+                !WeatherPresentation.DEFAULT_SHOW_TEMPERATURE_IN_STATUS_BAR,
+                actual[0].shouldShowTemperatureInStatusBar()
+        );
     }
 
     @Test
-    public void observeWeatherEmitsNewValuesInEveryListener() throws InterruptedException {
+    public void observeWeatherEmitsNewValuesInEveryListener() {
         final WeatherPresentation[] actual = new WeatherPresentation[2];
         WeatherRepository repository = new WeatherRepository(context, executor);
         repository.observeWeather(new WeatherRepository.RepositoryListener() {
@@ -238,10 +260,15 @@ public class WeatherRepositoryTests {
 
     // TODO add tests for clear method
 
-    private void putValuesIntoPrefs(@NonNull String type, @NonNull String temperatureUnit,
-                                    @NonNull String windSpeedUnit,
-                                    @NonNull String windDirectionFormat,
-                                    @NonNull String pressureUnit) {
+    @SuppressWarnings("SameParameterValue")
+    private void putValuesIntoPrefs(
+            @NonNull String type,
+            @NonNull String temperatureUnit,
+            @NonNull String windSpeedUnit,
+            @NonNull String windDirectionFormat,
+            @NonNull String pressureUnit,
+            boolean showTemperatureInStatusBar
+    ) {
         prefs.edit()
                 .putString("lastToday", "{\"main\": {\"temp\": 315.25}}")
                 .putLong("lastUpdate", 100L)
@@ -251,6 +278,7 @@ public class WeatherRepositoryTests {
                 .putString("speedUnit", windSpeedUnit)
                 .putString("windDirectionFormat", windDirectionFormat)
                 .putString("pressureUnit", pressureUnit)
+                .putBoolean(context.getString(R.string.settings_show_temperature_in_status_bar_key), showTemperatureInStatusBar)
                 .commit();
     }
 }

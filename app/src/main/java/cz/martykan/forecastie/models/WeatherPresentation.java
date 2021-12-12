@@ -15,12 +15,15 @@ public class WeatherPresentation {
     public static final String DEFAULT_WIND_DIRECTION_FORMAT = "arrow";
     /** Default pressure units is hPa/mBar. */
     public static final String DEFAULT_PRESSURE_UNITS = "hPa/mBar";
+    /** Show temperature in status bar by default. */
+    public static final boolean DEFAULT_SHOW_TEMPERATURE_IN_STATUS_BAR = true;
 
     private final boolean roundedTemperature;
     private final String temperatureUnits;
     private final String windSpeedUnits;
     private final String windDirectionFormat;
     private final String pressureUnits;
+    private final boolean showTemperatureInStatusBar;
     /** Weather information. */
     private final ImmutableWeather weather;
     private final WeatherFormatterType type;
@@ -31,13 +34,16 @@ public class WeatherPresentation {
         windSpeedUnits = DEFAULT_WIND_SPEED_UNITS;
         windDirectionFormat = DEFAULT_WIND_DIRECTION_FORMAT;
         pressureUnits = DEFAULT_PRESSURE_UNITS;
+        showTemperatureInStatusBar = DEFAULT_SHOW_TEMPERATURE_IN_STATUS_BAR;
         weather = ImmutableWeather.EMPTY;
         type = WeatherFormatterType.NOTIFICATION_SIMPLE;
     }
 
-    public WeatherPresentation(boolean roundedTemperature, @NonNull String temperatureUnits,
+    public WeatherPresentation(
+            boolean roundedTemperature, @NonNull String temperatureUnits,
             @NonNull String windSpeedUnits, @NonNull String windDirectionFormat,
-            @NonNull String pressureUnits, @NonNull ImmutableWeather weather,
+            @NonNull String pressureUnits, boolean showTemperatureInStatusBar,
+            @NonNull ImmutableWeather weather,
             @NonNull WeatherFormatterType type
     ) {
         this.roundedTemperature = roundedTemperature;
@@ -45,6 +51,7 @@ public class WeatherPresentation {
         this.windSpeedUnits = windSpeedUnits;
         this.windDirectionFormat = windDirectionFormat;
         this.pressureUnits = pressureUnits;
+        this.showTemperatureInStatusBar = showTemperatureInStatusBar;
         this.weather = weather;
         this.type = type;
     }
@@ -55,6 +62,14 @@ public class WeatherPresentation {
      */
     public boolean isRoundedTemperature() {
         return roundedTemperature;
+    }
+
+    /**
+     * Returns {@code true} if temperature should be shown in status bar and {@code false} if shouldn't.
+     * @return {@code true} if temperature should be shown in status bar and {@code false} if shouldn't
+     */
+    public boolean shouldShowTemperatureInStatusBar() {
+        return showTemperatureInStatusBar;
     }
 
     /**
@@ -106,38 +121,67 @@ public class WeatherPresentation {
     }
 
     public WeatherPresentation copy(boolean roundedTemperature) {
-        return new WeatherPresentation(roundedTemperature, temperatureUnits, windSpeedUnits,
-                windDirectionFormat, pressureUnits, weather, type);
+        return new WeatherPresentation(
+                roundedTemperature, temperatureUnits, windSpeedUnits,
+                windDirectionFormat, pressureUnits, showTemperatureInStatusBar,
+                weather, type
+        );
     }
 
     public WeatherPresentation copyTemperatureUnits(@NonNull String temperatureUnits) {
-        return new WeatherPresentation(roundedTemperature, temperatureUnits, windSpeedUnits,
-                windDirectionFormat, pressureUnits, weather, type);
+        return new WeatherPresentation(
+                roundedTemperature, temperatureUnits, windSpeedUnits,
+                windDirectionFormat, pressureUnits, showTemperatureInStatusBar,
+                weather, type
+        );
     }
 
     public WeatherPresentation copyWindSpeedUnits(@NonNull String windSpeedUnits) {
-        return new WeatherPresentation(roundedTemperature, temperatureUnits, windSpeedUnits,
-                windDirectionFormat, pressureUnits, weather, type);
+        return new WeatherPresentation(
+                roundedTemperature, temperatureUnits, windSpeedUnits,
+                windDirectionFormat, pressureUnits, showTemperatureInStatusBar,
+                weather, type
+        );
     }
 
     public WeatherPresentation copyWindDirectionFormat(@NonNull String windDirectionFormat) {
-        return new WeatherPresentation(roundedTemperature, temperatureUnits, windSpeedUnits,
-                windDirectionFormat, pressureUnits, weather, type);
+        return new WeatherPresentation(
+                roundedTemperature, temperatureUnits, windSpeedUnits,
+                windDirectionFormat, pressureUnits, showTemperatureInStatusBar,
+                weather, type
+        );
     }
 
     public WeatherPresentation copyPressureUnits(@NonNull String pressureUnits) {
-        return new WeatherPresentation(roundedTemperature, temperatureUnits, windSpeedUnits,
-                windDirectionFormat, pressureUnits, weather, type);
+        return new WeatherPresentation(
+                roundedTemperature, temperatureUnits, windSpeedUnits,
+                windDirectionFormat, pressureUnits, showTemperatureInStatusBar,
+                weather, type
+        );
+    }
+
+    public WeatherPresentation copyShowTemperatureInStatusBar(boolean showTemperatureInStatusBar) {
+        return new WeatherPresentation(
+                roundedTemperature, temperatureUnits, windSpeedUnits,
+                windDirectionFormat, pressureUnits, showTemperatureInStatusBar,
+                weather, type
+        );
     }
 
     public WeatherPresentation copy(@NonNull ImmutableWeather weather) {
-        return new WeatherPresentation(roundedTemperature, temperatureUnits, windSpeedUnits,
-                windDirectionFormat, pressureUnits, weather, type);
+        return new WeatherPresentation(
+                roundedTemperature, temperatureUnits, windSpeedUnits,
+                windDirectionFormat, pressureUnits, showTemperatureInStatusBar,
+                weather, type
+        );
     }
 
     public WeatherPresentation copy(@NonNull WeatherFormatterType type) {
-        return new WeatherPresentation(roundedTemperature, temperatureUnits, windSpeedUnits,
-                windDirectionFormat, pressureUnits, weather, type);
+        return new WeatherPresentation(
+                roundedTemperature, temperatureUnits, windSpeedUnits,
+                windDirectionFormat, pressureUnits, showTemperatureInStatusBar,
+                weather, type
+        );
     }
 
     @Override
@@ -153,6 +197,7 @@ public class WeatherPresentation {
         if (!windDirectionFormat.equals(that.windDirectionFormat)) return false;
         if (!pressureUnits.equals(that.pressureUnits)) return false;
         if (!weather.equals(that.weather)) return false;
+        if (showTemperatureInStatusBar != that.showTemperatureInStatusBar) return false;
         return type == that.type;
     }
 
@@ -163,11 +208,13 @@ public class WeatherPresentation {
         result = 31 * result + windSpeedUnits.hashCode();
         result = 31 * result + windDirectionFormat.hashCode();
         result = 31 * result + pressureUnits.hashCode();
+        result = 31 * result + (showTemperatureInStatusBar ? 1 : 0);
         result = 31 * result + weather.hashCode();
         result = 31 * result + type.hashCode();
         return result;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "WeatherPresentation{" +
@@ -176,6 +223,7 @@ public class WeatherPresentation {
                 ", windSpeedUnits='" + windSpeedUnits + '\'' +
                 ", windDirectionFormat='" + windDirectionFormat + '\'' +
                 ", pressureUnits='" + pressureUnits + '\'' +
+                ", shouldShowTemperatureInStatusBar=" + showTemperatureInStatusBar +
                 ", weather=" + weather +
                 ", type=" + type +
                 '}';

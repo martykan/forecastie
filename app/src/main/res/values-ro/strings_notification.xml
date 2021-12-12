@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_service_description">Serviciu pentru afișarea notificării meteo Forecastie.</string>
+    <string name="channel_name">Notificare meteo</string>
+    <string name="no_data">Fără date</string>
+
+    <string name="settings_title_notifications">Notificare</string>
+    <string name="settings_enable_notification_title">Afișați vremea în notificare</string>
+    <string name="settings_notification_type_title">Tipul notificării</string>
+    <string name="settings_notification_type_default">Vizualizare implicită Android</string>
+    <string name="settings_notification_type_simple">Notificare simplă</string>
+    <string name="settings_show_temperature_in_status_bar_title">Afișarea temperaturii în bara de stare</string>
+    <string name="settings_show_temperature_in_status_bar_summary">Dacă această opțiune este activată, temperatura curentă este afișată în bara de stare în loc de pictograma aplicației. Această opțiune este disponibilă începând cu Android 6.0 (Marshmallow).</string>
+</resources>
