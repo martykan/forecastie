@@ -13,13 +13,9 @@
         android:layout_height="1dp"
         android:background="?android:attr/listDivider" />
 
-    <com.google.android.flexbox.FlexboxLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:alignItems="flex_start"
-        app:flexDirection="row"
-        app:flexWrap="wrap"
-        app:justifyContent="space_between">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -34,7 +30,7 @@
                 android:layout_height="wrap_content"
                 tools:text="16:00"
                 android:textColor="?android:textColorPrimary"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -42,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="No data"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/itemWind"
@@ -50,55 +46,45 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 tools:text="Wind: 0 m/s"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/itemPressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Pressure: 0 hpa"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/itemHumidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Humidity: 0 %"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/itemIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:layout_marginRight="16dp"
-            android:orientation="vertical">
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            tools:text="o"
+            android:textSize="48sp" />
 
-            <TextView
-                android:id="@+id/itemIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                tools:text="o"
-                android:textSize="48sp" />
-
-            <TextView
-                android:id="@+id/itemTemperature"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="0 °C"
-                android:textSize="22sp"
-                android:layout_marginTop="8dp"
-                android:layout_below="@+id/itemIcon"
-                android:layout_alignRight="@+id/itemIcon"
-                android:layout_alignEnd="@+id/itemIcon" />
-
-        </LinearLayout>
-    </com.google.android.flexbox.FlexboxLayout>
+        <TextView
+            android:id="@+id/itemTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="0 °C"
+            android:textSize="22dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/itemIcon"
+            android:layout_alignRight="@+id/itemIcon"
+            android:layout_alignEnd="@+id/itemIcon" />
+    </RelativeLayout>
 </LinearLayout>
