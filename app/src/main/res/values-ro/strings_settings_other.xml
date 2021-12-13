@@ -1,0 +1,44 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">Afișaj</string>
+    <string name="setting_theme">Temă</string>
+    <string name="setting_transparent_widget">Faceți widget-ul transparent</string>
+    <string name="setting_wind_direction_format">Formatul direcției vântului</string>
+    <string name="setting_theme_fresh">Proaspăt</string>
+    <string name="setting_theme_classic">Clasic</string>
+    <string name="setting_theme_dark">Proaspăt Întunecat</string>
+    <string name="setting_theme_classic_dark">Clasic Întunecat</string>
+    <string name="setting_theme_black">Proaspăt Negru</string>
+    <string name="setting_theme_classic_black">Clasic Negru</string>
+
+    <string name="wind_direction_format_none">Nicio indicație</string>
+    <string name="wind_direction_format_arrows">Săgeți</string>
+    <string name="wind_direction_format_abbreviations">Abrevieri</string>
+    <string name="setting_displayDecimalZeroes">Afișați zerouri zecimale</string>
+
+    <!-- Settings/Data -->
+    <string name="last_update">Ultima actualizare:\n%s</string>
+    <string name="last_update_widget">\nUltima actualizare: %s</string>
+    <string name="settings_title_data">Date</string>
+    <string name="setting_refreshInterval">Intervalul de reîmprospătare a datelor în fundal</string>
+    <string name="settings_none">Nici unul</string>
+    <string name="settings_15min">15 min</string>
+    <string name="settings_30min">30 min</string>
+    <string name="settings_1hour">1 h</string>
+    <string name="settings_2hour">2 h</string>
+    <string name="settings_6hour">6 h</string>
+    <string name="settings_12hour">12 h</string>
+    <string name="settings_24hour">24 h</string>
+    <string name="setting_apiKey">Cheie API</string>
+    <string name="setting_apiKey_summary">Cheie API personalizată pentru interogări OpenWeatherMap</string>
+
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">EROARE DE FORMAT DE DATĂ</string>
+    <string name="setting_dateFormat">Format de dată</string>
+    <string name="setting_dateFormatCustom">Format de dată personalizat</string>
+    <string name="setting_dateFormatCustom_summary">Furnizați șirul personalizat SimpleDateFormat care urmează să fie utilizat</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Anulare</string>
+</resources>

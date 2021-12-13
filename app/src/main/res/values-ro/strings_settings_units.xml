@@ -1,0 +1,47 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Settings/Units -->
+    <string name="settings_title_units">Unități</string>
+    <string name="setting_lengthUnits">Unități de lungime</string>
+    <string name="setting_speedUnits">Unități de viteză</string>
+    <string name="setting_tempUnits">Unități de temperatură</string>
+    <string name="setting_showTempAsInteger">Afișează temperatura doar ca număr întreg</string>
+    <string name="setting_pressureUnits">Unități de presiune</string>
+    <string name="setting_auto_detect_location">Detectarea locației</string>
+    <string name="setting_differentiateDaysByTint">Diferențiați zilele cu ajutorul culorilor</string>
+
+    <string name="setting_unit_mps">Metri pe secundă (m/s)</string>
+    <string name="setting_unit_kph">Kilometri pe oră (km/h)</string>
+    <string name="setting_unit_mph">Mile pe oră (mi/h)</string>
+    <string name="setting_unit_bft">Scara de vânt Beaufort (bf)</string>
+    <string name="setting_unit_kn">Noduri (kt)</string>
+    <string name="setting_unit_Celsuis">Celsius</string>
+    <string name="setting_unit_Fahrenheit">Fahrenheit</string>
+    <string name="setting_unit_Kelvin">Kelvin</string>
+
+    <string name="setting_unit_mm">Milimetri (mm)</string>
+    <string name="setting_unit_in">Ţol (in)</string>
+
+    <string name="setting_unit_hpa">hPa/mBar</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_inhg">în Hg</string>
+
+    <string name="speed_unit_mps">m/s</string>
+    <string name="speed_unit_kph">km/h</string>
+    <string name="speed_unit_mph">mi/h</string>
+    <string name="speed_unit_kn">kt</string>
+
+    <string name="pressure_unit_hpa">hPa/mBar</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+    <string name="pressure_unit_inhg">în Hg</string>
+
+    <string name="uvi_no_info">Nicio informație</string>
+    <string name="uvi_low">Scăzut</string>
+    <string name="uvi_moderate">Moderat</string>
+    <string name="uvi_high">Ridicat</string>
+    <string name="uvi_very_high">Foarte Ridicat</string>
+    <string name="uvi_extreme">Extrem</string>
+</resources>
