@@ -45,25 +45,29 @@ public class UnitConvertor {
         }
     }
 
-    public static String getRainString(double rain, SharedPreferences sp) {
+    public static String getRainString(double rain, double percentOfPrecipitation, SharedPreferences sp) {
+        StringBuilder sb = new StringBuilder();
         if (rain > 0) {
-            if (sp.getString("lengthUnit", "mm").equals("mm")) {
-                if (rain < 0.1) {
-                    return " (<0.1 mm)";
-                } else {
-                    return String.format(Locale.ENGLISH, " (%.1f %s)", rain, sp.getString("lengthUnit", "mm"));
-                }
+            sb.append(" (");
+            String lengthUnit = sp.getString("lengthUnit", "mm");
+            boolean isMetric = lengthUnit.equals("mm");
+
+            if (rain < 0.1) {
+                sb.append(isMetric ? "<0.1" : "<0.01");
+            } else if (isMetric) {
+                sb.append(String.format(Locale.ENGLISH, "%.1f %s", rain, lengthUnit));
             } else {
-                rain = rain / 25.4;
-                if (rain < 0.01) {
-                    return " (<0.01 in)";
-                } else {
-                    return String.format(Locale.ENGLISH, " (%.2f %s)", rain, sp.getString("lengthUnit", "mm"));
-                }
+                sb.append(String.format(Locale.ENGLISH, "%.2f %s", rain, lengthUnit));
             }
-        } else {
-            return "";
+
+            if (percentOfPrecipitation > 0) {
+                sb.append(", ").append(percentOfPrecipitation * 100).append("%");
+            }
+
+            sb.append(")");
         }
+
+        return sb.toString();
     }
 
     public static float convertPressure(float pressure, SharedPreferences sp) {
