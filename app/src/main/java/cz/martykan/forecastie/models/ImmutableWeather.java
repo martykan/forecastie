@@ -353,7 +353,7 @@ public class ImmutableWeather implements Parcelable {
      * <br/>
      * Default value for invalid data: -1.
      * @return weather id
-     * @see Formatting#setWeatherIcon(int, boolean)
+     * @see Formatting#getWeatherIcon(int, boolean)
      */
     public int getWeatherIcon() {
         return weatherIcon;

@@ -18,11 +18,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.utils.UI;
 import cz.martykan.forecastie.viewmodels.MapViewModel;
+import cz.martykan.forecastie.weatherapi.WeatherStorage;
 
 public class MapActivity extends BaseActivity {
 
     private WebView webView;
     private MapViewModel mapViewModel;
+    private WeatherStorage weatherStorage;
 
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     @Override
@@ -35,10 +37,12 @@ public class MapActivity extends BaseActivity {
         setTheme(theme = UI.getTheme(prefs.getString("theme", "fresh")));
         mapViewModel = new ViewModelProvider(this).get(MapViewModel.class);
 
+        weatherStorage = new WeatherStorage(this);
+
         if (savedInstanceState == null) {
             mapViewModel.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            mapViewModel.mapLat = prefs.getFloat("latitude", 0);
-            mapViewModel.mapLon = prefs.getFloat("longitude", 0);
+            mapViewModel.mapLat = weatherStorage.getLatitude(0);
+            mapViewModel.mapLon = weatherStorage.getLongitude(0);
             mapViewModel.apiKey = mapViewModel.sharedPreferences.getString("apiKey", getResources().getString(R.string.apiKey));
         }
 

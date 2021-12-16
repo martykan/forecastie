@@ -24,13 +24,12 @@ import com.db.chart.view.ChartView;
 import com.db.chart.view.LineChartView;
 import com.google.android.material.snackbar.Snackbar;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.TimeZone;
 
 import cz.martykan.forecastie.R;
@@ -38,6 +37,7 @@ import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.tasks.ParseResult;
 import cz.martykan.forecastie.utils.UI;
 import cz.martykan.forecastie.utils.UnitConvertor;
+import cz.martykan.forecastie.weatherapi.owm.OpenWeatherMapJsonParser;
 
 public class GraphActivity extends BaseActivity {
 
@@ -166,7 +166,7 @@ public class GraphActivity extends BaseActivity {
 
         LineSet dataset = new LineSet();
         for (int i = 0; i < numWeatherData; i++) {
-            float temperature = UnitConvertor.convertTemperature(Float.parseFloat(weatherList.get(i).getTemperature()), sp);
+            float temperature = UnitConvertor.convertTemperature((float) weatherList.get(i).getTemperature(), sp);
 
             minTemp = (float) Math.min(Math.floor(temperature), minTemp);
             maxTemp = (float) Math.max(Math.ceil(temperature), maxTemp);
@@ -205,7 +205,7 @@ public class GraphActivity extends BaseActivity {
 
         BarSet dataset = new BarSet();
         for (int i = 0; i < numWeatherData; i++) {
-            float rain = UnitConvertor.convertRain(Float.parseFloat(weatherList.get(i).getRain()), sp);
+            float rain = UnitConvertor.convertRain((float) weatherList.get(i).getRain(), sp);
 
             maxRain = Math.max(rain, maxRain);
 
@@ -250,7 +250,7 @@ public class GraphActivity extends BaseActivity {
 
         LineSet dataset = new LineSet();
         for (int i = 0; i < numWeatherData; i++) {
-            float windSpeed = (float) UnitConvertor.convertWind(Float.parseFloat(weatherList.get(i).getWind()), sp);
+            float windSpeed = (float) UnitConvertor.convertWind(weatherList.get(i).getWind(), sp);
 
             maxWindSpeed = Math.max(windSpeed, maxWindSpeed);
 
@@ -293,7 +293,7 @@ public class GraphActivity extends BaseActivity {
 
         LineSet dataset = new LineSet();
         for (int i = 0; i < numWeatherData; i++) {
-            float pressure = UnitConvertor.convertPressure(Float.parseFloat(weatherList.get(i).getPressure()), sp);
+            float pressure = UnitConvertor.convertPressure(weatherList.get(i).getPressure(), sp);
 
             minPressure = (float) Math.min(Math.floor(pressure), minPressure);
             maxPressure = (float) Math.max(Math.ceil(pressure), maxPressure);
@@ -339,7 +339,7 @@ public class GraphActivity extends BaseActivity {
 
         LineSet dataset = new LineSet();
         for (int i = 0; i < numWeatherData; i++) {
-            float humidity = Float.parseFloat(weatherList.get(i).getHumidity());
+            float humidity = weatherList.get(i).getHumidity();
 
             minHumidity = Math.min(humidity, minHumidity);
             maxHumidity = Math.max(humidity, maxHumidity);
@@ -376,41 +376,8 @@ public class GraphActivity extends BaseActivity {
 
     public ParseResult parseLongTermJson(String result) {
         try {
-            JSONObject reader = new JSONObject(result);
-
-            final String code = reader.optString("cod");
-            if ("404".equals(code)) {
-                return ParseResult.CITY_NOT_FOUND;
-            }
-
-            JSONArray list = reader.getJSONArray("list");
-            for (int i = 0; i < list.length(); i++) {
-                Weather weather = new Weather();
-
-                JSONObject listItem = list.getJSONObject(i);
-                JSONObject main = listItem.getJSONObject("main");
-
-                JSONObject windObj = listItem.optJSONObject("wind");
-                weather.setWind(windObj.getString("speed"));
-
-                weather.setPressure(main.getString("pressure"));
-                weather.setHumidity(main.getString("humidity"));
-
-                JSONObject rainObj = listItem.optJSONObject("rain");
-                JSONObject snowObj = listItem.optJSONObject("snow");
-                if (rainObj != null) {
-                    weather.setRain(MainActivity.getRainString(rainObj));
-                } else if (snowObj != null) {
-                    weather.setRain(MainActivity.getRainString(snowObj));
-                } else {
-                    weather.setRain("0");
-                }
-
-                weather.setDate(listItem.getString("dt"));
-                weather.setTemperature(main.getString("temp"));
-
-                weatherList.add(weather);
-            }
+            List<Weather> parsedWeatherList = OpenWeatherMapJsonParser.convertJsonToWeatherList(result);
+            weatherList.addAll(parsedWeatherList);
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
