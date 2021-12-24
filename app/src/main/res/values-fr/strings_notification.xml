@@ -9,4 +9,6 @@
     <string name="settings_notification_type_title">Type de notification</string>
     <string name="settings_notification_type_default">Notification par défaut</string>
     <string name="settings_notification_type_simple">Notification simple</string>
+    <string name="settings_show_temperature_in_status_bar_title">Afficher la température dans la barre d\'état</string>
+    <string name="settings_show_temperature_in_status_bar_summary">Si cette option est activée, la température actuelle est affichée dans la barre d\'état au lieu de l\'icône de l\'application. Cette option est disponible à partir d\'Android 6.0 (Marshmallow).</string>
 </resources>
