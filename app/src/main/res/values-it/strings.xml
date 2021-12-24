@@ -193,4 +193,7 @@
     <string name="settings_notification_type_default">Vista predefinita di Android</string>
     <string name="channel_name">Notifiche meteo</string>
     <string name="notification_service_description">Servizio di notifica meteo di Forecastie</string>
+
+    <string name="settings_show_temperature_in_status_bar_title">Mostra temperatura nella barra di stato</string>
+    <string name="settings_show_temperature_in_status_bar_summary">Se abilitata, la temperatura corrente viene mostrata nella barra di stato al posto dell\'icona dell\'app. Quest\'opzione è disponibile a partire da Android 6.0 (Marshmallow).</string>
 </resources>
