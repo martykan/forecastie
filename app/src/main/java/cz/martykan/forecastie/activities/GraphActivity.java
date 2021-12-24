@@ -111,11 +111,11 @@ public class GraphActivity extends BaseActivity {
         TextView rainTextView = findViewById(R.id.graph_rain_textview);
         rainTextView.setText(String.format("%s (%s)", getString(R.string.rain), sp.getString("lengthUnit", "mm")));
 
-        TextView pressureTextView = findViewById(R.id.graph_pressure_textview);
-        pressureTextView.setText(String.format("%s (%s)", getString(R.string.pressure), sp.getString("pressureUnit", "hPa/mBar")));
-
         TextView windSpeedTextView = findViewById(R.id.graph_windspeed_textview);
         windSpeedTextView.setText(String.format("%s (%s)", getString(R.string.wind_speed), sp.getString("speedUnit", "m/s")));
+
+        TextView pressureTextView = findViewById(R.id.graph_pressure_textview);
+        pressureTextView.setText(String.format("%s (%s)", getString(R.string.pressure), sp.getString("pressureUnit", "hPa/mBar")));
 
         TextView humidityTextView = findViewById(R.id.graph_humidity_textview);
         humidityTextView.setText(String.format("%s (%s)", getString(R.string.humidity), "%"));
@@ -128,8 +128,8 @@ public class GraphActivity extends BaseActivity {
 
             temperatureTextView.setTextColor(Color.parseColor(labelColor));
             rainTextView.setTextColor(Color.parseColor(labelColor));
-            pressureTextView.setTextColor(Color.parseColor(labelColor));
             windSpeedTextView.setTextColor(Color.parseColor(labelColor));
+            pressureTextView.setTextColor(Color.parseColor(labelColor));
             humidityTextView.setTextColor(Color.parseColor(labelColor));
         }
 
@@ -153,8 +153,8 @@ public class GraphActivity extends BaseActivity {
     private void updateGraphs() {
         temperatureGraph();
         rainGraph();
-        pressureGraph();
         windSpeedGraph();
+        pressureGraph();
         humidityGraph();
     }
 
@@ -238,52 +238,6 @@ public class GraphActivity extends BaseActivity {
         backgroundChartView.show();
     }
 
-    private void pressureGraph() {
-        LineChartView lineChartView = findViewById(R.id.graph_pressure);
-
-        float minPressure = 100000;
-        float maxPressure = 0;
-
-        LineSet dataset = new LineSet();
-        for (int i = 0; i < numWeatherData; i++) {
-            float pressure = UnitConvertor.convertPressure(Float.parseFloat(weatherList.get(i).getPressure()), sp);
-
-            minPressure = (float) Math.min(Math.floor(pressure), minPressure);
-            maxPressure = (float) Math.max(Math.ceil(pressure), maxPressure);
-
-            dataset.addPoint(getDateLabel(weatherList.get(i), i), pressure);
-        }
-        dataset.setSmooth(false);
-        dataset.setColor(Color.parseColor("#4CAF50"));
-        dataset.setThickness(4);
-
-        int middle = Math.round(minPressure + (maxPressure - minPressure) / 2);
-        int stepSize = Math.max(1, (int) Math.ceil(Math.abs(maxPressure - minPressure) / 4));
-        int min = middle - 2 * stepSize;
-        int max = middle + 2 * stepSize;
-        int rows = 4;
-        if (Math.ceil(maxPressure) - Math.floor(minPressure) <= 3) {
-            min = (int) Math.floor(minPressure);
-            max = Math.max(min + 1, (int) Math.ceil(maxPressure));
-            rows = max - min;
-        }
-
-        ArrayList<ChartSet> data = new ArrayList<>();
-        data.add(dataset);
-        lineChartView.addData(data);
-        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, rows, 1, gridPaint);
-        lineChartView.setAxisBorderValues(min, max);
-        lineChartView.setStep(stepSize);
-        lineChartView.setLabelsColor(Color.parseColor(labelColor));
-        lineChartView.setXAxis(false);
-        lineChartView.setYAxis(false);
-        lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
-        lineChartView.show();
-
-        BarChartView barChartView = getBackgroundBarChart(R.id.graph_pressure_background, min, max, false);
-        barChartView.show();
-    }
-
     private void windSpeedGraph() {
         LineChartView lineChartView = findViewById(R.id.graph_windspeed);
         String graphLineColor = "#efd214";
@@ -328,6 +282,52 @@ public class GraphActivity extends BaseActivity {
         lineChartView.show();
 
         BarChartView barChartView = getBackgroundBarChart(R.id.graph_windspeed_background, 0, max, false);
+        barChartView.show();
+    }
+
+    private void pressureGraph() {
+        LineChartView lineChartView = findViewById(R.id.graph_pressure);
+
+        float minPressure = 100000;
+        float maxPressure = 0;
+
+        LineSet dataset = new LineSet();
+        for (int i = 0; i < numWeatherData; i++) {
+            float pressure = UnitConvertor.convertPressure(Float.parseFloat(weatherList.get(i).getPressure()), sp);
+
+            minPressure = (float) Math.min(Math.floor(pressure), minPressure);
+            maxPressure = (float) Math.max(Math.ceil(pressure), maxPressure);
+
+            dataset.addPoint(getDateLabel(weatherList.get(i), i), pressure);
+        }
+        dataset.setSmooth(false);
+        dataset.setColor(Color.parseColor("#4CAF50"));
+        dataset.setThickness(4);
+
+        int middle = Math.round(minPressure + (maxPressure - minPressure) / 2);
+        int stepSize = Math.max(1, (int) Math.ceil(Math.abs(maxPressure - minPressure) / 4));
+        int min = middle - 2 * stepSize;
+        int max = middle + 2 * stepSize;
+        int rows = 4;
+        if (Math.ceil(maxPressure) - Math.floor(minPressure) <= 3) {
+            min = (int) Math.floor(minPressure);
+            max = Math.max(min + 1, (int) Math.ceil(maxPressure));
+            rows = max - min;
+        }
+
+        ArrayList<ChartSet> data = new ArrayList<>();
+        data.add(dataset);
+        lineChartView.addData(data);
+        lineChartView.setGrid(ChartView.GridType.HORIZONTAL, rows, 1, gridPaint);
+        lineChartView.setAxisBorderValues(min, max);
+        lineChartView.setStep(stepSize);
+        lineChartView.setLabelsColor(Color.parseColor(labelColor));
+        lineChartView.setXAxis(false);
+        lineChartView.setYAxis(false);
+        lineChartView.setBorderSpacing(Tools.fromDpToPx(10));
+        lineChartView.show();
+
+        BarChartView barChartView = getBackgroundBarChart(R.id.graph_pressure_background, min, max, false);
         barChartView.show();
     }
 
