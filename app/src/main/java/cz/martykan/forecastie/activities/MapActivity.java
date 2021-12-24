@@ -46,7 +46,7 @@ public class MapActivity extends BaseActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl("file:///android_asset/map.html?lat=" + mapViewModel.mapLat + "&lon="
                 + mapViewModel.mapLon + "&appid=" + mapViewModel.apiKey
-                + "&zoom=" + mapViewModel.mapZoom);
+                + "&zoom=" + mapViewModel.mapZoom + "&displayPin=true");
         webView.addJavascriptInterface(new HybridInterface(), "NativeInterface");
         webView.setWebViewClient(new WebViewClient() {
             @Override
