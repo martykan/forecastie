@@ -203,17 +203,29 @@ public class Weather {
         this.sunset = date;
     }
 
-    public void setLat(double lat) {this.lat = lat; }
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
 
-    public double getLat() { return this.lat; }
+    public double getLat() {
+        return this.lat;
+    }
 
-    public void setLon(double lon) { this.lon = lon; }
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
 
-    public double getLon() { return this.lon; }
+    public double getLon() {
+        return this.lon;
+    }
 
-    public double getUvIndex() { return this.uvIndex; }
+    public double getUvIndex() {
+        return this.uvIndex;
+    }
 
-    public void setUvIndex(double uvIndex) { this.uvIndex = uvIndex; }
+    public void setUvIndex(double uvIndex) {
+        this.uvIndex = uvIndex;
+    }
 
     public String getIcon() {
         return icon;
