@@ -40,6 +40,8 @@ public class OpenWeatherMapJsonParser {
             JSONObject coordinatesObject = cityObject.getJSONObject("coord");
             setCoordinates(weather, coordinatesObject);
 
+            weather.setChanceOfPrecipitation(currentWeatherObject.optDouble("pop", 0));
+
             citiesWithWeather.add(weather);
         }
 
