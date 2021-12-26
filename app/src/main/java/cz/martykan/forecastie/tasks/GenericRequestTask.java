@@ -7,9 +7,9 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import com.google.android.material.snackbar.Snackbar;
-import android.text.TextUtils;
 import android.util.Log;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
@@ -32,12 +32,14 @@ import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.utils.Language;
 import cz.martykan.forecastie.utils.certificate.CertificateUtils;
+import cz.martykan.forecastie.weatherapi.WeatherStorage;
 
 public abstract class GenericRequestTask extends AsyncTask<String, String, TaskOutput> {
 
     ProgressDialog progressDialog;
     protected Context context;
     protected MainActivity activity;
+    protected WeatherStorage weatherStorage;
     public int loading = 0;
 
     private static CountDownLatch certificateCountDownLatch = new CountDownLatch(0);
@@ -49,6 +51,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         this.context = context;
         this.activity = activity;
         this.progressDialog = progressDialog;
+        this.weatherStorage = new WeatherStorage(activity);
     }
 
     @Override
@@ -261,11 +264,9 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
 
     @SuppressLint("ApplySharedPref")
     private void restorePreviousCity() {
-        if (!TextUtils.isEmpty(activity.recentCityId)) {
-            PreferenceManager.getDefaultSharedPreferences(context).edit()
-                    .putString("cityId", activity.recentCityId)
-                    .commit();
-            activity.recentCityId = "";
+        if (activity.recentCityId != null) {
+            weatherStorage.setCityId(activity.recentCityId);
+            activity.recentCityId = null;
         }
     }
 

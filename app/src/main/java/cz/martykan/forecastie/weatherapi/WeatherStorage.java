@@ -11,6 +11,7 @@ import org.json.JSONException;
 
 import java.util.List;
 
+import cz.martykan.forecastie.Constants;
 import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.weatherapi.owm.OpenWeatherMapJsonParser;
 
@@ -19,6 +20,19 @@ public class WeatherStorage {
 
     public WeatherStorage(Context context) {
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+    }
+
+    public int getCityId()
+    {
+        String cityIdString = sharedPreferences.getString("cityId", Constants.DEFAULT_CITY_ID);
+        return Integer.parseInt(cityIdString);
+    }
+
+    public void setCityId(int cityId)
+    {
+        // TODO: Add migration
+        String cityIdString = Integer.toString(cityId);
+        sharedPreferences.edit().putString("cityId", cityIdString).apply();
     }
 
     @Nullable

@@ -32,11 +32,13 @@ import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.adapters.LocationsRecyclerAdapter;
 import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.utils.UnitConvertor;
+import cz.martykan.forecastie.weatherapi.WeatherStorage;
 
 public class AmbiguousLocationDialogFragment extends DialogFragment implements LocationsRecyclerAdapter.ItemClickListener {
 
     private LocationsRecyclerAdapter recyclerAdapter;
     private SharedPreferences sharedPreferences;
+    private WeatherStorage weatherStorage;
 
     @Nullable
     @Override
@@ -64,6 +66,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
         });
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        weatherStorage = new WeatherStorage(getActivity());
 
         @SuppressWarnings("ConstantConditions")
         final int theme = getTheme(sharedPreferences.getString("theme", "fresh"));
@@ -150,7 +153,10 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         final Bundle bundle = new Bundle();
 
-        sharedPreferences.edit().putString("cityId", Integer.toString(weather.getCityId())).commit();
+        weatherStorage.setCityId(weather.getCityId());
+        weatherStorage.setLatitude(weather.getLat());
+        weatherStorage.setLongitude(weather.getLon());
+
         bundle.putBoolean(MainActivity.SHOULD_REFRESH_FLAG, true);
         intent.putExtras(bundle);
 

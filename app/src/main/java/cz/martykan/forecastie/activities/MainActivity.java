@@ -46,7 +46,6 @@ import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -62,6 +61,7 @@ import cz.martykan.forecastie.adapters.WeatherRecyclerAdapter;
 import cz.martykan.forecastie.fragments.AboutDialogFragment;
 import cz.martykan.forecastie.fragments.AmbiguousLocationDialogFragment;
 import cz.martykan.forecastie.fragments.RecyclerViewFragment;
+import cz.martykan.forecastie.models.LongTermWeatherList;
 import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.tasks.GenericRequestTask;
 import cz.martykan.forecastie.tasks.ParseResult;
@@ -113,11 +113,9 @@ public class MainActivity extends BaseActivity implements LocationListener {
     private boolean destroyed = false;
     private boolean firstRun;
 
-    private List<Weather> longTermWeather = new ArrayList<>();
-    private List<Weather> longTermTodayWeather = new ArrayList<>();
-    private List<Weather> longTermTomorrowWeather = new ArrayList<>();
+    private final LongTermWeatherList longTermWeatherList = new LongTermWeatherList();
 
-    public String recentCityId = "";
+    public Integer recentCityId = null;
 
     private Formatting formatting;
     private SharedPreferences prefs;
@@ -186,7 +184,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
         // Preload data from cache
         preloadWeather();
-        preloadUVIndex();
         updateLastUpdateTime();
 
         // Set autoupdater
@@ -225,11 +222,11 @@ public class MainActivity extends BaseActivity implements LocationListener {
     public WeatherRecyclerAdapter getAdapter(int id) {
         WeatherRecyclerAdapter weatherRecyclerAdapter;
         if (id == 0) {
-            weatherRecyclerAdapter = new WeatherRecyclerAdapter(longTermTodayWeather);
+            weatherRecyclerAdapter = new WeatherRecyclerAdapter(longTermWeatherList.getToday());
         } else if (id == 1) {
-            weatherRecyclerAdapter = new WeatherRecyclerAdapter(longTermTomorrowWeather);
+            weatherRecyclerAdapter = new WeatherRecyclerAdapter(longTermWeatherList.getTomorrow());
         } else {
-            weatherRecyclerAdapter = new WeatherRecyclerAdapter(longTermWeather);
+            weatherRecyclerAdapter = new WeatherRecyclerAdapter(longTermWeatherList.getLater());
         }
         return weatherRecyclerAdapter;
     }
@@ -237,9 +234,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
     @Override
     public void onStart() {
         super.onStart();
-        updateTodayWeatherUI();
-        updateLongTermWeatherUI();
-        updateUVIndexUI();
+        preloadWeather();
     }
 
     @Override
@@ -279,14 +274,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
         }
     }
 
-    private void preloadUVIndex() {
-        Double lastUviToday = weatherStorage.getLastUviToday();
-        if (lastUviToday != null) {
-            todayWeather.setUvIndex(lastUviToday);
-            updateUVIndexUI();
-        }
-    }
-
     private void preloadWeather() {
         Weather lastToday = this.weatherStorage.getLastToday();
         if (lastToday != null) {
@@ -294,19 +281,25 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
             updateTodayWeatherUI();
             updateLastUpdateTime();
+        }
+
+        Double lastUviToday = weatherStorage.getLastUviToday();
+        if (lastUviToday != null) {
+            todayWeather.setUvIndex(lastUviToday);
             updateUVIndexUI();
         }
 
         List<Weather> lastLongTerm = this.weatherStorage.getLastLongTerm();
         if (lastLongTerm != null && !lastLongTerm.isEmpty()) {
-            this.longTermWeather = lastLongTerm;
+            longTermWeatherList.clear();
+            longTermWeatherList.addAll(lastLongTerm);
             updateLongTermWeatherUI();
         }
     }
 
     private void getTodayUVIndex() {
-        double latitude = todayWeather.getLat();
-        double longitude = todayWeather.getLon();
+        double latitude = weatherStorage.getLatitude(Constants.DEFAULT_LAT);
+        double longitude = weatherStorage.getLongitude(Constants.DEFAULT_LON);
         new TodayUVITask(this, this, progressDialog).execute("coords", Double.toString(latitude), Double.toString(longitude));
     }
 
@@ -349,13 +342,9 @@ public class MainActivity extends BaseActivity implements LocationListener {
         alert.show();
     }
 
-    private void saveLocation(String result) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        recentCityId = preferences.getString("cityId", Constants.DEFAULT_CITY_ID);
-
-        preferences.edit()
-                .putString("cityId", result)
-                .commit();
+    private void saveLocation(int cityId) {
+        recentCityId = weatherStorage.getCityId();
+        weatherStorage.setCityId(cityId);
 
 //        if (!recentCityId.equals(result)) {
 //            // New location, update weather
@@ -382,7 +371,10 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
     private ParseResult parseTodayJson(String result) {
         try {
+            double weatherUvIndex = todayWeather.getUvIndex();
             todayWeather = OpenWeatherMapJsonParser.convertJsonToWeather(result);
+            todayWeather.setUvIndex(weatherUvIndex);
+
             weatherStorage.setLastToday(result);
             weatherStorage.setLatitude(todayWeather.getLat());
             weatherStorage.setLongitude(todayWeather.getLon());
@@ -410,15 +402,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
     }
 
     private void updateTodayWeatherUI() {
-        try {
-            if (todayWeather.getCountry().isEmpty()) {
-                preloadWeather();
-                return;
-            }
-        } catch (Exception e) {
-            preloadWeather();
-            return;
-        }
         String city = todayWeather.getCity();
         String country = todayWeather.getCountry();
         DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(getApplicationContext());
@@ -472,17 +455,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         });
     }
 
-    // TODO: Verify if uv not updating automatically also happens on original app
     private void updateUVIndexUI() {
-        try {
-            if (todayWeather.getCountry().isEmpty()) {
-                return;
-            }
-        } catch (Exception e) {
-            preloadUVIndex();
-            return;
-        }
-
         // UV Index
         double uvIndex = todayWeather.getUvIndex();
         todayUvIndex.setText(getString(R.string.uvindex) + ": " + uvIndex + " (" + UnitConvertor.convertUvIndexToRiskLevel(uvIndex, this) + ")");
@@ -493,34 +466,8 @@ public class MainActivity extends BaseActivity implements LocationListener {
             List<Weather> weatherList = OpenWeatherMapJsonParser.convertJsonToWeatherList(result);
             weatherStorage.setLastLongTerm(result);
 
-            longTermTodayWeather = new ArrayList<>();
-            longTermTomorrowWeather = new ArrayList<>();
-            longTermWeather = new ArrayList<>();
-
-            Calendar today = Calendar.getInstance();
-            today.set(Calendar.HOUR_OF_DAY, 0);
-            today.set(Calendar.MINUTE, 0);
-            today.set(Calendar.SECOND, 0);
-            today.set(Calendar.MILLISECOND, 0);
-
-            Calendar tomorrow = (Calendar) today.clone();
-            tomorrow.add(Calendar.DAY_OF_YEAR, 1);
-
-            Calendar later = (Calendar) today.clone();
-            later.add(Calendar.DAY_OF_YEAR, 2);
-
-            Calendar cal = Calendar.getInstance();
-            for (Weather weather : weatherList) {
-                cal.setTimeInMillis(weather.getDate().getTime());
-
-                if (cal.before(tomorrow)) {
-                    longTermTodayWeather.add(weather);
-                } else if (cal.before(later)) {
-                    longTermTomorrowWeather.add(weather);
-                } else {
-                    longTermWeather.add(weather);
-                }
-            }
+            longTermWeatherList.clear();
+            longTermWeatherList.addAll(weatherList);
         } catch (JSONException e) {
             Log.e("JSONException Data", result);
             e.printStackTrace();
@@ -561,7 +508,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        if (currentPage == 0 && longTermTodayWeather.isEmpty()) {
+        if (currentPage == 0 && longTermWeatherList.getToday().isEmpty()) {
             currentPage = 1;
         }
         viewPager.setCurrentItem(currentPage, false);
@@ -815,7 +762,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
         protected void updateMainUI() {
             updateTodayWeatherUI();
             updateLastUpdateTime();
-            updateUVIndexUI();
         }
     }
 
@@ -866,7 +812,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
                 if (cityList.length() > 1) {
                     launchLocationPickerDialog(cityList);
                 } else {
-                    saveLocation(cityList.getJSONObject(0).getString("id"));
+                    saveLocation(cityList.getJSONObject(0).getInt("id"));
                 }
 
             } catch (JSONException e) {
@@ -930,7 +876,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
                     return ParseResult.CITY_NOT_FOUND;
                 }
 
-                saveLocation(reader.getString("id"));
+                saveLocation(reader.getInt("id"));
 
             } catch (JSONException e) {
                 Log.e("JSONException Data", response);
