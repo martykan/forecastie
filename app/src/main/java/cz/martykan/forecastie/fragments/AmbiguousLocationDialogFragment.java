@@ -25,7 +25,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.activities.MainActivity;
@@ -98,8 +97,6 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
                 final JSONObject coordObject = cityObject.getJSONObject("coord");
                 final JSONObject sysObject = cityObject.getJSONObject("sys");
 
-                final Calendar calendar = Calendar.getInstance();
-                final int dateMsString = cityObject.getInt("dt") * 1000;
                 final String city = cityObject.getString("name");
                 final String country = sysObject.getString("country");
                 final int cityId = cityObject.getInt("id");
@@ -108,8 +105,6 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
                 final float temperature = UnitConvertor.convertTemperature((float) mainObject.getDouble("temp"), sharedPreferences);
                 final double lat = coordObject.getDouble("lat");
                 final double lon = coordObject.getDouble("lon");
-
-                calendar.setTimeInMillis(dateMsString);
 
                 Weather weather = new Weather();
                 weather.setCity(city);

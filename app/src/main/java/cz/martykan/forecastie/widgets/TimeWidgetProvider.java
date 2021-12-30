@@ -66,8 +66,7 @@ public class TimeWidgetProvider extends AbstractWidgetProvider {
             remoteViews.setTextViewText(R.id.widgetDescription, widgetWeather.getDescription());
             remoteViews.setImageViewBitmap(R.id.widgetIcon, getWeatherIcon(widgetWeather, context));
 
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-            {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 if (dateString.length() > 19)
                     remoteViews.setViewPadding(R.id.widgetIcon, 40, 0, 0, 0);
             }

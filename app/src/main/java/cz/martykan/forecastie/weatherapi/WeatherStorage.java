@@ -22,22 +22,18 @@ public class WeatherStorage {
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public int getCityId()
-    {
+    public int getCityId() {
         String cityIdString = sharedPreferences.getString("cityId", Constants.DEFAULT_CITY_ID);
         return Integer.parseInt(cityIdString);
     }
 
-    public void setCityId(int cityId)
-    {
-        // TODO: Add migration
+    public void setCityId(int cityId) {
         String cityIdString = Integer.toString(cityId);
         sharedPreferences.edit().putString("cityId", cityIdString).apply();
     }
 
     @Nullable
-    public Weather getLastToday()
-    {
+    public Weather getLastToday() {
         String lastToday = this.sharedPreferences.getString("lastToday", null);
         if (lastToday == null) {
             return null;
@@ -52,14 +48,12 @@ public class WeatherStorage {
         }
     }
 
-    public void setLastToday(String lastToday)
-    {
+    public void setLastToday(String lastToday) {
         this.sharedPreferences.edit().putString("lastToday", lastToday).apply();
     }
 
     @Nullable
-    public List<Weather> getLastLongTerm()
-    {
+    public List<Weather> getLastLongTerm() {
         String lastLongTerm = this.sharedPreferences.getString("lastLongterm", null);
         if (null == lastLongTerm) {
             return null;
@@ -75,14 +69,12 @@ public class WeatherStorage {
     }
 
 
-    public void setLastLongTerm(String lastLongTerm)
-    {
+    public void setLastLongTerm(String lastLongTerm) {
         this.sharedPreferences.edit().putString("lastLongterm", lastLongTerm).apply();
     }
 
     @Nullable
-    public Double getLastUviToday()
-    {
+    public Double getLastUviToday() {
         String lastUviToday = this.sharedPreferences.getString("lastUVIToday", null);
         if (null == lastUviToday) {
             return null;
@@ -102,8 +94,7 @@ public class WeatherStorage {
     }
 
     @Nullable
-    public Double getLatitude()
-    {
+    public Double getLatitude() {
         if (this.sharedPreferences.contains("latitude")) {
             return (double) this.sharedPreferences.getFloat("latitude", 0);
         } else {
@@ -111,20 +102,17 @@ public class WeatherStorage {
         }
     }
 
-    public double getLatitude(double defaultValue)
-    {
+    public double getLatitude(double defaultValue) {
         Double latitude = this.getLatitude();
         return latitude != null ? latitude : defaultValue;
     }
 
-    public void setLatitude(double latitude)
-    {
+    public void setLatitude(double latitude) {
         this.sharedPreferences.edit().putFloat("latitude", (float) latitude).apply();
     }
 
     @Nullable
-    public Double getLongitude()
-    {
+    public Double getLongitude() {
         if (this.sharedPreferences.contains("longitude")) {
             return (double) this.sharedPreferences.getFloat("longitude", 0);
         } else {
@@ -132,14 +120,12 @@ public class WeatherStorage {
         }
     }
 
-    public double getLongitude(double defaultValue)
-    {
+    public double getLongitude(double defaultValue) {
         Double longitude = this.getLongitude();
         return longitude != null ? longitude : defaultValue;
     }
 
-    public void setLongitude(double longitude)
-    {
+    public void setLongitude(double longitude) {
         this.sharedPreferences.edit().putFloat("longitude", (float) longitude).apply();
 
     }

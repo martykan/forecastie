@@ -148,8 +148,7 @@ public class OpenWeatherMapJsonParser {
         }
     }
 
-    private static void setCityAndCountry(Weather weather, int cityId, @NonNull String cityName, @NonNull String country)
-    {
+    private static void setCityAndCountry(Weather weather, int cityId, @NonNull String cityName, @NonNull String country) {
         weather.setCityId(cityId);
         weather.setCity(cityName);
         weather.setCountry(country);
@@ -160,9 +159,8 @@ public class OpenWeatherMapJsonParser {
         weather.setLon(coordinatesObject.getDouble("lon"));
     }
 
-    private static String capitalize(String string)
-    {
-        if (string.length() < 1) {
+    private static String capitalize(String string) {
+        if (string.isEmpty()) {
             return string;
         }
 

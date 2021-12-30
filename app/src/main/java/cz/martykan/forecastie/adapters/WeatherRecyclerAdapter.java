@@ -131,8 +131,7 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         return (null != itemList ? itemList.size() : 0);
     }
 
-    private String getWeatherIcon(Weather weather, Context context)
-    {
+    private String getWeatherIcon(Weather weather, Context context) {
         Formatting formatting = new Formatting(context);
 
         return formatting.getWeatherIcon(weather.getWeatherId(), TimeUtils.isDayTime(weather, Calendar.getInstance()));

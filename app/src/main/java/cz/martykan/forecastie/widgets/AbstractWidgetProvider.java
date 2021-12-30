@@ -63,14 +63,12 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     }
 
     @Nullable
-    protected Weather getTodayWeather(Context context)
-    {
+    protected Weather getTodayWeather(Context context) {
         WeatherStorage weatherStorage = new WeatherStorage(context);
         return weatherStorage.getLastToday();
     }
 
-    protected void openMainActivity(Context context, RemoteViews remoteViews)
-    {
+    protected void openMainActivity(Context context, RemoteViews remoteViews) {
         try {
             Intent intent = new Intent(context, MainActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
@@ -153,8 +151,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
-    protected String getFormattedTemperature(Weather weather, Context context, SharedPreferences sp)
-    {
+    protected String getFormattedTemperature(Weather weather, Context context, SharedPreferences sp) {
         float temperature = UnitConvertor.convertTemperature((float) weather.getTemperature(), sp);
         if (sp.getBoolean("temperatureInteger", false)) {
             temperature = Math.round(temperature);
@@ -163,15 +160,13 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         return new DecimalFormat("#.#").format(temperature) + localize(sp, context, "unit", "C");
     }
 
-    protected String getFormattedPressure(Weather weather, Context context, SharedPreferences sp)
-    {
+    protected String getFormattedPressure(Weather weather, Context context, SharedPreferences sp) {
         double pressure = UnitConvertor.convertPressure((float) weather.getPressure(), sp);
 
         return new DecimalFormat("0.0").format(pressure) + " " + localize(sp, context, "pressureUnit", "hPa");
     }
 
-    protected String getFormattedWind(Weather weather, Context context, SharedPreferences sp)
-    {
+    protected String getFormattedWind(Weather weather, Context context, SharedPreferences sp) {
         double wind = UnitConvertor.convertWind(weather.getWind(), sp);
 
         return new DecimalFormat("0.0").format(wind) + " " + localize(sp, context, "speedUnit", "m/s")
