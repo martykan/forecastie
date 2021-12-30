@@ -20,8 +20,8 @@
     <!-- Main activity headings -->
     <string name="wind">풍량</string>
     <string name="wind_speed">풍속</string>
-    <string name="pressure">압력</string>
-    <string name="humidity">습기</string>
+    <string name="pressure">기압</string>
+    <string name="humidity">습도</string>
     <string name="sunrise">일출</string>
     <string name="sunset">일몰</string>
     <string name="uvindex">자외선 지수</string>
@@ -31,21 +31,21 @@
     <string name="setting_lengthUnits">길이 단위</string>
     <string name="setting_speedUnits">풍속 단위</string>
     <string name="setting_tempUnits">온도 단위</string>
-    <string name="setting_showTempAsInteger">온도 단위를 정수로 표현</string>
+    <string name="setting_showTempAsInteger">온도의 소수점 표시안함</string>
     <string name="setting_pressureUnits">기압 단위</string>
     <string name="setting_auto_detect_location">위치 설정</string>
     <string name="setting_differentiateDaysByTint">날짜들을 색으로 구별</string>
 
-    <string name="setting_unit_mps">초당 미터</string>
-    <string name="setting_unit_kph">시간당 킬로미터</string>
-    <string name="setting_unit_mph">시간당 마일</string>
+    <string name="setting_unit_mps">m/s</string>
+    <string name="setting_unit_kph">km/h</string>
+    <string name="setting_unit_mph">mile/h</string>
     <string name="setting_unit_bft"> 보 퍼트 바람 규모</string>
     <string name="setting_unit_kn">매듭</string>
-    <string name="setting_unit_Celsuis">섭씨</string>
-    <string name="setting_unit_Fahrenheit">화씨</string>
-    <string name="setting_unit_Kelvin">켈빈</string>
+    <string name="setting_unit_Celsuis">℃</string>
+    <string name="setting_unit_Fahrenheit">°F</string>
+    <string name="setting_unit_Kelvin">K</string>
 
-    <string name="setting_unit_mm">밀리미터</string>
+    <string name="setting_unit_mm">mm</string>
     <string name="setting_unit_in">인치</string>
 
     <string name="setting_dateFormat">날짜 형식</string>
@@ -66,30 +66,30 @@
     <string name="setting_apiKey">API 키</string>
     <string name="setting_apiKey_summary">날씨지도 쿼리를 위한 사용자 API 키</string>
 
-    <string name="setting_unit_hpa">헥토파스칼</string>
-    <string name="setting_unit_kpa">킬로파스칼</string>
-    <string name="setting_unit_mmhg">수은주 밀리미터</string>
-    <string name="setting_unit_inhg">수은주 인치</string>
+    <string name="setting_unit_hpa">hpa</string>
+    <string name="setting_unit_kpa">kpa</string>
+    <string name="setting_unit_mmhg">mmhg</string>
+    <string name="setting_unit_inhg">inhg</string>
 
-    <string name="speed_unit_mps">초당 미터</string>
-    <string name="speed_unit_kph">시간당 킬로미터</string>
-    <string name="speed_unit_mph">시간당 마일</string>
-    <string name="speed_unit_kn">매듭</string>
+    <string name="speed_unit_mps">m/s</string>
+    <string name="speed_unit_kph">km/h</string>
+    <string name="speed_unit_mph">mi/h</string>
+    <string name="speed_unit_kn">노트</string>
 
     <string name="wind_direction_format_none">표시 없음</string>
     <string name="wind_direction_format_arrows">화살표</string>
     <string name="wind_direction_format_abbreviations">축약표시</string>
 
-    <string name="pressure_unit_hpa">헥토파스칼</string>
-    <string name="pressure_unit_kpa">킬로파스칼</string>
-    <string name="pressure_unit_mmhg">수은주 밀리미터</string>
+    <string name="pressure_unit_hpa">hpa</string>
+    <string name="pressure_unit_kpa">kpa</string>
+    <string name="pressure_unit_mmhg">mmHg</string>
 
-    <string name="setting_theme_fresh">밝은</string>
-    <string name="setting_theme_classic">클래식한</string>
-    <string name="setting_theme_dark">밝은 어두운</string>
-    <string name="setting_theme_classic_dark">클래식하게 어두운</string>
-    <string name="setting_theme_black">밝은 검정</string>
-    <string name="setting_theme_classic_black">클래식한 검정</string>
+    <string name="setting_theme_fresh">블루 화이트</string>
+    <string name="setting_theme_classic">클래식 화이트</string>
+    <string name="setting_theme_dark">블루 그레이</string>
+    <string name="setting_theme_classic_dark">클래식 그레이</string>
+    <string name="setting_theme_black">블루 다크</string>
+    <string name="setting_theme_classic_black">클래식 다크</string>
 
     <string name="dialog_ok">확인</string>
     <string name="dialog_cancel">취소</string>
@@ -145,7 +145,7 @@
 
     <string name="settings_title_display">화면</string>
     <string name="settings_title_data">데이터</string>
-    <string name="setting_displayDecimalZeroes">십진수 0을 표시</string>
+    <string name="setting_displayDecimalZeroes">소수값 표시</string>
     <string name="settings_title_location">위치</string>
     <string name="setting_update_location_automatically">백그라운드에서 위치 업데이트</string>
 
@@ -163,4 +163,13 @@
     <string name="about_data"><a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA</a>라이센스에 따라 <a href='https://openweathermap.org/'>OpenWeatherMap</a> 에서 제공한 데이터입니다.</string>
     <string name="about_icons"><a href='http://scripts.sil.org/OFL'>아이콘은 SIL OFL 1.1</a> 라이센스에 따라 <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> 및 <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a><a href='https://erikflowers.github.io/weather-icons/'>의 날씨 아이콘입니다.</a></string>
     <string name="clouds">구름량</string>
+
+    <!--Settings/Notification-->
+    <string name="settings_title_notifications">알림</string>
+    <string name="settings_enable_notification_title">알림에 날씨를 표시</string>
+    <string name="settings_notification_type_title">알림 형식</string>
+    <string name="settings_notification_type_default">기본 안드로이드 형식</string>
+    <string name="settings_notification_type_simple">간단한 알림</string>
+    <string name="settings_show_temperature_in_status_bar_title">상태바에 기온을 표시</string>
+    <string name="settings_show_temperature_in_status_bar_summary">기능을 사용할려면 해당 단말기의 안드로이드 버전이 Android 6.0 (Marshmallow)을 만족해야합니다.</string>
 </resources>
