@@ -180,6 +180,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
         // Preload data from cache
         preloadWeather();
+        preloadUVIndex();
         updateLastUpdateTime();
 
         // Set autoupdater
@@ -250,6 +251,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         } else if (shouldUpdate() && isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
+            getTodayUVIndex();
         }
         if (firstRun) {
             tapGraph.setText(getString(R.string.tap_for_graphs));
@@ -268,6 +270,20 @@ public class MainActivity extends BaseActivity implements LocationListener {
             } catch (SecurityException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void preloadUVIndex() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+
+        String lastUVIToday = sp.getString("lastToday", null);
+        if (lastUVIToday != null && !lastUVIToday.isEmpty()) {
+            double latitude = todayWeather.getLat();
+            double longitude = todayWeather.getLon();
+            if (latitude == 0 && longitude == 0) {
+                return;
+            }
+            new TodayUVITask(this, this, progressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "coords", Double.toString(latitude), Double.toString(longitude));
         }
     }
 
@@ -537,7 +553,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
                 return;
             }
         } catch (Exception e) {
-            preloadWeather();
+            preloadUVIndex();
             return;
         }
 
@@ -734,6 +750,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         if (isNetworkAvailable()) {
             getTodayWeather();
             getLongTermWeather();
+            getTodayUVIndex();
         } else {
             Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
         }
@@ -907,7 +924,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
             super.onPostExecute(output);
             // Update widgets
             AbstractWidgetProvider.updateWidgets(context);
-            getTodayUVIndex();
         }
 
         @Override
@@ -924,6 +940,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
         protected void updateMainUI() {
             updateTodayWeatherUI();
             updateLastUpdateTime();
+            updateUVIndexUI();
         }
     }
 
