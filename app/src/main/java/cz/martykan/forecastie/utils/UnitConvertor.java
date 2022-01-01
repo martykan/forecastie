@@ -34,7 +34,7 @@ public class UnitConvertor {
     }
 
     public static float kelvinToFahrenheit(float kelvinTemp) {
-        return (((9 * kelvinToCelsius(kelvinTemp)) / 5) + 32);
+        return ((kelvinTemp - 273.15f) * 1.8f) + 32;
     }
 
     public static float convertRain(float rain, SharedPreferences sp) {
