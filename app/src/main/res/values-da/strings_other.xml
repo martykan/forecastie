@@ -13,7 +13,7 @@
     <string name="settings_title_location">Placering</string>
     <string name="setting_update_location_automatically">Opdatere placering i baggrund</string>
     <string name="location_settings">Placering opsætning</string>
-    <string name="location_settings_message">Placering er ikke aktiveret. Gå til opsætnings-menuen?</string>
+    <string name="location_settings_message">Placering er ikke aktiveret. Gå til opsætnings-menu?</string>
     <string name="location_settings_button">Opsætning</string>
     <string name="location_search_heading">Placeringer</string>
 
