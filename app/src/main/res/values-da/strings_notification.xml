@@ -9,4 +9,6 @@
     <string name="settings_notification_type_title">Påmindelse type</string>
     <string name="settings_notification_type_default">Standard Android visning</string>
     <string name="settings_notification_type_simple">Enkel påmindelse</string>
+    <string name="settings_show_temperature_in_status_bar_title">Vis temperatur i påmindelse</string>
+    <string name="settings_show_temperature_in_status_bar_summary">Hvis aktiveret, vises aktuel temperatur i påmindelse i stedet for program ikon. Tilgængelig fra Android 6.0 (Marshmallow).</string>
 </resources>
