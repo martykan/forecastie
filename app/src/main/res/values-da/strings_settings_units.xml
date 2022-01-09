@@ -3,17 +3,17 @@
 <resources>
     <!-- Settings/Units -->
     <string name="settings_title_units">Enheder</string>
-    <string name="setting_lengthUnits">Længde enheder</string>
-    <string name="setting_speedUnits">Hastighed enheder</string>
-    <string name="setting_tempUnits">Temperatur enheder</string>
+    <string name="setting_lengthUnits">Længde enhed</string>
+    <string name="setting_speedUnits">Hastighed enhed</string>
+    <string name="setting_tempUnits">Temperatur enhed</string>
     <string name="setting_showTempAsInteger">Vis temperatur som heltal</string>
-    <string name="setting_pressureUnits">Tryk enheder</string>
-    <string name="setting_auto_detect_location">Opdage placering</string>
-    <string name="setting_differentiateDaysByTint">Adskille dage med farver</string>
+    <string name="setting_pressureUnits">Tryk enhed</string>
+    <string name="setting_auto_detect_location">Opdag placering</string>
+    <string name="setting_differentiateDaysByTint">Adskil dage med farver</string>
 
-    <string name="setting_unit_mps">Meter pr. sekund (m/s)</string>
-    <string name="setting_unit_kph">Kilometer pr. time (km/t)</string>
-    <string name="setting_unit_mph">Mil pr. time (mph)</string>
+    <string name="setting_unit_mps">Meter per sekund (m/s)</string>
+    <string name="setting_unit_kph">Kilometer per time (km/t)</string>
+    <string name="setting_unit_mph">Mil per time (mph)</string>
     <string name="setting_unit_bft">Beaufort vind skalering (bft)</string>
     <string name="setting_unit_kn">Knob (kn)</string>
     <string name="setting_unit_Celsuis">Celcius</string>
@@ -21,9 +21,9 @@
     <string name="setting_unit_Kelvin">Kelvin</string>
 
     <string name="setting_unit_mm">Millimeter (mm)</string>
-    <string name="setting_unit_in">Tommer (in)</string>
+    <string name="setting_unit_in">Tommer (″)</string>
 
-    <string name="setting_unit_hpa">hPa/mBar</string>
+    <string name="setting_unit_hpa">hPa</string>
     <string name="setting_unit_kpa">kPa</string>
     <string name="setting_unit_mmhg">mm Hg</string>
     <string name="setting_unit_inhg">tommer Hg</string>
@@ -36,6 +36,7 @@
     <string name="pressure_unit_hpa">hPa</string>
     <string name="pressure_unit_kpa">kPa</string>
     <string name="pressure_unit_mmhg">mm Hg</string>
+    <string name="pressure_unit_inhg">tommer Hg</string>
 
     <string name="uvi_no_info">Ingen information</string>
     <string name="uvi_low">Lav</string>
