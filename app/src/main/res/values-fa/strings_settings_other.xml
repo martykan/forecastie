@@ -24,7 +24,7 @@
     <string name="settings_title_data">اطلاعات</string>
     <string name="setting_refreshInterval">فاصله بروزرسانی‌ ها در پس زمینه</string>
     <string name="settings_none">هیچ کدام</string>
-    <string name="settings_15min">۱۵ دقیقه</string>
+    <string name="settings_15min">‌۱۵ دقیقه</string>
     <string name="settings_30min">۳۰ دقیقه</string>
     <string name="settings_1hour">۱ ساعت</string>
     <string name="settings_2hour">۲ ساعت</string>
@@ -42,4 +42,3 @@
     <string name="dialog_ok">تائید</string>
     <string name="dialog_cancel">لغو</string>
 </resources>"
- https://github.com/martykan/forecastie/blob/master/app/src/main/res/values/strings_settings_other.xml#:~:text=%3C!%2D%2D%20Do%20not%20change,%3C/resources%3E
