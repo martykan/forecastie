@@ -12,7 +12,7 @@
     <!-- Location -->
     <string name="settings_title_location">موقعیت مکانی</string>
     <string name="setting_update_location_automatically">بروزرسانی موقعیت در پس زمینه</string>
-    <string name="location_settings">Location Settings</string>
+    <string name="location_settings">تنظیمات موقعیت مکانی</string>
     <string name="location_settings_message">حسگر موقعیت فعال نیست.آیا میخواهید به فهرست تنظیمات بروید؟</string>
     <string name="location_settings_button">تنظیمات</string>
     <string name="location_search_heading">مکان ها</string>
