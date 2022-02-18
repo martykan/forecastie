@@ -3,11 +3,11 @@
 <resources>
     <!-- Errors -->
     <string name="msg_err_parsing_json">خطا در تفسیر فرمت</string>
-    <string name="msg_http_error">Error while requesting or receiving data.</string>
+    <string name="msg_http_error">خطا در هنگام دریافت یا درخواست اطلاعات</string>
     <string name="msg_connection_not_available">.ارتباطی در دسترس نیست</string>
     <string name="msg_city_not_found">.شهر مورد نظر وجود ندارد</string>
     <string name="msg_too_many_requests">.تعداد درخواست ها بالاست. لطفا دوباره تلاش بفرمائید</string>
-    <string name="msg_invalid_api_key">Invalid API key.</string>
+    <string name="msg_invalid_api_key">کلید API نامعتبر</string>
 
     <!-- Location -->
     <string name="settings_title_location">موقعیت مکانی</string>
