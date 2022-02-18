@@ -4,12 +4,13 @@
     <string name="app_name">Forecastie</string>
     <!-- Main activity titles -->
     <string name="action_search">جستجو</string>
-    <string name="action_refresh">Refresh</string>
+    <string name="action_refresh">تازه سازی</string>
     <string name="action_settings">تنظیمات</string>
     <string name="action_about">درباره</string>
     <string name="search_title">جستجوی شهر</string>
     <string name="downloading_data">بارگیری اطلاعات ...</string>
     <string name="getting_location">گرفتن اطلاعات مکانی شما ...</string>
+    <string name="loading_data">... در حال بارگیری</string>
 
     <!-- Forecast cards -->
     <string name="today">امروز</string>
@@ -18,10 +19,13 @@
 
     <!-- Main activity headings -->
     <string name="wind">باد</string>
+ ‌   <string name="wind_speed">سرعت باد</string>
     <string name="pressure">فشار</string>
     <string name="humidity">رطوبت</string>
     <string name="sunrise">طلوع</string>
     <string name="sunset">غروب</string>
+‌    <string name="uvindex">شاخص اشعه ماوراء بنفش</string>
+    <string name="tap_for_graphs">برای‌ نمودارها ضربه بزنید</string>
 
     <!-- Settings/Units -->
     <string name="setting_lengthUnits">واحد مسافت</string>
@@ -107,6 +111,8 @@
     <!-- Map -->
 
     <!-- Graphs -->
+ ‌ ‌  <string name="action_graphs">نمودار</string>
+    <string name="graphs_more_days">روزهای بیشتر</string>
 
     <!-- About dialogue -->
 
