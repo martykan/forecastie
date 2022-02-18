@@ -2,44 +2,44 @@
 <!-- Do not delete any blank lines -->
 <resources>
     <!-- Settings/Appearance -->
-    <string name="settings_title_display">Display</string>
-    <string name="setting_theme">Theme</string>
-    <string name="setting_transparent_widget">Make widget transparent</string>
-    <string name="setting_wind_direction_format">Wind direction format</string>
-    <string name="setting_theme_fresh">Fresh</string>
-    <string name="setting_theme_classic">Classic</string>
-    <string name="setting_theme_dark">Fresh Dark</string>
-    <string name="setting_theme_classic_dark">Classic Dark</string>
-    <string name="setting_theme_black">Fresh Black</string>
-    <string name="setting_theme_classic_black">Classic Black</string>
+    <string name="settings_title_display">نمایش</string>
+    <string name="setting_theme">پوسته</string>
+    <string name="setting_transparent_widget">ابزارک را شفاف کنید</string>
+    <string name="setting_wind_direction_format">فرمت جهت باد</string>
+    <string name="setting_theme_fresh">مدرن</string>
+    <string name="setting_theme_classic">کلاسیک</string>
+    <string name="setting_theme_dark">مدرن تاریک</string>
+    <string name="setting_theme_classic_dark">کلاسیک تاریک</string>
+    <string name="setting_theme_black">مدرن مشکی</string>
+    <string name="setting_theme_classic_black">کلاسیک مشکی</string>
 
-    <string name="wind_direction_format_none">No indication</string>
-    <string name="wind_direction_format_arrows">Arrows</string>
-    <string name="wind_direction_format_abbreviations">Abbreviations</string>
-    <string name="setting_displayDecimalZeroes">Display decimal zeroes</string>
+    <string name="wind_direction_format_none">بدون علامت</string>
+    <string name="wind_direction_format_arrows">فلش</string>
+    <string name="wind_direction_format_abbreviations">نام اختصاری</string>
+    <string name="setting_displayDecimalZeroes">نمایش صفرهای اعشاری</string>
 
     <!-- Settings/Data -->
-    <string name="last_update">Last update:\n%s</string>
-    <string name="last_update_widget">\nLast update: %s</string>
-    <string name="settings_title_data">Data</string>
-    <string name="setting_refreshInterval">Background refresh interval</string>
-    <string name="settings_none">None</string>
-    <string name="settings_15min">15 min</string>
-    <string name="settings_30min">30 min</string>
-    <string name="settings_1hour">1 h</string>
-    <string name="settings_2hour">2 h</string>
-    <string name="settings_6hour">6 h</string>
-    <string name="settings_12hour">12 h</string>
-    <string name="settings_24hour">24 h</string>
-    <string name="setting_apiKey">API key</string>
-    <string name="setting_apiKey_summary">Custom API key for OpenWeatherMap queries</string>
+    <string name="last_update">آخرین بروزرسانی:\n%s</string>
+    <string name="last_update_widget">\nآخرین بروزرسانی: %s</string>
+    <string name="settings_title_data">اطلاعات</string>
+    <string name="setting_refreshInterval">فاصله بروزرسانی‌ ها در پس زمینه</string>
+    <string name="settings_none">هیچ کدام</string>
+    <string name="settings_15min">۱۵ دقیقه</string>
+    <string name="settings_30min">۳۰ دقیقه</string>
+    <string name="settings_1hour">۱ ساعت</string>
+    <string name="settings_2hour">۲ ساعت</string>
+    <string name="settings_6hour">۶ ساعت</string>
+    <string name="settings_12hour">۱۲ ساعت</string>
+    <string name="settings_24hour">۲۴ ساعت</string>
+    <string name="setting_apiKey">کلید API</string>
+    <string name="setting_apiKey_summary">کلید API سفارشی برای درخواست های OpenWeatherMap</string>
 
     <!-- Settings/Date format -->
-    <string name="error_dateFormat">DATE FORMAT ERROR</string>
-    <string name="setting_dateFormat">Date Format</string>
-    <string name="setting_dateFormatCustom">Custom Date Format</string>
-    <string name="setting_dateFormatCustom_summary">Provide the custom SimpleDateFormat string to be used</string>
-    <string name="dialog_ok">OK</string>
-    <string name="dialog_cancel">Cancel</string>
+    <string name="error_dateFormat">خطای قالب تاریخ</string>
+    <string name="setting_dateFormat">قالب تاریخ</string>
+    <string name="setting_dateFormatCustom">قالب تاریخ سفارشی</string>
+    <string name="setting_dateFormatCustom_summary">.قالب تاریخ را وارد نمائید</string>
+    <string name="dialog_ok">تائید</string>
+    <string name="dialog_cancel">لغو</string>
 </resources>"
  https://github.com/martykan/forecastie/blob/master/app/src/main/res/values/strings_settings_other.xml#:~:text=%3C!%2D%2D%20Do%20not%20change,%3C/resources%3E
