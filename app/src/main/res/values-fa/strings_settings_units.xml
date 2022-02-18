@@ -14,14 +14,14 @@
     <string name="setting_unit_mps">متر بر ثانیه (m/s)</string>
     <string name="setting_unit_kph">کیلومتر بر ساعت (kph)</string>
     <string name="setting_unit_mph">مایل بر ساعت (mph)</string>
-    <string name="setting_unit_bft">Beaufort wind scale (bft)</string>
-    <string name="setting_unit_kn">Knots (kn)</string>
-    <string name="setting_unit_Celsuis">Celsius</string>
-    <string name="setting_unit_Fahrenheit">Fahrenheit</string>
-    <string name="setting_unit_Kelvin">Kelvin</string>
+    <string name="setting_unit_bft">مقیاس بوفورت (bft)</string>
+    <string name="setting_unit_kn">گره (kn)</string>
+    <string name="setting_unit_Celsuis">سانتیگراد</string>
+    <string name="setting_unit_Fahrenheit">فارنهایت</string>
+    <string name="setting_unit_Kelvin">کلوین</string>
 
-    <string name="setting_unit_mm">Millimeters (mm)</string>
-    <string name="setting_unit_in">Inches (in)</string>
+    <string name="setting_unit_mm">میلی متر (mm)</string>
+    <string name="setting_unit_in">اینچ (in)</string>
 
     <string name="setting_unit_hpa">hPa/mBar</string>
     <string name="setting_unit_kpa">kPa</string>
@@ -38,10 +38,10 @@
     <string name="pressure_unit_mmhg">mm Hg</string>
     <string name="pressure_unit_inhg">in Hg</string>
 
-    <string name="uvi_no_info">No Info</string>
-    <string name="uvi_low">Low</string>
-    <string name="uvi_moderate">Moderate</string>
-    <string name="uvi_high">High</string>
-    <string name="uvi_very_high">Very High</string>
-    <string name="uvi_extreme">Extreme</string>
+    <string name="uvi_no_info">بدون اطلاعات</string>
+    <string name="uvi_low">کم</string>
+    <string name="uvi_moderate">متعادل</string>
+    <string name="uvi_high">زیاد</string>
+    <string name="uvi_very_high">خیلی زیاد</string>
+    <string name="uvi_extreme">شدید</string>
 </resources>
