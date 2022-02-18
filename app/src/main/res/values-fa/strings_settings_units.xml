@@ -38,7 +38,7 @@
     <string name="pressure_unit_mmhg">mm Hg</string>
     <string name="pressure_unit_inhg">in Hg</string>
 
-    <string name="uvi_no_info">بدون اطلاعات</string>
+    <string name="uvi_no_info">بدون داده</string>
     <string name="uvi_low">کم</string>
     <string name="uvi_moderate">متعادل</string>
     <string name="uvi_high">زیاد</string>
