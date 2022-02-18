@@ -2,18 +2,18 @@
 <!-- Do not delete any blank lines -->
 <resources>
     <!-- Settings/Units -->
-    <string name="settings_title_units">Units</string>
-    <string name="setting_lengthUnits">Length units</string>
-    <string name="setting_speedUnits">Speed units</string>
-    <string name="setting_tempUnits">Temperature units</string>
-    <string name="setting_showTempAsInteger">Show temperature only as an integer</string>
-    <string name="setting_pressureUnits">Pressure units</string>
-    <string name="setting_auto_detect_location">Detect Location</string>
-    <string name="setting_differentiateDaysByTint">Differentiate Days with Color</string>
+    <string name="settings_title_units">واحد</string>
+    <string name="setting_lengthUnits">واحد طول</string>
+    <string name="setting_speedUnits">واحد سرعت</string>
+    <string name="setting_tempUnits">واحد دما</string>
+    <string name="setting_showTempAsInteger">دما را فقط به صورت عدد صحیح نمایش بده</string>
+    <string name="setting_pressureUnits">واحد فشار</string>
+    <string name="setting_auto_detect_location">پیداکردن موقعیت مکانی</string>
+    <string name="setting_differentiateDaysByTint">متمایز کردن روزها با رنگ</string>
 
-    <string name="setting_unit_mps">Meters per second (m/s)</string>
-    <string name="setting_unit_kph">Kilometers per hour (kph)</string>
-    <string name="setting_unit_mph">Miles per hour (mph)</string>
+    <string name="setting_unit_mps">متر بر ثانیه (m/s)</string>
+    <string name="setting_unit_kph">کیلومتر بر ساعت (kph)</string>
+    <string name="setting_unit_mph">مایل بر ساعت (mph)</string>
     <string name="setting_unit_bft">Beaufort wind scale (bft)</string>
     <string name="setting_unit_kn">Knots (kn)</string>
     <string name="setting_unit_Celsuis">Celsius</string>
