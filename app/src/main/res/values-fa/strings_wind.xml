@@ -22,7 +22,7 @@
     <!-- Wind strength - Beaufort -->
     <string name="beaufort_calm">آرام (0)</string>
     <string name="beaufort_light_air">هوای ملایم (1)</string>
-    <string name="beaufort_light_breeze">نسیم آرام (2)</string>
+    <string name="beaufort_light_breeze">نسیم آهسته (2)</string>
     <string name="beaufort_gentle_breeze">نسیم ملایم (3)</string>
     <string name="beaufort_moderate_breeze">نسیم متعادل (4)</string>
     <string name="beaufort_fresh_breeze">باد تند (5)</string>
