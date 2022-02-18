@@ -79,12 +79,6 @@
     <string name="dialog_ok">تایید</string>
     <string name="dialog_cancel">لغو</string>
 
-    <!-- Errors -->
-    <string name="msg_err_parsing_json">خطا در تفسیر فرمت</string>
-    <string name="msg_connection_not_available">ارتباطی در دسترسی نیست.</string>
-    <string name="msg_city_not_found">شهر مورد مظر وجود ندارد.</string>
-    <string name="msg_too_many_requests">تعداد درخواست‌ها بالاست. لطفا مجدد تلاش بفرمایید.</string>
-
     <!-- Wind direction -->
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_north_east">NNE</string>
@@ -102,11 +96,6 @@
     <string name="wind_direction_west_north_west">WNW</string>
     <string name="wind_direction_north_west">NW</string>
     <string name="wind_direction_north_north_west">NNW</string>
-
-    <!-- Wind strength - Beaufort -->
-
-
-    <!-- Location -->
 
     <!-- Graphs -->
  ‌ ‌  <string name="action_graphs"> نمودار </string>
@@ -126,6 +115,4 @@
     <string name="about_issues"> اشکالات و پیشنهادات را میتوان در<a href='https://github.com/martykan/forecastie/issues'>صفحه اشکالات گیتهاب ما</a>ارسال کرد.</string>
     <string name="about_data">داده ها توسط<a href='https://openweathermap.org/'>OpenWeatherMap</a>تحت پروانه<a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA 2.0 licence</a> ارائه شده است.</string>
     <string name="about_icon">آیکون ها متعلق به <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a> هستند که توسط <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> و <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a> تحت پروانه‌ <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> ارا‌ئه شده است. </string>
-
-    <!-- Widget -->
 </resources>
