@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_service_description">Service for showing Forecastie weather notification.</string>
+    <string name="channel_name">Weather notification</string>
+    <string name="no_data">No data</string>
+
+    <string name="settings_title_notifications">Notification</string>
+    <string name="settings_enable_notification_title">Show weather in notification</string>
+    <string name="settings_notification_type_title">Notification type</string>
+    <string name="settings_notification_type_default">Default Android view</string>
+    <string name="settings_notification_type_simple">Simple notification</string>
+    <string name="settings_show_temperature_in_status_bar_title">Show temperature in status bar</string>
+    <string name="settings_show_temperature_in_status_bar_summary">If this is enabled, current temperature is shown in the status bar instead of app icon. This option available from Android 6.0 (Marshmallow).</string>
+</resources>
