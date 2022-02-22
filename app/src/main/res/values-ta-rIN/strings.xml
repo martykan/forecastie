@@ -1,0 +1,201 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <string name="app_name">முன்னறிவிப்பு</string>
+    <!-- Main activity titles -->
+    <string name="action_search">தேடு</string>
+    <string name="action_refresh">புதுப்பி</string>
+    <string name="action_settings">அமைப்புகள்</string>
+    <string name="action_about">பற்றி</string>
+    <string name="search_title">நகரத்தை தேடு</string>
+    <string name="downloading_data">தரவுகளை தரவிறக்குகிறது …</string>
+    <string name="getting_location">உங்கள் இருப்பிடத்தை பெறுகிறது …</string>
+    <string name="loading_data">ஏற்றுகிறது …</string>
+
+    <!-- Forecast cards -->
+    <string name="today">இன்று</string>
+    <string name="tomorrow">நாளை</string>
+    <string name="later">பின்னர்</string>
+
+    <!-- Main activity headings -->
+    <string name="wind">காற்று</string>
+    <string name="wind_speed">காற்றின் வேகம்</string>
+    <string name="pressure">அழுத்தம்</string>
+    <string name="humidity">ஈரப்பதம்</string>
+    <string name="sunrise">சூரிய உதயம்</string>
+    <string name="sunset">சூரிய அஸ்தமனம்</string>
+    <string name="uvindex">புறஊதா குறியீடு</string>
+    <string name="tap_for_graphs">வரைபடங்களுக்கு தட்டவும்</string>
+
+    <!-- Settings/Units -->
+    <string name="settings_title_units">அலகுகள்</string>
+    <string name="setting_lengthUnits">நீள அலகுகள்</string>
+    <string name="setting_speedUnits">வேக அலகுகள்</string>
+    <string name="setting_tempUnits">வெப்பநிலை அலகுகள்</string>
+    <string name="setting_showTempAsInteger">வெப்பநிலையை முழு எண்ணாக மட்டும் காண்பி</string>
+    <string name="setting_pressureUnits">அழுத்த அலகுகள்</string>
+    <string name="setting_auto_detect_location">இருப்பிடத்தை கண்டறி</string>
+    <string name="setting_differentiateDaysByTint">நாட்களை நிறத்தால் வேறுபடுத்து</string>
+
+    <string name="setting_unit_mps">மீட்டர்/வினாடி(மீ/வி)</string>
+    <string name="setting_unit_kph">கிலோமீட்டர்/மணி(கிமீ/ம)</string>
+    <string name="setting_unit_mph">மைல்/மணி</string>
+    <string name="setting_unit_bft">காற்றின் வேக அளவு(bft)</string>
+    <string name="setting_unit_kn">நாட்(kn)</string>
+    <string name="setting_unit_Celsuis">செல்சியஸ்</string>
+    <string name="setting_unit_Fahrenheit">ஃபாரன்கீட்</string>
+    <string name="setting_unit_Kelvin">கெல்வின்</string>
+
+    <string name="setting_unit_mm">மில்லிமீட்டர்கள்(மிமீ)</string>
+    <string name="setting_unit_in">இன்ச்</string>
+
+    <string name="setting_unit_hpa">hPa/mBar</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_inhg">Hg ல்</string>
+
+    <string name="speed_unit_mps">m/s</string>
+    <string name="speed_unit_kph">kph</string>
+    <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_kn">kn</string>
+
+    <string name="pressure_unit_hpa">hPa/mBar</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+    <string name="pressure_unit_inhg">Hg ல்</string>
+
+    <string name="uvi_no_info">தகவல் இல்லை</string>
+    <string name="uvi_low">குறைவு</string>
+    <string name="uvi_moderate">மிதமான</string>
+    <string name="uvi_high">அதிகம்</string>
+    <string name="uvi_very_high">மிக அதிகம்</string>
+    <string name="uvi_extreme">கடுமை</string>
+
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">திரை</string>
+    <string name="setting_theme">தீம்</string>
+    <string name="setting_transparent_widget">ஒளிப்புகும் தன்மை கொண்ட விட்ஜெட்டை உருவாக்கு</string>
+    <string name="setting_wind_direction_format">காற்றின் திசை வடிவம்</string>
+    <string name="setting_theme_fresh">புதியது</string>
+    <string name="setting_theme_classic">கிளாசிக்</string>
+    <string name="setting_theme_dark">புதிய கருமை</string>
+    <string name="setting_theme_classic_dark">கிளாசிக் கருமை</string>
+    <string name="setting_theme_black">புதிய கருப்பு</string>
+    <string name="setting_theme_classic_black">கிளாசிக் கருப்பு</string>
+
+    <string name="wind_direction_format_none">காட்டி இல்லை</string>
+    <string name="wind_direction_format_arrows">அம்புகுறிகள்</string>
+    <string name="wind_direction_format_abbreviations">விரிவான</string>
+    <string name="setting_displayDecimalZeroes">தசமபுள்ளி பூஜ்ஜியத்தை காண்பி</string>
+
+    <!-- Settings/Data -->
+    <string name="last_update">கடைசி புதுப்பிப்பு:\n%s</string>
+    <string name="last_update_widget">\nவிட்ஜெட் கடைசி புதுப்பிப்பு: %s</string>
+    <string name="settings_title_data">தரவு</string>
+    <string name="setting_refreshInterval">பின்புல புதுப்பிப்பு கால இடைவெளி</string>
+    <string name="settings_none">எதும் இல்லை</string>
+    <string name="settings_15min">15 நிமிடங்கள்</string>
+    <string name="settings_30min">30 நிமிடங்கள்</string>
+    <string name="settings_1hour">1 மணி</string>
+    <string name="settings_2hour">2 மணி</string>
+    <string name="settings_6hour">6 மணி</string>
+    <string name="settings_12hour">12 மணி</string>
+    <string name="settings_24hour">24 மணி</string>
+    <string name="setting_apiKey">API key</string>
+    <string name="setting_apiKey_summary">OpenWeatherMap வினவுகளுக்கான தனிப்பயன் API key</string>
+
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">தேதிக்கான வடிவத்தில் பிழை</string>
+    <string name="setting_dateFormat">தேதி வடிவம்</string>
+    <string name="setting_dateFormatCustom">தனிப்பயன் தேதி வடிவம்</string>
+    <string name="setting_dateFormatCustom_summary">தனிப்பயன் SimpleDateFormat வாக்கியத்தை வழங்கு</string>
+    <string name="dialog_ok">சரி</string>
+    <string name="dialog_cancel">வேண்டாம்</string>
+
+    <!-- Errors -->
+    <string name="msg_err_parsing_json">JSONயை பாகுபடுத்துவதில் பிழை</string>
+    <string name="msg_http_error">தரவை கோரும்போது அல்லது பெறும்போது பிழை</string>
+    <string name="msg_connection_not_available">இணைப்பு இல்லை</string>
+    <string name="msg_city_not_found">குறிப்பிடப்பட்ட இடம் கிடைக்கவில்லை</string>
+    <string name="msg_too_many_requests">ஒரே நேரத்தில் அதிகமான கோரிக்கைகள். மீண்டும் முயற்சிக்கவும்.</string>
+    <string name="msg_invalid_api_key">தவறான API key</string>
+
+    <!-- Wind direction -->
+    <string name="wind_direction_north">வ</string>
+    <string name="wind_direction_north_north_east">வவகி</string>
+    <string name="wind_direction_north_east">வகி</string>
+    <string name="wind_direction_east_north_east">கிவகி</string>
+    <string name="wind_direction_east">கி</string>
+    <string name="wind_direction_east_south_east">கிதெகி</string>
+    <string name="wind_direction_south_east">தெகி</string>
+    <string name="wind_direction_south_south_east">தெதெகி</string>
+    <string name="wind_direction_south">தெ</string>
+    <string name="wind_direction_south_south_west">தெதெமே</string>
+    <string name="wind_direction_south_west">தெமே</string>
+    <string name="wind_direction_west_south_west">மேதெமே</string>
+    <string name="wind_direction_west">மே</string>
+    <string name="wind_direction_west_north_west">மேவமே</string>
+    <string name="wind_direction_north_west">மேவ</string>
+    <string name="wind_direction_north_north_west">வவமே</string>
+
+    <!-- Wind strength - Beaufort -->
+    <string name="beaufort_calm">அமைதி</string>
+    <string name="beaufort_light_air">லேசான காற்று</string>
+    <string name="beaufort_light_breeze">லேசான தென்றல்</string>
+    <string name="beaufort_gentle_breeze">மென்னையான காற்று</string>
+    <string name="beaufort_moderate_breeze">மிதமான காற்று</string>
+    <string name="beaufort_fresh_breeze">புதிய காற்று</string>
+    <string name="beaufort_strong_breeze">வலிமையான காற்று</string>
+    <string name="beaufort_high_wind">அதிக காற்று</string>
+    <string name="beaufort_gale">கடுங்காற்று</string>
+    <string name="beaufort_strong_gale">மிக கடுங்காற்று</string>
+    <string name="beaufort_storm">புயல்</string>
+    <string name="beaufort_violent_storm">கடும் புயல்</string>
+    <string name="beaufort_hurricane">சூறாவளி</string>
+
+    <!-- Location -->
+    <string name="settings_title_location">இடம்</string>
+    <string name="setting_update_location_automatically">பின்புலத்தில் இடத்தை புதுப்பிக்கவும்.</string>
+    <string name="location_settings">இருப்பிட அமைப்புகள்</string>
+    <string name="location_settings_message">இடமறியும் சேவை முடக்கப்பட்டுள்ளது. அமைப்புகளுக்கு செல்ல விரும்புகிறீர்களா?</string>
+    <string name="location_settings_button">அமைப்புகள்</string>
+    <string name="location_search_heading">இடங்கள்</string>
+
+    <!--Notification-->
+    <string name="notification_service_description">வானிலை முன்னறிப்பை காட்டுவதற்கான சேவை</string>
+    <string name="channel_name">வானிலை அறிவிப்பு</string>
+    <string name="no_data">தரவு இல்லை</string>
+
+    <string name="settings_title_notifications">அறிவிப்புகள்</string>
+    <string name="settings_enable_notification_title">அறிவிப்பில் வானிலையை காட்டு</string>
+    <string name="settings_notification_type_title">அறிவிப்பின் வகை</string>
+    <string name="settings_notification_type_default">இயல்பு ஆன்ட்ராய்டு பார்வை</string>
+    <string name="settings_notification_type_simple">எளிய அறிவிப்பு</string>
+    <string name="settings_show_temperature_in_status_bar_title">நிலைமை பட்டையில் வெப்பநிலையைக் காண்பி</string>
+    <string name="settings_show_temperature_in_status_bar_summary">இது இயக்கப்பட்டிருந்தால், நிலைமை பட்டையில் ஆப்பின் சின்னத்துக்கு பதில் தற்போதைய வெப்பநிலை காண்பிக்கப்படும். இந்த வசதி ஆன்ட்ராய்டு 6.0(மார்ஷ்மெல்லோ) விலிருந்து கிடைக்கும்.</string>
+
+    <!-- Map -->
+    <string name="action_weather_map">வானிலை வரைபடம்</string>
+    <string name="rain">மழை</string>
+    <string name="temperature">வெப்பநிலை</string>
+    <string name="clouds">மேகங்கள்</string>
+
+    <!-- Graphs -->
+    <string name="action_graphs">வரைபடங்கள்</string>
+    <string name="graphs_more_days">மேலும்</string>
+
+    <!-- About dialogue -->
+    <string name="about_unknown">பதிப்பின் பெயரை பெறமுடியவில்லை</string>
+    <string name="about_description">எளிய, இலவச வானிலை மென்பொருள் GPL3 உரிமத்தின் கீழ் வெளியிடப்பட்டது.</string>
+    <string name="about_developers"><a href="https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue">பலவற்றின் உதவியுடன்,</a> <a href="mailto:t.martykan@gmail.com">தாமஸ் மார்டிகான்</a>  மற்றும் <a href="https://github.com/martykan/forecastie/graphs/contributors">பலரால்</a>  உருவாக்கப்பட்டது.</string>
+    <string name="about_src">மூலக்குறியீடு <a href="https://github.com/martykan/forecastie">Github</a>ல் கிடைக்கப்பெறுகிறது.</string>
+    <string name="about_issues">பிழைகள் மற்றும் ஆலோசனைகளை எங்கள் <a href="https://github.com/martykan/forecastie/issues">Github சிக்கல்கள் பக்கத்தில்</a> பதிவிடலாம்.</string>
+    <string name="about_data">தரவுகள் <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative Commons CC-BY-SA 2.0 உரிமத்தின்</a>  கீழ் <a href="https://openweathermap.org/">OpenWeatherMap</a>ஆல் வழங்கப்பட்டது.</string>
+    <string name="about_icons">Icons are <a href="https://erikflowers.github.io/weather-icons/">Weather Icons</a>, by <a href="http://www.twitter.com/artill">Lukas Bischoff</a> and <a href="http://www.twitter.com/Erik_UX">Erik Flowers</a>, under the <a href="http://scripts.sil.org/OFL">SIL OFL 1.1</a> licence.</string>
+
+    <!-- Widget -->
+    <string name="widget_label_extensive">விரிவான முன்னறிவிப்பு</string>
+    <string name="widget_label_time">நேர முன்னறிவிப்பு</string>
+    <string name="widget_label_simple">எளிய முன்னறிவிப்பு</string>
+    <string name="widget_label_classic">கிளாசிக் முன்னறிவிப்பு</string>
+</resources>

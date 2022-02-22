@@ -3,11 +3,11 @@ apply plugin: 'com.android.application'
 def lifecycleVersion = '2.2.0'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId "cz.martykan.forecastie"
         minSdkVersion 15
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 73
         versionName "1.22"
     }
@@ -24,6 +24,7 @@ android {
     }
 
     testOptions.unitTests.includeAndroidResources = true
+    buildToolsVersion '30.0.3'
 }
 
 dependencies {
