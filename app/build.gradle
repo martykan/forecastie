@@ -3,13 +3,13 @@ apply plugin: 'com.android.application'
 def lifecycleVersion = '2.2.0'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 29
     defaultConfig {
         applicationId "cz.martykan.forecastie"
         minSdkVersion 15
-        targetSdkVersion 30
-        versionCode 73
-        versionName "1.22"
+        targetSdkVersion 29
+        versionCode 74
+        versionName "1.22.1"
     }
 
     lintOptions {

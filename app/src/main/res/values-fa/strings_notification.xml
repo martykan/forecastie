@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_service_description">این سرویس برای نمایش اعلان برنامه Forecastie است.</string>
+    <string name="channel_name">اعلان آب و هوا</string>
+    <string name="no_data">بدون داده</string>
+
+    <string name="settings_title_notifications">اعلان</string>
+    <string name="settings_enable_notification_title">نمایش آب و هوا در اعلان</string>
+    <string name="settings_notification_type_title">نوع اعلان</string>
+    <string name="settings_notification_type_default">نمای پیش فرض اندروید</string>
+    <string name="settings_notification_type_simple">اعلان ساده</string>
+    <string name="settings_show_temperature_in_status_bar_title">نمایش دما در نوار وضعیت</string>
+    <string name="settings_show_temperature_in_status_bar_summary">اگر این گزینه فعال باشد، دمای فعلی به جای نماد برنامه در نوار وضعیت نشان داده می شود. این گزینه از اندروید 6.0 (مارشملو) در دسترس است.</string>
+</resources>

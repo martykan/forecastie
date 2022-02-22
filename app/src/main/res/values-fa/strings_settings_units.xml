@@ -1,0 +1,47 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Settings/Units -->
+    <string name="settings_title_units">واحد</string>
+    <string name="setting_lengthUnits">واحد طول</string>
+    <string name="setting_speedUnits">واحد سرعت</string>
+    <string name="setting_tempUnits">واحد دما</string>
+    <string name="setting_showTempAsInteger">دما را فقط به صورت عدد صحیح نمایش بده</string>
+    <string name="setting_pressureUnits">واحد فشار</string>
+    <string name="setting_auto_detect_location">پیداکردن موقعیت مکانی</string>
+    <string name="setting_differentiateDaysByTint">متمایز کردن روزها با رنگ</string>
+
+    <string name="setting_unit_mps">متر بر ثانیه (m/s)</string>
+    <string name="setting_unit_kph">کیلومتر بر ساعت (kph)</string>
+    <string name="setting_unit_mph">مایل بر ساعت (mph)</string>
+    <string name="setting_unit_bft">مقیاس بوفورت (bft)</string>
+    <string name="setting_unit_kn">گره (kn)</string>
+    <string name="setting_unit_Celsuis">سانتیگراد</string>
+    <string name="setting_unit_Fahrenheit">فارنهایت</string>
+    <string name="setting_unit_Kelvin">کلوین</string>
+
+    <string name="setting_unit_mm">میلی متر (mm)</string>
+    <string name="setting_unit_in">اینچ (in)</string>
+
+    <string name="setting_unit_hpa">hPa/mBar</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_inhg">in Hg</string>
+
+    <string name="speed_unit_mps">m/s</string>
+    <string name="speed_unit_kph">kph</string>
+    <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_kn">kn</string>
+
+    <string name="pressure_unit_hpa">hPa/mBar</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+    <string name="pressure_unit_inhg">in Hg</string>
+
+    <string name="uvi_no_info">بدون داده</string>
+    <string name="uvi_low">کم</string>
+    <string name="uvi_moderate">متعادل</string>
+    <string name="uvi_high">زیاد</string>
+    <string name="uvi_very_high">خیلی زیاد</string>
+    <string name="uvi_extreme">شدید</string>
+</resources>

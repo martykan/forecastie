@@ -1,0 +1,25 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Errors -->
+    <string name="msg_err_parsing_json">خطا در تفسیر فرمت</string>
+    <string name="msg_http_error">خطا در هنگام دریافت یا درخواست اطلاعات</string>
+    <string name="msg_connection_not_available">.ارتباطی در دسترس نیست</string>
+    <string name="msg_city_not_found">.شهر مورد نظر وجود ندارد</string>
+    <string name="msg_too_many_requests">.تعداد درخواست ها بالاست. لطفا دوباره تلاش بفرمائید</string>
+    <string name="msg_invalid_api_key">کلید API نامعتبر</string>
+
+    <!-- Location -->
+    <string name="settings_title_location">موقعیت مکانی</string>
+    <string name="setting_update_location_automatically">بروزرسانی موقعیت در پس زمینه</string>
+    <string name="location_settings">تنظیمات موقعیت مکانی</string>
+    <string name="location_settings_message">حسگر موقعیت مکانی فعال نیست.آیا میخواهید به فهرست تنظیمات بروید؟</string>
+    <string name="location_settings_button">تنظیمات</string>
+    <string name="location_search_heading">مکان ها</string>
+
+    <!-- Widget -->
+    <string name="widget_label_extensive">Forecastie بزرگ</string>
+    <string name="widget_label_time">Forecastie زمان</string>
+    <string name="widget_label_simple">Forecastie ساده</string>
+    <string name="widget_label_classic">Forecastie کلاسیک</string>
+</resources>
