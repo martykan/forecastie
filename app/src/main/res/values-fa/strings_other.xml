@@ -18,8 +18,8 @@
     <string name="location_search_heading">مکان ها</string>
 
     <!-- Widget -->
-    <string name="widget_label_extensive">Forecastie بزرگ</string>
-    <string name="widget_label_time">Forecastie زمان</string>
-    <string name="widget_label_simple">Forecastie ساده</string>
-    <string name="widget_label_classic">Forecastie کلاسیک</string>
+    <string name="widget_label_extensive">فورکستی بزرگ</string>
+    <string name="widget_label_time">فورکستی زمان</string>
+    <string name="widget_label_simple">فورکستی ساده</string>
+    <string name="widget_label_classic">فورکستی کلاسیک</string>
 </resources>
