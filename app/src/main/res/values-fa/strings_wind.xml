@@ -20,17 +20,17 @@
     <string name="wind_direction_north_north_west">NNW</string>
 
     <!-- Wind strength - Beaufort -->
-    <string name="beaufort_calm">آرام (۰)</string>
-    <string name="beaufort_light_air">هوای ملایم (۱)</string>
-    <string name="beaufort_light_breeze">نسیم آهسته (۲)</string>
-    <string name="beaufort_gentle_breeze">نسیم ملایم (۳)</string>
-    <string name="beaufort_moderate_breeze">نسیم متعادل (۴)</string>
-    <string name="beaufort_fresh_breeze">باد تند (۵)</string>
-    <string name="beaufort_strong_breeze">باد شدید (۶)</string>
-    <string name="beaufort_high_wind">باد بسیار شدید (۷)</string>
-    <string name="beaufort_gale">تندباد (۸)</string>
-    <string name="beaufort_strong_gale">تندباد شدید (۹)</string>
-    <string name="beaufort_storm">توفان (۱۰)</string>
+    <string name="beaufort_calm">آرام(۰)</string>
+    <string name="beaufort_light_air">هوای ملایم(۱)</string>
+    <string name="beaufort_light_breeze">نسیم آهسته(۲)</string>
+    <string name="beaufort_gentle_breeze">نسیم ملایم(۳)</string>
+    <string name="beaufort_moderate_breeze">نسیم متعادل(۴)</string>
+    <string name="beaufort_fresh_breeze">باد تند(۵)</string>
+    <string name="beaufort_strong_breeze">باد شدید(۶)</string>
+    <string name="beaufort_high_wind">باد بسیار شدید(۷)</string>
+    <string name="beaufort_gale">تندباد(۸)</string>
+    <string name="beaufort_strong_gale">تندباد شدید(۹)</string>
+    <string name="beaufort_storm">توفان(۱۰)</string>
     <string name="beaufort_violent_storm">توفان شدید(۱۱)</string>
-    <string name="beaufort_hurricane">توفند(هاریکان) (۱۲)</string>
+    <string name="beaufort_hurricane">توفند(هاریکان)(۱۲)</string>
 </resources>
