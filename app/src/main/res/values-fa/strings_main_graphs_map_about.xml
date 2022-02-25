@@ -41,7 +41,7 @@
     <string name="about_unknown">عدم توانایی برای دریافت شماره نسخه</string>
     <string name="about_description"> یک نرم افزار آب و هوای سبک و آزاد که تحت پروانه GPL3 منتشر‌ شده است. </string>
     <string name="about_developers">توسعه داده شده توسط <a href='mailto:t.martykan@gmail.com'>Tomáš‌ Martykán</a> و <a href='https://github.com/martykan/forecastie/graphs/contributors'>دیگران</a>،با همکاری <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>خیلی های دیگر</a>.</string>
-    <string name="about_src"> کد روی <a href='https://github.com/martykan/forecastie'>گیتهاب</a>قابل دسترس است.</string>
+    <string name="about_src"> کد در <a href='https://github.com/martykan/forecastie'>گیتهاب</a> قایل دسترس است.</string>
     <string name="about_issues"> اشکالات و پیشنهادات را میتوان در<a href='https://github.com/martykan/forecastie/issues'>صفحه اشکالات گیتهاب ما</a> ارسال کرد.</string>
     <string name="about_data">داده ها توسط<a href='https://openweathermap.org/'>OpenWeatherMap</a>تحت پروانه<a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA 2.0 licence</a> ارائه شده است.</string>
     <string name="about_icons">آیکون ها متعلق به <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a> هستند که توسط <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> و <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a> تحت پروانه‌ <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> ارا‌ئه شده است. </string>
