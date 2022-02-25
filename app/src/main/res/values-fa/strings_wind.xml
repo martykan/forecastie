@@ -32,5 +32,5 @@
     <string name="beaufort_strong_gale">تندباد شدید(۹)</string>
     <string name="beaufort_storm">توفان(۱۰)</string>
     <string name="beaufort_violent_storm">توفان شدید(۱۱)</string>
-    <string name="beaufort_hurricane">توفند(هاریکان)(۱۲)</string>
+    <string name="beaufort_hurricane">توفند(۱۲)</string>
 </resources>
