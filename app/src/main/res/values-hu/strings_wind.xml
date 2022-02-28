@@ -1,0 +1,36 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Wind direction -->
+    <string name="wind_direction_north">É</string>
+    <string name="wind_direction_north_north_east">ÉÉK</string>
+    <string name="wind_direction_north_east">ÉK</string>
+    <string name="wind_direction_east_north_east">KÉK</string>
+    <string name="wind_direction_east">K</string>
+    <string name="wind_direction_east_south_east">KDK</string>
+    <string name="wind_direction_south_east">DK</string>
+    <string name="wind_direction_south_south_east">DDK</string>
+    <string name="wind_direction_south">D</string>
+    <string name="wind_direction_south_south_west">DDNy</string>
+    <string name="wind_direction_south_west">DNy</string>
+    <string name="wind_direction_west_south_west">NyDNy</string>
+    <string name="wind_direction_west">Ny</string>
+    <string name="wind_direction_west_north_west">NyÉNy</string>
+    <string name="wind_direction_north_west">ÉNy</string>
+    <string name="wind_direction_north_north_west">ÉÉNy</string>
+
+    <!-- Wind strength - Beaufort -->
+    <string name="beaufort_calm">Szélcsend (0)</string>
+    <string name="beaufort_light_air">Gyenge szellő, fuvallat (1)</string>
+    <string name="beaufort_light_breeze">Enyhe szél (2)</string>
+    <string name="beaufort_gentle_breeze">Gyenge szél (3)</string>
+    <string name="beaufort_moderate_breeze">Mérsékelt szél (4)</string>
+    <string name="beaufort_fresh_breeze">Élénk szél (5)</string>
+    <string name="beaufort_strong_breeze">Erős szél (6)</string>
+    <string name="beaufort_high_wind">Viharos szél (7)</string>
+    <string name="beaufort_gale">Vihar (8)</string>
+    <string name="beaufort_strong_gale">Heves vihar (9)</string>
+    <string name="beaufort_storm">Szélvész (10)</string>
+    <string name="beaufort_violent_storm">Heves szélvész (11)</string>
+    <string name="beaufort_hurricane">Orkán (12)</string>
+</resources>

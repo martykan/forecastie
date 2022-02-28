@@ -1,0 +1,48 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <string name="app_name">Forecastie</string>
+    <!-- Main activity titles -->
+    <string name="action_search">Keresés</string>
+    <string name="action_refresh">Frissítés</string>
+    <string name="action_settings">Beállítások</string>
+    <string name="action_about">Névjegy</string>
+    <string name="search_title">Város keresése</string>
+    <string name="downloading_data">Adatok letöltése ...</string>
+    <string name="getting_location">Hely meghatározása ...</string>
+    <string name="loading_data">Betöltés...</string>
+
+    <!-- Forecast cards -->
+    <string name="today">Ma</string>
+    <string name="tomorrow">Holnap</string>
+    <string name="later">Később</string>
+
+    <!-- Main activity headings -->
+    <string name="wind">Szél</string>
+    <string name="wind_speed">Szélerősség</string>
+    <string name="pressure">Nyomás</string>
+    <string name="humidity">Nedvesség</string>
+    <string name="sunrise">Napfelkelte</string>
+    <string name="sunset">Naplemente</string>
+    <string name="uvindex">UV Index</string>
+    <string name="tap_for_graphs">Koppintson a grafikonokért</string>
+
+    <!-- Graphs -->
+    <string name="action_graphs">Grafikonok</string>
+    <string name="graphs_more_days">Több nap</string>
+
+    <!-- Map -->
+    <string name="action_weather_map">Időjárás Térkép</string>
+    <string name="rain">Eső</string>
+    <string name="temperature">Hőmérséklet</string>
+    <string name="clouds">Felhőzet</string>
+
+    <!-- About dialogue -->
+    <string name="about_unknown">Verziónév nem elérhető</string>
+    <string name="about_description">Egy szabad és könnyűsúlyú időjárás alkalmazás, eléhető a GPL3 licensszel.</string>
+    <string name="about_developers">Felesztő: <a href='mailto:t.martykan@gmail.com'>Tomáš Martykán</a> és <a href='https://github.com/martykan/forecastie/graphs/contributors'>társai</a>, további segítséggel szolgáltak még <a href='https://github.com/martykan/forecastie/issues?utf8=✓;q=is%3Aissue'>többek</a>.</string>
+    <string name="about_src">A forráskód elérhető a <a href='https://github.com/martykan/forecastie'>Github oldalon</a>.</string>
+    <string name="about_issues">Hibajelentések és javaslatok a <a href='https://github.com/martykan/forecastie/issues'>Github issues</a> oldalon (angolul).</string>
+    <string name="about_data">Az adatok forrása az <a href='https://openweathermap.org/'>OpenWeatherMap</a>, a <a href='http://creativecommons.org/licenses/by-sa/2.0/'>Creative Commons CC-BY-SA 2.0 </a> licensz feltételei mellett.</string>
+    <string name="about_icons">A <a href='https://erikflowers.github.io/weather-icons/'>Weather Icons</a> ikoncsomag készítői <a href='http://www.twitter.com/artill'>Lukas Bischoff</a> és <a href='http://www.twitter.com/Erik_UX'>Erik Flowers</a>, felhasználható a <a href='http://scripts.sil.org/OFL'>SIL OFL 1.1</a> licensz feltételei mellett.</string>
+</resources>

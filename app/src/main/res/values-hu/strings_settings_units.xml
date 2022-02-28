@@ -1,0 +1,47 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Settings/Units -->
+    <string name="settings_title_units">Mértékegységek</string>
+    <string name="setting_lengthUnits">Hossz mértékegysége</string>
+    <string name="setting_speedUnits">Sebesség mértékegysége</string>
+    <string name="setting_tempUnits">Hőmérséklet mértékegysége</string>
+    <string name="setting_showTempAsInteger">Hőmérséklet megjelenítése egész számként</string>
+    <string name="setting_pressureUnits">Nyomás mértékegysége</string>
+    <string name="setting_auto_detect_location">Hely felismerése</string>
+    <string name="setting_differentiateDaysByTint">Napok megkülönböztetése színekkel</string>
+
+    <string name="setting_unit_mps">Méter per másodperc (m/s)</string>
+    <string name="setting_unit_kph">Kilométer per óra (km/h)</string>
+    <string name="setting_unit_mph">Mérföld per óra (mph)</string>
+    <string name="setting_unit_bft">Beaufort-skála (bft)</string>
+    <string name="setting_unit_kn">Csomó (kn)</string>
+    <string name="setting_unit_Celsuis">Celsius</string>
+    <string name="setting_unit_Fahrenheit">Fahrenheit</string>
+    <string name="setting_unit_Kelvin">Kelvin</string>
+
+    <string name="setting_unit_mm">Milliméter (mm)</string>
+    <string name="setting_unit_in">Hüvelyk (in)</string>
+
+    <string name="setting_unit_hpa">hPa/mBar</string>
+    <string name="setting_unit_kpa">kPa</string>
+    <string name="setting_unit_mmhg">mm Hg</string>
+    <string name="setting_unit_inhg">in Hg</string>
+
+    <string name="speed_unit_mps">m/s</string>
+    <string name="speed_unit_kph">km/h</string>
+    <string name="speed_unit_mph">mph</string>
+    <string name="speed_unit_kn">kn</string>
+
+    <string name="pressure_unit_hpa">hPa/mBar</string>
+    <string name="pressure_unit_kpa">kPa</string>
+    <string name="pressure_unit_mmhg">mm Hg</string>
+    <string name="pressure_unit_inhg">in Hg</string>
+
+    <string name="uvi_no_info">Nincs adat</string>
+    <string name="uvi_low">Gyenge</string>
+    <string name="uvi_moderate">Mérsékelt</string>
+    <string name="uvi_high">Erős</string>
+    <string name="uvi_very_high">Nagyon erős</string>
+    <string name="uvi_extreme">Extrém</string>
+</resources>

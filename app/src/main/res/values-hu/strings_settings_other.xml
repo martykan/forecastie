@@ -1,0 +1,44 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Settings/Appearance -->
+    <string name="settings_title_display">Megjelenés</string>
+    <string name="setting_theme">Téma</string>
+    <string name="setting_transparent_widget">Widget átlátszóvá tétele</string>
+    <string name="setting_wind_direction_format">Szélirány megjelenése</string>
+    <string name="setting_theme_fresh">Friss</string>
+    <string name="setting_theme_classic">Klasszikus</string>
+    <string name="setting_theme_dark">Friss Sötét</string>
+    <string name="setting_theme_classic_dark">Klasszikus Sötét</string>
+    <string name="setting_theme_black">Friss Fekete</string>
+    <string name="setting_theme_classic_black">Klasszikus Fekete</string>
+
+    <string name="wind_direction_format_none">Ne jelenjen meg</string>
+    <string name="wind_direction_format_arrows">Nyilak</string>
+    <string name="wind_direction_format_abbreviations">Rövidítések</string>
+    <string name="setting_displayDecimalZeroes">Nulla tizedesjegy megjelenítése</string>
+
+    <!-- Settings/Data -->
+    <string name="last_update">Utolsó frissítés:\n%s</string>
+    <string name="last_update_widget">\nUtolsó frissítés: %s</string>
+    <string name="settings_title_data">Adatok</string>
+    <string name="setting_refreshInterval">Adatok frissítése a háttérben</string>
+    <string name="settings_none">Soha</string>
+    <string name="settings_15min">15 percenként</string>
+    <string name="settings_30min">30 percenként</string>
+    <string name="settings_1hour">1 óránként</string>
+    <string name="settings_2hour">2 óránként</string>
+    <string name="settings_6hour">6 óránként</string>
+    <string name="settings_12hour">12 óránként</string>
+    <string name="settings_24hour">24 óránként</string>
+    <string name="setting_apiKey">API kulcs</string>
+    <string name="setting_apiKey_summary">Egyéni API kulcs az OpenWeatherMap kérésekhez</string>
+
+    <!-- Settings/Date format -->
+    <string name="error_dateFormat">HIBÁS DÁTUM FORMÁTUM</string>
+    <string name="setting_dateFormat">Dátum Formátum</string>
+    <string name="setting_dateFormatCustom">Egyéni Dátum Formátum</string>
+    <string name="setting_dateFormatCustom_summary">Adjon meg egy SimpleDateFormat formátumú szöveget</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Mégse</string>
+</resources>

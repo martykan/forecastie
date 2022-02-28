@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_service_description">Forecastie időjárás értesítést megjelenítő szolgáltatás.</string>
+    <string name="channel_name">Időjárás értesítés</string>
+    <string name="no_data">Nincs adat</string>
+
+    <string name="settings_title_notifications">Értesítés</string>
+    <string name="settings_enable_notification_title">Az időjárás megjelenítése az értesítési területen</string>
+    <string name="settings_notification_type_title">Értesítés típusa</string>
+    <string name="settings_notification_type_default">Alapértelmezett Android</string>
+    <string name="settings_notification_type_simple">Egyszerű értesítés</string>
+    <string name="settings_show_temperature_in_status_bar_title">A hőmérséklet megjelenítése az állapotsorban</string>
+    <string name="settings_show_temperature_in_status_bar_summary">Ha ez a beállítás engedélyezve van, akkor a jelenlegi hőmérséklet jelenik meg az állapotsoban az alkalmazás ikonja helyett. Ez az opció az Android 6.0 (Marshmallow) vagy újabb verziót futtató készülékeken elérhető.</string>
+</resources>
