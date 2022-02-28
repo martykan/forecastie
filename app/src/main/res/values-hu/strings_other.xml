@@ -1,0 +1,25 @@
+<!-- Do not change the order of any strings in here, without discussing first on the "Issues" page -->
+<!-- Do not delete any blank lines -->
+<resources>
+    <!-- Errors -->
+    <string name="msg_err_parsing_json">Hiba a JSON adat feldolgozása során.</string>
+    <string name="msg_http_error">Hiba az adat kérése vagy fogadása során.</string>
+    <string name="msg_connection_not_available">A kapcsolat nem elérhető.</string>
+    <string name="msg_city_not_found">A megadott város nem található.</string>
+    <string name="msg_too_many_requests">Túl sok kérés. Póbálja újra később.</string>
+    <string name="msg_invalid_api_key">Érvénytelen API kulcs.</string>
+
+    <!-- Location -->
+    <string name="settings_title_location">Hely</string>
+    <string name="setting_update_location_automatically">Hely frissítése a háttérben</string>
+    <string name="location_settings">Helybeállítás</string>
+    <string name="location_settings_message">Helyhozzáférés kikapcsolva. Meg szeretné nyitni a beállításokat?</string>
+    <string name="location_settings_button">Beállítások</string>
+    <string name="location_search_heading">Helyek</string>
+
+    <!-- Widget -->
+    <string name="widget_label_extensive">Forecastie Részletes</string>
+    <string name="widget_label_time">Forecastie Óra</string>
+    <string name="widget_label_simple">Forecastie Egyszerű</string>
+    <string name="widget_label_classic">Forecastie Klasszikus</string>
+</resources>
