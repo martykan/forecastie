@@ -7,39 +7,37 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.adapters.LocationsRecyclerAdapter;
 import cz.martykan.forecastie.models.Weather;
-import cz.martykan.forecastie.utils.Formatting;
 import cz.martykan.forecastie.utils.UnitConvertor;
-
-import static cz.martykan.forecastie.utils.TimeUtils.isDayTime;
+import cz.martykan.forecastie.weatherapi.WeatherStorage;
 
 public class AmbiguousLocationDialogFragment extends DialogFragment implements LocationsRecyclerAdapter.ItemClickListener {
 
     private LocationsRecyclerAdapter recyclerAdapter;
     private SharedPreferences sharedPreferences;
+    private WeatherStorage weatherStorage;
 
     @Nullable
     @Override
@@ -51,7 +49,6 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final Formatting formatting = new Formatting(getActivity());
         final Bundle bundle = getArguments();
         final Toolbar toolbar = view.findViewById(R.id.dialogToolbar);
         final RecyclerView recyclerView = view.findViewById(R.id.locationsRecyclerView);
@@ -68,6 +65,7 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
         });
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        weatherStorage = new WeatherStorage(getActivity());
 
         @SuppressWarnings("ConstantConditions")
         final int theme = getTheme(sharedPreferences.getString("theme", "fresh"));
@@ -99,33 +97,24 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
                 final JSONObject coordObject = cityObject.getJSONObject("coord");
                 final JSONObject sysObject = cityObject.getJSONObject("sys");
 
-                final Calendar calendar = Calendar.getInstance();
-                final String dateMsString = cityObject.getString("dt") + "000";
                 final String city = cityObject.getString("name");
                 final String country = sysObject.getString("country");
-                final String cityId = cityObject.getString("id");
+                final int cityId = cityObject.getInt("id");
                 final String description = weatherObject.getString("description");
-                final String weatherId = weatherObject.getString("id");
-                final float temperature = UnitConvertor.convertTemperature(Float.parseFloat(mainObject.getString("temp")), sharedPreferences);
+                final int weatherId = weatherObject.getInt("id");
+                final float temperature = UnitConvertor.convertTemperature((float) mainObject.getDouble("temp"), sharedPreferences);
                 final double lat = coordObject.getDouble("lat");
                 final double lon = coordObject.getDouble("lon");
 
-                calendar.setTimeInMillis(Long.parseLong(dateMsString));
-
                 Weather weather = new Weather();
                 weather.setCity(city);
+                weather.setCityId(cityId);
                 weather.setCountry(country);
-                weather.setId(cityId);
+                weather.setWeatherId(weatherId);
                 weather.setDescription(description.substring(0, 1).toUpperCase() + description.substring(1));
+                weather.setTemperature(temperature);
                 weather.setLat(lat);
                 weather.setLon(lon);
-                weather.setIcon(formatting.setWeatherIcon(Integer.parseInt(weatherId), isDayTime(weather, calendar)));
-
-                if (sharedPreferences.getBoolean("displayDecimalZeroes", false)) {
-                    weather.setTemperature(new DecimalFormat("0.0").format(temperature) + " " + sharedPreferences.getString("unit", "°C"));
-                } else {
-                    weather.setTemperature(new DecimalFormat("#.#").format(temperature) + " " + sharedPreferences.getString("unit", "°C"));
-                }
 
                 weatherArrayList.add(weather);
             }
@@ -159,7 +148,10 @@ public class AmbiguousLocationDialogFragment extends DialogFragment implements L
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         final Bundle bundle = new Bundle();
 
-        sharedPreferences.edit().putString("cityId", weather.getId()).commit();
+        weatherStorage.setCityId(weather.getCityId());
+        weatherStorage.setLatitude(weather.getLat());
+        weatherStorage.setLongitude(weather.getLon());
+
         bundle.putBoolean(MainActivity.SHOULD_REFRESH_FLAG, true);
         intent.putExtras(bundle);
 

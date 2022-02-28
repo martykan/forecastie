@@ -13,18 +13,18 @@ import cz.martykan.forecastie.R;
 public class Weather {
 
     private String city;
+    private int cityId;
     private String country;
     private Date date;
-    private String temperature;
+    private double temperature;
     private String description;
-    private String wind;
+    private double wind;
     private Double windDirectionDegree;
-    private String pressure;
-    private String humidity;
-    private String rain;
-    private String id;
-    private String icon;
-    private String lastUpdated;
+    private int pressure;
+    private int humidity;
+    private double rain;
+    private int weatherId;
+    private long lastUpdated;
     private Date sunrise;
     private Date sunset;
     private double lat;
@@ -85,6 +85,14 @@ public class Weather {
         this.city = city;
     }
 
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
+    }
+
     public String getCountry() {
         return country;
     }
@@ -93,11 +101,11 @@ public class Weather {
         this.country = country;
     }
 
-    public String getTemperature() {
+    public double getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(String temperature) {
+    public void setTemperature(double temperature) {
         this.temperature = temperature;
     }
 
@@ -111,11 +119,11 @@ public class Weather {
     }
 
 
-    public String getWind() {
+    public double getWind() {
         return wind;
     }
 
-    public void setWind(String wind) {
+    public void setWind(double wind) {
         this.wind = wind;
     }
 
@@ -139,19 +147,19 @@ public class Weather {
         return windDirectionDegree != null;
     }
 
-    public String getPressure() {
+    public int getPressure() {
         return pressure;
     }
 
-    public void setPressure(String pressure) {
+    public void setPressure(int pressure) {
         this.pressure = pressure;
     }
 
-    public String getHumidity() {
+    public int getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(String humidity) {
+    public void setHumidity(int humidity) {
         this.humidity = humidity;
     }
 
@@ -227,32 +235,8 @@ public class Weather {
         this.uvIndex = uvIndex;
     }
 
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
     public Date getDate(){
         return this.date;
-    }
-
-    public void setDate(String dateString) {
-        try {
-            setDate(new Date(Long.parseLong(dateString) * 1000));
-        }
-        catch (Exception e) {
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
-            try {
-                setDate(inputFormat.parse(dateString));
-            }
-            catch (ParseException e2) {
-                setDate(new Date()); // make the error somewhat obvious
-                e2.printStackTrace();
-            }
-        }
     }
 
     public void setDate(Date date) {
@@ -277,27 +261,27 @@ public class Weather {
         return Math.round((me.getTimeInMillis() - initial.getTimeInMillis()) / 86400000.0);
     }
 
-    public String getId() {
-        return id;
+    public int getWeatherId() {
+        return weatherId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setWeatherId(int weatherId) {
+        this.weatherId = weatherId;
     }
 
-    public String getRain() {
+    public double getRain() {
         return rain;
     }
 
-    public void setRain(String rain) {
+    public void setRain(double rain) {
         this.rain = rain;
     }
 
-    public void setLastUpdated(String lastUpdated) {
+    public void setLastUpdated(long lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 
-    public String getLastUpdated() {
+    public long getLastUpdated() {
         return lastUpdated;
     }
 

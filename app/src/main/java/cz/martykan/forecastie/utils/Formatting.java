@@ -12,7 +12,7 @@ public class Formatting {
         this.context = context;
     }
 
-    public String setWeatherIcon(int actualId, boolean day) {
-        return WeatherFormatter.getWeatherIconAsText(actualId, day, context);
+    public String getWeatherIcon(int actualId, boolean isDay) {
+        return WeatherFormatter.getWeatherIconAsText(actualId, isDay, context);
     }
 }

@@ -15,8 +15,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import androidx.annotation.Nullable;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
@@ -28,10 +27,10 @@ import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.utils.Formatting;
+import cz.martykan.forecastie.utils.TimeUtils;
 import cz.martykan.forecastie.utils.UnitConvertor;
 import cz.martykan.forecastie.utils.formatters.WeatherFormatter;
-
-import static cz.martykan.forecastie.utils.TimeUtils.isDayTime;
+import cz.martykan.forecastie.weatherapi.WeatherStorage;
 
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     protected static final long DURATION_MINUTE = TimeUnit.SECONDS.toMillis(30);
@@ -57,77 +56,32 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         cancelUpdate(context);
     }
 
-    protected Bitmap getWeatherIcon(String text, Context context) {
-        return WeatherFormatter.getWeatherIconAsBitmap(context, text, Color.WHITE);
-    }
-
-    private String setWeatherIcon(int actualId, boolean day, Context context) {
+    protected Bitmap getWeatherIcon(Weather weather, Context context) {
         Formatting formatting = new Formatting(context);
-        return formatting.setWeatherIcon(actualId, day);
+        String weatherIcon = formatting.getWeatherIcon(weather.getWeatherId(), TimeUtils.isDayTime(weather, Calendar.getInstance()));
+        return WeatherFormatter.getWeatherIconAsBitmap(context, weatherIcon, Color.WHITE);
     }
 
-    protected Weather parseWidgetJson(String result, Context context) {
+    @Nullable
+    protected Weather getTodayWeather(Context context) {
+        WeatherStorage weatherStorage = new WeatherStorage(context);
+        return weatherStorage.getLastToday();
+    }
+
+    protected void openMainActivity(Context context, RemoteViews remoteViews) {
         try {
-            MainActivity.initMappings();
-
-            JSONObject reader = new JSONObject(result);
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-
-            // Temperature
-            float temperature = UnitConvertor.convertTemperature(Float.parseFloat(reader.optJSONObject("main").getString("temp").toString()), sp);
-            if (sp.getBoolean("temperatureInteger", false)) {
-                temperature = Math.round(temperature);
-            }
-
-            // Wind
-            double wind;
-            try {
-                wind = Double.parseDouble(reader.optJSONObject("wind").getString("speed").toString());
-            } catch (Exception e) {
-                e.printStackTrace();
-                wind = 0;
-            }
-            wind = UnitConvertor.convertWind(wind, sp);
-
-            // Pressure
-            double pressure = UnitConvertor.convertPressure((float) Double.parseDouble(reader.optJSONObject("main").getString("pressure").toString()), sp);
-
-            long lastUpdateTimeInMillis = sp.getLong("lastUpdate", -1);
-            String lastUpdate;
-            if (lastUpdateTimeInMillis < 0) {
-                // No time
-                lastUpdate = "";
-            } else {
-                lastUpdate = context.getString(R.string.last_update_widget, MainActivity.formatTimeWithDayIfNotToday(context, lastUpdateTimeInMillis));
-            }
-
-            String description = reader.optJSONArray("weather").getJSONObject(0).getString("description");
-            description = description.substring(0,1).toUpperCase() + description.substring(1);
-
-            Weather widgetWeather = new Weather();
-            widgetWeather.setCity(reader.getString("name"));
-            widgetWeather.setCountry(reader.optJSONObject("sys").getString("country"));
-            widgetWeather.setTemperature(Math.round(temperature) + localize(sp, context, "unit", "C"));
-            widgetWeather.setDescription(description);
-            widgetWeather.setWind(context.getString(R.string.wind) + ": " + new DecimalFormat("0.0").format(wind) + " " + localize(sp, context, "speedUnit", "m/s")
-                    + (widgetWeather.isWindDirectionAvailable() ? " " + MainActivity.getWindDirectionString(sp, context, widgetWeather) : ""));
-            widgetWeather.setPressure(context.getString(R.string.pressure) + ": " + new DecimalFormat("0.0").format(pressure) + " " + localize(sp, context, "pressureUnit", "hPa"));
-            widgetWeather.setHumidity(reader.optJSONObject("main").getString("humidity"));
-            widgetWeather.setSunrise(reader.optJSONObject("sys").getString("sunrise"));
-            widgetWeather.setSunset(reader.optJSONObject("sys").getString("sunset"));
-            widgetWeather.setIcon(setWeatherIcon(Integer.parseInt(reader.optJSONArray("weather").getJSONObject(0).getString("id")), isDayTime(widgetWeather, Calendar.getInstance()), context));
-            widgetWeather.setLastUpdated(lastUpdate);
-
-            return widgetWeather;
-        } catch (JSONException e) {
-            Log.e("JSONException Data", result);
+            Intent intent = new Intent(context, MainActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            remoteViews.setOnClickPendingIntent(R.id.widgetRoot, pendingIntent);
+            pendingIntent.send();
+        } catch (PendingIntent.CanceledException e) {
             e.printStackTrace();
-            return new Weather();
         }
     }
 
     protected String localize(SharedPreferences sp, Context context, String preferenceKey,
                               String defaultValueKey) {
+        MainActivity.initMappings();
         return MainActivity.localize(sp, context, preferenceKey, defaultValueKey);
     }
 
@@ -195,5 +149,27 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         Intent intent = new Intent(context, this.getClass());
         intent.setAction(ACTION_UPDATE_TIME);
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+    }
+
+    protected String getFormattedTemperature(Weather weather, Context context, SharedPreferences sp) {
+        float temperature = UnitConvertor.convertTemperature((float) weather.getTemperature(), sp);
+        if (sp.getBoolean("temperatureInteger", false)) {
+            temperature = Math.round(temperature);
+        }
+
+        return new DecimalFormat("#.#").format(temperature) + localize(sp, context, "unit", "C");
+    }
+
+    protected String getFormattedPressure(Weather weather, Context context, SharedPreferences sp) {
+        double pressure = UnitConvertor.convertPressure((float) weather.getPressure(), sp);
+
+        return new DecimalFormat("0.0").format(pressure) + " " + localize(sp, context, "pressureUnit", "hPa");
+    }
+
+    protected String getFormattedWind(Weather weather, Context context, SharedPreferences sp) {
+        double wind = UnitConvertor.convertWind(weather.getWind(), sp);
+
+        return new DecimalFormat("0.0").format(wind) + " " + localize(sp, context, "speedUnit", "m/s")
+                    + (weather.isWindDirectionAvailable() ? " " + MainActivity.getWindDirectionString(sp, context, weather) : "");
     }
 }

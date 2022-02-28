@@ -5,15 +5,16 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -22,6 +23,8 @@ import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.models.Weather;
 import cz.martykan.forecastie.models.WeatherViewHolder;
+import cz.martykan.forecastie.utils.Formatting;
+import cz.martykan.forecastie.utils.TimeUtils;
 import cz.martykan.forecastie.utils.UnitConvertor;
 
 public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHolder> {
@@ -50,27 +53,19 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
         Weather weatherItem = itemList.get(i);
 
         // Temperature
-        float temperature = UnitConvertor.convertTemperature(Float.parseFloat(weatherItem.getTemperature()), sp);
+        float temperature = UnitConvertor.convertTemperature((float) weatherItem.getTemperature(), sp);
         if (sp.getBoolean("temperatureInteger", false)) {
             temperature = Math.round(temperature);
         }
 
         // Rain
-        double rain = Double.parseDouble(weatherItem.getRain());
-        String rainString = UnitConvertor.getRainString(rain, weatherItem.getChanceOfPrecipitation(), sp);
+        String rainString = UnitConvertor.getRainString(weatherItem.getRain(), weatherItem.getChanceOfPrecipitation(), sp);
 
         // Wind
-        double wind;
-        try {
-            wind = Double.parseDouble(weatherItem.getWind());
-        } catch (Exception e) {
-            e.printStackTrace();
-            wind = 0;
-        }
-        wind = UnitConvertor.convertWind(wind, sp);
+        double wind = UnitConvertor.convertWind(weatherItem.getWind(), sp);
 
         // Pressure
-        double pressure = UnitConvertor.convertPressure((float) Double.parseDouble(weatherItem.getPressure()), sp);
+        double pressure = UnitConvertor.convertPressure(weatherItem.getPressure(), sp);
 
         TimeZone tz = TimeZone.getDefault();
         String defaultDateFormat = context.getResources().getStringArray(R.array.dateFormatsValues)[0];
@@ -117,7 +112,7 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
                 weatherItem.getDescription().substring(1) + rainString);
         Typeface weatherFont = Typeface.createFromAsset(context.getAssets(), "fonts/weather.ttf");
         customViewHolder.itemIcon.setTypeface(weatherFont);
-        customViewHolder.itemIcon.setText(weatherItem.getIcon());
+        customViewHolder.itemIcon.setText(this.getWeatherIcon(weatherItem, context));
         if (sp.getString("speedUnit", "m/s").equals("bft")) {
             customViewHolder.itemyWind.setText(context.getString(R.string.wind) + ": " +
                     UnitConvertor.getBeaufortName((int) wind, context) + " " + MainActivity.getWindDirectionString(sp, context, weatherItem));
@@ -134,5 +129,11 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherViewHold
     @Override
     public int getItemCount() {
         return (null != itemList ? itemList.size() : 0);
+    }
+
+    private String getWeatherIcon(Weather weather, Context context) {
+        Formatting formatting = new Formatting(context);
+
+        return formatting.getWeatherIcon(weather.getWeatherId(), TimeUtils.isDayTime(weather, Calendar.getInstance()));
     }
 }

@@ -2,22 +2,28 @@ package cz.martykan.forecastie.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
-
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.models.Weather;
+import cz.martykan.forecastie.utils.Formatting;
+import cz.martykan.forecastie.utils.TimeUtils;
 
 public class LocationsRecyclerAdapter extends RecyclerView.Adapter<LocationsRecyclerAdapter.LocationsViewHolder> {
     private LayoutInflater inflater;
@@ -26,6 +32,9 @@ public class LocationsRecyclerAdapter extends RecyclerView.Adapter<LocationsRecy
     private ArrayList<Weather> weatherArrayList;
     private boolean darkTheme;
     private boolean blackTheme;
+    private boolean decimalZeroes;
+    private String temperatureUnit;
+    private Formatting formatting;
 
     public LocationsRecyclerAdapter(Context context, ArrayList<Weather> weatherArrayList, boolean darkTheme, boolean blackTheme) {
         this.context = context;
@@ -33,7 +42,13 @@ public class LocationsRecyclerAdapter extends RecyclerView.Adapter<LocationsRecy
         this.darkTheme = darkTheme;
         this.blackTheme = blackTheme;
 
-        inflater = LayoutInflater.from(context);
+        this.inflater = LayoutInflater.from(context);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        this.decimalZeroes = sharedPreferences.getBoolean("displayDecimalZeroes", false);
+        this.temperatureUnit = sharedPreferences.getString("unit", "°C");
+
+        this.formatting = new Formatting(context);
     }
 
     @NonNull
@@ -49,10 +64,15 @@ public class LocationsRecyclerAdapter extends RecyclerView.Adapter<LocationsRecy
         Weather weather = weatherArrayList.get(position);
 
         holder.cityTextView.setText(String.format("%s, %s", weather.getCity(), weather.getCountry()));
-        holder.temperatureTextView.setText(weather.getTemperature());
         holder.descriptionTextView.setText(weather.getDescription());
-        holder.iconTextView.setText(weather.getIcon());
+        holder.iconTextView.setText(this.formatting.getWeatherIcon(weather.getWeatherId(), TimeUtils.isDayTime(weather, Calendar.getInstance())));
         holder.iconTextView.setTypeface(weatherFont);
+
+        if (this.decimalZeroes) {
+            holder.temperatureTextView.setText(new DecimalFormat("0.0").format(weather.getTemperature()) + " " + this.temperatureUnit);
+        } else {
+            holder.temperatureTextView.setText(new DecimalFormat("#.#").format(weather.getTemperature()) + " " + this.temperatureUnit);
+        }
 
         holder.webView.getSettings().setJavaScriptEnabled(true);
         holder.webView.loadUrl("file:///android_asset/map.html?lat=" + weather.getLat()+ "&lon=" + weather.getLon() + "&zoom=" + 10 + "&appid=notneeded&displayPin=true");

@@ -15,7 +15,6 @@ import java.util.Date;
 
 import cz.martykan.forecastie.AlarmReceiver;
 import cz.martykan.forecastie.R;
-import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.models.Weather;
 
 public class TimeWidgetProvider extends AbstractWidgetProvider {
@@ -32,21 +31,11 @@ public class TimeWidgetProvider extends AbstractWidgetProvider {
                     0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             remoteViews.setOnClickPendingIntent(R.id.widgetButtonRefresh, pendingIntent);
 
-            Intent intent2 = new Intent(context, MainActivity.class);
-            PendingIntent pendingIntent2 = PendingIntent.getActivity(context, 0, intent2, 0);
-            remoteViews.setOnClickPendingIntent(R.id.widgetRoot, pendingIntent2);
-
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-            Weather widgetWeather = new Weather();
-            if(!sp.getString("lastToday", "").equals("")) {
-                widgetWeather = parseWidgetJson(sp.getString("lastToday", ""), context);
-            }
-            else {
-                try {
-                    pendingIntent2.send();
-                } catch (PendingIntent.CanceledException e) {
-                    e.printStackTrace();
-                }
+            Weather widgetWeather = this.getTodayWeather(context);
+
+            if (widgetWeather == null) {
+                this.openMainActivity(context, remoteViews);
                 return;
             }
 
@@ -73,12 +62,11 @@ public class TimeWidgetProvider extends AbstractWidgetProvider {
             remoteViews.setTextViewText(R.id.time, timeFormat.format(new Date()));
             remoteViews.setTextViewText(R.id.date, dateString);
             remoteViews.setTextViewText(R.id.widgetCity, widgetWeather.getCity() + ", " + widgetWeather.getCountry());
-            remoteViews.setTextViewText(R.id.widgetTemperature, widgetWeather.getTemperature());
+            remoteViews.setTextViewText(R.id.widgetTemperature, this.getFormattedTemperature(widgetWeather, context, sp));
             remoteViews.setTextViewText(R.id.widgetDescription, widgetWeather.getDescription());
-            remoteViews.setImageViewBitmap(R.id.widgetIcon, getWeatherIcon(widgetWeather.getIcon(), context));
+            remoteViews.setImageViewBitmap(R.id.widgetIcon, getWeatherIcon(widgetWeather, context));
 
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-            {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 if (dateString.length() > 19)
                     remoteViews.setViewPadding(R.id.widgetIcon, 40, 0, 0, 0);
             }
