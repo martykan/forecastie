@@ -61,7 +61,7 @@ public class UnitConvertor {
             }
 
             if (percentOfPrecipitation > 0) {
-                sb.append(", ").append(String.format(Locale.ENGLISH, "%d%%", (int) (percentOfPrecipitation * 100)));
+                sb.append(", ").append(String.format(Locale.ENGLISH, "%d%%", Math.round(percentOfPrecipitation * 100)));
             }
 
             sb.append(")");
