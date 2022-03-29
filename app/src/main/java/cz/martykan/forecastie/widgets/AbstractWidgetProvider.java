@@ -148,7 +148,9 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     protected PendingIntent getTimeIntent(Context context) {
         Intent intent = new Intent(context, this.getClass());
         intent.setAction(ACTION_UPDATE_TIME);
-        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        return android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M
+            ? PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE)
+            : PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
     protected String getFormattedTemperature(Weather weather, Context context, SharedPreferences sp) {

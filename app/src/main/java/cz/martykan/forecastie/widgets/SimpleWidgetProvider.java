@@ -22,8 +22,9 @@ public class SimpleWidgetProvider extends AbstractWidgetProvider {
             setTheme(context, remoteViews);
 
             Intent intent = new Intent(context, AlarmReceiver.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-                    0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M
+                    ? PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE)
+                    : PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             remoteViews.setOnClickPendingIntent(R.id.widgetButtonRefresh, pendingIntent);
 
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
