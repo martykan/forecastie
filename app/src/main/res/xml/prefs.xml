@@ -88,6 +88,11 @@
             android:key="refreshInterval"
             android:title="@string/setting_refreshInterval" />
 
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="sendToGadgetbridge"
+            android:title="Send weather data to Gadgetbridge app"/>
+
         <EditTextPreference
             android:key="apiKey"
             android:summary="@string/setting_apiKey_summary"

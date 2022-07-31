@@ -54,6 +54,7 @@ import java.util.List;
 import java.util.Map;
 
 import cz.martykan.forecastie.AlarmReceiver;
+import cz.martykan.forecastie.Broadcaster;
 import cz.martykan.forecastie.Constants;
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.adapters.ViewPagerAdapter;
@@ -746,6 +747,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
             super.onPostExecute(output);
             // Update widgets
             AbstractWidgetProvider.updateWidgets(context);
+            Broadcaster.sendWeather(context);
         }
 
         @Override
