@@ -19,14 +19,14 @@ import nodomain.freeyourgadget.gadgetbridge.model.WeatherSpec;
 public class Broadcaster {
     public static void sendWeather(Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean run = sp.getBoolean("sendToGadgetbridge", false);
+        boolean run = sp.getBoolean("sendToApp", false);
 
         if(run) {
             WeatherStorage storage = new WeatherStorage(context);
 
             Intent intent = new Intent();
-            intent.setAction("de.kaffeemitkoffein.broadcast.WEATHERDATA");
-            intent.setPackage("nodomain.freeyourgadget.gadgetbridge");
+            intent.setAction(sp.getString("sendAction", "de.kaffeemitkoffein.broadcast.WEATHERDATA"));
+            intent.setPackage(sp.getString("sendPackage","nodomain.freeyourgadget.gadgetbridge"));
             intent.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
             intent.putExtra("WeatherSpec", generateWeatherSpec(storage));
             context.sendBroadcast(intent);
