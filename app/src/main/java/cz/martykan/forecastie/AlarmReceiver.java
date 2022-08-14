@@ -146,6 +146,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         protected void onPostExecute(Void v) {
             // Update widgets
             AbstractWidgetProvider.updateWidgets(context);
+            Broadcaster.sendWeather(context);
         }
     }
 
@@ -188,7 +189,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
 
         protected void onPostExecute(Void v) {
-
+            Broadcaster.sendWeather(context);
         }
     }
 

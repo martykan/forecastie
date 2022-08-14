@@ -88,6 +88,23 @@
             android:key="refreshInterval"
             android:title="@string/setting_refreshInterval" />
 
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="sendToApp"
+            android:title="Send weather data to another app."/>
+
+        <EditTextPreference
+            android:defaultValue="de.kaffeemitkoffein.broadcast.WEATHERDATA"
+            android:key="sendAction"
+            android:summary="Name of intent action to be performed when sending data."
+            android:title="Action" />
+
+        <EditTextPreference
+            android:defaultValue="nodomain.freeyourgadget.gadgetbridge"
+            android:key="sendPackage"
+            android:summary="Name of intent package to be targeted when sending data."
+            android:title="Package" />
+
         <EditTextPreference
             android:key="apiKey"
             android:summary="@string/setting_apiKey_summary"
