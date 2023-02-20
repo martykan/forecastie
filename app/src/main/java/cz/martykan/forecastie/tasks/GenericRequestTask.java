@@ -208,7 +208,9 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         }
         decLoadingCounter();
 
-        updateMainUI();
+        if (output.taskResult == TaskResult.SUCCESS) {
+            updateMainUI();
+        }
 
         handleTaskOutput(output);
     }
