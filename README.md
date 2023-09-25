@@ -10,30 +10,34 @@ A simple, copylefted libre software weather app for Android. It gathers data fro
 [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/200px-Google_Play_Store_badge_EN.svg.png" style="float: left; padding-right: 10px;" height="70">](https://play.google.com/store/apps/details?id=com.casticalabs.forecastie)
 
 ## Features
-* Simple design
-* Detailed 5 day forecast
-* Multiple units
-* Works with any city in the world
-* Offline functionality
+
+- Simple design
+- Detailed 5 day forecast
+- Multiple units
+- Works with any city in the world
+- Offline functionality
 
 ## Screenshots
+
 [<img src="https://i.imgur.com/8g7HPIL.png" width=250>](https://i.imgur.com/8g7HPIL.png)
 [<img src="https://i.imgur.com/ye2O2B2.png" width=250>](https://i.imgur.com/ye2O2B2.png)
 [<img src="https://i.imgur.com/olkk2cB.png" width=250>](https://i.imgur.com/olkk2cB.png)
 
 ## Demo
+
 <img src='gifs/gif_1.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
 
-
 ## Contribution
-If you have any ideas or issues, don't hesitate to make contact via the Issues page. Every contribution is welcome. See [Contributing](https://github.com/martykan/forecastie/blob/master/CONTRIBUTING.md) for further information.
+
+If you have any ideas or issues, don't hesitate to make contact via the Issues page. Every contribution is welcomed. Please visit [Contributing](https://github.com/martykan/forecastie/blob/master/CONTRIBUTING.md) if you are intrested.
 
 Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE-OF-CONDUCT.md)
 
 ## Licence
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
+
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)
 
 This application is Free Software: You can use, study share and improve it at your
 will. Specifically you can redistribute and/or modify it under the terms of the
