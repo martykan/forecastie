@@ -1,5 +1,7 @@
 package cz.martykan.forecastie.notifications;
 
+import static android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC;
+
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -51,7 +53,11 @@ public class WeatherNotificationService extends Service {
         PendingIntent pendingIntent = getNotificationTapPendingIntent();
         configureNotification(pendingIntent);
 
-        startForeground(WEATHER_NOTIFICATION_ID, notification.build());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(WEATHER_NOTIFICATION_ID, notification.build(), FOREGROUND_SERVICE_TYPE_DATA_SYNC);
+        } else {
+            startForeground(WEATHER_NOTIFICATION_ID, notification.build());
+        }
 
         repository = new WeatherRepository(this, Executors.newSingleThreadExecutor());
         repositoryListener = new WeatherRepository.RepositoryListener() {
@@ -96,7 +102,7 @@ public class WeatherNotificationService extends Service {
         Intent mainActivityIntent = new Intent(this, MainActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addNextIntentWithParentStack(mainActivityIntent);
-        return stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        return stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
     }
 
     @Override
