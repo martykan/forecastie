@@ -22,7 +22,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import cz.martykan.forecastie.BuildConfig;
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.models.Weather;
@@ -129,10 +128,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         long now = new Date().getTime();
         long nextUpdate = now + DURATION_MINUTE - now % DURATION_MINUTE;
-        if (BuildConfig.DEBUG) {
-            Log.v(this.getClass().getSimpleName(), "Next widget update: " +
-                    android.text.format.DateFormat.getTimeFormat(context).format(new Date(nextUpdate)));
-        }
         if (Build.VERSION.SDK_INT >= 19) {
             alarmManager.setExact(AlarmManager.RTC, nextUpdate, getTimeIntent(context));
         } else {
