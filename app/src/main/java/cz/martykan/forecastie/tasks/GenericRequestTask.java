@@ -39,8 +39,6 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
     protected Context context;
     protected MainActivity activity;
     protected WeatherStorage weatherStorage;
-    public int loading = 0;
-
     private static CountDownLatch certificateCountDownLatch = new CountDownLatch(0);
     private static boolean certificateTried = false;
     private static boolean certificateFetchTried = false;
@@ -58,7 +56,6 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
 
     @Override
     protected void onPreExecute() {
-        incLoadingCounter();
         if (!progressDialog.isShowing()) {
             progressDialog.setMessage(context.getString(R.string.downloading_data));
             progressDialog.setCanceledOnTouchOutside(false);
@@ -178,10 +175,9 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
 
     @Override
     protected void onPostExecute(TaskOutput output) {
-        if (loading == 1) {
+        if (progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
-        decLoadingCounter();
 
         updateMainUI();
 
@@ -249,14 +245,6 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
             weatherStorage.setCityId(activity.recentCityId);
             activity.recentCityId = null;
         }
-    }
-
-    private void incLoadingCounter() {
-        loading++;
-    }
-
-    private void decLoadingCounter() {
-        loading--;
     }
 
     protected void updateMainUI() {
