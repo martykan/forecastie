@@ -42,6 +42,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
 
+    /** HTTP client */
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+
     /** other dependencies */
     implementation "com.diogobernardino:williamchart:2.2"
 

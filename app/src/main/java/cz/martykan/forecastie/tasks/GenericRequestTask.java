@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -11,19 +12,12 @@ import android.util.Log;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import java.io.BufferedReader;
-import java.io.Closeable;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 
@@ -33,6 +27,11 @@ import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.utils.Language;
 import cz.martykan.forecastie.utils.certificate.CertificateUtils;
 import cz.martykan.forecastie.weatherapi.WeatherStorage;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public abstract class GenericRequestTask extends AsyncTask<String, String, TaskOutput> {
 
@@ -46,12 +45,15 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
     private static boolean certificateTried = false;
     private static boolean certificateFetchTried = false;
     private static SSLContext sslContext;
+    
+    private OkHttpClient okHttpClient;
 
     public GenericRequestTask(Context context, MainActivity activity, ProgressDialog progressDialog) {
         this.context = context;
         this.activity = activity;
         this.progressDialog = progressDialog;
         this.weatherStorage = new WeatherStorage(activity);
+        this.okHttpClient = new OkHttpClient();
     }
 
     @Override
@@ -111,48 +113,31 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         try {
             URL url = provideURL(reqParams);
             Log.i("URL", url.toString());
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            if (urlConnection instanceof HttpsURLConnection) {
-                try {
-                    certificateCountDownLatch.await();
-                    if (sslContext != null) {
-                        SSLSocketFactory socketFactory = sslContext.getSocketFactory();
-                        ((HttpsURLConnection) urlConnection).setSSLSocketFactory(socketFactory);
-                    }
-                    certificateCountDownLatch.countDown();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (urlConnection.getResponseCode() == 200) {
-                InputStreamReader inputStreamReader = new InputStreamReader(urlConnection.getInputStream());
-                BufferedReader r = new BufferedReader(inputStreamReader);
-
-                StringBuilder stringBuilder = new StringBuilder();
-                String line;
-                while ((line = r.readLine()) != null) {
-                    stringBuilder.append(line);
-                    stringBuilder.append("\n");
-                }
-                response += stringBuilder.toString();
-                close(r);
-                urlConnection.disconnect();
+            
+            Request request = new Request.Builder()
+                    .url(url.toString())
+                    .build();
+            
+            Response responseObj = okHttpClient.newCall(request).execute();
+            if (responseObj.isSuccessful()) {
+                String responseBody = responseObj.body().string();
+                response += responseBody;
                 // Background work finished successfully
                 Log.i("Task", "done successfully");
                 output.taskResult = TaskResult.SUCCESS;
                 // Save date/time for latest successful result
                 MainActivity.saveLastUpdateTime(PreferenceManager.getDefaultSharedPreferences(context));
-            } else if (urlConnection.getResponseCode() == 401) {
+            } else if (responseObj.code() == 401) {
                 // Invalid API key
                 Log.w("Task", "invalid API key");
                 output.taskResult = TaskResult.INVALID_API_KEY;
-            } else if (urlConnection.getResponseCode() == 429) {
+            } else if (responseObj.code() == 429) {
                 // Too many requests
                 Log.w("Task", "too many requests");
                 output.taskResult = TaskResult.TOO_MANY_REQUESTS;
             } else {
                 // Bad response from server
-                Log.w("Task", "http error " + urlConnection.getResponseCode());
+                Log.w("Task", "http error " + responseObj.code());
                 output.taskResult = TaskResult.HTTP_ERROR;
             }
         } catch (IOException e) {
@@ -238,28 +223,34 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         }
     }
 
-    private URL provideURL(String[] reqParams) throws UnsupportedEncodingException, MalformedURLException {
+    private URL provideURL(String[] reqParams) throws MalformedURLException {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String apiKey = sp.getString("apiKey", context.getString(R.string.apiKey));
 
-        StringBuilder urlBuilder = new StringBuilder("https://api.openweathermap.org/data/2.5/");
-        urlBuilder.append(getAPIName()).append("?");
+        Uri.Builder uriBuilder = new Uri.Builder()
+            .scheme("https")
+            .authority("api.openweathermap.org")
+            .path("/data/2.5/" + getAPIName());
+        
         if (reqParams.length > 0) {
             final String zeroParam = reqParams[0];
             if ("coords".equals(zeroParam)) {
-                urlBuilder.append("lat=").append(reqParams[1]).append("&lon=").append(reqParams[2]);
+                uriBuilder.appendQueryParameter("lat", reqParams[1]);
+                uriBuilder.appendQueryParameter("lon", reqParams[2]);
             } else if ("city".equals(zeroParam)) {
-                urlBuilder.append("q=").append(reqParams[1]);
+                uriBuilder.appendQueryParameter("q", reqParams[1]);
             }
         } else {
             final String cityId = sp.getString("cityId", Constants.DEFAULT_CITY_ID);
-            urlBuilder.append("id=").append(URLEncoder.encode(cityId, "UTF-8"));
+            uriBuilder.appendQueryParameter("id", cityId);
         }
-        urlBuilder.append("&lang=").append(Language.getOwmLanguage());
-        urlBuilder.append("&mode=json");
-        urlBuilder.append("&appid=").append(apiKey);
-
-        return new URL(urlBuilder.toString());
+        
+        // Add common parameters
+        uriBuilder.appendQueryParameter("lang", Language.getOwmLanguage());
+        uriBuilder.appendQueryParameter("mode", "json");
+        uriBuilder.appendQueryParameter("appid", apiKey);
+        
+        return new URL(uriBuilder.build().toString());
     }
 
     @SuppressLint("ApplySharedPref")
@@ -267,16 +258,6 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         if (activity.recentCityId != null) {
             weatherStorage.setCityId(activity.recentCityId);
             activity.recentCityId = null;
-        }
-    }
-
-    private static void close(Closeable x) {
-        try {
-            if (x != null) {
-                x.close();
-            }
-        } catch (IOException e) {
-            Log.e("IOException Data", "Error occurred while closing stream");
         }
     }
 
