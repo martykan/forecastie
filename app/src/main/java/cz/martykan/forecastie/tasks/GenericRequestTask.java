@@ -68,18 +68,11 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
 
     @Override
     protected TaskOutput doInBackground(String... params) {
-        TaskOutput output = new TaskOutput();
-
-        String response = "";
         String[] reqParams = new String[]{};
 
         if (params != null && params.length > 0) {
             final String zeroParam = params[0];
-            if ("cachedResponse".equals(zeroParam)) {
-                response = params[1];
-                // Actually we did nothing in this case :)
-                output.taskResult = TaskResult.SUCCESS;
-            } else if ("coords".equals(zeroParam)) {
+            if ("coords".equals(zeroParam)) {
                 String lat = params[1];
                 String lon = params[2];
                 reqParams = new String[]{"coords", lat, lon};
@@ -88,28 +81,23 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
             }
         }
 
-        if (response.isEmpty()) {
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-                response = makeRequest(output, response, reqParams);
-            } else {
-                response = makeRequestWithCheckForCertificate(output, response, reqParams);
-            }
-        }
+        TaskOutput requestOutput = Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP
+            ? makeRequest(reqParams)
+            : makeRequestWithCheckForCertificate(reqParams);
 
-        if (TaskResult.SUCCESS.equals(output.taskResult)) {
-            // Parse JSON data
-            ParseResult parseResult = parseResponse(response);
-            if (ParseResult.CITY_NOT_FOUND.equals(parseResult)) {
+        if (TaskResult.SUCCESS.equals(requestOutput .taskResult)) {
+            requestOutput.parseResult = parseResponse(requestOutput.response);
+            if (ParseResult.CITY_NOT_FOUND.equals(requestOutput.parseResult)) {
                 // Retain previously specified city if current one was not recognized
                 restorePreviousCity();
             }
-            output.parseResult = parseResult;
         }
 
-        return output;
+        return requestOutput ;
     }
 
-    private String makeRequest(TaskOutput output, String response, String[] reqParams) {
+    private TaskOutput makeRequest(String[] reqParams) {
+        TaskOutput output = new TaskOutput();
         try {
             URL url = provideURL(reqParams);
             Log.i("URL", url.toString());
@@ -121,7 +109,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
             Response responseObj = okHttpClient.newCall(request).execute();
             if (responseObj.isSuccessful()) {
                 String responseBody = responseObj.body().string();
-                response += responseBody;
+                output.response = responseBody;
                 // Background work finished successfully
                 Log.i("Task", "done successfully");
                 output.taskResult = TaskResult.SUCCESS;
@@ -146,14 +134,16 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
             output.taskResult = TaskResult.IO_EXCEPTION;
             output.taskError = e;
         }
-
-        return response;
+        
+        return output;
     }
 
-    private String makeRequestWithCheckForCertificate(TaskOutput output, String response, String[] reqParams) {
+    private TaskOutput makeRequestWithCheckForCertificate(String[] reqParams) {
+        TaskOutput output = new TaskOutput();
         boolean tryAgain = false;
+        String response = "";
         do {
-            response = makeRequest(output, response, reqParams);
+            output = makeRequest(reqParams);
             if (output.taskResult == TaskResult.IO_EXCEPTION && output.taskError instanceof IOException) {
                 if (CertificateUtils.isCertificateException((IOException) output.taskError)) {
                     Log.e("Invalid Certificate", output.taskError.getMessage());
@@ -183,7 +173,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
                 tryAgain = false;
             }
         } while (tryAgain);
-        return response;
+        return output;
     }
 
     @Override
