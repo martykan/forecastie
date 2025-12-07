@@ -15,7 +15,7 @@ import cz.martykan.forecastie.R;
 import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 
 @RunWith(AndroidJUnit4.class)
-@Config(sdk = 27)
+@Config(sdk = 34)
 public class PressureUnitsLocalizerTests {
     @Test
     public void localizePressureUnitsReturnsRightStringResourcesForAllUnits() {

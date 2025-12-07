@@ -11,7 +11,7 @@ import org.robolectric.annotation.Config;
 import cz.martykan.forecastie.models.ImmutableWeather;
 
 @RunWith(AndroidJUnit4.class)
-@Config(sdk = 27)
+@Config(sdk = 34)
 public class DescriptionFormatterTests {
     @Test
     public void getDescriptionReturnsDescriptionWithFirstUpperLetter() {
