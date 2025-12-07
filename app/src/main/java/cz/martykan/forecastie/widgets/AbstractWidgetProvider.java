@@ -70,7 +70,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     protected void openMainActivity(Context context, RemoteViews remoteViews) {
         try {
             Intent intent = new Intent(context, MainActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
             remoteViews.setOnClickPendingIntent(R.id.widgetRoot, pendingIntent);
             pendingIntent.send();
         } catch (PendingIntent.CanceledException e) {
@@ -129,7 +129,17 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         long now = new Date().getTime();
         long nextUpdate = now + DURATION_MINUTE - now % DURATION_MINUTE;
         if (Build.VERSION.SDK_INT >= 19) {
-            alarmManager.setExact(AlarmManager.RTC, nextUpdate, getTimeIntent(context));
+            // Check if we can schedule exact alarms
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                if (alarmManager.canScheduleExactAlarms()) {
+                    alarmManager.setExact(AlarmManager.RTC, nextUpdate, getTimeIntent(context));
+                } else {
+                    // Fall back to inexact alarm if permission not granted
+                    alarmManager.set(AlarmManager.RTC, nextUpdate, getTimeIntent(context));
+                }
+            } else {
+                alarmManager.setExact(AlarmManager.RTC, nextUpdate, getTimeIntent(context));
+            }
         } else {
             alarmManager.set(AlarmManager.RTC, nextUpdate, getTimeIntent(context));
         }
@@ -143,9 +153,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     protected PendingIntent getTimeIntent(Context context) {
         Intent intent = new Intent(context, this.getClass());
         intent.setAction(ACTION_UPDATE_TIME);
-        return android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M
-            ? PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE)
-            : PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
     }
 
     protected String getFormattedTemperature(Weather weather, Context context, SharedPreferences sp) {

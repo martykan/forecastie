@@ -30,7 +30,9 @@ public class UI {
         }
 
         // Make status bar transparent
-        window.setStatusBarColor(android.graphics.Color.TRANSPARENT);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(android.graphics.Color.TRANSPARENT);
+        }
 
         // Make navigation bar transparent on Android 10+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
