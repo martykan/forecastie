@@ -36,6 +36,7 @@ import cz.martykan.forecastie.utils.UI;
 public class SettingsActivity extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     protected static final int MY_PERMISSIONS_FOREGROUND_SERVICE = 2;
+    protected static final int MY_PERMISSIONS_POST_NOTIFICATIONS = 3;
 
     // Thursday 2016-01-14 16:00:00
     private Date SAMPLE_DATE = new Date(1452805200000L);
@@ -163,6 +164,19 @@ public class SettingsActivity extends PreferenceActivity
 
     private void requestForegroundServicePermission() {
         System.out.println("Calling request foreground service permission");
+
+        // Check for POST_NOTIFICATIONS permission on Android 13+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{ Manifest.permission.POST_NOTIFICATIONS },
+                        MY_PERMISSIONS_POST_NOTIFICATIONS);
+                return;
+            }
+        }
+
+        // Check for FOREGROUND_SERVICE permission on Android 9+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
                 && ContextCompat.checkSelfPermission(this, Manifest.permission.FOREGROUND_SERVICE)
                         != PackageManager.PERMISSION_GRANTED) {
@@ -185,6 +199,17 @@ public class SettingsActivity extends PreferenceActivity
                 checkBox.setChecked(permissionGranted);
                 if (permissionGranted) {
                     privacyGuardWorkaround();
+                }
+                break;
+            case MY_PERMISSIONS_POST_NOTIFICATIONS:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // POST_NOTIFICATIONS granted, now check for FOREGROUND_SERVICE
+                    requestForegroundServicePermission();
+                } else {
+                    String enableNotificationKey = getString(R.string.settings_enable_notification_key);
+                    CheckBoxPreference notificationCheckBox =
+                            (CheckBoxPreference) findPreference(enableNotificationKey);
+                    notificationCheckBox.setChecked(false);
                 }
                 break;
             case MY_PERMISSIONS_FOREGROUND_SERVICE:

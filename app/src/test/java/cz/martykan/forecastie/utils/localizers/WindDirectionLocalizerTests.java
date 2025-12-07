@@ -15,7 +15,7 @@ import cz.martykan.forecastie.models.Weather;
 import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 
 @RunWith(AndroidJUnit4.class)
-@Config(sdk = 27)
+@Config(sdk = 34)
 public class WindDirectionLocalizerTests {
     @Test
     public void localizeWindDirectionAppliesFormat() {

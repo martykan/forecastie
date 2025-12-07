@@ -30,7 +30,7 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
 @RunWith(AndroidJUnit4.class)
-@Config(sdk = 27)
+@Config(sdk = 34)
 public class WeatherNotificationServicesTests {
     @Rule
     public ServiceTestRule serviceTestRule = new ServiceTestRule();

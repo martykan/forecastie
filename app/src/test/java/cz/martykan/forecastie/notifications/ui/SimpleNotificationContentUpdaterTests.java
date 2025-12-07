@@ -37,7 +37,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(AndroidJUnit4.class)
-@Config(sdk = 27)
+@Config(sdk = 34)
 public class SimpleNotificationContentUpdaterTests {
     private Context context = getApplicationContext();
     @Mock private WeatherSimpleNotificationFormatter formatterMock;

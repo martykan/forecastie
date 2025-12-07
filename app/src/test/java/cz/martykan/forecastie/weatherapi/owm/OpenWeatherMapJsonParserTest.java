@@ -14,7 +14,7 @@ import java.util.List;
 import cz.martykan.forecastie.models.Weather;
 
 @RunWith(AndroidJUnit4.class)
-@Config(sdk = 27)
+@Config(sdk = 34)
 public class OpenWeatherMapJsonParserTest {
     @Test
     public void testConvertJsonToWeather() throws JSONException {

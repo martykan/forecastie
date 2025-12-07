@@ -18,7 +18,7 @@ import cz.martykan.forecastie.models.ImmutableWeather;
 import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 
 @RunWith(AndroidJUnit4.class)
-@Config(sdk = 27)
+@Config(sdk = 34)
 public class WeatherSimpleNotificationFormatterTests {
     private WeatherSimpleNotificationFormatter formatter = new WeatherSimpleNotificationFormatter();
 

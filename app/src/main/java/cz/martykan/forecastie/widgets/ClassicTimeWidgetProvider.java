@@ -125,7 +125,7 @@ public class ClassicTimeWidgetProvider extends AbstractWidgetProvider {
     private static PendingIntent getTimeIntent(Context context) {
         Intent intent = new Intent(context, TimeWidgetProvider.class);
         intent.setAction(ACTION_UPDATE_TIME);
-        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
     }
     */
 

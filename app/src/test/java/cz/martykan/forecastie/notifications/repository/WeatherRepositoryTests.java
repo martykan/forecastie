@@ -26,7 +26,7 @@ import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 
 @SuppressWarnings("UnstableApiUsage")
 @RunWith(AndroidJUnit4.class)
-@Config(sdk = 27)
+@Config(sdk = 34)
 @LooperMode(LooperMode.Mode.PAUSED)
 public class WeatherRepositoryTests {
     private Context context;
