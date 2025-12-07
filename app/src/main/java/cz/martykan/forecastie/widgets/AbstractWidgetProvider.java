@@ -22,7 +22,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import cz.martykan.forecastie.BuildConfig;
 import cz.martykan.forecastie.R;
 import cz.martykan.forecastie.activities.MainActivity;
 import cz.martykan.forecastie.models.Weather;
@@ -129,10 +128,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         long now = new Date().getTime();
         long nextUpdate = now + DURATION_MINUTE - now % DURATION_MINUTE;
-        if (BuildConfig.DEBUG) {
-            Log.v(this.getClass().getSimpleName(), "Next widget update: " +
-                    android.text.format.DateFormat.getTimeFormat(context).format(new Date(nextUpdate)));
-        }
         if (Build.VERSION.SDK_INT >= 19) {
             alarmManager.setExact(AlarmManager.RTC, nextUpdate, getTimeIntent(context));
         } else {
@@ -148,7 +143,9 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     protected PendingIntent getTimeIntent(Context context) {
         Intent intent = new Intent(context, this.getClass());
         intent.setAction(ACTION_UPDATE_TIME);
-        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        return android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M
+            ? PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE)
+            : PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
     protected String getFormattedTemperature(Weather weather, Context context, SharedPreferences sp) {

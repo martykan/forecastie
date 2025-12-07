@@ -737,7 +737,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
         @Override
         protected void onPreExecute() {
-            loading = 0;
             super.onPreExecute();
         }
 
@@ -903,7 +902,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
         @Override
         protected void onPreExecute() {
-            loading = 0;
             super.onPreExecute();
         }
 

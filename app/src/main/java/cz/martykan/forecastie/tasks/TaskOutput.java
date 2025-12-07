@@ -7,4 +7,6 @@ public class TaskOutput {
     TaskResult taskResult;
     // Error caused unsuccessful result
     Throwable taskError;
+    // Response data from the request
+    String response;
 }

@@ -3,11 +3,12 @@ apply plugin: 'com.android.application'
 def lifecycleVersion = '2.2.0'
 
 android {
-    compileSdkVersion 29
+    namespace = "cz.martykan.forecastie"
+    compileSdkVersion 36
     defaultConfig {
         applicationId "cz.martykan.forecastie"
         minSdkVersion 15
-        targetSdkVersion 29
+        targetSdkVersion 36
         versionCode 74
         versionName "1.22.1"
     }
@@ -40,6 +41,9 @@ dependencies {
     /** Lifecycle */
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
+
+    /** HTTP client */
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
 
     /** other dependencies */
     implementation "com.diogobernardino:williamchart:2.2"
