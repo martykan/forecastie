@@ -42,5 +42,6 @@ There is also a [Python3 script](./tools/translation-progress.py) to help in you
 ./tools/translation-progress.py -vv el
 ```
 
-Detailed documentation ofthe script's output is located in the form of comments in the beginning of the script.
+Detailed documentation of the script's output is located in the form of comments in the beginning of the script.
 
+Translators are also encouraged to translate the text appearing on store pages, such as F-Droid. The translation strings for the various languages are located in `*.txt` files inside the [`fastlane/metadata/android/*`](./fastlane/metadata/android) folders. For your translation please follow the same file structure as the English translation in the [`en-US`](./fastlane/metadata/android/en-US/) folder. Please note that you should only create the `*.txt` files. The images are currently not localized and the changelogs are not updated. 
