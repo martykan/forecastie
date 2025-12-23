@@ -67,6 +67,7 @@ import cz.martykan.forecastie.tasks.GenericRequestTask;
 import cz.martykan.forecastie.tasks.ParseResult;
 import cz.martykan.forecastie.tasks.TaskOutput;
 import cz.martykan.forecastie.utils.Formatting;
+import cz.martykan.forecastie.utils.NetworkUtils;
 import cz.martykan.forecastie.utils.TimeUtils;
 import cz.martykan.forecastie.utils.UI;
 import cz.martykan.forecastie.utils.UnitConvertor;
@@ -515,8 +516,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        return NetworkUtils.isNetworkAvailable(connectivityManager);
     }
 
     private boolean shouldUpdate() {
