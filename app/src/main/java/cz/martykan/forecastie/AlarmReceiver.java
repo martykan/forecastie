@@ -37,41 +37,63 @@ public class AlarmReceiver extends BroadcastReceiver {
     Context context;
 
     @Override
-    public void onReceive(Context context, Intent intent) {
-        this.context = context;
-        boolean packageReplacedAction;
-        if (Intent.ACTION_PACKAGE_REPLACED.equals(intent.getAction())) {
-            String packageName = intent.getStringExtra(Intent.EXTRA_UID);
-            packageReplacedAction = packageName != null && packageName.equals(context.getPackageName());
-        } else {
-            packageReplacedAction = false;
-        }
-        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()) || packageReplacedAction) {
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-            String interval = sp.getString("refreshInterval", "1");
+  @Override
+public void onReceive(Context context, Intent intent) {
+    this.context = context;
+    String action = intent.getAction();
+
+    if (action == null) return;
+
+    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+    String interval = sp.getString("refreshInterval", "1");
+
+    switch (action) {
+
+        case Intent.ACTION_BOOT_COMPLETED:
             if (!interval.equals("0")) {
                 setRecurringAlarm(context);
                 getWeather();
             }
-            String enableNotificationKey = context.getString(R.string.settings_enable_notification_key);
+
+            String enableNotificationKey =
+                    context.getString(R.string.settings_enable_notification_key);
+
             if (sp.getBoolean(enableNotificationKey, false)) {
                 WeatherNotificationService.start(context);
             }
-        } else if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
-            // Get weather if last attempt failed or if 'update location in background' is activated
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-            String interval = sp.getString("refreshInterval", "1");
-            if (!interval.equals("0") &&
-                    (sp.getBoolean("backgroundRefreshFailed", false) || isUpdateLocation())) {
+            break;
+
+        case Intent.ACTION_PACKAGE_REPLACED:
+            String packageName = intent.getStringExtra(Intent.EXTRA_UID);
+            boolean isThisApp =
+                    packageName != null && packageName.equals(context.getPackageName());
+
+            if (isThisApp && !interval.equals("0")) {
+                setRecurringAlarm(context);
                 getWeather();
             }
-        } else if (Intent.ACTION_LOCALE_CHANGED.equals(intent.getAction())) {
-            WeatherNotificationService.updateNotificationChannelIfNeeded(context);
+            break;
+
+        case ConnectivityManager.CONNECTIVITY_ACTION:
+            if (!interval.equals("0") &&
+                    (sp.getBoolean("backgroundRefreshFailed", false)
+                            || isUpdateLocation())) {
+                getWeather();
+            }
+            break;
+
+        case Intent.ACTION_LOCALE_CHANGED:
+            WeatherNotificationService
+                    .updateNotificationChannelIfNeeded(context);
             getWeather();
-        } else {
+            break;
+
+        default:
             getWeather();
-        }
+            break;
     }
+}
+
 
     private void getWeather() {
         Log.d("Alarm", "Recurring alarm; requesting download service.");
