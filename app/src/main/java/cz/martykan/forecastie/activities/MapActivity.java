@@ -78,17 +78,17 @@ public class MapActivity extends BaseActivity {
 
     private void setMapState(int item) {
         if (item == R.id.map_clouds) {
-            webView.loadUrl("javascript:map.removeLayer(rainLayer);map.removeLayer(windLayer);map.removeLayer(tempLayer);"
-                    + "map.addLayer(cloudsLayer);");
+            webView.evaluateJavascript("map.removeLayer(rainLayer);map.removeLayer(windLayer);map.removeLayer(tempLayer);"
+                    + "map.addLayer(cloudsLayer);", null);
         } else if (item == R.id.map_rain) {
-            webView.loadUrl("javascript:map.removeLayer(cloudsLayer);map.removeLayer(windLayer);map.removeLayer(tempLayer);"
-                    + "map.addLayer(rainLayer);");
+            webView.evaluateJavascript("map.removeLayer(cloudsLayer);map.removeLayer(windLayer);map.removeLayer(tempLayer);"
+                    + "map.addLayer(rainLayer);", null);
         } else if (item == R.id.map_wind) {
-            webView.loadUrl("javascript:map.removeLayer(cloudsLayer);map.removeLayer(rainLayer);map.removeLayer(tempLayer);"
-                    + "map.addLayer(windLayer);");
+            webView.evaluateJavascript("map.removeLayer(cloudsLayer);map.removeLayer(rainLayer);map.removeLayer(tempLayer);"
+                    + "map.addLayer(windLayer);", null);
         } else if (item == R.id.map_temperature) {
-            webView.loadUrl("javascript:map.removeLayer(cloudsLayer);map.removeLayer(windLayer);map.removeLayer(rainLayer);"
-                    + "map.addLayer(tempLayer);");
+            webView.evaluateJavascript("map.removeLayer(cloudsLayer);map.removeLayer(windLayer);map.removeLayer(rainLayer);"
+                    + "map.addLayer(tempLayer);", null);
         } else {
             Log.w("MapActivity", "Layer not configured");
         }
