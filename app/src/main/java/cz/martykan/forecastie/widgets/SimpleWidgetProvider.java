@@ -27,11 +27,13 @@ public class SimpleWidgetProvider extends AbstractWidgetProvider {
                     : PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             remoteViews.setOnClickPendingIntent(R.id.widgetButtonRefresh, pendingIntent);
 
+            setWidgetRootClickHandler(context, remoteViews);
+
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
             Weather widgetWeather = this.getTodayWeather(context);
 
             if (widgetWeather == null) {
-                this.openMainActivity(context, remoteViews);
+                this.openMainActivity(context);
                 return;
             }
 
