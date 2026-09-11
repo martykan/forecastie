@@ -67,11 +67,16 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         return weatherStorage.getLastToday();
     }
 
-    protected void openMainActivity(Context context, RemoteViews remoteViews) {
+    protected void setWidgetRootClickHandler(Context context, RemoteViews remoteViews) {
+        Intent intent = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        remoteViews.setOnClickPendingIntent(R.id.widgetRoot, pendingIntent);
+    }
+
+    protected void openMainActivity(Context context) {
         try {
             Intent intent = new Intent(context, MainActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-            remoteViews.setOnClickPendingIntent(R.id.widgetRoot, pendingIntent);
             pendingIntent.send();
         } catch (PendingIntent.CanceledException e) {
             e.printStackTrace();

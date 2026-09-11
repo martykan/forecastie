@@ -34,8 +34,10 @@ public class ExtensiveWidgetProvider extends AbstractWidgetProvider {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
             Weather widgetWeather = this.getTodayWeather(context);
 
+            setWidgetRootClickHandler(context, remoteViews);
+
             if (widgetWeather == null) {
-                this.openMainActivity(context, remoteViews);
+                this.openMainActivity(context);
                 return;
             }
 

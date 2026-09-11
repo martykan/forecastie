@@ -41,11 +41,13 @@ public class ClassicTimeWidgetProvider extends AbstractWidgetProvider {
 
             remoteViews.setOnClickPendingIntent(R.id.widgetButtonRefresh, pendingIntent);
 
+            setWidgetRootClickHandler(context, remoteViews);
+
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
             Weather widgetWeather = this.getTodayWeather(context);
 
             if (widgetWeather == null) {
-                this.openMainActivity(context, remoteViews);
+                this.openMainActivity(context);
                 return;
             }
 
